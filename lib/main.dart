@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/firstdemo/random_words.dart';
 import 'package:flutter_app/movie/list/movie_list_page.dart';
+import 'package:flutter_app/widget/button_widget.dart';
+import 'package:flutter_app/widget/image_widget.dart';
+import 'package:flutter_app/widget/text_widget.dart';
+import 'package:flutter_app/widget/textfield_widget.dart';
 
 void main() => runApp(new MyApp());
 

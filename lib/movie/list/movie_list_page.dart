@@ -94,17 +94,19 @@ class MovieListPageState extends State<MovieListPage> {
 
         child: new Column(
           children: <Widget>[
-            new Row(
-              children: <Widget>[
-                movieImage,
-                // Expanded 均分
-                new Expanded(
-                  child: movieMsg,
-                ),
-                const Icon(Icons.keyboard_arrow_right),
-              ],
+            new Card(
+              child: new Row(
+                children: <Widget>[
+                  movieImage,
+                  // Expanded 均分
+                  new Expanded(
+                    child: movieMsg,
+                  ),
+                  const Icon(Icons.keyboard_arrow_right),
+                ],
+              ),
             ),
-            new Divider(),
+//            new Divider(),
           ],
         ),
       );
