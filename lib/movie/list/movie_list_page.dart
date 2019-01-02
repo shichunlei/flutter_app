@@ -1,13 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/details/movie_detail_page.dart';
 import 'package:flutter_app/movie/list/movie.dart';
 
 class MovieListPage extends StatefulWidget {
   @override
-  MovieListPageState createState() => new MovieListPageState();
+  createState() => MovieListPageState();
 }
 
 class MovieListPageState extends State<MovieListPage> {
@@ -24,20 +25,38 @@ class MovieListPageState extends State<MovieListPage> {
   Widget build(BuildContext context) {
     var content;
     if (movies.isEmpty) {
-      content = new Center(
-        // 可选参数 child:
-        child: new CircularProgressIndicator(),
+      content = Center(
+        /// 加载菊花
+        child: CupertinoActivityIndicator(),
       );
     } else {
-      content = new ListView(children: buildMovieItems());
+      content = ListView(
+        /// 表示列表包含的widget集合，整个滚动视图中的内容设置。
+        children: buildMovieItems(),
+
+        /// 表示控件滚动的方向，主要有两个值可设置。Axis.vertical表示垂直滚动视图；Axis.horizontal表示水平滚动视图。
+        scrollDirection: Axis.vertical,
+
+        /// 可设置值为true|false。true时表示内容不足够填充控件区间时也可以有滚动反馈；false表示只有内容超出控件大小时才可滚动。
+        primary: true,
+
+        /// 表示读取内容的方向是否颠倒，可设置值为true|false。false表示由左向右或由上向下读取；true表示由右向左或由下向上读取。
+        reverse: false,
+
+        /// 表示物理反馈，一般设置值为AlwaysScrollableScrollPhysics()|ScrollPhysics()。AlwaysScrollableScrollPhysics表示总是有滚动反馈，无论primary值为true or false；ScrollPhysics表示只有只有内容超出控件大小时才会有滚动反馈，无论primary值为true or false。
+        physics: const AlwaysScrollableScrollPhysics(),
+
+        /// 表示控件的内边距。
+        padding: EdgeInsets.all(10.0),
+      );
     }
 
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('电影'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('电影'),
         actions: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.person),
+          IconButton(
+            icon: Icon(Icons.person),
             onPressed: () {
               print('onclick');
             },
@@ -52,62 +71,74 @@ class MovieListPageState extends State<MovieListPage> {
     List<Widget> widgets = [];
     for (int i = 0; i < movies.length; i++) {
       Movie movie = movies[i];
-      var movieImage = new Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: new Image.network(
+
+      /// 影片图片
+      var movieImage = ClipRRect(
+        /// 圆角
+        borderRadius: BorderRadius.circular(4.0),
+        child: Image.network(
           movie.smallImage,
           width: 100.0,
-          height: 120.0,
+          height: 150.0,
+          fit: BoxFit.fill,
         ),
       );
 
-      var movieMsg = new Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          new Text(
-            movie.title,
-            textAlign: TextAlign.left,
-            style: new TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 14.0,
-                color: Colors.black),
-          ),
-          new Text('导演：' + movie.director),
-          new Text('主演：' + movie.cast),
-          new Text('评分：' + movie.average),
-          new Row(
-            children: <Widget>[
-              new Text(
-                movie.collectCount.toString(),
-                style: new TextStyle(fontSize: 14.0, color: Colors.orange),
-              ),
-              new Text("人看过"),
-            ],
-          ),
-        ],
+      var movieMsg = Container(
+        //高度
+        height: 150.0,
+        margin: EdgeInsets.only(left: 8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            /// 电影名称
+            Text(
+              movie.title,
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14.0,
+                  color: Colors.black),
+            ),
+
+            /// 导演
+            Text('导演：' + movie.director),
+            Text('主演：' + movie.cast),
+
+            /// 豆瓣评书
+            Text('评分：' + movie.average),
+            Row(
+              children: <Widget>[
+                Text(
+                  movie.collectCount.toString(),
+                  style: TextStyle(fontSize: 14.0, color: Colors.orange),
+                ),
+                Text("人看过"),
+              ],
+            ),
+          ],
+        ),
       );
 
-      var movieItem = new GestureDetector(
+      var movieItem = GestureDetector(
         //点击事件
         onTap: () => navigateToMovieDetailPage(movie, i),
 
-        child: new Column(
-          children: <Widget>[
-            new Card(
-              child: new Row(
-                children: <Widget>[
-                  movieImage,
-                  // Expanded 均分
-                  new Expanded(
-                    child: movieMsg,
-                  ),
-                  const Icon(Icons.keyboard_arrow_right),
-                ],
+        child: Card(
+          margin: EdgeInsets.all(5.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              movieImage,
+              // Expanded 均分
+              Expanded(
+                child: movieMsg,
               ),
-            ),
-//            new Divider(),
-          ],
+              const Icon(Icons.keyboard_arrow_right),
+            ],
+          ),
         ),
       );
 
@@ -117,16 +148,20 @@ class MovieListPageState extends State<MovieListPage> {
   }
 
   // 跳转页面
-  navigateToMovieDetailPage(Movie movie, Object imageTag) {
-    Navigator.of(context)
-        .push(new MaterialPageRoute(builder: (BuildContext context) {
-      return new MovieDetailPage(movie, imageTag: imageTag);
-    }));
+  navigateToMovieDetailPage(movie, imageTag) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => MovieDetailPage(
+              movie,
+              imageTag: imageTag,
+            ),
+      ),
+    );
   }
 
   //网络请求
   getMovieListData() async {
-    var httpClient = new HttpClient();
+    var httpClient = HttpClient();
     var url =
         'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=&udid=';
     var request = await httpClient.getUrl(Uri.parse(url));

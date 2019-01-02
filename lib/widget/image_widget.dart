@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class ImageWidget extends StatefulWidget {
   @override
@@ -19,6 +20,35 @@ class ImageWidgetState extends State<ImageWidget> {
           child: new Center(
             child: new Column(
               children: <Widget>[
+                /// 占位符淡入图片
+                FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image:
+                      'https://flutterchina.club/images/assets-and-images/icon.png',
+                  width: 200.0,
+                  height: 200.0,
+                  fit: BoxFit.fill,
+                ),
+                FadeInImage.assetNetwork(
+                  placeholder: 'images/flutter_logo.png',
+                  image:
+                      'https://flutterchina.club/images/assets-and-images/icon.png',
+                  width: 200.0,
+                  height: 200.0,
+                  fit: BoxFit.fill,
+                ),
+
+                /// 给图片添加圆角
+                ClipRRect(
+                  /// 圆角
+                  borderRadius: BorderRadius.circular(4.0),
+                  child: Image.network(
+                    "https://flutterchina.club/images/assets-and-images/icon.png",
+                    width: 100.0,
+                    height: 120.0,
+                    fit: BoxFit.fill,
+                  ),
+                ),
                 Image.asset('images/flutter_logo.png'),
                 Image.asset(
                   'images/flutter_logo.png',
@@ -41,15 +71,21 @@ class ImageWidgetState extends State<ImageWidget> {
                 ),
                 Image(
                     image: AssetImage("images/flutter_logo.png"), width: 20.0),
+
+                /// 加载网络图片
                 Image.network(
                   "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
-                  width: 140,
-                ),
-                Image(
-                  image: NetworkImage(
-                      "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4"),
                   width: 140.0,
                 ),
+
+                /// 加载网络图片
+                Image(
+                  image: NetworkImage(
+                      "https://img-blog.csdnimg.cn/20181226135809459.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1emhpcWlhbmdfMTk5Mw==,size_16,color_FFFFFF,t_70"),
+                  width: 240.0,
+                ),
+
+                /// ICON
                 Icon(
                   Icons.adb,
                 ),

@@ -7,16 +7,21 @@ class ButtonWidget extends StatefulWidget {
 }
 
 class ButtonWidgetState extends State<ButtonWidget> {
+  /// add line
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new Scaffold(
-      appBar: new AppBar(
+    return Scaffold(
+      /// add line
+      key: _scaffoldKey,
+      appBar: AppBar(
         title: Text("Button Widget"),
       ),
-      body: new Center(
-        child: new Column(
-          children: builderButton(),
+      body: Center(
+        child: Column(
+          children: builderButton(context),
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
         ),
@@ -24,7 +29,7 @@ class ButtonWidgetState extends State<ButtonWidget> {
     );
   }
 
-  List<Widget> builderButton() {
+  List<Widget> builderButton(context) {
     return <Widget>[
       RaisedButton(
         color: Colors.blue,
@@ -58,54 +63,48 @@ class ButtonWidgetState extends State<ButtonWidget> {
         // 点击按钮后过渡动画时间
         child: Text('ClickButton'),
       ),
-      Row(
-        children: <Widget>[
-          Expanded(
-            child: CupertinoButton(
-              child: Text(
-                'C',
-                style: TextStyle(color: Colors.orange),
-              ),
-              disabledColor: Colors.blueGrey, //不可点击时按钮颜色，color属性不设置该值无效
-              onPressed: null, // onPressed为null视为不可点击
-            ),
-          ),
-          CupertinoButton(
-            child: Text('Button'),
-            color: Colors.lightBlue,
-            minSize: 20.0,
-            disabledColor: Colors.blueGrey,
-            //不可点击时按钮颜色，color属性不设置该值无效
-            onPressed: null, // onPressed为null视为不可点击
-          ),
-          Expanded(
-            child: CupertinoButton(
-              child: Text(
-                'Click',
-                textAlign: TextAlign.center,
-              ),
-              color: Colors.lightBlue, // 按钮颜色
-              borderRadius: BorderRadius.all(Radius.circular(15.0)), // 按钮圆角设置
-              onPressed: () {
-                // onPressed不为null视为可点击
-                print('You click the cupertino button');
-              },
-            ),
-          ),
-        ],
+      CupertinoButton(
+        child: Text(
+          'CupertinoButton',
+          style: TextStyle(color: Colors.orange),
+        ),
+        disabledColor: Colors.blueGrey, //不可点击时按钮颜色，color属性不设置该值无效
+        onPressed: null, // onPressed为null视为不可点击
       ),
-      FlatButton(
-        child: Text("FlatButton"),
+      CupertinoButton(
+        child: Text('CupertinoButton'),
+        color: Colors.lightBlue,
+        minSize: 20.0,
+        disabledColor: Colors.blueGrey,
+        //不可点击时按钮颜色，color属性不设置该值无效
+        onPressed: null, // onPressed为null视为不可点击
+      ),
+      CupertinoButton(
+        child: Text(
+          'CupertinoButton',
+          textAlign: TextAlign.center,
+        ),
+        color: Colors.lightBlue, // 按钮颜色
+        borderRadius: BorderRadius.all(Radius.circular(15.0)), // 按钮圆角设置
         onPressed: () {
           // onPressed不为null视为可点击
           print('You click the cupertino button');
         },
       ),
+      FlatButton(
+        child: Text("FlatButton"),
+        onPressed: () {
+          _scaffoldKey.currentState.showSnackBar(
+            SnackBar(
+              content: Text('Are you talkin\' to me?'),
+            ),
+          );
+        },
+      ),
       OutlineButton(
         child: Text("OutlineButton"),
         onPressed: () {
-          // onPressed不为null视为可点击
-          print('You click the outline button');
+          _displaySnackBar();
         },
       ),
       IconButton(
@@ -116,5 +115,35 @@ class ButtonWidgetState extends State<ButtonWidget> {
         },
       )
     ];
+  }
+
+  void _displaySnackBar() {
+    /// show snackbar
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(
+        /// set content of snackbar
+        content: Text(
+          "Hello! I am SnackBar :)",
+        ),
+
+        /// set duration
+        duration: Duration(seconds: 3),
+
+        /// set the action
+        action: SnackBarAction(
+          label: "Hit Me (Action)",
+          onPressed: () {
+            /// When action button is pressed, show another snackbar
+            _scaffoldKey.currentState.showSnackBar(
+              SnackBar(
+                content: Text(
+                  "Hello! I am shown becoz you pressed Action :)",
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }

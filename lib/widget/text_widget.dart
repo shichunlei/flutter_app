@@ -11,7 +11,7 @@ class TextWidgetState extends State<TextWidget> {
     // TODO: implement build
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Widget Text"),
+        title: new Text("Text Widget"),
       ),
       body: new Column(
         children: builderTextWidget(),
