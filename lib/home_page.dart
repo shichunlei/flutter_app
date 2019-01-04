@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/firstdemo/random_words.dart';
 import 'package:flutter_app/movie/list/movie_grid_page.dart';
 import 'package:flutter_app/movie/list/movie_list_page.dart';
+import 'package:flutter_app/page/about_us_page.dart';
+import 'package:flutter_app/page/city_select_page.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation_bar.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation_widget.dart';
@@ -71,6 +73,13 @@ class HomeStatePage extends State<HomePage> {
                 onPressed: () {},
               )
             ],
+          ),
+          drawer: Drawer(
+            elevation: 10.0,
+            child: Center(
+              child: bulderMenuView(),
+            ),
+            semanticLabel: "左侧菜单",
           ),
           body: Scrollbar(
               child: SingleChildScrollView(
@@ -154,32 +163,6 @@ class HomeStatePage extends State<HomePage> {
             ),
             Row(
               children: <Widget>[
-                Expanded(
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return DateTimePage();
-                      }));
-                    },
-                    child: Text("日期时间控件"),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return CityPage();
-                      }));
-                    },
-                    child: Text("Weather"),
-                  ),
-                ),
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
@@ -327,5 +310,90 @@ class HomeStatePage extends State<HomePage> {
       return false;
     }
     return true;
+  }
+
+  Widget bulderMenuView() {
+    return ListView(
+      children: <Widget>[
+        UserAccountsDrawerHeader(
+          /// 姓名
+          accountName: Text("SCL"),
+
+          /// 邮箱
+          accountEmail: Text("1558053958@qq.com"),
+
+          /// 用户头像
+          currentAccountPicture: InkWell(
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(
+                  "https://upload.jianshu.io/users/upload_avatars/7700793/dbcf94ba-9e63-4fcf-aa77-361644dd5a87?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240"),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (contet) => AboutUsPage()));
+            },
+          ),
+          otherAccountsPictures: <Widget>[
+            GestureDetector(
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(
+                    "https://upload.jianshu.io/users/upload_avatars/10878817/240ab127-e41b-496b-80d6-fc6c0c99f291?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240"),
+              ),
+              onTap: () {},
+            ),
+            GestureDetector(
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(
+                    "https://upload.jianshu.io/users/upload_avatars/8346438/e3e45f12-b3c2-45a1-95ac-a608fa3b8960?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240"),
+              ),
+              onTap: () {},
+            ),
+          ],
+
+          /// 装饰器
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            image: DecorationImage(
+              image: NetworkImage(
+                  "http://pic33.photophoto.cn/20141028/0038038006886895_b.jpg"),
+              //image: ExactAssetImage("images/flutter.png"),
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
+        ListTile(
+          title: Text("日期时间控件"),
+          leading: Icon(Icons.date_range),
+          trailing: Icon(Icons.arrow_right),
+          onTap: () {
+            /// 左侧菜单收起
+            Navigator.pop(context);
+
+            /// 跳转到下一个界面
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return DateTimePage();
+            }));
+          },
+        ),
+        Divider(),
+        ListTile(
+          title: Text("天气"),
+          leading: Icon(Icons.hdr_weak),
+          trailing: Icon(Icons.chevron_right),
+          onTap: () => Navigator.push(
+              context, MaterialPageRoute(builder: (context) => CityPage())),
+        ),
+        Divider(),
+        ListTile(
+          title: Text("城市"),
+          leading: Icon(Icons.location_city),
+          trailing: Icon(Icons.chevron_right),
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => CitySelectPage())),
+        ),
+        Divider(),
+      ],
+    );
   }
 }
