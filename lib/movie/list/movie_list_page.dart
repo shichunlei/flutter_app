@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/details/movie_detail_page.dart';
 import 'package:flutter_app/movie/list/movie.dart';
+import 'package:flutter_app/utils/api.dart';
+import 'package:flutter_app/utils/http_utils.dart';
 
 class MovieListPage extends StatefulWidget {
   @override
@@ -161,18 +163,18 @@ class MovieListPageState extends State<MovieListPage> {
 
   //网络请求
   getMovieListData() async {
-    var httpClient = HttpClient();
-    var url =
-        'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%E5%8C%97%E4%BA%AC&start=0&count=100&client=&udid=';
-    var request = await httpClient.getUrl(Uri.parse(url));
-    var response = await request.close();
-    if (response.statusCode == HttpStatus.OK) {
-      var jsonData = await response.transform(utf8.decoder).join();
+    String url = Api.MOVIE_LIST_URL;
+    var data = {
+      'apikey': '0b2bdeda43b5688921839c8ecb20399b',
+      'city': '北京',
+      'start': 0,
+      'count': 100,
+    };
+    var jsonData = await HttpUtils().get(url, data: data);
 
-      // setState 相当于 runOnUiThread
-      setState(() {
-        movies = Movie.decodeData(jsonData.toString());
-      });
-    }
+    // setState 相当于 runOnUiThread
+    setState(() {
+      movies = Movie.decodeData(jsonData);
+    });
   }
 }

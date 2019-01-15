@@ -19,12 +19,10 @@ class Movie {
       this.cast,
       this.movieId});
 
-  static List<Movie> decodeData(String jsonData) {
+  static List<Movie> decodeData(jsonData) {
     List<Movie> movies = new List<Movie>();
 
-    var data = json.decode(jsonData);
-
-    var results = data['subjects'];
+    var results = jsonData['subjects'];
     for (int i = 0; i < results.length; i++) {
       movies.add(fromMap(results[i]));
     }

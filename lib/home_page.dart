@@ -5,6 +5,7 @@ import 'package:flutter_app/movie/list/movie_grid_page.dart';
 import 'package:flutter_app/movie/list/movie_list_page.dart';
 import 'package:flutter_app/page/about_us_page.dart';
 import 'package:flutter_app/page/city_select_page.dart';
+import 'package:flutter_app/page/shici_page.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation_bar.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation_widget.dart';
@@ -17,6 +18,7 @@ import 'package:flutter_app/widget/dialog_widget.dart';
 import 'package:flutter_app/widget/frosting_widget.dart';
 import 'package:flutter_app/widget/image_widget.dart';
 import 'package:flutter_app/widget/load_image_widget.dart';
+import 'package:flutter_app/widget/qr_image_wiget.dart';
 import 'package:flutter_app/widget/stepper_widget.dart';
 import 'package:flutter_app/widget/swiper_widget.dart';
 import 'package:flutter_app/widget/text_widget.dart';
@@ -51,11 +53,13 @@ class HomeStatePage extends State<HomePage> {
             // Set the background color of the App Bar
             backgroundColor: Colors.pinkAccent,
             elevation: 4.0,
+            centerTitle: true,
             leading: IconButton(
               icon: Icon(
                 Icons.menu,
               ),
               onPressed: () {},
+              tooltip: "menu",
             ),
             actions: <Widget>[
               IconButton(
@@ -64,6 +68,7 @@ class HomeStatePage extends State<HomePage> {
                   semanticLabel: "search",
                 ),
                 onPressed: () {},
+                tooltip: "Search",
               ),
               IconButton(
                 icon: Icon(
@@ -71,6 +76,7 @@ class HomeStatePage extends State<HomePage> {
                   semanticLabel: "tune",
                 ),
                 onPressed: () {},
+                tooltip: "Tune",
               )
             ],
           ),
@@ -391,6 +397,22 @@ class HomeStatePage extends State<HomePage> {
           trailing: Icon(Icons.chevron_right),
           onTap: () => Navigator.push(context,
               MaterialPageRoute(builder: (context) => CitySelectPage())),
+        ),
+        Divider(),
+        ListTile(
+          title: Text("诗词"),
+          leading: Icon(Icons.book),
+          trailing: Icon(Icons.chevron_right),
+          onTap: () => Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ShiciPage())),
+        ),
+        Divider(),
+        ListTile(
+          title: Text("二维码"),
+          leading: Icon(Icons.crop_square),
+          trailing: Icon(Icons.chevron_right),
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => QrImageWidget())),
         ),
         Divider(),
       ],
