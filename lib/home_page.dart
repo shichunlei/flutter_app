@@ -13,7 +13,7 @@ import 'package:flutter_app/tabs_demo/bottom_navigation_widget.dart';
 import 'package:flutter_app/tabs_demo/navigation_keep_alive.dart';
 import 'package:flutter_app/tabs_demo/tabbar_home_page.dart';
 import 'package:flutter_app/weather/city/CityPage.dart';
-import 'package:flutter_app/widget/CustomScrollViewWidget.dart';
+import 'package:flutter_app/contact/page/contact_page.dart';
 import 'package:flutter_app/widget/button_widget.dart';
 import 'package:flutter_app/widget/date_time_page.dart';
 import 'package:flutter_app/widget/dialog_widget.dart';
@@ -295,10 +295,10 @@ class HomeStatePage extends State<HomePage> {
                   onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CustomScrollViewWidget(),
+                          builder: (context) => ContactPage(),
                         ),
                       ),
-                  child: Text("CustomScrollViewWidget"),
+                  child: Text("Contact"),
                 ),
               ],
             ),
