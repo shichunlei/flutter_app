@@ -6,12 +6,14 @@ import 'package:flutter_app/movie/list/movie_list_page.dart';
 import 'package:flutter_app/page/about_us_page.dart';
 import 'package:flutter_app/page/city_select_page.dart';
 import 'package:flutter_app/page/shici_page.dart';
+import 'package:flutter_app/question/pages/quiz_page.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation_bar.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation_widget.dart';
 import 'package:flutter_app/tabs_demo/navigation_keep_alive.dart';
 import 'package:flutter_app/tabs_demo/tabbar_home_page.dart';
 import 'package:flutter_app/weather/city/CityPage.dart';
+import 'package:flutter_app/widget/CustomScrollViewWidget.dart';
 import 'package:flutter_app/widget/button_widget.dart';
 import 'package:flutter_app/widget/date_time_page.dart';
 import 'package:flutter_app/widget/dialog_widget.dart';
@@ -54,13 +56,6 @@ class HomeStatePage extends State<HomePage> {
             backgroundColor: Colors.pinkAccent,
             elevation: 4.0,
             centerTitle: true,
-            leading: IconButton(
-              icon: Icon(
-                Icons.menu,
-              ),
-              onPressed: () {},
-              tooltip: "menu",
-            ),
             actions: <Widget>[
               IconButton(
                 icon: Icon(
@@ -201,39 +196,46 @@ class HomeStatePage extends State<HomePage> {
                 ),
               ],
             ),
-            Row(children: <Widget>[
-              RaisedButton(
-                onPressed: () {
-                  /// 原理：只要使用了CupertinoPageRoute push进来的页面就都会具有右滑返回的操作
-                  Navigator.of(context).push(
-                    CupertinoPageRoute(
-                      builder: (context) => TabBarHomePage(),
-                    ),
-                  );
-                },
-                child: Text("TabBarView"),
-              ),
-              Expanded(
-                  child: RaisedButton(
-                onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => BottomNavagationBarHomePage())),
-                child: Text("BottomNavagationBar"),
-              ))
-            ]),
-            Row(
+            Wrap(
+              alignment: WrapAlignment.start,
+              runSpacing: 5.0,
+              spacing: 10.0,
               children: <Widget>[
-                Expanded(
-                  child: RaisedButton(
-                    onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => NavigationKeepAlive(),
-                          ),
+                RaisedButton(
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => BottomNavagationBarHomePage())),
+                  child: Text("BottomNavagationBar"),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    /// 原理：只要使用了CupertinoPageRoute push进来的页面就都会具有右滑返回的操作
+                    Navigator.of(context).push(
+                      CupertinoPageRoute(
+                        builder: (context) => TabBarHomePage(),
+                      ),
+                    );
+                  },
+                  child: Text("TabBarView"),
+                ),
+                RaisedButton(
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BottomNavigation(),
                         ),
-                    child: Text("NavagationKeepAlive"),
-                  ),
+                      ),
+                  child: Text("不规则底部导航栏"),
+                ),
+                RaisedButton(
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NavigationKeepAlive(),
+                        ),
+                      ),
+                  child: Text("NavagationKeepAlive"),
                 ),
                 RaisedButton(
                   onPressed: () => Navigator.push(
@@ -244,59 +246,62 @@ class HomeStatePage extends State<HomePage> {
                       ),
                   child: Text("BottomNavigationWidget"),
                 ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
                 RaisedButton(
                   onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => BottomNavigation(),
+                          builder: (context) => LoadImageWidget(),
                         ),
                       ),
-                  child: Text("不规则底部导航栏"),
+                  child: Text("LoadImage"),
+                ),
+                RaisedButton(
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => StepperWidget(),
+                        ),
+                      ),
+                  child: Text("Stepper"),
+                ),
+                RaisedButton(
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SwiperWidget(),
+                        ),
+                      ),
+                  child: Text("Swiper"),
+                ),
+                RaisedButton(
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FrostingWidget(),
+                        ),
+                      ),
+                  child: Text("毛玻璃"),
+                ),
+                RaisedButton(
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => QuizPage(),
+                        ),
+                      ),
+                  child: Text("Question"),
+                ),
+                RaisedButton(
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CustomScrollViewWidget(),
+                        ),
+                      ),
+                  child: Text("CustomScrollViewWidget"),
                 ),
               ],
             ),
-            Row(children: <Widget>[
-              RaisedButton(
-                onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LoadImageWidget(),
-                      ),
-                    ),
-                child: Text("LoadImage"),
-              ),
-              RaisedButton(
-                onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => StepperWidget(),
-                      ),
-                    ),
-                child: Text("Stepper"),
-              ),
-              RaisedButton(
-                onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SwiperWidget(),
-                      ),
-                    ),
-                child: Text("Swiper"),
-              ),
-              RaisedButton(
-                onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => FrostingWidget(),
-                      ),
-                    ),
-                child: Text("毛玻璃"),
-              )
-            ])
           ]))))),
       onWillPop: onBackPressed,
     );
