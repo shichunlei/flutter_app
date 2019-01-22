@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app/contact/ui/contact_category.dart';
 import 'package:flutter_app/contact/ui/contact_image_text.dart';
 import 'package:flutter_app/contact/ui/contact_item.dart';
+import 'package:flutter_app/contact/ui/line_widget.dart';
 
 class ContactPage extends StatefulWidget {
   @override
@@ -100,7 +101,11 @@ class _ContactPageState extends State<ContactPage> {
               delegate: SliverChildListDelegate(
                 <Widget>[
                   _buildRowView(),
-                  Divider(),
+                  LineWidget(
+                    height: 1.0,
+                    color: Colors.black12,
+                    lineType: LineType.horizontal,
+                  ),
                   _buildPhoneView(),
                   _buildEmailView(),
                   _buildAddressView(),
@@ -114,14 +119,31 @@ class _ContactPageState extends State<ContactPage> {
     );
   }
 
-  Widget _buildRowView() {
-    IconData favoriteIcon = Icons.favorite_border;
-    Color favoriteColor = Colors.grey;
-    String favoriteText = "收藏";
-    bool isFavorite = false;
+  bool isFavorite = false;
+  IconData favoriteIcon = Icons.favorite_border;
+  Color favoriteColor = Colors.grey;
+  String favoriteText = "收藏";
 
+  void _toggleFavorite() {
+    setState(() {
+      if (isFavorite) {
+        isFavorite = false;
+        favoriteIcon = Icons.favorite_border;
+        favoriteColor = Colors.grey;
+        favoriteText = "收藏";
+      } else {
+        isFavorite = true;
+        favoriteIcon = Icons.favorite;
+        favoriteColor = Colors.redAccent;
+        favoriteText = "取消收藏";
+      }
+    });
+  }
+
+  Widget _buildRowView() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         ContactImageText(
           icon: Icon(
@@ -131,6 +153,11 @@ class _ContactPageState extends State<ContactPage> {
           text: Text("分享"),
           onPressed: () {},
         ),
+        LineWidget(
+          height: 34.0,
+          width: 1.0,
+          lineType: LineType.vertical,
+        ),
         ContactImageText(
           icon: Icon(
             Icons.history,
@@ -139,27 +166,18 @@ class _ContactPageState extends State<ContactPage> {
           text: Text("通话记录"),
           onPressed: () {},
         ),
+        LineWidget(
+          height: 34.0,
+          width: 1.0,
+          lineType: LineType.vertical,
+        ),
         ContactImageText(
           icon: Icon(
             favoriteIcon,
             color: favoriteColor,
           ),
           text: Text(favoriteText),
-          onPressed: () {
-            setState(() {
-              if (isFavorite) {
-                isFavorite = false;
-                favoriteIcon = Icons.favorite_border;
-                favoriteColor = Colors.grey;
-                favoriteText = "收藏";
-              } else {
-                isFavorite = true;
-                favoriteIcon = Icons.favorite;
-                favoriteColor = Colors.redAccent;
-                favoriteText = "取消收藏";
-              }
-            });
-          },
+          onPressed: () => _toggleFavorite(),
         ),
       ],
     );
