@@ -6,141 +6,366 @@ class DialogWidget extends StatefulWidget {
   createState() => new DialogWidgetState();
 }
 
-class DialogWidgetState extends State<DialogWidget>
-    with SingleTickerProviderStateMixin {
-  // create a dialog
-  SimpleDialog simpleDialog = new SimpleDialog();
-
+class DialogWidgetState extends State<DialogWidget> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    final ThemeData theme = Theme.of(context);
+    final TextStyle dialogTextStyle =
+        theme.textTheme.subhead.copyWith(color: theme.textTheme.caption.color);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Dialog Widget"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-              color: Colors.blue,
-              highlightColor: Colors.blue[700],
-              colorBrightness: Brightness.dark,
-              splashColor: Colors.grey,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0)),
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text('提示'),
-                        //标题
-                        titlePadding: EdgeInsets.all(20),
-                        //标题的padding值
-                        content: Text('是否想放弃学习Flutter'),
-                        //弹框展示主要内容
-                        contentPadding: EdgeInsets.only(left: 20, right: 20),
-                        //内容的padding值
-                        actions: <Widget>[
-                          //操作按钮数组
-                          FlatButton(
+      body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 22.0),
+        children: <Widget>[
+          RaisedButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text('提示'),
+                      //标题
+                      titlePadding: EdgeInsets.all(20),
+                      //标题的padding值
+                      content: Text(
+                        '是否想放弃学习Flutter',
+                        style: dialogTextStyle,
+                      ),
+                      //弹框展示主要内容
+                      contentPadding: EdgeInsets.only(left: 20, right: 20),
+                      //内容的padding值
+                      actions: <Widget>[
+                        //操作按钮数组
+                        FlatButton(
+                          onPressed: () {
+                            print("取消");
+                            Navigator.pop(context);
+                          },
+                          child: Text('取消'),
+                        ),
+                        FlatButton(
+                          onPressed: () {
+                            print('确定');
+                            Navigator.pop(context);
+                          },
+                          child: Text('确定'),
+                        ),
+                      ],
+                    );
+                  });
+            },
+            child: Text("AlertDialog"),
+          ),
+          Divider(),
+          RaisedButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return SimpleDialog(
+                      title: Text('Info'), //标题
+                      titlePadding: EdgeInsets.all(20), //标题的padding值
+                      children: <Widget>[
+                        DialogItem(
+                            icon: Icons.account_circle,
+                            color: theme.primaryColor,
+                            text: 'username@gmail.com',
                             onPressed: () {
-                              print("取消");
-                              Navigator.pop(context);
-                            },
-                            child: Text('取消'),
-                          ),
-                          FlatButton(
+                              Navigator.pop(context, 'username@gmail.com');
+                            }),
+                        DialogItem(
+                            icon: Icons.account_circle,
+                            color: theme.primaryColor,
+                            text: 'user02@gmail.com',
                             onPressed: () {
-                              print('确定');
-                              Navigator.pop(context);
-                            },
-                            child: Text('确定'),
-                          ),
-                        ],
-                      );
-                    });
-              },
-              child: Text("AlertDialog"),
-            ),
-            RaisedButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return SimpleDialog(
-                        title: Text('评价一下'), //标题
-                        titlePadding: EdgeInsets.all(20), //标题的padding值
-                        children: <Widget>[
-                          //弹框中的选项
-                          SimpleDialogOption(
-                            //每一个选项都是一个SimpleDialogOption Widget
-                            onPressed: () {
-                              print('给个好评');
-                              Navigator.pop(context);
-                            },
-                            child: Text('给好评'), //选项提示文案
-                          ),
-                          SimpleDialogOption(
-                            onPressed: () {
-                              print('残忍拒绝');
-                              Navigator.pop(context);
-                            },
-                            child: Text('残忍拒绝'),
-                          ),
-                          SimpleDialogOption(
-                            onPressed: () {
-                              print('我有意见');
-                              Navigator.pop(context);
-                            },
-                            child: Text('我有意见'),
-                          ),
-                        ],
-                        contentPadding: EdgeInsets.all(0),
-                      );
-                    });
-              },
-              child: Text("SimpleDialog"),
-            ),
-            RaisedButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return CupertinoAlertDialog(
-                        title: Text('提示'), //弹框标题
-                        content: Text('是否想放弃学习Flutter'), //弹框内容
-                        actions: <Widget>[
-                          //操作控件
-                          CupertinoDialogAction(
-                            onPressed: () {
-                              //控件点击监听
-                              print("我不会放弃的");
-                              Navigator.pop(context);
-                            },
-                            textStyle: TextStyle(
-                                fontSize: 18, color: Colors.blueAccent),
-                            //按钮上的文本风格
-                            child: Text('取消'), //控件显示内容
-                          ),
-                          CupertinoDialogAction(
-                            onPressed: () {
-                              print("我投降");
-                              Navigator.pop(context);
-                            },
-                            textStyle:
-                                TextStyle(fontSize: 18, color: Colors.grey),
-                            child: Text('确定'),
-                          ),
-                        ],
-                      );
-                    });
-              },
-              child: Text("CupertinoAlertDialog"),
-            ),
-          ],
-        ),
+                              Navigator.pop(context, 'user02@gmail.com');
+                            }),
+                        DialogItem(
+                            icon: Icons.add_circle,
+                            text: 'add account',
+                            color: theme.disabledColor),
+                      ],
+                      contentPadding: EdgeInsets.all(0),
+                    );
+                  });
+            },
+            child: Text("SimpleDialog"),
+          ),
+          Divider(),
+          RaisedButton(
+            onPressed: () {
+              showDatePicker(
+                context: context,
+                initialDate: DateTime.parse("20181209"),
+                // 初始选中日期
+                firstDate: DateTime.parse("20181109"),
+                // 可选日期范围第一个日期
+                lastDate: DateTime.parse("20190109"),
+                // 可选日期范围最后一个日期
+                selectableDayPredicate: (dateTime) {
+                  //通过此方法可以过滤掉可选范围内不可选的特定日期
+                  if (dateTime.day == 10 ||
+                      dateTime.day == 20 ||
+                      dateTime.day == 30) {
+                    //此处表示10号、20号、30号不可选
+                    return false;
+                  }
+                  return true;
+                },
+                initialDatePickerMode: DatePickerMode.day, //初始化选择模式，有day和year两种
+              ).then((dateTime) {
+                //选择日期后点击OK拿到的日期结果
+                print(
+                    '当前选择了：${dateTime.year}年${dateTime.month}月${dateTime.day}日');
+              });
+            },
+            child: Text("DatePicker"),
+          ),
+          Divider(),
+          RaisedButton(
+            onPressed: () {
+              showTimePicker(
+                context: context,
+                initialTime: TimeOfDay.now(), //初始化显示时间
+              ).then((timeOfDay) {
+                //选择时间后点击OK拿到的时间结果
+                if (timeOfDay == null) {
+                  return;
+                }
+                print('当前选择了：${timeOfDay.hour}时${timeOfDay.minute}分');
+              });
+            },
+            child: Text("TimePicker"),
+          ),
+          Divider(),
+          CupertinoButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return CupertinoAlertDialog(
+                      title: Text('提示'), //弹框标题
+                      content: Text('是否想放弃学习Flutter'), //弹框内容
+                      actions: <Widget>[
+                        //操作控件
+                        CupertinoDialogAction(
+                          onPressed: () {
+                            //控件点击监听
+                            print("我不会放弃的");
+                            Navigator.pop(context, "取消");
+                          },
+                          child: Text('取消'), //控件显示内容
+                          isDefaultAction: true,
+                        ),
+                        CupertinoDialogAction(
+                          onPressed: () {
+                            print("我投降");
+                            Navigator.pop(context, "确定");
+                          },
+                          child: Text('确定'),
+                          isDestructiveAction: true,
+                        ),
+                      ],
+                    );
+                  });
+            },
+            child: Text("CupertinoAlertDialog"),
+            color: CupertinoColors.activeBlue,
+          ),
+          Divider(),
+          CupertinoButton(
+            child: const Text('Alert with Title'),
+            color: CupertinoColors.activeBlue,
+            padding:
+                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 36.0),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) => CupertinoAlertDialog(
+                      title: const Text(
+                          'Allow "Maps" to access your location while you are using the app?'),
+                      content: const Text(
+                          'Your current location will be displayed on the map and used '
+                          'for directions, nearby search results, and estimated travel times.'),
+                      actions: <Widget>[
+                        CupertinoDialogAction(
+                          child: const Text('Don\'t Allow'),
+                          onPressed: () {
+                            Navigator.pop(context, 'Disallow');
+                          },
+                        ),
+                        CupertinoDialogAction(
+                          child: const Text('Allow'),
+                          onPressed: () {
+                            Navigator.pop(context, 'Allow');
+                          },
+                        ),
+                      ],
+                    ),
+              );
+            },
+          ),
+          Divider(),
+          CupertinoButton(
+            child: const Text('Alert with Buttons'),
+            color: CupertinoColors.activeBlue,
+            padding:
+                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 36.0),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) => CupertinoAlertDialog(
+                      title: Text('Select Favorite Dessert'),
+                      content: Text(
+                          'Please select your favorite type of dessert from the'
+                          'list below.Your selection will be used to customize the suggested list of eateries in your area.'),
+                      actions: items(context),
+                    ),
+              );
+            },
+          ),
+          Divider(),
+          CupertinoButton(
+            child: const Text('Alert Buttons Only'),
+            color: CupertinoColors.activeBlue,
+            padding:
+                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 36.0),
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) =>
+                      CupertinoAlertDialog(actions: items(context)));
+            },
+          ),
+          Divider(),
+          CupertinoButton(
+            child: const Text('Action Sheet'),
+            color: CupertinoColors.activeBlue,
+            padding:
+                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 36.0),
+            onPressed: () {
+              showCupertinoModalPopup<String>(
+                  context: context,
+                  builder: (context) => CupertinoActionSheet(
+                      title: const Text('Favorite Dessert'),
+                      message: const Text(
+                          'Please select the best dessert from the options below.'),
+                      actions: <Widget>[
+                        CupertinoActionSheetAction(
+                          child: const Text('Profiteroles'),
+                          onPressed: () {
+                            Navigator.pop(context, 'Profiteroles');
+                          },
+                        ),
+                        CupertinoActionSheetAction(
+                          child: const Text('Cannolis'),
+                          onPressed: () {
+                            Navigator.pop(context, 'Cannolis');
+                          },
+                        ),
+                        CupertinoActionSheetAction(
+                          child: const Text('Trifle'),
+                          onPressed: () {
+                            Navigator.pop(context, 'Trifle');
+                          },
+                        ),
+                      ],
+                      cancelButton: CupertinoActionSheetAction(
+                        child: const Text('Cancel'),
+                        isDefaultAction: true,
+                        onPressed: () {
+                          Navigator.pop(context, 'Cancel');
+                        },
+                      )));
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> items(context) {
+    List<Widget> widgets = [
+      CupertinoDialogAction(
+        child: const Text('Cheesecake'),
+        onPressed: () {
+          Navigator.pop(context, 'Cheesecake');
+        },
+      ),
+      CupertinoDialogAction(
+        child: const Text('Tiramisu'),
+        onPressed: () {
+          Navigator.pop(context, 'Tiramisu');
+        },
+      ),
+      CupertinoDialogAction(
+        child: const Text('Apple Pie'),
+        onPressed: () {
+          Navigator.pop(context, 'Apple Pie');
+        },
+      ),
+      CupertinoDialogAction(
+        child: const Text("Devil's food cake"),
+        onPressed: () {
+          Navigator.pop(context, "Devil's food cake");
+        },
+      ),
+      CupertinoDialogAction(
+        child: const Text('Banana Split'),
+        onPressed: () {
+          Navigator.pop(context, 'Banana Split');
+        },
+      ),
+      CupertinoDialogAction(
+        child: const Text('Oatmeal Cookie'),
+        onPressed: () {
+          Navigator.pop(context, 'Oatmeal Cookies');
+        },
+      ),
+      CupertinoDialogAction(
+        child: const Text('Chocolate Brownie'),
+        onPressed: () {
+          Navigator.pop(context, 'Chocolate Brownies');
+        },
+      ),
+      CupertinoDialogAction(
+        child: const Text('Cancel'),
+        isDestructiveAction: true,
+        onPressed: () {
+          Navigator.pop(context, 'Cancel');
+        },
+      )
+    ];
+    return widgets;
+  }
+}
+
+class DialogItem extends StatelessWidget {
+  const DialogItem({Key key, this.icon, this.color, this.text, this.onPressed})
+      : super(key: key);
+
+  final IconData icon;
+  final Color color;
+  final String text;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return SimpleDialogOption(
+      onPressed: onPressed,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Icon(icon, size: 36.0, color: color),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Text(text),
+          ),
+        ],
       ),
     );
   }

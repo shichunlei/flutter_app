@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 class DateTimePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return DateTimePageState();
   }
 }
@@ -12,7 +11,6 @@ class DateTimePage extends StatefulWidget {
 class DateTimePageState extends State<DateTimePage> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Text("时间控件"),
