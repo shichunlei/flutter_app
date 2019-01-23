@@ -15,12 +15,14 @@ import 'package:flutter_app/tabs_demo/tabbar_home_page.dart';
 import 'package:flutter_app/weather/city/CityPage.dart';
 import 'package:flutter_app/contact/page/contact_page.dart';
 import 'package:flutter_app/widget/button_widget.dart';
+import 'package:flutter_app/widget/chip_widget.dart';
 import 'package:flutter_app/widget/date_time_page.dart';
 import 'package:flutter_app/widget/dialog_widget.dart';
 import 'package:flutter_app/widget/frosting_widget.dart';
 import 'package:flutter_app/widget/image_widget.dart';
 import 'package:flutter_app/widget/load_image_widget.dart';
 import 'package:flutter_app/widget/qr_image_wiget.dart';
+import 'package:flutter_app/widget/slider_widget.dart';
 import 'package:flutter_app/widget/stepper_widget.dart';
 import 'package:flutter_app/widget/swiper_widget.dart';
 import 'package:flutter_app/widget/text_widget.dart';
@@ -90,11 +92,8 @@ class HomeStatePage extends State<HomePage> {
               children: <Widget>[
                 Expanded(
                   child: RaisedButton(
-                    onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => TextWidget(),
-                          ),
+                    onPressed: () => _pushNewPage(
+                          TextWidget(),
                         ),
                     child: Text("Text"),
                   ),
@@ -102,10 +101,7 @@ class HomeStatePage extends State<HomePage> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return ButtonWidget();
-                      }));
+                      _pushNewPage(ButtonWidget());
                     },
                     child: Text("Button"),
                   ),
@@ -113,10 +109,7 @@ class HomeStatePage extends State<HomePage> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return ImageWidget();
-                      }));
+                      _pushNewPage(ImageWidget());
                     },
                     child: Text("Image"),
                   ),
@@ -128,20 +121,14 @@ class HomeStatePage extends State<HomePage> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return TextFieldWidget();
-                      }));
+                      _pushNewPage(TextFieldWidget());
                     },
                     child: Text("TextField"),
                   ),
                 ),
                 RaisedButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return DialogWidget();
-                    }));
+                    _pushNewPage(DialogWidget());
                   },
                   child: Text("Dialog"),
                 ),
@@ -152,10 +139,7 @@ class HomeStatePage extends State<HomePage> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return RandomWords();
-                      }));
+                      _pushNewPage(RandomWords());
                     },
                     child: Text("RandomWords"),
                   ),
@@ -167,14 +151,7 @@ class HomeStatePage extends State<HomePage> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return MovieGridPage();
-                          },
-                        ),
-                      );
+                      _pushNewPage(MovieGridPage());
                     },
                     child: Text("Movie Grid"),
                   ),
@@ -182,14 +159,7 @@ class HomeStatePage extends State<HomePage> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return MovieListPage();
-                          },
-                        ),
-                      );
+                      _pushNewPage(MovieListPage());
                     },
                     child: Text("Movie List"),
                   ),
@@ -202,103 +172,59 @@ class HomeStatePage extends State<HomePage> {
               spacing: 10.0,
               children: <Widget>[
                 RaisedButton(
-                  onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => BottomNavagationBarHomePage())),
+                  onPressed: () => _pushNewPage(BottomNavagationBarHomePage()),
                   child: Text("BottomNavagationBar"),
                 ),
                 RaisedButton(
                   onPressed: () {
                     /// 原理：只要使用了CupertinoPageRoute push进来的页面就都会具有右滑返回的操作
-                    Navigator.of(context).push(
-                      CupertinoPageRoute(
-                        builder: (context) => TabBarHomePage(),
-                      ),
-                    );
+                    _pushNewPage(TabBarHomePage());
                   },
                   child: Text("TabBarView"),
                 ),
                 RaisedButton(
-                  onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BottomNavigation(),
-                        ),
-                      ),
+                  onPressed: () => _pushNewPage(BottomNavigation()),
                   child: Text("不规则底部导航栏"),
                 ),
                 RaisedButton(
-                  onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => NavigationKeepAlive(),
-                        ),
-                      ),
+                  onPressed: () => _pushNewPage(NavigationKeepAlive()),
                   child: Text("NavagationKeepAlive"),
                 ),
                 RaisedButton(
-                  onPressed: () => Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => BottomNavigationWidget(),
-                        ),
-                      ),
+                  onPressed: () => _pushNewPage(BottomNavigationWidget()),
                   child: Text("BottomNavigationWidget"),
                 ),
                 RaisedButton(
-                  onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoadImageWidget(),
-                        ),
-                      ),
+                  onPressed: () => _pushNewPage(LoadImageWidget()),
                   child: Text("LoadImage"),
                 ),
                 RaisedButton(
-                  onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => StepperWidget(),
-                        ),
-                      ),
+                  onPressed: () => _pushNewPage(StepperWidget()),
                   child: Text("Stepper"),
                 ),
                 RaisedButton(
-                  onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SwiperWidget(),
-                        ),
-                      ),
+                  onPressed: () => _pushNewPage(SwiperWidget()),
                   child: Text("Swiper"),
                 ),
                 RaisedButton(
-                  onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FrostingWidget(),
-                        ),
-                      ),
+                  onPressed: () => _pushNewPage(FrostingWidget()),
                   child: Text("毛玻璃"),
                 ),
                 RaisedButton(
-                  onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => QuizPage(),
-                        ),
-                      ),
+                  onPressed: () => _pushNewPage(QuizPage()),
                   child: Text("Question"),
                 ),
                 RaisedButton(
-                  onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ContactPage(),
-                        ),
-                      ),
+                  onPressed: () => _pushNewPage(ContactPage()),
                   child: Text("Contact"),
+                ),
+                RaisedButton(
+                  onPressed: () => _pushNewPage(SliderWidget()),
+                  child: Text("SliderWidget"),
+                ),
+                RaisedButton(
+                  onPressed: () => _pushNewPage(ChipWidget()),
+                  child: Text("ChipWidget"),
                 ),
               ],
             ),
@@ -341,8 +267,7 @@ class HomeStatePage extends State<HomePage> {
             ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (contet) => AboutUsPage()));
+              _pushNewPage(AboutUsPage());
             },
           ),
           otherAccountsPictures: <Widget>[
@@ -382,9 +307,7 @@ class HomeStatePage extends State<HomePage> {
             Navigator.pop(context);
 
             /// 跳转到下一个界面
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-              return DateTimePage();
-            }));
+            _pushNewPage(DateTimePage());
           },
         ),
         Divider(),
@@ -392,35 +315,35 @@ class HomeStatePage extends State<HomePage> {
           title: Text("天气"),
           leading: Icon(Icons.hdr_weak),
           trailing: Icon(Icons.chevron_right),
-          onTap: () => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CityPage())),
+          onTap: () => _pushNewPage(CityPage()),
         ),
         Divider(),
         ListTile(
           title: Text("城市"),
           leading: Icon(Icons.location_city),
           trailing: Icon(Icons.chevron_right),
-          onTap: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => CitySelectPage())),
+          onTap: () => _pushNewPage(CitySelectPage()),
         ),
         Divider(),
         ListTile(
           title: Text("诗词"),
           leading: Icon(Icons.book),
           trailing: Icon(Icons.chevron_right),
-          onTap: () => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ShiciPage())),
+          onTap: () => _pushNewPage(ShiciPage()),
         ),
         Divider(),
         ListTile(
           title: Text("二维码"),
           leading: Icon(Icons.crop_square),
           trailing: Icon(Icons.chevron_right),
-          onTap: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => QrImageWidget())),
+          onTap: () => _pushNewPage(QrImageWidget()),
         ),
         Divider(),
       ],
     );
+  }
+
+  void _pushNewPage(Widget newPage) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => newPage));
   }
 }

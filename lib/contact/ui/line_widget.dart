@@ -25,12 +25,12 @@ class LineWidget extends StatelessWidget {
 
   Widget _buildVerticalLine(context, color) {
     return Container(
-      height: height == null ? 1.0 : height,
-      width: width == null ? null : width,
+      height: height ?? 1.0,
+      width: width,
       decoration: BoxDecoration(
         border: Border(
           left: BorderSide(
-            color: color == null ? Theme.of(context).dividerColor : color,
+            color: color ?? Theme.of(context).dividerColor,
           ),
         ),
       ),
@@ -39,12 +39,12 @@ class LineWidget extends StatelessWidget {
 
   Widget _buildHorizontalLine(context, color) {
     return Container(
-      height: height == null ? 1.0 : height,
-      width: width == null ? null : width,
+      height: height,
+      width: width ?? 1.0,
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(
-            color: color == null ? Theme.of(context).dividerColor : color,
+            color: color ?? Theme.of(context).dividerColor,
           ),
         ),
       ),

@@ -147,8 +147,7 @@ class CityInfo extends ISuspensionBean {
 
   CityInfo({this.name, this.tagIndex, this.namePinyin});
 
-  CityInfo.fromJson(Map<String, dynamic> json)
-      : name = json['name'] == null ? "" : json['name'];
+  CityInfo.fromJson(Map<String, dynamic> json) : name = json['name'] ?? "";
 
   Map<String, dynamic> toJson() => {
         'name': name,

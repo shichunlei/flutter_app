@@ -17,45 +17,55 @@ class DialogWidgetState extends State<DialogWidget> {
       appBar: AppBar(
         title: Text("Dialog Widget"),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: null,
+        backgroundColor: Colors.redAccent,
+        child: const Icon(
+          Icons.add,
+          semanticLabel: 'Add',
+        ),
+      ),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 22.0),
         children: <Widget>[
           RaisedButton(
             onPressed: () {
               showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text('提示'),
-                      //标题
-                      titlePadding: EdgeInsets.all(20),
-                      //标题的padding值
-                      content: Text(
-                        '是否想放弃学习Flutter',
-                        style: dialogTextStyle,
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text('提示'),
+                    //标题
+                    titlePadding: EdgeInsets.all(20),
+                    //标题的padding值
+                    content: Text(
+                      '是否想放弃学习Flutter',
+                      style: dialogTextStyle,
+                    ),
+                    //弹框展示主要内容
+                    contentPadding: EdgeInsets.only(left: 20, right: 20),
+                    //内容的padding值
+                    actions: <Widget>[
+                      //操作按钮数组
+                      FlatButton(
+                        onPressed: () {
+                          print("取消");
+                          Navigator.pop(context);
+                        },
+                        child: Text('取消'),
                       ),
-                      //弹框展示主要内容
-                      contentPadding: EdgeInsets.only(left: 20, right: 20),
-                      //内容的padding值
-                      actions: <Widget>[
-                        //操作按钮数组
-                        FlatButton(
-                          onPressed: () {
-                            print("取消");
-                            Navigator.pop(context);
-                          },
-                          child: Text('取消'),
-                        ),
-                        FlatButton(
-                          onPressed: () {
-                            print('确定');
-                            Navigator.pop(context);
-                          },
-                          child: Text('确定'),
-                        ),
-                      ],
-                    );
-                  });
+                      FlatButton(
+                        onPressed: () {
+                          print('确定');
+                          Navigator.pop(context);
+                        },
+                        child: Text('确定'),
+                      ),
+                    ],
+                  );
+                },
+                barrierDismissible: false,
+              );
             },
             child: Text("AlertDialog"),
           ),
@@ -139,6 +149,43 @@ class DialogWidgetState extends State<DialogWidget> {
               });
             },
             child: Text("TimePicker"),
+          ),
+          Divider(),
+          RaisedButton(
+            onPressed: () {
+              showModalBottomSheet<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Container(
+                        child: Padding(
+                            padding: const EdgeInsets.all(32.0),
+                            child: Text(
+                                'This is the modal bottom sheet. Tap anywhere to dismiss.',
+                                textAlign: TextAlign.center,
+                                style: dialogTextStyle)));
+                  });
+            },
+            child: Text("Modal bottom sheet"),
+          ),
+          Divider(),
+          RaisedButton(
+            onPressed: () {
+              showBottomSheet<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Container(
+                        decoration: BoxDecoration(
+                            border: Border(
+                                top: BorderSide(color: theme.disabledColor))),
+                        child: Padding(
+                            padding: const EdgeInsets.all(32.0),
+                            child: Text(
+                                'This is the modal bottom sheet. Tap anywhere to dismiss.',
+                                textAlign: TextAlign.center,
+                                style: dialogTextStyle)));
+                  }).closed.whenComplete(() {});
+            },
+            child: Text("Persistent bottom sheet"),
           ),
           Divider(),
           CupertinoButton(
