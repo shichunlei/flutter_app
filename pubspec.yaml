@@ -47,8 +47,14 @@ dependencies: # 应用或包依赖的其它包或插件
   # flutter 生成二维码
   qr_flutter: ^1.1.5
 
+  #
+  shared_preferences: ^0.4.3
+
   # 扫描二维码
   barcode_scan: "^0.0.4"
+
+  # EventBus
+  event_bus: ^1.0.1
 
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.6

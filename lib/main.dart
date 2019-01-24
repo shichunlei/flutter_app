@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/intro_slide_page.dart';
+import 'package:flutter_app/splash_screen.dart';
 
 void main() => runApp(new MyApp());
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       /// 您可以通过配置ThemeData类轻松更改应用程序的主题
       theme: ThemeData(primaryColor: Colors.blue),
       debugShowCheckedModeBanner: false,
-      home: IntroSlidePage(),
+      home: SplashScreenPage(),
     );
   }
 }

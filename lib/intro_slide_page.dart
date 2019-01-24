@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/page/login_page.dart';
 import 'package:intro_slider/intro_slider.dart';
+import 'package:flutter_app/utils/route_util.dart';
 
 class IntroSlidePage extends StatefulWidget {
   @override
@@ -12,7 +13,6 @@ class SliderScreenState extends State<IntroSlidePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     slides.add(
@@ -43,28 +43,12 @@ class SliderScreenState extends State<IntroSlidePage> {
     );
   }
 
-  void onDonePress() {
-    Navigator.of(context).pushAndRemoveUntil(
-        new MaterialPageRoute(
-          builder: (context) => LoginPage(),
-        ),
-        (route) => route == null);
-  }
-
-  void onSkipPress() {
-    Navigator.of(context).pushAndRemoveUntil(
-        new MaterialPageRoute(
-          builder: (context) => LoginPage(),
-        ),
-        (route) => route == null);
-  }
-
   @override
   Widget build(BuildContext context) {
     return IntroSlider(
       slides: this.slides,
-      onDonePress: this.onDonePress,
-      onSkipPress: this.onSkipPress,
+      onDonePress: () => pushAndRemovePage(context, LoginPage()),
+      onSkipPress: () => pushAndRemovePage(context, LoginPage()),
     );
   }
 }

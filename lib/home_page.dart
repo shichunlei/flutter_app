@@ -5,6 +5,7 @@ import 'package:flutter_app/movie/list/movie_grid_page.dart';
 import 'package:flutter_app/movie/list/movie_list_page.dart';
 import 'package:flutter_app/page/about_us_page.dart';
 import 'package:flutter_app/page/city_select_page.dart';
+import 'package:flutter_app/page/login_page.dart';
 import 'package:flutter_app/page/shici_page.dart';
 import 'package:flutter_app/question/pages/quiz_page.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation.dart';
@@ -27,8 +28,12 @@ import 'package:flutter_app/widget/stepper_widget.dart';
 import 'package:flutter_app/widget/swiper_widget.dart';
 import 'package:flutter_app/widget/text_widget.dart';
 import 'package:flutter_app/widget/textfield_widget.dart';
+import 'package:flutter_app/utils/route_util.dart';
+import 'package:flutter_app/utils/event_bus_util.dart';
 
 import 'dart:async';
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -41,6 +46,50 @@ class HomeStatePage extends State<HomePage> {
 
   /// 上次点击时间
   DateTime _lastPressedAt;
+
+  String userName = "";
+  String email = "";
+  String avatar = "";
+  bool isLogin = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    getLoginInfo();
+
+    eventBus.on<TestEvent>().listen((event) {
+      print('${event.key}');
+      print('${event.value}');
+
+      if (event.key == "is_login") {
+        isLogin = event.value as bool;
+        setState(() {
+          print("接收到信息");
+          initUser(isLogin);
+        });
+      }
+    });
+  }
+
+  void initUser(bool isLogin) {
+    print(avatar);
+    setState(() {
+      userName = isLogin ? "SCL" : "未登录";
+      email = isLogin ? "1558053958@qq.com" : "";
+      avatar = isLogin
+          ? "http://b-ssl.duitang.com/uploads/item/201511/11/20151111120052_y38xC.thumb.700_0.jpeg"
+          : "";
+      print(avatar);
+    });
+  }
+
+  void getLoginInfo() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    isLogin = sp.getBool("isLogin");
+
+    initUser(isLogin);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +141,8 @@ class HomeStatePage extends State<HomePage> {
               children: <Widget>[
                 Expanded(
                   child: RaisedButton(
-                    onPressed: () => _pushNewPage(
+                    onPressed: () => pushNewPage(
+                          context,
                           TextWidget(),
                         ),
                     child: Text("Text"),
@@ -101,7 +151,7 @@ class HomeStatePage extends State<HomePage> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      _pushNewPage(ButtonWidget());
+                      pushNewPage(context, ButtonWidget());
                     },
                     child: Text("Button"),
                   ),
@@ -109,7 +159,7 @@ class HomeStatePage extends State<HomePage> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      _pushNewPage(ImageWidget());
+                      pushNewPage(context, ImageWidget());
                     },
                     child: Text("Image"),
                   ),
@@ -121,14 +171,14 @@ class HomeStatePage extends State<HomePage> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      _pushNewPage(TextFieldWidget());
+                      pushNewPage(context, TextFieldWidget());
                     },
                     child: Text("TextField"),
                   ),
                 ),
                 RaisedButton(
                   onPressed: () {
-                    _pushNewPage(DialogWidget());
+                    pushNewPage(context, DialogWidget());
                   },
                   child: Text("Dialog"),
                 ),
@@ -139,7 +189,7 @@ class HomeStatePage extends State<HomePage> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      _pushNewPage(RandomWords());
+                      pushNewPage(context, RandomWords());
                     },
                     child: Text("RandomWords"),
                   ),
@@ -151,7 +201,7 @@ class HomeStatePage extends State<HomePage> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      _pushNewPage(MovieGridPage());
+                      pushNewPage(context, MovieGridPage());
                     },
                     child: Text("Movie Grid"),
                   ),
@@ -159,7 +209,7 @@ class HomeStatePage extends State<HomePage> {
                 Expanded(
                   child: RaisedButton(
                     onPressed: () {
-                      _pushNewPage(MovieListPage());
+                      pushNewPage(context, MovieListPage());
                     },
                     child: Text("Movie List"),
                   ),
@@ -172,58 +222,59 @@ class HomeStatePage extends State<HomePage> {
               spacing: 10.0,
               children: <Widget>[
                 RaisedButton(
-                  onPressed: () => _pushNewPage(BottomNavagationBarHomePage()),
+                  onPressed: () =>
+                      pushNewPage(context, BottomNavagationBarHomePage()),
                   child: Text("BottomNavagationBar"),
                 ),
                 RaisedButton(
                   onPressed: () {
-                    /// 原理：只要使用了CupertinoPageRoute push进来的页面就都会具有右滑返回的操作
-                    _pushNewPage(TabBarHomePage());
+                    pushNewPage(context, TabBarHomePage());
                   },
                   child: Text("TabBarView"),
                 ),
                 RaisedButton(
-                  onPressed: () => _pushNewPage(BottomNavigation()),
+                  onPressed: () => pushNewPage(context, BottomNavigation()),
                   child: Text("不规则底部导航栏"),
                 ),
                 RaisedButton(
-                  onPressed: () => _pushNewPage(NavigationKeepAlive()),
+                  onPressed: () => pushNewPage(context, NavigationKeepAlive()),
                   child: Text("NavagationKeepAlive"),
                 ),
                 RaisedButton(
-                  onPressed: () => _pushNewPage(BottomNavigationWidget()),
+                  onPressed: () =>
+                      pushNewPage(context, BottomNavigationWidget()),
                   child: Text("BottomNavigationWidget"),
                 ),
                 RaisedButton(
-                  onPressed: () => _pushNewPage(LoadImageWidget()),
+                  onPressed: () => pushNewPage(context, LoadImageWidget()),
                   child: Text("LoadImage"),
                 ),
                 RaisedButton(
-                  onPressed: () => _pushNewPage(StepperWidget()),
+                  onPressed: () => pushNewPage(context, StepperWidget()),
                   child: Text("Stepper"),
                 ),
                 RaisedButton(
-                  onPressed: () => _pushNewPage(SwiperWidget()),
+                  onPressed: () => pushNewPage(context, SwiperWidget()),
                   child: Text("Swiper"),
                 ),
                 RaisedButton(
-                  onPressed: () => _pushNewPage(FrostingWidget()),
+                  onPressed: () => pushNewPage(context, FrostingWidget()),
                   child: Text("毛玻璃"),
                 ),
                 RaisedButton(
-                  onPressed: () => _pushNewPage(QuizPage()),
+                  onPressed: () => pushNewPage(context, QuizPage()),
                   child: Text("Question"),
                 ),
                 RaisedButton(
-                  onPressed: () => _pushNewPage(ContactPage()),
+                  onPressed: () => pushNewPage(context, ContactPage()),
                   child: Text("Contact"),
                 ),
                 RaisedButton(
-                  onPressed: () => _pushNewPage(SliderWidget()),
+                  onPressed: () => pushNewPage(context, SliderWidget()),
                   child: Text("SliderWidget"),
                 ),
                 RaisedButton(
-                  onPressed: () => _pushNewPage(ChipWidget()),
+                  onPressed: () => pushNewPage(context, ChipWidget()),
                   child: Text("ChipWidget"),
                 ),
               ],
@@ -254,20 +305,25 @@ class HomeStatePage extends State<HomePage> {
       children: <Widget>[
         UserAccountsDrawerHeader(
           /// 姓名
-          accountName: Text("SCL"),
+          accountName: Text(userName),
 
           /// 邮箱
-          accountEmail: Text("1558053958@qq.com"),
+          accountEmail: Text(email),
 
           /// 用户头像
           currentAccountPicture: InkWell(
             child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  "https://upload.jianshu.io/users/upload_avatars/7700793/dbcf94ba-9e63-4fcf-aa77-361644dd5a87?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240"),
+              backgroundImage: isLogin
+                  ? NetworkImage(avatar)
+                  : AssetImage("images/flutter_logo.png"),
             ),
             onTap: () {
-              Navigator.pop(context);
-              _pushNewPage(AboutUsPage());
+              if (isLogin) {
+                Navigator.pop(context);
+                pushNewPageBack(context, AboutUsPage());
+              } else {
+                pushAndRemovePage(context, LoginPage());
+              }
             },
           ),
           otherAccountsPictures: <Widget>[
@@ -307,7 +363,7 @@ class HomeStatePage extends State<HomePage> {
             Navigator.pop(context);
 
             /// 跳转到下一个界面
-            _pushNewPage(DateTimePage());
+            pushNewPageBack(context, DateTimePage());
           },
         ),
         Divider(),
@@ -315,35 +371,67 @@ class HomeStatePage extends State<HomePage> {
           title: Text("天气"),
           leading: Icon(Icons.hdr_weak),
           trailing: Icon(Icons.chevron_right),
-          onTap: () => _pushNewPage(CityPage()),
+          onTap: () => pushNewPageBack(context, CityPage()),
         ),
         Divider(),
         ListTile(
           title: Text("城市"),
           leading: Icon(Icons.location_city),
           trailing: Icon(Icons.chevron_right),
-          onTap: () => _pushNewPage(CitySelectPage()),
+          onTap: () => pushNewPageBack(context, CitySelectPage()),
         ),
         Divider(),
         ListTile(
           title: Text("诗词"),
           leading: Icon(Icons.book),
           trailing: Icon(Icons.chevron_right),
-          onTap: () => _pushNewPage(ShiciPage()),
+          onTap: () => pushNewPageBack(context, ShiciPage()),
         ),
         Divider(),
         ListTile(
           title: Text("二维码"),
           leading: Icon(Icons.crop_square),
           trailing: Icon(Icons.chevron_right),
-          onTap: () => _pushNewPage(QrImageWidget()),
+          onTap: () => pushNewPageBack(context, QrImageWidget()),
+        ),
+        Divider(),
+        ListTile(
+          title: Text("退出账号"),
+          leading: Icon(Icons.exit_to_app),
+          trailing: Icon(Icons.chevron_right),
+          onTap: () {
+            Navigator.of(context).pop();
+            showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text("退出账号"),
+                    content: Text("您确定要退出账号吗？"),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text("退出"),
+                        onPressed: () {
+                          eventBus.fire(TestEvent("is_login", false));
+                          pushAndRemovePage(context, LoginPage());
+                        },
+                      ),
+                      FlatButton(
+                        child: Text(
+                          "再想想",
+                          style: Theme.of(context).textTheme.button,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                });
+          },
         ),
         Divider(),
       ],
     );
-  }
-
-  void _pushNewPage(Widget newPage) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => newPage));
   }
 }

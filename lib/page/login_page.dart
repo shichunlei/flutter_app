@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/home_page.dart';
+import 'package:flutter_app/utils/route_util.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -90,12 +92,7 @@ class LoginStatePage extends State<LoginPage> {
 
               RaisedButton(
                 onPressed: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                      builder: (context) => HomePage(),
-                    ),
-                    (route) => route == null,
-                  );
+                  login(context);
                 },
                 child: Text(
                   "NEXT",
@@ -112,5 +109,11 @@ class LoginStatePage extends State<LoginPage> {
         ],
       ),
     );
+  }
+
+  void login(BuildContext context) async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    sp.setBool("isLogin", true);
+    pushAndRemovePage(context, HomePage());
   }
 }
