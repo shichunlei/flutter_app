@@ -47,7 +47,9 @@ class WeatherData {
   static WeatherData fromMap(Map map) {
     return new WeatherData(
       cloud: map['cloud'],
-      cond_code: "https://cdn.heweather.com/cond_icon/${map['cond_code']}.png",
+      cond_code: map.isEmpty
+          ? ""
+          : "https://cdn.heweather.com/cond_icon/${map['cond_code']}.png",
       cond_txt: map['cond_txt'],
       fl: map['fl'],
       hum: "湿度 ${map['hum']}%",

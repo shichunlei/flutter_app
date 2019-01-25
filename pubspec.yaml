@@ -51,7 +51,7 @@ dependencies: # 应用或包依赖的其它包或插件
   shared_preferences: ^0.4.3
 
   # 扫描二维码
-  barcode_scan: "^0.0.4"
+  barcode_scan: ^0.0.4
 
   # EventBus
   event_bus: ^1.0.1
@@ -84,7 +84,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/
-    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

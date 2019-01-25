@@ -2,12 +2,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/weather/weather/WeatherData.dart';
 
 class WeatherPage extends StatefulWidget {
   String cityname;
 
-  WeatherPage(this.cityname);
+  WeatherPage(this.cityname) : super();
 
   @override
   State<StatefulWidget> createState() => WeatherPageState();
@@ -18,9 +19,7 @@ class WeatherPageState extends State<WeatherPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    print(widget.cityname);
     _getWeather(widget.cityname);
   }
 
@@ -28,9 +27,7 @@ class WeatherPageState extends State<WeatherPage> {
   _getWeather(String cityname) async {
     var httpClient = new HttpClient();
     var url =
-        "https://free-api.heweather.net/s6/weather/now?key=ebb698e9bb6844199e6fd23cbb9a77c5&location=${cityname}";
-
-    print(url);
+        "https://free-api.heweather.net/s6/weather/now?key=224bd5b78bd44de19ae8104c201fb1d7&location=${cityname}";
 
     var request = await httpClient.getUrl(Uri.parse(url));
     var response = await request.close();
@@ -40,20 +37,14 @@ class WeatherPageState extends State<WeatherPage> {
       /// setState 相当于 runOnUiThread
       setState(() {
         weather = WeatherData.decodeData(jsonData.toString());
-        print(weather);
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    var content;
-    if (weather == null) {
-      content = new Center(
-        child: new CircularProgressIndicator(),
-      );
-    } else {
-      content = Stack(
+    return Scaffold(
+      body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
           Image.asset(
@@ -65,50 +56,48 @@ class WeatherPageState extends State<WeatherPage> {
               Container(
                 width: double.infinity,
                 margin: EdgeInsets.only(top: 40.0),
-                child: new Text(
+                child: Text(
                   widget.cityname,
                   textAlign: TextAlign.center,
-                  style: new TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
                     fontSize: 30.0,
                   ),
                 ),
               ),
               Container(
-                child: Image.network(
-                  weather.cond_code,
-                ),
+                height: 80.0,
+                child: weather != null
+                    ? Image.network(
+                        weather.cond_code,
+                      )
+                    : Image.asset("images/flutter_logo.png"),
                 alignment: Alignment.centerRight,
               ),
               Container(
                 width: double.infinity,
                 child: Column(
                   children: <Widget>[
-                    Text(weather.tmp,
-                        style:
-                            new TextStyle(color: Colors.white, fontSize: 80.0)),
-                    Text("${weather.cond_txt}",
-                        style:
-                            new TextStyle(color: Colors.white, fontSize: 45.0)),
+                    Text(weather != null ? weather.tmp : "",
+                        style: TextStyle(color: Colors.white, fontSize: 80.0)),
+                    Text("${weather != null ? weather.cond_txt : ""}",
+                        style: TextStyle(color: Colors.white, fontSize: 45.0)),
                     Text(
-                      weather.hum,
-                      style: new TextStyle(color: Colors.white, fontSize: 30.0),
+                      weather != null ? weather.hum : "",
+                      style: TextStyle(color: Colors.white, fontSize: 30.0),
                     )
                   ],
                 ),
               ),
             ],
           ),
+          weather == null
+              ? Center(
+                  child: getLoadingWidget(),
+                )
+              : Center(),
         ],
-      );
-    }
-
-    // TODO: implement build
-    return new Scaffold(
-//      appBar: AppBar(
-//        title: Text(widget.cityname),
-//      ),
-      body: content,
+      ),
     );
   }
 }

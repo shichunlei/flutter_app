@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Movie {
   final String title;
   final String average;
@@ -20,7 +18,7 @@ class Movie {
       this.movieId});
 
   static List<Movie> decodeData(jsonData) {
-    List<Movie> movies = new List<Movie>();
+    List<Movie> movies = [];
 
     var results = jsonData['subjects'];
     for (int i = 0; i < results.length; i++) {

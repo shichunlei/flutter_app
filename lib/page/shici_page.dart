@@ -3,6 +3,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_app/utils/loading_util.dart';
+
 class ShiciPage extends StatefulWidget {
   @override
   ShiciPageState createState() => ShiciPageState();
@@ -10,7 +12,12 @@ class ShiciPage extends StatefulWidget {
 
 class ShiciPageState extends State<ShiciPage> {
   ShiciInfo _shiciInfo;
-  var content;
+
+  String title = "";
+  String content = "";
+  String authors = "";
+
+  bool isShowLoading = false;
 
   @override
   void initState() {
@@ -21,35 +28,6 @@ class ShiciPageState extends State<ShiciPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (null == _shiciInfo) {
-      content = Center(
-        child: CircularProgressIndicator(),
-      );
-    } else {
-      content = SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: 20.0),
-              Text(
-                _shiciInfo.title,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20.0),
-              ),
-              SizedBox(height: 20.0),
-              Text(_shiciInfo.authors),
-              Container(
-                child: Text(_shiciInfo.content),
-                margin: EdgeInsets.all(20.0),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
     return Scaffold(
         appBar: AppBar(
           title: Text('随机诗词'),
@@ -57,27 +35,60 @@ class ShiciPageState extends State<ShiciPage> {
           actions: <Widget>[
             IconButton(
                 icon: Icon(Icons.refresh),
-                onPressed: () => getData(),
+                onPressed: () {
+                  showLoadingDialog(context, "正在加载...");
+                  isShowLoading = true;
+                  getData();
+                },
                 tooltip: "刷新"),
           ],
           backgroundColor: Colors.redAccent,
         ),
-        body: content);
+        body: Stack(
+          children: <Widget>[
+            Offstage(
+                offstage: _shiciInfo != null,
+                child: Center(child: getLoadingWidget())),
+            Offstage(
+                offstage: _shiciInfo == null,
+                child: SingleChildScrollView(
+                    child: Center(
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                      SizedBox(height: 20.0),
+                      Text(title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 20.0)),
+                      SizedBox(height: 20.0),
+                      Text(authors),
+                      Container(
+                          child: Text(content), margin: EdgeInsets.all(20.0))
+                    ]))))
+          ],
+        ));
   }
 
   getData() async {
-    setState(() {
-      _shiciInfo = null;
-    });
-
     var httpClient = HttpClient();
     var url = "https://api.apiopen.top/recommendPoetry";
     var request = await httpClient.getUrl(Uri.parse(url));
     var response = await request.close();
     if (response.statusCode == HttpStatus.OK) {
       var jsonData = await response.transform(utf8.decoder).join();
-      // setState 相当于 runOnUiThread
-      setState(() => _shiciInfo = ShiciInfo.decodeData(jsonData));
+
+      if (isShowLoading) {
+        Navigator.of(context).pop();
+        isShowLoading = false;
+      }
+      setState(() {
+        _shiciInfo = ShiciInfo.decodeData(jsonData);
+        title = _shiciInfo.title;
+        content = _shiciInfo.content;
+        authors = _shiciInfo.authors;
+      });
     }
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_app/movie/details/movie_detail_page.dart';
 import 'package:flutter_app/movie/list/movie.dart';
 import 'package:flutter_app/utils/api.dart';
 import 'package:flutter_app/utils/http_utils.dart';
+import 'package:flutter_app/utils/loading_util.dart';
 
 class MovieListPage extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class MovieListPageState extends State<MovieListPage> {
     if (movies.isEmpty) {
       content = Center(
         /// 加载菊花
-        child: CupertinoActivityIndicator(),
+        child: getLoadingWidget(),
       );
     } else {
       content = ListView(

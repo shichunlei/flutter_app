@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/firstdemo/random_words.dart';
 import 'package:flutter_app/movie/list/movie_grid_page.dart';
 import 'package:flutter_app/movie/list/movie_list_page.dart';
-import 'package:flutter_app/page/about_us_page.dart';
-import 'package:flutter_app/page/city_select_page.dart';
 import 'package:flutter_app/page/login_page.dart';
 import 'package:flutter_app/page/shici_page.dart';
 import 'package:flutter_app/question/pages/quiz_page.dart';
@@ -13,11 +11,11 @@ import 'package:flutter_app/tabs_demo/bottom_navigation_bar.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation_widget.dart';
 import 'package:flutter_app/tabs_demo/navigation_keep_alive.dart';
 import 'package:flutter_app/tabs_demo/tabbar_home_page.dart';
-import 'package:flutter_app/weather/city/CityPage.dart';
+import 'package:flutter_app/utils/toast_util.dart';
+import 'package:flutter_app/weather/city/city_page.dart';
 import 'package:flutter_app/contact/page/contact_page.dart';
 import 'package:flutter_app/widget/button_widget.dart';
 import 'package:flutter_app/widget/chip_widget.dart';
-import 'package:flutter_app/widget/date_time_page.dart';
 import 'package:flutter_app/widget/dialog_widget.dart';
 import 'package:flutter_app/widget/frosting_widget.dart';
 import 'package:flutter_app/widget/image_widget.dart';
@@ -41,8 +39,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomeStatePage extends State<HomePage> {
-  /// add line
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   /// 上次点击时间
   DateTime _lastPressedAt;
@@ -98,210 +95,172 @@ class HomeStatePage extends State<HomePage> {
      * 我们需要在它的onWillPop属性中返回一个新的组件（一般是一个Dialog）处理是否真的pop该页面。
      */
     return WillPopScope(
-      child: Scaffold(
-          key: _scaffoldKey,
-          appBar: AppBar(
-            // Title
-            title: Text("Flutter Demo"),
-            // Set the background color of the App Bar
-            backgroundColor: Colors.pinkAccent,
-            elevation: 4.0,
-            centerTitle: true,
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.search,
-                  semanticLabel: "search",
+        onWillPop: _onBackPressed,
+        child: Scaffold(
+            key: _scaffoldKey,
+            appBar: AppBar(
+              // Title
+              title: Text("Flutter Demo"),
+              // Set the background color of the App Bar
+              backgroundColor: Colors.pinkAccent,
+              elevation: 4.0,
+              centerTitle: true,
+              leading: IconButton(
+                  icon: Icon(Icons.menu),
+                  onPressed: () {
+                    print("点击了菜单");
+                    _scaffoldKey.currentState.openDrawer();
+                  }),
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.search,
+                    semanticLabel: "search",
+                  ),
+                  onPressed: () {},
+                  tooltip: "Search",
                 ),
-                onPressed: () {},
-                tooltip: "Search",
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.tune,
-                  semanticLabel: "tune",
-                ),
-                onPressed: () {},
-                tooltip: "Tune",
-              )
-            ],
-          ),
-          drawer: Drawer(
-            elevation: 10.0,
-            child: Center(
-              child: bulderMenuView(),
+                IconButton(
+                  icon: Icon(
+                    Icons.tune,
+                    semanticLabel: "tune",
+                  ),
+                  onPressed: () {},
+                  tooltip: "Tune",
+                )
+              ],
             ),
-            semanticLabel: "左侧菜单",
-          ),
-          body: Scrollbar(
-              child: SingleChildScrollView(
-                  child: Center(
-                      child: Column(children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: RaisedButton(
+            drawer: Drawer(
+                elevation: 10.0,
+                child: _bulderMenuView(),
+                semanticLabel: "左侧菜单"),
+            body: Wrap(
+                alignment: WrapAlignment.start,
+                spacing: 10.0,
+                children: <Widget>[
+                  RaisedButton(
                     onPressed: () => pushNewPage(
                           context,
                           TextWidget(),
                         ),
                     child: Text("Text"),
                   ),
-                ),
-                Expanded(
-                  child: RaisedButton(
+                  RaisedButton(
                     onPressed: () {
                       pushNewPage(context, ButtonWidget());
                     },
                     child: Text("Button"),
                   ),
-                ),
-                Expanded(
-                  child: RaisedButton(
+                  RaisedButton(
                     onPressed: () {
                       pushNewPage(context, ImageWidget());
                     },
                     child: Text("Image"),
                   ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: RaisedButton(
+                  RaisedButton(
                     onPressed: () {
                       pushNewPage(context, TextFieldWidget());
                     },
                     child: Text("TextField"),
                   ),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    pushNewPage(context, DialogWidget());
-                  },
-                  child: Text("Dialog"),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: RaisedButton(
+                  RaisedButton(
+                    onPressed: () {
+                      pushNewPage(context, DialogWidget());
+                    },
+                    child: Text("Dialog"),
+                  ),
+                  RaisedButton(
                     onPressed: () {
                       pushNewPage(context, RandomWords());
                     },
                     child: Text("RandomWords"),
                   ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: RaisedButton(
+                  RaisedButton(
                     onPressed: () {
                       pushNewPage(context, MovieGridPage());
                     },
                     child: Text("Movie Grid"),
                   ),
-                ),
-                Expanded(
-                  child: RaisedButton(
+                  RaisedButton(
                     onPressed: () {
                       pushNewPage(context, MovieListPage());
                     },
                     child: Text("Movie List"),
                   ),
-                ),
-              ],
-            ),
-            Wrap(
-              alignment: WrapAlignment.start,
-              runSpacing: 5.0,
-              spacing: 10.0,
-              children: <Widget>[
-                RaisedButton(
-                  onPressed: () =>
-                      pushNewPage(context, BottomNavagationBarHomePage()),
-                  child: Text("BottomNavagationBar"),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    pushNewPage(context, TabBarHomePage());
-                  },
-                  child: Text("TabBarView"),
-                ),
-                RaisedButton(
-                  onPressed: () => pushNewPage(context, BottomNavigation()),
-                  child: Text("不规则底部导航栏"),
-                ),
-                RaisedButton(
-                  onPressed: () => pushNewPage(context, NavigationKeepAlive()),
-                  child: Text("NavagationKeepAlive"),
-                ),
-                RaisedButton(
-                  onPressed: () =>
-                      pushNewPage(context, BottomNavigationWidget()),
-                  child: Text("BottomNavigationWidget"),
-                ),
-                RaisedButton(
-                  onPressed: () => pushNewPage(context, LoadImageWidget()),
-                  child: Text("LoadImage"),
-                ),
-                RaisedButton(
-                  onPressed: () => pushNewPage(context, StepperWidget()),
-                  child: Text("Stepper"),
-                ),
-                RaisedButton(
-                  onPressed: () => pushNewPage(context, SwiperWidget()),
-                  child: Text("Swiper"),
-                ),
-                RaisedButton(
-                  onPressed: () => pushNewPage(context, FrostingWidget()),
-                  child: Text("毛玻璃"),
-                ),
-                RaisedButton(
-                  onPressed: () => pushNewPage(context, QuizPage()),
-                  child: Text("Question"),
-                ),
-                RaisedButton(
-                  onPressed: () => pushNewPage(context, ContactPage()),
-                  child: Text("Contact"),
-                ),
-                RaisedButton(
-                  onPressed: () => pushNewPage(context, SliderWidget()),
-                  child: Text("SliderWidget"),
-                ),
-                RaisedButton(
-                  onPressed: () => pushNewPage(context, ChipWidget()),
-                  child: Text("ChipWidget"),
-                ),
-              ],
-            ),
-          ]))))),
-      onWillPop: onBackPressed,
-    );
+                  RaisedButton(
+                    onPressed: () =>
+                        pushNewPage(context, BottomNavagationBarHomePage()),
+                    child: Text("BottomNavagationBar"),
+                  ),
+                  RaisedButton(
+                    onPressed: () {
+                      pushNewPage(context, TabBarHomePage());
+                    },
+                    child: Text("TabBarView"),
+                  ),
+                  RaisedButton(
+                    onPressed: () => pushNewPage(context, BottomNavigation()),
+                    child: Text("不规则底部导航栏"),
+                  ),
+                  RaisedButton(
+                    onPressed: () =>
+                        pushNewPage(context, NavigationKeepAlive()),
+                    child: Text("NavagationKeepAlive"),
+                  ),
+                  RaisedButton(
+                    onPressed: () =>
+                        pushNewPage(context, BottomNavigationWidget()),
+                    child: Text("BottomNavigationWidget"),
+                  ),
+                  RaisedButton(
+                    onPressed: () => pushNewPage(context, LoadImageWidget()),
+                    child: Text("LoadImage"),
+                  ),
+                  RaisedButton(
+                    onPressed: () => pushNewPage(context, StepperWidget()),
+                    child: Text("Stepper"),
+                  ),
+                  RaisedButton(
+                    onPressed: () => pushNewPage(context, SwiperWidget()),
+                    child: Text("Swiper"),
+                  ),
+                  RaisedButton(
+                    onPressed: () => pushNewPage(context, FrostingWidget()),
+                    child: Text("毛玻璃"),
+                  ),
+                  RaisedButton(
+                    onPressed: () => pushNewPage(context, QuizPage()),
+                    child: Text("Question"),
+                  ),
+                  RaisedButton(
+                    onPressed: () => pushNewPage(context, SliderWidget()),
+                    child: Text("SliderWidget"),
+                  ),
+                  RaisedButton(
+                    onPressed: () => pushNewPage(context, ChipWidget()),
+                    child: Text("ChipWidget"),
+                  )
+                ])));
   }
 
-  Future<bool> onBackPressed() async {
-    if (_lastPressedAt == null ||
+  /// 监听返回键，点击两下退出程序
+  Future<bool> _onBackPressed() async {
+    if (_scaffoldKey.currentState.isDrawerOpen) {
+      print("菜单打开着");
+    } else if (_lastPressedAt == null ||
         DateTime.now().difference(_lastPressedAt) > Duration(seconds: 2)) {
+      print("点击时间");
       //两次点击间隔超过2秒则重新计时
       _lastPressedAt = DateTime.now();
-      _scaffoldKey.currentState.showSnackBar(
-        SnackBar(
-          content: Text("再按一次退出！"),
-          duration: Duration(seconds: 2),
-        ),
-      );
+      ToastUtil.show("再按一次退出", context,
+          duration: ToastUtil.LENGTH_SHORT, gravity: ToastUtil.BOTTOM);
       return false;
     }
     return true;
   }
 
-  Widget bulderMenuView() {
-    return ListView(
+  Widget _bulderMenuView() {
+    return Column(
       children: <Widget>[
         UserAccountsDrawerHeader(
           /// 姓名
@@ -320,7 +279,7 @@ class HomeStatePage extends State<HomePage> {
             onTap: () {
               if (isLogin) {
                 Navigator.pop(context);
-                pushNewPageBack(context, AboutUsPage());
+                pushNewPageBack(context, ContactPage());
               } else {
                 pushAndRemovePage(context, LoginPage());
               }
@@ -354,45 +313,34 @@ class HomeStatePage extends State<HomePage> {
             ),
           ),
         ),
-        ListTile(
-          title: Text("日期时间控件"),
-          leading: Icon(Icons.date_range),
-          trailing: Icon(Icons.arrow_right),
-          onTap: () {
-            /// 左侧菜单收起
-            Navigator.pop(context);
-
-            /// 跳转到下一个界面
-            pushNewPageBack(context, DateTimePage());
-          },
-        ),
-        Divider(),
-        ListTile(
-          title: Text("天气"),
-          leading: Icon(Icons.hdr_weak),
-          trailing: Icon(Icons.chevron_right),
-          onTap: () => pushNewPageBack(context, CityPage()),
-        ),
         Divider(),
         ListTile(
           title: Text("城市"),
           leading: Icon(Icons.location_city),
           trailing: Icon(Icons.chevron_right),
-          onTap: () => pushNewPageBack(context, CitySelectPage()),
+          onTap: () {
+            Navigator.of(context).pop();
+            pushNewPageBack(context, CityPage());
+          },
         ),
         Divider(),
         ListTile(
-          title: Text("诗词"),
-          leading: Icon(Icons.book),
-          trailing: Icon(Icons.chevron_right),
-          onTap: () => pushNewPageBack(context, ShiciPage()),
-        ),
+            title: Text("诗词"),
+            leading: Icon(Icons.book),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.of(context).pop();
+              pushNewPageBack(context, ShiciPage());
+            }),
         Divider(),
         ListTile(
           title: Text("二维码"),
           leading: Icon(Icons.crop_square),
           trailing: Icon(Icons.chevron_right),
-          onTap: () => pushNewPageBack(context, QrImageWidget()),
+          onTap: () {
+            Navigator.of(context).pop();
+            pushNewPageBack(context, QrImageWidget());
+          },
         ),
         Divider(),
         ListTile(

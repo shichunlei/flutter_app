@@ -5,6 +5,7 @@ import 'package:flutter_app/utils/api.dart';
 import 'package:flutter_app/utils/constant.dart';
 import 'package:flutter_app/utils/http_utils.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:flutter_app/utils/loading_util.dart';
 
 class MovieGridPage extends StatefulWidget {
   @override
@@ -31,13 +32,12 @@ class MovieGridStatePage extends State<MovieGridPage> {
     if (isShowLoading) {
       contentView = Center(
         // 可选参数 child:
-        child: CircularProgressIndicator(),
+        child: getLoadingWidget(),
       );
     } else {
       contentView = getGridViewBuilder();
     }
 
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Text("电影Top250"),
