@@ -4,6 +4,7 @@ import io.flutter.plugin.common.PluginRegistry;
 import com.apptreesoftware.barcodescan.BarcodeScanPlugin;
 import io.flutter.plugins.imagepicker.ImagePickerPlugin;
 import com.dfa.introslider.IntroSliderPlugin;
+import com.jhomlala.roundedletter.RoundedLetterPlugin;
 import io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin;
 import io.flutter.plugins.videoplayer.VideoPlayerPlugin;
 
@@ -18,6 +19,7 @@ public final class GeneratedPluginRegistrant {
     BarcodeScanPlugin.registerWith(registry.registrarFor("com.apptreesoftware.barcodescan.BarcodeScanPlugin"));
     ImagePickerPlugin.registerWith(registry.registrarFor("io.flutter.plugins.imagepicker.ImagePickerPlugin"));
     IntroSliderPlugin.registerWith(registry.registrarFor("com.dfa.introslider.IntroSliderPlugin"));
+    RoundedLetterPlugin.registerWith(registry.registrarFor("com.jhomlala.roundedletter.RoundedLetterPlugin"));
     SharedPreferencesPlugin.registerWith(registry.registrarFor("io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin"));
     VideoPlayerPlugin.registerWith(registry.registrarFor("io.flutter.plugins.videoplayer.VideoPlayerPlugin"));
   }

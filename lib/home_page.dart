@@ -21,6 +21,7 @@ import 'package:flutter_app/widget/frosting_widget.dart';
 import 'package:flutter_app/widget/image_widget.dart';
 import 'package:flutter_app/widget/load_image_widget.dart';
 import 'package:flutter_app/widget/qr_image_wiget.dart';
+import 'package:flutter_app/widget/rounded_letter_widget.dart';
 import 'package:flutter_app/widget/slider_widget.dart';
 import 'package:flutter_app/widget/stepper_widget.dart';
 import 'package:flutter_app/widget/swiper_widget.dart';
@@ -134,10 +135,9 @@ class HomeStatePage extends State<HomePage> {
                 elevation: 10.0,
                 child: _bulderMenuView(),
                 semanticLabel: "左侧菜单"),
-            body: Wrap(
-                alignment: WrapAlignment.start,
-                spacing: 10.0,
-                children: <Widget>[
+            body: Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Wrap(spacing: 10.0, children: <Widget>[
                   RaisedButton(
                     onPressed: () => pushNewPage(
                           context,
@@ -237,10 +237,15 @@ class HomeStatePage extends State<HomePage> {
                     child: Text("SliderWidget"),
                   ),
                   RaisedButton(
+                    onPressed: () =>
+                        pushNewPage(context, RoundedLetterWidget()),
+                    child: Text("RoundedLetterWidget"),
+                  ),
+                  RaisedButton(
                     onPressed: () => pushNewPage(context, ChipWidget()),
                     child: Text("ChipWidget"),
                   )
-                ])));
+                ]))));
   }
 
   /// 监听返回键，点击两下退出程序

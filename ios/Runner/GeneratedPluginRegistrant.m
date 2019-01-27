@@ -6,6 +6,7 @@
 #import <barcode_scan/BarcodeScanPlugin.h>
 #import <image_picker/ImagePickerPlugin.h>
 #import <intro_slider/IntroSliderPlugin.h>
+#import <rounded_letter/RoundedLetterPlugin.h>
 #import <shared_preferences/SharedPreferencesPlugin.h>
 #import <video_player/VideoPlayerPlugin.h>
 
@@ -15,6 +16,7 @@
   [BarcodeScanPlugin registerWithRegistrar:[registry registrarForPlugin:@"BarcodeScanPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
   [IntroSliderPlugin registerWithRegistrar:[registry registrarForPlugin:@"IntroSliderPlugin"]];
+  [RoundedLetterPlugin registerWithRegistrar:[registry registrarForPlugin:@"RoundedLetterPlugin"]];
   [FLTSharedPreferencesPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTSharedPreferencesPlugin"]];
   [FLTVideoPlayerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTVideoPlayerPlugin"]];
 }
