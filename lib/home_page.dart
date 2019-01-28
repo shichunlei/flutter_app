@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/page/contact_list_page.dart';
 import 'package:flutter_app/firstdemo/random_words.dart';
+import 'package:flutter_app/likebutton/page/like_button_page.dart';
 import 'package:flutter_app/movie/list/movie_grid_page.dart';
 import 'package:flutter_app/movie/list/movie_list_page.dart';
 import 'package:flutter_app/page/login_page.dart';
@@ -279,7 +280,11 @@ class HomeStatePage extends State<HomePage> {
                   RaisedButton(
                     onPressed: () => pushNewPage(context, ChipWidget()),
                     child: Text("ChipWidget"),
-                  )
+                  ),
+                  RaisedButton(
+                    onPressed: () => pushNewPage(context, LikeButtonPage()),
+                    child: Text("LikeButton"),
+                  ),
                 ]))));
   }
 
