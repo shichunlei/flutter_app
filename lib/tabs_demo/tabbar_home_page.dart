@@ -4,7 +4,6 @@ import 'package:flutter_app/tabs_demo/keep_alive.dart';
 class TabBarHomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return TabBarHomeStatePage();
   }
 }
@@ -20,7 +19,6 @@ class TabBarHomeStatePage extends State<TabBarHomePage>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     // Initialize the Tab Controller
@@ -73,7 +71,6 @@ class TabBarHomeStatePage extends State<TabBarHomePage>
    */
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         // Title

@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flukit/flukit.dart';
+import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/contact/ui/suspension_tag.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/weather/city/city_data.dart';
 import 'package:flutter_app/weather/weather/WeatherPage.dart';
 import 'package:lpinyin/lpinyin.dart';
+import 'package:rounded_letter/rounded_letter.dart';
 
 class CityPage extends StatefulWidget {
   @override
@@ -50,12 +52,15 @@ class CityPageState extends State<CityPage> {
                   child: Text("当前城市: 北京"),
                 ),
                 Expanded(
-                  child: QuickSelectListView(
+                  child: AzListView(
                     data: _cityList,
                     topData: _hotCityList,
                     itemBuilder: (context, cityBean) =>
                         _buildCityItems(cityBean),
-                    suspensionWidget: _buildSusWidget(_suspensionTag),
+                    suspensionWidget: SuspensionTag(
+                      susTag: _suspensionTag,
+                      susHeight: _suspensionHeight,
+                    ),
                     isUseRealIndex: true,
                     itemHeight: _itemHeight,
                     suspensionHeight: _suspensionHeight,
@@ -71,6 +76,13 @@ class CityPageState extends State<CityPage> {
   }
 
   void getCityListData() async {
+    _hotCityList.add(CityData(parent_city: "北京", tagIndex: "热门"));
+    _hotCityList.add(CityData(parent_city: "广州", tagIndex: "热门"));
+    _hotCityList.add(CityData(parent_city: "成都", tagIndex: "热门"));
+    _hotCityList.add(CityData(parent_city: "深圳", tagIndex: "热门"));
+    _hotCityList.add(CityData(parent_city: "杭州", tagIndex: "热门"));
+    _hotCityList.add(CityData(parent_city: "上海", tagIndex: "热门"));
+
     var httpClient = HttpClient();
     var url =
         "https://search.heweather.net/top?group=cn&key=ebb698e9bb6844199e6fd23cbb9a77c5&number=50";
@@ -82,13 +94,6 @@ class CityPageState extends State<CityPage> {
 
       _cityList = CityData.decodeData(jsonData.toString());
       _handleList(_cityList);
-
-      _hotCityList.add(CityData(parent_city: "北京", tagIndex: "热门"));
-      _hotCityList.add(CityData(parent_city: "广州", tagIndex: "热门"));
-      _hotCityList.add(CityData(parent_city: "成都", tagIndex: "热门"));
-      _hotCityList.add(CityData(parent_city: "深圳", tagIndex: "热门"));
-      _hotCityList.add(CityData(parent_city: "杭州", tagIndex: "热门"));
-      _hotCityList.add(CityData(parent_city: "上海", tagIndex: "热门"));
 
       // setState 相当于 runOnUiThread
       setState(() {
@@ -110,20 +115,32 @@ class CityPageState extends State<CityPage> {
         list[i].tagIndex = "#";
       }
     }
+
+    //根据A-Z排序
+    SuspensionUtil.sortListBySuspensionTag(_cityList);
   }
 
   /// 构建列表 item Widget.
   _buildCityItems(model) {
+    String susTag = model.getSuspensionTag();
+    susTag = (susTag == "★" ? "热门城市" : susTag);
     return Column(
       children: <Widget>[
         Offstage(
           offstage: !(model.isShowSuspension == true),
-          child: _buildSusWidget(model.getSuspensionTag()),
+          child: SuspensionTag(
+            susTag: susTag,
+            susHeight: _suspensionHeight,
+          ),
         ),
         SizedBox(
           height: _itemHeight.toDouble(),
           child: ListTile(
-            title: Text(model.parent_city),
+            title: Text(
+              model.parent_city,
+            ),
+            leading: RoundedLetter.withRandomColors(
+                model.parent_city.substring(0, 1), 40, 20),
             onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -132,26 +149,8 @@ class CityPageState extends State<CityPage> {
                   ),
                 ),
           ),
-        )
-      ],
-    );
-  }
-
-  /// 构建悬停Widget.
-  Widget _buildSusWidget(String suspensionTag) {
-    return Container(
-      height: _suspensionHeight.toDouble(),
-      padding: const EdgeInsets.only(left: 15.0),
-      color: Color(0xfff3f4f5),
-      alignment: Alignment.centerLeft,
-      child: Text(
-        '$suspensionTag',
-        softWrap: false,
-        style: TextStyle(
-          fontSize: 14.0,
-          color: Color(0xff999999),
         ),
-      ),
+      ],
     );
   }
 

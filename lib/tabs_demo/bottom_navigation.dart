@@ -6,8 +6,7 @@ class BottomNavigation extends StatefulWidget {
   _BottomNavigationState createState() => _BottomNavigationState();
 }
 
-class _BottomNavigationState extends State<BottomNavigation>
-    {
+class _BottomNavigationState extends State<BottomNavigation> {
   List<Widget> list;
 
   int index = 0;

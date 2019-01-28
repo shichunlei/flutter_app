@@ -6,6 +6,12 @@ import 'package:flutter_app/contact/ui/contact_item.dart';
 import 'package:flutter_app/contact/ui/line_widget.dart';
 
 class ContactPage extends StatefulWidget {
+  final String name;
+  final String phone;
+  final String avatar;
+
+  ContactPage({Key key, this.name, this.phone, this.avatar}) : super(key: key);
+
   @override
   _ContactPageState createState() => _ContactPageState();
 }
@@ -13,6 +19,8 @@ class ContactPage extends StatefulWidget {
 enum AppBarBehavior { normal, pinned, floating, snapping }
 
 class _ContactPageState extends State<ContactPage> {
+  final String _defaultImage =
+      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531798262708&di=53d278a8427f482c5b836fa0e057f4ea&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F342ac65c103853434cc02dda9f13b07eca80883a.jpg";
   final double _appBarHeight = 256.0;
 
   AppBarBehavior _appBarBehavior;
@@ -71,14 +79,15 @@ class _ContactPageState extends State<ContactPage> {
                 ),
               ],
               flexibleSpace: FlexibleSpaceBar(
-                title: Text("张三"),
+                title: Text(widget.name),
                 background: Stack(
                   fit: StackFit.expand,
                   children: <Widget>[
                     FadeInImage.assetNetwork(
                       placeholder: "images/flutter.png",
-                      image:
-                          "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531798262708&di=53d278a8427f482c5b836fa0e057f4ea&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F342ac65c103853434cc02dda9f13b07eca80883a.jpg",
+                      image: (widget.avatar == "" || widget.avatar == null)
+                          ? _defaultImage
+                          : widget.avatar,
                       fit: BoxFit.cover,
                       height: _appBarHeight,
                     ),

@@ -11,7 +11,6 @@ class SwiperWidgetState extends State<SwiperWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _images.add(
@@ -24,7 +23,6 @@ class SwiperWidgetState extends State<SwiperWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Container(

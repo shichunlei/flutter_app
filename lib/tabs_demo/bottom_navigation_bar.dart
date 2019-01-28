@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/tabs_demo/each_view.dart';
 
-class BottomNavagationBarHomePage extends StatefulWidget {
+class BottomNavigationBarHomePage extends StatefulWidget {
   @override
-  createState() => BottomNavagationBarHomesTatePage();
+  createState() => BottomNavigationBarHomesTatePage();
 }
 
-class BottomNavagationBarHomesTatePage
-    extends State<BottomNavagationBarHomePage>
+class BottomNavigationBarHomesTatePage
+    extends State<BottomNavigationBarHomePage>
     with SingleTickerProviderStateMixin {
   // Create a tab controller
   TabController controller;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     controller = TabController(length: 4, vsync: this);
@@ -29,7 +28,6 @@ class BottomNavagationBarHomesTatePage
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       body: TabBarView(
         children: <Widget>[
@@ -44,23 +42,23 @@ class BottomNavagationBarHomesTatePage
         // set the color of the bottom navigation bar
         color: Colors.blue,
         // set the tab bar as the child of bottom navigation bar
-        child: new TabBar(
+        child: TabBar(
           tabs: <Tab>[
-            new Tab(
+            Tab(
               // set icon to the tab
-              icon: new Icon(Icons.home),
+              icon: Icon(Icons.home),
               text: "home",
             ),
-            new Tab(
-              icon: new Icon(Icons.email),
+            Tab(
+              icon: Icon(Icons.email),
               text: "email",
             ),
-            new Tab(
-              icon: new Icon(Icons.pages),
+            Tab(
+              icon: Icon(Icons.pages),
               text: "pages",
             ),
-            new Tab(
-              icon: new Icon(Icons.airplay),
+            Tab(
+              icon: Icon(Icons.airplay),
               text: "airplay",
             ),
           ],

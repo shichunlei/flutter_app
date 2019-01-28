@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/contact/page/contact_list_page.dart';
 import 'package:flutter_app/firstdemo/random_words.dart';
 import 'package:flutter_app/movie/list/movie_grid_page.dart';
 import 'package:flutter_app/movie/list/movie_list_page.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_app/tabs_demo/navigation_keep_alive.dart';
 import 'package:flutter_app/tabs_demo/tabbar_home_page.dart';
 import 'package:flutter_app/utils/toast_util.dart';
 import 'package:flutter_app/weather/city/city_page.dart';
-import 'package:flutter_app/contact/page/contact_page.dart';
 import 'package:flutter_app/widget/button_widget.dart';
 import 'package:flutter_app/widget/chip_widget.dart';
 import 'package:flutter_app/widget/dialog_widget.dart';
@@ -143,19 +143,34 @@ class HomeStatePage extends State<HomePage> {
                           context,
                           TextWidget(),
                         ),
-                    child: Text("Text"),
+                    child: Text(
+                      "Text",
+                      style: TextStyle(
+                        fontFamily: 'Pacifico',
+                      ),
+                    ),
                   ),
                   RaisedButton(
                     onPressed: () {
                       pushNewPage(context, ButtonWidget());
                     },
-                    child: Text("Button"),
+                    child: Text(
+                      "Button",
+                      style: TextStyle(
+                        fontFamily: 'Pacifico',
+                      ),
+                    ),
                   ),
                   RaisedButton(
                     onPressed: () {
                       pushNewPage(context, ImageWidget());
                     },
-                    child: Text("Image"),
+                    child: Text(
+                      "Image",
+                      style: TextStyle(
+                        fontFamily: 'Pacifico',
+                      ),
+                    ),
                   ),
                   RaisedButton(
                     onPressed: () {
@@ -189,8 +204,8 @@ class HomeStatePage extends State<HomePage> {
                   ),
                   RaisedButton(
                     onPressed: () =>
-                        pushNewPage(context, BottomNavagationBarHomePage()),
-                    child: Text("BottomNavagationBar"),
+                        pushNewPage(context, BottomNavigationBarHomePage()),
+                    child: Text("BottomNavigationBar"),
                   ),
                   RaisedButton(
                     onPressed: () {
@@ -205,12 +220,22 @@ class HomeStatePage extends State<HomePage> {
                   RaisedButton(
                     onPressed: () =>
                         pushNewPage(context, NavigationKeepAlive()),
-                    child: Text("NavagationKeepAlive"),
+                    child: Text(
+                      "NavigationKeepAlive",
+                      style: TextStyle(
+                        fontFamily: 'Pacifico',
+                      ),
+                    ),
                   ),
                   RaisedButton(
                     onPressed: () =>
                         pushNewPage(context, BottomNavigationWidget()),
-                    child: Text("BottomNavigationWidget"),
+                    child: Text(
+                      "BottomNavigationWidget",
+                      style: TextStyle(
+                        fontFamily: 'Pacifico',
+                      ),
+                    ),
                   ),
                   RaisedButton(
                     onPressed: () => pushNewPage(context, LoadImageWidget()),
@@ -226,7 +251,12 @@ class HomeStatePage extends State<HomePage> {
                   ),
                   RaisedButton(
                     onPressed: () => pushNewPage(context, FrostingWidget()),
-                    child: Text("毛玻璃"),
+                    child: Text(
+                      "毛玻璃",
+                      style: TextStyle(
+                        fontFamily: 'Pacifico',
+                      ),
+                    ),
                   ),
                   RaisedButton(
                     onPressed: () => pushNewPage(context, QuizPage()),
@@ -239,7 +269,12 @@ class HomeStatePage extends State<HomePage> {
                   RaisedButton(
                     onPressed: () =>
                         pushNewPage(context, RoundedLetterWidget()),
-                    child: Text("RoundedLetterWidget"),
+                    child: Text(
+                      "RoundedLetterWidget",
+                      style: TextStyle(
+                        fontFamily: 'Pacifico',
+                      ),
+                    ),
                   ),
                   RaisedButton(
                     onPressed: () => pushNewPage(context, ChipWidget()),
@@ -265,90 +300,89 @@ class HomeStatePage extends State<HomePage> {
   }
 
   Widget _bulderMenuView() {
-    return Column(
-      children: <Widget>[
-        UserAccountsDrawerHeader(
-          /// 姓名
-          accountName: Text(userName),
+    return Column(children: <Widget>[
+      UserAccountsDrawerHeader(
+        /// 姓名
+        accountName: Text(userName),
 
-          /// 邮箱
-          accountEmail: Text(email),
+        /// 邮箱
+        accountEmail: Text(email),
 
-          /// 用户头像
-          currentAccountPicture: InkWell(
+        /// 用户头像
+        currentAccountPicture: InkWell(
+          child: CircleAvatar(
+            backgroundImage: isLogin
+                ? NetworkImage(avatar)
+                : AssetImage("images/flutter_logo.png"),
+          ),
+          onTap: () {
+            if (isLogin) {
+              Navigator.pop(context);
+              pushNewPageBack(context, ContactListPage());
+            } else {
+              pushAndRemovePage(context, LoginPage());
+            }
+          },
+        ),
+        otherAccountsPictures: <Widget>[
+          GestureDetector(
             child: CircleAvatar(
-              backgroundImage: isLogin
-                  ? NetworkImage(avatar)
-                  : AssetImage("images/flutter_logo.png"),
+              backgroundImage: NetworkImage(
+                  "https://upload.jianshu.io/users/upload_avatars/10878817/240ab127-e41b-496b-80d6-fc6c0c99f291?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240"),
             ),
-            onTap: () {
-              if (isLogin) {
-                Navigator.pop(context);
-                pushNewPageBack(context, ContactPage());
-              } else {
-                pushAndRemovePage(context, LoginPage());
-              }
-            },
+            onTap: () {},
           ),
-          otherAccountsPictures: <Widget>[
-            GestureDetector(
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://upload.jianshu.io/users/upload_avatars/10878817/240ab127-e41b-496b-80d6-fc6c0c99f291?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240"),
-              ),
-              onTap: () {},
+          GestureDetector(
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(
+                  "https://upload.jianshu.io/users/upload_avatars/8346438/e3e45f12-b3c2-45a1-95ac-a608fa3b8960?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240"),
             ),
-            GestureDetector(
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://upload.jianshu.io/users/upload_avatars/8346438/e3e45f12-b3c2-45a1-95ac-a608fa3b8960?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240"),
-              ),
-              onTap: () {},
-            ),
-          ],
+            onTap: () {},
+          ),
+        ],
 
-          /// 装饰器
-          decoration: BoxDecoration(
-            color: Colors.blue,
-            image: DecorationImage(
-              image: NetworkImage(
-                  "http://pic33.photophoto.cn/20141028/0038038006886895_b.jpg"),
-              //image: ExactAssetImage("images/flutter.png"),
-              fit: BoxFit.fill,
-            ),
+        /// 装饰器
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          image: DecorationImage(
+            image: NetworkImage(
+                "http://pic33.photophoto.cn/20141028/0038038006886895_b.jpg"),
+            //image: ExactAssetImage("images/flutter.png"),
+            fit: BoxFit.fill,
           ),
         ),
-        Divider(),
-        ListTile(
-          title: Text("城市"),
-          leading: Icon(Icons.location_city),
+      ),
+      Divider(),
+      ListTile(
+        title: Text("城市"),
+        leading: Icon(Icons.location_city),
+        trailing: Icon(Icons.chevron_right),
+        onTap: () {
+          Navigator.of(context).pop();
+          pushNewPageBack(context, CityPage());
+        },
+      ),
+      Divider(),
+      ListTile(
+          title: Text("诗词"),
+          leading: Icon(Icons.book),
           trailing: Icon(Icons.chevron_right),
           onTap: () {
             Navigator.of(context).pop();
-            pushNewPageBack(context, CityPage());
-          },
-        ),
-        Divider(),
-        ListTile(
-            title: Text("诗词"),
-            leading: Icon(Icons.book),
-            trailing: Icon(Icons.chevron_right),
-            onTap: () {
-              Navigator.of(context).pop();
-              pushNewPageBack(context, ShiciPage());
-            }),
-        Divider(),
-        ListTile(
-          title: Text("二维码"),
-          leading: Icon(Icons.crop_square),
-          trailing: Icon(Icons.chevron_right),
-          onTap: () {
-            Navigator.of(context).pop();
-            pushNewPageBack(context, QrImageWidget());
-          },
-        ),
-        Divider(),
-        ListTile(
+            pushNewPageBack(context, ShiciPage());
+          }),
+      Divider(),
+      ListTile(
+        title: Text("二维码"),
+        leading: Icon(Icons.crop_square),
+        trailing: Icon(Icons.chevron_right),
+        onTap: () {
+          Navigator.of(context).pop();
+          pushNewPageBack(context, QrImageWidget());
+        },
+      ),
+      Divider(),
+      ListTile(
           title: Text("退出账号"),
           leading: Icon(Icons.exit_to_app),
           trailing: Icon(Icons.chevron_right),
@@ -359,32 +393,23 @@ class HomeStatePage extends State<HomePage> {
                 barrierDismissible: false,
                 builder: (context) {
                   return AlertDialog(
-                    title: Text("退出账号"),
-                    content: Text("您确定要退出账号吗？"),
-                    actions: <Widget>[
-                      FlatButton(
-                        child: Text("退出"),
-                        onPressed: () {
-                          eventBus.fire(TestEvent("is_login", false));
-                          pushAndRemovePage(context, LoginPage());
-                        },
-                      ),
-                      FlatButton(
-                        child: Text(
-                          "再想想",
-                          style: Theme.of(context).textTheme.button,
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ],
-                  );
+                      title: Text("退出账号"),
+                      content: Text("您确定要退出账号吗？"),
+                      actions: <Widget>[
+                        FlatButton(
+                            child: Text("退出"),
+                            onPressed: () {
+                              eventBus.fire(TestEvent("is_login", false));
+                              pushAndRemovePage(context, LoginPage());
+                            }),
+                        FlatButton(
+                            child: Text("再想想",
+                                style: Theme.of(context).textTheme.button),
+                            onPressed: () => Navigator.of(context).pop())
+                      ]);
                 });
-          },
-        ),
-        Divider(),
-      ],
-    );
+          }),
+      Divider(),
+    ]);
   }
 }

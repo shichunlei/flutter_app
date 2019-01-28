@@ -42,7 +42,12 @@ class MyApp extends StatelessWidget {
       title: "Flutter Demo",
 
       /// 您可以通过配置ThemeData类轻松更改应用程序的主题
-      theme: ThemeData(primaryColor: Colors.blue),
+      theme: ThemeData(
+          primaryColor: Colors.pinkAccent,
+          primaryColorLight: Colors.purpleAccent,
+          bottomAppBarColor: Colors.deepOrange,
+          buttonColor: Colors.tealAccent,
+          backgroundColor: Colors.teal),
       debugShowCheckedModeBanner: false,
       home: SplashScreenPage(),
     );

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flukit/flukit.dart';
+import 'package:azlistview/azlistview.dart';
 
 class CityData extends ISuspensionBean {
   String cid;
