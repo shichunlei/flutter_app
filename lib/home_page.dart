@@ -5,7 +5,7 @@ import 'package:flutter_app/firstdemo/random_words.dart';
 import 'package:flutter_app/likebutton/page/like_button_page.dart';
 import 'package:flutter_app/movie/list/movie_grid_page.dart';
 import 'package:flutter_app/movie/list/movie_list_page.dart';
-import 'package:flutter_app/page/login_page.dart';
+import 'package:flutter_app/login/page/login_page.dart';
 import 'package:flutter_app/page/shici_page.dart';
 import 'package:flutter_app/question/pages/quiz_page.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation.dart';

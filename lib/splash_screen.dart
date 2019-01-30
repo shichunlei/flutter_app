@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/home_page.dart';
 import 'package:flutter_app/intro_slide_page.dart';
-import 'package:flutter_app/page/login_page.dart';
+import 'package:flutter_app/login/page/login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_app/utils/route_util.dart';
 
