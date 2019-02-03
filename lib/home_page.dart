@@ -18,6 +18,7 @@ import 'package:flutter_app/weather/city/city_page.dart';
 import 'package:flutter_app/widget/button_widget.dart';
 import 'package:flutter_app/widget/chip_widget.dart';
 import 'package:flutter_app/widget/dialog_widget.dart';
+import 'package:flutter_app/widget/dismissible_widget.dart';
 import 'package:flutter_app/widget/frosting_widget.dart';
 import 'package:flutter_app/widget/image_widget.dart';
 import 'package:flutter_app/widget/load_image_widget.dart';
@@ -109,27 +110,16 @@ class HomeStatePage extends State<HomePage> {
               centerTitle: true,
               leading: IconButton(
                   icon: Icon(Icons.menu),
-                  onPressed: () {
-                    print("点击了菜单");
-                    _scaffoldKey.currentState.openDrawer();
-                  }),
+                  onPressed: () => _scaffoldKey.currentState.openDrawer()),
               actions: <Widget>[
                 IconButton(
-                  icon: Icon(
-                    Icons.search,
-                    semanticLabel: "search",
-                  ),
-                  onPressed: () {},
-                  tooltip: "Search",
-                ),
+                    icon: Icon(Icons.search, semanticLabel: "search"),
+                    onPressed: () {},
+                    tooltip: "Search"),
                 IconButton(
-                  icon: Icon(
-                    Icons.tune,
-                    semanticLabel: "tune",
-                  ),
-                  onPressed: () {},
-                  tooltip: "Tune",
-                )
+                    icon: Icon(Icons.tune, semanticLabel: "tune"),
+                    onPressed: () {},
+                    tooltip: "Tune")
               ],
             ),
             drawer: Drawer(
@@ -140,151 +130,102 @@ class HomeStatePage extends State<HomePage> {
                 padding: EdgeInsets.all(10.0),
                 child: Wrap(spacing: 10.0, children: <Widget>[
                   RaisedButton(
-                    onPressed: () => pushNewPage(
-                          context,
-                          TextWidget(),
-                        ),
-                    child: Text(
-                      "Text",
-                      style: TextStyle(
-                        fontFamily: 'Pacifico',
-                      ),
-                    ),
-                  ),
+                      onPressed: () => pushNewPage(context, TextWidget()),
+                      child: Text("Text",
+                          style: TextStyle(fontFamily: 'Pacifico'))),
                   RaisedButton(
-                    onPressed: () {
-                      pushNewPage(context, ButtonWidget());
-                    },
-                    child: Text(
-                      "Button",
-                      style: TextStyle(
-                        fontFamily: 'Pacifico',
-                      ),
-                    ),
-                  ),
+                      onPressed: () {
+                        pushNewPage(context, ButtonWidget());
+                      },
+                      child: Text("Button",
+                          style: TextStyle(fontFamily: 'Pacifico'))),
                   RaisedButton(
-                    onPressed: () {
-                      pushNewPage(context, ImageWidget());
-                    },
-                    child: Text(
-                      "Image",
-                      style: TextStyle(
-                        fontFamily: 'Pacifico',
-                      ),
-                    ),
-                  ),
+                      onPressed: () {
+                        pushNewPage(context, ImageWidget());
+                      },
+                      child: Text("Image",
+                          style: TextStyle(fontFamily: 'Pacifico'))),
                   RaisedButton(
-                    onPressed: () {
-                      pushNewPage(context, TextFieldWidget());
-                    },
-                    child: Text("TextField"),
-                  ),
+                      onPressed: () {
+                        pushNewPage(context, TextFieldWidget());
+                      },
+                      child: Text("TextField")),
                   RaisedButton(
-                    onPressed: () {
-                      pushNewPage(context, DialogWidget());
-                    },
-                    child: Text("Dialog"),
-                  ),
+                      onPressed: () {
+                        pushNewPage(context, DialogWidget());
+                      },
+                      child: Text("Dialog")),
                   RaisedButton(
-                    onPressed: () {
-                      pushNewPage(context, RandomWords());
-                    },
-                    child: Text("RandomWords"),
-                  ),
+                      onPressed: () {
+                        pushNewPage(context, RandomWords());
+                      },
+                      child: Text("RandomWords")),
                   RaisedButton(
-                    onPressed: () {
-                      pushNewPage(context, MovieGridPage());
-                    },
-                    child: Text("Movie Grid"),
-                  ),
+                      onPressed: () {
+                        pushNewPage(context, MovieGridPage());
+                      },
+                      child: Text("Movie Grid")),
                   RaisedButton(
-                    onPressed: () {
-                      pushNewPage(context, MovieListPage());
-                    },
-                    child: Text("Movie List"),
-                  ),
+                      onPressed: () {
+                        pushNewPage(context, MovieListPage());
+                      },
+                      child: Text("Movie List")),
                   RaisedButton(
-                    onPressed: () =>
-                        pushNewPage(context, BottomNavigationBarHomePage()),
-                    child: Text("BottomNavigationBar"),
-                  ),
+                      onPressed: () =>
+                          pushNewPage(context, BottomNavigationBarHomePage()),
+                      child: Text("BottomNavigationBar")),
                   RaisedButton(
-                    onPressed: () {
-                      pushNewPage(context, TabBarHomePage());
-                    },
-                    child: Text("TabBarView"),
-                  ),
+                      onPressed: () {
+                        pushNewPage(context, TabBarHomePage());
+                      },
+                      child: Text("TabBarView")),
                   RaisedButton(
-                    onPressed: () => pushNewPage(context, BottomNavigation()),
-                    child: Text("不规则底部导航栏"),
-                  ),
+                      onPressed: () => pushNewPage(context, BottomNavigation()),
+                      child: Text("不规则底部导航栏")),
                   RaisedButton(
-                    onPressed: () =>
-                        pushNewPage(context, NavigationKeepAlive()),
-                    child: Text(
-                      "NavigationKeepAlive",
-                      style: TextStyle(
-                        fontFamily: 'Pacifico',
-                      ),
-                    ),
-                  ),
+                      onPressed: () =>
+                          pushNewPage(context, NavigationKeepAlive()),
+                      child: Text("NavigationKeepAlive",
+                          style: TextStyle(fontFamily: 'Pacifico'))),
                   RaisedButton(
-                    onPressed: () =>
-                        pushNewPage(context, BottomNavigationWidget()),
-                    child: Text(
-                      "BottomNavigationWidget",
-                      style: TextStyle(
-                        fontFamily: 'Pacifico',
-                      ),
-                    ),
-                  ),
+                      onPressed: () =>
+                          pushNewPage(context, BottomNavigationWidget()),
+                      child: Text("BottomNavigationWidget",
+                          style: TextStyle(fontFamily: 'Pacifico'))),
                   RaisedButton(
-                    onPressed: () => pushNewPage(context, LoadImageWidget()),
-                    child: Text("LoadImage"),
-                  ),
+                      onPressed: () => pushNewPage(context, LoadImageWidget()),
+                      child: Text("LoadImage")),
                   RaisedButton(
-                    onPressed: () => pushNewPage(context, StepperWidget()),
-                    child: Text("Stepper"),
-                  ),
+                      onPressed: () => pushNewPage(context, StepperWidget()),
+                      child: Text("Stepper")),
                   RaisedButton(
-                    onPressed: () => pushNewPage(context, SwiperWidget()),
-                    child: Text("Swiper"),
-                  ),
+                      onPressed: () => pushNewPage(context, SwiperWidget()),
+                      child: Text("Swiper")),
                   RaisedButton(
-                    onPressed: () => pushNewPage(context, FrostingWidget()),
-                    child: Text(
-                      "毛玻璃",
-                      style: TextStyle(
-                        fontFamily: 'Pacifico',
-                      ),
-                    ),
-                  ),
+                      onPressed: () => pushNewPage(context, FrostingWidget()),
+                      child: Text("毛玻璃",
+                          style: TextStyle(fontFamily: 'Pacifico'))),
                   RaisedButton(
-                    onPressed: () => pushNewPage(context, QuizPage()),
-                    child: Text("Question"),
-                  ),
+                      onPressed: () => pushNewPage(context, QuizPage()),
+                      child: Text("Question")),
                   RaisedButton(
-                    onPressed: () => pushNewPage(context, SliderWidget()),
-                    child: Text("SliderWidget"),
-                  ),
+                      onPressed: () => pushNewPage(context, SliderWidget()),
+                      child: Text("SliderWidget")),
                   RaisedButton(
-                    onPressed: () =>
-                        pushNewPage(context, RoundedLetterWidget()),
-                    child: Text(
-                      "RoundedLetterWidget",
-                      style: TextStyle(
-                        fontFamily: 'Pacifico',
-                      ),
-                    ),
-                  ),
+                      onPressed: () =>
+                          pushNewPage(context, RoundedLetterWidget()),
+                      child: Text("RoundedLetterWidget",
+                          style: TextStyle(fontFamily: 'Pacifico'))),
                   RaisedButton(
-                    onPressed: () => pushNewPage(context, ChipWidget()),
-                    child: Text("ChipWidget"),
-                  ),
+                      onPressed: () => pushNewPage(context, ChipWidget()),
+                      child: Text("ChipWidget")),
                   RaisedButton(
-                    onPressed: () => pushNewPage(context, LikeButtonPage()),
-                    child: Text("LikeButton"),
-                  ),
+                      onPressed: () => pushNewPage(context, LikeButtonPage()),
+                      child: Text("LikeButton")),
+                  RaisedButton(
+                      onPressed: () =>
+                          pushNewPage(context, DismissibleWidget()),
+                      child: Text("DismissibleWidget")),
                 ]))));
   }
 
