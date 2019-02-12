@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/rich_alert/rich_alert_dialog.dart';
 
 class DialogWidget extends StatefulWidget {
   @override
@@ -14,17 +15,17 @@ class DialogWidgetState extends State<DialogWidget> {
         theme.textTheme.subhead.copyWith(color: theme.textTheme.caption.color);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Dialog Widget"),
-      ),
+      appBar: AppBar(title: Text("Dialog Widget")),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        backgroundColor: Colors.redAccent,
-        child: const Icon(
-          Icons.add,
-          semanticLabel: 'Add',
-        ),
-      ),
+          onPressed: () => showDialog(
+              context: context,
+              builder: (context) => RichAlertDialog(
+                  title: richTitle("Alert title"),
+                  subtitle: richSubtitle("Subtitle"),
+                  type: RichAlertType.WARNING,
+                  actions: <Widget>[Text("hello"), Text("its me")])),
+          backgroundColor: Colors.redAccent,
+          child: const Icon(Icons.add, semanticLabel: 'Add')),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 22.0),
         children: <Widget>[
@@ -76,7 +77,7 @@ class DialogWidgetState extends State<DialogWidget> {
                   context: context,
                   builder: (context) {
                     return SimpleDialog(
-                      title: Text('Info'), //标题
+                      title: Text('Info', style: dialogTextStyle), //标题
                       titlePadding: EdgeInsets.all(20), //标题的padding值
                       children: <Widget>[
                         DialogItem(
@@ -194,8 +195,10 @@ class DialogWidgetState extends State<DialogWidget> {
                   context: context,
                   builder: (context) {
                     return CupertinoAlertDialog(
-                      title: Text('提示'), //弹框标题
-                      content: Text('是否想放弃学习Flutter'), //弹框内容
+                      title: Text('提示'),
+                      //弹框标题
+                      content: Text('是否想放弃学习Flutter', style: dialogTextStyle),
+                      //弹框内容
                       actions: <Widget>[
                         //操作控件
                         CupertinoDialogAction(
@@ -232,20 +235,22 @@ class DialogWidgetState extends State<DialogWidget> {
               showDialog(
                 context: context,
                 builder: (context) => CupertinoAlertDialog(
-                      title: const Text(
-                          'Allow "Maps" to access your location while you are using the app?'),
-                      content: const Text(
+                      title: Text(
+                          'Allow "Maps" to access your location while you are using the app?',
+                          style: dialogTextStyle),
+                      content: Text(
                           'Your current location will be displayed on the map and used '
-                          'for directions, nearby search results, and estimated travel times.'),
+                          'for directions, nearby search results, and estimated travel times.',
+                          style: dialogTextStyle),
                       actions: <Widget>[
                         CupertinoDialogAction(
-                          child: const Text('Don\'t Allow'),
+                          child: Text('Don\'t Allow'),
                           onPressed: () {
                             Navigator.pop(context, 'Disallow');
                           },
                         ),
                         CupertinoDialogAction(
-                          child: const Text('Allow'),
+                          child: Text('Allow'),
                           onPressed: () {
                             Navigator.pop(context, 'Allow');
                           },
@@ -257,36 +262,29 @@ class DialogWidgetState extends State<DialogWidget> {
           ),
           Divider(),
           CupertinoButton(
-            child: const Text('Alert with Buttons'),
-            color: CupertinoColors.activeBlue,
-            padding:
-                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 36.0),
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) => CupertinoAlertDialog(
+              child: const Text('Alert with Buttons'),
+              color: CupertinoColors.activeBlue,
+              padding:
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 36.0),
+              onPressed: () => showDialog(
+                  context: context,
+                  builder: (context) => CupertinoAlertDialog(
                       title: Text('Select Favorite Dessert'),
                       content: Text(
                           'Please select your favorite type of dessert from the'
-                          'list below.Your selection will be used to customize the suggested list of eateries in your area.'),
-                      actions: items(context),
-                    ),
-              );
-            },
-          ),
+                          'list below.Your selection will be used to customize the suggested list of eateries in your area.',
+                          style: dialogTextStyle),
+                      actions: items(context)))),
           Divider(),
           CupertinoButton(
-            child: const Text('Alert Buttons Only'),
-            color: CupertinoColors.activeBlue,
-            padding:
-                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 36.0),
-            onPressed: () {
-              showDialog(
+              child: const Text('Alert Buttons Only'),
+              color: CupertinoColors.activeBlue,
+              padding:
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 36.0),
+              onPressed: () => showDialog(
                   context: context,
                   builder: (context) =>
-                      CupertinoAlertDialog(actions: items(context)));
-            },
-          ),
+                      CupertinoAlertDialog(actions: items(context)))),
           Divider(),
           CupertinoButton(
             child: const Text('Action Sheet'),
@@ -298,8 +296,9 @@ class DialogWidgetState extends State<DialogWidget> {
                   context: context,
                   builder: (context) => CupertinoActionSheet(
                       title: const Text('Favorite Dessert'),
-                      message: const Text(
-                          'Please select the best dessert from the options below.'),
+                      message: Text(
+                          'Please select the best dessert from the options below.',
+                          style: dialogTextStyle),
                       actions: <Widget>[
                         CupertinoActionSheetAction(
                           child: const Text('Profiteroles'),
@@ -373,18 +372,12 @@ class DialogWidgetState extends State<DialogWidget> {
         },
       ),
       CupertinoDialogAction(
-        child: const Text('Chocolate Brownie'),
-        onPressed: () {
-          Navigator.pop(context, 'Chocolate Brownies');
-        },
-      ),
+          child: const Text('Chocolate Brownie'),
+          onPressed: () => Navigator.pop(context, 'Chocolate Brownies')),
       CupertinoDialogAction(
-        child: const Text('Cancel'),
-        isDestructiveAction: true,
-        onPressed: () {
-          Navigator.pop(context, 'Cancel');
-        },
-      )
+          child: const Text('Cancel'),
+          isDestructiveAction: true,
+          onPressed: () => Navigator.pop(context, 'Cancel'))
     ];
     return widgets;
   }
@@ -402,18 +395,14 @@ class DialogItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleDialogOption(
-      onPressed: onPressed,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Icon(icon, size: 36.0, color: color),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Text(text),
-          ),
-        ],
-      ),
-    );
+        onPressed: onPressed,
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Icon(icon, size: 36.0, color: color),
+              Padding(
+                  padding: const EdgeInsets.only(left: 16.0), child: Text(text))
+            ]));
   }
 }

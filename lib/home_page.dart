@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/page/contact_list_page.dart';
+import 'package:flutter_app/drag_like/page/drag_like_page.dart';
 import 'package:flutter_app/firstdemo/random_words.dart';
 import 'package:flutter_app/likebutton/page/like_button_page.dart';
 import 'package:flutter_app/movie/list/movie_grid_page.dart';
@@ -226,6 +227,9 @@ class HomeStatePage extends State<HomePage> {
                       onPressed: () =>
                           pushNewPage(context, DismissibleWidget()),
                       child: Text("DismissibleWidget")),
+                  RaisedButton(
+                      onPressed: () => pushNewPage(context, DragLikePage()),
+                      child: Text("DragLikePage")),
                 ]))));
   }
 
