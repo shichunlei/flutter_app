@@ -14,6 +14,7 @@ import 'package:flutter_app/tabs_demo/bottom_navigation_bar.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation_widget.dart';
 import 'package:flutter_app/tabs_demo/navigation_keep_alive.dart';
 import 'package:flutter_app/tabs_demo/tabbar_home_page.dart';
+import 'package:flutter_app/page/time_line.dart';
 import 'package:flutter_app/utils/toast_util.dart';
 import 'package:flutter_app/weather/city/city_page.dart';
 import 'package:flutter_app/widget/button_widget.dart';
@@ -230,6 +231,9 @@ class HomeStatePage extends State<HomePage> {
                   RaisedButton(
                       onPressed: () => pushNewPage(context, DragLikePage()),
                       child: Text("DragLikePage")),
+                  RaisedButton(
+                      onPressed: () => pushNewPage(context, TimeLinePage()),
+                      child: Text("TimeLine")),
                 ]))));
   }
 

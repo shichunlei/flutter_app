@@ -24,7 +24,7 @@ class MovieGridStatePage extends State<MovieGridPage> {
     super.initState();
 
     isShowLoading = true;
-    getMovieList(page, Constant.DEFAULT);
+    getMovieList(page, RefreshType.DEFAULT);
   }
 
   @override
@@ -59,12 +59,12 @@ class MovieGridStatePage extends State<MovieGridPage> {
     setState(() {
       isShowLoading = false;
       List<Movie> list = Movie.decodeData(jsonData);
-      if (type == Constant.DEFAULT) {
+      if (type == RefreshType.DEFAULT) {
         movies.addAll(list);
-      } else if (type == Constant.REFRESH) {
+      } else if (type == RefreshType.REFRESH) {
         movies.clear();
         movies.addAll(list);
-      } else if (type == Constant.LOAD_MORE) {
+      } else if (type == RefreshType.LOAD_MORE) {
         movies.addAll(list);
       }
     });

@@ -1,19 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/drag_like/slide_stack.dart';
+import 'package:flutter_app/utils/constant.dart';
 import 'package:flutter_app/utils/toast_util.dart';
-
-class Girl {
-  final String description;
-  final String asset;
-
-  Girl(this.description, this.asset);
-}
-
-final List<Girl> girls = [
-  Girl('Sliding to the left means dislike', 'images/girl01.png'),
-  Girl('slipping to the right means expressing love', 'images/girl02.png'),
-  Girl('Hope you like', 'images/girl03.png')
-];
 
 class DragLikePage extends StatefulWidget {
   @override
@@ -159,8 +147,8 @@ class _DragLikePageState extends State<DragLikePage>
     return Stack(
       children: <Widget>[
         Positioned(
-          child: Image.asset(
-            girl.asset,
+          child: Image.network(
+            girl.image,
             fit: BoxFit.cover,
           ),
           left: 35.0,
