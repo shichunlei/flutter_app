@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/details/movie_detail_page.dart';
 import 'package:flutter_app/movie/list/movie.dart';
 import 'package:flutter_app/utils/api.dart';
-import 'package:flutter_app/utils/constant.dart';
+import 'package:flutter_app/data.dart';
 import 'package:flutter_app/utils/http_utils.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_app/utils/loading_util.dart';
@@ -15,7 +15,7 @@ class MovieGridPage extends StatefulWidget {
 class MovieGridStatePage extends State<MovieGridPage> {
   List<Movie> movies = [];
   int page = 0;
-  int pagesize = 36;
+  int pagesize = 250;
   var contentView;
   bool isShowLoading = false;
 

@@ -1,41 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/page/contact_list_page.dart';
-import 'package:flutter_app/page/drag_like_page.dart';
-import 'package:flutter_app/page/random_words.dart';
-import 'package:flutter_app/page/like_button_page.dart';
-import 'package:flutter_app/movie/list/movie_grid_page.dart';
-import 'package:flutter_app/movie/list/movie_list_page.dart';
 import 'package:flutter_app/login/page/login_page.dart';
 import 'package:flutter_app/page/shici_page.dart';
-import 'package:flutter_app/question/pages/quiz_page.dart';
-import 'package:flutter_app/tabs_demo/bottom_navigation.dart';
-import 'package:flutter_app/tabs_demo/bottom_navigation_bar.dart';
-import 'package:flutter_app/tabs_demo/bottom_navigation_widget.dart';
-import 'package:flutter_app/tabs_demo/navigation_keep_alive.dart';
-import 'package:flutter_app/tabs_demo/tabbar_home_page.dart';
-import 'package:flutter_app/page/time_line.dart';
 import 'package:flutter_app/custom_widgets/toast/toast.dart';
+import 'package:flutter_app/data.dart';
 import 'package:flutter_app/weather/city/city_page.dart';
-import 'package:flutter_app/widget/button_widget.dart';
-import 'package:flutter_app/widget/chip_widget.dart';
-import 'package:flutter_app/widget/dialog_widget.dart';
-import 'package:flutter_app/widget/dismissible_widget.dart';
-import 'package:flutter_app/widget/frosting_widget.dart';
-import 'package:flutter_app/widget/image_widget.dart';
-import 'package:flutter_app/widget/load_image_widget.dart';
 import 'package:flutter_app/widget/qr_image_wiget.dart';
-import 'package:flutter_app/widget/rounded_letter_widget.dart';
-import 'package:flutter_app/widget/slider_widget.dart';
-import 'package:flutter_app/widget/stepper_widget.dart';
-import 'package:flutter_app/widget/swiper_widget.dart';
-import 'package:flutter_app/widget/text_widget.dart';
-import 'package:flutter_app/widget/textfield_widget.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/event_bus_util.dart';
-
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:async';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
@@ -93,6 +68,16 @@ class HomeStatePage extends State<HomePage> {
     initUser(isLogin);
   }
 
+  void _setCurrentIndex(int index, bool isExpand) {
+    setState(() {
+      expandStateList.forEach((item) {
+        if (item.index == index) {
+          item.isOpen = !isExpand;
+        }
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     /**
@@ -100,141 +85,120 @@ class HomeStatePage extends State<HomePage> {
      * 我们需要在它的onWillPop属性中返回一个新的组件（一般是一个Dialog）处理是否真的pop该页面。
      */
     return WillPopScope(
-        onWillPop: _onBackPressed,
-        child: Scaffold(
-            key: _scaffoldKey,
-            appBar: AppBar(
-              // Title
-              title: Text("Flutter Demo"),
-              // Set the background color of the App Bar
-              backgroundColor: Colors.pinkAccent,
-              elevation: 4.0,
-              centerTitle: true,
-              leading: IconButton(
-                  icon: Icon(Icons.menu),
-                  onPressed: () => _scaffoldKey.currentState.openDrawer()),
-              actions: <Widget>[
-                IconButton(
-                    icon: Icon(Icons.search, semanticLabel: "search"),
-                    onPressed: () {},
-                    tooltip: "Search"),
-                IconButton(
-                    icon: Icon(Icons.tune, semanticLabel: "tune"),
-                    onPressed: () {},
-                    tooltip: "Tune")
-              ],
+      onWillPop: _onBackPressed,
+      child: Scaffold(
+        key: _scaffoldKey,
+        appBar: AppBar(
+          // Title
+          title: Text("Flutter Demo"),
+          // Set the background color of the App Bar
+          backgroundColor: Colors.pinkAccent,
+          elevation: 4.0,
+          centerTitle: true,
+          leading: IconButton(
+              icon: Icon(Icons.menu),
+              onPressed: () => _scaffoldKey.currentState.openDrawer()),
+          actions: <Widget>[
+            IconButton(
+                icon: Icon(Icons.search, semanticLabel: "search"),
+                onPressed: () {},
+                tooltip: "Search"),
+            IconButton(
+                icon: Icon(Icons.tune, semanticLabel: "tune"),
+                onPressed: () {},
+                tooltip: "Tune")
+          ],
+        ),
+        drawer: Drawer(
+            elevation: 10.0, child: _bulderMenuView(), semanticLabel: "左侧菜单"),
+        body: ListView(
+          children: <Widget>[
+            Container(
+              height: 230.0,
+              child: Swiper(
+                /// 初始的时候下标位置
+                index: 0,
+
+                /// 无限轮播模式开关
+                loop: true,
+
+                ///
+                itemBuilder: (context, index) {
+                  return Image.network(
+                    banner_images[index],
+                    fit: BoxFit.fill,
+                  );
+                },
+
+                ///
+                itemCount: banner_images.length,
+
+                /// 设置 new SwiperPagination() 展示默认分页指示器
+                pagination: SwiperPagination(),
+
+                /// 设置 new SwiperControl() 展示默认分页按钮
+                // control: SwiperControl(),
+
+                /// 自动播放开关.
+                autoplay: true,
+
+                /// 动画时间，单位是毫秒
+                duration: 300,
+
+                /// 当用户点击某个轮播的时候调用
+                onTap: (index) {
+                  print("你点击了第$index个");
+                },
+
+                /// 滚动方向，设置为Axis.vertical如果需要垂直滚动
+                scrollDirection: Axis.horizontal,
+              ),
             ),
-            drawer: Drawer(
-                elevation: 10.0,
-                child: _bulderMenuView(),
-                semanticLabel: "左侧菜单"),
-            body: Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Wrap(spacing: 10.0, children: <Widget>[
-                  RaisedButton(
-                      onPressed: () => pushNewPage(context, TextWidget()),
-                      child: Text("Text",
-                          style: TextStyle(fontFamily: 'Pacifico'))),
-                  RaisedButton(
-                      onPressed: () {
-                        pushNewPage(context, ButtonWidget());
-                      },
-                      child: Text("Button",
-                          style: TextStyle(fontFamily: 'Pacifico'))),
-                  RaisedButton(
-                      onPressed: () {
-                        pushNewPage(context, ImageWidget());
-                      },
-                      child: Text("Image",
-                          style: TextStyle(fontFamily: 'Pacifico'))),
-                  RaisedButton(
-                      onPressed: () {
-                        pushNewPage(context, TextFieldWidget());
-                      },
-                      child: Text("TextField")),
-                  RaisedButton(
-                      onPressed: () {
-                        pushNewPage(context, DialogWidget());
-                      },
-                      child: Text("Dialog")),
-                  RaisedButton(
-                      onPressed: () {
-                        pushNewPage(context, RandomWords());
-                      },
-                      child: Text("RandomWords")),
-                  RaisedButton(
-                      onPressed: () {
-                        pushNewPage(context, MovieGridPage());
-                      },
-                      child: Text("Movie Grid")),
-                  RaisedButton(
-                      onPressed: () {
-                        pushNewPage(context, MovieListPage());
-                      },
-                      child: Text("Movie List")),
-                  RaisedButton(
-                      onPressed: () =>
-                          pushNewPage(context, BottomNavigationBarHomePage()),
-                      child: Text("BottomNavigationBar")),
-                  RaisedButton(
-                      onPressed: () {
-                        pushNewPage(context, TabBarHomePage());
-                      },
-                      child: Text("TabBarView")),
-                  RaisedButton(
-                      onPressed: () => pushNewPage(context, BottomNavigation()),
-                      child: Text("不规则底部导航栏")),
-                  RaisedButton(
-                      onPressed: () =>
-                          pushNewPage(context, NavigationKeepAlive()),
-                      child: Text("NavigationKeepAlive",
-                          style: TextStyle(fontFamily: 'Pacifico'))),
-                  RaisedButton(
-                      onPressed: () =>
-                          pushNewPage(context, BottomNavigationWidget()),
-                      child: Text("BottomNavigationWidget",
-                          style: TextStyle(fontFamily: 'Pacifico'))),
-                  RaisedButton(
-                      onPressed: () => pushNewPage(context, LoadImageWidget()),
-                      child: Text("LoadImage")),
-                  RaisedButton(
-                      onPressed: () => pushNewPage(context, StepperWidget()),
-                      child: Text("Stepper")),
-                  RaisedButton(
-                      onPressed: () => pushNewPage(context, SwiperWidget()),
-                      child: Text("Swiper")),
-                  RaisedButton(
-                      onPressed: () => pushNewPage(context, FrostingWidget()),
-                      child: Text("毛玻璃",
-                          style: TextStyle(fontFamily: 'Pacifico'))),
-                  RaisedButton(
-                      onPressed: () => pushNewPage(context, QuizPage()),
-                      child: Text("Question")),
-                  RaisedButton(
-                      onPressed: () => pushNewPage(context, SliderWidget()),
-                      child: Text("SliderWidget")),
-                  RaisedButton(
-                      onPressed: () =>
-                          pushNewPage(context, RoundedLetterWidget()),
-                      child: Text("RoundedLetterWidget",
-                          style: TextStyle(fontFamily: 'Pacifico'))),
-                  RaisedButton(
-                      onPressed: () => pushNewPage(context, ChipWidget()),
-                      child: Text("ChipWidget")),
-                  RaisedButton(
-                      onPressed: () => pushNewPage(context, LikeButtonPage()),
-                      child: Text("LikeButton")),
-                  RaisedButton(
-                      onPressed: () =>
-                          pushNewPage(context, DismissibleWidget()),
-                      child: Text("DismissibleWidget")),
-                  RaisedButton(
-                      onPressed: () => pushNewPage(context, DragLikePage()),
-                      child: Text("DragLikePage")),
-                  RaisedButton(
-                      onPressed: () => pushNewPage(context, TimeLinePage()),
-                      child: Text("TimeLine")),
-                ]))));
+            ExpansionPanelList(
+              children: _buildExpansionPanelView(),
+              expansionCallback: (index, isExpand) =>
+                  _setCurrentIndex(index, isExpand),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  List<ExpansionPanel> _buildExpansionPanelView() {
+    List<ExpansionPanel> widgets = [];
+    for (var i = 0; i < expandStateList.length; i++) {
+      widgets.add(
+        ExpansionPanel(
+          headerBuilder: (context, isExpanded) {
+            return ListTile(
+              title: Text(expandStateList[i].title),
+            );
+          },
+          body: ListBody(
+            children: _buildListBody(expandStateList[i]),
+          ),
+          isExpanded: expandStateList[i].isOpen,
+        ),
+      );
+    }
+
+    return widgets;
+  }
+
+  List<Widget> _buildListBody(ExpandStateBean bean) {
+    List<Widget> widgets = [];
+    for (int i = 0; i < bean.subExpand.length; i++) {
+      widgets
+        ..add(ListTile(
+          title: Text(bean.subExpand[i].title),
+          onTap: () {
+            pushNewPage(context, bean.subExpand[i].widget);
+          },
+        ))
+        ..add(Divider());
+    }
+    return widgets;
   }
 
   /// 监听返回键，点击两下退出程序

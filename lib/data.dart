@@ -1,4 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/widget/text_widget.dart';
+import 'package:flutter_app/page/drag_like_page.dart';
+import 'package:flutter_app/page/random_words.dart';
+import 'package:flutter_app/page/like_button_page.dart';
+import 'package:flutter_app/movie/list/movie_grid_page.dart';
+import 'package:flutter_app/movie/list/movie_list_page.dart';
+import 'package:flutter_app/question/pages/quiz_page.dart';
+import 'package:flutter_app/tabs_demo/bottom_navigation.dart';
+import 'package:flutter_app/tabs_demo/bottom_navigation_bar.dart';
+import 'package:flutter_app/tabs_demo/bottom_navigation_widget.dart';
+import 'package:flutter_app/tabs_demo/navigation_keep_alive.dart';
+import 'package:flutter_app/tabs_demo/tabbar_home_page.dart';
+import 'package:flutter_app/page/time_line.dart';
+import 'package:flutter_app/widget/rounded_letter_widget.dart';
+import 'package:flutter_app/widget/slider_widget.dart';
+import 'package:flutter_app/widget/stepper_widget.dart';
+import 'package:flutter_app/widget/textfield_widget.dart';
+import 'package:flutter_app/widget/button_widget.dart';
+import 'package:flutter_app/widget/chip_widget.dart';
+import 'package:flutter_app/widget/dialog_widget.dart';
+import 'package:flutter_app/widget/dismissible_widget.dart';
+import 'package:flutter_app/widget/frosting_widget.dart';
+import 'package:flutter_app/widget/image_widget.dart';
+import 'package:flutter_app/widget/load_image_widget.dart';
 
 class RefreshType {
   static final int DEFAULT = 0x1000;
@@ -173,4 +197,60 @@ const List<String> languages = <String>[
   'Dart',
   'Kotlin',
   'Swift'
+];
+
+class ExpandStateBean {
+  var isOpen;
+  String title;
+  int index;
+  List<SubExpandBean> subExpand;
+
+  ExpandStateBean(this.isOpen, this.title, this.index, this.subExpand);
+}
+
+class SubExpandBean {
+  String title;
+  Widget widget;
+
+  SubExpandBean(this.title, this.widget);
+}
+
+List<ExpandStateBean> expandStateList = [
+  ExpandStateBean(false, 'Widgets', 0, [
+    SubExpandBean('Text', TextWidget()),
+    SubExpandBean('Button', ButtonWidget()),
+    SubExpandBean('Image', ImageWidget()),
+    SubExpandBean('TextField', TextFieldWidget()),
+    SubExpandBean('Dialog', DialogWidget()),
+    SubExpandBean('TabBar', TabBarHomePage()),
+    SubExpandBean('BottomNavigationBar', BottomNavigationBarHomePage()),
+    SubExpandBean('BottomNavigation', BottomNavigationWidget()),
+    SubExpandBean('NavigationKeepAlive', NavigationKeepAlive()),
+    SubExpandBean('不规则底部导航栏', BottomNavigation()),
+    SubExpandBean('Stepper', StepperWidget()),
+    SubExpandBean('Slider', SliderWidget()),
+    SubExpandBean('Chip', ChipWidget()),
+    SubExpandBean('滑动删除', DismissibleWidget()),
+    SubExpandBean('毛玻璃', FrostingWidget()),
+  ]),
+  ExpandStateBean(false, 'Custom Widgets', 1, [
+    SubExpandBean('DragLike', DragLikePage()),
+    SubExpandBean('LikeButton', LikeButtonPage()),
+    SubExpandBean('时间流', TimeLinePage()),
+    SubExpandBean('LoadImage', LoadImageWidget()),
+    SubExpandBean('RoundedLetter', RoundedLetterWidget()),
+  ]),
+  ExpandStateBean(false, '功能', 2, [
+    SubExpandBean('Question', QuizPage()),
+    SubExpandBean('电影TOP250', MovieGridPage()),
+    SubExpandBean('最新电影', MovieListPage()),
+    SubExpandBean('RandomWords', RandomWords()),
+  ]),
+];
+
+List<String> banner_images = [
+  "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550062506230&di=c1fe7acf0d730d3eec5e259b83c5dbb1&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F9358d109b3de9c82036507ac6681800a19d84395.jpg",
+  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550062506230&di=5a7d0ce4bf6bc3ea16631b3b6656705d&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F4e4a20a4462309f76874a128790e0cf3d7cad6f5.jpg',
+  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550062506229&di=d809dd657a9e0df1b5ccdc7aa2b5ed6e&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F0e2442a7d933c89527374758db1373f08202004c.jpg',
+  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550062506227&di=4dbf7aff166eedb67f17d9cb445b7b3f&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F8d5494eef01f3a29dda37ce99325bc315c607caa.jpg'
 ];
