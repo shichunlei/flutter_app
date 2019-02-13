@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/drag_like/slide_stack.dart';
+import 'package:flutter_app/custom_widgets/drag_like/slide_stack.dart';
 import 'package:flutter_app/utils/constant.dart';
-import 'package:flutter_app/utils/toast_util.dart';
+import 'package:flutter_app/custom_widgets/toast/toast.dart';
 
 class DragLikePage extends StatefulWidget {
   @override
@@ -66,8 +66,8 @@ class _DragLikePageState extends State<DragLikePage>
     _controller.forward();
     String isLike =
         (slideDirection == SlideDirection.left) ? 'dislike' : 'like';
-    ToastUtil.show('You $isLike this !', context,
-        duration: ToastUtil.LENGTH_SHORT, gravity: ToastUtil.BOTTOM);
+    Toast.show('You $isLike this !', context,
+        duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
     setAboveIndex();
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/rich_alert/rich_alert_dialog.dart';
+import 'package:flutter_app/custom_widgets/rich_alert/rich_alert_dialog.dart';
 
 class DialogWidget extends StatefulWidget {
   @override

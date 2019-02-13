@@ -3,7 +3,7 @@ import 'package:flutter_app/home_page.dart';
 import 'package:flutter_app/login/ui/submit_button.dart';
 import 'package:flutter_app/login/ui/third_login_button.dart';
 import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/toast_util.dart';
+import 'package:flutter_app/custom_widgets/toast/toast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -93,13 +93,13 @@ class _SignInPageState extends State<SignInPage> {
                           children: <Widget>[
                             ThirdLoginButton(
                                 onPressed: () {
-                                  ToastUtil.show("facebook", context);
+                                  Toast.show("facebook", context);
                                 },
                                 icon: FontAwesomeIcons.weixin),
                             SizedBox(width: 40.0),
                             ThirdLoginButton(
                                 onPressed: () {
-                                  ToastUtil.show("twitter", context);
+                                  Toast.show("twitter", context);
                                 },
                                 icon: FontAwesomeIcons.qq)
                           ]))
@@ -112,11 +112,11 @@ class _SignInPageState extends State<SignInPage> {
                         title: "登录",
                         onTap: () {
                           if (_emailController.text.isEmpty) {
-                            ToastUtil.show("邮箱不能为空", context);
+                            Toast.show("邮箱不能为空", context);
                           } else if (_pwdController.text.isEmpty) {
-                            ToastUtil.show("密码不能为空", context);
+                            Toast.show("密码不能为空", context);
                           } else if (_pwdController.text.length < 6) {
-                            ToastUtil.show("密码长度不能小于6位！", context);
+                            Toast.show("密码长度不能小于6位！", context);
                           } else {
                             _login();
                           }
@@ -242,7 +242,7 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   void _login() async {
-    ToastUtil.show("登录", context);
+    Toast.show("登录", context);
 
     SharedPreferences sp = await SharedPreferences.getInstance();
     sp.setBool("isLogin", true);

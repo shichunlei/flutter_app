@@ -203,7 +203,7 @@ class _ContactPageState extends State<ContactPage> {
             tooltip: "send message",
             onPressed: () {},
             lines: const <String>[
-              '(650) 555-1234',
+              '18601952581',
               'Mobile',
             ],
           ),
@@ -212,7 +212,7 @@ class _ContactPageState extends State<ContactPage> {
             tooltip: "send message",
             onPressed: () {},
             lines: const <String>[
-              '(650) 543-1234',
+              '13522038091',
               'Work',
             ],
           ),
@@ -221,7 +221,7 @@ class _ContactPageState extends State<ContactPage> {
             tooltip: "send message",
             onPressed: () {},
             lines: const <String>[
-              '(555) 515-1234',
+              '18510634252',
               'Home',
             ],
           ),

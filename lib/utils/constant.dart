@@ -157,3 +157,20 @@ const List<Doodle> doodles = [
       ),
       iconBackground: Colors.blue),
 ];
+
+const List<String> languages = <String>[
+  'Flutter',
+  'Android',
+  'iOS',
+  'Java',
+  'Object-C',
+  'JavaScript',
+  'Ruby',
+  'PHP',
+  'C++',
+  'C#',
+  'C语言',
+  'Dart',
+  'Kotlin',
+  'Swift'
+];

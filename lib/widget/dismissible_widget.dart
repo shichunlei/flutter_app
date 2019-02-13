@@ -1,3 +1,10 @@
+/**
+ * 使用Dismissible组件实现右滑删除
+ * 它是根据Key来删除ListView中的某一项的
+ * 请注意ListView.builder中itemBuilder: (context, index)传进的index
+ * 它不是list中的下标，而是这个组件在当前屏幕上所占的位置
+ */
+
 import 'package:flutter/material.dart';
 
 class DismissibleWidget extends StatefulWidget {

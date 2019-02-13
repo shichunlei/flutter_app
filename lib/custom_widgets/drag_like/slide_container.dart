@@ -3,7 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:async/async.dart';
-import 'package:flutter_app/drag_like/slide_stack.dart';
+import 'package:flutter_app/custom_widgets/drag_like/slide_stack.dart';
 
 /// Container that can be slid.
 ///

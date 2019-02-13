@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-/// Toast工具类
-class ToastUtil {
+class Toast {
   static final int LENGTH_SHORT = 1;
   static final int LENGTH_LONG = 2;
   static final int BOTTOM = 0;
@@ -65,8 +64,8 @@ class ToastView {
     );
     overlayState.insert(overlayEntry);
     _isVisible = true;
-    await new Future.delayed(Duration(
-        seconds: duration == null ? ToastUtil.LENGTH_SHORT : duration));
+    await new Future.delayed(
+        Duration(seconds: duration == null ? Toast.LENGTH_SHORT : duration));
     this.dismiss();
   }
 

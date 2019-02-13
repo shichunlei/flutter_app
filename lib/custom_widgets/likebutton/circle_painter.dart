@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/likebutton/like_button_util.dart';
+import 'package:flutter_app/custom_widgets/likebutton/like_button_util.dart';
 
 class CirclePainter extends CustomPainter {
   Paint circlePaint = new Paint();

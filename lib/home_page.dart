@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/page/contact_list_page.dart';
-import 'package:flutter_app/drag_like/page/drag_like_page.dart';
-import 'package:flutter_app/firstdemo/random_words.dart';
-import 'package:flutter_app/likebutton/page/like_button_page.dart';
+import 'package:flutter_app/page/drag_like_page.dart';
+import 'package:flutter_app/page/random_words.dart';
+import 'package:flutter_app/page/like_button_page.dart';
 import 'package:flutter_app/movie/list/movie_grid_page.dart';
 import 'package:flutter_app/movie/list/movie_list_page.dart';
 import 'package:flutter_app/login/page/login_page.dart';
@@ -15,7 +15,7 @@ import 'package:flutter_app/tabs_demo/bottom_navigation_widget.dart';
 import 'package:flutter_app/tabs_demo/navigation_keep_alive.dart';
 import 'package:flutter_app/tabs_demo/tabbar_home_page.dart';
 import 'package:flutter_app/page/time_line.dart';
-import 'package:flutter_app/utils/toast_util.dart';
+import 'package:flutter_app/custom_widgets/toast/toast.dart';
 import 'package:flutter_app/weather/city/city_page.dart';
 import 'package:flutter_app/widget/button_widget.dart';
 import 'package:flutter_app/widget/chip_widget.dart';
@@ -246,8 +246,8 @@ class HomeStatePage extends State<HomePage> {
       print("点击时间");
       //两次点击间隔超过2秒则重新计时
       _lastPressedAt = DateTime.now();
-      ToastUtil.show("再按一次退出", context,
-          duration: ToastUtil.LENGTH_SHORT, gravity: ToastUtil.BOTTOM);
+      Toast.show("再按一次退出", context,
+          duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
       return false;
     }
     return true;

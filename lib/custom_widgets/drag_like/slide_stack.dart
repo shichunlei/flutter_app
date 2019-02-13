@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/drag_like/slide_container.dart';
+import 'package:flutter_app/custom_widgets/drag_like/slide_container.dart';
 
 enum SlideDirection {
   left,

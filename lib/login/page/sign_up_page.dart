@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/login/ui/submit_button.dart';
-import 'package:flutter_app/utils/toast_util.dart';
+import 'package:flutter_app/custom_widgets/toast/toast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -38,42 +38,42 @@ class _SignUpPageState extends State<SignUpPage> {
               width: 300.0,
               child: Form(
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      /// 用户名
-                      _buildUserNameInput(),
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  /// 用户名
+                  _buildUserNameInput(),
 
-                      Container(
-                          width: 250.0,
-                          height: 1.0,
-                          color: Colors.grey[100],
-                          padding: const EdgeInsets.only(top: 10.0)),
+                  Container(
+                      width: 250.0,
+                      height: 1.0,
+                      color: Colors.grey[100],
+                      padding: const EdgeInsets.only(top: 10.0)),
 
-                      /// 邮箱
-                      buildEmailInput(),
-                      Container(
-                          width: 250.0,
-                          height: 1.0,
-                          color: Colors.grey[100],
-                          padding: const EdgeInsets.only(top: 10.0)),
+                  /// 邮箱
+                  buildEmailInput(),
+                  Container(
+                      width: 250.0,
+                      height: 1.0,
+                      color: Colors.grey[100],
+                      padding: const EdgeInsets.only(top: 10.0)),
 
-                      /// 密码
-                      _buildPassswordInput(),
-                      Container(
-                          width: 250.0,
-                          height: 1.0,
-                          color: Colors.grey[100],
-                          padding: const EdgeInsets.only(top: 10.0)),
+                  /// 密码
+                  _buildPassswordInput(),
+                  Container(
+                      width: 250.0,
+                      height: 1.0,
+                      color: Colors.grey[100],
+                      padding: const EdgeInsets.only(top: 10.0)),
 
-                      /// 确认密码
-                      _buildRePasswordInput(),
-                      Container(
-                          width: 250.0,
-                          height: 1.0,
-                          color: Colors.grey[100],
-                          margin: const EdgeInsets.only(bottom: 40.0))
-                    ],
-                  )),
+                  /// 确认密码
+                  _buildRePasswordInput(),
+                  Container(
+                      width: 250.0,
+                      height: 1.0,
+                      color: Colors.grey[100],
+                      margin: const EdgeInsets.only(bottom: 40.0))
+                ],
+              )),
             ),
 
             /// 注册按钮
@@ -83,16 +83,16 @@ class _SignUpPageState extends State<SignUpPage> {
                     title: "注册",
                     onTap: () {
                       if (_usernameController.text.isEmpty) {
-                        ToastUtil.show("用户名不能为空", context);
+                        Toast.show("用户名不能为空", context);
                       } else if (_emailController.text.isEmpty) {
-                        ToastUtil.show("邮箱不能为空", context);
+                        Toast.show("邮箱不能为空", context);
                       } else if (_passwordController.text.isEmpty) {
-                        ToastUtil.show("密码不能为空", context);
+                        Toast.show("密码不能为空", context);
                       } else if (_passwordController.text.length < 6) {
-                        ToastUtil.show("密码长度不能小于6位！", context);
+                        Toast.show("密码长度不能小于6位！", context);
                       } else if (_repasswordController.text.toString() !=
                           _passwordController.text.toString()) {
-                        ToastUtil.show("两次密码不一致", context);
+                        Toast.show("两次密码不一致", context);
                       } else {
                         _regist();
                       }
@@ -200,6 +200,6 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void _regist() async {
-    ToastUtil.show("注册", context);
+    Toast.show("注册", context);
   }
 }
