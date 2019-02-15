@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/page/flipper_widget.dart';
+import 'package:flutter_app/page/swiper_page.dart';
 import 'package:flutter_app/widget/contact_picker_widget.dart';
 import 'package:flutter_app/widget/text_widget.dart';
 import 'package:flutter_app/page/drag_like_page.dart';
@@ -243,6 +244,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('RoundedLetter', RoundedLetterWidget()),
     SubExpandBean('Flipper', FlipperWidget()),
     SubExpandBean('ContactPicker', ContactPickerWidget()),
+    SubExpandBean('Swiper', SwiperPage()),
   ]),
   ExpandStateBean(false, '功能', 2, [
     SubExpandBean('Question', QuizPage()),
