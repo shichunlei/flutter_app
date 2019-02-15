@@ -77,6 +77,9 @@ dependencies: # 应用或包依赖的其它包或插件
 
   url_launcher: ^5.0.1
 
+  # 评分控件
+  smooth_star_rating: 1.0.1
+
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:
     sdk: flutter

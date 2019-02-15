@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/page/flipper_widget.dart';
 import 'package:flutter_app/page/swiper_page.dart';
 import 'package:flutter_app/widget/contact_picker_widget.dart';
+import 'package:flutter_app/widget/star_rating_widget.dart';
 import 'package:flutter_app/widget/text_widget.dart';
 import 'package:flutter_app/page/drag_like_page.dart';
 import 'package:flutter_app/page/random_words.dart';
@@ -245,6 +246,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('Flipper', FlipperWidget()),
     SubExpandBean('ContactPicker', ContactPickerWidget()),
     SubExpandBean('Swiper', SwiperPage()),
+    SubExpandBean('评分控件', StarRatingWidget()),
   ]),
   ExpandStateBean(false, '功能', 2, [
     SubExpandBean('Question', QuizPage()),
