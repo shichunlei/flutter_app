@@ -4,6 +4,7 @@ import 'package:flutter_app/contact/ui/contact_category.dart';
 import 'package:flutter_app/contact/ui/contact_image_text.dart';
 import 'package:flutter_app/contact/ui/contact_item.dart';
 import 'package:flutter_app/contact/ui/line_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactPage extends StatefulWidget {
   final String name;
@@ -24,6 +25,8 @@ class _ContactPageState extends State<ContactPage> {
   final double _appBarHeight = 256.0;
 
   AppBarBehavior _appBarBehavior;
+
+  Future<Null> _launched;
 
   @override
   void initState() {
@@ -82,7 +85,8 @@ class _ContactPageState extends State<ContactPage> {
                 title: Text(widget.name),
                 background: Stack(
                   /// 定义如何设置non-positioned节点尺寸，默认为loose
-                  fit: StackFit.expand,// loose：子节点宽松的取值，可以从min到max的尺寸；expand：子节点尽可能的占用空间，取max尺寸；passthrough：不改变子节点的约束条件。
+                  fit: StackFit.expand,
+                  // loose：子节点宽松的取值，可以从min到max的尺寸；expand：子节点尽可能的占用空间，取max尺寸；passthrough：不改变子节点的约束条件。
                   children: <Widget>[
                     FadeInImage.assetNetwork(
                       placeholder: "images/flutter.png",
@@ -116,10 +120,12 @@ class _ContactPageState extends State<ContactPage> {
                     color: Colors.black12,
                     lineType: LineType.horizontal,
                   ),
-                  _buildPhoneView(),
+                  _buildPhoneView(widget.phone),
                   _buildEmailView(),
                   _buildAddressView(),
                   _buildOtherView(),
+                  FutureBuilder<Null>(
+                      future: _launched, builder: _launchStatus),
                 ],
               ),
             ),
@@ -193,25 +199,41 @@ class _ContactPageState extends State<ContactPage> {
     );
   }
 
-  Widget _buildPhoneView() {
+  Future<Null> _launch(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  Widget _buildPhoneView(String _phone) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
       child: ContactCategory(
         icon: Icons.call,
         children: <Widget>[
           ContactItem(
-            icon: Icons.message,
-            tooltip: "send message",
-            onPressed: () {},
-            lines: const <String>[
-              '18601952581',
+            icon: Icons.call,
+            tooltip: "call",
+            onPressed: () {
+              setState(() {
+                _launched = _launch('tel:$_phone');
+              });
+            },
+            lines: <String>[
+              '$_phone',
               'Mobile',
             ],
           ),
           ContactItem(
             icon: Icons.message,
             tooltip: "send message",
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                _launched = _launch('sms:$_phone');
+              });
+            },
             lines: const <String>[
               '13522038091',
               'Work',
@@ -325,5 +347,13 @@ class _ContactPageState extends State<ContactPage> {
         ),
       ],
     );
+  }
+
+  Widget _launchStatus(BuildContext context, AsyncSnapshot<Null> snapshot) {
+    if (snapshot.hasError) {
+      return Text('Error: ${snapshot.error}');
+    } else {
+      return const Text('');
+    }
   }
 }

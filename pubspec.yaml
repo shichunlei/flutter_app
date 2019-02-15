@@ -70,6 +70,10 @@ dependencies: # 应用或包依赖的其它包或插件
   # 时间线 https://github.com/furkantektas/timeline_list
   timeline_list: ^0.0.3
 
+  contact_picker: ^0.0.2
+
+  url_launcher: ^5.0.1
+
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:
     sdk: flutter
