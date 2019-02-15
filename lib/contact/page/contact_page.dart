@@ -81,7 +81,8 @@ class _ContactPageState extends State<ContactPage> {
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(widget.name),
                 background: Stack(
-                  fit: StackFit.expand,
+                  /// 定义如何设置non-positioned节点尺寸，默认为loose
+                  fit: StackFit.expand,// loose：子节点宽松的取值，可以从min到max的尺寸；expand：子节点尽可能的占用空间，取max尺寸；passthrough：不改变子节点的约束条件。
                   children: <Widget>[
                     FadeInImage.assetNetwork(
                       placeholder: "images/flutter.png",

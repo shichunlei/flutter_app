@@ -8,7 +8,6 @@ class TextWidget extends StatefulWidget {
 class TextWidgetState extends State<TextWidget> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return new Scaffold(
       appBar: new AppBar(
         title: new Text("Text Widget"),

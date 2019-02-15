@@ -36,6 +36,7 @@ class CityPageState extends State<CityPage> {
       body: Stack(
         children: <Widget>[
           Offstage(
+            /// 默认为true，也就是不显示，当为flase的时候，会显示该控件
             offstage: _cityList.isNotEmpty,
             child: Center(
               child: getLoadingWidget(),

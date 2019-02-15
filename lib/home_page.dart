@@ -176,6 +176,11 @@ class HomeStatePage extends State<HomePage> {
             );
           },
           body: ListBody(
+            /// 排列的主轴方向
+            mainAxis: Axis.vertical,
+
+            /// 是否反向
+            reverse: false,
             children: _buildListBody(expandStateList[i]),
           ),
           isExpanded: expandStateList[i].isOpen,

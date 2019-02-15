@@ -31,6 +31,7 @@ class _ChipWidgetState extends State<ChipWidget> {
           children: <Widget>[
             Text('Chip'),
             Wrap(
+              /// 主轴方向上的间距
               spacing: 10.0,
               children: _buildChipItem(removeItem()),
             ),

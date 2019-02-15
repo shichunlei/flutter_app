@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/page/flipper_widget.dart';
 import 'package:flutter_app/widget/text_widget.dart';
 import 'package:flutter_app/page/drag_like_page.dart';
 import 'package:flutter_app/page/random_words.dart';
@@ -239,6 +240,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('时间流', TimeLinePage()),
     SubExpandBean('LoadImage', LoadImageWidget()),
     SubExpandBean('RoundedLetter', RoundedLetterWidget()),
+    SubExpandBean('FlipperWidget', FlipperWidget()),
   ]),
   ExpandStateBean(false, '功能', 2, [
     SubExpandBean('Question', QuizPage()),
