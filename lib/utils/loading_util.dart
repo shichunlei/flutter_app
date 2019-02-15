@@ -2,7 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/custom_widgets/animated_rotation_box.dart';
+import 'package:flutter_app/custom_widgets/gradient_circular_progress_indicator.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 List<Widget> widgets = [
   SpinKitThreeBounce(color: Colors.redAccent, size: 30.0),
@@ -35,6 +39,52 @@ List<Widget> widgets = [
   SpinKitPouringHourglass(color: Colors.indigo),
   CupertinoActivityIndicator(animating: false),
   CircularProgressIndicator(backgroundColor: Colors.greenAccent),
+  AnimatedRotationBox(
+      child: GradientCircularProgressIndicator(
+          radius: 15.0,
+          colors: [Colors.red[300], Colors.orange, Colors.grey[50]],
+          value: .8,
+          backgroundColor: Colors.transparent)),
+  AnimatedRotationBox(
+      child: GradientCircularProgressIndicator(
+          radius: 15.0,
+          colors: [Colors.red, Colors.red],
+          value: .7,
+          backgroundColor: Colors.transparent)),
+  AnimatedRotationBox(
+      duration: Duration(milliseconds: 800),
+      child: GradientCircularProgressIndicator(
+          radius: 15.0,
+          colors: [Colors.blue, Colors.lightBlue[50]],
+          value: .8,
+          backgroundColor: Colors.transparent,
+          strokeCapRound: true)),
+  // Icon
+  AnimatedRotationBox(
+      duration: Duration(milliseconds: 800), child: Icon(Icons.loop)),
+  AnimatedRotationBox(
+      duration: Duration(milliseconds: 800), child: Icon(Icons.refresh)),
+  AnimatedRotationBox(
+      duration: Duration(milliseconds: 800),
+      child: Icon(FontAwesomeIcons.firefox)),
+  AnimatedRotationBox(
+      duration: Duration(milliseconds: 1200), child: Icon(MdiIcons.sword)),
+  AnimatedRotationBox(
+    child: GradientCircularProgressIndicator(
+        colors: [
+          Colors.red,
+          Colors.amber,
+          Colors.cyan,
+          Colors.green[200],
+          Colors.blue,
+          Colors.red
+        ],
+        radius: 60.0,
+        stokeWidth: 5.0,
+        strokeCapRound: true,
+        backgroundColor: Colors.transparent,
+        value: 1.0),
+  ),
 ];
 
 Widget getLoadingWidget() {
@@ -54,7 +104,7 @@ showLoadingDialog(BuildContext context, String text) {
 }
 
 class LoadingDialogWidget extends Dialog {
-  String text;
+  final String text;
 
   LoadingDialogWidget({
     Key key,
