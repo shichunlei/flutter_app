@@ -96,8 +96,7 @@ class _ContactListPageState extends State<ContactListPage> {
   void _handleList(List<Contact> contacts) {
     if (contacts == null || contacts.isEmpty) return;
     for (int i = 0, length = contacts.length; i < length; i++) {
-      String pinyin =
-          PinyinHelper.convertToPinyinStringWithoutException(contacts[i].name);
+      String pinyin = PinyinHelper.getPinyinE(contacts[i].name);
       String tag = pinyin.substring(0, 1).toUpperCase();
       contacts[i].namePinyin = pinyin;
       if (RegExp("[A-Z]").hasMatch(tag)) {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/page/city_picker_page.dart';
 import 'package:flutter_app/page/flipper_widget.dart';
 import 'package:flutter_app/page/swiper_page.dart';
+import 'package:flutter_app/tabs_demo/bottom_appbar.dart';
 import 'package:flutter_app/widget/contact_picker_widget.dart';
 import 'package:flutter_app/widget/star_rating_widget.dart';
 import 'package:flutter_app/widget/text_widget.dart';
@@ -10,7 +12,6 @@ import 'package:flutter_app/page/like_button_page.dart';
 import 'package:flutter_app/movie/list/movie_grid_page.dart';
 import 'package:flutter_app/movie/list/movie_list_page.dart';
 import 'package:flutter_app/question/pages/quiz_page.dart';
-import 'package:flutter_app/tabs_demo/bottom_navigation.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation_bar.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation_widget.dart';
 import 'package:flutter_app/tabs_demo/navigation_keep_alive.dart';
@@ -230,7 +231,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('BottomNavigationBar', BottomNavigationBarHomePage()),
     SubExpandBean('BottomNavigation', BottomNavigationWidget()),
     SubExpandBean('NavigationKeepAlive', NavigationKeepAlive()),
-    SubExpandBean('不规则底部导航栏', BottomNavigation()),
+    SubExpandBean('不规则底部导航栏', BottomAppbar()),
     SubExpandBean('Stepper', StepperWidget()),
     SubExpandBean('Slider', SliderWidget()),
     SubExpandBean('Chip', ChipWidget()),
@@ -247,6 +248,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('ContactPicker', ContactPickerWidget()),
     SubExpandBean('Swiper', SwiperPage()),
     SubExpandBean('评分控件', StarRatingWidget()),
+    SubExpandBean('城市选择控件', CityPickerPage()),
   ]),
   ExpandStateBean(false, '功能', 2, [
     SubExpandBean('Question', QuizPage()),

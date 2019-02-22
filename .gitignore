@@ -3,3 +3,4 @@ local.properties
 pubspec.lock
 gradlew
 .packages
+.flutter-plugins

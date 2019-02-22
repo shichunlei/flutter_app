@@ -32,10 +32,10 @@ dependencies: # 应用或包依赖的其它包或插件
   dio: ^1.0.13
 
   # 引导页
-  intro_slider: ^1.0.6
+  intro_slider: ^1.1.5
 
   # 图片选择器
-  image_picker: ^0.4.10
+  image_picker: ^0.4.12+1
 
   # 视频选择器
   video_player: ^0.5.2
@@ -79,6 +79,8 @@ dependencies: # 应用或包依赖的其它包或插件
 
   # 评分控件
   smooth_star_rating: 1.0.1
+
+  city_picker: ^0.1.3
 
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:

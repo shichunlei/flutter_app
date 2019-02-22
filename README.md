@@ -45,3 +45,8 @@ samples, guidance on mobile development, and a full API reference.
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/timeline_list.png)|
 | :--: |
 |TimeLine|
+
+# 使用到的第三方插件
+
+| :--: | :--: | :--: |
+| 网络请求 | [dio](https://pub.dartlang.org/packages/dio) | Dart的一个强大的Http客户端，支持拦截器、全局配置、FormData、请求取消、文件下载、超时等。 |

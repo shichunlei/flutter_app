@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/tabs_demo/each_view.dart';
 
-class BottomNavigation extends StatefulWidget {
+class BottomAppbar extends StatefulWidget {
   @override
-  _BottomNavigationState createState() => _BottomNavigationState();
+  _BottomAppbarState createState() => _BottomAppbarState();
 }
 
-class _BottomNavigationState extends State<BottomNavigation> {
+class _BottomAppbarState extends State<BottomAppbar> {
   List<Widget> list;
 
   int index = 0;
