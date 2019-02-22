@@ -48,5 +48,7 @@ samples, guidance on mobile development, and a full API reference.
 
 # 使用到的第三方插件
 
-| :--: | :--: | :--: |
-| 网络请求 | [dio](https://pub.dartlang.org/packages/dio) | Dart的一个强大的Http客户端，支持拦截器、全局配置、FormData、请求取消、文件下载、超时等。 |
+|||||
+| :--: | :--: | :--: | :--: |
+| 网络请求 | [dio](https://pub.dartlang.org/packages/dio) | 1.0.13 | Dart的一个强大的Http客户端，支持拦截器、全局配置、FormData、请求取消、文件下载、超时等。 |
+|城市选择|[city_picker](https://github.com/CaiJingLong/flutter_city_picker)|0.1.3||
