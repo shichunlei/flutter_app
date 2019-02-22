@@ -4,6 +4,7 @@
 
 #import "GeneratedPluginRegistrant.h"
 #import <barcode_scan/BarcodeScanPlugin.h>
+#import <city_pickers/CityPickersPlugin.h>
 #import <contact_picker/ContactPickerPlugin.h>
 #import <image_picker/ImagePickerPlugin.h>
 #import <intro_slider/IntroSliderPlugin.h>
@@ -16,6 +17,7 @@
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
   [BarcodeScanPlugin registerWithRegistrar:[registry registrarForPlugin:@"BarcodeScanPlugin"]];
+  [CityPickersPlugin registerWithRegistrar:[registry registrarForPlugin:@"CityPickersPlugin"]];
   [ContactPickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"ContactPickerPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
   [IntroSliderPlugin registerWithRegistrar:[registry registrarForPlugin:@"IntroSliderPlugin"]];

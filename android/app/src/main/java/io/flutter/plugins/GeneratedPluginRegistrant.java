@@ -2,6 +2,7 @@ package io.flutter.plugins;
 
 import io.flutter.plugin.common.PluginRegistry;
 import com.apptreesoftware.barcodescan.BarcodeScanPlugin;
+import com.example.citypickers.CityPickersPlugin;
 import net.goderbauer.flutter.contactpicker.ContactPickerPlugin;
 import io.flutter.plugins.imagepicker.ImagePickerPlugin;
 import com.dfa.introslider.IntroSliderPlugin;
@@ -19,6 +20,7 @@ public final class GeneratedPluginRegistrant {
       return;
     }
     BarcodeScanPlugin.registerWith(registry.registrarFor("com.apptreesoftware.barcodescan.BarcodeScanPlugin"));
+    CityPickersPlugin.registerWith(registry.registrarFor("com.example.citypickers.CityPickersPlugin"));
     ContactPickerPlugin.registerWith(registry.registrarFor("net.goderbauer.flutter.contactpicker.ContactPickerPlugin"));
     ImagePickerPlugin.registerWith(registry.registrarFor("io.flutter.plugins.imagepicker.ImagePickerPlugin"));
     IntroSliderPlugin.registerWith(registry.registrarFor("com.dfa.introslider.IntroSliderPlugin"));

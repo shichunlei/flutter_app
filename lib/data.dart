@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/city_pickers/page/fullpage_pickers_page.dart';
+import 'package:flutter_app/city_pickers/page/ios_city_pickers_page.dart';
 import 'package:flutter_app/page/city_picker_page.dart';
 import 'package:flutter_app/page/flipper_widget.dart';
 import 'package:flutter_app/page/swiper_page.dart';
@@ -249,12 +251,14 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('Swiper', SwiperPage()),
     SubExpandBean('评分控件', StarRatingWidget()),
     SubExpandBean('城市选择控件', CityPickerPage()),
+    SubExpandBean('iOS风格城市选择控件', IosCityPickersPage()),
+    SubExpandBean('fullpage风格城市选择控件', FullpageCityPickersPage()),
   ]),
   ExpandStateBean(false, '功能', 2, [
     SubExpandBean('Question', QuizPage()),
     SubExpandBean('电影TOP250', MovieGridPage()),
     SubExpandBean('最新电影', MovieListPage()),
-    SubExpandBean('RandomWords', RandomWords()),
+    SubExpandBean('随机单词', RandomWords()),
   ]),
 ];
 

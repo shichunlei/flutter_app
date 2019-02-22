@@ -7,7 +7,7 @@ class CityPickerPage extends StatefulWidget {
 }
 
 class _CityPickerPageState extends State<CityPickerPage> {
-  var text;
+  String text;
 
   String province;
   String city;
@@ -50,7 +50,7 @@ class _CityPickerPageState extends State<CityPickerPage> {
     county = result?.county;
 
     setState(() {
-      text = "${result?.province} - ${result?.city} - ${result?.county}";
+      text = "$province - $city - $county";
     });
   }
 }
