@@ -6,6 +6,7 @@ import 'package:flutter_app/page/flipper_widget.dart';
 import 'package:flutter_app/page/swiper_page.dart';
 import 'package:flutter_app/tabs_demo/bottom_appbar.dart';
 import 'package:flutter_app/widget/contact_picker_widget.dart';
+import 'package:flutter_app/widget/staggered_view_page.dart';
 import 'package:flutter_app/widget/star_rating_widget.dart';
 import 'package:flutter_app/widget/text_widget.dart';
 import 'package:flutter_app/page/drag_like_page.dart';
@@ -249,6 +250,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('Flipper', FlipperWidget()),
     SubExpandBean('ContactPicker', ContactPickerWidget()),
     SubExpandBean('Swiper', SwiperPage()),
+    SubExpandBean('StaggeredView', StaggeredViewPage()),
     SubExpandBean('评分控件', StarRatingWidget()),
     SubExpandBean('城市选择控件', CityPickerPage()),
     SubExpandBean('iOS风格城市选择控件', IosCityPickersPage()),

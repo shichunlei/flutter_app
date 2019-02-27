@@ -4,3 +4,4 @@ pubspec.lock
 gradlew
 .packages
 .flutter-plugins
+.idea/
