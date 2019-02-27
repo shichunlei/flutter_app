@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/contact/model/contact.dart';
@@ -29,13 +30,23 @@ class _ContactListPageState extends State<ContactListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("通讯录"),
+        elevation: 0.0,
+        backgroundColor: Colors.red,
+        centerTitle: true,
+      ),
       body: AzListView(
         data: _contacts,
         itemBuilder: (context, model) => _buildListItem(model),
         header: AzListViewHeader(
           height: 220,
-          builder: (context) =>
-              ContactListHeader(name: "SCL", phone: "18601952581"),
+          builder: (context) => Diagonal(
+                axis: Axis.horizontal,
+                position: DiagonalPosition.BOTTOM_LEFT,
+                clipHeight: 50.0,
+                child: ContactListHeader(name: "SCL", phone: "18601952581"),
+              ),
         ),
         isUseRealIndex: true,
         itemHeight: _itemHeight,

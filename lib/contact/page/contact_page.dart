@@ -1,3 +1,4 @@
+import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/contact/ui/contact_category.dart';
@@ -36,59 +37,58 @@ class _ContactPageState extends State<ContactPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.indigo,
-        platform: Theme.of(context).platform,
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.edit),
+        mini: true,
+        elevation: 8.0,
       ),
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.edit),
-          mini: true,
-          elevation: 8.0,
-        ),
-        body: CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              expandedHeight: _appBarHeight,
-              pinned: _appBarBehavior == AppBarBehavior.pinned,
-              floating: _appBarBehavior == AppBarBehavior.floating ||
-                  _appBarBehavior == AppBarBehavior.snapping,
-              snap: _appBarBehavior == AppBarBehavior.snapping,
-              actions: <Widget>[
-                PopupMenuButton<AppBarBehavior>(
-                  onSelected: (AppBarBehavior value) {
-                    setState(() {
-                      _appBarBehavior = value;
-                    });
-                  },
-                  itemBuilder: (BuildContext context) =>
-                      <PopupMenuItem<AppBarBehavior>>[
-                        const PopupMenuItem<AppBarBehavior>(
-                            value: AppBarBehavior.normal,
-                            child: Text('App bar scrolls away')),
-                        const PopupMenuItem<AppBarBehavior>(
-                            value: AppBarBehavior.pinned,
-                            child: Text('App bar stays put')),
-                        const PopupMenuItem<AppBarBehavior>(
-                            value: AppBarBehavior.floating,
-                            child: Text('App bar floats')),
-                        const PopupMenuItem<AppBarBehavior>(
-                            value: AppBarBehavior.snapping,
-                            child: Text('App bar snaps')),
-                      ],
-                ),
-              ],
-              flexibleSpace: FlexibleSpaceBar(
-                title: Text(widget.name),
-                background: Stack(
-                  /// 定义如何设置non-positioned节点尺寸，默认为loose
-                  fit: StackFit.expand,
-                  // loose：子节点宽松的取值，可以从min到max的尺寸；expand：子节点尽可能的占用空间，取max尺寸；passthrough：不改变子节点的约束条件。
-                  children: <Widget>[
-                    FadeInImage.assetNetwork(
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            expandedHeight: _appBarHeight,
+            pinned: _appBarBehavior == AppBarBehavior.pinned,
+            floating: _appBarBehavior == AppBarBehavior.floating ||
+                _appBarBehavior == AppBarBehavior.snapping,
+            snap: _appBarBehavior == AppBarBehavior.snapping,
+            actions: <Widget>[
+              PopupMenuButton<AppBarBehavior>(
+                onSelected: (AppBarBehavior value) {
+                  setState(() {
+                    _appBarBehavior = value;
+                  });
+                },
+                itemBuilder: (BuildContext context) =>
+                    <PopupMenuItem<AppBarBehavior>>[
+                      const PopupMenuItem<AppBarBehavior>(
+                          value: AppBarBehavior.normal,
+                          child: Text('App bar scrolls away')),
+                      const PopupMenuItem<AppBarBehavior>(
+                          value: AppBarBehavior.pinned,
+                          child: Text('App bar stays put')),
+                      const PopupMenuItem<AppBarBehavior>(
+                          value: AppBarBehavior.floating,
+                          child: Text('App bar floats')),
+                      const PopupMenuItem<AppBarBehavior>(
+                          value: AppBarBehavior.snapping,
+                          child: Text('App bar snaps')),
+                    ],
+              ),
+            ],
+            flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
+              title: Text(widget.name),
+              background: Stack(
+                /// 定义如何设置non-positioned节点尺寸，默认为loose
+                fit: StackFit.expand,
+                // loose：子节点宽松的取值，可以从min到max的尺寸；expand：子节点尽可能的占用空间，取max尺寸；passthrough：不改变子节点的约束条件。
+                children: <Widget>[
+                  Arc(
+                    height: 50.0,
+                    edge: Edge.BOTTOM,
+                    arcType: ArcType.CONVEX,
+                    child: FadeInImage.assetNetwork(
                       placeholder: "images/flutter.png",
                       image: (widget.avatar == "" || widget.avatar == null)
                           ? _defaultImage
@@ -96,41 +96,40 @@ class _ContactPageState extends State<ContactPage> {
                       fit: BoxFit.cover,
                       height: _appBarHeight,
                     ),
-                    // This gradient ensures that the toolbar icons are distinct
-                    // against the background image.
-                    const DecoratedBox(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment(0.0, -1.0),
-                          end: Alignment(0.0, -0.4),
-                          colors: <Color>[Color(0x60000000), Color(0x00000000)],
-                        ),
+                  ),
+                  // This gradient ensures that the toolbar icons are distinct
+                  // against the background image.
+                  const DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment(0.0, -1.0),
+                        end: Alignment(0.0, -0.4),
+                        colors: <Color>[Color(0x60000000), Color(0x00000000)],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                <Widget>[
-                  _buildRowView(),
-                  LineWidget(
-                    height: 1.0,
-                    color: Colors.black12,
-                    lineType: LineType.horizontal,
                   ),
-                  _buildPhoneView(widget.phone),
-                  _buildEmailView(),
-                  _buildAddressView(),
-                  _buildOtherView(),
-                  FutureBuilder<Null>(
-                      future: _launched, builder: _launchStatus),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              <Widget>[
+                _buildRowView(),
+                LineWidget(
+                  height: 1.0,
+                  color: Colors.black12,
+                  lineType: LineType.horizontal,
+                ),
+                _buildPhoneView(widget.phone),
+                _buildEmailView(),
+                _buildAddressView(),
+                _buildOtherView(),
+                FutureBuilder<Null>(future: _launched, builder: _launchStatus),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

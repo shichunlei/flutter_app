@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/city_pickers/page/fullpage_pickers_page.dart';
 import 'package:flutter_app/city_pickers/page/ios_city_pickers_page.dart';
 import 'package:flutter_app/page/city_picker_page.dart';
+import 'package:flutter_app/page/clippy_widget.dart';
 import 'package:flutter_app/page/flipper_widget.dart';
 import 'package:flutter_app/page/swiper_page.dart';
 import 'package:flutter_app/tabs_demo/bottom_appbar.dart';
@@ -252,6 +253,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('Swiper', SwiperPage()),
     SubExpandBean('StaggeredView', StaggeredViewPage()),
     SubExpandBean('评分控件', StarRatingWidget()),
+    SubExpandBean('Clippy', ClippyWidget()),
     SubExpandBean('城市选择控件', CityPickerPage()),
     SubExpandBean('iOS风格城市选择控件', IosCityPickersPage()),
     SubExpandBean('fullpage风格城市选择控件', FullpageCityPickersPage()),

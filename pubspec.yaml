@@ -89,6 +89,10 @@ dependencies: # 应用或包依赖的其它包或插件
 
   city_pickers: ^0.1.8
 
+  clippy_flutter:
+    git:
+      url: https://github.com/figengungor/clippy_flutter
+
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:
     sdk: flutter
