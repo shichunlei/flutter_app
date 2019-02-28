@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/city_pickers/page/fullpage_pickers_page.dart';
 import 'package:flutter_app/city_pickers/page/ios_city_pickers_page.dart';
+import 'package:flutter_app/movie/page/movie_hot.dart';
+import 'package:flutter_app/movie/page/movie_top250.dart';
 import 'package:flutter_app/page/city_picker_page.dart';
 import 'package:flutter_app/page/clippy_widget.dart';
 import 'package:flutter_app/page/flipper_widget.dart';
@@ -13,8 +15,6 @@ import 'package:flutter_app/widget/text_widget.dart';
 import 'package:flutter_app/page/drag_like_page.dart';
 import 'package:flutter_app/page/random_words.dart';
 import 'package:flutter_app/page/like_button_page.dart';
-import 'package:flutter_app/movie/list/movie_grid_page.dart';
-import 'package:flutter_app/movie/list/movie_list_page.dart';
 import 'package:flutter_app/question/pages/quiz_page.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation_bar.dart';
 import 'package:flutter_app/tabs_demo/bottom_navigation_widget.dart';
@@ -260,8 +260,8 @@ List<ExpandStateBean> expandStateList = [
   ]),
   ExpandStateBean(false, '功能', 2, [
     SubExpandBean('Question', QuizPage()),
-    SubExpandBean('电影TOP250', MovieGridPage()),
-    SubExpandBean('最新电影', MovieListPage()),
+    SubExpandBean('电影TOP250', MovieTop250()),
+    SubExpandBean('正在热映电影', MovieHotPage()),
     SubExpandBean('随机单词', RandomWords()),
   ]),
 ];
