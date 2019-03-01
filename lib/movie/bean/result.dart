@@ -1,19 +1,38 @@
+import 'package:flutter_app/movie/bean/celebrity.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/movie/bean/photos.dart';
+import 'package:flutter_app/movie/bean/reviews.dart';
+import 'package:flutter_app/movie/bean/works.dart';
 
-class Result{
+class Result {
   String title;
   int count;
   int start;
   int total;
   List<Movie> subjects;
+  Movie subject;
+  List<Photos> photos;
+  List<Works> works;
+  Celebrity celebrity;
+  List<Reviews> reviews;
 
   static Result fromMap(Map<String, dynamic> map) {
     Result result = Result();
-    result.title = map['title'];
+    result.title = map['title'] == null ? "" : map['title'];
     result.count = map['count'];
     result.start = map['start'];
     result.total = map['total'];
-    result.subjects = Movie.fromMapList(map['subjects']);
+    result.reviews =
+        map['reviews'] == null ? [] : Reviews.fromMapList(map['reviews']);
+    result.subjects =
+        map['subjects'] == null ? [] : Movie.fromMapList(map['subjects']);
+    result.photos =
+        map['photos'] == null ? [] : Photos.fromMapList(map['photos']);
+    result.works = map['works'] == null ? [] : Works.fromMapList(map['works']);
+    result.celebrity =
+        map['celebrity'] == null ? null : Celebrity.fromMap(map['celebrity']);
+    result.subject =
+        map['subject'] == null ? null : Movie.fromMap(map['subject']);
     return result;
   }
 

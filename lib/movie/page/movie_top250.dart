@@ -10,7 +10,6 @@ import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
-import 'package:flutter_easyrefresh/material_header.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -24,7 +23,6 @@ class _MovieTop250State extends State<MovieTop250> {
   int pagesize = 30;
 
   GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
-  GlobalKey<RefreshHeaderState> _headerKey = GlobalKey<RefreshHeaderState>();
   GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
 
   bool isFirst = true;
@@ -84,22 +82,10 @@ class _MovieTop250State extends State<MovieTop250> {
       /// 自动控制(刷新和加载完成)
       autoControl: false,
 
-      /// 顶部视图
-      refreshHeader: MaterialHeader(
-        key: _headerKey,
-      ),
-
       /// 底部视图
       refreshFooter: BallPulseFooter(
         key: _footerKey,
       ),
-
-      ///刷新回调方法
-      onRefresh: () async {
-        page = 1;
-        getMovieTop250List(page, pagesize, RefreshType.REFRESH);
-        return null;
-      },
 
       ///加载回调方法
       loadMore: () async {
@@ -173,9 +159,6 @@ class _MovieTop250State extends State<MovieTop250> {
         } else {
           text = "";
         }
-      } else if (type == RefreshType.REFRESH) {
-        movies.clear();
-        movies.addAll(list);
       } else if (type == RefreshType.LOAD_MORE) {
         movies.addAll(list);
         if (list.length == 0) {
