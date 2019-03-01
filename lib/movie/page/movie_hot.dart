@@ -85,9 +85,7 @@ class _MovieHotPageState extends State<MovieHotPage> {
     for (int i = 0; i < movies.length; i++) {
       Movie movie = movies[i];
 
-      widgets.add(ItemList(
-          movie: movie,
-          onTap: () => pushNewPage(context, MovieDetail(id: movie.id))));
+      widgets.add(ItemList(movie: movie));
     }
     return widgets;
   }

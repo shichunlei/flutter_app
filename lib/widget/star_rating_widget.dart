@@ -63,6 +63,26 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
               ),
             ),
           ),
+          Divider(),
+          Expanded(
+            child: Center(
+              child: SmoothStarRating(
+                rating: 6.2 / 2,
+                starCount: 5,
+
+                /// 星的大小
+                size: 20,
+
+                /// 评分是否使用整数(1.0或0.5)
+                allowHalfRating: false,
+
+                /// 选中颜色
+                color: Colors.red,
+
+                onRatingChanged: null,
+              ),
+            ),
+          ),
         ],
       ),
     );

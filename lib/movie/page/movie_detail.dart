@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/movie/bean/casts.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/movie/ui/item_casts.dart';
+import 'package:flutter_app/movie/ui/item_tag.dart';
 import 'package:flutter_app/utils/api.dart';
 import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/loading_util.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MovieDetail extends StatefulWidget {
@@ -76,28 +78,6 @@ class _MovieDetailState extends State<MovieDetail> {
       );
     }
 
-    var casts = '';
-    for (int i = 0; i < movie.casts.length; i++) {
-      if (i == 0) {
-        casts = casts + movie.casts[i].name;
-      } else {
-        casts = casts + '/' + movie.casts[i].name;
-      }
-    }
-
-    List<Casts> castList = movie.casts;
-
-    print('=====================${castList.toString()}');
-
-    var directors = '';
-    for (int i = 0; i < movie.directors.length; i++) {
-      if (i == 0) {
-        directors = directors + movie.directors[i].name;
-      } else {
-        directors = directors + '/' + movie.directors[i].name;
-      }
-    }
-
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -130,13 +110,22 @@ class _MovieDetailState extends State<MovieDetail> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        movie.title,
+                        '${movie.title}(${movie.year})',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 14.0),
+                            fontWeight: FontWeight.bold, fontSize: 24.0),
                       ),
-                      Text('导演：' + directors),
-                      Text('主演：' + casts),
+
+                      /// 导演
+                      ItemCasts(title: "导演", directors: movie.directors),
+
+                      /// 主演
+                      ItemCasts(title: "主演", casts: movie.casts),
+
+                      /// 标签
+                      Wrap(children: _builderTag(movie.tags), spacing: 10.0),
+
+                      /// 看过人数
                       Text(
                         movie.collect_count.toString() + '人看过',
                         style: TextStyle(
@@ -144,22 +133,52 @@ class _MovieDetailState extends State<MovieDetail> {
                           color: Colors.redAccent,
                         ),
                       ),
-                      Text('评分：' + movie.rating.average.toString()),
+
+                      /// 评分
+                      Row(
+                        children: <Widget>[
+                          Text('评分：'),
+                          Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: SmoothStarRating(
+                                  rating: movie.rating.average / 2,
+                                  starCount: 5,
+                                  size: 20,
+                                  allowHalfRating: false,
+                                  color: Colors.deepOrange)),
+                          Text('${movie.rating.average.toString()} 分',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.deepOrange))
+                        ],
+                      ),
+
                       Text(
                         '剧情简介：' + movie.summary,
                         style: TextStyle(
-                          fontSize: 12.0,
+                          fontSize: 15.0,
                           color: Colors.black,
                         ),
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
         ],
       ),
     );
+  }
+
+  List<Widget> _builderTag(List<String> tags) {
+    List<Widget> widgets = [];
+
+    for (int i = 0; i < tags.length; i++) {
+      widgets.add(ItemTag(tag: tags[i].toString()));
+    }
+
+    return widgets;
   }
 }

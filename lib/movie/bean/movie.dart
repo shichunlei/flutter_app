@@ -4,63 +4,172 @@ import 'package:flutter_app/movie/bean/clips.dart';
 import 'package:flutter_app/movie/bean/directors.dart';
 import 'package:flutter_app/movie/bean/images.dart';
 import 'package:flutter_app/movie/bean/photos.dart';
-import 'package:flutter_app/movie/bean/popular_comments.dart';
-import 'package:flutter_app/movie/bean/popular_reviews.dart';
 import 'package:flutter_app/movie/bean/rating.dart';
+import 'package:flutter_app/movie/bean/reviews.dart';
 import 'package:flutter_app/movie/bean/trailers.dart';
 import 'package:flutter_app/movie/bean/videos.dart';
 import 'package:flutter_app/movie/bean/writers.dart';
 
 class Movie {
+  /// 原名
   String original_title;
+
+  /// 豆瓣小站
   String douban_site;
+
+  /// 年代
   String year;
+
+  /// 条目页URL
   String alt;
+
+  /// id
   String id;
+
+  /// 移动版条目页URL
   String mobile_url;
+
+  /// 兼容性数据，未来会去掉，大陆上映日期，如果条目类型是电影则为上映日期，如果是电视剧则为首播日期
   String pubdate;
+
+  /// 中文名
   String title;
+
+  /// 分享链接
   String share_url;
+
+  /// 影讯页URL(movie only)
   String schedule_url;
+
+  /// 官方网站
   String website;
+
+  /// 大陆上映日期，如果条目类型是电影则为上映日期，如果是电视剧则为首播日期
   String mainland_pubdate;
+
+  /// 简介
   String summary;
+
+  /// 条目分类, movie或者tv
   String subtype;
+
+  ///
   bool has_video;
+
+  /// 是否预定
   bool has_schedule;
+
+  /// 是否有票
   bool has_ticket;
-  dynamic do_count;
-  dynamic seasons_count;
+
+  /// 排行
+  int rank;
+
+  /// 排名改变量
+  int delta;
+
+  /// 影片
+  Movie subject;
+
+  /// 票房
+  num box;
+
+  /// 是否新上映
+  bool is_new;
+
+  /// 在看人数，如果是电视剧，默认值为0，如果是电影值为null
+  int do_count;
+
+  /// 总季数(tv only)
+  int seasons_count;
+
+  ///
   dynamic collection;
-  dynamic episodes_count;
-  dynamic current_season;
+
+  /// 当前季的集数(tv only)
+  int episodes_count;
+
+  /// 当前季数(tv only)
+  int current_season;
+
+  /// 影评数量
   int reviews_count;
+
+  /// 想看人数
   int wish_count;
+
+  /// 看过人数
   int collect_count;
+
+  ///
   int photos_count;
+
+  /// 短评数量
   int comments_count;
+
+  /// 评分人数
   int ratings_count;
+
+  /// 电影海报图，分别提供288px x 465px(大)，96px x 155px(中) 64px x 103px(小)尺寸
   Images images;
+
+  /// 评分
   Rating rating;
+
+  /// 又名
   List<String> aka;
+
+  /// 花絮URL，对高级用户以上开放，最多开放4个地址
   List<String> blooper_urls;
+
+  /// 片段URL，对高级用户以上开放，最多开放4个地址
   List<String> clip_urls;
+
+  /// 制片国家/地区
   List<String> countries;
+
+  /// 片长
   List<String> durations;
+
+  /// 影片类型，最多提供3个
   List<String> genres;
+
+  /// 语言
   List<String> languages;
+
+  /// 如果条目类型是电影则为上映日期，如果是电视剧则为首Ï日期
   List<String> pubdates;
+
+  /// 标签
   List<String> tags;
+
+  /// 预告片URL，对高级用户以上开放，最多开放4个地址
   List<String> trailer_urls;
+
+  /// 花絮，对高级用户以上开放
   List<Bloopers> bloopers;
+
+  /// 主演，最多可获得4个
   List<Casts> casts;
+
+  /// 片段，对高级用户以上开放
   List<Clips> clips;
+
+  /// 导演
   List<Directors> directors;
+
+  /// 电影剧照，前10张
   List<Photos> photos;
-  List<PopularComments> popular_comments;
-  List<PopularReviews> popular_reviews;
+
+  /// 热评
+  List<Reviews> popular_comments;
+
+  /// 影评，前10条
+  List<Reviews> popular_reviews;
   List<Trailers> trailers;
   List<Videos> videos;
+
+  /// 编剧
   List<Writers> writers;
 
   static Movie fromMap(Map<String, dynamic> map) {
@@ -82,17 +191,28 @@ class Movie {
     movie.has_video = map['has_video'];
     movie.has_schedule = map['has_schedule'];
     movie.has_ticket = map['has_ticket'];
-    movie.do_count = map['do_count'];
-    movie.seasons_count = map['seasons_count'];
+    movie.do_count = map['do_count'] == null ? 0 : map['do_count'];
+    movie.seasons_count =
+        map['seasons_count'] == null ? 0 : map['seasons_count'];
     movie.collection = map['collection'];
-    movie.episodes_count = map['episodes_count'];
-    movie.current_season = map['current_season'];
+    movie.episodes_count =
+        map['episodes_count'] == null ? 0 : map['episodes_count'];
+    movie.current_season =
+        map['current_season'] == null ? 0 : map['current_season'];
     movie.reviews_count = map['reviews_count'];
     movie.wish_count = map['wish_count'];
     movie.collect_count = map['collect_count'];
     movie.photos_count = map['photos_count'];
     movie.comments_count = map['comments_count'];
     movie.ratings_count = map['ratings_count'];
+
+    movie.is_new = map['new'];
+    movie.box = map['box'];
+    movie.rank = map['rank'];
+    movie.delta = map['delta'];
+    movie.subject =
+        map['subject'] == null ? null : Movie.fromMap(map['subject']);
+
     movie.images = map['images'] == null ? null : Images.fromMap(map['images']);
     movie.rating = map['rating'] == null ? null : Rating.fromMap(map['rating']);
     movie.bloopers =
@@ -105,10 +225,10 @@ class Movie {
         map['photos'] == null ? [] : Photos.fromMapList(map['photos']);
     movie.popular_comments = map['popular_comments'] == null
         ? []
-        : PopularComments.fromMapList(map['popular_comments']);
+        : Reviews.fromMapList(map['popular_comments']);
     movie.popular_reviews = map['popular_reviews'] == null
         ? []
-        : PopularReviews.fromMapList(map['popular_reviews']);
+        : Reviews.fromMapList(map['popular_reviews']);
     movie.trailers =
         map['trailers'] == null ? [] : Trailers.fromMapList(map['trailers']);
     movie.videos =
