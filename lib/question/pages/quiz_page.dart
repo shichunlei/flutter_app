@@ -5,6 +5,7 @@ import 'package:flutter_app/question/pages/score_page.dart';
 import 'package:flutter_app/question/ui/answer_button.dart';
 import 'package:flutter_app/question/ui/correct_wrong_overlay.dart';
 import 'package:flutter_app/question/ui/question_test.dart';
+import 'package:flutter_app/utils/route_util.dart';
 
 class QuizPage extends StatefulWidget {
   @override
@@ -65,12 +66,8 @@ class _QuizPageState extends State<QuizPage> {
                 isCorrect,
                 () {
                   if (quiz.length == questionNumber) {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              ScorePage(quiz.score, quiz.length),
-                        ),
-                        (route) => route == null);
+                    pushAndRemovePage(
+                        context, ScorePage(quiz.score, quiz.length));
                   } else {
                     currectQuestion = quiz.nextQuestion;
                     this.setState(() {

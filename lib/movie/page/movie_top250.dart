@@ -8,6 +8,7 @@ import 'package:flutter_app/movie/page/movie_detail.dart';
 import 'package:flutter_app/utils/api.dart';
 import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/loading_util.dart';
+import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/material_header.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -130,7 +131,8 @@ class _MovieTop250State extends State<MovieTop250> {
         itemBuilder: (context, index) {
           return GestureDetector(
             //点击事件
-            onTap: () => navigateToMovieDetailPage(movies[index].id),
+            onTap: () =>
+                pushNewPage(context, MovieDetail(id: movies[index].id)),
             child: FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
               image: movies[index].images.medium.toString(),
@@ -190,13 +192,5 @@ class _MovieTop250State extends State<MovieTop250> {
     }
 
     setState(() {});
-  }
-
-  navigateToMovieDetailPage(id) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => MovieDetail(id: id),
-      ),
-    );
   }
 }

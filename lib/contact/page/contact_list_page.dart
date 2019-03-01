@@ -7,6 +7,7 @@ import 'package:flutter_app/contact/model/contact.dart';
 import 'package:flutter_app/contact/page/contact_page.dart';
 import 'package:flutter_app/contact/ui/contact_list_header.dart';
 import 'package:flutter_app/contact/ui/suspension_tag.dart';
+import 'package:flutter_app/utils/route_util.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:azlistview/azlistview.dart';
 
@@ -135,12 +136,13 @@ class _ContactListPageState extends State<ContactListPage> {
                       backgroundImage: NetworkImage(model.avatar),
                     ),
               title: Text(model.name),
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ContactPage(
-                        name: model.name,
-                        phone: model.phone,
-                        avatar: model.avatar,
-                      )))))
+              onTap: () => pushNewPage(
+                  context,
+                  ContactPage(
+                    name: model.name,
+                    phone: model.phone,
+                    avatar: model.avatar,
+                  ))))
     ]);
   }
 }

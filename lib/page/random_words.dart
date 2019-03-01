@@ -3,7 +3,7 @@ import 'package:english_words/english_words.dart';
 
 class RandomWords extends StatefulWidget {
   @override
-  createState() => new RandomWordsState();
+  createState() => RandomWordsState();
 }
 
 class RandomWordsState extends State<RandomWords> {
@@ -11,19 +11,19 @@ class RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
 
   // 添加一个biggerFont变量来增大字体大小
-  final TextStyle _biggerFont = new TextStyle(fontSize: 18.0);
+  final TextStyle _biggerFont = TextStyle(fontSize: 18.0);
 
   // 添加一个 _saved Set(集合) 到RandomWordsState。这个集合存储用户喜欢（收藏）的单词对。 在这里，Set比List更合适，因为Set中不允许重复的值。
-  final _saved = new Set<WordPair>();
+  final _saved = Set<WordPair>();
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Startup Name Generator'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Startup Name Generator'),
         // 在RandomWordsState的build方法中为AppBar添加一个列表图标。当用户点击列表图标时，包含收藏夹的新路由页面入栈显示。
         actions: <Widget>[
-          new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved)
+          IconButton(icon: Icon(Icons.list), onPressed: _pushSaved)
         ],
       ),
       body: _buildSuggestions(),
@@ -34,12 +34,12 @@ class RandomWordsState extends State<RandomWords> {
   void _pushSaved() {
     Navigator.of(context).push(
       // 添加MaterialPageRoute及其builder。 现在，添加生成ListTile行的代码。ListTile的divideTiles()方法在每个ListTile之间添加1像素的分割线。 该 divided 变量持有最终的列表项。
-      new MaterialPageRoute(
+      MaterialPageRoute(
         builder: (context) {
           final tiles = _saved.map(
             (pair) {
-              return new ListTile(
-                title: new Text(
+              return ListTile(
+                title: Text(
                   pair.asPascalCase,
                   style: _biggerFont,
                 ),
@@ -52,11 +52,11 @@ class RandomWordsState extends State<RandomWords> {
           ).toList();
 
           // builder返回一个Scaffold，其中包含名为“Saved Suggestions”的新路由的应用栏。 新路由的body由包含ListTiles行的ListView组成; 每行之间通过一个分隔线分隔。
-          return new Scaffold(
-            appBar: new AppBar(
-              title: new Text('Saved Suggestions'),
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Saved Suggestions'),
             ),
-            body: new ListView(children: divided),
+            body: ListView(children: divided),
           );
         },
       ),
@@ -65,7 +65,7 @@ class RandomWordsState extends State<RandomWords> {
 
   // 向RandomWordsState类添加一个 _buildSuggestions() 函数. 此方法构建显示建议单词对的ListView。
   Widget _buildSuggestions() {
-    return new ListView.builder(
+    return ListView.builder(
       padding: const EdgeInsets.all(16.0),
       // 对于每个建议的单词对都会调用一次itemBuilder，然后将单词对添加到ListTile行中
       // 在偶数行，该函数会为单词对添加一个ListTile row.
@@ -73,7 +73,7 @@ class RandomWordsState extends State<RandomWords> {
       // 注意，在小屏幕上，分割线看起来可能比较吃力。
       itemBuilder: (context, i) {
         // 在每一列之前，添加一个1像素高的分隔线widget
-        if (i.isOdd) return new Divider();
+        if (i.isOdd) return Divider();
 
         // 语法 "i ~/ 2" 表示i除以2，但返回值是整形（向下取整），比如i为：1, 2, 3, 4, 5时，结果为0, 1, 1, 2, 2， 这可以计算出ListView中减去分隔线后的实际单词对数量
         final index = i ~/ 2;
@@ -91,13 +91,13 @@ class RandomWordsState extends State<RandomWords> {
     // 在 _buildRow 方法中添加 alreadySaved来检查确保单词对还没有添加到收藏夹中。
     final alreadySaved = _saved.contains(pair);
 
-    return new ListTile(
-      title: new Text(
+    return ListTile(
+      title: Text(
         pair.asPascalCase,
         style: _biggerFont,
       ),
       // 同时在 _buildRow()中， 添加一个心形 ❤️ 图标到 ListTiles以启用收藏功能。接下来，你就可以给心形 ❤️ 图标添加交互能力了。
-      trailing: new Icon(
+      trailing: Icon(
         alreadySaved ? Icons.favorite : Icons.favorite_border,
         color: alreadySaved ? Colors.red : Colors.deepOrange,
       ),

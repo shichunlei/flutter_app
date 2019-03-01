@@ -25,7 +25,7 @@ class WeatherPageState extends State<WeatherPage> {
 
   /// 根据城市名查询该城市天气预报
   _getWeather(String cityname) async {
-    var httpClient = new HttpClient();
+    var httpClient = HttpClient();
     var url =
         "https://free-api.heweather.net/s6/weather/now?key=224bd5b78bd44de19ae8104c201fb1d7&location=${cityname}";
 

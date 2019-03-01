@@ -51,7 +51,7 @@ class Movie {
   List<WritersListBean> writers;
 
   static Movie fromMap(Map<String, dynamic> map) {
-    Movie movie = new Movie();
+    Movie movie = Movie();
     movie.original_title = map['original_title'];
     movie.douban_site = map['douban_site'];
     movie.year = map['year'];
@@ -198,7 +198,7 @@ class RatingBean {
   num average;
 
   static RatingBean fromMap(Map<String, dynamic> map) {
-    RatingBean ratingBean = new RatingBean();
+    RatingBean ratingBean = RatingBean();
     ratingBean.max = map['max'];
     ratingBean.value = map['value'];
     ratingBean.min = map['min'];
@@ -207,7 +207,7 @@ class RatingBean {
   }
 
   static List<RatingBean> fromMapList(dynamic mapList) {
-    List<RatingBean> list = new List(mapList.length);
+    List<RatingBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -225,7 +225,7 @@ class BloopersListBean {
   String id;
 
   static BloopersListBean fromMap(Map<String, dynamic> map) {
-    BloopersListBean bloopersListBean = new BloopersListBean();
+    BloopersListBean bloopersListBean = BloopersListBean();
     bloopersListBean.medium = map['medium'];
     bloopersListBean.title = map['title'];
     bloopersListBean.subject_id = map['subject_id'];
@@ -253,7 +253,7 @@ class CastsListBean {
   AvatarsBean avatars;
 
   static CastsListBean fromMap(Map<String, dynamic> map) {
-    CastsListBean castsListBean = new CastsListBean();
+    CastsListBean castsListBean = CastsListBean();
     castsListBean.name_en = map['name_en'];
     castsListBean.name = map['name'];
     castsListBean.alt = map['alt'];
@@ -263,7 +263,7 @@ class CastsListBean {
   }
 
   static List<CastsListBean> fromMapList(dynamic mapList) {
-    List<CastsListBean> list = new List(mapList.length);
+    List<CastsListBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -281,7 +281,7 @@ class ClipsListBean {
   String id;
 
   static ClipsListBean fromMap(Map<String, dynamic> map) {
-    ClipsListBean clipsListBean = new ClipsListBean();
+    ClipsListBean clipsListBean = ClipsListBean();
     clipsListBean.medium = map['medium'];
     clipsListBean.title = map['title'];
     clipsListBean.subject_id = map['subject_id'];
@@ -293,7 +293,7 @@ class ClipsListBean {
   }
 
   static List<ClipsListBean> fromMapList(dynamic mapList) {
-    List<ClipsListBean> list = new List(mapList.length);
+    List<ClipsListBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -309,7 +309,7 @@ class DirectorsListBean {
   AvatarsBean avatars;
 
   static DirectorsListBean fromMap(Map<String, dynamic> map) {
-    DirectorsListBean directorsListBean = new DirectorsListBean();
+    DirectorsListBean directorsListBean = DirectorsListBean();
     directorsListBean.name_en = map['name_en'];
     directorsListBean.name = map['name'];
     directorsListBean.alt = map['alt'];
@@ -319,7 +319,7 @@ class DirectorsListBean {
   }
 
   static List<DirectorsListBean> fromMapList(dynamic mapList) {
-    List<DirectorsListBean> list = new List(mapList.length);
+    List<DirectorsListBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -336,7 +336,7 @@ class PhotosListBean {
   String icon;
 
   static PhotosListBean fromMap(Map<String, dynamic> map) {
-    PhotosListBean photosListBean = new PhotosListBean();
+    PhotosListBean photosListBean = PhotosListBean();
     photosListBean.thumb = map['thumb'];
     photosListBean.image = map['image'];
     photosListBean.cover = map['cover'];
@@ -347,7 +347,7 @@ class PhotosListBean {
   }
 
   static List<PhotosListBean> fromMapList(dynamic mapList) {
-    List<PhotosListBean> list = new List(mapList.length);
+    List<PhotosListBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -377,7 +377,7 @@ class PopularCommentsListBean {
   }
 
   static List<PopularCommentsListBean> fromMapList(dynamic mapList) {
-    List<PopularCommentsListBean> list = new List(mapList.length);
+    List<PopularCommentsListBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -395,8 +395,7 @@ class PopularReviewsListBean {
   RatingBean rating;
 
   static PopularReviewsListBean fromMap(Map<String, dynamic> map) {
-    PopularReviewsListBean popular_reviewsListBean =
-        new PopularReviewsListBean();
+    PopularReviewsListBean popular_reviewsListBean = PopularReviewsListBean();
     popular_reviewsListBean.title = map['title'];
     popular_reviewsListBean.subject_id = map['subject_id'];
     popular_reviewsListBean.summary = map['summary'];
@@ -408,7 +407,7 @@ class PopularReviewsListBean {
   }
 
   static List<PopularReviewsListBean> fromMapList(dynamic mapList) {
-    List<PopularReviewsListBean> list = new List(mapList.length);
+    List<PopularReviewsListBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -426,7 +425,7 @@ class TrailersListBean {
   String id;
 
   static TrailersListBean fromMap(Map<String, dynamic> map) {
-    TrailersListBean trailersListBean = new TrailersListBean();
+    TrailersListBean trailersListBean = TrailersListBean();
     trailersListBean.medium = map['medium'];
     trailersListBean.title = map['title'];
     trailersListBean.subject_id = map['subject_id'];
@@ -438,7 +437,7 @@ class TrailersListBean {
   }
 
   static List<TrailersListBean> fromMapList(dynamic mapList) {
-    List<TrailersListBean> list = new List(mapList.length);
+    List<TrailersListBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -453,7 +452,7 @@ class VideosListBean {
   SourceBean source;
 
   static VideosListBean fromMap(Map<String, dynamic> map) {
-    VideosListBean videosListBean = new VideosListBean();
+    VideosListBean videosListBean = VideosListBean();
     videosListBean.sample_link = map['sample_link'];
     videosListBean.video_id = map['video_id'];
     videosListBean.need_pay = map['need_pay'];
@@ -462,7 +461,7 @@ class VideosListBean {
   }
 
   static List<VideosListBean> fromMapList(dynamic mapList) {
-    List<VideosListBean> list = new List(mapList.length);
+    List<VideosListBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -478,7 +477,7 @@ class WritersListBean {
   AvatarsBean avatars;
 
   static WritersListBean fromMap(Map<String, dynamic> map) {
-    WritersListBean writersListBean = new WritersListBean();
+    WritersListBean writersListBean = WritersListBean();
     writersListBean.name_en = map['name_en'];
     writersListBean.name = map['name'];
     writersListBean.alt = map['alt'];
@@ -488,7 +487,7 @@ class WritersListBean {
   }
 
   static List<WritersListBean> fromMapList(dynamic mapList) {
-    List<WritersListBean> list = new List(mapList.length);
+    List<WritersListBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -532,7 +531,7 @@ class AuthorBean {
   String name;
 
   static AuthorBean fromMap(Map<String, dynamic> map) {
-    AuthorBean authorBean = new AuthorBean();
+    AuthorBean authorBean = AuthorBean();
     authorBean.uid = map['uid'];
     authorBean.avatar = map['avatar'];
     authorBean.signature = map['signature'];
@@ -543,7 +542,7 @@ class AuthorBean {
   }
 
   static List<AuthorBean> fromMapList(dynamic mapList) {
-    List<AuthorBean> list = new List(mapList.length);
+    List<AuthorBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -569,7 +568,7 @@ class DetailsBean {
   }
 
   static List<DetailsBean> fromMapList(dynamic mapList) {
-    List<DetailsBean> list = new List(mapList.length);
+    List<DetailsBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -583,7 +582,7 @@ class SourceBean {
   String name;
 
   static SourceBean fromMap(Map<String, dynamic> map) {
-    SourceBean sourceBean = new SourceBean();
+    SourceBean sourceBean = SourceBean();
     sourceBean.literal = map['literal'];
     sourceBean.pic = map['pic'];
     sourceBean.name = map['name'];
@@ -591,7 +590,7 @@ class SourceBean {
   }
 
   static List<SourceBean> fromMapList(dynamic mapList) {
-    List<SourceBean> list = new List(mapList.length);
+    List<SourceBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }

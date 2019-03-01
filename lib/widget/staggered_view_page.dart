@@ -53,7 +53,6 @@ class _Item extends StatelessWidget {
         children: <Widget>[
           Stack(
             children: <Widget>[
-              //new Center(child: new CircularProgressIndicator()),
               Center(
                 child: FadeInImage.memoryNetwork(
                   placeholder: kTransparentImage,

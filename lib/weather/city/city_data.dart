@@ -29,7 +29,7 @@ class CityData extends ISuspensionBean {
       this.namePinyin});
 
   static List<CityData> decodeData(String jsonData) {
-    List<CityData> citys = new List<CityData>();
+    List<CityData> citys = [];
 
     var data = json.decode(jsonData)['HeWeather6'][0];
 
@@ -43,7 +43,7 @@ class CityData extends ISuspensionBean {
   }
 
   static CityData fromMap(Map map) {
-    return new CityData(
+    return CityData(
       cid: map['cid'],
       location: map['location'],
       tz: map['tz'],

@@ -202,7 +202,7 @@ class _RoundedLetterWidgetState extends State<RoundedLetterWidget> {
     var name = _getRandomName();
     var surname = _getRandomSurname();
     return Container(
-        margin: new EdgeInsets.symmetric(vertical: 5.0),
+        margin: EdgeInsets.symmetric(vertical: 5.0),
         child: Row(children: <Widget>[
           Padding(padding: EdgeInsets.fromLTRB(10, 10, 10, 0)),
           _getRandomColorRoundedLetter(name.substring(0, 1).toUpperCase()),

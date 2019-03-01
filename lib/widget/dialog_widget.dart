@@ -4,7 +4,7 @@ import 'package:flutter_app/custom_widgets/rich_alert/rich_alert_dialog.dart';
 
 class DialogWidget extends StatefulWidget {
   @override
-  createState() => new DialogWidgetState();
+  createState() => DialogWidgetState();
 }
 
 class DialogWidgetState extends State<DialogWidget> {

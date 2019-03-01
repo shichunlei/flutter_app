@@ -5,7 +5,7 @@ import 'package:flutter_app/city_pickers/ui/picker.dart';
 import 'package:flutter_app/city_pickers/bean/picker_item.dart';
 import 'package:flutter_app/city_pickers/ui/location_selector.dart';
 
-var emptyResult = new Result();
+var emptyResult = Result();
 
 class FullpageCityPickersPage extends StatefulWidget {
   @override
@@ -15,8 +15,8 @@ class FullpageCityPickersPage extends StatefulWidget {
 
 class _FullpageCityPickersPageState extends State<FullpageCityPickersPage> {
   PickerItem showTypeAttr = PickerItem(name: '省+市+县', value: ShowType.pca);
-  Result resultAttr = new Result();
-  Result result = new Result();
+  Result resultAttr = Result();
+  Result result = Result();
   double barrierOpacityAttr = 0.5;
   bool barrierDismissibleAttr = false;
   PickerItem themeAttr;

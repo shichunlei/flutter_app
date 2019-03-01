@@ -281,7 +281,7 @@ class Swiper extends StatefulWidget {
   int _itemCount;
 
   @override
-  _SwiperState createState() => new _SwiperState();
+  _SwiperState createState() => _SwiperState();
 }
 
 class _SwiperState extends State<Swiper>
@@ -332,7 +332,7 @@ class _SwiperState extends State<Swiper>
           (widget.controller?.initialPage ?? 0).clamp(0, widget.childCount) + 1;
     }
     _current = _index;
-    _pageController = new PageController(initialPage: _index);
+    _pageController = PageController(initialPage: _index);
     _pageController.addListener(() {
       widget.controller?.notifyListeners();
       int current = _pageController.page.ceil();

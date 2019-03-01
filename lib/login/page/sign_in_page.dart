@@ -74,7 +74,7 @@ class _SignInPageState extends State<SignInPage> {
                                 padding: const EdgeInsets.only(
                                     left: 15.0, right: 15.0),
                                 child: Text('Or',
-                                    style: new TextStyle(
+                                    style: TextStyle(
                                         fontSize: 16, color: Colors.white))),
                             Container(
                                 width: 100.0,
@@ -192,7 +192,7 @@ class _SignInPageState extends State<SignInPage> {
         ),
 
         /// 文本样式
-        style: new TextStyle(fontSize: 16, color: Colors.black),
+        style: TextStyle(fontSize: 16, color: Colors.black),
       ),
     );
   }

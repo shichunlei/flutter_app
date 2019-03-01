@@ -7,7 +7,7 @@ class TextFieldWidget extends StatefulWidget {
 }
 
 class TextFieldWidgetState extends State<TextFieldWidget> {
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   List<String> _colors = <String>['', 'red', 'green', 'blue', 'orange'];
   String _color = '';
 

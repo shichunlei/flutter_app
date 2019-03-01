@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/tabs_demo/each_view.dart';
+import 'package:flutter_app/utils/route_util.dart';
 
 class BottomAppbar extends StatefulWidget {
   @override
@@ -7,14 +8,13 @@ class BottomAppbar extends StatefulWidget {
 }
 
 class _BottomAppbarState extends State<BottomAppbar> {
-  List<Widget> list;
+  List<Widget> list = [];
 
   int index = 0;
 
   @override
   void initState() {
     super.initState();
-    list = new List();
     list..add(EachView("Home"))..add(EachView("Airplay"));
   }
 
@@ -23,13 +23,7 @@ class _BottomAppbarState extends State<BottomAppbar> {
     return Scaffold(
       body: list[index],
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(
-            builder: (context) {
-              return EachView("Pages");
-            },
-          ));
-        },
+        onPressed: () => pushNewPage(context, EachView("Pages")),
         tooltip: "new page",
         child: Icon(
           Icons.add,

@@ -7,7 +7,7 @@ class ContactPickerWidget extends StatefulWidget {
 }
 
 class _ContactPickerWidgetState extends State<ContactPickerWidget> {
-  final ContactPicker _contactPicker = new ContactPicker();
+  final ContactPicker _contactPicker = ContactPicker();
   Contact _contact;
 
   @override

@@ -76,7 +76,7 @@ class _StackState extends State<SlideStack> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    controller = new AnimationController(
+    controller = AnimationController(
       vsync: this,
       duration: widget.scaleDuration,
     )

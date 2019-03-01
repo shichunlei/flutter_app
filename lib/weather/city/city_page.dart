@@ -5,6 +5,7 @@ import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/ui/suspension_tag.dart';
 import 'package:flutter_app/utils/loading_util.dart';
+import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/weather/city/city_data.dart';
 import 'package:flutter_app/weather/weather/WeatherPage.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -136,19 +137,13 @@ class CityPageState extends State<CityPage> {
         SizedBox(
           height: _itemHeight.toDouble(),
           child: ListTile(
-            title: Text(
-              model.parent_city,
-            ),
-            leading: RoundedLetter.withRandomColors(
-                model.parent_city.substring(0, 1), 40, 20),
-            onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        WeatherPage(model.parent_city),
-                  ),
-                ),
-          ),
+              title: Text(
+                model.parent_city,
+              ),
+              leading: RoundedLetter.withRandomColors(
+                  model.parent_city.substring(0, 1), 40, 20),
+              onTap: () =>
+                  pushNewPage(context, WeatherPage(model.parent_city))),
         ),
       ],
     );

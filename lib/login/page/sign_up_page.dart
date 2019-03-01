@@ -123,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
           hintText: "请输入用户名",
           border: InputBorder.none,
         ),
-        style: new TextStyle(fontSize: 16, color: Colors.black),
+        style: TextStyle(fontSize: 16, color: Colors.black),
       ),
     );
   }
@@ -143,7 +143,7 @@ class _SignUpPageState extends State<SignUpPage> {
           hintText: "请输入邮箱",
           border: InputBorder.none,
         ),
-        style: new TextStyle(fontSize: 16, color: Colors.black),
+        style: TextStyle(fontSize: 16, color: Colors.black),
       ),
     );
   }

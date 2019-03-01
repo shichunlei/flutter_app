@@ -49,11 +49,10 @@ class _LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _controller =
-        new AnimationController(duration: widget.duration, vsync: this)
-          ..addListener(() {
-            setState(() {});
-          });
+    _controller = AnimationController(duration: widget.duration, vsync: this)
+      ..addListener(() {
+        setState(() {});
+      });
     _initAllAmimations();
   }
 
@@ -113,52 +112,52 @@ class _LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
   }
 
   void _initAllAmimations() {
-    outerCircle = new Tween<double>(
+    outerCircle = Tween<double>(
       begin: 0.1,
       end: 1.0,
     ).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(
+        curve: Interval(
           0.0,
           0.3,
           curve: Curves.ease,
         ),
       ),
     );
-    innerCircle = new Tween<double>(
+    innerCircle = Tween<double>(
       begin: 0.2,
       end: 1.0,
     ).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(
+        curve: Interval(
           0.2,
           0.5,
           curve: Curves.ease,
         ),
       ),
     );
-    scale = new Tween<double>(
+    scale = Tween<double>(
       begin: 0.2,
       end: 1.0,
     ).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(
+        curve: Interval(
           0.35,
           0.7,
           curve: OvershootCurve(),
         ),
       ),
     );
-    dots = new Tween<double>(
+    dots = Tween<double>(
       begin: 0.0,
       end: 1.0,
     ).animate(
-      new CurvedAnimation(
+      CurvedAnimation(
         parent: _controller,
-        curve: new Interval(
+        curve: Interval(
           0.1,
           1.0,
           curve: Curves.decelerate,

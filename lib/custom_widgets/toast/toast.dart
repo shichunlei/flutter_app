@@ -17,7 +17,7 @@ class Toast {
       double backgroundRadius = 20}) {
     _toastView?.dismiss();
     _toastView = null;
-    _toastView = new ToastView(msg, context, duration, gravity, backgroundColor,
+    _toastView = ToastView(msg, context, duration, gravity, backgroundColor,
         textColor, backgroundRadius);
   }
 }
@@ -36,7 +36,7 @@ class ToastView {
   void createView(String msg, BuildContext context, int duration, int gravity,
       Color background, Color textColor, double backgroundRadius) async {
     overlayState = Overlay.of(context);
-    overlayEntry = new OverlayEntry(
+    overlayEntry = OverlayEntry(
       builder: (BuildContext context) => ToastWidget(
           widget: Container(
             width: MediaQuery.of(context).size.width,
@@ -53,7 +53,7 @@ class ToastView {
                     margin: EdgeInsets.symmetric(horizontal: 20),
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Center(
-                      child: new Text(msg,
+                      child: Text(msg,
                           softWrap: true,
                           style: TextStyle(fontSize: 15, color: textColor)),
                     ),
@@ -64,7 +64,7 @@ class ToastView {
     );
     overlayState.insert(overlayEntry);
     _isVisible = true;
-    await new Future.delayed(
+    await Future.delayed(
         Duration(seconds: duration == null ? Toast.LENGTH_SHORT : duration));
     this.dismiss();
   }
@@ -90,7 +90,7 @@ class ToastWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Positioned(
+    return Positioned(
         top: gravity == 2 ? 50 : null,
         bottom: gravity == 0 ? 50 : null,
         child: Material(

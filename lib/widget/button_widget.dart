@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class ButtonWidget extends StatefulWidget {
   @override
-  createState() => new ButtonWidgetState();
+  createState() => ButtonWidgetState();
 }
 
 class ButtonWidgetState extends State<ButtonWidget> {

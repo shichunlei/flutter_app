@@ -74,7 +74,7 @@ class TabBarHomeStatePage extends State<TabBarHomePage>
     return Scaffold(
       appBar: AppBar(
         // Title
-        title: new Text("Tabs Widget"),
+        title: Text("Tabs Widget"),
         // Set the background color of the App Bar
         backgroundColor: Colors.blue,
         // Set the bottom property of the Appbar to include a Tab Bar

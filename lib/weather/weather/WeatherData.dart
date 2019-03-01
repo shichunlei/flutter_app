@@ -15,23 +15,24 @@ class WeatherData {
   String wind_sc; // 风力
   String wind_spd; // 风速
 
-  WeatherData(
-      {this.cloud,
-      this.cond_code,
-      this.cond_txt,
-      this.fl,
-      this.hum,
-      this.pcpn,
-      this.pres,
-      this.tmp,
-      this.vis,
-      this.wind_deg,
-      this.wind_dir,
-      this.wind_sc,
-      this.wind_spd});
+  WeatherData({
+    this.cloud,
+    this.cond_code,
+    this.cond_txt,
+    this.fl,
+    this.hum,
+    this.pcpn,
+    this.pres,
+    this.tmp,
+    this.vis,
+    this.wind_deg,
+    this.wind_dir,
+    this.wind_sc,
+    this.wind_spd,
+  });
 
   static WeatherData decodeData(String jsonData) {
-    WeatherData weather = new WeatherData();
+    WeatherData weather = WeatherData();
 
     var data = json.decode(jsonData);
 
@@ -45,7 +46,7 @@ class WeatherData {
   }
 
   static WeatherData fromMap(Map map) {
-    return new WeatherData(
+    return WeatherData(
       cloud: map['cloud'],
       cond_code: map.isEmpty
           ? ""

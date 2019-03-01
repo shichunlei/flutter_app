@@ -7,6 +7,7 @@ import 'package:flutter_app/movie/ui/item_list.dart';
 import 'package:flutter_app/utils/api.dart';
 import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/loading_util.dart';
+import 'package:flutter_app/utils/route_util.dart';
 
 class MovieHotPage extends StatefulWidget {
   @override
@@ -85,13 +86,8 @@ class _MovieHotPageState extends State<MovieHotPage> {
       Movie movie = movies[i];
 
       widgets.add(ItemList(
-        movie: movie,
-        onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => MovieDetail(id: movie.id),
-              ),
-            ),
-      ));
+          movie: movie,
+          onTap: () => pushNewPage(context, MovieDetail(id: movie.id))));
     }
     return widgets;
   }

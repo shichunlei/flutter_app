@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/likebutton/like_button_util.dart';
 
 class CirclePainter extends CustomPainter {
-  Paint circlePaint = new Paint();
-  Paint maskPaint = new Paint();
+  Paint circlePaint = Paint();
+  Paint maskPaint = Paint();
 
   final double outerCircleRadiusProgress;
   final double innerCircleRadiusProgress;

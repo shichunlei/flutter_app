@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 class TextWidget extends StatefulWidget {
   @override
-  createState() => new TextWidgetState();
+  createState() => TextWidgetState();
 }
 
 class TextWidgetState extends State<TextWidget> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Text Widget"),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Text Widget"),
       ),
-      body: new Column(
+      body: Column(
         children: builderTextWidget(),
       ),
     );
