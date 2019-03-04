@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/splash_screen.dart';
+import 'package:flutter_app/utils/log_util.dart';
 
 void main() {
   setCustomErrorPage();
@@ -12,7 +13,7 @@ void main() {
 
 void setCustomErrorPage() {
   ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) {
-    print(flutterErrorDetails.toString());
+    LogUtil.e(flutterErrorDetails.toString());
     return Center(
       child: Text("Flutter 走神了"),
     );

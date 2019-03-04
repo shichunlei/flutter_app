@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/home_page.dart';
 import 'package:flutter_app/login/ui/submit_button.dart';
 import 'package:flutter_app/login/ui/third_login_button.dart';
+import 'package:flutter_app/utils/regex_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/custom_widgets/toast/toast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -113,6 +114,9 @@ class _SignInPageState extends State<SignInPage> {
                         onTap: () {
                           if (_emailController.text.isEmpty) {
                             Toast.show("邮箱不能为空", context);
+                          } else if (!RegexUtil.isEmail(
+                              _emailController.text)) {
+                            Toast.show("邮箱格式不正确", context);
                           } else if (_pwdController.text.isEmpty) {
                             Toast.show("密码不能为空", context);
                           } else if (_pwdController.text.length < 6) {

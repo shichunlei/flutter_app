@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/drag_like/slide_stack.dart';
 import 'package:flutter_app/custom_widgets/toast/toast.dart';
-import 'package:flutter_app/data.dart';
+import 'package:flutter_app/global/data.dart';
 
 class DragLikePage extends StatefulWidget {
   @override

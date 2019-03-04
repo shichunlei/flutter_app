@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/swiper_widget.dart';
-import 'package:flutter_app/data.dart';
+import 'package:flutter_app/global/data.dart';
 
 class SwiperPage extends StatelessWidget {
   @override

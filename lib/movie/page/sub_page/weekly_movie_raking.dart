@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/bean/result.dart';
 import 'package:flutter_app/movie/page/movie_detail.dart';
-import 'package:flutter_app/utils/api.dart';
+import 'package:flutter_app/global/api.dart';
 import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';

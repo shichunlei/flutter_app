@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/ui/item_casts.dart';
 import 'package:flutter_app/movie/ui/item_tag.dart';
-import 'package:flutter_app/utils/api.dart';
+import 'package:flutter_app/global/api.dart';
 import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';

@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/page/contact_list_page.dart';
 import 'package:flutter_app/login/page/login_page.dart';
-import 'package:flutter_app/page/shici_page.dart';
 import 'package:flutter_app/custom_widgets/toast/toast.dart';
-import 'package:flutter_app/data.dart';
+import 'package:flutter_app/global/data.dart';
+import 'package:flutter_app/poetry/page/random_poetry_page.dart';
+import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/weather/city/city_page.dart';
 import 'package:flutter_app/widget/qr_image_wiget.dart';
 import 'package:flutter_app/utils/route_util.dart';
@@ -36,13 +37,13 @@ class HomeStatePage extends State<HomePage> {
     getLoginInfo();
 
     eventBus.on<TestEvent>().listen((event) {
-      print('${event.key}');
-      print('${event.value}');
+      LogUtil.v('${event.key}');
+      LogUtil.v('${event.value}');
 
       if (event.key == "is_login") {
         isLogin = event.value as bool;
         setState(() {
-          print("接收到信息");
+          LogUtil.v("接收到信息");
           initUser(isLogin);
         });
       }
@@ -50,14 +51,14 @@ class HomeStatePage extends State<HomePage> {
   }
 
   void initUser(bool isLogin) {
-    print(avatar);
+    LogUtil.v(avatar);
     setState(() {
       userName = isLogin ? "SCL" : "未登录";
       email = isLogin ? "1558053958@qq.com" : "";
       avatar = isLogin
           ? "http://b-ssl.duitang.com/uploads/item/201511/11/20151111120052_y38xC.thumb.700_0.jpeg"
           : "";
-      print(avatar);
+      LogUtil.v(avatar);
     });
   }
 
@@ -147,7 +148,7 @@ class HomeStatePage extends State<HomePage> {
 
                 /// 当用户点击某个轮播的时候调用
                 onTap: (index) {
-                  print("你点击了第$index个");
+                  LogUtil.v("你点击了第$index个");
                 },
 
                 /// 滚动方向，设置为Axis.vertical如果需要垂直滚动
@@ -209,10 +210,10 @@ class HomeStatePage extends State<HomePage> {
   /// 监听返回键，点击两下退出程序
   Future<bool> _onBackPressed() async {
     if (_scaffoldKey.currentState.isDrawerOpen) {
-      print("菜单打开着");
+      LogUtil.v("菜单打开着");
     } else if (_lastPressedAt == null ||
         DateTime.now().difference(_lastPressedAt) > Duration(seconds: 2)) {
-      print("点击时间");
+      LogUtil.v("点击时间");
       //两次点击间隔超过2秒则重新计时
       _lastPressedAt = DateTime.now();
       Toast.show("再按一次退出", context,
@@ -292,7 +293,7 @@ class HomeStatePage extends State<HomePage> {
           trailing: Icon(Icons.chevron_right),
           onTap: () {
             Navigator.of(context).pop();
-            pushNewPageBack(context, ShiciPage());
+            pushNewPageBack(context, RandomPoetryPage());
           }),
       Divider(),
       ListTile(
