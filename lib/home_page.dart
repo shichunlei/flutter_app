@@ -13,6 +13,7 @@ import 'package:flutter_app/utils/event_bus_util.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:package_info/package_info.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -29,6 +30,11 @@ class HomeStatePage extends State<HomePage> {
   String email = "";
   String avatar = "";
   bool isLogin = false;
+
+  String appName;
+  String packageName;
+  String version;
+  String buildNumber;
 
   @override
   void initState() {
@@ -48,6 +54,8 @@ class HomeStatePage extends State<HomePage> {
         });
       }
     });
+
+    _initPackageInfo();
   }
 
   void initUser(bool isLogin) {
@@ -307,6 +315,27 @@ class HomeStatePage extends State<HomePage> {
       ),
       Divider(),
       ListTile(
+        title: Text("检查更新"),
+        leading: Icon(Icons.update),
+        trailing: Icon(Icons.chevron_right),
+        onTap: () {
+          showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (context) {
+                return AboutDialog(
+                  applicationName: '$appName',
+                  applicationIcon: Icon(Icons.add),
+                  applicationVersion: '$version',
+                  //版本号，默认为空
+                  applicationLegalese: '版权所有：$userName',
+                  children: <Widget>[Text("具体的内容"), Text('具体的布局')],
+                );
+              });
+        },
+      ),
+      Divider(),
+      ListTile(
           title: Text("退出账号"),
           leading: Icon(Icons.exit_to_app),
           trailing: Icon(Icons.chevron_right),
@@ -335,5 +364,19 @@ class HomeStatePage extends State<HomePage> {
           }),
       Divider(),
     ]);
+  }
+
+  Future<void> _initPackageInfo() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+    setState(() {
+      appName = packageInfo.appName;
+      packageName = packageInfo.packageName;
+      version = packageInfo.version;
+      buildNumber = packageInfo.buildNumber;
+    });
+
+    LogUtil.v(
+        'APP名称：$appName-====包名：$packageName=====版本名：$version======版本号：$buildNumber');
   }
 }
