@@ -4,9 +4,10 @@ A new Flutter application.
 
 ## 运行截图
 
-|![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-13-18-13-58-429.png)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-11-913.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-44-611.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-12-01-953.png)|
+
+|![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-13-18-13-58-429.png)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-11-913.png)|![5](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-17-05-27-313.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-44-611.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-12-01-953.png)|
 | :--: | :--: | :--: | :--: |
-|首页|侧边栏|随机诗词|二维码（生成/扫描）|
+|首页|侧边栏|版本信息|随机诗词|二维码（生成/扫描）|
 
 
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-15-38-136.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-15-42-485.png)|
@@ -14,9 +15,12 @@ A new Flutter application.
 |登录|注册|
 
 
-|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-13-51-495.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-14-03-080.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-14-45-013.png)|
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-13-51-495.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-14-03-080.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-16-52-48-129.png)|
 | :--: | :--: | :--: |
-|电影（ListView）|电影（GridView）|电影详情|
+|电影（正在热播）|电影（TOP250）|电影（排行榜）|
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-14-45-013.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-16-52-35-366.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-16-52-22-895.png)|
+|电影详情1|电影详情2|电影剧照|
+
 
 
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-28-09-39-35-311.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-28-09-39-48-539.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-28-09-40-04-052.png)|
@@ -39,6 +43,32 @@ A new Flutter application.
 |TimeLine|
 
 
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-16-52-55-186.png)|
+| :--: |
+|设备信息|
+
+
+<table>
+  <tr>
+    <p>Rounded Letter</p>
+  </tr>
+  <tr>
+    <td>
+        <img width="250px" src="https://github.com/jhomlala/roundedletter/blob/master/screenshots/screenshot_1.png">
+    </td>
+    <td>
+       <img width="250px" src="https://github.com/jhomlala/roundedletter/blob/master/screenshots/screenshot_2.png">
+    </td>
+    <td>
+       <img width="250px" src="https://github.com/jhomlala/roundedletter/blob/master/screenshots/screenshot_3.png">
+    </td>
+    <td>
+       <img width="250px" src="https://github.com/jhomlala/roundedletter/blob/master/screenshots/screenshot_4.png">
+    </td>
+  </tr>
+</table>
+
+
 # 使用到的第三方插件
 
 | Plugin | 地址 | 版本号 | 描述 |
@@ -55,8 +85,11 @@ A new Flutter application.
 | WebView for Flutter | [webview_flutter](https://github.com/flutter/plugins/tree/master/packages/webview_flutter) | ![](https://camo.githubusercontent.com/47c9187771ccb2e7aaf6c4bfb69e37a122ed3262/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f776562766965775f666c75747465722e737667) | A Flutter plugin that provides a WebView widget. On iOS the WebView widget is backed by a WKWebView; On Android the WebView widget is backed by a WebView. |
 | PackageInfo | [package_info](https://github.com/flutter/plugins/tree/master/packages/package_info) | ![](https://camo.githubusercontent.com/01a75953af6fc91e941c2b5ba32162f55d795403/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f706174685f70726f76696465722e737667) | This Flutter plugin provides an API for querying information about an application package. |
 | Share | [share](https://github.com/flutter/plugins/tree/master/packages/share) | ![](https://camo.githubusercontent.com/afe573869b306315562203bca3cf9a85ac94ccf5/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f73686172652e737667) | A Flutter plugin to share content from your Flutter app via the platform's share dialog. Wraps the ACTION_SEND Intent on Android and UIActivityViewController on iOS. |
-
-
+| 引导页 | [intro-slider](https://github.com/duytq94/flutter-intro-slider) | 1.1.5 | A plugin to help you make intro screens to show the major features of your app. You can change the image, button, text style, color, and more things. Create intro screens is never been more quick and easy than this |
+| 评分控件 | [smooth_star_rating](https://github.com/thangmam/smoothratingbar) | 1.0.1 | A Star rating with touch and swipe rate enabled |
+| PhotoView | [photo_view](https://github.com/renancaraujo/photo_view) | ![](https://camo.githubusercontent.com/8a5c98a80bb80f0eed10b5f111cc7440d1aa143e/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f70686f746f5f766965772e7376673f7374796c653d706f706f7574) | A simple zoomable image widget for Flutter. Resolves a image provider and shows the result with useful gestures support, such as pinch to zoom and pan. It also can show any widget instead of an image, such as Container, Text or a SVG. Just use custom child constructor. |
+| 时间轴 | [Timeline](https://github.com/furkantektas/timeline_list) | ![](https://camo.githubusercontent.com/81e25a24fd6072e2979c03e4d716be55eff89763/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f74696d656c696e655f6c6973742e737667) | 时间轴 |
+| Rounded Letter | [roundedletter](https://github.com/jhomlala/roundedletter) | ![](https://camo.githubusercontent.com/ab6351029d9980584a1120d90dccb654e8ab8dbb/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f726f756e6465645f6c65747465722e737667) | Useful Flutter widget which allows you to create letter inside shape. Can be used for placeholders (for example user avatars). This package is named 'Rounded letter' because main idea was letter inside circle just like Android 5.0 contacts. Later idea has evolved into more shapes. |
 
 
 
