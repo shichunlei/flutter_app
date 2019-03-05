@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/toast/toast.dart';
+import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/bean/result.dart';
@@ -80,18 +81,19 @@ class _MovieTop250State extends State<MovieTop250> {
       key: _easyRefreshKey,
 
       /// 自动控制(刷新和加载完成)
-      autoControl: false,
+      autoControl: true,
 
       /// 底部视图
       refreshFooter: BallPulseFooter(
         key: _footerKey,
+        color: Colors.indigo,
+        backgroundColor: Colors.white,
       ),
 
       ///加载回调方法
       loadMore: () async {
         page++;
         getMovieTop250List(page, pagesize, RefreshType.LOAD_MORE);
-        return null;
       },
 
       /// 子部件 内容视图
@@ -135,7 +137,7 @@ class _MovieTop250State extends State<MovieTop250> {
 
   void getMovieTop250List(int page, int pagesize, int type) async {
     var data = {
-      'apikey': '0b2bdeda43b5688921839c8ecb20399b',
+      'apikey': Config.DOUBAN_MOVIE_KEY,
       'start': (page - 1) * pagesize,
       'count': pagesize,
     };

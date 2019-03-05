@@ -1,11 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/movie/page/movie_photo.dart';
 import 'package:flutter_app/movie/ui/item_casts.dart';
 import 'package:flutter_app/movie/ui/item_tag.dart';
 import 'package:flutter_app/global/api.dart';
 import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/loading_util.dart';
+import 'package:flutter_app/utils/route_util.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -35,7 +38,7 @@ class _MovieDetailState extends State<MovieDetail> {
   }
 
   void getMovieDetail(String id) async {
-    var data = {'apikey': '0b2bdeda43b5688921839c8ecb20399b'};
+    var data = {'apikey': Config.DOUBAN_MOVIE_KEY};
 
     Response response =
         await HttpUtils().get('${Api.MOVIE_DETAIL_URL}/$id', data: data);
@@ -87,15 +90,17 @@ class _MovieDetailState extends State<MovieDetail> {
               title: Text(movie.title.toString()),
               background: Stack(
                 children: <Widget>[
-                  Center(
-                    child: FadeInImage.memoryNetwork(
-                      placeholder: kTransparentImage,
-                      image: movie.images.large.toString(),
-                      fit: BoxFit.fill,
-                      height: 191.5,
-                      width: 135.0,
-                    ),
-                  )
+                  GestureDetector(
+                      child: Center(
+                        child: FadeInImage.memoryNetwork(
+                          placeholder: kTransparentImage,
+                          image: movie.images.large.toString(),
+                          fit: BoxFit.fill,
+                          height: 191.5,
+                          width: 135.0,
+                        ),
+                      ),
+                      onTap: () => pushNewPage(context, MoviePhotoPage())),
                 ],
               ),
             ),

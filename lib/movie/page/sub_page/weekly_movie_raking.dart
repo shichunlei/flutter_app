@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/bean/result.dart';
 import 'package:flutter_app/movie/page/movie_detail.dart';
@@ -87,7 +88,7 @@ class _WeeklyMovieRakingPageState extends State<WeeklyMovieRakingPage>
   }
 
   void getMovieList() async {
-    var data = {'apikey': '0b2bdeda43b5688921839c8ecb20399b'};
+    var data = {'apikey': Config.DOUBAN_MOVIE_KEY};
 
     Response response =
         await HttpUtils().get(Api.WEEKLY_MOVIES_URL, data: data);

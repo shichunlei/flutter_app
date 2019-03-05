@@ -1,9 +1,11 @@
-import 'dart:convert';
-import 'dart:io';
-
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/global/api.dart';
+import 'package:flutter_app/global/config.dart';
+import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/weather/weather/WeatherData.dart';
+import 'package:flutter_app/weather/bean/he_weather.dart';
+import 'package:flutter_app/weather/bean/result.dart';
 
 class WeatherPage extends StatefulWidget {
   String cityname;
@@ -15,7 +17,7 @@ class WeatherPage extends StatefulWidget {
 }
 
 class WeatherPageState extends State<WeatherPage> {
-  WeatherData weather;
+  NowBean weather;
 
   @override
   void initState() {
@@ -25,20 +27,22 @@ class WeatherPageState extends State<WeatherPage> {
 
   /// 根据城市名查询该城市天气预报
   _getWeather(String cityname) async {
-    var httpClient = HttpClient();
-    var url =
-        "https://free-api.heweather.net/s6/weather/now?key=224bd5b78bd44de19ae8104c201fb1d7&location=${cityname}";
+    var data = {
+      "location": cityname,
+      "key": Config.HE_WEATHER_KEY,
+    };
 
-    var request = await httpClient.getUrl(Uri.parse(url));
-    var response = await request.close();
-    if (response.statusCode == HttpStatus.OK) {
-      var jsonData = await response.transform(utf8.decoder).join();
+    Response response = await HttpUtils().get(Api.WEATHER, data: data);
 
-      /// setState 相当于 runOnUiThread
-      setState(() {
-        weather = WeatherData.decodeData(jsonData.toString());
-      });
+    if (response.statusCode == 200) {
+      var jsonData = response.data;
+
+      Result result = Result.fromMap(jsonData);
+
+      weather = result.HeWeather6[0].now;
     }
+
+    setState(() {});
   }
 
   @override
@@ -54,23 +58,10 @@ class WeatherPageState extends State<WeatherPage> {
           Column(
             children: <Widget>[
               Container(
-                width: double.infinity,
-                margin: EdgeInsets.only(top: 40.0),
-                child: Text(
-                  widget.cityname,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30.0,
-                  ),
-                ),
-              ),
-              Container(
+                margin: EdgeInsets.only(top: 100.0),
                 height: 80.0,
                 child: weather != null
-                    ? Image.network(
-                        weather.cond_code,
-                      )
+                    ? Image.network(weather.cond_code)
                     : Image.asset("images/flutter_logo.png"),
                 alignment: Alignment.centerRight,
               ),
@@ -91,11 +82,13 @@ class WeatherPageState extends State<WeatherPage> {
               ),
             ],
           ),
-          weather == null
-              ? Center(
-                  child: getLoadingWidget(),
-                )
-              : Center(),
+          weather == null ? Center(child: getLoadingWidget()) : Center(),
+          AppBar(
+            backgroundColor: Color(0x00000000),
+            elevation: 0,
+            centerTitle: true,
+            title: Text('${widget.cityname}'),
+          )
         ],
       ),
     );

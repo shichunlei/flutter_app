@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/page/sub_page/new_movie_raking.dart';
 import 'package:flutter_app/movie/page/sub_page/us_movie_raking.dart';
 import 'package:flutter_app/movie/page/sub_page/weekly_movie_raking.dart';
-import 'package:flutter_app/global/api.dart';
 
 class MovieRakingHome extends StatefulWidget {
   @override

@@ -6,7 +6,7 @@ import 'package:flutter_app/custom_widgets/toast/toast.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/poetry/page/random_poetry_page.dart';
 import 'package:flutter_app/utils/log_util.dart';
-import 'package:flutter_app/weather/city/city_page.dart';
+import 'package:flutter_app/weather/page/city_page.dart';
 import 'package:flutter_app/widget/qr_image_wiget.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/event_bus_util.dart';

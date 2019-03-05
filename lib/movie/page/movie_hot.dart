@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/bean/result.dart';
 import 'package:flutter_app/movie/page/movie_detail.dart';
@@ -19,6 +20,7 @@ class _MovieHotPageState extends State<MovieHotPage> {
 
   bool loadError = false;
   bool isEmpty = false;
+  bool isFirst = true;
 
   @override
   void initState() {
@@ -35,7 +37,10 @@ class _MovieHotPageState extends State<MovieHotPage> {
       ),
       body: Stack(
         children: <Widget>[
-          Center(child: getLoadingWidget()),
+          Offstage(
+            offstage: !isFirst,
+            child: Center(child: getLoadingWidget()),
+          ),
           Offstage(
             offstage: !isEmpty,
             child: Center(
@@ -91,7 +96,7 @@ class _MovieHotPageState extends State<MovieHotPage> {
   }
 
   void getMovieHotList() async {
-    var data = {'apikey': '0b2bdeda43b5688921839c8ecb20399b', 'city': '北京'};
+    var data = {'apikey': Config.DOUBAN_MOVIE_KEY, 'city': '北京'};
     Response response = await HttpUtils().get(Api.MOVIE_LIST_URL, data: data);
     if (response.statusCode != 200) {
       loadError = true;
@@ -108,6 +113,7 @@ class _MovieHotPageState extends State<MovieHotPage> {
       if (movies.length == 0) {
         isEmpty = true;
       }
+      isFirst = false;
     }
     setState(() {});
   }
