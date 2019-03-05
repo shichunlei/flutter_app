@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/bean/result.dart';
-import 'package:flutter_app/movie/page/movie_detail.dart';
 import 'package:flutter_app/movie/ui/item_list.dart';
 import 'package:flutter_app/global/api.dart';
 import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
 
 class MovieHotPage extends StatefulWidget {
   @override

@@ -19,13 +19,21 @@ class QrImageWidgetState extends State<QrImageWidget> {
       appBar: AppBar(
         title: Text('生成二维码'),
       ),
-      body: Container(
-          alignment: Alignment.topCenter,
-          child: Column( children: <Widget>[
-            QrImage(data: result, size: 200.0),
-            Text(result,
-                style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold))
-          ])),
+      body: Column(
+        children: <Widget>[
+          Padding(
+              padding: const EdgeInsets.all(25.0),
+              child: QrImage(
+                  backgroundColor: Colors.purpleAccent,
+                  data: result,
+                  gapless: false,
+                  foregroundColor: const Color(0xFF001111),
+                  onError: (dynamic ex) => setState(() =>
+                      result = 'Error! Maybe your input value is too long?'))),
+          Text(result,
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))
+        ],
+      ),
       floatingActionButton: FloatingActionButton.extended(
         icon: Icon(Icons.camera_alt),
         label: Text("Scan"),

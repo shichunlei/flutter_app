@@ -32,11 +32,15 @@ class _MovieRakingHomeState extends State<MovieRakingHome>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text('电影排行榜'),
-        backgroundColor: Colors.purple,
-        bottom: _tabBar(),
-      ),
+          centerTitle: true,
+          title: Text('电影排行榜'),
+          bottom: _tabBar(),
+
+          /// 可以用这种方式设置渐变的AppBar
+          flexibleSpace: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Colors.cyan, Colors.blue, Colors.blueAccent])))),
       body: _tabBarView(<Widget>[
         NewMovieRakingPage(),
         WeeklyMovieRakingPage(),

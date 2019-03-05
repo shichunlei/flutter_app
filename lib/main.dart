@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -8,7 +9,12 @@ import 'package:flutter_app/utils/log_util.dart';
 void main() {
   setCustomErrorPage();
   _setTargetPlatformForDesktop();
-  runApp(MyApp());
+  runZoned(() {
+    runApp(MyApp());
+  }, onError: (dynamic error, dynamic stack) {
+    LogUtil.e(error);
+    LogUtil.e(stack);
+  });
 }
 
 void setCustomErrorPage() {
@@ -40,6 +46,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      /// 任务管理器显示的标题
       title: "Flutter Demo",
 
       /// 您可以通过配置ThemeData类轻松更改应用程序的主题
@@ -49,8 +56,21 @@ class MyApp extends StatelessWidget {
           bottomAppBarColor: Colors.deepOrange,
           buttonColor: Colors.tealAccent,
           backgroundColor: Colors.teal),
+
+      /// 右上角显示一个debug的图标
       debugShowCheckedModeBanner: false,
+
+      /// 主页
       home: SplashScreenPage(),
+
+      /// 打开一个覆盖图，显示框架报告的可访问性信息 显示边框
+      showSemanticsDebugger: false,
+
+      /// 打开性能监视，覆盖在屏幕最上面
+      showPerformanceOverlay: false,
+
+      /// 显示网格
+      debugShowMaterialGrid: false,
     );
   }
 }

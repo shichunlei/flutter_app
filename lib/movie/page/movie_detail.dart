@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/movie/bean/result.dart';
 import 'package:flutter_app/movie/page/movie_photo.dart';
 import 'package:flutter_app/movie/ui/item_casts.dart';
 import 'package:flutter_app/movie/ui/item_tag.dart';
@@ -100,7 +101,7 @@ class _MovieDetailState extends State<MovieDetail> {
                           width: 135.0,
                         ),
                       ),
-                      onTap: () => pushNewPage(context, MoviePhotoPage())),
+                      onTap: () => getMoviePhotos(widget.id)),
                 ],
               ),
             ),
@@ -185,5 +186,24 @@ class _MovieDetailState extends State<MovieDetail> {
     }
 
     return widgets;
+  }
+
+  void getMoviePhotos(id) async {
+    showLoadingDialog(context, "正在加载...");
+
+    var data = {'apikey': Config.DOUBAN_MOVIE_KEY};
+
+    Response response = await HttpUtils()
+        .get('${Api.MOVIE_DETAIL_URL}/${id}/photos', data: data);
+
+    var jsonData = response.data;
+
+    Result result = Result.fromMap(jsonData);
+
+    if (result.photos.length > 0) {
+      Navigator.pop(context);
+
+      pushNewPage(context, MoviePhotoPage(photos: result.photos));
+    }
   }
 }
