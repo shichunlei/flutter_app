@@ -11,6 +11,7 @@ import 'package:flutter_app/page/flipper_widget.dart';
 import 'package:flutter_app/page/random_words.dart';
 import 'package:flutter_app/page/swiper_page.dart';
 import 'package:flutter_app/tabs_demo/bottom_appbar.dart';
+import 'package:flutter_app/widget/appbar_widget.dart';
 import 'package:flutter_app/widget/contact_picker_widget.dart';
 import 'package:flutter_app/widget/icon_widget.dart';
 import 'package:flutter_app/widget/staggered_view_page.dart';
@@ -229,6 +230,7 @@ class SubExpandBean {
 
 List<ExpandStateBean> expandStateList = [
   ExpandStateBean(false, 'Widgets', 0, [
+    SubExpandBean('AppBar', AppBarWidget()),
     SubExpandBean('Text', TextWidget()),
     SubExpandBean('Button', ButtonWidget()),
     SubExpandBean('Image', ImageWidget()),

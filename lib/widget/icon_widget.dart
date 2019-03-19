@@ -19,7 +19,10 @@ class _IconWidgetState extends State<IconWidget> with TickerProviderStateMixin {
     super.initState();
 
     animationController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 2000));
+      vsync: this,
+      duration: Duration(milliseconds: 1000),
+      value: 1.0,
+    );
   }
 
   @override
@@ -60,27 +63,37 @@ class _IconWidgetState extends State<IconWidget> with TickerProviderStateMixin {
       appBar: AppBar(
         centerTitle: true,
         title: Text('IconWidget'),
+        elevation: 0.0,
       ),
       body: GridView.builder(
-          padding: const EdgeInsets.all(10.0),
-          itemCount: icons.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: 1.0,
-              crossAxisSpacing: 1.0,
-              mainAxisSpacing: 1.0),
-          itemBuilder: (context, i) => Center(
-                child: InkWell(
-                  child: i > 13
-                      ? Icon(icons[i])
-                      : AnimatedIcon(
-                          size: 30.0,
-                          icon: icons[i],
-                          progress: animationController,
-                          semanticLabel: 'Show menu'),
-                  onTap: () => animationController.forward(),
-                ),
-              )),
+        padding: const EdgeInsets.all(10.0),
+        itemCount: icons.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          childAspectRatio: 1.0,
+          crossAxisSpacing: 1.0,
+          mainAxisSpacing: 1.0,
+        ),
+        itemBuilder: (context, i) => Center(
+              child: IconButton(
+                icon: i > 13
+                    ? Icon(icons[i])
+                    : AnimatedIcon(
+                        size: 30.0,
+                        icon: icons[i],
+                        progress: animationController.view,
+                        semanticLabel: 'Show menu'),
+                onPressed: () =>
+                    animationController.fling(velocity: _status ? -2.0 : 2.0),
+              ),
+            ),
+      ),
     );
+  }
+
+  bool get _status {
+    final AnimationStatus status = animationController.status;
+    return status == AnimationStatus.completed ||
+        status == AnimationStatus.forward;
   }
 }
