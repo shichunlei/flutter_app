@@ -69,7 +69,7 @@ A new Flutter application.
 </table>
 
 
-# 使用到的第三方插件
+## 使用到的第三方插件
 
 | Plugin | 地址 | 版本号 | 描述 |
 | :--: | :--: | :--: | -- |

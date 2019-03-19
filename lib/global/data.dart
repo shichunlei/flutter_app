@@ -12,6 +12,7 @@ import 'package:flutter_app/page/random_words.dart';
 import 'package:flutter_app/page/swiper_page.dart';
 import 'package:flutter_app/tabs_demo/bottom_appbar.dart';
 import 'package:flutter_app/widget/contact_picker_widget.dart';
+import 'package:flutter_app/widget/icon_widget.dart';
 import 'package:flutter_app/widget/staggered_view_page.dart';
 import 'package:flutter_app/widget/star_rating_widget.dart';
 import 'package:flutter_app/widget/text_widget.dart';
@@ -231,6 +232,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('Text', TextWidget()),
     SubExpandBean('Button', ButtonWidget()),
     SubExpandBean('Image', ImageWidget()),
+    SubExpandBean('Icon', IconWidget()),
     SubExpandBean('TextField', TextFieldWidget()),
     SubExpandBean('Dialog', DialogWidget()),
     SubExpandBean('TabBar', TabBarHomePage()),

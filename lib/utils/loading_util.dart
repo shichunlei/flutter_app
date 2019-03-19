@@ -66,7 +66,10 @@ List<Widget> widgets = [
       duration: Duration(milliseconds: 800), child: Icon(Icons.refresh)),
   AnimatedRotationBox(
       duration: Duration(milliseconds: 800),
-      child: Icon(FontAwesomeIcons.firefox)),
+      child: Icon(
+        FontAwesomeIcons.spinner,
+        color: Colors.purpleAccent,
+      )),
   AnimatedRotationBox(
       duration: Duration(milliseconds: 1200), child: Icon(MdiIcons.sword)),
   AnimatedRotationBox(

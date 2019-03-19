@@ -19,27 +19,31 @@ class ItemCasts extends StatelessWidget {
         ? (directors == null ? 0 : directors.length)
         : casts.length;
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        SizedBox(height: 20.0),
-        Text('$title',style: TextStyle(color: Colors.black,fontSize: 18.0),),
-        SizedBox(height: 10.0),
-        GridView.builder(
-          itemCount: len,
-          shrinkWrap: true,
-          primary: false,
-          padding: EdgeInsets.only(top: 6.0, bottom: 6.0),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              mainAxisSpacing: 5.0,
-              crossAxisSpacing: 5.0,
-              childAspectRatio: 3 / 5),
-          itemBuilder: (context, index) {
-            return _builderItem(context, index, casts, directors);
-          },
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          SizedBox(height: 10.0),
+          Text(
+            '$title',
+            style: TextStyle(color: Colors.black, fontSize: 18.0),
+          ),
+          SizedBox(height: 10.0),
+          GridView.builder(
+              itemCount: len,
+              shrinkWrap: true,
+              primary: false,
+              padding: EdgeInsets.only(top: 6.0, bottom: 6.0),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  mainAxisSpacing: 5.0,
+                  crossAxisSpacing: 5.0,
+                  childAspectRatio: 3 / 5),
+              itemBuilder: (context, index) =>
+                  _builderItem(context, index, casts, directors)),
+        ],
+      ),
     );
   }
 

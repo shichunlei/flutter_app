@@ -7,6 +7,7 @@ import 'package:flutter_app/movie/page/movie_photo.dart';
 import 'package:flutter_app/movie/ui/item_casts.dart';
 import 'package:flutter_app/movie/ui/item_tag.dart';
 import 'package:flutter_app/global/api.dart';
+import 'package:flutter_app/movie/ui/video_cover.dart';
 import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
@@ -31,6 +32,11 @@ class _MovieDetailState extends State<MovieDetail> {
     super.initState();
 
     getMovieDetail(widget.id);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -85,107 +91,29 @@ class _MovieDetailState extends State<MovieDetail> {
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverAppBar(
-            expandedHeight: 191.5,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(movie.title.toString()),
-              background: Stack(
-                children: <Widget>[
-                  GestureDetector(
-                      child: Center(
-                        child: FadeInImage.memoryNetwork(
-                          placeholder: kTransparentImage,
-                          image: movie.images.large.toString(),
-                          fit: BoxFit.fill,
-                          height: 191.5,
-                          width: 135.0,
-                        ),
-                      ),
-                      onTap: () => getMoviePhotos(widget.id)),
-                ],
-              ),
+          _builderHeader(),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) =>
+                  VideoCover(cover: movie.bloopers[index].medium),
+              childCount: movie.bloopers.length,
             ),
           ),
           SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Text(
-                        '${movie.title}(${movie.year})',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24.0),
-                      ),
+                /// 导演
+                ItemCasts(title: "导演", directors: movie.directors),
 
-                      /// 导演
-                      ItemCasts(title: "导演", directors: movie.directors),
-
-                      /// 主演
-                      ItemCasts(title: "主演", casts: movie.casts),
-
-                      /// 标签
-                      Wrap(children: _builderTag(movie.tags), spacing: 10.0),
-
-                      /// 看过人数
-                      Text(
-                        movie.collect_count.toString() + '人看过',
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          color: Colors.redAccent,
-                        ),
-                      ),
-
-                      /// 评分
-                      Row(
-                        children: <Widget>[
-                          Text('评分：'),
-                          Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: SmoothStarRating(
-                                  rating: movie.rating.average / 2,
-                                  starCount: 5,
-                                  size: 20,
-                                  allowHalfRating: false,
-                                  color: Colors.deepOrange)),
-                          Text('${movie.rating.average.toString()} 分',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.deepOrange))
-                        ],
-                      ),
-
-                      Text(
-                        '剧情简介：' + movie.summary,
-                        style: TextStyle(
-                          fontSize: 15.0,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                /// 主演
+                ItemCasts(title: "主演", casts: movie.casts),
               ],
             ),
           ),
+          _builderContent(),
         ],
       ),
     );
-  }
-
-  List<Widget> _builderTag(List<String> tags) {
-    List<Widget> widgets = [];
-
-    for (int i = 0; i < tags.length; i++) {
-      widgets.add(ItemTag(tag: tags[i].toString()));
-    }
-
-    return widgets;
   }
 
   void getMoviePhotos(id) async {
@@ -205,5 +133,93 @@ class _MovieDetailState extends State<MovieDetail> {
 
       pushNewPage(context, MoviePhotoPage(photos: result.photos));
     }
+  }
+
+  Widget _builderHeader() {
+    return SliverAppBar(
+      floating: true,
+      snap: true,
+      pinned: true,
+      expandedHeight: 191.5,
+      flexibleSpace: FlexibleSpaceBar(
+        title: Text('${movie.title}(${movie.year})'),
+        background: Stack(
+          children: <Widget>[
+            GestureDetector(
+                child: Center(
+                  child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: movie.images.large.toString(),
+                    fit: BoxFit.fill,
+                    height: 191.5,
+                    width: 135.0,
+                  ),
+                ),
+                onTap: () => getMoviePhotos(widget.id)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _builderContent() {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            /// 标签
+            Wrap(children: _builderTag(movie.tags), spacing: 10.0),
+
+            /// 看过人数
+            Text(
+              '${movie.collect_count}人看过',
+              style: TextStyle(
+                fontSize: 12.0,
+                color: Colors.redAccent,
+              ),
+            ),
+
+            /// 评分
+            Row(
+              children: <Widget>[
+                Text('评分：'),
+                Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: SmoothStarRating(
+                        rating: movie.rating.average / 2,
+                        starCount: 5,
+                        size: 20,
+                        allowHalfRating: false,
+                        color: Colors.deepOrange)),
+                Text('${movie.rating.average.toString()} 分',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.deepOrange))
+              ],
+            ),
+
+            Text(
+              '剧情简介：' + movie.summary,
+              style: TextStyle(
+                fontSize: 15.0,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _builderTag(List<String> tags) {
+    List<Widget> widgets = [];
+
+    for (int i = 0; i < tags.length; i++) {
+      widgets.add(ItemTag(tag: tags[i].toString()));
+    }
+
+    return widgets;
   }
 }

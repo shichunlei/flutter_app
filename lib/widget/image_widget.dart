@@ -78,16 +78,14 @@ class ImageWidgetState extends State<ImageWidget> {
               /// 加载网络图片
               Image(
                 image: NetworkImage(
-                    "https://img-blog.csdnimg.cn/20181226135809459.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1emhpcWlhbmdfMTk5Mw==,size_16,color_FFFFFF,t_70"),
+                    "https://github.com/hjnilsson/country-flags/blob/master/png1000px/cn.png?raw=true"),
               ),
+
               Divider(),
 
-              /// ICON
-              Icon(
-                Icons.adb,
-                size: 50, //icon大小
-                color: Colors.red, //icon颜色
-              ),
+              /// 导入第三方库图片
+              Image.asset(
+                  'packages/flutter_gallery_assets/people/ali_landscape.png'),
             ],
           ),
         ));

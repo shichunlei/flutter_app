@@ -1,0 +1,86 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_app/global/custom_icon.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
+import 'package:groovin_material_icons/groovin_material_icons.dart';
+
+class IconWidget extends StatefulWidget {
+  @override
+  _IconWidgetState createState() => _IconWidgetState();
+}
+
+class _IconWidgetState extends State<IconWidget> with TickerProviderStateMixin {
+  AnimationController animationController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    animationController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 2000));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    animationController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var icons = [
+      AnimatedIcons.add_event,
+      AnimatedIcons.arrow_menu,
+      AnimatedIcons.close_menu,
+      AnimatedIcons.ellipsis_search,
+      AnimatedIcons.event_add,
+      AnimatedIcons.home_menu,
+      AnimatedIcons.list_view,
+      AnimatedIcons.menu_arrow,
+      AnimatedIcons.menu_close,
+      AnimatedIcons.menu_home,
+      AnimatedIcons.pause_play,
+      AnimatedIcons.play_pause,
+      AnimatedIcons.search_ellipsis,
+      AnimatedIcons.view_list,
+      Icons.adb,
+      FontAwesomeIcons.firefox,
+      MdiIcons.sword,
+      FeatherIcons.activity,
+      OMIcons.forward,
+      GroovinMaterialIcons.access_point,
+      CustomIcon.man,
+      CustomIcon.back,
+    ];
+
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('IconWidget'),
+      ),
+      body: GridView.builder(
+          padding: const EdgeInsets.all(10.0),
+          itemCount: icons.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              childAspectRatio: 1.0,
+              crossAxisSpacing: 1.0,
+              mainAxisSpacing: 1.0),
+          itemBuilder: (context, i) => Center(
+                child: InkWell(
+                  child: i > 13
+                      ? Icon(icons[i])
+                      : AnimatedIcon(
+                          size: 30.0,
+                          icon: icons[i],
+                          progress: animationController,
+                          semanticLabel: 'Show menu'),
+                  onTap: () => animationController.forward(),
+                ),
+              )),
+    );
+  }
+}
