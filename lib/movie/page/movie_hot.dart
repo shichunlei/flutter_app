@@ -1,11 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
-import 'package:flutter_app/movie/bean/result.dart';
+import 'package:flutter_app/movie/service/api_service.dart';
 import 'package:flutter_app/movie/ui/item_list.dart';
-import 'package:flutter_app/global/api.dart';
-import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 
 class MovieHotPage extends StatefulWidget {
@@ -94,25 +90,13 @@ class _MovieHotPageState extends State<MovieHotPage> {
   }
 
   void getMovieHotList() async {
-    var data = {'apikey': Config.DOUBAN_MOVIE_KEY, 'city': '北京'};
-    Response response = await HttpUtils().get(Api.MOVIE_LIST_URL, data: data);
-    if (response.statusCode != 200) {
-      loadError = true;
-    } else {
-      var jsonData = response.data;
-
-      Result result = Result.fromMap(jsonData);
-
-      print("================================");
-      print('${result.title} ${result.start} ${result.subjects.toString()}');
-
-      movies = result.subjects;
-
-      if (movies.length == 0) {
-        isEmpty = true;
-      }
-      isFirst = false;
+    movies = await ApiService.getNowPlayingList(city: '北京');
+    loadError = movies == null;
+    if (movies.length == 0) {
+      isEmpty = true;
     }
+    isFirst = false;
+
     setState(() {});
   }
 }

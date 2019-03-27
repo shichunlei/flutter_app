@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_app/global/api.dart';
 import 'package:flutter_app/utils/log_util.dart';
@@ -28,8 +30,11 @@ class HttpUtils {
 
       /// 接收数据的总时限.
       receiveTimeout: 3000,
-
+      contentType: ContentType.json,
       headers: {},
+
+      /// 共同的参数可以在此设置
+      /// queryParameters: {"apikey": apiKey}
     );
     _dio = Dio(options);
 

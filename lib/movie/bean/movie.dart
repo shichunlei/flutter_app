@@ -83,7 +83,7 @@ class Movie {
   /// 总季数(tv only)
   int seasons_count;
 
-  ///
+  /// 收藏
   dynamic collection;
 
   /// 当前季的集数(tv only)

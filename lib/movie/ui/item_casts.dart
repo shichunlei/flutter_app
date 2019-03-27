@@ -22,14 +22,15 @@ class ItemCasts extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: 10.0),
-          Text(
-            '$title',
-            style: TextStyle(color: Colors.black, fontSize: 18.0),
+          Container(
+            padding: EdgeInsets.fromLTRB(15, 15, 15, 5),
+            child: Text(
+              title,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
           ),
-          SizedBox(height: 10.0),
           GridView.builder(
               itemCount: len,
               shrinkWrap: true,

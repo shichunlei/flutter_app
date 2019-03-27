@@ -1,11 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
-import 'package:flutter_app/movie/bean/result.dart';
 import 'package:flutter_app/movie/page/movie_detail.dart';
-import 'package:flutter_app/global/api.dart';
-import 'package:flutter_app/utils/http_utils.dart';
+import 'package:flutter_app/movie/service/api_service.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -88,19 +84,8 @@ class _WeeklyMovieRakingPageState extends State<WeeklyMovieRakingPage>
   }
 
   void getMovieList() async {
-    var data = {'apikey': Config.DOUBAN_MOVIE_KEY};
-
-    Response response =
-        await HttpUtils().get(Api.WEEKLY_MOVIES_URL, data: data);
-    if (response.statusCode != 200) {
-      loadError = true;
-    } else {
-      var jsonData = response.data;
-
-      Result result = Result.fromMap(jsonData);
-      movies = result.subjects;
-    }
-
+    movies = await ApiService.getWeeklyList();
+    loadError = movies == null;
     setState(() {});
   }
 }

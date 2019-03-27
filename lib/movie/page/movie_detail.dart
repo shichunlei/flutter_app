@@ -1,14 +1,11 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
-import 'package:flutter_app/movie/bean/result.dart';
+import 'package:flutter_app/movie/bean/photos.dart';
 import 'package:flutter_app/movie/page/movie_photo.dart';
+import 'package:flutter_app/movie/service/api_service.dart';
 import 'package:flutter_app/movie/ui/item_casts.dart';
 import 'package:flutter_app/movie/ui/item_tag.dart';
-import 'package:flutter_app/global/api.dart';
 import 'package:flutter_app/movie/ui/video_cover.dart';
-import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
@@ -45,18 +42,8 @@ class _MovieDetailState extends State<MovieDetail> {
   }
 
   void getMovieDetail(String id) async {
-    var data = {'apikey': Config.DOUBAN_MOVIE_KEY};
-
-    Response response =
-        await HttpUtils().get('${Api.MOVIE_DETAIL_URL}/$id', data: data);
-    if (response.statusCode != 200) {
-      loadError = true;
-    } else {
-      var jsonData = response.data;
-
-      movie = Movie.fromMap(jsonData);
-    }
-
+    movie = await ApiService.getMovieDetail(id);
+    loadError = movie == null;
     setState(() {});
   }
 
@@ -119,19 +106,11 @@ class _MovieDetailState extends State<MovieDetail> {
   void getMoviePhotos(id) async {
     showLoadingDialog(context, "正在加载...");
 
-    var data = {'apikey': Config.DOUBAN_MOVIE_KEY};
-
-    Response response = await HttpUtils()
-        .get('${Api.MOVIE_DETAIL_URL}/${id}/photos', data: data);
-
-    var jsonData = response.data;
-
-    Result result = Result.fromMap(jsonData);
-
-    if (result.photos.length > 0) {
+    List<Photos> photos = await ApiService.getMovieAlbum(id);
+    if (photos.length > 0) {
       Navigator.pop(context);
 
-      pushNewPage(context, MoviePhotoPage(photos: result.photos));
+      pushNewPage(context, MoviePhotoPage(photos: photos));
     }
   }
 

@@ -1,13 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/toast/toast.dart';
-import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
-import 'package:flutter_app/movie/bean/result.dart';
 import 'package:flutter_app/movie/page/movie_detail.dart';
-import 'package:flutter_app/global/api.dart';
-import 'package:flutter_app/utils/http_utils.dart';
+import 'package:flutter_app/movie/service/api_service.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
@@ -136,44 +132,28 @@ class _MovieTop250State extends State<MovieTop250> {
   }
 
   void getMovieTop250List(int page, int pagesize, int type) async {
-    var data = {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'start': (page - 1) * pagesize,
-      'count': pagesize,
-    };
-
-    Response response = await HttpUtils().get(Api.MOVIE_TOP250_URL, data: data);
-    if (response.statusCode != 200) {
-      loadError = true;
-    } else {
-      var jsonData = response.data;
-
-      Result result = Result.fromMap(jsonData);
-
-      print("================================");
-      print('${result.title} ${result.start} ${result.subjects.toString()}');
-
-      List<Movie> list = result.subjects;
-      if (type == RefreshType.DEFAULT) {
-        movies.addAll(list);
-        if (isFirst && movies.length == 0) {
-          text = "暂无数据";
-        } else {
-          text = "";
-        }
-      } else if (type == RefreshType.LOAD_MORE) {
-        movies.addAll(list);
-        if (list.length == 0) {
-          setState(() {
-            Toast.show("加载完...", context,
-                duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
-          });
-        }
+    List<Movie> list = await ApiService.getTop250List(
+        start: (page - 1) * pagesize, count: pagesize);
+    if (type == RefreshType.DEFAULT) {
+      movies.addAll(list);
+      if (isFirst && movies.length == 0) {
+        text = "暂无数据";
+      } else {
+        text = "";
       }
-
-      if (isFirst) {
-        isFirst = false;
+    } else if (type == RefreshType.LOAD_MORE) {
+      movies.addAll(list);
+      if (list.length == 0) {
+        setState(() {
+          Toast.show("加载完...", context,
+              duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+        });
       }
+    }
+
+    if (isFirst) {
+      loadError = movies == null;
+      isFirst = false;
     }
 
     setState(() {});
