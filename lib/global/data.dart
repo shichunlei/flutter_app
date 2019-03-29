@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/city_pickers/page/fullpage_pickers_page.dart';
 import 'package:flutter_app/city_pickers/page/ios_city_pickers_page.dart';
-import 'package:flutter_app/movie/page/movie_hot.dart';
+import 'package:flutter_app/movie/page/movie_home_page.dart';
 import 'package:flutter_app/movie/page/movie_ranking_home.dart';
 import 'package:flutter_app/movie/page/movie_top250.dart';
 import 'package:flutter_app/page/city_picker_page.dart';
@@ -266,8 +266,8 @@ List<ExpandStateBean> expandStateList = [
   ]),
   ExpandStateBean(false, '功能', 2, [
     SubExpandBean('Question', QuizPage()),
+    SubExpandBean('豆瓣电影', MovieHomePage()),
     SubExpandBean('电影TOP250', MovieTop250()),
-    SubExpandBean('正在热映电影', MovieHotPage()),
     SubExpandBean('电影排行榜', MovieRakingHome()),
     SubExpandBean('随机单词', RandomWords()),
     SubExpandBean('设备信息', DeviceInfoPage()),

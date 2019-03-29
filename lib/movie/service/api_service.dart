@@ -2,12 +2,17 @@ import 'package:dio/dio.dart';
 import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/movie/bean/celebrity.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/movie/bean/news.dart';
 import 'package:flutter_app/movie/bean/photos.dart';
 import 'package:flutter_app/movie/bean/result.dart';
 import 'package:flutter_app/utils/http_utils.dart';
+import 'package:flutter_app/utils/log_util.dart';
+
+import 'package:html/dom.dart' as dom;
+import 'package:html/parser.dart' show parse;
+import 'package:http/http.dart' as http;
 
 class ApiService {
-  static final String MOVIE_BASE_URL = "https://api.douban.com/v2/movie";
   static final String MOVIE_LIST_URL = "/in_theaters";
   static final String MOVIE_DETAIL_URL = "/subject";
   static final String MOVIE_TOP250_URL = "/top250";
@@ -20,11 +25,41 @@ class ApiService {
 
   static final String US_MOVIES_URL = "/us_box";
 
+  /// 获取首页热门新闻文章
+  static Future<List<News>> getNewsList() async {
+    List<News> news = [];
+
+    await http.get(Config.DOUBAN_WEB_URL).then((http.Response response) {
+      var document = parse(response.body.toString());
+      List<dom.Element> items =
+          document.getElementsByClassName('gallery-frame');
+      items.forEach((item) {
+        String cover =
+            item.getElementsByTagName('img')[0].attributes['src'].toString();
+        String link =
+            item.getElementsByTagName('a')[0].attributes['href'].toString();
+        String title =
+            item.getElementsByTagName('h3')[0].text.toString().trim();
+        String summary =
+            item.getElementsByTagName('p')[0].text.toString().trim();
+        News movieNews = new News(title, cover, summary, link);
+        news.add(movieNews);
+      });
+    });
+
+    LogUtil.v(news.toString());
+
+    return news;
+  }
+
   /// 获取正在上映电影
-  static Future<List<Movie>> getNowPlayingList({String city}) async {
+  static Future<List<Movie>> getNowPlayingList(
+      {String city, int start, int count}) async {
     Response response = await HttpUtils().get(MOVIE_LIST_URL, data: {
       'apikey': Config.DOUBAN_MOVIE_KEY,
       'city': city,
+      'start': start,
+      'count': count,
     });
     if (response.statusCode != 200) {
       return null;

@@ -1,11 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/bean/photos.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
 class MoviePhotoPage extends StatefulWidget {
   final List<Photos> photos;
+  final int index;
 
-  MoviePhotoPage({Key key, this.photos}) : super(key: key);
+  MoviePhotoPage({Key key, this.photos, this.index = 0}) : super(key: key);
 
   @override
   _MoviePhotoPageState createState() => _MoviePhotoPageState();
@@ -13,27 +15,29 @@ class MoviePhotoPage extends StatefulWidget {
 
 class _MoviePhotoPageState extends State<MoviePhotoPage> {
   int total;
-  int count = 1;
+  int count;
 
   @override
   void initState() {
     super.initState();
     total = widget.photos.length;
+    count = 1 + widget.index;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(
         children: <Widget>[
           PhotoViewGallery(
             pageOptions: _builderPageOptions(widget.photos),
-            backgroundDecoration: BoxDecoration(color: Colors.black87),
+            backgroundDecoration: BoxDecoration(color: Colors.black),
             onPageChanged: (index) {
-              setState(() {
-                count = index + 1;
-              });
+              setState(() => count = index + 1);
             },
+            scrollPhysics: const BouncingScrollPhysics(),
+            loadingChild: CupertinoActivityIndicator(),
           ),
           Container(
             margin: const EdgeInsets.only(bottom: 40.0),

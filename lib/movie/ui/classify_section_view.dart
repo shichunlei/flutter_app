@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/global/config.dart';
+import 'package:flutter_app/movie/ui/home_section_view.dart';
 import 'package:flutter_app/movie/ui/item_classify_tag.dart';
 
 class ClassifySectionView extends StatelessWidget {
-  String title;
+  final String title;
 
   ClassifySectionView(this.title);
 
@@ -27,38 +28,28 @@ class ClassifySectionView extends StatelessWidget {
       default:
     }
 
-    return Container(
-      color: Colors.white,
-      child: Column(
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.fromLTRB(15, 15, 15, 5),
-            child: Text(
-              title,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    return Column(
+      children: <Widget>[
+        HomeSectionView(title, hiddenMore: true),
+        Container(
+          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+          child: GridView.builder(
+            itemCount: classifyList.length,
+            shrinkWrap: true,
+            primary: false,
+            padding: EdgeInsets.only(top: 6.0, bottom: 6.0),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              mainAxisSpacing: 5.0,
+              crossAxisSpacing: 5.0,
+              childAspectRatio: 1.8,
             ),
+            itemBuilder: (context, index) =>
+                ItemClassifyTag(tag: classifyList[index]),
           ),
-          Container(
-            padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-            child: GridView.builder(
-              itemCount: classifyList.length,
-              shrinkWrap: true,
-              primary: false,
-              padding: EdgeInsets.only(top: 6.0, bottom: 6.0),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                mainAxisSpacing: 5.0,
-                crossAxisSpacing: 5.0,
-                childAspectRatio: 1.8,
-              ),
-              itemBuilder: (context, index) => ItemClassifyTag(
-                    tag: classifyList[index],
-                  ),
-            ),
-          ),
-        ],
-        crossAxisAlignment: CrossAxisAlignment.start,
-      ),
+        ),
+      ],
+      crossAxisAlignment: CrossAxisAlignment.start,
     );
   }
 }

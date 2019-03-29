@@ -12,7 +12,7 @@ class UsMovieRakingPage extends StatefulWidget {
 }
 
 class _UsMovieRakingPageState extends State<UsMovieRakingPage>
-    with AutomaticKeepAliveClientMixin {
+  with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
@@ -49,6 +49,7 @@ class _UsMovieRakingPageState extends State<UsMovieRakingPage>
 
         /// 网格代理对象，一般使用SliverGridDelegateWithFixedCrossAxisCount对象创建，可指定crossAxisCount、mainAxisSpacing、crossAxisSpacing和childAspectRatio等值。
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+
           /// 表示垂直于主轴方向上的单元格Widget数量。如果scrollDirection为Axis.vertical，则表示水平单元格的数量；如果scrollDirection为Axis.horizontal，则表示垂直单元格的数量。
           crossAxisCount: 2,
 
@@ -67,7 +68,7 @@ class _UsMovieRakingPageState extends State<UsMovieRakingPage>
           return GestureDetector(
             //点击事件
             onTap: () =>
-                pushNewPage(context, MovieDetail(id: movies[index].subject.id)),
+              pushNewPage(context, MovieDetail(id: movies[index].subject.id)),
             child: FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
               image: movies[index].subject.images.large.toString(),
@@ -75,6 +76,7 @@ class _UsMovieRakingPageState extends State<UsMovieRakingPage>
             ),
           );
         },
+        physics: const ClampingScrollPhysics(),
 
         /// 表示网格的单元格总数。
         itemCount: movies.length,

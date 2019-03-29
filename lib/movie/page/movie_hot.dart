@@ -25,10 +25,7 @@ class _MovieHotPageState extends State<MovieHotPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('正在热映电影'),
-      ),
+      appBar: AppBar(title: Text('影院热映')),
       body: Stack(
         children: <Widget>[
           Offstage(
@@ -68,7 +65,7 @@ class _MovieHotPageState extends State<MovieHotPage> {
               reverse: false,
 
               /// 表示物理反馈，一般设置值为AlwaysScrollableScrollPhysics()|ScrollPhysics()。AlwaysScrollableScrollPhysics表示总是有滚动反馈，无论primary值为true or false；ScrollPhysics表示只有只有内容超出控件大小时才会有滚动反馈，无论primary值为true or false。
-              physics: const AlwaysScrollableScrollPhysics(),
+              physics: const ClampingScrollPhysics(),
 
               /// 表示控件的内边距。
               padding: EdgeInsets.all(10.0),

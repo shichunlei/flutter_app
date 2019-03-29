@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils/utils.dart';
 
 class ItemTag extends StatelessWidget {
   final String tag;
@@ -8,14 +9,15 @@ class ItemTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Chip(
-        label: Text(tag, style: TextStyle(color: Colors.white)),
-        backgroundColor: _nameToColor(tag));
-  }
-
-  Color _nameToColor(String name) {
-    assert(name.length > 1);
-    final int hash = name.hashCode & 0xffff;
-    final double hue = (360.0 * hash / (1 << 15)) % 360.0;
-    return HSVColor.fromAHSV(1.0, hue, 0.4, 0.90).toColor();
+      label: Text(
+        tag,
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      ),
+      backgroundColor: Utils.strToColor(
+        tag,
+      ),
+    );
   }
 }

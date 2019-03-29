@@ -24,15 +24,13 @@ class _MovieClassifyPageState extends State<MovieClassifyPage> {
         centerTitle: true,
         title: Text('分类找电影'),
       ),
-      body: Container(
-        child: ListView(
-          children: <Widget>[
-            ClassifySectionView('类型'),
-            ClassifySectionView('地区'),
-            ClassifySectionView('年代'),
-            ClassifySectionView('特色'),
-          ],
-        ),
+      body: ListView(
+        children: <Widget>[
+          ClassifySectionView('类型'),
+          ClassifySectionView('地区'),
+          ClassifySectionView('年代'),
+          ClassifySectionView('特色'),
+        ],
       ),
     );
   }

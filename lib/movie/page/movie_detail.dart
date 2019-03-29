@@ -1,13 +1,19 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/bean/photos.dart';
 import 'package:flutter_app/movie/page/movie_photo.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
-import 'package:flutter_app/movie/ui/item_casts.dart';
+import 'package:flutter_app/movie/ui/expandable_text.dart';
+import 'package:flutter_app/movie/ui/home_section_view.dart';
+import 'package:flutter_app/movie/ui/item_comment.dart';
+import 'package:flutter_app/movie/ui/item_cover.dart';
 import 'package:flutter_app/movie/ui/item_tag.dart';
-import 'package:flutter_app/movie/ui/video_cover.dart';
+import 'package:flutter_app/movie/ui/person_gridview.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
+import 'package:flutter_app/utils/utils.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -23,6 +29,7 @@ class MovieDetail extends StatefulWidget {
 class _MovieDetailState extends State<MovieDetail> {
   Movie movie;
   bool loadError = false;
+  bool isSummaryUnfold = false;
 
   @override
   void initState() {
@@ -76,24 +83,51 @@ class _MovieDetailState extends State<MovieDetail> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: <Widget>[
           _builderHeader(),
           SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) =>
-                  VideoCover(cover: movie.bloopers[index].medium),
-              childCount: movie.bloopers.length,
-            ),
-          ),
-          SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
-                /// 导演
-                ItemCasts(title: "导演", directors: movie.directors),
-
-                /// 主演
-                ItemCasts(title: "主演", casts: movie.casts),
+                HomeSectionView("简介", hiddenMore: true),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 10.0, left: 10, right: 10),
+                  child: ExpandableText(
+                    movie.summary,
+                    textColor: Colors.black,
+                    iconColor: Colors.grey,
+                    iconTextColor: Colors.grey,
+                    alignment: MainAxisAlignment.center,
+                    fontSize: 15.0,
+                    isShow: isSummaryUnfold,
+                    onPressed: () => changeSummaryMaxLines(),
+                  ),
+                ),
+                HomeSectionView("导演", hiddenMore: true),
+                Container(
+                  padding: EdgeInsets.all(6.0),
+                  child: Wrap(
+                    spacing: 5,
+                    runSpacing: 5,
+                    children: movie.directors
+                        .map(
+                            (directors) => PersonGridView(directors: directors))
+                        .toList(),
+                  ),
+                ),
+                HomeSectionView("主演", hiddenMore: true),
+                Container(
+                  padding: EdgeInsets.all(6.0),
+                  child: Wrap(
+                    spacing: 5,
+                    runSpacing: 5,
+                    children: movie.casts
+                        .map((casts) => PersonGridView(casts: casts))
+                        .toList(),
+                  ),
+                ),
               ],
             ),
           ),
@@ -101,6 +135,13 @@ class _MovieDetailState extends State<MovieDetail> {
         ],
       ),
     );
+  }
+
+  // 展开 or 收起
+  changeSummaryMaxLines() {
+    setState(() {
+      isSummaryUnfold = !isSummaryUnfold;
+    });
   }
 
   void getMoviePhotos(id) async {
@@ -119,22 +160,46 @@ class _MovieDetailState extends State<MovieDetail> {
       floating: true,
       snap: true,
       pinned: true,
-      expandedHeight: 191.5,
+      expandedHeight: 200,
       flexibleSpace: FlexibleSpaceBar(
         title: Text('${movie.title}(${movie.year})'),
         background: Stack(
           children: <Widget>[
-            GestureDetector(
-                child: Center(
-                  child: FadeInImage.memoryNetwork(
-                    placeholder: kTransparentImage,
-                    image: movie.images.large.toString(),
-                    fit: BoxFit.fill,
-                    height: 191.5,
-                    width: 135.0,
+            FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              image: movie.images.large.toString(),
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
+            ),
+
+            /// 加上一层毛玻璃效果
+            BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: 5.0,
+                sigmaY: 6.0,
+              ),
+              child: Opacity(
+                opacity: 0.5,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black26,
                   ),
                 ),
-                onTap: () => getMoviePhotos(widget.id)),
+              ),
+            ),
+            GestureDetector(
+              child: Center(
+                child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: movie.images.large.toString(),
+                  fit: BoxFit.fill,
+                  height: 191.5,
+                  width: 135.0,
+                ),
+              ),
+              onTap: () => getMoviePhotos(widget.id),
+            ),
           ],
         ),
       ),
@@ -142,6 +207,11 @@ class _MovieDetailState extends State<MovieDetail> {
   }
 
   Widget _builderContent() {
+    double width = (Utils.width - 5 * 4) / 2;
+    double height = width * 405 / 720 + 10;
+
+    var comment_children;
+
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -178,13 +248,46 @@ class _MovieDetailState extends State<MovieDetail> {
                         fontWeight: FontWeight.bold, color: Colors.deepOrange))
               ],
             ),
-
-            Text(
-              '剧情简介：' + movie.summary,
-              style: TextStyle(
-                fontSize: 15.0,
-                color: Colors.black,
+            HomeSectionView("预告片", hiddenMore: true),
+            SizedBox.fromSize(
+              size: Size.fromHeight(height),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: movie.bloopers.length,
+                itemBuilder: (context, index) {
+                  return ItemCover(
+                    movie.bloopers[index].medium,
+                    offstage: false,
+                    onTop: () {},
+                  );
+                },
               ),
+            ),
+            HomeSectionView("剧照", hiddenMore: true),
+            SizedBox.fromSize(
+              size: Size.fromHeight(height),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: movie.photos.length,
+                itemBuilder: (context, index) {
+                  return ItemCover(
+                    movie.photos[index].image,
+                    onTop: () {
+                      pushNewPage(context,
+                          MoviePhotoPage(photos: movie.photos, index: index));
+                    },
+                  );
+                },
+              ),
+            ),
+            HomeSectionView(
+              "热评",
+              onPressed: () {},
+            ),
+            Column(
+              children: movie.popular_comments
+                  .map((comment) => ItemComment(comment))
+                  .toList(),
             ),
           ],
         ),
