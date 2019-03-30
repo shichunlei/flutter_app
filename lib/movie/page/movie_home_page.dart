@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/bean/news.dart';
 import 'package:flutter_app/movie/page/movie_classify_page.dart';
@@ -7,6 +10,7 @@ import 'package:flutter_app/movie/page/movie_hot.dart';
 import 'package:flutter_app/movie/page/movie_soon.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
 import 'package:flutter_app/movie/ui/banner_view.dart';
+import 'package:flutter_app/movie/ui/classify_section_home.dart';
 import 'package:flutter_app/movie/ui/home_section_view.dart';
 import 'package:flutter_app/movie/ui/item_grid_view.dart';
 import 'package:flutter_app/movie/ui/movie_grid_view.dart';
@@ -32,7 +36,11 @@ class _MovieHomePageState extends State<MovieHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text('豆瓣电影')), body: bodyView());
+    return Scaffold(
+      appBar: AppBar(title: Text('豆瓣电影')),
+      body: bodyView(),
+      backgroundColor: Colors.white,
+    );
   }
 
   Future<void> getHomeData() async {
@@ -53,21 +61,28 @@ class _MovieHomePageState extends State<MovieHomePage> {
           BannerView(banner: banner),
           HomeSectionView("影院热映",
               onPressed: () => pushNewPage(context, MovieHotPage())),
-          ItemGridView(movies: hotMovies),
-          HomeSectionView("即将上映",
-              onPressed: () => pushNewPage(context, MovieSoonPage())),
           Container(
             padding: EdgeInsets.all(6.0),
             child: Wrap(
               spacing: 5,
               runSpacing: 5,
-              children:
-                  soonMovies.map((movie) => MovieGridView(movie)).toList(),
+              children: hotMovies.map((movie) => MovieGridView(movie)).toList(),
             ),
           ),
+          HomeSectionView("即将上映",
+              onPressed: () => pushNewPage(context, MovieSoonPage())),
+          ItemGridView(movies: soonMovies),
           HomeSectionView("电影榜单", hiddenMore: true),
           HomeSectionView("分类浏览",
               onPressed: () => pushNewPage(context, MovieClassifyPage())),
+          ClassifySection(
+              '${Config.GenreList[Random().nextInt(Config.GenreList.length - 1)]}'),
+          ClassifySection(
+              '${Config.RegionList[Random().nextInt(Config.RegionList.length - 1)]}'),
+          ClassifySection(
+              '${Config.FeatureList[Random().nextInt(Config.FeatureList.length - 1)]}'),
+          ClassifySection(
+              '${Config.YearList[Random().nextInt(Config.YearList.length - 1)]}'),
         ],
       );
     }
