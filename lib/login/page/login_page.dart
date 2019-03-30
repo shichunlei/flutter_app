@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/login/page/sign_in_page.dart';
 import 'package:flutter_app/login/page/sign_up_page.dart';
-import 'package:flutter_app/login/style/theme.dart' as theme;
+import 'package:flutter_app/utils/theme.dart' as theme;
 import 'package:flutter_app/login/ui/custom_button.dart';
 
 class LoginPage extends StatefulWidget {

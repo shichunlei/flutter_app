@@ -4,18 +4,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/animated_rotation_box.dart';
 import 'package:flutter_app/custom_widgets/gradient_circular_progress_indicator.dart';
+import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 List<Widget> widgets = [
-  SpinKitThreeBounce(color: Colors.redAccent, size: 30.0),
-  SpinKitCircle(color: Colors.greenAccent),
-  SpinKitChasingDots(color: Colors.blueAccent),
-  SpinKitRotatingCircle(color: Colors.orangeAccent),
-  SpinKitRotatingPlain(color: Colors.brown),
-  SpinKitPumpingHeart(color: Colors.blueGrey),
-  SpinKitPulse(color: Colors.orange),
+  SpinKitThreeBounce(color: Utils.strToColor('ThreeBounce'), size: 30.0),
+  SpinKitCircle(color: Utils.strToColor('Circle')),
+  SpinKitChasingDots(color: Utils.strToColor('ChasingDots')),
+  SpinKitRotatingCircle(color: Utils.strToColor('RotatingCircle')),
+  SpinKitRotatingPlain(color: Utils.strToColor('RotatingPlain')),
+  SpinKitPumpingHeart(color: Utils.strToColor('PumpingHeart')),
+  SpinKitPulse(color: Utils.strToColor('Pulse')),
   SpinKitDoubleBounce(color: Colors.grey),
   SpinKitWave(color: Colors.blue, type: SpinKitWaveType.start),
   SpinKitWave(color: Colors.red, type: SpinKitWaveType.center),

@@ -9,15 +9,8 @@ class ItemTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Chip(
-      label: Text(
-        tag,
-        style: TextStyle(
-          color: Colors.white,
-        ),
-      ),
-      backgroundColor: Utils.strToColor(
-        tag,
-      ),
+      label: Text(tag, style: TextStyle(color: Colors.white)),
+      backgroundColor: Utils.strToColor(tag),
     );
   }
 }

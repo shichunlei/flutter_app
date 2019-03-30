@@ -37,7 +37,10 @@ class _MoviePhotoPageState extends State<MoviePhotoPage> {
       body: Stack(
         children: <Widget>[
           PhotoViewGallery(
-            pageOptions: _builderPageOptions(widget.photos),
+            pageOptions: widget.photos
+                .map((photo) => PhotoViewGalleryPageOptions(
+                    imageProvider: NetworkImage(photo.cover)))
+                .toList(),
             backgroundDecoration: BoxDecoration(color: Colors.black),
             onPageChanged: (index) {
               setState(() => count = index + 1);
@@ -64,18 +67,5 @@ class _MoviePhotoPageState extends State<MoviePhotoPage> {
         ],
       ),
     );
-  }
-
-  List<PhotoViewGalleryPageOptions> _builderPageOptions(List<Photos> photos) {
-    List<PhotoViewGalleryPageOptions> options = [];
-
-    for (int i = 0; i < photos.length; i++) {
-      options.add(
-        PhotoViewGalleryPageOptions(
-            imageProvider: NetworkImage(photos[i].cover), heroTag: 'photo$i'),
-      );
-    }
-
-    return options;
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/bean/news.dart';
+import 'package:flutter_app/movie/page/web_view.dart';
 import 'package:flutter_app/utils/log_util.dart';
+import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -14,22 +16,53 @@ class BannerView extends StatefulWidget {
 }
 
 class _BannerViewState extends State<BannerView> {
+  double radius = 5.0;
+  double height = 210.0;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 10.0),
-      height: 220.0,
+      height: height,
       child: Swiper(
         itemBuilder: (BuildContext context, int index) {
           return ClipRRect(
             /// 圆角
-            borderRadius: BorderRadius.circular(4.0),
+            borderRadius: BorderRadius.circular(radius),
             child: Stack(
               children: <Widget>[
                 FadeInImage.memoryNetwork(
                   placeholder: kTransparentImage,
                   image: widget.banner[index].cover,
+                  height: height,
                   fit: BoxFit.fill,
+                ),
+                Opacity(
+                  opacity: 0.4,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(radius))),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      Text(
+                        widget.banner[index].title,
+                        style: TextStyle(color: Colors.white, fontSize: 20.0),
+                      ),
+                      Text(
+                        widget.banner[index].summary,
+                        maxLines: 2,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -40,7 +73,13 @@ class _BannerViewState extends State<BannerView> {
         scale: 0.9,
         autoplay: true,
         onTap: (index) {
-          LogUtil.v("你点击了${widget.banner[index].link}");
+          pushNewPage(
+            context,
+            WebViewPage(
+              url: widget.banner[index].link,
+              title: widget.banner[index].title,
+            ),
+          );
         },
       ),
     );

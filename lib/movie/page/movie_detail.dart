@@ -211,8 +211,6 @@ class _MovieDetailState extends State<MovieDetail> {
     double width = (Utils.width - 5 * 4) / 2;
     double height = width * 405 / 720 + 10;
 
-    var comment_children;
-
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -221,7 +219,9 @@ class _MovieDetailState extends State<MovieDetail> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             /// 标签
-            Wrap(children: _builderTag(movie.tags), spacing: 10.0),
+            Wrap(
+                children: movie.tags.map((tag) => ItemTag(tag: tag)).toList(),
+                spacing: 10.0),
 
             /// 看过人数
             Text(
@@ -297,15 +297,5 @@ class _MovieDetailState extends State<MovieDetail> {
         ),
       ),
     );
-  }
-
-  List<Widget> _builderTag(List<String> tags) {
-    List<Widget> widgets = [];
-
-    for (int i = 0; i < tags.length; i++) {
-      widgets.add(ItemTag(tag: tags[i].toString()));
-    }
-
-    return widgets;
   }
 }

@@ -1,11 +1,11 @@
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_app/contact/ui/contact_category.dart';
-import 'package:flutter_app/contact/ui/contact_image_text.dart';
-import 'package:flutter_app/contact/ui/contact_item.dart';
+import 'package:flutter_app/contact/ui/build_address.dart';
+import 'package:flutter_app/contact/ui/build_email.dart';
+import 'package:flutter_app/contact/ui/build_other.dart';
+import 'package:flutter_app/contact/ui/build_phone.dart';
+import 'package:flutter_app/contact/ui/build_row.dart';
 import 'package:flutter_app/contact/ui/line_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ContactPage extends StatefulWidget {
   final String name;
@@ -115,236 +115,22 @@ class _ContactPageState extends State<ContactPage> {
           SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
-                _buildRowView(),
+                BuildRowView(),
                 LineWidget(
                   height: 1.0,
                   color: Colors.black12,
                   lineType: LineType.horizontal,
                 ),
-                _buildPhoneView(widget.phone),
-                _buildEmailView(),
-                _buildAddressView(),
-                _buildOtherView(),
+                BuildPhoneView(phone: widget.phone, launched: _launched),
+                BuildEmailView(),
+                BuildAddressView(),
+                BuildOtherView(),
                 FutureBuilder<Null>(future: _launched, builder: _launchStatus),
               ],
             ),
           ),
         ],
       ),
-    );
-  }
-
-  bool isFavorite = false;
-  IconData favoriteIcon = Icons.favorite_border;
-  Color favoriteColor = Colors.grey;
-  String favoriteText = "收藏";
-
-  void _toggleFavorite() {
-    setState(() {
-      if (isFavorite) {
-        isFavorite = false;
-        favoriteIcon = Icons.favorite_border;
-        favoriteColor = Colors.grey;
-        favoriteText = "收藏";
-      } else {
-        isFavorite = true;
-        favoriteIcon = Icons.favorite;
-        favoriteColor = Colors.redAccent;
-        favoriteText = "取消收藏";
-      }
-    });
-  }
-
-  Widget _buildRowView() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        ContactImageText(
-          icon: Icon(
-            Icons.share,
-            color: Colors.grey,
-          ),
-          text: Text("分享"),
-          onPressed: () {},
-        ),
-        LineWidget(
-          height: 34.0,
-          width: 1.0,
-          lineType: LineType.vertical,
-        ),
-        ContactImageText(
-          icon: Icon(
-            Icons.history,
-            color: Colors.grey,
-          ),
-          text: Text("通话记录"),
-          onPressed: () {},
-        ),
-        LineWidget(
-          height: 34.0,
-          width: 1.0,
-          lineType: LineType.vertical,
-        ),
-        ContactImageText(
-          icon: Icon(
-            favoriteIcon,
-            color: favoriteColor,
-          ),
-          text: Text(favoriteText),
-          onPressed: () => _toggleFavorite(),
-        ),
-      ],
-    );
-  }
-
-  Future<Null> _launch(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  Widget _buildPhoneView(String _phone) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.dark,
-      child: ContactCategory(
-        icon: Icons.call,
-        children: <Widget>[
-          ContactItem(
-            icon: Icons.call,
-            tooltip: "call",
-            onPressed: () {
-              setState(() {
-                _launched = _launch('tel:$_phone');
-              });
-            },
-            lines: <String>[
-              '$_phone',
-              'Mobile',
-            ],
-          ),
-          ContactItem(
-            icon: Icons.message,
-            tooltip: "send message",
-            onPressed: () {
-              setState(() {
-                _launched = _launch('sms:$_phone');
-              });
-            },
-            lines: const <String>[
-              '13522038091',
-              'Work',
-            ],
-          ),
-          ContactItem(
-            icon: Icons.message,
-            tooltip: "send message",
-            onPressed: () {},
-            lines: const <String>[
-              '18510634252',
-              'Home',
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildEmailView() {
-    return ContactCategory(
-      icon: Icons.contact_mail,
-      children: <Widget>[
-        ContactItem(
-          icon: Icons.email,
-          tooltip: "Send personal e-mail",
-          onPressed: () {},
-          lines: const <String>[
-            '1558053958@qq.com',
-            'Personal',
-          ],
-        ),
-        ContactItem(
-          icon: Icons.email,
-          tooltip: 'Send work e-mail',
-          onPressed: () {},
-          lines: const <String>[
-            'scl@chingsoft.com',
-            'Work',
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildAddressView() {
-    return ContactCategory(
-      icon: Icons.location_on,
-      children: <Widget>[
-        ContactItem(
-          icon: Icons.map,
-          tooltip: 'Open map',
-          onPressed: () {},
-          lines: const <String>[
-            '中国北京市海淀区',
-            '四季青镇龚村173号',
-            'Home',
-          ],
-        ),
-        ContactItem(
-          icon: Icons.map,
-          tooltip: 'Open map',
-          onPressed: () {},
-          lines: const <String>[
-            '中国北京市海淀区',
-            '中关村梦想实验室8层806室',
-            'Work',
-          ],
-        ),
-        ContactItem(
-          icon: Icons.map,
-          tooltip: 'Open map',
-          onPressed: () {},
-          lines: const <String>[
-            '中国河北省衡水市',
-            '阜城县漫河乡前宣屯村',
-            'Jet Travel',
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildOtherView() {
-    return ContactCategory(
-      icon: Icons.today,
-      children: <Widget>[
-        ContactItem(
-          lines: const <String>[
-            'Birthday',
-            'January 9th, 1989',
-          ],
-        ),
-        ContactItem(
-          lines: const <String>[
-            'Wedding anniversary',
-            'June 21st, 2014',
-          ],
-        ),
-        ContactItem(
-          lines: const <String>[
-            'First day in office',
-            'January 20th, 2015',
-          ],
-        ),
-        ContactItem(
-          lines: const <String>[
-            'Last day in office',
-            'August 9th, 2018',
-          ],
-        ),
-      ],
     );
   }
 

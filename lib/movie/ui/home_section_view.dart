@@ -20,7 +20,7 @@ class HomeSectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: const EdgeInsets.fromLTRB(15, 15, 15, 5),
+      padding: const EdgeInsets.fromLTRB(15, 15, 5, 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

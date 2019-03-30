@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/login/style/theme.dart' as theme;
+import 'package:flutter_app/utils/theme.dart' as theme;
 
 class SubmitButton extends StatelessWidget {
   final String title;

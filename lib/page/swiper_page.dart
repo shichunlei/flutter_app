@@ -16,18 +16,24 @@ class SwiperPage extends StatelessWidget {
                 indicatorAlignment: AlignmentDirectional.bottomEnd,
                 speed: 400,
                 indicator: CircleSwiperIndicator(),
-                children: _buildItemsNewYearPic(),
+                children: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) {
+                  Image.network('images/newyear_picture$i.jpg',
+                      fit: BoxFit.fill);
+                }).toList(),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 18.0,horizontal: 20.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 18.0, horizontal: 20.0),
               child: SizedBox(
                 height: 200.0,
                 child: Swiper(
                   circular: true,
                   //reverse: true, //反向
                   indicator: RectangleSwiperIndicator(),
-                  children: _buildItems(),
+                  children: banner_images
+                      .map((image) => Image.network(image, fit: BoxFit.fill))
+                      .toList(),
                 ),
               ),
             ),
@@ -37,7 +43,9 @@ class SwiperPage extends StatelessWidget {
                 indicatorAlignment: AlignmentDirectional.topEnd,
                 circular: true,
                 indicator: NumberSwiperIndicator(),
-                children: _buildItems(),
+                children: banner_images
+                    .map((image) => Image.network(image, fit: BoxFit.fill))
+                    .toList(),
               ),
             ),
             AspectRatio(
@@ -57,27 +65,6 @@ class SwiperPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  List<Widget> _buildItems() {
-    List<Widget> widgets = [];
-
-    for (var i = 0; i < banner_images.length; i++) {
-      widgets.add(Image.network(banner_images[i], fit: BoxFit.fill));
-    }
-
-    return widgets;
-  }
-
-  List<Widget> _buildItemsNewYearPic() {
-    List<Widget> widgets = [];
-
-    for (var i = 1; i < 10; i++) {
-      widgets
-          .add(Image.asset('images/newyear_picture$i.jpg', fit: BoxFit.fill));
-    }
-
-    return widgets;
   }
 }
 

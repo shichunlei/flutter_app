@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:clippy_flutter/clippy_flutter.dart';
+import 'package:flutter_app/utils/utils.dart';
 
 class ClippyWidget extends StatelessWidget {
   @override
@@ -25,7 +26,7 @@ class ClippyWidget extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {},
                     child: Container(
-                      color: Colors.red,
+                      color: Utils.strToColor("Diagonal"),
                       width: 100.0,
                       height: 80.0,
                       child: Center(child: Text('Diagonal')),
@@ -39,7 +40,7 @@ class ClippyWidget extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {},
                     child: Container(
-                      color: Colors.lightGreen,
+                      color: Utils.strToColor("Chevron"),
                       width: 70.0,
                       height: 100.0,
                       child: Center(child: Text('Chevron')),
@@ -52,7 +53,7 @@ class ClippyWidget extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () => {},
                     child: Container(
-                      color: Colors.yellow,
+                      color: Utils.strToColor("Ticket"),
                       width: 100.0,
                       height: 50.0,
                       child: Center(child: Text('Ticket')),
@@ -65,7 +66,7 @@ class ClippyWidget extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {},
                     child: Container(
-                      color: Colors.blue,
+                      color: Utils.strToColor("ButtCheek"),
                       width: 100.0,
                       height: 100.0,
                       child: Center(child: Text('ButtCheek')),
@@ -78,7 +79,7 @@ class ClippyWidget extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {},
                     child: Container(
-                      color: Colors.pinkAccent,
+                      color: Utils.strToColor("Triangle"),
                       width: 100.0,
                       height: 100.0,
                       child: Center(child: Text('Triangle')),
@@ -93,7 +94,7 @@ class ClippyWidget extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {},
                     child: Container(
-                      color: Colors.deepOrange,
+                      color: Utils.strToColor("Arrow"),
                       width: 100.0,
                       height: 50.0,
                       child: Center(child: Text('Arrow')),
@@ -105,7 +106,7 @@ class ClippyWidget extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () => {},
                     child: Container(
-                      color: Colors.green,
+                      color: Utils.strToColor("Message"),
                       width: 100.0,
                       height: 100.0,
                       child: Center(
@@ -127,7 +128,7 @@ class ClippyWidget extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {},
                     child: Container(
-                      color: Colors.yellow,
+                      color: Utils.strToColor("Trapezoid"),
                       width: 100.0,
                       height: 100.0,
                       child: Center(child: Text('Trapezoid')),
@@ -142,7 +143,7 @@ class ClippyWidget extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {},
                     child: Container(
-                      color: Colors.purpleAccent,
+                      color: Utils.strToColor("Arc"),
                       width: 100.0,
                       height: 50.0,
                       child: Center(child: Text('Arc')),
@@ -155,7 +156,7 @@ class ClippyWidget extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {},
                     child: Container(
-                      color: Colors.red,
+                      color: Utils.strToColor("Bevel"),
                       width: 100.0,
                       height: 100.0,
                       child: Center(child: Text('Bevel')),
@@ -166,7 +167,7 @@ class ClippyWidget extends StatelessWidget {
                 Rabbet(
                   cutLength: 10.0,
                   child: Container(
-                    color: Colors.cyan,
+                    color: Utils.strToColor("Rabbet"),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Rabbet')),
@@ -177,7 +178,7 @@ class ClippyWidget extends StatelessWidget {
                   triangleHeight: 30.0,
                   edge: Edge.LEFT,
                   child: Container(
-                    color: Colors.pink,
+                    color: Utils.strToColor("Point"),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Point')),
@@ -188,7 +189,7 @@ class ClippyWidget extends StatelessWidget {
                   cutLength: 10.0,
                   edge: Edge.RIGHT,
                   child: Container(
-                    color: Colors.lightGreen,
+                    color: Utils.strToColor("Paralelogram"),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Paralelogram')),
@@ -198,7 +199,7 @@ class ClippyWidget extends StatelessWidget {
                 Polygon(
                   sides: 5,
                   child: Container(
-                    color: Colors.red,
+                    color: Utils.strToColor("Polygon"),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Polygon')),
@@ -218,7 +219,7 @@ class ClippyWidget extends StatelessWidget {
                 SizedBox(height: 8.0),
                 Rhombus(
                   child: Container(
-                    color: Colors.orangeAccent,
+                    color: Utils.strToColor("Rhombus"),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Rhombus')),
@@ -226,7 +227,7 @@ class ClippyWidget extends StatelessWidget {
                 ),
                 Star(
                   child: Container(
-                    color: Colors.yellow,
+                    color: Utils.strToColor("Star"),
                     width: 100.0,
                     height: 100.0,
                     child: Center(child: Text('Star')),

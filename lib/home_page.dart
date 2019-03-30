@@ -164,7 +164,24 @@ class HomeStatePage extends State<HomePage> {
               ),
             ),
             ExpansionPanelList(
-              children: _buildExpansionPanelView(),
+              children: expandStateList
+                  .map((expand) => ExpansionPanel(
+                        headerBuilder: (context, isExpanded) {
+                          return ListTile(
+                            title: Text(expand.title),
+                          );
+                        },
+                        body: ListBody(
+                          /// 排列的主轴方向
+                          mainAxis: Axis.vertical,
+
+                          /// 是否反向
+                          reverse: false,
+                          children: _buildListBody(expand),
+                        ),
+                        isExpanded: expand.isOpen,
+                      ))
+                  .toList(),
               expansionCallback: (index, isExpand) =>
                   _setCurrentIndex(index, isExpand),
             )
@@ -172,32 +189,6 @@ class HomeStatePage extends State<HomePage> {
         ),
       ),
     );
-  }
-
-  List<ExpansionPanel> _buildExpansionPanelView() {
-    List<ExpansionPanel> widgets = [];
-    for (var i = 0; i < expandStateList.length; i++) {
-      widgets.add(
-        ExpansionPanel(
-          headerBuilder: (context, isExpanded) {
-            return ListTile(
-              title: Text(expandStateList[i].title),
-            );
-          },
-          body: ListBody(
-            /// 排列的主轴方向
-            mainAxis: Axis.vertical,
-
-            /// 是否反向
-            reverse: false,
-            children: _buildListBody(expandStateList[i]),
-          ),
-          isExpanded: expandStateList[i].isOpen,
-        ),
-      );
-    }
-
-    return widgets;
   }
 
   List<Widget> _buildListBody(ExpandStateBean bean) {
