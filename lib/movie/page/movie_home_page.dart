@@ -73,6 +73,7 @@ class _MovieHomePageState extends State<MovieHomePage> {
               onPressed: () => pushNewPage(context, MovieSoonPage())),
           ItemGridView(movies: soonMovies),
           HomeSectionView("电影榜单", hiddenMore: true),
+
           HomeSectionView("分类浏览",
               onPressed: () => pushNewPage(context, MovieClassifyPage())),
           ClassifySection(

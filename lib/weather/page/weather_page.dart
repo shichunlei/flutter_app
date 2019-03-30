@@ -4,7 +4,7 @@ import 'package:flutter_app/global/api.dart';
 import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/weather/bean/he_weather.dart';
+import 'package:flutter_app/weather/bean/now.dart';
 import 'package:flutter_app/weather/bean/result.dart';
 
 class WeatherPage extends StatefulWidget {
