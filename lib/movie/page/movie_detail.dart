@@ -143,8 +143,8 @@ class _MovieDetailState extends State<MovieDetail> {
                     spacing: 5,
                     runSpacing: 5,
                     children: movie.directors
-                        .map((directors) => PersonGridView(
-                            directors: directors, textColor: Colors.white))
+                        .map((casts) => PersonGridView(
+                            casts: casts, textColor: Colors.white))
                         .toList(),
                   ),
                 ),
@@ -158,8 +158,8 @@ class _MovieDetailState extends State<MovieDetail> {
                     spacing: 5,
                     runSpacing: 5,
                     children: movie.writers
-                        .map((writer) => PersonGridView(
-                            writers: writer, textColor: Colors.white))
+                        .map((casts) => PersonGridView(
+                            casts: casts, textColor: Colors.white))
                         .toList(),
                   ),
                 ),

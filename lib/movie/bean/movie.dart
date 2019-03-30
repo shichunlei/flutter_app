@@ -1,14 +1,12 @@
 import 'package:flutter_app/movie/bean/bloopers.dart';
 import 'package:flutter_app/movie/bean/casts.dart';
 import 'package:flutter_app/movie/bean/clips.dart';
-import 'package:flutter_app/movie/bean/directors.dart';
 import 'package:flutter_app/movie/bean/images.dart';
 import 'package:flutter_app/movie/bean/photos.dart';
 import 'package:flutter_app/movie/bean/rating.dart';
 import 'package:flutter_app/movie/bean/reviews.dart';
 import 'package:flutter_app/movie/bean/trailers.dart';
 import 'package:flutter_app/movie/bean/videos.dart';
-import 'package:flutter_app/movie/bean/writers.dart';
 
 class Movie {
   /// 原名
@@ -101,7 +99,7 @@ class Movie {
   /// 看过人数
   int collect_count;
 
-  ///
+  /// 剧照数量
   int photos_count;
 
   /// 短评数量
@@ -149,14 +147,8 @@ class Movie {
   /// 花絮，对高级用户以上开放
   List<Bloopers> bloopers;
 
-  /// 主演，最多可获得4个
-  List<Casts> casts;
-
   /// 片段，对高级用户以上开放
   List<Clips> clips;
-
-  /// 导演
-  List<Directors> directors;
 
   /// 电影剧照，前10张
   List<Photos> photos;
@@ -169,8 +161,14 @@ class Movie {
   List<Trailers> trailers;
   List<Videos> videos;
 
+  /// 导演
+  List<Casts> directors;
+
+  /// 主演，最多可获得4个
+  List<Casts> casts;
+
   /// 编剧
-  List<Writers> writers;
+  List<Casts> writers;
 
   static Movie fromMap(Map<String, dynamic> map) {
     Movie movie = Movie();
@@ -220,7 +218,7 @@ class Movie {
     movie.casts = map['casts'] == null ? [] : Casts.fromMapList(map['casts']);
     movie.clips = map['clips'] == null ? [] : Clips.fromMapList(map['clips']);
     movie.directors =
-        map['directors'] == null ? [] : Directors.fromMapList(map['directors']);
+        map['directors'] == null ? [] : Casts.fromMapList(map['directors']);
     movie.photos =
         map['photos'] == null ? [] : Photos.fromMapList(map['photos']);
     movie.popular_comments = map['popular_comments'] == null
@@ -234,7 +232,7 @@ class Movie {
     movie.videos =
         map['videos'] == null ? [] : Videos.fromMapList(map['videos']);
     movie.writers =
-        map['writers'] == null ? [] : Writers.fromMapList(map['writers']);
+        map['writers'] == null ? [] : Casts.fromMapList(map['writers']);
 
     List<dynamic> aka = map['aka'] == null ? [] : map['aka'];
     movie.aka = List();
