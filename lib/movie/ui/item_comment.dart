@@ -4,13 +4,18 @@ import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class ItemComment extends StatelessWidget {
   final Reviews comment;
+  final Color background;
 
-  const ItemComment(this.comment);
+  const ItemComment({
+    Key key,
+    this.comment,
+    this.background = Colors.blue,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.indigo,
+      color: background,
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.only(top: 2.0),
       child: Column(
@@ -39,17 +44,21 @@ class ItemComment extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       SmoothStarRating(
-                          rating: comment.rating.value,
-                          starCount: 5,
-                          size: 20,
-                          allowHalfRating: false),
+                        rating: comment.rating.value == 0
+                            ? 0.0
+                            : comment.rating.value,
+                        starCount: 5,
+                        size: 20,
+                        allowHalfRating: false,
+                      ),
                       SizedBox(width: 10),
                       Text(
                         comment.created_at,
                         style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),

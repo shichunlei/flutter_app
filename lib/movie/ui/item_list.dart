@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_detail.dart';
-import 'package:flutter_app/utils/route_util.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -104,7 +102,7 @@ class ItemList extends StatelessWidget {
 
     return GestureDetector(
       //点击事件
-      onTap: () => pushNewPage(context, MovieDetail(id: movie.id)),
+      onTap: onTap,
 
       child: Card(
         margin: EdgeInsets.all(5.0),

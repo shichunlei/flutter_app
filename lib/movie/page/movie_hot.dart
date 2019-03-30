@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/movie/page/movie_detail.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
 import 'package:flutter_app/movie/ui/item_list.dart';
 import 'package:flutter_app/utils/loading_util.dart';
+import 'package:flutter_app/utils/route_util.dart';
 
 class MovieHotPage extends StatefulWidget {
   @override
@@ -53,7 +55,12 @@ class _MovieHotPageState extends State<MovieHotPage> {
             offstage: loadError && isEmpty,
             child: ListView(
               /// 表示列表包含的widget集合，整个滚动视图中的内容设置。
-              children: _buildMovieItems(movies),
+              children: movies.map((movie) {
+                return ItemList(
+                  movie: movie,
+                  onTap: () => pushNewPage(context, MovieDetail(id: movie.id)),
+                );
+              }).toList(),
 
               /// 表示控件滚动的方向，主要有两个值可设置。Axis.vertical表示垂直滚动视图；Axis.horizontal表示水平滚动视图。
               scrollDirection: Axis.vertical,
@@ -74,16 +81,6 @@ class _MovieHotPageState extends State<MovieHotPage> {
         ],
       ),
     );
-  }
-
-  _buildMovieItems(List<Movie> movies) {
-    List<Widget> widgets = [];
-    for (int i = 0; i < movies.length; i++) {
-      Movie movie = movies[i];
-
-      widgets.add(ItemList(movie: movie));
-    }
-    return widgets;
   }
 
   void getMovieHotList() async {

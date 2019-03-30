@@ -10,8 +10,11 @@ import 'package:transparent_image/transparent_image.dart';
 class PersonGridView extends StatelessWidget {
   final Casts casts;
   final Directors directors;
+  final Color textColor;
 
-  PersonGridView({Key key, this.casts, this.directors}) : super(key: key);
+  PersonGridView(
+      {Key key, this.casts, this.directors, this.textColor = Colors.grey})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +46,7 @@ class PersonGridView extends StatelessWidget {
               maxLines: 1,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
+              style: TextStyle(color: textColor),
             ),
           ],
         ),
@@ -70,6 +74,7 @@ class PersonGridView extends StatelessWidget {
               maxLines: 1,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
+              style: TextStyle(color: textColor),
             ),
           ],
         ),
