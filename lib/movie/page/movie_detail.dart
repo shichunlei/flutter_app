@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/bean/photos.dart';
 import 'package:flutter_app/movie/page/movie_photo.dart';
+import 'package:flutter_app/movie/page/movie_video.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
 import 'package:flutter_app/movie/ui/expandable_text.dart';
 import 'package:flutter_app/movie/ui/home_section_view.dart';
@@ -258,7 +259,10 @@ class _MovieDetailState extends State<MovieDetail> {
                   return ItemCover(
                     movie.bloopers[index].medium,
                     offstage: false,
-                    onTop: () {},
+                    onTop: () {
+                      pushNewPage(context,
+                          MovieVideoPage(movie.bloopers[index].resource_url));
+                    },
                   );
                 },
               ),

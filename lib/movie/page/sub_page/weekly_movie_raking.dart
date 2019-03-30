@@ -76,7 +76,7 @@ class _WeeklyMovieRakingPageState extends State<WeeklyMovieRakingPage>
             ),
           );
         },
-        physics: const ClampingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
 
         /// 表示网格的单元格总数。
         itemCount: movies.length,

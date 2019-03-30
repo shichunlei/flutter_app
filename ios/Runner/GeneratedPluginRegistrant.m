@@ -11,6 +11,7 @@
 #import <intro_slider/IntroSliderPlugin.h>
 #import <package_info/PackageInfoPlugin.h>
 #import <rounded_letter/RoundedLetterPlugin.h>
+#import <screen/ScreenPlugin.h>
 #import <shared_preferences/SharedPreferencesPlugin.h>
 #import <url_launcher/UrlLauncherPlugin.h>
 #import <video_player/VideoPlayerPlugin.h>
@@ -26,6 +27,7 @@
   [IntroSliderPlugin registerWithRegistrar:[registry registrarForPlugin:@"IntroSliderPlugin"]];
   [FLTPackageInfoPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPackageInfoPlugin"]];
   [RoundedLetterPlugin registerWithRegistrar:[registry registrarForPlugin:@"RoundedLetterPlugin"]];
+  [ScreenPlugin registerWithRegistrar:[registry registrarForPlugin:@"ScreenPlugin"]];
   [FLTSharedPreferencesPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTSharedPreferencesPlugin"]];
   [FLTUrlLauncherPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTUrlLauncherPlugin"]];
   [FLTVideoPlayerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTVideoPlayerPlugin"]];

@@ -6,8 +6,14 @@ import 'package:photo_view/photo_view_gallery.dart';
 class MoviePhotoPage extends StatefulWidget {
   final List<Photos> photos;
   final int index;
+  PageController controller;
 
-  MoviePhotoPage({Key key, this.photos, this.index = 0}) : super(key: key);
+  MoviePhotoPage({
+    Key key,
+    this.photos,
+    this.index = 0,
+  })  : controller = PageController(initialPage: index),
+        super(key: key);
 
   @override
   _MoviePhotoPageState createState() => _MoviePhotoPageState();
@@ -38,6 +44,7 @@ class _MoviePhotoPageState extends State<MoviePhotoPage> {
             },
             scrollPhysics: const BouncingScrollPhysics(),
             loadingChild: CupertinoActivityIndicator(),
+            pageController: widget.controller,
           ),
           Container(
             margin: const EdgeInsets.only(bottom: 40.0),
@@ -65,8 +72,7 @@ class _MoviePhotoPageState extends State<MoviePhotoPage> {
     for (int i = 0; i < photos.length; i++) {
       options.add(
         PhotoViewGalleryPageOptions(
-          imageProvider: NetworkImage(photos[i].cover),
-        ),
+            imageProvider: NetworkImage(photos[i].cover), heroTag: 'photo$i'),
       );
     }
 

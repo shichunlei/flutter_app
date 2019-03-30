@@ -47,8 +47,9 @@ dependencies: # 应用或包依赖的其它包或插件
   # 图片选择器
   image_picker: ^0.4.12+1
 
-  # 视频选择器
-  video_player: ^0.5.2
+  # 视频播放器器
+  video_player: ^0.10.0+4
+  chewie: ^0.9.6
 
   # banner
   flutter_swiper: ^1.1.6
