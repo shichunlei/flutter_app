@@ -62,7 +62,7 @@ class _MovieDetailState extends State<MovieDetail> {
 
     PaletteGenerator paletteGenerator =
         await PaletteGenerator.fromImageProvider(
-            NetworkImage(movie.photos[0].image));
+            NetworkImage(movie.images.small));
 
     loadError = movie == null;
     setState(() {
@@ -148,6 +148,21 @@ class _MovieDetailState extends State<MovieDetail> {
                         .toList(),
                   ),
                 ),
+                HomeSectionView("编剧",
+                    hiddenMore: true,
+                    backgroundColor: pageColor,
+                    textColor: Colors.white),
+                Container(
+                  padding: EdgeInsets.all(6.0),
+                  child: Wrap(
+                    spacing: 5,
+                    runSpacing: 5,
+                    children: movie.writers
+                        .map((writer) => PersonGridView(
+                            writers: writer, textColor: Colors.white))
+                        .toList(),
+                  ),
+                ),
                 HomeSectionView("主演",
                     hiddenMore: true,
                     backgroundColor: pageColor,
@@ -219,7 +234,7 @@ class _MovieDetailState extends State<MovieDetail> {
                 opacity: 0.4,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color(0x3a000000),
+                    color: pageColor,
                   ),
                 ),
               ),
