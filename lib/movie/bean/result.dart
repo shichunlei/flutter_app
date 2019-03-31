@@ -11,10 +11,19 @@ class Result {
   int total;
   List<Movie> subjects;
   Movie subject;
+
+  /// 相册
   List<Photos> photos;
   List<Works> works;
+
+  /// 影人
   Celebrity celebrity;
+
+  /// 影评
   List<Reviews> reviews;
+
+  /// 短评
+  List<Reviews> comments;
 
   static Result fromMap(Map<String, dynamic> map) {
     Result result = Result();
@@ -24,6 +33,8 @@ class Result {
     result.total = map['total'];
     result.reviews =
         map['reviews'] == null ? [] : Reviews.fromMapList(map['reviews']);
+    result.comments =
+        map['comments'] == null ? [] : Reviews.fromMapList(map['comments']);
     result.subjects =
         map['subjects'] == null ? [] : Movie.fromMapList(map['subjects']);
     result.photos =

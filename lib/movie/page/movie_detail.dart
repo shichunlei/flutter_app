@@ -322,7 +322,8 @@ class _MovieDetailState extends State<MovieDetail> {
               ),
             ),
             HomeSectionView("热评", onPressed: () {
-              pushNewPage(context, MovieCommentPage());
+              pushNewPage(context,
+                  MovieCommentPage(movie.id, itemBackgroundColor: cardColor));
             }, backgroundColor: pageColor, textColor: Colors.white),
             Padding(
               padding:
