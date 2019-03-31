@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_app/movie/bean/casts.dart';
-import 'package:flutter_app/movie/page/movie_celebrity.dart';
-import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/utils.dart';
 
 class PersonGridView extends StatelessWidget {
   final Casts casts;
   final Color textColor;
+  final VoidCallback onTap;
 
   PersonGridView({
     Key key,
     this.casts,
     this.textColor = Colors.grey,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -25,13 +25,7 @@ class PersonGridView extends StatelessWidget {
         children: <Widget>[
           GestureDetector(
             //点击事件
-            onTap: () => pushNewPage(
-                  context,
-                  MovieCelebrityPage(
-                    id: casts.id,
-                    name: casts.name,
-                  ),
-                ),
+            onTap: onTap,
             child: CircleAvatar(
               backgroundImage: NetworkImage(
                 casts.avatars.small.toString(),

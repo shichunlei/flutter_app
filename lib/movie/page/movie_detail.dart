@@ -3,7 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/bean/photos.dart';
+import 'package:flutter_app/movie/page/movie_celebrity.dart';
 import 'package:flutter_app/movie/page/movie_comment.dart';
+import 'package:flutter_app/movie/page/movie_detail_header.dart';
 import 'package:flutter_app/movie/page/movie_photo.dart';
 import 'package:flutter_app/movie/page/movie_video.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
@@ -17,7 +19,6 @@ import 'package:flutter_app/movie/ui/person_gridview.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/utils.dart';
-import 'package:transparent_image/transparent_image.dart';
 import 'package:palette_generator/palette_generator.dart';
 
 class MovieDetail extends StatefulWidget {
@@ -34,8 +35,8 @@ class _MovieDetailState extends State<MovieDetail> {
   bool loadError = false;
   bool isSummaryUnfold = false;
 
-  Color pageColor = Colors.white;
-  Color cardColor = Colors.white;
+  Color pageColor = Color(0xff35374c);
+  Color cardColor = Color(0xff35374c);
 
   double width = (Utils.width - 5 * 4) / 2;
   double height;
@@ -54,36 +55,12 @@ class _MovieDetailState extends State<MovieDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return _bulderBodyView(movie);
-  }
-
-  void getMovieDetail(String id) async {
-    movie = await ApiService.getMovieDetail(id);
-
-    PaletteGenerator paletteGenerator =
-        await PaletteGenerator.fromImageProvider(
-            NetworkImage(movie.images.small));
-
-    loadError = movie == null;
-    setState(() {
-      if (paletteGenerator.darkVibrantColor != null) {
-        pageColor = paletteGenerator.darkVibrantColor.color;
-      } else {
-        pageColor = Color(0xff35374c);
-      }
-      if (paletteGenerator.lightMutedColor != null) {
-        cardColor = paletteGenerator.lightMutedColor.color;
-      } else {
-        cardColor = Color(0xff35374c);
-      }
-    });
-  }
-
-  Widget _bulderBodyView(Movie movie) {
     if (movie == null) {
       return Scaffold(
+        backgroundColor: pageColor,
         appBar: AppBar(
           title: Text(""),
+          backgroundColor: pageColor,
         ),
         body: Center(
           child: Stack(
@@ -111,7 +88,13 @@ class _MovieDetailState extends State<MovieDetail> {
       backgroundColor: pageColor,
       body: CustomScrollView(
         slivers: <Widget>[
-          _builderHeader(),
+          MovieDetailHeader(
+            movie,
+            pageColor: pageColor,
+            onTap: () {
+              getMoviePhotos(widget.id);
+            },
+          ),
           SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
@@ -143,8 +126,19 @@ class _MovieDetailState extends State<MovieDetail> {
                     spacing: 5,
                     runSpacing: 5,
                     children: movie.directors
-                        .map((casts) => PersonGridView(
-                            casts: casts, textColor: Colors.white))
+                        .map(
+                          (casts) => PersonGridView(
+                                casts: casts,
+                                textColor: Colors.white,
+                                onTap: () => pushNewPage(
+                                      context,
+                                      MovieCelebrityPage(
+                                        id: casts.id,
+                                        name: casts.name,
+                                      ),
+                                    ),
+                              ),
+                        )
                         .toList(),
                   ),
                 ),
@@ -159,7 +153,15 @@ class _MovieDetailState extends State<MovieDetail> {
                     runSpacing: 5,
                     children: movie.writers
                         .map((casts) => PersonGridView(
-                            casts: casts, textColor: Colors.white))
+                            casts: casts,
+                            textColor: Colors.white,
+                            onTap: () => pushNewPage(
+                                  context,
+                                  MovieCelebrityPage(
+                                    id: casts.id,
+                                    name: casts.name,
+                                  ),
+                                )))
                         .toList(),
                   ),
                 ),
@@ -174,7 +176,15 @@ class _MovieDetailState extends State<MovieDetail> {
                     runSpacing: 5,
                     children: movie.casts
                         .map((casts) => PersonGridView(
-                            casts: casts, textColor: Colors.white))
+                            casts: casts,
+                            textColor: Colors.white,
+                            onTap: () => pushNewPage(
+                                  context,
+                                  MovieCelebrityPage(
+                                    id: casts.id,
+                                    name: casts.name,
+                                  ),
+                                )))
                         .toList(),
                   ),
                 ),
@@ -187,7 +197,25 @@ class _MovieDetailState extends State<MovieDetail> {
     );
   }
 
-  // 展开 or 收起
+  void getMovieDetail(String id) async {
+    movie = await ApiService.getMovieDetail(id);
+
+    PaletteGenerator paletteGenerator =
+        await PaletteGenerator.fromImageProvider(
+            NetworkImage(movie.images.small));
+
+    loadError = movie == null;
+    setState(() {
+      if (paletteGenerator.darkVibrantColor != null) {
+        pageColor = paletteGenerator.darkVibrantColor.color;
+      }
+      if (paletteGenerator.lightMutedColor != null) {
+        cardColor = paletteGenerator.lightMutedColor.color;
+      }
+    });
+  }
+
+  /// 展开 or 收起
   changeSummaryMaxLines() {
     setState(() {
       isSummaryUnfold = !isSummaryUnfold;
@@ -203,58 +231,6 @@ class _MovieDetailState extends State<MovieDetail> {
 
       pushNewPage(context, MoviePhotoPage(photos: photos));
     }
-  }
-
-  Widget _builderHeader() {
-    return SliverAppBar(
-      floating: true,
-      snap: true,
-      pinned: true,
-      expandedHeight: 200,
-      backgroundColor: pageColor,
-      flexibleSpace: FlexibleSpaceBar(
-        title: Text('${movie.title}(${movie.year})'),
-        background: Stack(
-          children: <Widget>[
-            FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image: movie.photos[0].image,
-              fit: BoxFit.fitWidth,
-              width: double.infinity,
-              height: double.infinity,
-            ),
-
-            /// 加上一层毛玻璃效果
-            BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 5.0,
-                sigmaY: 6.0,
-              ),
-              child: Opacity(
-                opacity: 0.4,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: pageColor,
-                  ),
-                ),
-              ),
-            ),
-            GestureDetector(
-              child: Center(
-                child: FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: movie.images.large.toString(),
-                  fit: BoxFit.fill,
-                  height: 191.5,
-                  width: 135.0,
-                ),
-              ),
-              onTap: () => getMoviePhotos(widget.id),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   Widget _builderContent() {
