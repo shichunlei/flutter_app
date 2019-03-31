@@ -41,14 +41,15 @@ class _MovieRankingSubPageState extends State<MovieRankingSubPage>
     } else {
       return ListView.builder(
         itemBuilder: (context, index) {
+          Movie movie = (widget.url == ApiService.US_MOVIES_URL ||
+                  widget.url == ApiService.WEEKLY_MOVIES_URL)
+              ? movies[index].subject
+              : movies[index];
           return ItemRankingMovie(
-            (widget.url == ApiService.US_MOVIES_URL ||
-                    widget.url == ApiService.WEEKLY_MOVIES_URL)
-                ? movies[index].subject
-                : movies[index],
+            movie,
             index: index,
             onTap: () {
-              pushNewPage(context, MovieDetail(movies[index].id));
+              pushNewPage(context, MovieDetail(movie.id));
             },
           );
         },

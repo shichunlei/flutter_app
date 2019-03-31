@@ -17,6 +17,7 @@ import 'package:flutter_app/movie/ui/item_cover.dart';
 import 'package:flutter_app/movie/ui/movie_desc.dart';
 import 'package:flutter_app/movie/ui/person_gridview.dart';
 import 'package:flutter_app/utils/loading_util.dart';
+import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:palette_generator/palette_generator.dart';
@@ -46,6 +47,8 @@ class _MovieDetailState extends State<MovieDetail> {
   void initState() {
     super.initState();
     height = width * 405 / 720 + 10;
+
+    LogUtil.v('${widget.id}');
     getMovieDetail(widget.id);
   }
 
