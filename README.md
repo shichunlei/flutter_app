@@ -47,9 +47,9 @@ A new Flutter application.
 |TimeLine|
 
 
-|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-16-52-55-186.png)|
-| :--: |
-|设备信息|
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-16-52-55-186.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-37-42-680.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-38-36-857.png)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-37-13-394.png)|
+| :--: | :--: | :--: | :--: |
+|设备信息|Icon|Stepper|AppBar|
 
 
 <table>
