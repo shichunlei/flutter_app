@@ -1,3 +1,4 @@
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -5,8 +6,20 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Default Appbar'),
-        elevation: 0.0,
+        title: Text('渐变颜色的appBar'),
+
+        /// 可以用这种方式设置渐变的AppBar
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.cyan,
+                Colors.blue,
+                Colors.blueAccent,
+              ],
+            ),
+          ),
+        ),
       ),
       body: ListView(
         children: <Widget>[
@@ -58,7 +71,7 @@ class AppBarWidget extends StatelessWidget {
                   onPressed: () {},
                 ),
                 IconButton(
-                  icon: Icon(Icons.settings),
+                  icon: Icon(FeatherIcons.settings, color: Colors.white),
                   onPressed: () {},
                 ),
               ],
@@ -130,6 +143,19 @@ class AppBarWidget extends StatelessWidget {
                   onPressed: () {},
                 )
               ],
+            ),
+          ),
+
+          Container(
+            margin: EdgeInsets.only(bottom: 16.0),
+            child: AppBar(
+              title: Text('AppBar leading'),
+              elevation: 0.0,
+              leading: IconButton(
+                  icon: Icon(FeatherIcons.chevronLeft),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
             ),
           ),
         ],
