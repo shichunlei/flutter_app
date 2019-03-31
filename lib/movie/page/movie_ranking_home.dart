@@ -4,6 +4,10 @@ import 'package:flutter_app/movie/page/sub_page/us_movie_raking.dart';
 import 'package:flutter_app/movie/page/sub_page/weekly_movie_raking.dart';
 
 class MovieRakingHome extends StatefulWidget {
+  final int index;
+
+  MovieRakingHome({Key key, this.index = 0}) : super(key: key);
+
   @override
   _MovieRakingHomeState createState() => _MovieRakingHomeState();
 }
@@ -17,7 +21,8 @@ class _MovieRakingHomeState extends State<MovieRakingHome>
     super.initState();
 
     // Initialize the Tab Controller
-    controller = TabController(length: 3, vsync: this);
+    controller =
+        TabController(length: 3, initialIndex: widget.index, vsync: this);
   }
 
   @override
@@ -32,15 +37,23 @@ class _MovieRakingHomeState extends State<MovieRakingHome>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          centerTitle: true,
-          title: Text('电影排行榜'),
-          bottom: _tabBar(),
+        centerTitle: true,
+        title: Text('电影排行榜'),
+        bottom: _tabBar(),
 
-          /// 可以用这种方式设置渐变的AppBar
-          flexibleSpace: Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Colors.cyan, Colors.blue, Colors.blueAccent])))),
+        /// 可以用这种方式设置渐变的AppBar
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.cyan,
+                Colors.blue,
+                Colors.blueAccent,
+              ],
+            ),
+          ),
+        ),
+      ),
       body: _tabBarView(<Widget>[
         NewMovieRakingPage(),
         WeeklyMovieRakingPage(),

@@ -12,7 +12,11 @@ class ClassifySection extends StatefulWidget {
   _ClassifySectionState createState() => _ClassifySectionState();
 }
 
-class _ClassifySectionState extends State<ClassifySection> {
+class _ClassifySectionState extends State<ClassifySection>
+    with AutomaticKeepAliveClientMixin<ClassifySection> {
+  @override
+  bool get wantKeepAlive => true;
+
   List<Movie> tagMovies = [];
 
   @override
@@ -34,6 +38,7 @@ class _ClassifySectionState extends State<ClassifySection> {
         FlatButton(
           onPressed: () {},
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[Text(widget.title), Icon(Icons.chevron_right)],
           ),
         ),
