@@ -47,7 +47,6 @@ class ItemComment extends StatelessWidget {
                         rating: comment.rating.value == 0
                             ? 0.0
                             : comment.rating.value,
-                        starCount: 5,
                         size: 20,
                         allowHalfRating: false,
                       ),

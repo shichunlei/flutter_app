@@ -152,13 +152,13 @@ class _MovieDescState extends State<MovieDesc> {
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                       child: Row(
+                        /// 两端对齐
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Expanded(
-                            child: Text(
-                              '豆瓣评分',
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 18.0),
-                            ),
+                          Text(
+                            '豆瓣评分',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 18.0),
                           ),
                           Icon(
                             Icons.arrow_right,
@@ -168,16 +168,14 @@ class _MovieDescState extends State<MovieDesc> {
                       ),
                     ),
                     Row(
-                      /// 两端对齐
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         _buildAverage(widget.movie.rating.average),
-                        SizedBox(width: 10),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
                             _buildStarRate(
-                              5,
+                              5.0,
                               5,
                               totalRating == 0
                                   ? 0.0
@@ -185,7 +183,7 @@ class _MovieDescState extends State<MovieDesc> {
                                       totalRating,
                             ),
                             _buildStarRate(
-                              4,
+                              4.0,
                               4,
                               totalRating == 0
                                   ? 0.0
@@ -193,7 +191,7 @@ class _MovieDescState extends State<MovieDesc> {
                                       totalRating,
                             ),
                             _buildStarRate(
-                              3,
+                              3.0,
                               3,
                               totalRating == 0
                                   ? 0.0
@@ -201,7 +199,7 @@ class _MovieDescState extends State<MovieDesc> {
                                       totalRating,
                             ),
                             _buildStarRate(
-                              2,
+                              2.0,
                               2,
                               totalRating == 0
                                   ? 0.0
@@ -209,7 +207,7 @@ class _MovieDescState extends State<MovieDesc> {
                                       totalRating,
                             ),
                             _buildStarRate(
-                              1,
+                              1.0,
                               1,
                               totalRating == 0
                                   ? 0.0
@@ -282,12 +280,12 @@ class _MovieDescState extends State<MovieDesc> {
     );
   }
 
-  Widget _buildStarRate(double rating, int stars, double rate) {
+  Widget _buildStarRate(double rating, int starCount, double rate) {
     return Row(
       children: <Widget>[
         SmoothStarRating(
           rating: rating,
-          starCount: stars,
+          starCount: starCount,
           size: 12,
           color: Colors.blueGrey,
         ),
@@ -321,8 +319,7 @@ class _MovieDescState extends State<MovieDesc> {
           ],
         ),
         SmoothStarRating(
-          rating: value / 2,
-          starCount: 5,
+          rating: value / 2.0,
           size: 18,
           allowHalfRating: false,
           color: Colors.yellow,

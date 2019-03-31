@@ -39,8 +39,7 @@ class MovieGridView extends StatelessWidget {
             ),
             SizedBox(height: 3),
             SmoothStarRating(
-              rating: movie.rating.average / 2,
-              starCount: 5,
+              rating: movie.rating.average / 2.0,
               size: 18,
               allowHalfRating: false,
               color: Colors.deepOrange,

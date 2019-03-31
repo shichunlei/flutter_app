@@ -73,8 +73,7 @@ class ItemList extends StatelessWidget {
                   : movie.rating.average.toString())),
 
           SmoothStarRating(
-            rating: movie.rating.average / 2,
-            starCount: 5,
+            rating: movie.rating.average / 2.0,
 
             /// 星的大小
             size: 20,
