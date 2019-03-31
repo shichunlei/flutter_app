@@ -18,7 +18,7 @@ class MovieGridView extends StatelessWidget {
     double height = width * 383 / 270;
 
     return GestureDetector(
-      onTap: () => pushNewPage(context, MovieDetail(id: movie.id)),
+      onTap: () => pushNewPage(context, MovieDetail(movie.id)),
       child: Container(
         width: width,
         child: Column(

@@ -35,7 +35,7 @@ class ItemGridView extends StatelessWidget {
       itemBuilder: (context, index) {
         return GestureDetector(
           //点击事件
-          onTap: () => pushNewPage(context, MovieDetail(id: movies[index].id)),
+          onTap: () => pushNewPage(context, MovieDetail(movies[index].id)),
           child: FadeInImage.memoryNetwork(
             placeholder: kTransparentImage,
             image: movies[index].images.medium.toString(),

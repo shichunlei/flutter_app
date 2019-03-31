@@ -94,7 +94,7 @@ List<Widget> widgets = [
 Widget getLoadingWidget() {
   int index = 0;
   index = Random().nextInt(widgets.length - 1);
-  return widgets[index];
+  return Center(child: widgets[index]);
 }
 
 showLoadingDialog(BuildContext context, String text) {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/movie/page/sub_page/new_movie_raking.dart';
-import 'package:flutter_app/movie/page/sub_page/us_movie_raking.dart';
-import 'package:flutter_app/movie/page/sub_page/weekly_movie_raking.dart';
+import 'package:flutter_app/movie/page/movie_ranking_sub_page.dart';
+import 'package:flutter_app/movie/service/api_service.dart';
 
 class MovieRakingHome extends StatefulWidget {
   final int index;
@@ -55,9 +54,9 @@ class _MovieRakingHomeState extends State<MovieRakingHome>
         ),
       ),
       body: _tabBarView(<Widget>[
-        NewMovieRakingPage(),
-        WeeklyMovieRakingPage(),
-        UsMovieRakingPage(),
+        MovieRankingSubPage(ApiService.NEW_MOVIES_URL),
+        MovieRankingSubPage(ApiService.WEEKLY_MOVIES_URL),
+        MovieRankingSubPage(ApiService.US_MOVIES_URL),
       ]),
     );
   }

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/toast/toast.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/movie/page/movie_detail.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
-import 'package:flutter_app/movie/ui/item_grid_view.dart';
+import 'package:flutter_app/movie/ui/item_ranking_movie.dart';
 import 'package:flutter_app/utils/loading_util.dart';
+import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
@@ -91,7 +93,20 @@ class _MovieTop250State extends State<MovieTop250> {
       },
 
       /// 子部件 内容视图
-      child: ItemGridView(movies: movies),
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          return ItemRankingMovie(
+            movies[index],
+            index: index,
+            onTap: () {
+              pushNewPage(context, MovieDetail(movies[index].id));
+            },
+          );
+        },
+        itemCount: movies.length,
+        physics: const BouncingScrollPhysics(),
+        padding: EdgeInsets.all(5.0),
+      ),
     );
   }
 

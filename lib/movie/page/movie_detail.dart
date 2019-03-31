@@ -23,7 +23,7 @@ import 'package:palette_generator/palette_generator.dart';
 class MovieDetail extends StatefulWidget {
   final String id;
 
-  MovieDetail({Key key, this.id}) : super(key: key);
+  MovieDetail(this.id, {Key key}) : super(key: key);
 
   @override
   _MovieDetailState createState() => _MovieDetailState();

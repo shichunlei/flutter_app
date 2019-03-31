@@ -54,7 +54,7 @@ class ApiService {
 
   /// 获取正在上映电影
   static Future<List<Movie>> getNowPlayingList(
-      {String city, int start, int count}) async {
+      {String city, int start = 0, int count = 20}) async {
     Response response = await HttpUtils().get(MOVIE_LIST_URL, data: {
       'apikey': Config.DOUBAN_MOVIE_KEY,
       'city': city,
@@ -70,10 +70,27 @@ class ApiService {
   }
 
   /// 获取即将上映电影
-  static Future<List<Movie>> getComingList({int start, int count}) async {
+  static Future<List<Movie>> getComingList(
+      {int start = 0, int count = 20}) async {
     Response response = await HttpUtils().get(MOVIE_SOON_URL, data: {
       'apikey': Config.DOUBAN_MOVIE_KEY,
       "start": start,
+      'count': count,
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+
+    return result.subjects;
+  }
+
+  /// 获取排行榜电影
+  static Future<List<Movie>> getRankingList(String url,
+      {int start = 0, int count = 20}) async {
+    Response response = await HttpUtils().get(url, data: {
+      'apikey': Config.DOUBAN_MOVIE_KEY,
+      'start': start,
       'count': count,
     });
     if (response.statusCode != 200) {
@@ -124,7 +141,8 @@ class ApiService {
   }
 
   /// 获取 top250 榜单
-  static Future<List<Movie>> getTop250List({int start, int count}) async {
+  static Future<List<Movie>> getTop250List(
+      {int start = 0, int count = 20}) async {
     Response response = await HttpUtils().get(MOVIE_TOP250_URL, data: {
       'apikey': Config.DOUBAN_MOVIE_KEY,
       'start': start,
@@ -140,7 +158,7 @@ class ApiService {
 
   /// 根据标签搜索
   static Future<List<Movie>> getSearchListByTag(
-      {String tag, int start, int count}) async {
+      {String tag, int start = 0, int count = 20}) async {
     Response response = await HttpUtils().get(MOVIE_SEARCH_URL, data: {
       'apikey': Config.DOUBAN_MOVIE_KEY,
       'tag': tag,
@@ -157,7 +175,7 @@ class ApiService {
 
   /// 根据关键字搜索
   static Future<List<Movie>> getSearchListByKey(
-      {String key, int start, int count}) async {
+      {String key, int start = 0, int count = 20}) async {
     Response response = await HttpUtils().get(MOVIE_SEARCH_URL, data: {
       'apikey': Config.DOUBAN_MOVIE_KEY,
       'q': key,

@@ -24,7 +24,7 @@ class CoverSectionView extends StatelessWidget {
       child: Column(
         children: <Widget>[
           HomeSectionView(
-            "$title（${size}）",
+            "$title（$size）",
             hiddenMore: true,
             backgroundColor: backgroundColor,
             textColor: Colors.white,

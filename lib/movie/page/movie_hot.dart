@@ -58,7 +58,7 @@ class _MovieHotPageState extends State<MovieHotPage> {
               children: movies.map((movie) {
                 return ItemList(
                   movie: movie,
-                  onTap: () => pushNewPage(context, MovieDetail(id: movie.id)),
+                  onTap: () => pushNewPage(context, MovieDetail(movie.id)),
                 );
               }).toList(),
 
