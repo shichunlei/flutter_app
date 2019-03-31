@@ -85,7 +85,7 @@ class Movie {
   dynamic collection;
 
   /// 当前季的集数(tv only)
-  int episodes_count;
+  String episodes_count;
 
   /// 当前季数(tv only)
   int current_season;
@@ -194,7 +194,7 @@ class Movie {
         map['seasons_count'] == null ? 0 : map['seasons_count'];
     movie.collection = map['collection'];
     movie.episodes_count =
-        map['episodes_count'] == null ? 0 : map['episodes_count'];
+        map['episodes_count'] == null ? '0' : map['episodes_count'];
     movie.current_season =
         map['current_season'] == null ? 0 : map['current_season'];
     movie.reviews_count = map['reviews_count'];

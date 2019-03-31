@@ -7,6 +7,8 @@ class CoverSectionView extends StatelessWidget {
   final double height;
   final int size;
   final Widget child;
+  final VoidCallback onPressed;
+  final bool hiddenMore;
 
   CoverSectionView(
     this.title, {
@@ -15,6 +17,8 @@ class CoverSectionView extends StatelessWidget {
     this.height,
     this.size,
     this.child,
+    this.onPressed,
+    this.hiddenMore = false,
   }) : super(key: key);
 
   @override
@@ -25,16 +29,14 @@ class CoverSectionView extends StatelessWidget {
         children: <Widget>[
           HomeSectionView(
             "$title（$size）",
-            hiddenMore: true,
+            hiddenMore: hiddenMore,
             backgroundColor: backgroundColor,
             textColor: Colors.white,
+            onPressed: onPressed,
           ),
           SizedBox.fromSize(
             size: Size.fromHeight(height),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 0.0, right: 0.0),
-              child: child,
-            ),
+            child: child,
           ),
         ],
       ),

@@ -9,8 +9,10 @@ import 'package:transparent_image/transparent_image.dart';
 
 class MovieGridView extends StatelessWidget {
   final Movie movie;
+  final Color textColor;
 
-  MovieGridView(this.movie);
+  MovieGridView(this.movie, {Key key, this.textColor = Colors.black})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +29,15 @@ class MovieGridView extends StatelessWidget {
             FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
               image: movie.images.medium.toString(),
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
               height: height,
             ),
             SizedBox(height: 5),
             Text(
               movie.title,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 14, fontWeight: FontWeight.bold, color: textColor),
               maxLines: 1,
             ),
             SizedBox(height: 3),

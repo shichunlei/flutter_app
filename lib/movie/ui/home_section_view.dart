@@ -27,6 +27,7 @@ class HomeSectionView extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(15, 15, 5, 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

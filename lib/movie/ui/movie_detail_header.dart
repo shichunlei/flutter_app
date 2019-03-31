@@ -7,10 +7,8 @@ import 'package:transparent_image/transparent_image.dart';
 class MovieDetailHeader extends StatelessWidget {
   final Movie movie;
   final Color pageColor;
-  final VoidCallback onTap;
 
-  MovieDetailHeader(this.movie, {Key key, this.pageColor, this.onTap})
-      : super(key: key);
+  MovieDetailHeader(this.movie, {Key key, this.pageColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +18,9 @@ class MovieDetailHeader extends StatelessWidget {
       pinned: true,
       expandedHeight: 200,
       backgroundColor: pageColor,
+      actions: <Widget>[
+        IconButton(icon: Icon(Icons.favorite_border), onPressed: () {})
+      ],
       flexibleSpace: FlexibleSpaceBar(
         title: Text('${movie.title}(${movie.year})'),
         background: Stack(
@@ -47,17 +48,14 @@ class MovieDetailHeader extends StatelessWidget {
                 ),
               ),
             ),
-            GestureDetector(
-              child: Center(
-                child: FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: movie.images.large.toString(),
-                  fit: BoxFit.fill,
-                  height: 191.5,
-                  width: 135.0,
-                ),
+            Center(
+              child: FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image: movie.images.large.toString(),
+                fit: BoxFit.fill,
+                height: 191.5,
+                width: 135.0,
               ),
-              onTap: onTap,
             ),
           ],
         ),

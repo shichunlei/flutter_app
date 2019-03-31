@@ -184,7 +184,7 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
                 child: Column(
                   children: <Widget>[
                     Icon(
-                      Icons.favorite,
+                      Icons.favorite_border,
                       color: Colors.white,
                     ),
                     SizedBox(height: 6),

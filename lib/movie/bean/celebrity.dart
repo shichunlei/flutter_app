@@ -64,4 +64,9 @@ class Celebrity {
     }
     return list;
   }
+
+  @override
+  String toString() {
+    return '{website: $website, mobile_url: $mobile_url, name: $name, name_en: $name_en, gender: $gender, summary: $summary, birthday: $birthday, alt: $alt, born_place: $born_place, constellation: $constellation, id: $id, avatars: $avatars, aka: $aka, aka_en: $aka_en, professions: $professions, photos: $photos, works: $works}';
+  }
 }

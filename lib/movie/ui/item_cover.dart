@@ -19,28 +19,24 @@ class ItemCover extends StatelessWidget {
 
     return GestureDetector(
       child: Container(
-        child: Stack(
-          children: <Widget>[
-            Image.network(
-              url,
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: double.infinity,
+          child: Stack(children: <Widget>[
+            ClipRRect(
+              /// 圆角
+              borderRadius: BorderRadius.circular(5.0),
+              child: Image.network(
+                url,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity,
+              ),
             ),
             Center(
-              child: Offstage(
-                offstage: offstage,
-                child: Icon(
-                  Icons.play_arrow,
-                  color: Colors.white,
-                ),
-              ),
-            )
-          ],
-        ),
-        width: width,
-        padding: const EdgeInsets.all(5.0),
-      ),
+                child: Offstage(
+                    offstage: offstage,
+                    child: Icon(Icons.play_arrow, color: Colors.white)))
+          ]),
+          width: width,
+          padding: const EdgeInsets.all(5.0)),
       onTap: onTop,
     );
   }

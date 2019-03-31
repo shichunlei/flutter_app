@@ -5,7 +5,7 @@ import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/bean/photos.dart';
 import 'package:flutter_app/movie/page/movie_celebrity.dart';
 import 'package:flutter_app/movie/page/movie_comment.dart';
-import 'package:flutter_app/movie/page/movie_detail_header.dart';
+import 'package:flutter_app/movie/ui/movie_detail_header.dart';
 import 'package:flutter_app/movie/page/movie_photo.dart';
 import 'package:flutter_app/movie/page/movie_video.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
@@ -20,6 +20,7 @@ import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:palette_generator/palette_generator.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class MovieDetail extends StatefulWidget {
   final String id;
@@ -88,13 +89,7 @@ class _MovieDetailState extends State<MovieDetail> {
       backgroundColor: pageColor,
       body: CustomScrollView(
         slivers: <Widget>[
-          MovieDetailHeader(
-            movie,
-            pageColor: pageColor,
-            onTap: () {
-              getMoviePhotos(widget.id);
-            },
-          ),
+          MovieDetailHeader(movie, pageColor: pageColor),
           SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
@@ -240,24 +235,41 @@ class _MovieDetailState extends State<MovieDetail> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            HomeSectionView("剧照",
-                hiddenMore: true,
-                backgroundColor: pageColor,
-                textColor: Colors.white),
+            HomeSectionView(
+              "剧照",
+              backgroundColor: pageColor,
+              textColor: Colors.white,
+              onPressed: () => getMoviePhotos(widget.id),
+            ),
             SizedBox.fromSize(
-              size: Size.fromHeight(height),
+              size: Size.fromHeight(width),
               child: Padding(
                 padding: const EdgeInsets.only(left: 5.0, right: 5.0),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: movie.photos.length,
                   itemBuilder: (context, index) {
-                    return ItemCover(
-                      movie.photos[index].image,
-                      onTop: () {
-                        pushNewPage(context,
-                            MoviePhotoPage(photos: movie.photos, index: index));
-                      },
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                      child: GestureDetector(
+                        child: ClipRRect(
+                          /// 圆角
+                          borderRadius: BorderRadius.circular(6.0),
+                          child: FadeInImage.memoryNetwork(
+                            placeholder: kTransparentImage,
+                            image: movie.photos[index].cover,
+                            fit: BoxFit.cover,
+                            height: width,
+                            width: width,
+                          ),
+                        ),
+                        onTap: () {
+                          pushNewPage(
+                              context,
+                              MoviePhotoPage(
+                                  photos: movie.photos, index: index));
+                        },
+                      ),
                     );
                   },
                 ),
@@ -266,6 +278,7 @@ class _MovieDetailState extends State<MovieDetail> {
             MovieDesc(movie),
             CoverSectionView(
               '花絮',
+              hiddenMore: true,
               backgroundColor: pageColor,
               height: height,
               size: movie.bloopers.length,
@@ -286,6 +299,7 @@ class _MovieDetailState extends State<MovieDetail> {
             ),
             CoverSectionView(
               '片段',
+              hiddenMore: true,
               backgroundColor: pageColor,
               height: height,
               size: movie.clips.length,

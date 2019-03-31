@@ -20,10 +20,12 @@ dependencies: # 应用或包依赖的其它包或插件
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
 
+  # 图标库中文地址：http://www.fontawesome.com.cn/
   font_awesome_flutter: any
 
   flutter_icons: ^0.1.3
 
+  # 图标库地址：https://feathericons.com/
   feather_icons_flutter: ^4.7.4
 
   outline_material_icons: ^0.1.0
@@ -137,7 +139,7 @@ flutter:
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
-  # the material Icons class.
+  # the material Icons class. https://material.io/tools/icons/?icon=sd_storage&style=baseline
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:

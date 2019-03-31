@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/global/custom_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -57,6 +58,7 @@ class _IconWidgetState extends State<IconWidget> with TickerProviderStateMixin {
       GroovinMaterialIcons.access_point,
       CustomIcon.man,
       CustomIcon.back,
+      CupertinoIcons.home
     ];
 
     return Scaffold(
