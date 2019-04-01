@@ -65,7 +65,10 @@ class _MovieDescState extends State<MovieDesc> {
 
     desc += '/ ';
 
-    desc += '${widget.movie.pubdates[0]}上映 / 片长${widget.movie.durations[0]}';
+    desc += '${widget.movie.pubdates[0]}上映';
+
+    desc +=
+        '${widget.movie.durations.length > 0 ? "/ 片长${widget.movie.durations[0]}" : ""}';
 
     num totalRating = widget.movie.rating.details.star5 +
         widget.movie.rating.details.star4 +
@@ -232,7 +235,7 @@ class _MovieDescState extends State<MovieDesc> {
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text(
-                        '${(widget.movie.collect_count / 1000).toStringAsFixed(1)}k人看过 ${(widget.movie.wish_count / 1000).toStringAsFixed(1)}k人想看',
+                        '${widget.movie.collect_count > 1000 ? "${(widget.movie.collect_count / 1000).toStringAsFixed(1)}k" : widget.movie.collect_count}人看过 ${widget.movie.wish_count > 1000 ? "${(widget.movie.wish_count / 1000).toStringAsFixed(1)}k" : widget.movie.wish_count}人想看',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),

@@ -238,38 +238,34 @@ class Movie {
     movie.aka = List();
     movie.aka.addAll(aka.map((o) => o.toString()));
 
-    List<dynamic> dynamicList1 =
+    List<dynamic> blooper_urls =
         map['blooper_urls'] == null ? [] : map['blooper_urls'];
     movie.blooper_urls = List();
-    movie.blooper_urls.addAll(dynamicList1.map((o) => o.toString()));
+    movie.blooper_urls.addAll(blooper_urls.map((o) => o.toString()));
 
-    List<dynamic> dynamicList2 =
-        map['clip_urls'] == null ? [] : map['clip_urls'];
+    List<dynamic> clip_urls = map['clip_urls'] == null ? [] : map['clip_urls'];
     movie.clip_urls = List();
-    movie.clip_urls.addAll(dynamicList2.map((o) => o.toString()));
+    movie.clip_urls.addAll(clip_urls.map((o) => o.toString()));
 
-    List<dynamic> dynamicList3 =
-        map['countries'] == null ? [] : map['countries'];
+    List<dynamic> countries = map['countries'] == null ? [] : map['countries'];
     movie.countries = List();
-    movie.countries.addAll(dynamicList3.map((o) => o.toString()));
+    movie.countries.addAll(countries.map((o) => o.toString()));
 
-    List<dynamic> dynamicList4 =
-        map['durations'] == null ? [] : map['durations'];
+    List<dynamic> durations = map['durations'] == null ? [] : map['durations'];
     movie.durations = List();
-    movie.durations.addAll(dynamicList4.map((o) => o.toString()));
+    movie.durations.addAll(durations.map((o) => o.toString()));
 
-    List<dynamic> dynamicList5 = map['genres'] == null ? [] : map['genres'];
+    List<dynamic> genres = map['genres'] == null ? [] : map['genres'];
     movie.genres = List();
-    movie.genres.addAll(dynamicList5.map((o) => o.toString()));
+    movie.genres.addAll(genres.map((o) => o.toString()));
 
-    List<dynamic> dynamicList6 =
-        map['languages'] == null ? [] : map['languages'];
+    List<dynamic> languages = map['languages'] == null ? [] : map['languages'];
     movie.languages = List();
-    movie.languages.addAll(dynamicList6.map((o) => o.toString()));
+    movie.languages.addAll(languages.map((o) => o.toString()));
 
-    List<dynamic> dynamicList7 = map['pubdates'] == null ? [] : map['pubdates'];
+    List<dynamic> pubdates = map['pubdates'] == null ? [] : map['pubdates'];
     movie.pubdates = List();
-    movie.pubdates.addAll(dynamicList7.map((o) => o.toString()));
+    movie.pubdates.addAll(pubdates.map((o) => o.toString()));
 
     List<dynamic> tagList = map['tags'] == null ? [] : map['tags'];
     movie.tags = List();

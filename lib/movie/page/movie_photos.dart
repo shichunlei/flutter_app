@@ -96,6 +96,7 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
                   page * pagesize, RefreshType.LOAD_MORE);
             },
       child: StaggeredGridView.countBuilder(
+        padding: EdgeInsets.all(5.0),
         crossAxisCount: 4,
         mainAxisSpacing: 4.0,
         crossAxisSpacing: 4.0,

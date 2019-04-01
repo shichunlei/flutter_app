@@ -74,7 +74,8 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
       desc += '$pubdate上映';
     }).toList();
 
-    desc += '\n${widget.movie.durations[0]}';
+    desc +=
+        '\n${widget.movie.durations.length > 0 ? "${widget.movie.durations[0]}" : ""}';
 
     return GestureDetector(
       child: Card(

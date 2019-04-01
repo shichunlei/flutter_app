@@ -229,6 +229,7 @@ class _MovieDetailState extends State<MovieDetail> {
           children: <Widget>[
             HomeSectionView(
               "剧照",
+              hiddenMore: movie.photos.length < 10,
               backgroundColor: pageColor,
               textColor: Colors.white,
               onPressed: () => pushNewPage(
@@ -311,7 +312,8 @@ class _MovieDetailState extends State<MovieDetail> {
                 },
               ),
             ),
-            HomeSectionView("热评", onPressed: () {
+            HomeSectionView("热评", hiddenMore: movie.popular_comments.length < 4,
+                onPressed: () {
               pushNewPage(context,
                   MovieCommentPage(movie.id, itemBackgroundColor: cardColor));
             }, backgroundColor: pageColor, textColor: Colors.white),

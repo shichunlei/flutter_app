@@ -51,7 +51,7 @@ class _MovieTop250State extends State<MovieTop250> {
   }
 
   Widget _builderPageView(List<Movie> movies) {
-    if (isFirst) {
+    if (isFirst && movies.isEmpty) {
       return getLoadingWidget();
     } else {
       if (loadError) {
@@ -64,7 +64,7 @@ class _MovieTop250State extends State<MovieTop250> {
             child: Text("加载失败"),
           ),
         );
-      } else if ((movies.length > 0)) {
+      } else if ((movies.isNotEmpty)) {
         return _builderGridView(movies);
       } else {
         return Center(child: Text(text));

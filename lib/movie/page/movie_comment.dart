@@ -62,6 +62,10 @@ class _MovieCommentPageState extends State<MovieCommentPage> {
         start: (page - 1) * pagesize, count: pagesize);
     if (isFirst) {
       isFirst = false;
+      if (reviews.length == 0) {
+        Toast.show('暂无评论', context);
+        isLoadComplete = true;
+      }
     } else {
       if (reviews.length == 0) {
         Toast.show('数据加载完成...', context);
@@ -70,7 +74,6 @@ class _MovieCommentPageState extends State<MovieCommentPage> {
     }
 
     comments.addAll(reviews);
-    reviews.clear();
 
     setState(() {});
   }

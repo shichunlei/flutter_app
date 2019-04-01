@@ -119,7 +119,7 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                   ),
                   CoverSectionView(
                     '影视作品',
-                    hiddenMore: false,
+                    hiddenMore: movies.length < 5,
                     onPressed: () {},
                     backgroundColor: pageColor,
                     height: height,
@@ -142,7 +142,7 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                   ),
                   CoverSectionView(
                     '相册',
-                    hiddenMore: false,
+                    hiddenMore: celebrity.photos.length < 10,
                     onPressed: () {
                       pushNewPage(context,
                           MoviePhotosPage('影人相册', 'celebrity', widget.id));
