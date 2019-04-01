@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/bean/celebrity.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_photo.dart';
+import 'package:flutter_app/movie/page/movie_photos.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
 import 'package:flutter_app/movie/ui/cover_section_view.dart';
 import 'package:flutter_app/movie/ui/expandable_text.dart';
 import 'package:flutter_app/movie/ui/home_section_view.dart';
-import 'package:flutter_app/movie/ui/item_grid_view.dart';
 import 'package:flutter_app/movie/ui/movie_celebrity_header.dart';
 import 'package:flutter_app/movie/ui/movie_grid_view.dart';
 import 'package:flutter_app/utils/loading_util.dart';
@@ -143,7 +143,10 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                   CoverSectionView(
                     '相册',
                     hiddenMore: false,
-                    onPressed: () {},
+                    onPressed: () {
+                      pushNewPage(context,
+                          MoviePhotosPage('影人相册', 'celebrity', widget.id));
+                    },
                     backgroundColor: pageColor,
                     height: height,
                     size: celebrity.photos.length,

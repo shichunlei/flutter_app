@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/tabs_demo/keep_alive.dart';
+import 'package:flutter_app/utils/log_util.dart';
 
 class TabBarHomePage extends StatefulWidget {
   @override
@@ -11,6 +12,24 @@ class TabBarHomePage extends StatefulWidget {
 // SingleTickerProviderStateMixin is used for animation
 class TabBarHomeStatePage extends State<TabBarHomePage>
     with SingleTickerProviderStateMixin {
+  final List<Tab> titleTabs = <Tab>[
+    Tab(
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[Icon(Icons.map), Text("map")],
+        ),
+      ),
+    ),
+    Tab(
+      child: Text("add"),
+      icon: Icon(Icons.add),
+    ),
+    Tab(
+      text: "refresh",
+    )
+  ];
+
   /*
    *-------------------- Setup Tabs ------------------*
    */
@@ -22,12 +41,30 @@ class TabBarHomeStatePage extends State<TabBarHomePage>
     super.initState();
 
     // Initialize the Tab Controller
-    controller = TabController(length: 3, vsync: this);
+    controller = TabController(length: titleTabs.length, vsync: this)
+      ..addListener(() {
+        // 监听滑动/点选位置
+        if (controller.index.toDouble() == controller.animation.value) {
+          switch (controller.index) {
+            case 0:
+              LogUtil.v('0');
+              break;
+            case 1:
+              LogUtil.v('1');
+              break;
+            case 2:
+              LogUtil.v('2');
+              break;
+            default:
+              break;
+          }
+        }
+      });
   }
 
   @override
   void dispost() {
-    // Dispost of the Tab Controller
+    /// Dispost of the Tab Controller
     controller.dispose();
 
     super.dispose();
@@ -35,25 +72,15 @@ class TabBarHomeStatePage extends State<TabBarHomePage>
 
   TabBar getTabBar() {
     return TabBar(
-      tabs: <Tab>[
-        Tab(
-          child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[Icon(Icons.map), Text("map")],
-            ),
-          ),
-        ),
-        Tab(
-          child: Text("add"),
-          icon: Icon(Icons.add),
-        ),
-        Tab(
-          text: "refresh",
-        )
-      ],
+      tabs: titleTabs,
       // setup the controller
       controller: controller,
+      isScrollable: true,
+      indicator: UnderlineTabIndicator(
+        borderSide: BorderSide(
+          style: BorderStyle.none,
+        ),
+      ),
     );
   }
 
@@ -63,6 +90,8 @@ class TabBarHomeStatePage extends State<TabBarHomePage>
       children: tabs,
       // set the controller
       controller: controller,
+      // TabBarView 默认支持手势滑动，若要禁止设置 NeverScrollableScrollPhysics
+      physics: NeverScrollableScrollPhysics(),
     );
   }
 

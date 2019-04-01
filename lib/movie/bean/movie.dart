@@ -88,7 +88,7 @@ class Movie {
   String episodes_count;
 
   /// 当前季数(tv only)
-  int current_season;
+  String current_season;
 
   /// 影评数量
   int reviews_count;
@@ -196,7 +196,7 @@ class Movie {
     movie.episodes_count =
         map['episodes_count'] == null ? '0' : map['episodes_count'];
     movie.current_season =
-        map['current_season'] == null ? 0 : map['current_season'];
+        map['current_season'] == null ? '0' : map['current_season'];
     movie.reviews_count = map['reviews_count'];
     movie.wish_count = map['wish_count'];
     movie.collect_count = map['collect_count'];

@@ -2,12 +2,17 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_app/global/api.dart';
+import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/utils/log_util.dart';
 
 class HttpUtils {
   static HttpUtils instance;
   Dio _dio;
   BaseOptions options;
+  static String _baseUrl;
+
+  static const CONTENT_TYPE_JSON = "application/json";
+  static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 
   static HttpUtils getInstance() {
     LogUtil.v('getInstance');
@@ -15,6 +20,10 @@ class HttpUtils {
       instance = HttpUtils();
     }
     return instance;
+  }
+
+  static setBaseUrl(String baseUrl) {
+    _baseUrl = baseUrl;
   }
 
   HttpUtils() {
@@ -38,9 +47,30 @@ class HttpUtils {
     );
     _dio = Dio(options);
 
-    /// 添加 LogInterceptor 拦截器来自动打印请求、响应日志
-    /// 开启请求日志
-    _dio.interceptors.add(LogInterceptor(responseBody: false));
+    /// 添加拦截器
+    if (Config.DEBUG) {
+      _dio.interceptors
+        ..add(InterceptorsWrapper(onRequest: (RequestOptions options) {
+          print("\n================== 请求数据 ==========================");
+          print("url = ${options.uri.toString()}");
+          print("headers = ${options.headers}");
+          print("params = ${options.data}");
+        }, onResponse: (Response response) {
+          print("\n================== 响应数据 ==========================");
+          print("code = ${response.statusCode}");
+          print("data = ${response.data}");
+          print("\n");
+        }, onError: (DioError e) {
+          print("\n================== 错误响应数据 ======================");
+          print("type = ${e.type}");
+          print("message = ${e.message}");
+          print("stackTrace = ${e.stackTrace}");
+          print("\n");
+        }))
+
+        /// 添加 LogInterceptor 拦截器来自动打印请求、响应日志
+        ..add(LogInterceptor(responseBody: false));
+    }
   }
 
   get(path, {data, options, cancelToken}) async {

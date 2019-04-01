@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
-import 'package:flutter_app/movie/bean/photos.dart';
 import 'package:flutter_app/movie/page/movie_celebrity.dart';
 import 'package:flutter_app/movie/page/movie_comment.dart';
+import 'package:flutter_app/movie/page/movie_photos.dart';
 import 'package:flutter_app/movie/ui/movie_detail_header.dart';
 import 'package:flutter_app/movie/page/movie_photo.dart';
 import 'package:flutter_app/movie/page/movie_video.dart';
@@ -220,17 +220,6 @@ class _MovieDetailState extends State<MovieDetail> {
     });
   }
 
-  void getMoviePhotos(id) async {
-    showLoadingDialog(context, "正在加载...");
-
-    List<Photos> photos = await ApiService.getMovieAlbum(id);
-    if (photos.length > 0) {
-      Navigator.pop(context);
-
-      pushNewPage(context, MoviePhotoPage(photos: photos));
-    }
-  }
-
   Widget _builderContent() {
     return SliverToBoxAdapter(
       child: Container(
@@ -242,7 +231,8 @@ class _MovieDetailState extends State<MovieDetail> {
               "剧照",
               backgroundColor: pageColor,
               textColor: Colors.white,
-              onPressed: () => getMoviePhotos(widget.id),
+              onPressed: () => pushNewPage(
+                  context, MoviePhotosPage('电影剧照', 'subject', widget.id)),
             ),
             SizedBox.fromSize(
               size: Size.fromHeight(width),

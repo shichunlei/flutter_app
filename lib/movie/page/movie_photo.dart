@@ -6,7 +6,7 @@ import 'package:photo_view/photo_view_gallery.dart';
 class MoviePhotoPage extends StatefulWidget {
   final List<Photos> photos;
   final int index;
-  PageController controller;
+  final PageController controller;
 
   MoviePhotoPage({
     Key key,

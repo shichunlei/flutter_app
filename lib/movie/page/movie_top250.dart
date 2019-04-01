@@ -30,6 +30,8 @@ class _MovieTop250State extends State<MovieTop250> {
 
   bool loadError = false;
 
+  bool isLoadComplete = false;
+
   @override
   void initState() {
     super.initState();
@@ -85,10 +87,14 @@ class _MovieTop250State extends State<MovieTop250> {
       ),
 
       ///加载回调方法
-      loadMore: () async {
-        page++;
-        getMovieTop250List(page, pagesize, RefreshType.LOAD_MORE);
-      },
+      loadMore: isLoadComplete
+          ? null
+          : () async {
+              page++;
+              getMovieTop250List(page, pagesize, RefreshType.LOAD_MORE);
+            },
+
+      emptyWidget: Center(child: Text(text)),
 
       /// 子部件 内容视图
       child: ListView.builder(
@@ -121,10 +127,9 @@ class _MovieTop250State extends State<MovieTop250> {
     } else if (type == RefreshType.LOAD_MORE) {
       movies.addAll(list);
       if (list.length == 0) {
-        setState(() {
-          Toast.show("加载完...", context,
-              duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
-        });
+        Toast.show("加载完...", context,
+            duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+        isLoadComplete = true;
       }
     }
 

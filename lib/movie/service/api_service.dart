@@ -245,6 +245,21 @@ class ApiService {
     return result.photos;
   }
 
+  /// 剧照
+  static Future<List<Photos>> getPhotos(String url, String id,
+      {int start = 0, int count = 20}) async {
+    Response response = await HttpUtils().get('/$url/$id/photos', data: {
+      'apikey': Config.DOUBAN_MOVIE_KEY,
+      'start': start,
+      'count': count
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    return result.photos;
+  }
+
   /// 短评
   static Future<List<Reviews>> getComments(String movieId,
       {int start = 0, int count = 20}) async {

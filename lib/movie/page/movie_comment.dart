@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/custom_widgets/toast/toast.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/movie/bean/reviews.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
@@ -25,9 +26,10 @@ class _MovieCommentPageState extends State<MovieCommentPage> {
   List<Reviews> comments = [];
 
   int page = 1;
-  int count = 20;
+  int pagesize = 20;
 
   bool isFirst = true;
+  bool isLoadComplete = false;
 
   GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
   GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
@@ -36,7 +38,7 @@ class _MovieCommentPageState extends State<MovieCommentPage> {
   void initState() {
     super.initState();
 
-    getCommentsList(widget.id, page, count, RefreshType.DEFAULT);
+    getCommentsList(widget.id, page, pagesize, RefreshType.DEFAULT);
   }
 
   @override
@@ -55,14 +57,21 @@ class _MovieCommentPageState extends State<MovieCommentPage> {
     );
   }
 
-  void getCommentsList(movieId, int page, int count, loadDataType) async {
+  void getCommentsList(movieId, int page, int pagesize, loadDataType) async {
     List<Reviews> reviews = await ApiService.getComments(movieId,
-        start: (page - 1) * count, count: count);
-    comments.addAll(reviews);
-
+        start: (page - 1) * pagesize, count: pagesize);
     if (isFirst) {
       isFirst = false;
+    } else {
+      if (reviews.length == 0) {
+        Toast.show('数据加载完成...', context);
+        isLoadComplete = true;
+      }
     }
+
+    comments.addAll(reviews);
+    reviews.clear();
+
     setState(() {});
   }
 
@@ -77,10 +86,12 @@ class _MovieCommentPageState extends State<MovieCommentPage> {
         color: Colors.indigo,
         backgroundColor: Colors.white,
       ),
-      loadMore: () async {
-        page++;
-        getCommentsList(widget.id, page, count, RefreshType.LOAD_MORE);
-      },
+      loadMore: isLoadComplete
+          ? null
+          : () async {
+              page++;
+              getCommentsList(widget.id, page, pagesize, RefreshType.LOAD_MORE);
+            },
       child: ListView.builder(
         itemBuilder: (context, index) {
           return ItemComment(

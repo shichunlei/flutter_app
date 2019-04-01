@@ -15,6 +15,7 @@ import 'package:flutter_app/movie/ui/classify_section_home.dart';
 import 'package:flutter_app/movie/ui/home_section_view.dart';
 import 'package:flutter_app/movie/ui/item_grid_view.dart';
 import 'package:flutter_app/movie/ui/movie_grid_view.dart';
+import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 
@@ -69,7 +70,15 @@ class _MovieHomePageState extends State<MovieHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('豆瓣电影')),
+      appBar: AppBar(
+        title: Text('豆瓣电影'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search, color: Colors.white),
+            onPressed: () {},
+          )
+        ],
+      ),
       body: bodyView(),
       backgroundColor: Colors.white,
     );
@@ -104,7 +113,7 @@ class _MovieHomePageState extends State<MovieHomePage> {
 
   Widget bodyView() {
     if (movies.length == 0) {
-      return Center(child: CupertinoActivityIndicator());
+      return getLoadingWidget();
     } else {
       return ListView(
         children: <Widget>[
