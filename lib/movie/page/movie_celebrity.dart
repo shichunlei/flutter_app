@@ -5,6 +5,7 @@ import 'package:flutter_app/movie/bean/celebrity.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_photo.dart';
 import 'package:flutter_app/movie/page/movie_photos.dart';
+import 'package:flutter_app/movie/page/movie_with_celebrity.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
 import 'package:flutter_app/movie/ui/cover_section_view.dart';
 import 'package:flutter_app/movie/ui/expandable_text.dart';
@@ -120,7 +121,8 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                   CoverSectionView(
                     '影视作品',
                     hiddenMore: movies.length < 5,
-                    onPressed: () {},
+                    onPressed: () => pushNewPage(context,
+                        MovieWithCelebrityPage(widget.id, celebrity.name)),
                     backgroundColor: pageColor,
                     height: height,
                     size: movies.length,
@@ -143,12 +145,10 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                   CoverSectionView(
                     '相册',
                     hiddenMore: celebrity.photos.length < 10,
-                    onPressed: () {
-                      pushNewPage(
-                          context,
-                          MoviePhotosPage(
-                              celebrity.name, 'celebrity', widget.id));
-                    },
+                    onPressed: () => pushNewPage(
+                        context,
+                        MoviePhotosPage(
+                            celebrity.name, 'celebrity', widget.id)),
                     backgroundColor: pageColor,
                     height: height,
                     size: celebrity.photos.length,
@@ -159,24 +159,21 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 3.0),
                           child: GestureDetector(
-                            child: ClipRRect(
-                              /// 圆角
-                              borderRadius: BorderRadius.circular(6.0),
-                              child: FadeInImage.memoryNetwork(
-                                placeholder: kTransparentImage,
-                                image: celebrity.photos[index].cover,
-                                fit: BoxFit.cover,
-                                height: height,
-                                width: height,
+                              child: ClipRRect(
+                                /// 圆角
+                                borderRadius: BorderRadius.circular(6.0),
+                                child: FadeInImage.memoryNetwork(
+                                  placeholder: kTransparentImage,
+                                  image: celebrity.photos[index].cover,
+                                  fit: BoxFit.cover,
+                                  height: height,
+                                  width: height,
+                                ),
                               ),
-                            ),
-                            onTap: () {
-                              pushNewPage(
+                              onTap: () => pushNewPage(
                                   context,
                                   MoviePhotoPage(widget.name,
-                                      photos: celebrity.photos, index: index));
-                            },
-                          ),
+                                      photos: celebrity.photos, index: index))),
                         );
                       },
                     ),

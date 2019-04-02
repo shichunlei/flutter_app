@@ -96,18 +96,8 @@ class _MovieHomePageState extends State<MovieHomePage> {
     us = await ApiService.getUsBoxList();
     weekly = await ApiService.getWeeklyList();
 
-    List<Movie> usMovie = [];
-    us.map((m) {
-      usMovie.add(m.subject);
-    }).toList();
-
-    List<Movie> weeklyMovie = [];
-    weekly.map((m) {
-      weeklyMovie.add(m.subject);
-    }).toList();
-
     setState(() {
-      movies..add(weeklyMovie)..add(top250)..add(news)..add(usMovie);
+      movies..add(weekly)..add(top250)..add(news)..add(us);
     });
   }
 

@@ -7,6 +7,7 @@ class Config {
 
   static const String DOUBAN_WEB_URL = 'https://movie.douban.com/';
 
+  /// 类型
   static const GenreList = [
     '剧情',
     '喜剧',
@@ -33,6 +34,7 @@ class Config {
     '情色'
   ];
 
+  /// 地区
   static const RegionList = [
     '中国大陆',
     '美国',
@@ -57,6 +59,7 @@ class Config {
     '丹麦'
   ];
 
+  /// 特色
   static const FeatureList = [
     '经典',
     '青春',
@@ -73,6 +76,7 @@ class Config {
     '感人'
   ];
 
+  /// 年代
   static const YearList = [
     '2019',
     '2018',

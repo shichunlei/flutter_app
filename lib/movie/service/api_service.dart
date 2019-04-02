@@ -112,7 +112,12 @@ class ApiService {
     }
     Result result = Result.fromMap(response.data);
 
-    return result.subjects;
+    List<Movie> movies = [];
+    result.subjects.map((m) {
+      movies.add(m.subject);
+    }).toList();
+
+    return movies;
   }
 
   /// 获取新片榜电影
@@ -138,7 +143,12 @@ class ApiService {
     }
     Result result = Result.fromMap(response.data);
 
-    return result.subjects;
+    List<Movie> movies = [];
+    result.subjects.map((m) {
+      movies.add(m.subject);
+    }).toList();
+
+    return movies;
   }
 
   /// 获取 top250 榜单
@@ -236,7 +246,7 @@ class ApiService {
     return result.photos;
   }
 
-  /// 演员详细信息
+  /// 影人详细信息
   static Future<Celebrity> getActorDetail(String actorId) async {
     Response response = await HttpUtils().get('/celebrity/$actorId', data: {
       'apikey': Config.DOUBAN_MOVIE_KEY,
@@ -247,7 +257,7 @@ class ApiService {
     return Celebrity.fromMap(response.data);
   }
 
-  /// 演员剧照
+  /// 影人相片
   static Future<List<Photos>> getActorPhotos(String actorId,
       {int start = 0, int count = 20}) async {
     Response response = await HttpUtils().get('/celebrity/$actorId/photos',
@@ -276,6 +286,26 @@ class ApiService {
     }
     Result result = Result.fromMap(response.data);
     return result.photos;
+  }
+
+  /// 影人作品
+  static Future<List<Movie>> getActorMovies(String actorId,
+      {int start = 0, int count = 20}) async {
+    Response response = await HttpUtils().get('/celebrity/$actorId/works',
+        data: {
+          'apikey': Config.DOUBAN_MOVIE_KEY,
+          'start': start,
+          'count': count
+        });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    List<Movie> movies = [];
+    result.works.map((work) {
+      movies.add(work.subject);
+    }).toList();
+    return movies;
   }
 
   /// 短评
