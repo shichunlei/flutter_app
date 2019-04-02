@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 
 class MovieCelebrityHeader extends StatelessWidget {
   final String name;
@@ -61,26 +62,38 @@ class MovieCelebrityHeader extends StatelessWidget {
 
             /// 头像
             Center(
-              child: Stack(
-                alignment: Alignment.bottomRight,
-                children: <Widget>[
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(avatarUrl),
-                    radius: 60.0,
-                  ),
-                  Offstage(
-                    offstage: gender == -1,
-                    child: Icon(
-                      gender == 1
-                          ? FontAwesomeIcons.mars
-                          : FontAwesomeIcons.venus,
-                      size: 32,
-                      color:
-                          gender == 0 ? Colors.pinkAccent : Colors.blueAccent,
-                    ),
-                  ),
-                ],
-              ),
+              child: AvatarGlow(
+                  startDelay: Duration(milliseconds: 1000),
+                  glowColor: Colors.white,
+                  endRadius: 90.0,
+                  duration: Duration(milliseconds: 2000),
+                  repeat: true,
+                  showTwoGlows: true,
+                  repeatPauseDuration: Duration(milliseconds: 100),
+                  child: Material(
+                      elevation: 8.0,
+                      shape: CircleBorder(),
+                      child: Stack(
+                        alignment: Alignment.bottomRight,
+                        children: <Widget>[
+                          CircleAvatar(
+                            backgroundImage: NetworkImage(avatarUrl),
+                            radius: 40.0,
+                          ),
+                          Offstage(
+                            offstage: gender == -1,
+                            child: Icon(
+                              gender == 1
+                                  ? FontAwesomeIcons.mars
+                                  : FontAwesomeIcons.venus,
+                              size: 20,
+                              color: gender == 0
+                                  ? Colors.pinkAccent
+                                  : Colors.blueAccent,
+                            ),
+                          ),
+                        ],
+                      ))),
             ),
           ],
         ),

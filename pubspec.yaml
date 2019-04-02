@@ -116,6 +116,9 @@ dependencies: # 应用或包依赖的其它包或插件
   # 评分控件
   smooth_star_rating: 1.0.1
 
+  # https://github.com/apgapg/avatar_glow
+  avatar_glow: ^0.2.0
+
   city_picker: ^0.1.3
 
   city_pickers: ^0.1.8
