@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_app/movie/bean/casts.dart';
-import 'package:flutter_app/utils/utils.dart';
 
 class PersonGridView extends StatelessWidget {
   final Casts casts;
@@ -17,10 +16,8 @@ class PersonGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = (Utils.width - 6 * 3 - 5 * 3) / 4;
-
     return Container(
-      width: width,
+      width: 90.0,
       child: Column(
         children: <Widget>[
           GestureDetector(

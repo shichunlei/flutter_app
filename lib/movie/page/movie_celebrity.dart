@@ -153,6 +153,7 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                     height: height,
                     size: celebrity.photos.length,
                     child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
                       scrollDirection: Axis.horizontal,
                       itemCount: celebrity.photos.length,
                       itemBuilder: (context, index) {

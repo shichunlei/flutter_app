@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/movie/page/movie_search_page.dart';
+import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
@@ -266,8 +268,13 @@ class _MovieDescState extends State<MovieDesc> {
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5),
-                            child: Chip(
+                            child: InputChip(
                               label: Text(widget.movie.tags[index].toString()),
+                              onPressed: () => pushNewPage(
+                                  context,
+                                  MovieSearchPage(
+                                    tag: widget.movie.tags[index],
+                                  )),
                             ),
                           );
                         },

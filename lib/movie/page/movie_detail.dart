@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/movie/bean/casts.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_celebrity.dart';
 import 'package:flutter_app/movie/page/movie_comment.dart';
@@ -93,102 +94,9 @@ class _MovieDetailState extends State<MovieDetail> {
       body: CustomScrollView(
         slivers: <Widget>[
           MovieDetailHeader(movie, pageColor: pageColor),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              <Widget>[
-                HomeSectionView("简介",
-                    hiddenMore: true,
-                    backgroundColor: pageColor,
-                    textColor: Colors.white),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(top: 10.0, left: 10, right: 10),
-                  child: ExpandableText(
-                    movie.summary,
-                    textColor: Colors.white,
-                    iconColor: Colors.white,
-                    iconTextColor: Colors.white,
-                    alignment: MainAxisAlignment.center,
-                    fontSize: 15.0,
-                    isShow: isSummaryUnfold,
-                    onPressed: () => changeSummaryMaxLines(),
-                  ),
-                ),
-                HomeSectionView("导演",
-                    hiddenMore: true,
-                    backgroundColor: pageColor,
-                    textColor: Colors.white),
-                Container(
-                  padding: EdgeInsets.all(6.0),
-                  child: Wrap(
-                    spacing: 5,
-                    runSpacing: 5,
-                    children: movie.directors
-                        .map(
-                          (casts) => PersonGridView(
-                                casts: casts,
-                                textColor: Colors.white,
-                                onTap: () => pushNewPage(
-                                      context,
-                                      MovieCelebrityPage(
-                                        id: casts.id,
-                                        name: casts.name,
-                                      ),
-                                    ),
-                              ),
-                        )
-                        .toList(),
-                  ),
-                ),
-                HomeSectionView("编剧",
-                    hiddenMore: true,
-                    backgroundColor: pageColor,
-                    textColor: Colors.white),
-                Container(
-                  padding: EdgeInsets.all(6.0),
-                  child: Wrap(
-                    spacing: 5,
-                    runSpacing: 5,
-                    children: movie.writers
-                        .map((casts) => PersonGridView(
-                            casts: casts,
-                            textColor: Colors.white,
-                            onTap: () => pushNewPage(
-                                  context,
-                                  MovieCelebrityPage(
-                                    id: casts.id,
-                                    name: casts.name,
-                                  ),
-                                )))
-                        .toList(),
-                  ),
-                ),
-                HomeSectionView("主演",
-                    hiddenMore: true,
-                    backgroundColor: pageColor,
-                    textColor: Colors.white),
-                Container(
-                  padding: EdgeInsets.all(6.0),
-                  child: Wrap(
-                    spacing: 5,
-                    runSpacing: 5,
-                    children: movie.casts
-                        .map((casts) => PersonGridView(
-                            casts: casts,
-                            textColor: Colors.white,
-                            onTap: () => pushNewPage(
-                                  context,
-                                  MovieCelebrityPage(
-                                    id: casts.id,
-                                    name: casts.name,
-                                  ),
-                                )))
-                        .toList(),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          _builderDesc(),
+
+          /// 剧照、花絮、片段、评论
           _builderContent(),
         ],
       ),
@@ -220,6 +128,72 @@ class _MovieDetailState extends State<MovieDetail> {
     });
   }
 
+  Widget _builderDesc() {
+    List<Casts> casts = [];
+
+    /// 导演
+    movie.directors.forEach((director) {
+      casts.add(director);
+    });
+
+    /// 演员
+    movie.casts.forEach((cast) {
+      if (casts.indexOf(cast) == -1) {
+        casts.add(cast);
+      }
+    });
+
+    return SliverList(
+      delegate: SliverChildListDelegate(
+        <Widget>[
+          HomeSectionView("简介",
+              hiddenMore: true,
+              backgroundColor: pageColor,
+              textColor: Colors.white),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0, left: 10, right: 10),
+            child: ExpandableText(
+              movie.summary,
+              textColor: Colors.white,
+              iconColor: Colors.white,
+              iconTextColor: Colors.white,
+              alignment: MainAxisAlignment.center,
+              fontSize: 15.0,
+              isShow: isSummaryUnfold,
+              onPressed: () => changeSummaryMaxLines(),
+            ),
+          ),
+          HomeSectionView("演职员",
+              hiddenMore: true,
+              backgroundColor: pageColor,
+              textColor: Colors.white),
+          SizedBox.fromSize(
+            size: Size.fromHeight(110.0),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10, left: 5.0, right: 5.0),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: casts.length,
+                itemBuilder: (context, index) {
+                  return PersonGridView(
+                      casts: casts[index],
+                      textColor: Colors.white,
+                      onTap: () => pushNewPage(
+                            context,
+                            MovieCelebrityPage(
+                              id: casts[index].id,
+                              name: casts[index].name,
+                            ),
+                          ));
+                },
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _builderContent() {
     return SliverToBoxAdapter(
       child: Container(
@@ -237,36 +211,32 @@ class _MovieDetailState extends State<MovieDetail> {
             ),
             SizedBox.fromSize(
               size: Size.fromHeight(width),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: movie.photos.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                      child: GestureDetector(
-                        child: ClipRRect(
-                          /// 圆角
-                          borderRadius: BorderRadius.circular(6.0),
-                          child: FadeInImage.memoryNetwork(
-                            placeholder: kTransparentImage,
-                            image: movie.photos[index].cover,
-                            fit: BoxFit.cover,
-                            height: width,
-                            width: width,
-                          ),
+              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                scrollDirection: Axis.horizontal,
+                itemCount: movie.photos.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                    child: GestureDetector(
+                      child: ClipRRect(
+                        /// 圆角
+                        borderRadius: BorderRadius.circular(6.0),
+                        child: FadeInImage.memoryNetwork(
+                          placeholder: kTransparentImage,
+                          image: movie.photos[index].cover,
+                          fit: BoxFit.cover,
+                          height: width,
+                          width: width,
                         ),
-                        onTap: () {
-                          pushNewPage(
-                              context,
-                              MoviePhotoPage('《${movie.title}》剧照',
-                                  photos: movie.photos, index: index));
-                        },
                       ),
-                    );
-                  },
-                ),
+                      onTap: () => pushNewPage(
+                          context,
+                          MoviePhotoPage('《${movie.title}》剧照',
+                              photos: movie.photos, index: index)),
+                    ),
+                  );
+                },
               ),
             ),
             MovieDesc(movie),
@@ -304,10 +274,8 @@ class _MovieDetailState extends State<MovieDetail> {
                   return ItemCover(
                     movie.clips[index].medium,
                     offstage: false,
-                    onTop: () {
-                      pushNewPage(context,
-                          MovieVideoPage(movie.clips[index].resource_url));
-                    },
+                    onTop: () => pushNewPage(context,
+                        MovieVideoPage(movie.clips[index].resource_url)),
                   );
                 },
               ),

@@ -61,13 +61,11 @@ class _ItemClassifyTagState extends State<ItemClassifyTag> {
           ),
         ],
       ),
-      onTap: () {
-        pushNewPage(
-            context,
-            MovieSearchPage(
-              tag: widget.tag,
-            ));
-      },
+      onTap: () => pushNewPage(
+          context,
+          MovieSearchPage(
+            tag: widget.tag,
+          )),
     );
   }
 
