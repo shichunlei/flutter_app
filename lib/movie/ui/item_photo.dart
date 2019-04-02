@@ -22,9 +22,12 @@ class ItemPhoto extends StatelessWidget {
                 topLeft: Radius.circular(5.0),
                 topRight: Radius.circular(5.0),
               ),
-              child: FadeInImage.memoryNetwork(
-                placeholder: kTransparentImage,
-                image: photo.cover,
+              child: Hero(
+                tag: photo.id,
+                child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: photo.cover,
+                ),
               ),
             ),
             Row(
@@ -39,7 +42,6 @@ class ItemPhoto extends StatelessWidget {
                 Text(photo.author.name),
               ],
             ),
-            
           ],
         ),
       ),

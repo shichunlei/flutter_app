@@ -222,12 +222,15 @@ class _MovieDetailState extends State<MovieDetail> {
                       child: ClipRRect(
                         /// 圆角
                         borderRadius: BorderRadius.circular(6.0),
-                        child: FadeInImage.memoryNetwork(
-                          placeholder: kTransparentImage,
-                          image: movie.photos[index].cover,
-                          fit: BoxFit.cover,
-                          height: width,
-                          width: width,
+                        child: Hero(
+                          tag: movie.photos[index].id,
+                          child: FadeInImage.memoryNetwork(
+                            placeholder: kTransparentImage,
+                            image: movie.photos[index].cover,
+                            fit: BoxFit.cover,
+                            height: width,
+                            width: width,
+                          ),
                         ),
                       ),
                       onTap: () => pushNewPage(

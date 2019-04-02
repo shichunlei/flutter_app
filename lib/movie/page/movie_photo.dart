@@ -42,7 +42,9 @@ class _MoviePhotoPageState extends State<MoviePhotoPage> {
           PhotoViewGallery(
             pageOptions: widget.photos
                 .map((photo) => PhotoViewGalleryPageOptions(
-                    imageProvider: NetworkImage(photo.cover)))
+                      imageProvider: NetworkImage(photo.cover),
+                      heroTag: photo.id,
+                    ))
                 .toList(),
             backgroundDecoration: BoxDecoration(color: Colors.black),
             onPageChanged: (index) {

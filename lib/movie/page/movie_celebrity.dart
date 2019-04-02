@@ -163,13 +163,15 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                               child: ClipRRect(
                                 /// 圆角
                                 borderRadius: BorderRadius.circular(6.0),
-                                child: FadeInImage.memoryNetwork(
-                                  placeholder: kTransparentImage,
-                                  image: celebrity.photos[index].cover,
-                                  fit: BoxFit.cover,
-                                  height: height,
-                                  width: height,
-                                ),
+                                child: Hero(
+                                    tag: celebrity.photos[index].id,
+                                    child: FadeInImage.memoryNetwork(
+                                      placeholder: kTransparentImage,
+                                      image: celebrity.photos[index].cover,
+                                      fit: BoxFit.cover,
+                                      height: height,
+                                      width: height,
+                                    )),
                               ),
                               onTap: () => pushNewPage(
                                   context,
