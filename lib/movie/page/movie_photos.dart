@@ -5,6 +5,7 @@ import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/movie/bean/photos.dart';
 import 'package:flutter_app/movie/page/movie_photo.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
+import 'package:flutter_app/movie/ui/item_photo.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
@@ -96,23 +97,14 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
                   page * pagesize, RefreshType.LOAD_MORE);
             },
       child: StaggeredGridView.countBuilder(
-        padding: EdgeInsets.all(5.0),
         crossAxisCount: 4,
-        mainAxisSpacing: 4.0,
-        crossAxisSpacing: 4.0,
         itemCount: photos.length,
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              pushNewPage(
-                  context, MoviePhotoPage(photos: photos, index: index));
-            },
-            child: FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image: photos[index].cover,
-            ),
-          );
+          return ItemPhoto(photos[index], onTap: () {
+            pushNewPage(context,
+                MoviePhotoPage(widget.title, photos: photos, index: index));
+          });
         },
         staggeredTileBuilder: (index) => StaggeredTile.fit(2),
       ),

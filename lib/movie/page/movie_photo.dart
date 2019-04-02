@@ -2,13 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/bean/photos.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:share/share.dart';
 
 class MoviePhotoPage extends StatefulWidget {
   final List<Photos> photos;
   final int index;
   final PageController controller;
+  final String title;
 
-  MoviePhotoPage({
+  MoviePhotoPage(
+    this.title, {
     Key key,
     this.photos,
     this.index = 0,
@@ -49,20 +52,37 @@ class _MoviePhotoPageState extends State<MoviePhotoPage> {
             loadingChild: CupertinoActivityIndicator(),
             pageController: widget.controller,
           ),
-          Container(
-            margin: const EdgeInsets.only(bottom: 40.0),
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              width: 80.0,
-              height: 30.0,
-              child: Center(
-                child: Text('$count/$total',
-                    style: TextStyle(color: Colors.white)),
+          Column(
+            children: <Widget>[
+              AppBar(
+                elevation: 1.0,
+                backgroundColor: Color(0x2affffff),
+                title: Text(widget.title),
+                actions: <Widget>[
+                  IconButton(
+                      icon: Icon(Icons.share),
+                      onPressed: () {
+                        Share.share(widget.photos[count].cover);
+                      })
+                ],
               ),
-              decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.all(Radius.circular(5.0))),
-            ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 40.0),
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  width: 80.0,
+                  height: 30.0,
+                  child: Center(
+                    child: Text('$count/$total',
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                ),
+              ),
+            ],
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
           ),
         ],
       ),

@@ -144,8 +144,10 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                     '相册',
                     hiddenMore: celebrity.photos.length < 10,
                     onPressed: () {
-                      pushNewPage(context,
-                          MoviePhotosPage('影人相册', 'celebrity', widget.id));
+                      pushNewPage(
+                          context,
+                          MoviePhotosPage(
+                              celebrity.name, 'celebrity', widget.id));
                     },
                     backgroundColor: pageColor,
                     height: height,
@@ -171,7 +173,7 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                             onTap: () {
                               pushNewPage(
                                   context,
-                                  MoviePhotoPage(
+                                  MoviePhotoPage(widget.name,
                                       photos: celebrity.photos, index: index));
                             },
                           ),

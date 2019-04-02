@@ -232,8 +232,8 @@ class _MovieDetailState extends State<MovieDetail> {
               hiddenMore: movie.photos.length < 10,
               backgroundColor: pageColor,
               textColor: Colors.white,
-              onPressed: () => pushNewPage(
-                  context, MoviePhotosPage('电影剧照', 'subject', widget.id)),
+              onPressed: () => pushNewPage(context,
+                  MoviePhotosPage('《${movie.title}》剧照', 'subject', widget.id)),
             ),
             SizedBox.fromSize(
               size: Size.fromHeight(width),
@@ -260,7 +260,7 @@ class _MovieDetailState extends State<MovieDetail> {
                         onTap: () {
                           pushNewPage(
                               context,
-                              MoviePhotoPage(
+                              MoviePhotoPage('《${movie.title}》剧照',
                                   photos: movie.photos, index: index));
                         },
                       ),

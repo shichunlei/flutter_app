@@ -21,4 +21,14 @@ class Utils {
     MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     return mediaQuery.size.height;
   }
+
+  static double get navigationBarHeight {
+    MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
+    return mediaQuery.padding.top + kToolbarHeight;
+  }
+
+  static double get topSafeHeight {
+    MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
+    return mediaQuery.padding.top;
+  }
 }
