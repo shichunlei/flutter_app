@@ -89,6 +89,9 @@ dependencies: # 应用或包依赖的其它包或插件
   #
   rounded_letter: ^0.0.6
 
+  # BubbleBottomBar https://github.com/westdabestdb/bubble_bottom_bar
+  bubble_bottom_bar: ^1.1.0
+
   # 时间线 https://github.com/furkantektas/timeline_list
   timeline_list: ^0.0.3
 

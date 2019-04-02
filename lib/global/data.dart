@@ -9,6 +9,7 @@ import 'package:flutter_app/page/flipper_widget.dart';
 import 'package:flutter_app/page/random_words.dart';
 import 'package:flutter_app/page/swiper_page.dart';
 import 'package:flutter_app/tabs_demo/bottom_appbar.dart';
+import 'package:flutter_app/tabs_demo/bubble_bottom_bar.dart';
 import 'package:flutter_app/widget/appbar_widget.dart';
 import 'package:flutter_app/widget/contact_picker_widget.dart';
 import 'package:flutter_app/widget/icon_widget.dart';
@@ -238,6 +239,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('TabBar', TabBarHomePage()),
     SubExpandBean('BottomNavigationBar', BottomNavigationBarHomePage()),
     SubExpandBean('BottomNavigation', BottomNavigationWidget()),
+    SubExpandBean('BubbleBottomBar', BubbleBottomBarPage()),
     SubExpandBean('NavigationKeepAlive', NavigationKeepAlive()),
     SubExpandBean('不规则底部导航栏', BottomAppbar()),
     SubExpandBean('Stepper', StepperWidget()),
