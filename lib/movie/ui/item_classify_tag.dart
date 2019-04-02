@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/movie/page/movie_search_page.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
+import 'package:flutter_app/utils/route_util.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ItemClassifyTag extends StatefulWidget {
@@ -60,7 +62,11 @@ class _ItemClassifyTagState extends State<ItemClassifyTag> {
         ],
       ),
       onTap: () {
-        print(widget.tag);
+        pushNewPage(
+            context,
+            MovieSearchPage(
+              tag: widget.tag,
+            ));
       },
     );
   }

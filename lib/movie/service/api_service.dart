@@ -191,6 +191,24 @@ class ApiService {
     return result.subjects;
   }
 
+  /// 搜索电影
+  static Future<List<Movie>> getSearchList(
+      {String key, String tag, int start = 0, int count = 20}) async {
+    Response response = await HttpUtils().get(MOVIE_SEARCH_URL, data: {
+      'apikey': Config.DOUBAN_MOVIE_KEY,
+      'q': key,
+      'tag': tag,
+      'start': start,
+      'count': count
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+
+    return result.subjects;
+  }
+
   /// 获取电影详情
   static Future<Movie> getMovieDetail(String movieId) async {
     Response response = await HttpUtils().get('/subject/$movieId', data: {

@@ -25,22 +25,14 @@ class ItemList extends StatelessWidget {
     );
 
     var casts = '';
-    for (int i = 0; i < movie.casts.length; i++) {
-      if (i == 0) {
-        casts = casts + movie.casts[i].name;
-      } else {
-        casts = casts + '/' + movie.casts[i].name;
-      }
-    }
+    movie.casts.map((cast) {
+      casts += cast.name + '/';
+    }).toList();
 
     var directors = '';
-    for (int i = 0; i < movie.directors.length; i++) {
-      if (i == 0) {
-        directors = directors + movie.directors[i].name;
-      } else {
-        directors = directors + '/' + movie.directors[i].name;
-      }
-    }
+    movie.directors.map((director) {
+      directors += director.name + ' ';
+    }).toList();
 
     var movieMsg = Container(
       //高度
@@ -56,7 +48,7 @@ class ItemList extends StatelessWidget {
             textAlign: TextAlign.left,
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 14.0,
+                fontSize: 24.0,
                 color: Colors.black),
           ),
 
@@ -66,23 +58,31 @@ class ItemList extends StatelessWidget {
           /// 主演
           Text('主演：' + casts),
 
-          /// 豆瓣评书
-          Text('评分：' +
-              (movie.rating.average.toInt() == 0
-                  ? "暂无评分"
-                  : movie.rating.average.toString())),
+          Row(
+            children: <Widget>[
+              /// 豆瓣评书
+              Text('评分：' +
+                  (movie.rating.average.toInt() == 0
+                      ? "暂无评分"
+                      : movie.rating.average.toString())),
 
-          SmoothStarRating(
-            rating: movie.rating.average / 2.0,
+              SizedBox(width: 10.0),
+              Offstage(
+                offstage: movie.rating.average.toInt() == 0,
+                child: SmoothStarRating(
+                  rating: movie.rating.average / 2.0,
 
-            /// 星的大小
-            size: 20,
+                  /// 星的大小
+                  size: 20,
 
-            /// 评分是否使用整数(1.0或0.5)
-            allowHalfRating: false,
+                  /// 评分是否使用整数(1.0或0.5)
+                  allowHalfRating: false,
 
-            /// 选中颜色
-            color: Colors.deepOrange,
+                  /// 选中颜色
+                  color: Colors.deepOrange,
+                ),
+              ),
+            ],
           ),
 
           /// 看过人数
@@ -104,17 +104,13 @@ class ItemList extends StatelessWidget {
       onTap: onTap,
 
       child: Card(
-        margin: EdgeInsets.all(5.0),
         child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             movieImage,
             // Expanded 均分
             Expanded(
               child: movieMsg,
             ),
-            const Icon(Icons.keyboard_arrow_right),
           ],
         ),
       ),
