@@ -100,7 +100,11 @@ dependencies: # 应用或包依赖的其它包或插件
   url_launcher: ^5.0.1
 
   http: ^0.12.0
+
+  # 解析html
   html: ^0.13.4+1
+
+  flutter_html: ^0.9.6
 
   flutter_webview_plugin: ^0.3.3
   share: ^0.6.0+1

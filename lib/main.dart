@@ -5,12 +5,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/splash_screen.dart';
 import 'package:flutter_app/utils/log_util.dart';
+import 'package:flutter_app/utils/sp_util.dart';
 
-void main() {
+void main() async {
+  int themeIndex = await getTheme();
   setCustomErrorPage();
   _setTargetPlatformForDesktop();
   runZoned(() {
-    runApp(MyApp());
+    runApp(MyApp(themeIndex));
   }, onError: (dynamic error, dynamic stack) {
     LogUtil.e(error);
     LogUtil.e(stack);
@@ -41,7 +43,36 @@ void _setTargetPlatformForDesktop() {
   }
 }
 
-class MyApp extends StatelessWidget {
+Future<int> getTheme() async {
+  int themeIndex = SPUtil.getInt('themeIndex');
+  if (themeIndex != null) {
+    return themeIndex;
+  }
+  return 0;
+}
+
+class MyApp extends StatefulWidget {
+  int themeIndex;
+
+  MyApp(this.themeIndex, {Key key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Color themeColor;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   /// This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

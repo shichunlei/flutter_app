@@ -1,8 +1,10 @@
-import 'package:flutter_app/movie/bean/celebrity.dart';
-import 'package:flutter_app/movie/bean/movie.dart';
-import 'package:flutter_app/movie/bean/photos.dart';
-import 'package:flutter_app/movie/bean/reviews.dart';
-import 'package:flutter_app/movie/bean/works.dart';
+import 'package:flutter_app/bean/article.dart';
+import 'package:flutter_app/bean/celebrity.dart';
+import 'package:flutter_app/bean/movie.dart';
+import 'package:flutter_app/bean/photos.dart';
+import 'package:flutter_app/bean/poetry.dart';
+import 'package:flutter_app/bean/reviews.dart';
+import 'package:flutter_app/bean/works.dart';
 
 class Result {
   String title;
@@ -11,6 +13,12 @@ class Result {
   int total;
   List<Movie> subjects;
   Movie subject;
+
+  /// 每日一文
+  Article data;
+
+  /// 随机诗词
+  Poetry result;
 
   /// 相册
   List<Photos> photos;
@@ -44,6 +52,9 @@ class Result {
         map['celebrity'] == null ? null : Celebrity.fromMap(map['celebrity']);
     result.subject =
         map['subject'] == null ? null : Movie.fromMap(map['subject']);
+    result.result =
+        map['result'] == null ? null : Poetry.fromMap(map['result']);
+    result.data = map['data'] == null ? null : Article.fromMap(map['data']);
     return result;
   }
 

@@ -19,7 +19,7 @@ class _FrostingWidgetState extends State<FrostingWidget> {
           ConstrainedBox(
             constraints: const BoxConstraints.expand(),
             child: Image.network(
-              "https://img-blog.csdnimg.cn/20181116224221945.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb19tNTgy,size_16,color_FFFFFF,t_70",
+              "https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1554280920&di=f596f493385c55a20fe45440e5cb14a6&src=http://pic18.nipic.com/20120205/3145425_101322096000_2.jpg",
             ),
           ),
           Center(

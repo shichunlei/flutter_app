@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/bean/movie.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MovieDetailHeader extends StatelessWidget {

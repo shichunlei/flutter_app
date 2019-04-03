@@ -1,4 +1,4 @@
-import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/bean/movie.dart';
 
 class Works {
   Movie subject;

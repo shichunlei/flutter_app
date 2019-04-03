@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/toast/toast.dart';
+import 'package:flutter_app/bean/photos.dart';
+import 'package:flutter_app/utils/toast.dart';
 
 import 'package:flutter_app/global/config.dart';
-import 'package:flutter_app/movie/bean/photos.dart';
 import 'package:flutter_app/movie/page/movie_photo.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
 import 'package:flutter_app/movie/ui/item_photo.dart';

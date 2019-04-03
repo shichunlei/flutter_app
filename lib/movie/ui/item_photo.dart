@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/movie/bean/photos.dart';
+import 'package:flutter_app/bean/photos.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ItemPhoto extends StatelessWidget {

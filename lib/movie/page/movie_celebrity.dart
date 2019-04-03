@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/movie/bean/celebrity.dart';
-import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/bean/celebrity.dart';
+import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_photo.dart';
 import 'package:flutter_app/movie/page/movie_photos.dart';
 import 'package:flutter_app/movie/page/movie_with_celebrity.dart';

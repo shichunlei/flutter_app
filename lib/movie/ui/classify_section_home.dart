@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_search_page.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
 import 'package:flutter_app/movie/ui/movie_grid_view.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/movie/bean/photos.dart';
+import 'package:flutter_app/bean/photos.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:share/share.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/page/contact_list_page.dart';
 import 'package:flutter_app/login/page/login_page.dart';
-import 'package:flutter_app/custom_widgets/toast/toast.dart';
+import 'package:flutter_app/utils/toast.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/poetry/page/random_poetry_page.dart';
 import 'package:flutter_app/utils/log_util.dart';

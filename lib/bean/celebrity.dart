@@ -1,6 +1,7 @@
-import 'package:flutter_app/movie/bean/avatars.dart';
-import 'package:flutter_app/movie/bean/photos.dart';
-import 'package:flutter_app/movie/bean/works.dart';
+
+import 'package:flutter_app/bean/avatars.dart';
+import 'package:flutter_app/bean/photos.dart';
+import 'package:flutter_app/bean/works.dart';
 
 class Celebrity {
   String website;

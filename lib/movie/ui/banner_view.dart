@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/movie/bean/news.dart';
+import 'package:flutter_app/bean/news.dart';
 import 'package:flutter_app/movie/page/web_view.dart';
-import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:transparent_image/transparent_image.dart';

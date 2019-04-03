@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/bean/news.dart';
 import 'package:flutter_app/global/config.dart';
-import 'package:flutter_app/movie/bean/movie.dart';
-import 'package:flutter_app/movie/bean/news.dart';
+import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_classify_page.dart';
 import 'package:flutter_app/movie/page/movie_hot.dart';
 import 'package:flutter_app/movie/page/movie_soon.dart';

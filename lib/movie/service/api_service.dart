@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_app/bean/article.dart';
+import 'package:flutter_app/bean/celebrity.dart';
+import 'package:flutter_app/bean/news.dart';
+import 'package:flutter_app/bean/photos.dart';
+import 'package:flutter_app/bean/poetry.dart';
+import 'package:flutter_app/bean/reviews.dart';
 import 'package:flutter_app/global/config.dart';
-import 'package:flutter_app/movie/bean/celebrity.dart';
-import 'package:flutter_app/movie/bean/movie.dart';
-import 'package:flutter_app/movie/bean/news.dart';
-import 'package:flutter_app/movie/bean/photos.dart';
-import 'package:flutter_app/movie/bean/result.dart';
-import 'package:flutter_app/movie/bean/reviews.dart';
+import 'package:flutter_app/bean/movie.dart';
+import 'package:flutter_app/bean/result.dart';
 import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/log_util.dart';
 
@@ -25,6 +27,15 @@ class ApiService {
   static final String WEEKLY_MOVIES_URL = "/weekly";
 
   static final String US_MOVIES_URL = "/us_box";
+
+  static final String ARTICLE_BASE_URL = "https://interface.meiriyiwen.com";
+
+  static final String ARTICLE_TODAY_URL = ARTICLE_BASE_URL + "/article/today";
+  static final String ARTICLE_DAY_URL = ARTICLE_BASE_URL + "/article/day";
+  static final String ARTICLE_RANDOM_URL = ARTICLE_BASE_URL + "/article/random";
+
+  static final String RECOMMEND_POETRY =
+      'https://api.apiopen.top/recommendPoetry';
 
   /// 获取首页热门新闻文章
   static Future<List<News>> getNewsList() async {
@@ -338,5 +349,48 @@ class ApiService {
     }
     Result result = Result.fromMap(response.data);
     return result.reviews;
+  }
+
+  /// 每日一文
+  static Future<Article> getTodayArticle() async {
+    Response response =
+        await HttpUtils().get(ARTICLE_TODAY_URL, data: {'dev': 1});
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    return result.data;
+  }
+
+  /// 特定日期文章
+  static Future<Article> getDayArticle(String date) async {
+    Response response = await HttpUtils()
+        .get(ARTICLE_TODAY_URL, data: {'dev': 1, 'date': date});
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    return result.data;
+  }
+
+  /// 随机文章
+  static Future<Article> getRandomArticle(String date) async {
+    Response response =
+        await HttpUtils().get(ARTICLE_TODAY_URL, data: {'dev': 1});
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    return result.data;
+  }
+
+  /// 随机诗词
+  static Future<Poetry> getRecommendPoetry() async {
+    Response response = await HttpUtils().get(RECOMMEND_POETRY, data: null);
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    return result.result;
   }
 }

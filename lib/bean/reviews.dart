@@ -1,5 +1,5 @@
-import 'package:flutter_app/movie/bean/author.dart';
-import 'package:flutter_app/movie/bean/rating.dart';
+import 'package:flutter_app/bean/author.dart';
+import 'package:flutter_app/bean/rating.dart';
 
 class Reviews {
   String created_at;

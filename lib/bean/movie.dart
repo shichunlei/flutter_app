@@ -1,12 +1,12 @@
-import 'package:flutter_app/movie/bean/bloopers.dart';
-import 'package:flutter_app/movie/bean/casts.dart';
-import 'package:flutter_app/movie/bean/clips.dart';
-import 'package:flutter_app/movie/bean/images.dart';
-import 'package:flutter_app/movie/bean/photos.dart';
-import 'package:flutter_app/movie/bean/rating.dart';
-import 'package:flutter_app/movie/bean/reviews.dart';
-import 'package:flutter_app/movie/bean/trailers.dart';
-import 'package:flutter_app/movie/bean/videos.dart';
+import 'package:flutter_app/bean/bloopers.dart';
+import 'package:flutter_app/bean/casts.dart';
+import 'package:flutter_app/bean/clips.dart';
+import 'package:flutter_app/bean/images.dart';
+import 'package:flutter_app/bean/photos.dart';
+import 'package:flutter_app/bean/rating.dart';
+import 'package:flutter_app/bean/reviews.dart';
+import 'package:flutter_app/bean/trailers.dart';
+import 'package:flutter_app/bean/videos.dart';
 
 class Movie {
   /// 原名

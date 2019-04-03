@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/regex_util.dart';
 import 'package:flutter_app/login/ui/submit_button.dart';
-import 'package:flutter_app/custom_widgets/toast/toast.dart';
+import 'package:flutter_app/utils/toast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUpPage extends StatefulWidget {

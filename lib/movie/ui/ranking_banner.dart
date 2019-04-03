@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_ranking_home.dart';
 import 'package:flutter_app/movie/page/movie_top250.dart';
 import 'package:flutter_app/utils/route_util.dart';

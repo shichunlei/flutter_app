@@ -1,4 +1,5 @@
-import 'package:flutter_app/movie/bean/avatars.dart';
+
+import 'package:flutter_app/bean/avatars.dart';
 
 class Casts {
   String name_en;

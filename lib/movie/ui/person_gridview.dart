@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_app/movie/bean/casts.dart';
+import 'package:flutter_app/bean/casts.dart';
 
 class PersonGridView extends StatelessWidget {
   final Casts casts;

@@ -9,7 +9,6 @@ class HttpUtils {
   static HttpUtils instance;
   Dio _dio;
   BaseOptions options;
-  static String _baseUrl;
 
   static const CONTENT_TYPE_JSON = "application/json";
   static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
@@ -20,10 +19,6 @@ class HttpUtils {
       instance = HttpUtils();
     }
     return instance;
-  }
-
-  static setBaseUrl(String baseUrl) {
-    _baseUrl = baseUrl;
   }
 
   HttpUtils() {
@@ -40,7 +35,11 @@ class HttpUtils {
       /// 接收数据的总时限.
       receiveTimeout: 3000,
       contentType: ContentType.json,
-      headers: {},
+      headers: {
+        // "Content-Type": "application/json",
+        // "Accept": "application/json",
+        // "Authorization": "Bearer " + access_token
+      },
 
       /// 共同的参数可以在此设置
       /// queryParameters: {"apikey": apiKey}
@@ -73,6 +72,7 @@ class HttpUtils {
     }
   }
 
+  // get
   get(path, {data, options, cancelToken}) async {
     LogUtil.v('get请求启动! path：$path ,body: $data');
     Response response;
@@ -111,6 +111,7 @@ class HttpUtils {
     return response;
   }
 
+  // get
   post(path, {data, options, cancelToken}) async {
     LogUtil.v('post请求启动! path：$path ,body: $data');
     Response response;

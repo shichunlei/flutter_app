@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/global/config.dart';
-import 'package:flutter_app/movie/bean/movie.dart';
+import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_search_page.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/utils.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/movie/bean/reviews.dart';
+import 'package:flutter_app/bean/reviews.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class ItemComment extends StatelessWidget {
