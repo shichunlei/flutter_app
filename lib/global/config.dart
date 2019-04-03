@@ -89,3 +89,5 @@ class Config {
     '更早'
   ];
 }
+
+enum RefreshType { DEFAULT, LOAD_MORE, REFRESH }

@@ -36,12 +36,6 @@ import 'package:flutter_app/widget/frosting_widget.dart';
 import 'package:flutter_app/widget/image_widget.dart';
 import 'package:flutter_app/widget/load_image_widget.dart';
 
-class RefreshType {
-  static final int DEFAULT = 0x1000;
-  static final int LOAD_MORE = 0x1000;
-  static final int REFRESH = 0x1000;
-}
-
 class Girl {
   final String description;
   final String image;

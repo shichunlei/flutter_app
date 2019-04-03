@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/toast/toast.dart';
 
-import 'package:flutter_app/global/data.dart';
+import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/movie/bean/photos.dart';
 import 'package:flutter_app/movie/page/movie_photo.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
@@ -11,7 +11,6 @@ import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class MoviePhotosPage extends StatefulWidget {
   final String title;
@@ -62,7 +61,7 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
   }
 
   void getPhotosList(
-      String url, String id, int start, int count, int loadDataType) async {
+      String url, String id, int start, int count, RefreshType loadDataType) async {
     List<Photos> _photos =
         await ApiService.getPhotos(url, id, start: start, count: count);
 

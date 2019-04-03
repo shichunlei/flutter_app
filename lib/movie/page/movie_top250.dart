@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/toast/toast.dart';
-import 'package:flutter_app/global/data.dart';
+import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_detail.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
@@ -114,7 +114,7 @@ class _MovieTop250State extends State<MovieTop250> {
     );
   }
 
-  void getMovieTop250List(int page, int pagesize, int type) async {
+  void getMovieTop250List(int page, int pagesize, RefreshType type) async {
     List<Movie> list = await ApiService.getTop250List(
         start: (page - 1) * pagesize, count: pagesize);
     if (type == RefreshType.DEFAULT) {

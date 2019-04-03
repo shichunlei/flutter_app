@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/toast/toast.dart';
-import 'package:flutter_app/global/data.dart';
+import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/movie/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_detail.dart';
 import 'package:flutter_app/movie/service/api_service.dart';
@@ -55,7 +55,7 @@ class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
   }
 
   void getMovieList(
-      String celebrityId, int page, int pagesize, int type) async {
+      String celebrityId, int page, int pagesize, RefreshType type) async {
     List<Movie> list = await ApiService.getActorMovies(celebrityId,
         start: (page - 1) * pagesize, count: pagesize);
     if (type == RefreshType.DEFAULT) {
