@@ -4,7 +4,7 @@ import 'package:flutter_app/contact/page/contact_list_page.dart';
 import 'package:flutter_app/login/page/login_page.dart';
 import 'package:flutter_app/utils/toast.dart';
 import 'package:flutter_app/global/data.dart';
-import 'package:flutter_app/poetry/page/random_poetry_page.dart';
+import 'package:flutter_app/page/random_poetry_page.dart';
 import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/weather/page/city_page.dart';
 import 'package:flutter_app/widget/qr_image_wiget.dart';
