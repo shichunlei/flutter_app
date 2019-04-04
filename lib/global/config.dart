@@ -7,6 +7,8 @@ class Config {
 
   static const String DOUBAN_WEB_URL = 'https://movie.douban.com/';
 
+  static final String MOVIE_BASE_URL = "https://api.douban.com/v2/movie";
+
   /// 类型
   static const GenreList = [
     '剧情',

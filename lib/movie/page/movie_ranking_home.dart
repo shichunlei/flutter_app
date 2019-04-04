@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/page/movie_ranking_sub_page.dart';
-import 'package:flutter_app/movie/service/api_service.dart';
+import 'package:flutter_app/service/api_service.dart';
 
 class MovieRakingHome extends StatefulWidget {
   final int index;

@@ -9,7 +9,7 @@ import 'package:flutter_app/movie/page/movie_classify_page.dart';
 import 'package:flutter_app/movie/page/movie_hot.dart';
 import 'package:flutter_app/movie/page/movie_soon.dart';
 import 'package:flutter_app/movie/ui/ranking_banner.dart';
-import 'package:flutter_app/movie/service/api_service.dart';
+import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/movie/ui/banner_view.dart';
 import 'package:flutter_app/movie/ui/classify_section_home.dart';
 import 'package:flutter_app/movie/ui/home_section_view.dart';

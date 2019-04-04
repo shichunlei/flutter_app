@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_app/global/api.dart';
 import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/utils/log_util.dart';
 
@@ -27,7 +26,7 @@ class HttpUtils {
     /// 或者通过传递一个 `options`来创建dio实例
     options = BaseOptions(
       /// 请求基地址,可以包含子路径，如: "https://www.google.com/api/".
-      baseUrl: Api.MOVIE_BASE_URL,
+      baseUrl: Config.MOVIE_BASE_URL,
 
       /// 连接服务器超时时间，单位是毫秒.
       connectTimeout: 10000,

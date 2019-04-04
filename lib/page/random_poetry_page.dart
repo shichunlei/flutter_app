@@ -1,7 +1,7 @@
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/poetry.dart';
-import 'package:flutter_app/movie/service/api_service.dart';
+import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 
 class RandomPoetryPage extends StatefulWidget {

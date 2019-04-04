@@ -1,12 +1,12 @@
-import 'package:flutter_app/weather/bean/air_now_city.dart';
-import 'package:flutter_app/weather/bean/air_now_station.dart';
-import 'package:flutter_app/weather/bean/basic.dart';
-import 'package:flutter_app/weather/bean/daily_forecast.dart';
-import 'package:flutter_app/weather/bean/hourly.dart';
-import 'package:flutter_app/weather/bean/lifestyle.dart';
-import 'package:flutter_app/weather/bean/now.dart';
-import 'package:flutter_app/weather/bean/sunrise_sunset.dart';
-import 'package:flutter_app/weather/bean/update.dart';
+import 'package:flutter_app/bean/air_now_city.dart';
+import 'package:flutter_app/bean/air_now_station.dart';
+import 'package:flutter_app/bean/basic.dart';
+import 'package:flutter_app/bean/daily_forecast.dart';
+import 'package:flutter_app/bean/hourly.dart';
+import 'package:flutter_app/bean/lifestyle.dart';
+import 'package:flutter_app/bean/now.dart';
+import 'package:flutter_app/bean/sunrise_sunset.dart';
+import 'package:flutter_app/bean/update.dart';
 
 class HeWeather {
   /// 接口状态

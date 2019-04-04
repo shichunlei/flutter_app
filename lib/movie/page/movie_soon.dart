@@ -3,7 +3,7 @@ import 'package:flutter_app/utils/toast.dart';
 import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_detail.dart';
-import 'package:flutter_app/movie/service/api_service.dart';
+import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/movie/ui/item_soon_view.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';

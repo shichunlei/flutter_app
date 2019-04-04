@@ -8,7 +8,7 @@ import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/weather/bean/city.dart';
+import 'package:flutter_app/bean/city.dart';
 import 'package:flutter_app/weather/page/weather_page.dart';
 import 'package:rounded_letter/rounded_letter.dart';
 

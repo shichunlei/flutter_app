@@ -2,12 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter_app/bean/article.dart';
 import 'package:flutter_app/bean/celebrity.dart';
 import 'package:flutter_app/bean/news.dart';
+import 'package:flutter_app/bean/now.dart';
 import 'package:flutter_app/bean/photos.dart';
 import 'package:flutter_app/bean/poetry.dart';
 import 'package:flutter_app/bean/reviews.dart';
-import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/bean/result.dart';
+import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/utils/http_utils.dart';
 import 'package:flutter_app/utils/log_util.dart';
 
@@ -37,6 +38,12 @@ class ApiService {
   static final String RECOMMEND_POETRY =
       'https://api.apiopen.top/recommendPoetry';
 
+  static final String WEATHER_BASE_URL = "https://free-api.heweather.net/s6/";
+
+  static final String WEATHER = WEATHER_BASE_URL + "weather";
+
+  static final String CITY_TOP = "https://search.heweather.net/top";
+
   /// 获取首页热门新闻文章
   static Future<List<News>> getNewsList() async {
     List<News> news = [];
@@ -54,7 +61,7 @@ class ApiService {
             item.getElementsByTagName('h3')[0].text.toString().trim();
         String summary =
             item.getElementsByTagName('p')[0].text.toString().trim();
-        News movieNews = new News(title, cover, summary, link);
+        News movieNews = News(title, cover, summary, link);
         news.add(movieNews);
       });
     });
@@ -359,7 +366,7 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(response.data);
-    return result.data;
+    return result.article;
   }
 
   /// 特定日期文章
@@ -370,7 +377,7 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(response.data);
-    return result.data;
+    return result.article;
   }
 
   /// 随机文章
@@ -381,7 +388,7 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(response.data);
-    return result.data;
+    return result.article;
   }
 
   /// 随机诗词
@@ -391,6 +398,19 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(response.data);
-    return result.result;
+    return result.poetry;
+  }
+
+  /// 得到当前天气
+  static Future<NowBean> getHeWeatherNow(String city) async {
+    Response response = await HttpUtils().get(WEATHER, data: {
+      "location": city,
+      "key": Config.HE_WEATHER_KEY,
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    return result.heWeather[0].now;
   }
 }

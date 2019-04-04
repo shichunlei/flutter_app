@@ -9,7 +9,7 @@ import 'package:flutter_app/movie/page/movie_photos.dart';
 import 'package:flutter_app/movie/ui/movie_detail_header.dart';
 import 'package:flutter_app/movie/page/movie_photo.dart';
 import 'package:flutter_app/movie/page/movie_video.dart';
-import 'package:flutter_app/movie/service/api_service.dart';
+import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/movie/ui/cover_section_view.dart';
 import 'package:flutter_app/movie/ui/expandable_text.dart';
 import 'package:flutter_app/movie/ui/home_section_view.dart';
