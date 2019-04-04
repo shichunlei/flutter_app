@@ -36,18 +36,15 @@ class _FrostingWidgetState extends State<FrostingWidget> {
                 child: Opacity(
                   opacity: 0.5,
                   child: Container(
-                    width: 500.0,
-                    height: 700.0,
+                    width: 100.0,
+                    height: 100.0,
 
                     /// 盒子修饰器
                     decoration: BoxDecoration(
                       color: Colors.grey.shade300,
                     ),
                     child: Center(
-                      child: Text(
-                        "毛玻璃效果",
-                        style: Theme.of(context).textTheme.display3,
-                      ),
+                      child: Text("毛玻璃效果"),
                     ),
                   ),
                 ),

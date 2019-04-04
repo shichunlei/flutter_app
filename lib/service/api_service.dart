@@ -544,7 +544,7 @@ class ApiService {
   /// 热门城市
   static Future<List<City>> getHotCitys() async {
     Response response = await HttpUtils().get(CITY_TOP, data: {
-      "group": "world",
+      "group": "cn",
       "key": Config.HE_WEATHER_KEY,
       "number": 50,
     });
