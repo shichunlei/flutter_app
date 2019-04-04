@@ -391,8 +391,8 @@ class ApiService {
 
   /// 特定日期文章
   static Future<Article> getDayArticle(String date) async {
-    Response response = await HttpUtils()
-        .get(ARTICLE_TODAY_URL, data: {'dev': 1, 'date': date});
+    Response response =
+        await HttpUtils().get(ARTICLE_DAY_URL, data: {'dev': 1, 'date': date});
     if (response.statusCode != 200) {
       return null;
     }
@@ -401,9 +401,9 @@ class ApiService {
   }
 
   /// 随机文章
-  static Future<Article> getRandomArticle(String date) async {
+  static Future<Article> getRandomArticle() async {
     Response response =
-        await HttpUtils().get(ARTICLE_TODAY_URL, data: {'dev': 1});
+        await HttpUtils().get(ARTICLE_RANDOM_URL, data: {'dev': 1});
     if (response.statusCode != 200) {
       return null;
     }

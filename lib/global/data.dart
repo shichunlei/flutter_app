@@ -6,6 +6,7 @@ import 'package:flutter_app/page/city_picker_page.dart';
 import 'package:flutter_app/page/clippy_widget.dart';
 import 'package:flutter_app/page/device_info_page.dart';
 import 'package:flutter_app/page/flipper_widget.dart';
+import 'package:flutter_app/page/one_article_page.dart';
 import 'package:flutter_app/page/random_words.dart';
 import 'package:flutter_app/page/swiper_page.dart';
 import 'package:flutter_app/tabs_demo/bottom_appbar.dart';
@@ -274,6 +275,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('Question', QuizPage()),
     SubExpandBean('豆瓣电影', MovieHomePage()),
     SubExpandBean('随机单词', RandomWords()),
+    SubExpandBean('每日一文', OneArticlePage()),
     SubExpandBean('设备信息', DeviceInfoPage()),
   ]),
 ];
