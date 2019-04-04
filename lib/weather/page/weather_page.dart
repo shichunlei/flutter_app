@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/bean/now.dart';
@@ -23,9 +24,13 @@ class WeatherPageState extends State<WeatherPage> {
 
   /// 根据城市名查询该城市天气预报
   _getWeather(String cityname) async {
-    now = await ApiService.getHeWeatherNow(cityname);
+    HeWeather weather = await ApiService.getHeWeatherNow(cityname);
 
-    setState(() {});
+    setState(() {
+      if (weather != null) {
+        now = weather.now;
+      }
+    });
   }
 
   @override

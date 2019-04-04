@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_app/bean/article.dart';
 import 'package:flutter_app/bean/celebrity.dart';
+import 'package:flutter_app/bean/city.dart';
+import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/bean/news.dart';
-import 'package:flutter_app/bean/now.dart';
 import 'package:flutter_app/bean/photos.dart';
 import 'package:flutter_app/bean/poetry.dart';
 import 'package:flutter_app/bean/reviews.dart';
@@ -38,13 +41,30 @@ class ApiService {
   static final String RECOMMEND_POETRY =
       'https://api.apiopen.top/recommendPoetry';
 
-  static final String WEATHER_BASE_URL = "https://free-api.heweather.net/s6/";
+  static final String WEATHER_BASE_URL = "https://free-api.heweather.net/s6";
 
-  static final String WEATHER = WEATHER_BASE_URL + "weather";
+  static final String WEATHER = WEATHER_BASE_URL + "/weather";
+
+  static final String WEATHER_NOW = WEATHER_BASE_URL + "/weather/now";
+
+  static final String WEATHER_HOURLY = WEATHER_BASE_URL + "/weather/hourly";
+
+  static final String WEATHER_FORECAST = WEATHER_BASE_URL + "/weather/forecast";
+
+  static final String AIR = WEATHER_BASE_URL + "/air";
+
+  static final String AIR_NOW = WEATHER_BASE_URL + "/air/now";
+
+  static final String LIFESTYLE = WEATHER_BASE_URL + "/weather/lifestyle";
+
+  static final String SUNRISE_SUNSET =
+      WEATHER_BASE_URL + "/solar/sunrise-sunset";
+
+  static final String CITY_FIND = "https://search.heweather.net/find";
 
   static final String CITY_TOP = "https://search.heweather.net/top";
 
-  /// 获取首页热门新闻文章
+  /// 获取豆瓣电影首页热门新闻文章
   static Future<List<News>> getNewsList() async {
     List<News> news = [];
 
@@ -71,7 +91,7 @@ class ApiService {
     return news;
   }
 
-  /// 获取正在上映电影
+  /// 获取正在热映电影
   static Future<List<Movie>> getNowPlayingList(
       {String city, int start = 0, int count = 20}) async {
     Response response = await HttpUtils().get(MOVIE_LIST_URL, data: {
@@ -401,16 +421,155 @@ class ApiService {
     return result.poetry;
   }
 
-  /// 得到当前天气
-  static Future<NowBean> getHeWeatherNow(String city) async {
-    Response response = await HttpUtils().get(WEATHER, data: {
+  /// 得到实况天气
+  static Future<HeWeather> getHeWeatherNow(String city) async {
+    Response response = await HttpUtils().get(WEATHER_NOW, data: {
       "location": city,
       "key": Config.HE_WEATHER_KEY,
+      'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
+      'lang': 'zh', // 多语言，可以不使用该参数，默认为简体中文
     });
     if (response.statusCode != 200) {
       return null;
     }
     Result result = Result.fromMap(response.data);
-    return result.heWeather[0].now;
+    return result.heWeather[0];
+  }
+
+  /// 得到逐小时天气
+  static Future<HeWeather> getHeWeatherHourly(String city) async {
+    Response response = await HttpUtils().get(WEATHER_HOURLY, data: {
+      "location": city,
+      "key": Config.HE_WEATHER_KEY,
+      'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
+      'lang': 'zh', // 多语言，可以不使用该参数，默认为简体中文
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    return result.heWeather[0];
+  }
+
+  /// 得到3-10天天气
+  static Future<HeWeather> getHeWeatherForecast(String city) async {
+    Response response = await HttpUtils().get(WEATHER_FORECAST, data: {
+      "location": city,
+      "key": Config.HE_WEATHER_KEY,
+      'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
+      'lang': 'zh', // 多语言，可以不使用该参数，默认为简体中文
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    return result.heWeather[0];
+  }
+
+  /// 常规天气数据集合
+  static Future<HeWeather> getHeWeather(String city) async {
+    Response response = await HttpUtils().get(WEATHER, data: {
+      "location": city,
+      "key": Config.HE_WEATHER_KEY,
+      'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
+      'lang': 'zh', // 多语言，可以不使用该参数，默认为简体中文
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    return result.heWeather[0];
+  }
+
+  /// 日出日落
+  static Future<HeWeather> getSunriseSunset(String city) async {
+    Response response = await HttpUtils().get(SUNRISE_SUNSET, data: {
+      "location": city,
+      "key": Config.HE_WEATHER_KEY,
+      'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
+      'lang': 'zh', // 多语言，可以不使用该参数，默认为简体中文
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    return result.heWeather[0];
+  }
+
+  /// 空气质量数据集合
+  static Future<HeWeather> getAir(String city) async {
+    Response response = await HttpUtils().get(AIR, data: {
+      "location": city, // 所查询地区的纬度 纬度采用十进制格式，北纬为正，南纬为负
+      "key": Config.HE_WEATHER_KEY,
+      'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
+      'lang': 'zh', // 多语言，可以不使用该参数，默认为简体中文
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    return result.heWeather[0];
+  }
+
+  /// 空气质量实况
+  static Future<HeWeather> getAirNow(String city) async {
+    Response response = await HttpUtils().get(AIR_NOW, data: {
+      "location": city, // 所查询地区的纬度 纬度采用十进制格式，北纬为正，南纬为负
+      "key": Config.HE_WEATHER_KEY,
+      'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
+      'lang': 'zh', // 多语言，可以不使用该参数，默认为简体中文
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    return result.heWeather[0];
+  }
+
+  /// 生活指数
+  static Future<HeWeather> getLifeStyle(String city) async {
+    Response response = await HttpUtils().get(LIFESTYLE, data: {
+      "location": city, // 所查询地区的纬度 纬度采用十进制格式，北纬为正，南纬为负
+      "key": Config.HE_WEATHER_KEY,
+      'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
+      'lang': 'zh', // 多语言，可以不使用该参数，默认为简体中文
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    return result.heWeather[0];
+  }
+
+  /// 热门城市
+  static Future<List<City>> getHotCitys() async {
+    Response response = await HttpUtils().get(CITY_TOP, data: {
+      "group": "world",
+      "key": Config.HE_WEATHER_KEY,
+      "number": 50,
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    return City.fromMapList(
+        json.decode(response.data)['HeWeather6'][0]['basic']);
+  }
+
+  /// 搜索城市
+  static Future<List<City>> getSeacherCitys(String keyword) async {
+    Response response = await HttpUtils().get(CITY_FIND, data: {
+      "location": keyword,
+      "group": "cn",
+      // group=world 查询全球城市（默认值）;group=cn 仅查询中国城市;group=us,scenic 查询美国城市和中国景点地区;group=cn,us,ru 查询中国、美国和俄罗斯城市
+      "key": Config.HE_WEATHER_KEY,
+      "number": 20,
+      'mode': 'match'
+      // 查询方式（模糊检索 or 精准检索） 可选值: equal、match，默认：match
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    return City.fromMapList(
+        json.decode(response.data)['HeWeather6'][0]['basic']);
   }
 }

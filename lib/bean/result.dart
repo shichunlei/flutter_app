@@ -34,6 +34,7 @@ class Result {
   /// 短评
   List<Reviews> comments;
 
+  /// 天气
   List<HeWeather> heWeather;
 
   static Result fromMap(Map<String, dynamic> map) {
@@ -58,8 +59,9 @@ class Result {
     result.poetry =
         map['result'] == null ? null : Poetry.fromMap(map['result']);
     result.article = map['data'] == null ? null : Article.fromMap(map['data']);
-    result.heWeather =
-        map['HeWeather6'] == null ? [] : HeWeather.fromMapList(map['HeWeather6']);
+    result.heWeather = map['HeWeather6'] == null
+        ? []
+        : HeWeather.fromMapList(map['HeWeather6']);
     return result;
   }
 

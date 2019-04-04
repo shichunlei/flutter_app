@@ -1,11 +1,7 @@
-import 'dart:convert';
-
 import 'package:azlistview/azlistview.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/ui/suspension_tag.dart';
-import 'package:flutter_app/global/config.dart';
-import 'package:flutter_app/utils/http_utils.dart';
+import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/bean/city.dart';
@@ -86,21 +82,8 @@ class CityPageState extends State<CityPage> {
     _hotCityList.add(City(parent_city: "杭州", tagIndex: "热门"));
     _hotCityList.add(City(parent_city: "上海", tagIndex: "热门"));
 
-    var data = {
-      "group": "cn",
-      "key": Config.HE_WEATHER_KEY,
-      "number": 50,
-    };
-
-    Response response =
-        await HttpUtils().get("https://search.heweather.net/top", data: data);
-
-    if (response.statusCode == 200) {
-      var jsonData = response.data;
-      _cityList =
-          City.fromMapList(json.decode(jsonData)['HeWeather6'][0]['basic']);
-      _handleList(_cityList);
-    }
+    _cityList = await ApiService.getHotCitys();
+    _handleList(_cityList);
 
     _suspensionTag = _hotCityList[0].getSuspensionTag();
 
