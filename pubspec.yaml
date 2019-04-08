@@ -92,9 +92,6 @@ dependencies: # 应用或包依赖的其它包或插件
   #
   rounded_letter: ^0.0.6
 
-  # BubbleBottomBar https://github.com/westdabestdb/bubble_bottom_bar
-  bubble_bottom_bar: ^1.1.0
-
   # 时间线 https://github.com/furkantektas/timeline_list
   timeline_list: ^0.0.3
 
@@ -122,9 +119,6 @@ dependencies: # 应用或包依赖的其它包或插件
 
   # 评分控件
   smooth_star_rating: 1.0.1
-
-  # https://github.com/apgapg/avatar_glow
-  avatar_glow: ^0.2.0
 
   city_picker: ^0.1.3
 

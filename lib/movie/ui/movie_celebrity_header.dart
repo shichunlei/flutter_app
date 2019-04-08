@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/custom_widgets/avatar_glow.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:transparent_image/transparent_image.dart';
-import 'package:avatar_glow/avatar_glow.dart';
 
 class MovieCelebrityHeader extends StatelessWidget {
   final String name;
