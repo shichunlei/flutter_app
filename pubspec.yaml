@@ -86,6 +86,9 @@ dependencies: # 应用或包依赖的其它包或插件
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.6
 
+  # 图表
+  charts_flutter: ^0.6.0
+
   #
   rounded_letter: ^0.0.6
 

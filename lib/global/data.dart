@@ -3,6 +3,7 @@ import 'package:flutter_app/bars_demo/heart_beat_bottombar_widget.dart';
 import 'package:flutter_app/city_pickers/page/fullpage_pickers_page.dart';
 import 'package:flutter_app/city_pickers/page/ios_city_pickers_page.dart';
 import 'package:flutter_app/movie/page/movie_home_page.dart';
+import 'package:flutter_app/page/charts_widget.dart';
 import 'package:flutter_app/page/city_picker_page.dart';
 import 'package:flutter_app/page/clippy_widget.dart';
 import 'package:flutter_app/page/device_info_page.dart';
@@ -38,6 +39,7 @@ import 'package:flutter_app/widget/dismissible_widget.dart';
 import 'package:flutter_app/widget/frosting_widget.dart';
 import 'package:flutter_app/widget/image_widget.dart';
 import 'package:flutter_app/widget/load_image_widget.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
 class Girl {
   final String description;
@@ -281,6 +283,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('随机单词', RandomWords()),
     SubExpandBean('每日一文', OneArticlePage()),
     SubExpandBean('设备信息', DeviceInfoPage()),
+    SubExpandBean('图表', ChartsWidget()),
   ]),
 ];
 
@@ -290,3 +293,273 @@ List<String> banner_images = [
   'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550062506229&di=d809dd657a9e0df1b5ccdc7aa2b5ed6e&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F0e2442a7d933c89527374758db1373f08202004c.jpg',
   'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550062506227&di=4dbf7aff166eedb67f17d9cb445b7b3f&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F8d5494eef01f3a29dda37ce99325bc315c607caa.jpg'
 ];
+
+/// Sample ordinal data type.
+class OrdinalSales {
+  final String year;
+  final int sales;
+
+  OrdinalSales(this.year, this.sales);
+}
+
+class TimeSeriesSales {
+  final DateTime time;
+  final int sales;
+
+  TimeSeriesSales(this.time, this.sales);
+}
+
+class LinearSales {
+  final int year;
+  final int sales;
+
+  LinearSales(this.year, this.sales);
+}
+
+/// Sample linear data type.
+class LinearSaless {
+  final int year;
+  final int yearLower;
+  final int yearUpper;
+  final int sales;
+  final int salesLower;
+  final int salesUpper;
+  final double radius;
+
+  LinearSaless(this.year, this.yearLower, this.yearUpper, this.sales,
+      this.salesLower, this.salesUpper, this.radius);
+}
+
+class ChartFlutterBean {
+  static List<charts.Series<TimeSeriesSales, DateTime>> createSampleData0() {
+    final data = [
+      TimeSeriesSales(DateTime(2017, 9, 19), 15),
+      TimeSeriesSales(DateTime(2017, 9, 26), 25),
+      TimeSeriesSales(DateTime(2017, 10, 9), 20),
+      TimeSeriesSales(DateTime(2017, 10, 10), 75),
+    ];
+
+    return [
+      charts.Series<TimeSeriesSales, DateTime>(
+        id: 'Sales',
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        domainFn: (TimeSeriesSales sales, _) => sales.time,
+        measureFn: (TimeSeriesSales sales, _) => sales.sales,
+        data: data,
+      ),
+    ];
+  }
+
+  //饼状图
+  static List<charts.Series<LinearSales, int>> createSampleData1() {
+    final data = [
+      LinearSales(0, 100),
+      LinearSales(1, 75),
+      LinearSales(2, 25),
+      LinearSales(3, 5),
+    ];
+
+    return [
+      charts.Series<LinearSales, int>(
+        id: 'Sales',
+        domainFn: (LinearSales sales, _) => sales.year,
+        measureFn: (LinearSales sales, _) => sales.sales,
+        data: data,
+      )
+    ];
+
+    //点
+  }
+
+  /// Create one series with sample hard coded data.
+  static List<charts.Series<LinearSaless, int>> createSampleData3() {
+    final data = [
+      LinearSaless(10, 7, 10, 25, 20, 25, 5.0),
+      LinearSaless(13, 11, 13, 225, 205, 225, 5.0),
+      LinearSaless(34, 34, 24, 150, 150, 130, 5.0),
+      LinearSaless(37, 37, 57, 10, 10, 12, 6.5),
+      LinearSaless(45, 35, 45, 260, 300, 260, 8.0),
+      LinearSaless(56, 46, 56, 200, 170, 200, 7.0),
+    ];
+
+    final maxMeasure = 300;
+
+    return [
+      charts.Series<LinearSaless, int>(
+        id: 'Sales',
+        // Providing a color function is optional.
+        colorFn: (LinearSaless sales, _) {
+          // Bucket the measure column value into 3 distinct colors.
+          final bucket = sales.sales / maxMeasure;
+
+          if (bucket < 1 / 3) {
+            return charts.MaterialPalette.blue.shadeDefault;
+          } else if (bucket < 2 / 3) {
+            return charts.MaterialPalette.red.shadeDefault;
+          } else {
+            return charts.MaterialPalette.green.shadeDefault;
+          }
+        },
+        domainFn: (LinearSaless sales, _) => sales.year,
+        domainLowerBoundFn: (LinearSaless sales, _) => sales.yearLower,
+        domainUpperBoundFn: (LinearSaless sales, _) => sales.yearUpper,
+        measureFn: (LinearSaless sales, _) => sales.sales,
+        measureLowerBoundFn: (LinearSaless sales, _) => sales.salesLower,
+        measureUpperBoundFn: (LinearSaless sales, _) => sales.salesUpper,
+        // Providing a radius function is optional.
+        radiusPxFn: (LinearSaless sales, _) => sales.radius,
+        data: data,
+      )
+    ];
+  }
+
+  //条形图：
+  static List<charts.Series<OrdinalSales, String>> createSampleData() {
+    final desktopSalesDataA = [
+      OrdinalSales('2014', 5),
+      OrdinalSales('2015', 25),
+      OrdinalSales('2016', 100),
+      OrdinalSales('2017', 75),
+    ];
+
+    final tableSalesDataA = [
+      OrdinalSales('2014', 25),
+      OrdinalSales('2015', 50),
+      OrdinalSales('2016', 10),
+      OrdinalSales('2017', 20),
+    ];
+
+    final mobileSalesDataA = [
+      OrdinalSales('2014', 10),
+      OrdinalSales('2015', 15),
+      OrdinalSales('2016', 50),
+      OrdinalSales('2017', 45),
+    ];
+
+    final desktopSalesDataB = [
+      OrdinalSales('2014', 5),
+      OrdinalSales('2015', 25),
+      OrdinalSales('2016', 100),
+      OrdinalSales('2017', 75),
+    ];
+
+    final tableSalesDataB = [
+      OrdinalSales('2014', 25),
+      OrdinalSales('2015', 50),
+      OrdinalSales('2016', 10),
+      OrdinalSales('2017', 20),
+    ];
+
+    final mobileSalesDataB = [
+      OrdinalSales('2014', 10),
+      OrdinalSales('2015', 15),
+      OrdinalSales('2016', 50),
+      OrdinalSales('2017', 45),
+    ];
+
+    return [
+      charts.Series<OrdinalSales, String>(
+        id: 'Desktop A',
+        seriesCategory: 'A',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: desktopSalesDataA,
+      ),
+      charts.Series<OrdinalSales, String>(
+        id: 'Tablet A',
+        seriesCategory: 'A',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: tableSalesDataA,
+      ),
+      charts.Series<OrdinalSales, String>(
+        id: 'Mobile A',
+        seriesCategory: 'A',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: mobileSalesDataA,
+      ),
+      charts.Series<OrdinalSales, String>(
+        id: 'Desktop B',
+        seriesCategory: 'B',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: desktopSalesDataB,
+      ),
+      charts.Series<OrdinalSales, String>(
+        id: 'Tablet B',
+        seriesCategory: 'B',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: tableSalesDataB,
+      ),
+      charts.Series<OrdinalSales, String>(
+        id: 'Mobile B',
+        seriesCategory: 'B',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: mobileSalesDataB,
+      ),
+    ];
+  }
+
+  List<charts.Series<OrdinalSales, String>> getData() {
+    final desktopSalesData = [
+      OrdinalSales('2014', 5),
+      OrdinalSales('2015', 25),
+      OrdinalSales('2016', 100),
+      OrdinalSales('2017', 75),
+    ];
+
+    final tabletSalesData = [
+      OrdinalSales('2014', 25),
+      OrdinalSales('2015', 50),
+      OrdinalSales('2016', 10),
+      OrdinalSales('2017', 20),
+    ];
+
+    final mobileSalesData = [
+      OrdinalSales('2014', 10),
+      OrdinalSales('2015', 15),
+      OrdinalSales('2016', 50),
+      OrdinalSales('2017', 45),
+    ];
+
+    final otherSalesData = [
+      OrdinalSales('2014', 20),
+      OrdinalSales('2015', 35),
+      OrdinalSales('2016', 15),
+      OrdinalSales('2017', 10),
+    ];
+
+    return [
+      charts.Series<OrdinalSales, String>(
+        id: 'Desktop',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: desktopSalesData,
+      ),
+      charts.Series<OrdinalSales, String>(
+        id: 'Tablet',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: tabletSalesData,
+      ),
+      charts.Series<OrdinalSales, String>(
+        id: 'Mobile',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: mobileSalesData,
+      ),
+      charts.Series<OrdinalSales, String>(
+        id: 'Other',
+        insideLabelStyleAccessorFn: (T, int) {
+          return charts.TextStyleSpec(color: charts.Color.transparent);
+        },
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: otherSalesData,
+      ),
+    ];
+  }
+}
