@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/bars_demo/heart_beat_bottombar_widget.dart';
 import 'package:flutter_app/city_pickers/page/fullpage_pickers_page.dart';
 import 'package:flutter_app/city_pickers/page/ios_city_pickers_page.dart';
 import 'package:flutter_app/movie/page/movie_home_page.dart';
@@ -9,8 +10,8 @@ import 'package:flutter_app/page/flipper_widget.dart';
 import 'package:flutter_app/page/one_article_page.dart';
 import 'package:flutter_app/page/random_words.dart';
 import 'package:flutter_app/page/swiper_page.dart';
-import 'package:flutter_app/tabs_demo/bottom_appbar.dart';
-import 'package:flutter_app/tabs_demo/bubble_bottom_bar.dart';
+import 'package:flutter_app/bars_demo/bottom_appbar.dart';
+import 'package:flutter_app/bars_demo/bubble_bottom_bar.dart';
 import 'package:flutter_app/widget/appbar_widget.dart';
 import 'package:flutter_app/widget/contact_picker_widget.dart';
 import 'package:flutter_app/widget/icon_widget.dart';
@@ -21,10 +22,10 @@ import 'package:flutter_app/widget/text_widget.dart';
 import 'package:flutter_app/page/drag_like_page.dart';
 import 'package:flutter_app/page/like_button_page.dart';
 import 'package:flutter_app/question/pages/quiz_page.dart';
-import 'package:flutter_app/tabs_demo/bottom_navigation_bar.dart';
-import 'package:flutter_app/tabs_demo/bottom_navigation_widget.dart';
-import 'package:flutter_app/tabs_demo/navigation_keep_alive.dart';
-import 'package:flutter_app/tabs_demo/tabbar_home_page.dart';
+import 'package:flutter_app/bars_demo/bottom_navigation_bar.dart';
+import 'package:flutter_app/bars_demo/bottom_navigation_widget.dart';
+import 'package:flutter_app/bars_demo/navigation_keep_alive.dart';
+import 'package:flutter_app/bars_demo/tabbar_home_page.dart';
 import 'package:flutter_app/page/time_line.dart';
 import 'package:flutter_app/widget/rounded_letter_widget.dart';
 import 'package:flutter_app/widget/slider_widget.dart';
@@ -128,7 +129,7 @@ const List<Doodle> doodles = [
       name: "Ibn Sina (Avicenna)",
       time: "980 - 1037",
       content:
-          "Avicenna (Ibn Sīnā) was a Persian polymath who is regarded as one of the most significant physicians, astronomers, thinkers and writers of the Islamic Golden Age. He has been described as the father of early modern medicine. Of the 450 works he is known to have written, around 240 have survived, including 150 on philosophy and 40 on medicine.\nHis most famous works are The Book of Healing, a philosophical and scientific encyclopedia, and The Canon of Medicine, a medical encyclopedia which became a standard medical text at many medieval universities and remained in use as late as 1650. In 1973, Avicenna's Canon Of Medicine was reprinted in New York.\nBesides philosophy and medicine, Avicenna's corpus includes writings on astronomy, alchemy, geography and geology, psychology, Islamic theology, logic, mathematics, physics and works of poetry.",
+          "Avicenna (Ibn Sīnā) was a Persian polymath who is regarded as one of the most significant physicians, astronomers, thinkers and writers of the Islamic Golden Age. He has been described as the father of early modern medicine. Of the 450 works he is known to have written, around 240 have survived, including 150 on philosophy and 40 on medicine.\nHis most famous works are The Book of Healing, a philosophical and scientific encyclopedia, and The Canon of Medicine, a medical encyclopedia which became a standard medical text at many medieval universities and remained in use as late as 1650. In 1973, Avicenna's Canon Of Medicine was reprinted in  York.\nBesides philosophy and medicine, Avicenna's corpus includes writings on astronomy, alchemy, geography and geology, psychology, Islamic theology, logic, mathematics, physics and works of poetry.",
       doodle:
           "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554291011584&di=f99d4eb110b637ecb81fb66d2aab0b33&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd1160924ab18972b83474beeedcd7b899e510a90.jpg",
       icon: Icon(
@@ -189,7 +190,7 @@ const List<Doodle> doodles = [
       name: "Piri Reis",
       time: "1465 - 1553",
       content:
-          "He is primarily known today for his maps and charts collected in his Kitab-ı Bahriye (Book of Navigation), a book that contains detailed information on navigation, as well as very accurate charts (for their time) describing the important ports and cities of the Mediterranean Sea. He gained fame as a cartographer when a small part of his first world map (prepared in 1513) was discovered in 1929 at the Topkapı Palace in Istanbul. His world map is the oldest known Turkish atlas showing the New World, and one of the oldest maps of America still in existence anywhere (the oldest known map of America that is still in existence is the map drawn by Juan de la Cosa in 1500). Piri Reis' map is centered on the Sahara at the latitude of the Tropic of Cancer.",
+          "He is primarily known today for his maps and charts collected in his Kitab-ı Bahriye (Book of Navigation), a book that contains detailed information on navigation, as well as very accurate charts (for their time) describing the important ports and cities of the Mediterranean Sea. He gained fame as a cartographer when a small part of his first world map (prepared in 1513) was discovered in 1929 at the Topkapı Palace in Istanbul. His world map is the oldest known Turkish atlas showing the  World, and one of the oldest maps of America still in existence anywhere (the oldest known map of America that is still in existence is the map drawn by Juan de la Cosa in 1500). Piri Reis' map is centered on the Sahara at the latitude of the Tropic of Cancer.",
       doodle:
           "https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1554280920&di=f596f493385c55a20fe45440e5cb14a6&src=http://pic18.nipic.com/20120205/3145425_101322096000_2.jpg",
       icon: Icon(
@@ -242,12 +243,6 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('Icon', IconWidget()),
     SubExpandBean('TextField', TextFieldWidget()),
     SubExpandBean('Dialog', DialogWidget()),
-    SubExpandBean('TabBar', TabBarHomePage()),
-    SubExpandBean('BottomNavigationBar', BottomNavigationBarHomePage()),
-    SubExpandBean('BottomNavigation', BottomNavigationWidget()),
-    SubExpandBean('BubbleBottomBar', BubbleBottomBarPage()),
-    SubExpandBean('NavigationKeepAlive', NavigationKeepAlive()),
-    SubExpandBean('不规则底部导航栏', BottomAppbar()),
     SubExpandBean('Stepper', StepperWidget()),
     SubExpandBean('Slider', SliderWidget()),
     SubExpandBean('Sliver', SliverWidget()),
@@ -255,7 +250,16 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('滑动删除', DismissibleWidget()),
     SubExpandBean('毛玻璃', FrostingWidget()),
   ]),
-  ExpandStateBean(false, 'Custom Widgets', 1, [
+  ExpandStateBean(false, 'Bars Widgets', 1, [
+    SubExpandBean('TabBar', TabBarHomePage()),
+    SubExpandBean('BottomNavigationBar', BottomNavigationBarHomePage()),
+    SubExpandBean('BottomNavigation', BottomNavigationWidget()),
+    SubExpandBean('BubbleBottomBar', BubbleBottomBarPage()),
+    SubExpandBean('NavigationKeepAlive', NavigationKeepAlive()),
+    SubExpandBean('不规则底部导航栏', BottomAppbar()),
+    SubExpandBean('HeartBeatBottomBar', HeartBeatBottomBarWidget()),
+  ]),
+  ExpandStateBean(false, 'Custom Widgets', 2, [
     SubExpandBean('DragLike', DragLikePage()),
     SubExpandBean('LikeButton', LikeButtonPage()),
     SubExpandBean('时间流', TimeLinePage()),
@@ -271,7 +275,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('iOS风格城市选择控件', IosCityPickersPage()),
     SubExpandBean('fullpage风格城市选择控件', FullpageCityPickersPage()),
   ]),
-  ExpandStateBean(false, '功能', 2, [
+  ExpandStateBean(false, '功能', 3, [
     SubExpandBean('Question', QuizPage()),
     SubExpandBean('豆瓣电影', MovieHomePage()),
     SubExpandBean('随机单词', RandomWords()),

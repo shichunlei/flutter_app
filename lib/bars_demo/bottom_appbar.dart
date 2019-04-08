@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/tabs_demo/each_view.dart';
+import 'package:flutter_app/bars_demo/each_view.dart';
 import 'package:flutter_app/utils/route_util.dart';
 
 class BottomAppbar extends StatefulWidget {
