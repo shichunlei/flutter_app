@@ -7,10 +7,15 @@ class SunriseSunset {
    * ss : "18:10"
    */
 
+  /// 预报日期
   String date;
   String mr;
   String ms;
+
+  /// 日出时间
   String sr;
+
+  /// 日落时间
   String ss;
 
   static SunriseSunset fromMap(Map<String, dynamic> map) {

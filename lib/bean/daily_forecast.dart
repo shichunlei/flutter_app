@@ -63,31 +63,31 @@ class DailyForecast {
   String wind_spd;
 
   static DailyForecast fromMap(Map<String, dynamic> map) {
-    DailyForecast daily_forecastListBean = DailyForecast();
-    daily_forecastListBean.cond_code_d =
-    "https://cdn.heweather.com/cond_icon/${map['cond_code_d']}.png";
-    daily_forecastListBean.cond_code_n =
-    "https://cdn.heweather.com/cond_icon/${map['cond_code_n']}.png";
-    daily_forecastListBean.cond_txt_d = map['cond_txt_d'];
-    daily_forecastListBean.cond_txt_n = map['cond_txt_n'];
-    daily_forecastListBean.date = map['date'];
-    daily_forecastListBean.hum = map['hum'];
-    daily_forecastListBean.mr = map['mr'];
-    daily_forecastListBean.ms = map['ms'];
-    daily_forecastListBean.pcpn = map['pcpn'];
-    daily_forecastListBean.pop = map['pop'];
-    daily_forecastListBean.pres = map['pres'];
-    daily_forecastListBean.sr = map['sr'];
-    daily_forecastListBean.ss = map['ss'];
-    daily_forecastListBean.tmp_max = map['tmp_max'];
-    daily_forecastListBean.tmp_min = map['tmp_min'];
-    daily_forecastListBean.uv_index = map['uv_index'];
-    daily_forecastListBean.vis = map['vis'];
-    daily_forecastListBean.wind_deg = map['wind_deg'];
-    daily_forecastListBean.wind_dir = map['wind_dir'];
-    daily_forecastListBean.wind_sc = map['wind_sc'];
-    daily_forecastListBean.wind_spd = map['wind_spd'];
-    return daily_forecastListBean;
+    DailyForecast daily_forecast = DailyForecast();
+    daily_forecast.cond_code_d =
+        "https://cdn.heweather.com/cond_icon/${map['cond_code_d']}.png";
+    daily_forecast.cond_code_n =
+        "https://cdn.heweather.com/cond_icon/${map['cond_code_n']}.png";
+    daily_forecast.cond_txt_d = map['cond_txt_d'];
+    daily_forecast.cond_txt_n = map['cond_txt_n'];
+    daily_forecast.date = map['date'];
+    daily_forecast.hum = map['hum'];
+    daily_forecast.mr = map['mr'];
+    daily_forecast.ms = map['ms'];
+    daily_forecast.pcpn = map['pcpn'];
+    daily_forecast.pop = map['pop'];
+    daily_forecast.pres = map['pres'];
+    daily_forecast.sr = map['sr'];
+    daily_forecast.ss = map['ss'];
+    daily_forecast.tmp_max = map['tmp_max'];
+    daily_forecast.tmp_min = map['tmp_min'];
+    daily_forecast.uv_index = map['uv_index'];
+    daily_forecast.vis = map['vis'];
+    daily_forecast.wind_deg = map['wind_deg'];
+    daily_forecast.wind_dir = map['wind_dir'];
+    daily_forecast.wind_sc = map['wind_sc'];
+    daily_forecast.wind_spd = map['wind_spd'];
+    return daily_forecast;
   }
 
   static List<DailyForecast> fromMapList(dynamic mapList) {
