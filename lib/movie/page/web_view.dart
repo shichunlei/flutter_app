@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:share/share.dart';
@@ -29,7 +30,7 @@ class _WebViewPageState extends State<WebViewPage> {
             onPressed: () {
               Share.share(this.widget.url);
             },
-            icon: Icon(Icons.share, color: Colors.white),
+            icon: Icon(CustomIcon.share4, color: Colors.white),
           ),
         ],
       ),
