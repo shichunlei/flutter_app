@@ -24,35 +24,31 @@ class LifestyleView extends StatelessWidget {
           ),
           ListView.builder(
             itemBuilder: (context, index) {
-              return Column(
-                children: <Widget>[
-                  Container(
-                    color: Color(0x22000000),
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Text(lifestyle[index].type,
-                                style: TextStyle(color: Colors.white)),
-                            Text(lifestyle[index].brf,
-                                style: TextStyle(color: Colors.white)),
-                          ],
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        ),
-                        Container(
-                          height: 0.2,
-                          color: Colors.white,
-                          margin: EdgeInsets.symmetric(vertical: 5.0),
-                        ),
-                        Text(lifestyle[index].txt,
-                            style: TextStyle(color: Colors.white)),
-                      ],
-                    ),
-                    width: double.infinity,
-                    padding: EdgeInsets.all(5.0),
-                    margin: EdgeInsets.only(bottom: 2.0),
+              return Card(
+                color: Color(0x02000000),
+                child: Container(
+                  padding: EdgeInsets.all(5.0),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Text(lifestyle[index].type,
+                              style: TextStyle(color: Colors.white)),
+                          Text(lifestyle[index].brf,
+                              style: TextStyle(color: Colors.white)),
+                        ],
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      ),
+                      Container(
+                        height: 0.2,
+                        color: Colors.white,
+                        margin: EdgeInsets.symmetric(vertical: 5.0),
+                      ),
+                      Text(lifestyle[index].txt,
+                          style: TextStyle(color: Colors.white)),
+                    ],
                   ),
-                ],
+                ),
               );
             },
             itemCount: lifestyle.length,

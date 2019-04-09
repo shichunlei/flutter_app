@@ -32,7 +32,8 @@ class Hourly {
   static Hourly fromMap(Map<String, dynamic> map) {
     Hourly hourly = Hourly();
     hourly.cloud = map['cloud'];
-    hourly.cond_code = map['cond_code'];
+    hourly.cond_code =
+        "https://cdn.heweather.com/cond_icon/${map['cond_code']}.png";
     hourly.cond_txt = map['cond_txt'];
     hourly.dew = map['dew'];
     hourly.hum = map['hum'];

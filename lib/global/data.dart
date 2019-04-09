@@ -16,6 +16,7 @@ import 'package:flutter_app/bars_demo/bubble_bottom_bar.dart';
 import 'package:flutter_app/widget/appbar_widget.dart';
 import 'package:flutter_app/widget/contact_picker_widget.dart';
 import 'package:flutter_app/widget/icon_widget.dart';
+import 'package:flutter_app/widget/qr_image_wiget.dart';
 import 'package:flutter_app/widget/sliver_widget.dart';
 import 'package:flutter_app/widget/staggered_view_page.dart';
 import 'package:flutter_app/widget/star_rating_widget.dart';
@@ -283,6 +284,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('随机单词', RandomWords()),
     SubExpandBean('每日一文', OneArticlePage()),
     SubExpandBean('设备信息', DeviceInfoPage()),
+    SubExpandBean('二维码', QrImageWidget()),
     SubExpandBean('图表', ChartsWidget()),
   ]),
 ];
@@ -310,10 +312,10 @@ class TimeSeriesSales {
 }
 
 class LinearSales {
-  final int year;
+  final int time;
   final int sales;
 
-  LinearSales(this.year, this.sales);
+  LinearSales(this.time, this.sales);
 }
 
 /// Sample linear data type.
@@ -362,7 +364,7 @@ class ChartFlutterBean {
     return [
       charts.Series<LinearSales, int>(
         id: 'Sales',
-        domainFn: (LinearSales sales, _) => sales.year,
+        domainFn: (LinearSales sales, _) => sales.time,
         measureFn: (LinearSales sales, _) => sales.sales,
         data: data,
       )

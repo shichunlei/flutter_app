@@ -1,7 +1,8 @@
 class Config {
   static final bool DEBUG = true;
 
-  static final String HE_WEATHER_KEY = "d6cfdce8193445ba894d889e7ab2de5b";
+  static final String HE_WEATHER_KEY =
+      "d6cfdce8193445ba894d889e7ab2de5b"; // 2d2a76fac8324146a1b17b68bda42c76
 
   static final String DOUBAN_MOVIE_KEY = "0b2bdeda43b5688921839c8ecb20399b";
 

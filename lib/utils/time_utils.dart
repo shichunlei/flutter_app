@@ -58,12 +58,12 @@ class TimeUtils {
   }
 
   /// get Now Date Milliseconds.
-  static int getNowDateMs() {
+  static int getNowDateTimeMs() {
     return DateTime.now().millisecondsSinceEpoch;
   }
 
-  /// get Now Date Str.(yyyy-MM-dd HH:mm:ss)
-  static String getNowDateStr() {
+  /// get Now DateTime Str.(yyyy-MM-dd HH:mm:ss)
+  static String getNowDateTimeStr() {
     return getDateStrByDateTime(DateTime.now());
   }
 
@@ -250,80 +250,40 @@ class TimeUtils {
     return time;
   }
 
-  /// get WeekDay By Milliseconds.
-  static String getWeekDayByMs(int milliseconds, {bool isUtc = false}) {
-    DateTime dateTime = getDateTimeByMs(milliseconds, isUtc: isUtc);
-    return getWeekDay(dateTime);
-  }
-
-  /// get ZH WeekDay By Milliseconds.
-  static String getZHWeekDayByMs(int milliseconds, {bool isUtc = false}) {
-    DateTime dateTime = getDateTimeByMs(milliseconds, isUtc: isUtc);
-    return getZHWeekDay(dateTime);
-  }
+  static final List<String> weekday = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ];
 
   /// get WeekDay.
-  static String getWeekDay(DateTime dateTime) {
+  static String getWeekDay(String dateTimeStr) {
+    if (null == dateTimeStr) return null;
+    DateTime dateTime = DateTime.parse(dateTimeStr);
     if (dateTime == null) return null;
-    String weekday;
-    switch (dateTime.weekday) {
-      case 1:
-        weekday = "Monday";
-        break;
-      case 2:
-        weekday = "Tuesday";
-        break;
-      case 3:
-        weekday = "Wednesday";
-        break;
-      case 4:
-        weekday = "Thursday";
-        break;
-      case 5:
-        weekday = "Friday";
-        break;
-      case 6:
-        weekday = "Saturday";
-        break;
-      case 7:
-        weekday = "Sunday";
-        break;
-      default:
-        break;
-    }
-    return weekday;
+    return weekday[dateTime.weekday - 1].toString();
   }
 
+  static final List<String> weekdayZH = [
+    '周一',
+    '周二',
+    '周三',
+    '周四',
+    '周五',
+    '周六',
+    '周日',
+  ];
+
   /// get ZH WeekDay.
-  static String getZHWeekDay(DateTime dateTime) {
+  static String getZHWeekDay(String dateTimeStr) {
+    if (null == dateTimeStr) return null;
+    DateTime dateTime = DateTime.parse(dateTimeStr);
     if (dateTime == null) return null;
-    String weekday;
-    switch (dateTime.weekday) {
-      case 1:
-        weekday = "星期一";
-        break;
-      case 2:
-        weekday = "星期二";
-        break;
-      case 3:
-        weekday = "星期三";
-        break;
-      case 4:
-        weekday = "星期四";
-        break;
-      case 5:
-        weekday = "星期五";
-        break;
-      case 6:
-        weekday = "星期六";
-        break;
-      case 7:
-        weekday = "星期日";
-        break;
-      default:
-        break;
-    }
-    return weekday;
+    return weekdayZH[dateTime.weekday - 1];
   }
 
   /// Return whether it is leap year.
@@ -334,29 +294,6 @@ class TimeUtils {
   /// Return whether it is leap year.
   static bool isLeapYearByYear(int year) {
     return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
-  }
-
-  /// is yesterday by millis.
-  /// 是否是昨天.
-  static bool isYesterdayByMillis(int millis, int locMillis) {
-    return isYesterday(DateTime.fromMillisecondsSinceEpoch(millis),
-        DateTime.fromMillisecondsSinceEpoch(locMillis));
-  }
-
-  /// is yesterday by dateTime.
-  /// 是否是昨天.
-  static bool isYesterday(DateTime dateTime, DateTime locDateTime) {
-    if (yearIsEqual(dateTime, locDateTime)) {
-      int spDay = TimeUtils.getDayOfYear(locDateTime) -
-          TimeUtils.getDayOfYear(dateTime);
-      return spDay == 1;
-    } else {
-      return ((locDateTime.year - dateTime.year == 1) &&
-          dateTime.month == 12 &&
-          locDateTime.month == 1 &&
-          dateTime.day == 31 &&
-          locDateTime.day == 1);
-    }
   }
 
   /// get day of year.
@@ -393,13 +330,43 @@ class TimeUtils {
     return dateTime.year == locDateTime.year;
   }
 
-  /// year is today.
+  /// is today by dateStr.
   /// 是否是今天.
-  static bool isToday(int milliseconds, {bool isUtc = false}) {
-    if (milliseconds == null || milliseconds == 0) return false;
-    DateTime old =
-        DateTime.fromMillisecondsSinceEpoch(milliseconds, isUtc: isUtc);
+  static bool isToday(String dateStr, {bool isUtc = false}) {
+    DateTime old = isUtc
+        ? DateTime.parse(dateStr).toUtc()
+        : DateTime.parse(dateStr).toLocal();
     DateTime now = isUtc ? DateTime.now().toUtc() : DateTime.now().toLocal();
     return old.year == now.year && old.month == now.month && old.day == now.day;
+  }
+
+  /// is yesterday by millis.
+  /// 是否是昨天.
+  static bool isYesterdayByMillis(int millis, int locMillis) {
+    return isYesterday(DateTime.fromMillisecondsSinceEpoch(millis),
+        DateTime.fromMillisecondsSinceEpoch(locMillis));
+  }
+
+  /// is yesterday by datetime str.
+  /// 是否是昨天.
+  static bool isYesterdayByDateStr(int millis, int locMillis) {
+    return isYesterday(DateTime.fromMillisecondsSinceEpoch(millis),
+        DateTime.fromMillisecondsSinceEpoch(locMillis));
+  }
+
+  /// is yesterday by dateTime.
+  /// 是否是昨天.
+  static bool isYesterday(DateTime dateTime, DateTime locDateTime) {
+    if (yearIsEqual(dateTime, locDateTime)) {
+      int spDay = TimeUtils.getDayOfYear(locDateTime) -
+          TimeUtils.getDayOfYear(dateTime);
+      return spDay == 1;
+    } else {
+      return ((locDateTime.year - dateTime.year == 1) &&
+          dateTime.month == 12 &&
+          locDateTime.month == 1 &&
+          dateTime.day == 31 &&
+          locDateTime.day == 1);
+    }
   }
 }

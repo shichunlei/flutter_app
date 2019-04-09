@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/daily_forecast.dart';
 
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/utils/time_utils.dart';
 
 class WeeklyView extends StatelessWidget {
@@ -30,8 +31,9 @@ class WeeklyView extends StatelessWidget {
               return Expanded(
                 child: Center(
                   child: Text(
-                    TimeUtils.getDateStrByTimeStr(daily.date,
-                        format: DateFormat.MONTH_DAY),
+                    TimeUtils.isToday(daily.date)
+                        ? '今天'
+                        : TimeUtils.getZHWeekDay(daily.date),
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white),
                   ),
@@ -175,11 +177,4 @@ class WeeklyView extends StatelessWidget {
       ),
     ];
   }
-}
-
-class LinearSales {
-  final int time;
-  final int sales;
-
-  LinearSales(this.time, this.sales);
 }

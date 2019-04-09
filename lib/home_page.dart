@@ -7,7 +7,6 @@ import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/page/random_poetry_page.dart';
 import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/weather/page/city_page.dart';
-import 'package:flutter_app/widget/qr_image_wiget.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/event_bus_util.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -296,12 +295,12 @@ class HomeStatePage extends State<HomePage> {
           }),
       Divider(),
       ListTile(
-        title: Text("二维码"),
-        leading: Icon(Icons.crop_square),
+        title: Text("联系人"),
+        leading: Icon(Icons.supervisor_account),
         trailing: Icon(Icons.chevron_right),
         onTap: () {
           Navigator.of(context).pop();
-          pushNewPageBack(context, QrImageWidget());
+          pushNewPageBack(context, ContactListPage());
         },
       ),
       Divider(),
