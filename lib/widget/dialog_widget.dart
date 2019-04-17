@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/rich_alert/rich_alert_dialog.dart';
+import 'package:flutter_app/utils/log_util.dart';
 
 class DialogWidget extends StatefulWidget {
   @override
@@ -22,7 +23,7 @@ class DialogWidgetState extends State<DialogWidget> {
               builder: (context) => RichAlertDialog(
                   title: richTitle("Alert title"),
                   subtitle: richSubtitle("Subtitle"),
-                  type: RichAlertType.WARNING,
+                  type: RichAlertType.ERROR,
                   actions: <Widget>[Text("hello"), Text("its me")])),
           backgroundColor: Colors.redAccent,
           child: const Icon(Icons.add, semanticLabel: 'Add')),
@@ -80,22 +81,33 @@ class DialogWidgetState extends State<DialogWidget> {
                       title: Text('Info', style: dialogTextStyle), //标题
                       titlePadding: EdgeInsets.all(20), //标题的padding值
                       children: <Widget>[
-                        DialogItem(
-                            icon: Icons.account_circle,
-                            text: 'username@gmail.com',
-                            onPressed: () {
-                              Navigator.pop(context, 'username@gmail.com');
-                            }),
-                        DialogItem(
-                            color: Colors.red,
-                            icon: Icons.account_circle,
-                            text: 'user02@gmail.com',
-                            onPressed: () {
-                              Navigator.pop(context, 'user02@gmail.com');
-                            }),
-                        DialogItem(
-                          icon: Icons.add_circle,
-                          text: 'add account',
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.blue,
+                            child: Icon(Icons.account_circle),
+                          ),
+                          title: Text('username@gmail.com'),
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.red,
+                            child: Icon(Icons.account_balance),
+                          ),
+                          title: Text('user02@gmail.com'),
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.grey,
+                            child: Icon(Icons.add_circle),
+                          ),
+                          title: Text('add account'),
+                          onTap: null,
                         ),
                       ],
                       contentPadding: EdgeInsets.all(0),
@@ -155,6 +167,7 @@ class DialogWidgetState extends State<DialogWidget> {
             onPressed: () {
               showDialog(
                   context: context,
+                  // 设置点击 dialog 外部不取消 dialog，默认能够取消
                   barrierDismissible: false,
                   builder: (context) {
                     return AboutDialog(
@@ -173,41 +186,42 @@ class DialogWidgetState extends State<DialogWidget> {
             child: Text("AboutDialog"),
           ),
           Divider(),
-          RaisedButton(
-            onPressed: () {
-              showModalBottomSheet<void>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return Container(
-                        child: Padding(
-                            padding: const EdgeInsets.all(32.0),
-                            child: Text(
-                                'This is the modal bottom sheet. Tap anywhere to dismiss.',
-                                textAlign: TextAlign.center,
-                                style: dialogTextStyle)));
-                  });
-            },
-            child: Text("Modal bottom sheet"),
+          Builder(
+            builder: (context) => RaisedButton(
+                  onPressed: () {
+                    showBottomSheet<void>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return _bottomSheetItem(context);
+                        });
+                  },
+                  child: Text('BottomSheet'),
+                ),
           ),
           Divider(),
-          RaisedButton(
-            onPressed: () {
-              showBottomSheet<void>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return Container(
-                        decoration: BoxDecoration(
-                            border: Border(
-                                top: BorderSide(color: theme.disabledColor))),
-                        child: Padding(
-                            padding: const EdgeInsets.all(32.0),
-                            child: Text(
-                                'This is the modal bottom sheet. Tap anywhere to dismiss.',
-                                textAlign: TextAlign.center,
-                                style: dialogTextStyle)));
-                  }).closed.whenComplete(() {});
-            },
-            child: Text("Persistent bottom sheet"),
+          Builder(
+            builder: (context) => RaisedButton(
+                  onPressed: () {
+                    showModalBottomSheet<void>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return _bottomSheetItem(context);
+                        });
+                  },
+                  child: Text("Modal bottom sheet"),
+                ),
+          ),
+          Divider(),
+          Builder(
+            builder: (context) => RaisedButton(
+                  onPressed: () {
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text('收藏成功'),
+                        action: SnackBarAction(label: '撤销', onPressed: () {}),
+                        duration: Duration(milliseconds: 2000)));
+                  },
+                  child: Text('SnackBar'),
+                ),
           ),
           Divider(),
           CupertinoButton(
@@ -354,6 +368,26 @@ class DialogWidgetState extends State<DialogWidget> {
     );
   }
 
+  Widget _bottomSheetItem(BuildContext context) {
+    return ListView(
+      // 生成一个列表选择器
+      children: List.generate(
+        20,
+        (index) => ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.blueGrey,
+                child: Text('${index + 1}'),
+              ),
+              title: Text('Item ${index + 1}'),
+              onTap: () {
+                LogUtil.v('tapped item ${index + 1}');
+                Navigator.pop(context);
+              },
+            ),
+      ),
+    );
+  }
+
   List<Widget> items(context) {
     List<Widget> widgets = [
       CupertinoDialogAction(
@@ -401,29 +435,5 @@ class DialogWidgetState extends State<DialogWidget> {
           onPressed: () => Navigator.pop(context, 'Cancel'))
     ];
     return widgets;
-  }
-}
-
-class DialogItem extends StatelessWidget {
-  const DialogItem({Key key, this.icon, this.color, this.text, this.onPressed})
-      : super(key: key);
-
-  final IconData icon;
-  final Color color;
-  final String text;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return SimpleDialogOption(
-        onPressed: onPressed,
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Icon(icon, size: 36.0, color: color),
-              Padding(
-                  padding: const EdgeInsets.only(left: 16.0), child: Text(text))
-            ]));
   }
 }

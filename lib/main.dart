@@ -8,6 +8,7 @@ import 'package:flutter_app/utils/log_util.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_app/utils/sp_util.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   setCustomErrorPage();
@@ -75,6 +76,12 @@ class MyApp extends StatelessWidget {
 
       /// 主页
       home: SplashScreenPage(),
+
+      supportedLocales: const [const Locale('zh')],
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
     );
   }
 }
