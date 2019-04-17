@@ -1,18 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/contact/page/contact_list_page.dart';
-import 'package:flutter_app/login/page/login_page.dart';
+import 'package:flutter_app/ui/home_drawable.dart';
 import 'package:flutter_app/utils/toast.dart';
 import 'package:flutter_app/global/data.dart';
-import 'package:flutter_app/page/random_poetry_page.dart';
 import 'package:flutter_app/utils/log_util.dart';
-import 'package:flutter_app/weather/page/city_page.dart';
 import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/event_bus_util.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:async';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:package_info/package_info.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -25,55 +19,9 @@ class HomeStatePage extends State<HomePage> {
   /// 上次点击时间
   DateTime _lastPressedAt;
 
-  String userName = "";
-  String email = "";
-  String avatar = "";
-  bool isLogin = false;
-
-  String appName;
-  String packageName;
-  String version;
-  String buildNumber;
-
   @override
   void initState() {
     super.initState();
-
-    getLoginInfo();
-
-    eventBus.on<TestEvent>().listen((event) {
-      LogUtil.v('${event.key}');
-      LogUtil.v('${event.value}');
-
-      if (event.key == "is_login") {
-        isLogin = event.value as bool;
-        setState(() {
-          LogUtil.v("接收到信息");
-          initUser(isLogin);
-        });
-      }
-    });
-
-    _initPackageInfo();
-  }
-
-  void initUser(bool isLogin) {
-    LogUtil.v(avatar);
-    setState(() {
-      userName = isLogin ? "SCL" : "未登录";
-      email = isLogin ? "1558053958@qq.com" : "";
-      avatar = isLogin
-          ? "http://b-ssl.duitang.com/uploads/item/201511/11/20151111120052_y38xC.thumb.700_0.jpeg"
-          : "";
-      LogUtil.v(avatar);
-    });
-  }
-
-  void getLoginInfo() async {
-    SharedPreferences sp = await SharedPreferences.getInstance();
-    isLogin = sp.getBool("isLogin");
-
-    initUser(isLogin);
   }
 
   void _setCurrentIndex(int index, bool isExpand) {
@@ -117,8 +65,7 @@ class HomeStatePage extends State<HomePage> {
                 tooltip: "Tune")
           ],
         ),
-        drawer: Drawer(
-            elevation: 10.0, child: _bulderMenuView(), semanticLabel: "左侧菜单"),
+        drawer: HomeDrawable(),
         body: ListView(
           children: <Widget>[
             Container(
@@ -219,154 +166,5 @@ class HomeStatePage extends State<HomePage> {
       return false;
     }
     return true;
-  }
-
-  Widget _bulderMenuView() {
-    return Column(children: <Widget>[
-      UserAccountsDrawerHeader(
-        /// 姓名
-        accountName: Text(userName),
-
-        /// 邮箱
-        accountEmail: Text(email),
-
-        /// 用户头像
-        currentAccountPicture: InkWell(
-          child: CircleAvatar(
-            backgroundImage: isLogin
-                ? NetworkImage(avatar)
-                : AssetImage("images/flutter_logo.png"),
-          ),
-          onTap: () {
-            if (isLogin) {
-              Navigator.pop(context);
-              pushNewPageBack(context, ContactListPage());
-            } else {
-              pushAndRemovePage(context, LoginPage());
-            }
-          },
-        ),
-        otherAccountsPictures: <Widget>[
-          GestureDetector(
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  "https://upload.jianshu.io/users/upload_avatars/10878817/240ab127-e41b-496b-80d6-fc6c0c99f291?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240"),
-            ),
-            onTap: () {},
-          ),
-          GestureDetector(
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  "https://upload.jianshu.io/users/upload_avatars/8346438/e3e45f12-b3c2-45a1-95ac-a608fa3b8960?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240"),
-            ),
-            onTap: () {},
-          ),
-        ],
-
-        /// 装饰器
-        decoration: BoxDecoration(
-          color: Colors.blue,
-          image: DecorationImage(
-            image: NetworkImage(
-                "http://pic33.photophoto.cn/20141028/0038038006886895_b.jpg"),
-            //image: ExactAssetImage("images/flutter.png"),
-            fit: BoxFit.fill,
-          ),
-        ),
-      ),
-      Divider(),
-      ListTile(
-        title: Text("城市"),
-        leading: Icon(Icons.location_city),
-        trailing: Icon(Icons.chevron_right),
-        onTap: () {
-          Navigator.of(context).pop();
-          pushNewPageBack(context, CityPage());
-        },
-      ),
-      Divider(),
-      ListTile(
-          title: Text("诗词"),
-          leading: Icon(Icons.book),
-          trailing: Icon(Icons.chevron_right),
-          onTap: () {
-            Navigator.of(context).pop();
-            pushNewPageBack(context, RandomPoetryPage());
-          }),
-      Divider(),
-      ListTile(
-        title: Text("联系人"),
-        leading: Icon(Icons.supervisor_account),
-        trailing: Icon(Icons.chevron_right),
-        onTap: () {
-          Navigator.of(context).pop();
-          pushNewPageBack(context, ContactListPage());
-        },
-      ),
-      Divider(),
-      ListTile(
-        title: Text("检查更新"),
-        leading: Icon(Icons.update),
-        trailing: Icon(Icons.chevron_right),
-        onTap: () {
-          showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (context) {
-                return AboutDialog(
-                  applicationName: '$appName',
-                  applicationIcon: Icon(Icons.add),
-                  applicationVersion: '$version',
-                  //版本号，默认为空
-                  applicationLegalese: '版权所有：$userName',
-                  children: <Widget>[Text("具体的内容"), Text('具体的布局')],
-                );
-              });
-        },
-      ),
-      Divider(),
-      ListTile(
-          title: Text("退出账号"),
-          leading: Icon(Icons.exit_to_app),
-          trailing: Icon(Icons.chevron_right),
-          onTap: () {
-            Navigator.of(context).pop();
-            showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (context) {
-                  return AlertDialog(
-                      title: Text("退出账号"),
-                      content: Text("您确定要退出账号吗？"),
-                      actions: <Widget>[
-                        FlatButton(
-                            child: Text("退出"),
-                            onPressed: () {
-                              eventBus.fire(TestEvent("is_login", false));
-                              pushAndRemovePage(context, LoginPage());
-                            }),
-                        FlatButton(
-                            child: Text("再想想",
-                                style: Theme.of(context).textTheme.button),
-                            onPressed: () => Navigator.of(context).pop())
-                      ]);
-                });
-          }),
-      Divider(),
-    ]);
-  }
-
-  Future<void> _initPackageInfo() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-
-    setState(() {
-      appName = packageInfo.appName;
-      packageName = packageInfo.packageName;
-      version = packageInfo.version;
-      buildNumber = packageInfo.buildNumber;
-    });
-
-    LogUtil.v(
-        'APP名称：$appName-====包名：$packageName=====版本名：$version======版本号：$buildNumber');
   }
 }

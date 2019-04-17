@@ -48,7 +48,6 @@ class SliderScreenState extends State<IntroSlidePage> {
     return IntroSlider(
       slides: this.slides,
       onDonePress: () => pushAndRemovePage(context, LoginPage()),
-      onSkipPress: () => pushAndRemovePage(context, LoginPage()),
     );
   }
 }

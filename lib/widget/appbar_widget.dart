@@ -1,26 +1,23 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/ui/gradual_change_view.dart';
 
 class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('渐变颜色的appBar'),
+          title: Text('渐变颜色的appBar'),
 
-        /// 可以用这种方式设置渐变的AppBar
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.cyan,
-                Colors.blue,
-                Colors.blueAccent,
-              ],
-            ),
-          ),
-        ),
-      ),
+          /// 可以用这种方式设置渐变的AppBar
+          flexibleSpace: GradualChangeView(
+            rotation: Rotation.LR,
+            colors: [
+              Colors.cyan,
+              Colors.blue,
+              Colors.blueAccent,
+            ],
+          )),
       body: ListView(
         children: <Widget>[
           /// App bar with background color

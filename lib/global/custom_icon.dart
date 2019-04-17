@@ -15,10 +15,14 @@ class CustomIcon {
   static const IconData share3 =
       const IconData(0xe64b, fontFamily: 'CustomIcon');
   static const IconData share4 =
-      const IconData(0xe60d, fontFamily: 'CustomIcon');
+      const IconData(0xe89b, fontFamily: 'CustomIcon');
   static const IconData tmp = const IconData(0xe6a3, fontFamily: 'CustomIcon');
   static const IconData hum = const IconData(0xe601, fontFamily: 'CustomIcon');
   static const IconData wind = const IconData(0xe6a6, fontFamily: 'CustomIcon');
   static const IconData sun = const IconData(0xe609, fontFamily: 'CustomIcon');
   static const IconData moon = const IconData(0xe650, fontFamily: 'CustomIcon');
+  static const IconData show_password =
+      const IconData(0xe708, fontFamily: 'CustomIcon');
+  static const IconData hidden_password =
+      const IconData(0xed01, fontFamily: 'CustomIcon');
 }

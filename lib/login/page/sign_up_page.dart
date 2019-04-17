@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/utils/regex_util.dart';
 import 'package:flutter_app/login/ui/submit_button.dart';
 import 'package:flutter_app/utils/toast.dart';
@@ -122,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
         onEditingComplete: () =>
             FocusScope.of(context).requestFocus(emailFocusNode),
         decoration: InputDecoration(
-          icon: Icon(FontAwesomeIcons.user, color: Colors.black),
+          icon: Icon(FontAwesomeIcons.userAlt, color: Colors.black,size: 20,),
           hintText: "请输入用户名",
           border: InputBorder.none,
         ),
@@ -164,7 +165,11 @@ class _SignUpPageState extends State<SignUpPage> {
           border: InputBorder.none,
           suffixIcon: IconButton(
             color: Theme.of(context).primaryColor,
-            icon: Icon(Icons.remove_red_eye, color: Colors.black),
+            icon: Icon(
+                isShowPassWord
+                    ? CustomIcon.show_password
+                    : CustomIcon.hidden_password,
+                color: Colors.black),
             onPressed: () => showPassword(),
           ),
         ),
@@ -190,7 +195,11 @@ class _SignUpPageState extends State<SignUpPage> {
           border: InputBorder.none,
           suffixIcon: IconButton(
             color: Theme.of(context).primaryColor,
-            icon: Icon(Icons.remove_red_eye, color: Colors.black),
+            icon: Icon(
+                isShowPassWord
+                    ? CustomIcon.show_password
+                    : CustomIcon.hidden_password,
+                color: Colors.black),
             onPressed: () => showPassword(),
           ),
         ),

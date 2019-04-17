@@ -15,6 +15,7 @@ import 'package:flutter_app/bars_demo/bottom_appbar.dart';
 import 'package:flutter_app/bars_demo/bubble_bottom_bar.dart';
 import 'package:flutter_app/widget/appbar_widget.dart';
 import 'package:flutter_app/widget/contact_picker_widget.dart';
+import 'package:flutter_app/widget/flutter_logo.dart';
 import 'package:flutter_app/widget/icon_widget.dart';
 import 'package:flutter_app/widget/qr_image_wiget.dart';
 import 'package:flutter_app/widget/sliver_widget.dart';
@@ -252,6 +253,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('Chip', ChipWidget()),
     SubExpandBean('滑动删除', DismissibleWidget()),
     SubExpandBean('毛玻璃', FrostingWidget()),
+    SubExpandBean('FlutterLogo', FlutterLogoWidget()),
   ]),
   ExpandStateBean(false, 'Bars Widgets', 1, [
     SubExpandBean('TabBar', TabBarHomePage()),

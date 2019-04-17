@@ -5,14 +5,22 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/splash_screen.dart';
 import 'package:flutter_app/utils/log_util.dart';
+
+import 'package:flutter/services.dart';
 import 'package:flutter_app/utils/sp_util.dart';
 
 void main() async {
-  int themeIndex = await getTheme();
   setCustomErrorPage();
   _setTargetPlatformForDesktop();
+  await SPUtil.getInstance();
   runZoned(() {
-    runApp(MyApp(themeIndex));
+    runApp(MyApp());
+
+    if (Platform.isAndroid) {
+      // 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
+      // SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+      // SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+    }
   }, onError: (dynamic error, dynamic stack) {
     LogUtil.e(error);
     LogUtil.e(stack);
@@ -43,36 +51,7 @@ void _setTargetPlatformForDesktop() {
   }
 }
 
-Future<int> getTheme() async {
-  int themeIndex = SPUtil.getInt('themeIndex');
-  if (themeIndex != null) {
-    return themeIndex;
-  }
-  return 0;
-}
-
-class MyApp extends StatefulWidget {
-  int themeIndex;
-
-  MyApp(this.themeIndex, {Key key}) : super(key: key);
-
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  Color themeColor;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+class MyApp extends StatelessWidget {
   /// This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -82,26 +61,20 @@ class _MyAppState extends State<MyApp> {
 
       /// 您可以通过配置ThemeData类轻松更改应用程序的主题
       theme: ThemeData(
-          primaryColor: Colors.pinkAccent,
-          primaryColorLight: Colors.purpleAccent,
-          bottomAppBarColor: Colors.deepOrange,
-          buttonColor: Colors.tealAccent,
-          backgroundColor: Colors.teal),
+        primaryColor: Colors.pinkAccent,
+
+        /// 高亮颜色
+        highlightColor: Color.fromRGBO(255, 255, 255, 0.5),
+
+        /// 水波纹颜色
+        splashColor: Colors.grey,
+      ),
 
       /// 右上角显示一个debug的图标
       debugShowCheckedModeBanner: false,
 
       /// 主页
       home: SplashScreenPage(),
-
-      /// 打开一个覆盖图，显示框架报告的可访问性信息 显示边框
-      showSemanticsDebugger: false,
-
-      /// 打开性能监视，覆盖在屏幕最上面
-      showPerformanceOverlay: false,
-
-      /// 显示网格
-      debugShowMaterialGrid: false,
     );
   }
 }

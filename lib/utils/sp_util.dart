@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:async';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:synchronized/synchronized.dart';
 
@@ -25,6 +28,32 @@ class SPUtil {
 
   Future _init() async {
     _prefs = await SharedPreferences.getInstance();
+  }
+
+  /// get object.
+  static Map getObject(String key) {
+    if (_prefs == null) return null;
+    String _data = _prefs.getString(key);
+    return (_data == null || _data.isEmpty) ? null : json.decode(_data);
+  }
+
+  /// put object list.
+  static Future<bool> putObjectList(String key, List<Object> list) {
+    if (_prefs == null) return null;
+    List<String> _dataList = list?.map((value) {
+      return json.encode(value);
+    })?.toList();
+    return _prefs.setStringList(key, _dataList);
+  }
+
+  /// get object list.
+  static List<Map> getObjectList(String key) {
+    if (_prefs == null) return null;
+    List<String> dataLis = _prefs.getStringList(key);
+    return dataLis?.map((value) {
+      Map _dataMap = json.decode(value);
+      return _dataMap;
+    })?.toList();
   }
 
   static String getString(String key, {String defValue: ''}) {

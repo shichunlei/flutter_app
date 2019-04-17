@@ -82,22 +82,21 @@ class DialogWidgetState extends State<DialogWidget> {
                       children: <Widget>[
                         DialogItem(
                             icon: Icons.account_circle,
-                            color: theme.primaryColor,
                             text: 'username@gmail.com',
                             onPressed: () {
                               Navigator.pop(context, 'username@gmail.com');
                             }),
                         DialogItem(
+                            color: Colors.red,
                             icon: Icons.account_circle,
-                            color: theme.primaryColor,
                             text: 'user02@gmail.com',
                             onPressed: () {
                               Navigator.pop(context, 'user02@gmail.com');
                             }),
                         DialogItem(
-                            icon: Icons.add_circle,
-                            text: 'add account',
-                            color: theme.disabledColor),
+                          icon: Icons.add_circle,
+                          text: 'add account',
+                        ),
                       ],
                       contentPadding: EdgeInsets.all(0),
                     );
@@ -150,6 +149,28 @@ class DialogWidgetState extends State<DialogWidget> {
               });
             },
             child: Text("TimePicker"),
+          ),
+          Divider(),
+          RaisedButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context) {
+                    return AboutDialog(
+                      applicationName: 'Flutter App',
+                      applicationIcon: Icon(Icons.add),
+                      applicationVersion: '1.0',
+                      //版本号，默认为空
+                      applicationLegalese: '版权所有：SCL',
+                      children: <Widget>[
+                        Text("具体的内容"),
+                        Text('具体的布局'),
+                      ],
+                    );
+                  });
+            },
+            child: Text("AboutDialog"),
           ),
           Divider(),
           RaisedButton(
