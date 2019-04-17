@@ -15,6 +15,8 @@ environment:
 dependencies: # 应用或包依赖的其它包或插件
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   # AzListView，Flutter 城市列表，联系人列表，自定义Header，索引，悬停效果。
   azlistview: ^0.1.1
@@ -112,6 +114,8 @@ dependencies: # 应用或包依赖的其它包或插件
 
   #
   rounded_letter: ^0.0.6
+
+  rxdart: ^0.21.0
 
   share: ^0.6.1
 
