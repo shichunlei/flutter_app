@@ -14,6 +14,7 @@ import 'package:flutter_app/page/swiper_page.dart';
 import 'package:flutter_app/bars_demo/bottom_appbar.dart';
 import 'package:flutter_app/bars_demo/bubble_bottom_bar.dart';
 import 'package:flutter_app/widget/appbar_widget.dart';
+import 'package:flutter_app/widget/check_switch_widget.dart';
 import 'package:flutter_app/widget/contact_picker_widget.dart';
 import 'package:flutter_app/widget/flutter_logo.dart';
 import 'package:flutter_app/widget/icon_widget.dart';
@@ -254,6 +255,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('滑动删除', DismissibleWidget()),
     SubExpandBean('毛玻璃', FrostingWidget()),
     SubExpandBean('FlutterLogo', FlutterLogoWidget()),
+    SubExpandBean('CheckSwitch', CheckSwitchWidget()),
   ]),
   ExpandStateBean(false, 'Bars Widgets', 1, [
     SubExpandBean('TabBar', TabBarHomePage()),

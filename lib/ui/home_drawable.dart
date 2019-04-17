@@ -3,7 +3,6 @@ import 'package:flutter_app/contact/page/contact_list_page.dart';
 import 'package:flutter_app/login/page/login_page.dart';
 import 'package:flutter_app/page/random_poetry_page.dart';
 import 'package:flutter_app/ui/home_drawable_header.dart';
-import 'package:flutter_app/utils/event_bus_util.dart';
 import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/sp_util.dart';
