@@ -55,6 +55,8 @@ A new Flutter application.
 | :--: | :--: | :--: | :--: |
 |设备信息|Icon|Stepper|AppBar|
 
+#### [百姓生活](https://github.com/shenghy/flutter_shop)
+
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-19-20-22-33-602.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-19-20-22-46-698.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-19-20-22-54-706.png)|
 | :--: | :--: | :--: |
 |首页|首页|首页|
