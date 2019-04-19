@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/baixing_life/index.dart';
 import 'package:flutter_app/bars_demo/fancy_bottom_navigation.dart';
 import 'package:flutter_app/bars_demo/heart_beat_bottombar_widget.dart';
 import 'package:flutter_app/city_pickers/page/fullpage_pickers_page.dart';
@@ -289,6 +290,7 @@ List<ExpandStateBean> expandStateList = [
   ExpandStateBean(false, '功能', 3, [
     SubExpandBean('Question', QuizPage()),
     SubExpandBean('豆瓣电影', MovieHomePage()),
+    SubExpandBean('百姓生活+', IndexPage()),
     SubExpandBean('随机单词', RandomWords()),
     SubExpandBean('每日一文', OneArticlePage()),
     SubExpandBean('设备信息', DeviceInfoPage()),

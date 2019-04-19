@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
+
+import 'package:flutter_app/ui/custom_sliver_appbar_delegate.dart';
 
 class SliverWidget extends StatefulWidget {
   SliverWidget({Key key}) : super(key: key);
@@ -107,7 +108,7 @@ class _SliverWidgetState extends State<SliverWidget> {
 
   Widget _buildSliverPersistentHeader() {
     return SliverPersistentHeader(
-      delegate: _SliverAppBarDelegate(
+      delegate: CustomSliverAppBarDelegate(
           minHeight: 60.0,
           maxHeight: 180.0,
           child: Container(
@@ -192,36 +193,5 @@ class _SliverWidgetState extends State<SliverWidget> {
       ),
       viewportFraction: 1.0,
     );
-  }
-}
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate({
-    @required this.minHeight,
-    @required this.maxHeight,
-    @required this.child,
-  });
-
-  final double minHeight;
-  final double maxHeight;
-  final Widget child;
-
-  @override
-  double get minExtent => minHeight;
-
-  @override
-  double get maxExtent => math.max(maxHeight, minHeight);
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return new SizedBox.expand(child: child);
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return maxHeight != oldDelegate.maxHeight ||
-        minHeight != oldDelegate.minHeight ||
-        child != oldDelegate.child;
   }
 }

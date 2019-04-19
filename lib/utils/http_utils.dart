@@ -33,7 +33,7 @@ class HttpUtils {
 
       /// 接收数据的总时限.
       receiveTimeout: 3000,
-      contentType: ContentType.json,
+      contentType: ContentType.parse("application/x-www-form-urlencoded"),
       headers: {
         // "Content-Type": "application/json",
         // "Accept": "application/json",

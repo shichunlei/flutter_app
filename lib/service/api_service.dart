@@ -2,8 +2,12 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_app/bean/article.dart';
+import 'package:flutter_app/bean/baixing.dart';
+import 'package:flutter_app/bean/category.dart';
 import 'package:flutter_app/bean/celebrity.dart';
 import 'package:flutter_app/bean/city.dart';
+import 'package:flutter_app/bean/comment.dart';
+import 'package:flutter_app/bean/goods.dart';
 import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/bean/news.dart';
 import 'package:flutter_app/bean/photos.dart';
@@ -63,6 +67,20 @@ class ApiService {
   static final String CITY_FIND = "https://search.heweather.net/find";
 
   static final String CITY_TOP = "https://search.heweather.net/top";
+
+  static final String JIANDAN = "http://i.jandan.net";
+
+  static final String BAIXING = 'http://v.jspang.com:8088/baixing/wxmini/';
+
+  static final String BAIXING_HOME_URL = BAIXING + 'homePageContent';
+
+  static final String BAIXING_HOME_HOT_URL = BAIXING + 'homePageBelowConten';
+
+  static final String BAIXING_CATEGORY_URL = BAIXING + 'getCategory';
+
+  static final String BAIXING_GOODS_URL = BAIXING + 'getMallGoods';
+
+  static final String BAIXING_GOODS_DETAIL_URL = BAIXING + 'getGoodDetailById';
 
   /// 获取豆瓣电影首页热门新闻文章
   static Future<List<News>> getNewsList() async {
@@ -571,5 +589,96 @@ class ApiService {
     }
     return City.fromMapList(
         json.decode(response.data)['HeWeather6'][0]['basic']);
+  }
+
+  /// 煎蛋XXOO图
+  static Future<List<Comment>> getJiandan(int page) async {
+    Response response = await HttpUtils().get(JIANDAN, data: {
+      "page": page,
+      'oxwlxojflwblxbsapi': 'jandan.get_ooxx_comments',
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    return Comment.fromMapList(json.decode(response.data)['comments']);
+  }
+
+  /// 百姓生活首页数据接口
+  static Future<Baixing> getBaixingHomeData(String lon, String lat) async {
+    Response response = await HttpUtils().post(BAIXING_HOME_URL, data: {
+      "lon": lon,
+      'lat': lat,
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    if (json.decode(response.data)['code'] == '0') {
+      return Baixing.fromMap(json.decode(response.data)['data']);
+    } else {
+      return null;
+    }
+  }
+
+  /// 百姓生活首页火爆专区商品数据接口
+  static Future<List<Goods>> getBaixingHomeHotData(int page) async {
+    Response response = await HttpUtils().post(BAIXING_HOME_HOT_URL, data: {
+      "page": page,
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    if (json.decode(response.data)['code'] == '0') {
+      return Goods.fromMapList(json.decode(response.data)['data']);
+    } else {
+      return [];
+    }
+  }
+
+  /// 百姓生活分类数据接口
+  static Future<List<Category>> getBaixingCategoryData(int page) async {
+    Response response = await HttpUtils().post(BAIXING_CATEGORY_URL, data: {
+      "page": page,
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    if (json.decode(response.data)['code'] == '0') {
+      return Category.fromMapList(json.decode(response.data)['data']);
+    } else {
+      return [];
+    }
+  }
+
+  /// 百姓生活分类商品数据接口
+  static Future<List<Goods>> getBaixingGoodsData(
+      int page, String categoryId, String categorySubId) async {
+    Response response = await HttpUtils().post(BAIXING_GOODS_URL, data: {
+      "page": page,
+      "categoryId": categoryId,
+      "categorySubId": categorySubId,
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    if (json.decode(response.data)['code'] == '0') {
+      return Goods.fromMapList(json.decode(response.data)['data']);
+    } else {
+      return [];
+    }
+  }
+
+  /// 百姓生活分类商品数据接口
+  static Future<Goods> getBaixingGoodsDetailData(String goodId) async {
+    Response response = await HttpUtils().post(BAIXING_GOODS_DETAIL_URL, data: {
+      "goodId": goodId,
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    if (json.decode(response.data)['code'] == '0') {
+      return Goods.fromMap(json.decode(response.data)['data']);
+    } else {
+      return null;
+    }
   }
 }
