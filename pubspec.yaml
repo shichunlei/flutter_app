@@ -55,6 +55,8 @@ dependencies: # 应用或包依赖的其它包或插件
   # EventBus
   event_bus: ^1.1.0
 
+  fancy_bottom_navigation: ^0.3.2
+
   # 图标库地址：https://feathericons.com/
   feather_icons_flutter: ^4.7.4
 
