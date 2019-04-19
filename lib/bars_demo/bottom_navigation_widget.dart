@@ -8,7 +8,7 @@ class BottomNavigationWidget extends StatefulWidget {
 
 class BottomNavigationWidgetState extends State<BottomNavigationWidget>
     with SingleTickerProviderStateMixin {
-  final _bottomNavigationColor = Colors.blue;
+  final _bottomNavigationColor = Colors.white;
   int _currentIndex = 0;
   List<Widget> list = List();
 
@@ -27,43 +27,51 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget>
     return Scaffold(
       body: list[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: _bottomNavigationColor,
-              ),
-              title: Text(
-                'HOME',
-                style: TextStyle(color: _bottomNavigationColor),
-              )),
+            icon: Icon(
+              Icons.home,
+              color: _bottomNavigationColor,
+            ),
+            title: Text(
+              'HOME',
+              style: TextStyle(color: _bottomNavigationColor),
+            ),
+            backgroundColor: Colors.green,
+          ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.email,
-                color: _bottomNavigationColor,
-              ),
-              title: Text(
-                'Email',
-                style: TextStyle(color: _bottomNavigationColor),
-              )),
+            icon: Icon(
+              Icons.email,
+              color: _bottomNavigationColor,
+            ),
+            title: Text(
+              'Email',
+              style: TextStyle(color: _bottomNavigationColor),
+            ),
+            backgroundColor: Colors.orange,
+          ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.pages,
-                color: _bottomNavigationColor,
-              ),
-              title: Text(
-                'PAGES',
-                style: TextStyle(color: _bottomNavigationColor),
-              )),
+            icon: Icon(
+              Icons.pages,
+              color: _bottomNavigationColor,
+            ),
+            title: Text(
+              'PAGES',
+              style: TextStyle(color: _bottomNavigationColor),
+            ),
+            backgroundColor: Colors.red,
+          ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.airplay,
-                color: _bottomNavigationColor,
-              ),
-              title: Text(
-                'AIRPLAY',
-                style: TextStyle(color: _bottomNavigationColor),
-              )),
+            icon: Icon(
+              Icons.airplay,
+              color: _bottomNavigationColor,
+            ),
+            title: Text(
+              'AIRPLAY',
+              style: TextStyle(color: _bottomNavigationColor),
+            ),
+            backgroundColor: Colors.purple,
+          ),
         ],
         currentIndex: _currentIndex,
         onTap: (index) {

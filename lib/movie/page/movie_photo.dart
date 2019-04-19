@@ -1,8 +1,15 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils/loading_util.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter_app/bean/photos.dart';
+import 'package:flutter_app/utils/log_util.dart';
+import 'package:flutter_app/utils/toast.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:share/share.dart';
+
+import 'package:image_picker_saver/image_picker_saver.dart';
 
 class MoviePhotoPage extends StatefulWidget {
   final List<Photos> photos;
@@ -51,7 +58,7 @@ class _MoviePhotoPageState extends State<MoviePhotoPage> {
               setState(() => count = index + 1);
             },
             scrollPhysics: const BouncingScrollPhysics(),
-            loadingChild: CupertinoActivityIndicator(),
+            loadingChild: getLoadingWidget(),
             pageController: widget.controller,
           ),
           Column(
@@ -86,8 +93,35 @@ class _MoviePhotoPageState extends State<MoviePhotoPage> {
             ],
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
           ),
+          Align(
+            child: Container(
+              margin: EdgeInsets.all(20.0),
+              child: IconButton(
+                highlightColor: Colors.white,
+                splashColor: Colors.red,
+                disabledColor: Colors.green,
+                color: Colors.white,
+                onPressed: () => _saveImage(widget.photos[count].image),
+                icon: Icon(Icons.file_download),
+              ),
+            ),
+            alignment: Alignment.bottomRight,
+          ),
         ],
       ),
     );
+  }
+
+  void _saveImage(String imageUrl) async {
+    LogUtil.v("_onImageSaveButtonPressed");
+    Toast.show('正在保存...', context);
+
+    var response = await http.get(imageUrl);
+
+    var filePath =
+        await ImagePickerSaver.saveFile(fileData: response.bodyBytes);
+    var savedFile = File.fromUri(Uri.file(filePath));
+    Future<File>.sync(() => savedFile);
+    Toast.show('保存成功', context);
   }
 }

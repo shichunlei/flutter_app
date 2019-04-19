@@ -93,6 +93,9 @@ dependencies: # 应用或包依赖的其它包或插件
   # 图片选择器
   image_picker: ^0.4.12+1
 
+  # 保存图片
+  image_picker_saver: ^0.1.0
+
   # 引导页
   intro_slider: ^1.2.0
 

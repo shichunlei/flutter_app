@@ -7,6 +7,7 @@ import net.goderbauer.flutter.contactpicker.ContactPickerPlugin;
 import io.flutter.plugins.deviceinfo.DeviceInfoPlugin;
 import com.flutter_webview_plugin.FlutterWebviewPlugin;
 import io.flutter.plugins.imagepicker.ImagePickerPlugin;
+import io.flutter.plugins.imagepickersaver.ImagePickerSaverPlugin;
 import com.dfa.introslider.IntroSliderPlugin;
 import io.flutter.plugins.packageinfo.PackageInfoPlugin;
 import com.jhomlala.roundedletter.RoundedLetterPlugin;
@@ -30,6 +31,7 @@ public final class GeneratedPluginRegistrant {
     DeviceInfoPlugin.registerWith(registry.registrarFor("io.flutter.plugins.deviceinfo.DeviceInfoPlugin"));
     FlutterWebviewPlugin.registerWith(registry.registrarFor("com.flutter_webview_plugin.FlutterWebviewPlugin"));
     ImagePickerPlugin.registerWith(registry.registrarFor("io.flutter.plugins.imagepicker.ImagePickerPlugin"));
+    ImagePickerSaverPlugin.registerWith(registry.registrarFor("io.flutter.plugins.imagepickersaver.ImagePickerSaverPlugin"));
     IntroSliderPlugin.registerWith(registry.registrarFor("com.dfa.introslider.IntroSliderPlugin"));
     PackageInfoPlugin.registerWith(registry.registrarFor("io.flutter.plugins.packageinfo.PackageInfoPlugin"));
     RoundedLetterPlugin.registerWith(registry.registrarFor("com.jhomlala.roundedletter.RoundedLetterPlugin"));
