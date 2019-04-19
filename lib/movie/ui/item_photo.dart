@@ -24,9 +24,10 @@ class ItemPhoto extends StatelessWidget {
               ),
               child: Hero(
                 tag: photo.id,
-                child: FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: photo.cover,
+                child: FadeInImage(
+                  placeholder: AssetImage("images/wallfy.png"),
+                  image: NetworkImage(photo.cover),
+                  fit: BoxFit.cover,
                 ),
               ),
             ),

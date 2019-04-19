@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/rich_alert/rich_alert_dialog.dart';
-import 'package:flutter_app/utils/log_util.dart';
 
 class DialogWidget extends StatefulWidget {
   @override
@@ -11,11 +10,13 @@ class DialogWidget extends StatefulWidget {
 class DialogWidgetState extends State<DialogWidget> {
   @override
   Widget build(BuildContext context) {
+    final _scaffoldKey = GlobalKey<ScaffoldState>();
     final ThemeData theme = Theme.of(context);
     final TextStyle dialogTextStyle =
         theme.textTheme.subhead.copyWith(color: theme.textTheme.caption.color);
 
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(title: Text("Dialog Widget")),
       floatingActionButton: FloatingActionButton(
           onPressed: () => showDialog(
@@ -189,32 +190,6 @@ class DialogWidgetState extends State<DialogWidget> {
           Builder(
             builder: (context) => RaisedButton(
                   onPressed: () {
-                    showBottomSheet<void>(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return _bottomSheetItem(context);
-                        });
-                  },
-                  child: Text('BottomSheet'),
-                ),
-          ),
-          Divider(),
-          Builder(
-            builder: (context) => RaisedButton(
-                  onPressed: () {
-                    showModalBottomSheet<void>(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return _bottomSheetItem(context);
-                        });
-                  },
-                  child: Text("Modal bottom sheet"),
-                ),
-          ),
-          Divider(),
-          Builder(
-            builder: (context) => RaisedButton(
-                  onPressed: () {
                     Scaffold.of(context).showSnackBar(SnackBar(
                         content: Text('收藏成功'),
                         action: SnackBarAction(label: '撤销', onPressed: () {}),
@@ -364,26 +339,6 @@ class DialogWidgetState extends State<DialogWidget> {
             },
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _bottomSheetItem(BuildContext context) {
-    return ListView(
-      // 生成一个列表选择器
-      children: List.generate(
-        20,
-        (index) => ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.blueGrey,
-                child: Text('${index + 1}'),
-              ),
-              title: Text('Item ${index + 1}'),
-              onTap: () {
-                LogUtil.v('tapped item ${index + 1}');
-                Navigator.pop(context);
-              },
-            ),
       ),
     );
   }

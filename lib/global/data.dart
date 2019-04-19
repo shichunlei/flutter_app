@@ -14,6 +14,7 @@ import 'package:flutter_app/page/swiper_page.dart';
 import 'package:flutter_app/bars_demo/bottom_appbar.dart';
 import 'package:flutter_app/bars_demo/bubble_bottom_bar.dart';
 import 'package:flutter_app/widget/appbar_widget.dart';
+import 'package:flutter_app/widget/bottom_sheet.dart';
 import 'package:flutter_app/widget/check_switch_widget.dart';
 import 'package:flutter_app/widget/contact_picker_widget.dart';
 import 'package:flutter_app/widget/flutter_logo.dart';
@@ -248,6 +249,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('Icon', IconWidget()),
     SubExpandBean('TextField', TextFieldWidget()),
     SubExpandBean('Dialog', DialogWidget()),
+    SubExpandBean('BottomSheet', BottomSheetWidget()),
     SubExpandBean('Stepper', StepperWidget()),
     SubExpandBean('Slider', SliderWidget()),
     SubExpandBean('Sliver', SliverWidget()),
