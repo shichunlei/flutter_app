@@ -12,6 +12,10 @@ class Article {
   String digest;
   String content;
   int wc;
+  DateBean date;
+
+  int id;
+  String curr;
 
   static Article fromMap(Map<String, dynamic> map) {
     Article article = new Article();
@@ -20,11 +24,58 @@ class Article {
     article.digest = map['digest'];
     article.content = map['content'];
     article.wc = map['wc'];
+    article.date = DateBean.fromMap(map['date']);
+
+    article.curr = DateBean.fromMap(map['date']).curr;
     return article;
   }
 
+  static Article fromJson(Map<String, dynamic> map) {
+    Article article = new Article();
+    article.id = map['_id'];
+    article.author = map['author'];
+    article.title = map['title'];
+    article.digest = map['digest'];
+    article.curr = map['date'];
+    return article;
+  }
+
+  Map<String, dynamic> toMap() => {
+        'author': author,
+        'title': title,
+        'digest': digest,
+        'date': date.curr,
+      };
+
   static List<Article> fromMapList(dynamic mapList) {
     List<Article> list = new List(mapList.length);
+    for (int i = 0; i < mapList.length; i++) {
+      list[i] = fromMap(mapList[i]);
+    }
+    return list;
+  }
+
+  @override
+  String toString() {
+    return 'Article{author: $author, title: $title, digest: $digest, content: $content, wc: $wc, date: $date, id: $id, curr: $curr}';
+  }
+}
+
+class DateBean {
+  String curr;
+  String prev;
+  String next;
+
+  static DateBean fromMap(Map<String, dynamic> map) {
+    DateBean date = new DateBean();
+    date.curr = map['curr'];
+    date.prev = map['prev'];
+    date.next = map['next'];
+    return date;
+  }
+
+  static List<DateBean> fromMapList(dynamic mapList) {
+    List<DateBean> list = new List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }

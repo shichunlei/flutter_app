@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Config {
   static final bool DEBUG = true;
 
@@ -94,3 +96,18 @@ class Config {
 }
 
 enum RefreshType { DEFAULT, LOAD_MORE, REFRESH }
+
+/// 所有主题色列表
+final List<Color> themeColors = [
+  Colors.blue,
+  Colors.red,
+  Colors.orange,
+  Colors.green,
+  Colors.deepOrange,
+  Colors.pink,
+  Colors.purple,
+  Colors.amber,
+  Colors.teal,
+  Colors.lightGreen,
+  Colors.grey,
+];

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bloc/bloc_provider.dart';
 import 'package:flutter_app/bloc/setting_bloc.dart';
+import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/utils/sp_util.dart';
 
 class MinePage extends StatelessWidget {
@@ -46,14 +47,14 @@ class MinePage extends StatelessWidget {
                       delegate: SliverChildBuilderDelegate(
                           (_, index) => InkWell(
                                 child: Container(
-                                  color: SettingBloc.themeColors[index],
+                                  color: themeColors[index],
                                 ),
                                 onTap: () {
                                   _bloc.switchTheme(index);
                                   SPUtil.putInt('themeIndex', index);
                                 },
                               ),
-                          childCount: SettingBloc.themeColors.length),
+                          childCount: themeColors.length),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         mainAxisSpacing: 20.0,

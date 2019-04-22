@@ -4,6 +4,7 @@ enum DateFormat {
   NORMAL, //yyyy-MM-dd HH:mm:ss
   YEAR_MONTH_DAY_HOUR_MINUTE, //yyyy-MM-dd HH:mm
   YEAR_MONTH_DAY, //yyyy-MM-dd
+  YMD, //yyyyMMdd
   YEAR_MONTH, //yyyy-MM
   MONTH_DAY, //MM-dd
   MONTH_DAY_HOUR_MINUTE, //MM-dd HH:mm
@@ -185,6 +186,9 @@ class TimeUtils {
         break;
       case DateFormat.YEAR_MONTH_DAY: //yyyy-MM-dd
         time = time.substring(0, "yyyy-MM-dd".length);
+        break;
+      case DateFormat.YMD: //yyyyMMdd
+        time = time.substring(0, "yyyy-MM-dd".length).replaceAll('-', '');
         break;
       case DateFormat.YEAR_MONTH: //yyyy-MM
         time = time.substring(0, "yyyy-MM".length);

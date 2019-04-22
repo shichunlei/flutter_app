@@ -130,6 +130,9 @@ dependencies: # 应用或包依赖的其它包或插件
   # 评分控件
   smooth_star_rating: 1.0.1
 
+  # 数据库
+  sqflite: ^1.1.5
+
   # https://github.com/tekartik/synchronized.dart
   synchronized: ^2.1.0
 

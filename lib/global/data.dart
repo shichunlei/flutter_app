@@ -10,7 +10,7 @@ import 'package:flutter_app/page/city_picker_page.dart';
 import 'package:flutter_app/page/clippy_widget.dart';
 import 'package:flutter_app/page/device_info_page.dart';
 import 'package:flutter_app/page/flipper_widget.dart';
-import 'package:flutter_app/page/one_article_page.dart';
+import 'package:flutter_app/article/one_article_page.dart';
 import 'package:flutter_app/page/random_words.dart';
 import 'package:flutter_app/page/swiper_page.dart';
 import 'package:flutter_app/bars_demo/bottom_appbar.dart';
