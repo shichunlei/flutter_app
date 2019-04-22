@@ -2,9 +2,14 @@
 
 A new Flutter application.
 
-## 豆瓣电影API接口
+`本项目仅供学习，如有侵权请联系本人进行删除。`
 
-[豆瓣电影API接口>>](https://github.com/shichunlei/-Api/blob/master/%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1.md)
+## API接口
+
+- [豆瓣电影API接口>>](https://github.com/shichunlei/-Api/blob/master/%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1.md)
+
+- [每日一文API接口](https://github.com/shichunlei/-Api/blob/master/OneArticle.md)
+
 
 ## 运行截图
 
@@ -112,7 +117,7 @@ A new Flutter application.
 | PhotoView | [photo_view](https://github.com/renancaraujo/photo_view) | ![](https://camo.githubusercontent.com/8a5c98a80bb80f0eed10b5f111cc7440d1aa143e/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f70686f746f5f766965772e7376673f7374796c653d706f706f7574) | A simple zoomable image widget for Flutter. Resolves a image provider and shows the result with useful gestures support, such as pinch to zoom and pan. It also can show any widget instead of an image, such as Container, Text or a SVG. Just use custom child constructor. |
 | 时间轴 | [Timeline](https://github.com/furkantektas/timeline_list) | ![](https://camo.githubusercontent.com/81e25a24fd6072e2979c03e4d716be55eff89763/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f74696d656c696e655f6c6973742e737667) | 时间轴 |
 | Rounded Letter | [roundedletter](https://github.com/jhomlala/roundedletter) | ![](https://camo.githubusercontent.com/ab6351029d9980584a1120d90dccb654e8ab8dbb/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f726f756e6465645f6c65747465722e737667) | Useful Flutter widget which allows you to create letter inside shape. Can be used for placeholders (for example user avatars). This package is named 'Rounded letter' because main idea was letter inside circle just like Android 5.0 contacts. Later idea has evolved into more shapes. |
-
+| 数据库 | [sqflite](https://github.com/tekartik/sqflite) | 1.1.5 | SQLite plugin for Flutter. Supports both iOS and Android.|
 
 
 
