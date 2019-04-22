@@ -8,8 +8,11 @@ A new Flutter application.
 
 - [豆瓣电影API接口>>](https://github.com/shichunlei/-Api/blob/master/%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1.md)
 
-- [每日一文API接口](https://github.com/shichunlei/-Api/blob/master/OneArticle.md)
+- [每日一文API接口>>](https://github.com/shichunlei/-Api/blob/master/OneArticle.md)
 
+- [天气接口>>](https://www.heweather.com/documents/api/)
+
+- [诗词接口>>](https://blog.csdn.net/qq_35695041/article/details/83024632)
 
 ## 运行截图
 
