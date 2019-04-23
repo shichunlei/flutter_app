@@ -5,6 +5,7 @@ import 'package:flutter_app/baixing_life/page/home.dart';
 import 'package:flutter_app/baixing_life/page/member.dart';
 import 'package:flutter_app/baixing_life/page/shopping_cart.dart';
 import 'package:flutter_app/custom_widgets/bubble_bottom_bar.dart';
+import 'package:flutter_app/global/custom_icon.dart';
 
 class IndexPage extends StatefulWidget {
   IndexPage({Key key}) : super(key: key);
@@ -90,11 +91,11 @@ class _IndexPageState extends State<IndexPage>
           BubbleBottomBarItem(
               backgroundColor: Colors.green,
               icon: Icon(
-                Icons.account_circle,
+                CustomIcon.account_full,
                 color: Colors.black,
               ),
               activeIcon: Icon(
-                Icons.account_circle,
+                CustomIcon.account_full,
                 color: Colors.green,
               ),
               title: Text("会员"))

@@ -43,4 +43,6 @@ class CustomIcon {
       const IconData(0xe629, fontFamily: 'CustomIcon');
   static const IconData coupon =
       const IconData(0xe628, fontFamily: 'CustomIcon');
+  static const IconData account_full =
+      const IconData(0xe60c, fontFamily: 'CustomIcon');
 }
