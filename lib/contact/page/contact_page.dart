@@ -89,11 +89,11 @@ class _ContactPageState extends State<ContactPage> {
                     edge: Edge.BOTTOM,
                     arcType: ArcType.CONVEX,
                     child: FadeInImage.assetNetwork(
-                      placeholder: "images/flutter.png",
+                      placeholder: "images/wallfy.png",
                       image: (widget.avatar == "" || widget.avatar == null)
                           ? _defaultImage
                           : widget.avatar,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                       height: _appBarHeight,
                     ),
                   ),

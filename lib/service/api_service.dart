@@ -7,6 +7,7 @@ import 'package:flutter_app/bean/category.dart';
 import 'package:flutter_app/bean/celebrity.dart';
 import 'package:flutter_app/bean/city.dart';
 import 'package:flutter_app/bean/comment.dart';
+import 'package:flutter_app/bean/contact.dart';
 import 'package:flutter_app/bean/goods.dart';
 import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/bean/news.dart';
@@ -81,6 +82,8 @@ class ApiService {
   static final String BAIXING_GOODS_URL = BAIXING + 'getMallGoods';
 
   static final String BAIXING_GOODS_DETAIL_URL = BAIXING + 'getGoodDetailById';
+
+  static final String RANDOMUSER_URL = 'https://randomuser.me/api/';
 
   /// 获取豆瓣电影首页热门新闻文章
   static Future<List<News>> getNewsList() async {
@@ -651,7 +654,10 @@ class ApiService {
 
   /// 百姓生活分类商品数据接口
   static Future<List<Goods>> getBaixingGoodsData(
-      int page, String categoryId, String categorySubId) async {
+    int page,
+    String categoryId,
+    String categorySubId,
+  ) async {
     Response response = await HttpUtils().post(BAIXING_GOODS_URL, data: {
       "page": page,
       "categoryId": categoryId,
@@ -680,5 +686,26 @@ class ApiService {
     } else {
       return null;
     }
+  }
+
+  static Future<List<Contact>> getRandomUser({
+    int page = 1,
+    int results = 50,
+    String gender,
+    String format = 'json',
+    String nat,
+  }) async {
+    Response response = await HttpUtils().get(RANDOMUSER_URL, data: {
+      "page": page,
+      "results": results,
+      "gender": gender,
+      "format": format,
+      "nat": nat,
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(response.data);
+    return result.contacts;
   }
 }

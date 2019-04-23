@@ -1,5 +1,6 @@
 import 'package:flutter_app/bean/article.dart';
 import 'package:flutter_app/bean/celebrity.dart';
+import 'package:flutter_app/bean/contact.dart';
 import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/bean/photos.dart';
@@ -37,12 +38,17 @@ class Result {
   /// 天气
   List<HeWeather> heWeather;
 
+  /// 联系人
+  List<Contact> contacts;
+
   static Result fromMap(Map<String, dynamic> map) {
     Result result = Result();
     result.title = map['title'] == null ? "" : map['title'];
     result.count = map['count'];
     result.start = map['start'];
     result.total = map['total'];
+    result.contacts =
+        map['results'] == null ? [] : Contact.fromMapList(map['results']);
     result.reviews =
         map['reviews'] == null ? [] : Reviews.fromMapList(map['reviews']);
     result.comments =
