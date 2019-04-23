@@ -11,6 +11,7 @@ import 'package:flutter_app/page/clippy_widget.dart';
 import 'package:flutter_app/page/device_info_page.dart';
 import 'package:flutter_app/page/flipper_widget.dart';
 import 'package:flutter_app/article/one_article_page.dart';
+import 'package:flutter_app/page/loading_json.dart';
 import 'package:flutter_app/page/random_words.dart';
 import 'package:flutter_app/page/swiper_page.dart';
 import 'package:flutter_app/bars_demo/bottom_appbar.dart';
@@ -296,6 +297,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('设备信息', DeviceInfoPage()),
     SubExpandBean('二维码', QrImageWidget()),
     SubExpandBean('图表', ChartsWidget()),
+    SubExpandBean('Read Assets Json File', LoadingJsonPage()),
   ]),
 ];
 
