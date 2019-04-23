@@ -25,4 +25,22 @@ class CustomIcon {
       const IconData(0xe708, fontFamily: 'CustomIcon');
   static const IconData hidden_password =
       const IconData(0xed01, fontFamily: 'CustomIcon');
+  static const IconData order =
+      const IconData(0xe661, fontFamily: 'CustomIcon');
+  static const IconData address =
+      const IconData(0xe615, fontFamily: 'CustomIcon');
+  static const IconData about =
+      const IconData(0xe612, fontFamily: 'CustomIcon');
+  static const IconData comment =
+      const IconData(0xe630, fontFamily: 'CustomIcon');
+  static const IconData no_payment =
+      const IconData(0xe604, fontFamily: 'CustomIcon');
+  static const IconData no_receive =
+      const IconData(0xe64c, fontFamily: 'CustomIcon');
+  static const IconData no_send =
+      const IconData(0xe688, fontFamily: 'CustomIcon');
+  static const IconData custom_service =
+      const IconData(0xe629, fontFamily: 'CustomIcon');
+  static const IconData coupon =
+      const IconData(0xe628, fontFamily: 'CustomIcon');
 }

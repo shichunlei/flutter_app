@@ -68,6 +68,7 @@ A new Flutter application.
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-19-20-22-33-602.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-19-20-22-46-698.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-19-20-22-54-706.png)|
 | :--: | :--: | :--: |
 |首页|首页|首页|
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-23-17-35-34-333.png)|
 |分类|购物车|会员|
 
 

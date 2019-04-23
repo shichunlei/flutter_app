@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/ui/change_appbar.dart';
 import 'package:flutter_app/bean/advertes_picture.dart';
 import 'package:flutter_app/bean/baixing.dart';
 import 'package:flutter_app/bean/category.dart';
@@ -95,7 +96,7 @@ class _HomePageState extends State<HomePage>
           children: <Widget>[
             ToolBar(
               title: '${widget.title}',
-              backgroundColor: Colors.red,
+              backgroundColor: Colors.transparent,
             ),
             Container(
               child: getLoadingWidget(),
@@ -155,49 +156,13 @@ class _HomePageState extends State<HomePage>
                   _buildHotGoods(),
                 ],
               )),
-          _buildAppBar(),
+          ChangeAppBar(
+            title: widget.title,
+            backgroundColor: Colors.red,
+            navAlpha: navAlpha,
+          ),
         ],
       ),
-    );
-  }
-
-  Widget _buildAppBar() {
-    return Stack(
-      children: <Widget>[
-        Container(
-          color: Color(0x20ffffff),
-          padding: EdgeInsets.fromLTRB(20, Utils.topSafeHeight, 0, 0),
-          height: Utils.navigationBarHeight,
-          child: Align(
-            child: Text(
-              '${widget.title}',
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
-            ),
-            alignment: Alignment.centerLeft,
-          ),
-        ),
-        Opacity(
-          opacity: navAlpha,
-          child: Container(
-            decoration: BoxDecoration(color: Colors.red),
-            padding: EdgeInsets.fromLTRB(20, Utils.topSafeHeight, 0, 0),
-            height: Utils.navigationBarHeight,
-            child: Align(
-              child: Text(
-                '${widget.title}',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-              alignment: Alignment.centerLeft,
-            ),
-          ),
-        ),
-      ],
     );
   }
 

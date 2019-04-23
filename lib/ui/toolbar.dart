@@ -14,7 +14,7 @@ class ToolBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: backgroundColor,
+      decoration: BoxDecoration(color: backgroundColor),
       padding: EdgeInsets.fromLTRB(20, Utils.topSafeHeight, 0, 0),
       height: Utils.navigationBarHeight,
       child: Align(
