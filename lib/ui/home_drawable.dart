@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/page/contact_list_page.dart';
+import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/login/page/login_page.dart';
 import 'package:flutter_app/page/random_poetry_page.dart';
 import 'package:flutter_app/ui/home_drawable_header.dart';
@@ -81,7 +82,30 @@ class _HomeDrawableState extends State<HomeDrawable> {
           title: Text("主题"),
           leading: Icon(Icons.color_lens),
           trailing: Icon(Icons.chevron_right),
-          onTap: () {}),
+          onTap: () {
+            int _index = SPUtil.getInt('themeIndex', defValue: 0);
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return SimpleDialog(
+                    title: Text('主题'), //标题
+                    titlePadding: EdgeInsets.all(20), //标题的padding值
+                    children: themeColors.map((color) {
+                      int index = themeColors.indexOf(color);
+                      return ListTile(
+                        leading: Icon(Icons.color_lens, color: color),
+                        onTap: () {
+                          SPUtil.putInt('themeIndex', index);
+                          Navigator.pop(context);
+                        },
+                        title: Text('${color.value}'),
+                        selected: _index == index,
+                      );
+                    }).toList(),
+                    contentPadding: EdgeInsets.all(0),
+                  );
+                });
+          }),
       Divider(),
       ListTile(
         title: Text("联系人"),
