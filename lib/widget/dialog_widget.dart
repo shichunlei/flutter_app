@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/rich_alert/rich_alert_dialog.dart';
+import 'package:giffy_dialog/giffy_dialog.dart';
 
 class DialogWidget extends StatefulWidget {
   @override
@@ -31,6 +32,76 @@ class DialogWidgetState extends State<DialogWidget> {
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 22.0),
         children: <Widget>[
+          RaisedButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (_) => NetworkGiffyDialog(
+                        image: Image.network(
+                          "https://raw.githubusercontent.com/Shashank02051997/FancyGifDialog-Android/master/GIF's/gif14.gif",
+                          fit: BoxFit.cover,
+                        ),
+                        title: Text(
+                          'Granny Eating Chocolate',
+                          textAlign: TextAlign.center,
+                          style: dialogTextStyle,
+                        ),
+                        description: Text(
+                          'This is a granny eating chocolate dialog box. This library helps you easily create fancy giffy dialog.',
+                          textAlign: TextAlign.center,
+                        ),
+                        onOkButtonPressed: () {},
+                      ));
+            },
+            child: Text('Network giffy dialog'),
+          ),
+          Divider(),
+          RaisedButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (_) => FlareGiffyDialog(
+                        flarePath: 'assets/space_demo.flr',
+                        flareAnimation: 'loading',
+                        title: Text(
+                          'Space Reloading',
+                          style: dialogTextStyle,
+                        ),
+                        description: Text(
+                          'This is a space reloading dialog box. This library helps you easily create fancy flare dialog.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(),
+                        ),
+                        onOkButtonPressed: () {},
+                      ));
+            },
+            child: Text('Flare giffy dialog'),
+          ),
+          Divider(),
+          RaisedButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (_) => AssetGiffyDialog(
+                        image: Image.asset(
+                          'images/timg.gif',
+                          fit: BoxFit.cover,
+                        ),
+                        title: Text(
+                          'Men Wearing Jackets',
+                          style: dialogTextStyle,
+                        ),
+                        description: Text(
+                          'This is a men wearing jackets dialog box. This library helps you easily create fancy giffy dialog.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(),
+                        ),
+                        onOkButtonPressed: () {},
+                      ));
+            },
+            child: Text('Asset giffy dialog'),
+          ),
+          Divider(),
           RaisedButton(
             onPressed: () {
               showDialog(

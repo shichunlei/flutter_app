@@ -83,6 +83,8 @@ dependencies: # 应用或包依赖的其它包或插件
   # 图标库中文地址：http://www.fontawesome.com.cn/
   font_awesome_flutter: ^8.4.0
 
+  giffy_dialog: ^1.3.0
+
   groovin_material_icons: ^1.1.6
 
   # 解析html
@@ -167,6 +169,7 @@ flutter:
   assets:
     - images/
     - assets/data/
+    - assets/space_demo.flr
     - packages/flutter_gallery_assets/people/ali_landscape.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
