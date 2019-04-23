@@ -16,17 +16,7 @@ import 'package:flutter_app/page/random_words.dart';
 import 'package:flutter_app/page/swiper_page.dart';
 import 'package:flutter_app/bars_demo/bottom_appbar.dart';
 import 'package:flutter_app/bars_demo/bubble_bottom_bar.dart';
-import 'package:flutter_app/widget/appbar_widget.dart';
-import 'package:flutter_app/widget/bottom_sheet.dart';
-import 'package:flutter_app/widget/check_switch_widget.dart';
-import 'package:flutter_app/widget/contact_picker_widget.dart';
-import 'package:flutter_app/widget/flutter_logo.dart';
-import 'package:flutter_app/widget/icon_widget.dart';
-import 'package:flutter_app/widget/qr_image_wiget.dart';
-import 'package:flutter_app/widget/sliver_widget.dart';
-import 'package:flutter_app/widget/staggered_view_page.dart';
-import 'package:flutter_app/widget/star_rating_widget.dart';
-import 'package:flutter_app/widget/text_widget.dart';
+import 'package:flutter_app/page/tiktok_home_page.dart';
 import 'package:flutter_app/page/drag_like_page.dart';
 import 'package:flutter_app/page/like_button_page.dart';
 import 'package:flutter_app/question/pages/quiz_page.dart';
@@ -35,18 +25,30 @@ import 'package:flutter_app/bars_demo/bottom_navigation_widget.dart';
 import 'package:flutter_app/bars_demo/navigation_keep_alive.dart';
 import 'package:flutter_app/bars_demo/tabbar_home_page.dart';
 import 'package:flutter_app/page/time_line.dart';
-import 'package:flutter_app/widget/rounded_letter_widget.dart';
-import 'package:flutter_app/widget/slider_widget.dart';
-import 'package:flutter_app/widget/stepper_widget.dart';
-import 'package:flutter_app/widget/textfield_widget.dart';
+import 'package:flutter_app/widget/appbar_widget.dart';
+import 'package:flutter_app/widget/bottom_sheet.dart';
 import 'package:flutter_app/widget/button_widget.dart';
+import 'package:flutter_app/widget/check_switch_widget.dart';
 import 'package:flutter_app/widget/chip_widget.dart';
+import 'package:flutter_app/widget/contact_picker_widget.dart';
 import 'package:flutter_app/widget/dialog_widget.dart';
 import 'package:flutter_app/widget/dismissible_widget.dart';
+import 'package:flutter_app/widget/flutter_logo.dart';
 import 'package:flutter_app/widget/frosting_widget.dart';
+import 'package:flutter_app/widget/icon_widget.dart';
 import 'package:flutter_app/widget/image_widget.dart';
 import 'package:flutter_app/widget/load_image_widget.dart';
+import 'package:flutter_app/widget/qr_image_wiget.dart';
+import 'package:flutter_app/widget/rounded_letter_widget.dart';
+import 'package:flutter_app/widget/slider_widget.dart';
+import 'package:flutter_app/widget/sliver_widget.dart';
+import 'package:flutter_app/widget/staggered_view_page.dart';
+import 'package:flutter_app/widget/star_rating_widget.dart';
+import 'package:flutter_app/widget/stepper_widget.dart';
+import 'package:flutter_app/widget/text_widget.dart';
+
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:flutter_app/widget/textfield_widget.dart';
 
 class Girl {
   final String description;
@@ -298,6 +300,7 @@ List<ExpandStateBean> expandStateList = [
     SubExpandBean('二维码', QrImageWidget()),
     SubExpandBean('图表', ChartsWidget()),
     SubExpandBean('Read Assets Json File', LoadingJsonPage()),
+    SubExpandBean('仿抖音首页动画', TikTokPage()),
   ]),
 ];
 
