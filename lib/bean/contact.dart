@@ -47,7 +47,7 @@ class Contact extends ISuspensionBean {
     contact.picture = PictureBean.fromMap(map['picture']);
     contact.registered = RegisteredBean.fromMap(map['registered']);
     contact.fullName =
-        '${NameBean.fromMap(map['name']).first} ${NameBean.fromMap(map['name']).title} ${NameBean.fromMap(map['name']).last}';
+        '${NameBean.fromMap(map['name']).first} ${NameBean.fromMap(map['name']).last}';
     return contact;
   }
 
