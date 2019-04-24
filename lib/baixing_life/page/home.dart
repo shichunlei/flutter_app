@@ -6,13 +6,13 @@ import 'package:flutter_app/bean/category.dart';
 import 'package:flutter_app/bean/goods.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/ui/custom_sliver_appbar_delegate.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/ui/toolbar.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -98,10 +98,10 @@ class _HomePageState extends State<HomePage>
               title: '${widget.title}',
               backgroundColor: Colors.transparent,
             ),
-            Container(
+            Expanded(
+                child: Container(
               child: getLoadingWidget(),
-              height: Utils.height - Utils.navigationBarHeight - 48 - 16,
-            ),
+            ))
           ],
         ),
       );
@@ -176,11 +176,9 @@ class _HomePageState extends State<HomePage>
           autoplay: true,
           itemCount: slides.length,
           itemBuilder: (BuildContext context, int index) {
-            return FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image: slides[index].comPic,
+            return ImageLoadView(
+              '${slides[index].comPic}',
               height: headerHeight,
-              fit: BoxFit.fill,
             );
           },
           onTap: (int index) {
@@ -205,9 +203,8 @@ class _HomePageState extends State<HomePage>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Image.network(
+                  ImageLoadView(
                     '${category[index].image}',
-                    fit: BoxFit.fill,
                     height: 40,
                     width: 40,
                   ),
@@ -237,20 +234,14 @@ class _HomePageState extends State<HomePage>
         child: Column(
           children: <Widget>[
             GestureDetector(
-              child: Image.network(
-                '${advertesPicture.pictureAddress}',
-                fit: BoxFit.fill,
-              ),
+              child: ImageLoadView('${advertesPicture.pictureAddress}'),
               onTap: () {
                 /// TODO
               },
             ),
             SizedBox(height: 10),
             GestureDetector(
-              child: Image.network(
-                '${shopInfo.leaderImage}',
-                fit: BoxFit.fill,
-              ),
+              child: ImageLoadView(shopInfo.leaderImage),
               onTap: () {
                 /// TODO
               },
@@ -258,22 +249,22 @@ class _HomePageState extends State<HomePage>
             Row(
               children: <Widget>[
                 GestureDetector(
-                  child: Image.network('${ads[0].pictureAddress}',
-                      fit: BoxFit.fill, width: width, height: height),
+                  child: ImageLoadView('${ads[0].pictureAddress}',
+                      width: width, height: height),
                   onTap: () {
                     /// TODO
                   },
                 ),
                 GestureDetector(
-                  child: Image.network('${ads[1].pictureAddress}',
-                      fit: BoxFit.fill, width: width, height: height),
+                  child: ImageLoadView('${ads[1].pictureAddress}',
+                      width: width, height: height),
                   onTap: () {
                     /// TODO
                   },
                 ),
                 GestureDetector(
-                  child: Image.network('${ads[2].pictureAddress}',
-                      fit: BoxFit.fill, width: width, height: height),
+                  child: ImageLoadView('${ads[2].pictureAddress}',
+                      width: width, height: height),
                   onTap: () {
                     /// TODO
                   },
@@ -319,10 +310,7 @@ class _HomePageState extends State<HomePage>
               color: Colors.white,
               child: Column(
                 children: <Widget>[
-                  Image.network(
-                    '${recommend[index].comPic}',
-                    fit: BoxFit.fill,
-                  ),
+                  ImageLoadView('${recommend[index].comPic}'),
                   Text('￥${recommend[index].presentPrice}'),
                   Text(
                     '￥${recommend[index].oriPrice}',
@@ -357,10 +345,7 @@ class _HomePageState extends State<HomePage>
         child: Container(
           padding: EdgeInsets.all(10.0),
           child: GestureDetector(
-            child: Image.network(
-              '${floor.floorPic.pictureAddress}',
-              fit: BoxFit.cover,
-            ),
+            child: ImageLoadView('${floor.floorPic.pictureAddress}'),
             onTap: () {
               /// TODO
             },
@@ -384,7 +369,7 @@ class _HomePageState extends State<HomePage>
                   Container(
                     width: Utils.width / 2,
                     child: GestureDetector(
-                      child: Image.network(goods[0].comPic, fit: BoxFit.fill),
+                      child: ImageLoadView('${goods[0].comPic}'),
                       onTap: () {
                         /// TODO
                       },
@@ -397,8 +382,7 @@ class _HomePageState extends State<HomePage>
                         Container(
                           height: Utils.width / 4,
                           child: GestureDetector(
-                            child: Image.network(goods[1].comPic,
-                                fit: BoxFit.fill),
+                            child: ImageLoadView('${goods[1].comPic}'),
                             onTap: () {
                               /// TODO
                             },
@@ -407,8 +391,7 @@ class _HomePageState extends State<HomePage>
                         Container(
                           height: Utils.width / 4,
                           child: GestureDetector(
-                            child: Image.network(goods[2].comPic,
-                                fit: BoxFit.fill),
+                            child: ImageLoadView('${goods[2].comPic}'),
                             onTap: () {
                               /// TODO
                             },
@@ -427,7 +410,7 @@ class _HomePageState extends State<HomePage>
                   Container(
                     width: Utils.width / 2,
                     child: GestureDetector(
-                      child: Image.network(goods[3].comPic, fit: BoxFit.fill),
+                      child: ImageLoadView('${goods[3].comPic}'),
                       onTap: () {
                         /// TODO
                       },
@@ -436,7 +419,7 @@ class _HomePageState extends State<HomePage>
                   Container(
                     width: Utils.width / 2,
                     child: GestureDetector(
-                      child: Image.network(goods[4].comPic, fit: BoxFit.fill),
+                      child: ImageLoadView('${goods[4].comPic}'),
                       onTap: () {
                         /// TODO
                       },
@@ -474,10 +457,7 @@ class _HomePageState extends State<HomePage>
             child: GestureDetector(
               child: Column(
                 children: <Widget>[
-                  Image.network(
-                    '${goods[index].comPic}',
-                    fit: BoxFit.fill,
-                  ),
+                  ImageLoadView('${goods[index].comPic}'),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(

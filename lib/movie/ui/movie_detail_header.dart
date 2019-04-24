@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 
 class MovieDetailHeader extends StatelessWidget {
   final Movie movie;
@@ -25,13 +25,8 @@ class MovieDetailHeader extends StatelessWidget {
         title: Text('${movie.title}(${movie.year})'),
         background: Stack(
           children: <Widget>[
-            FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image: movie.photos[0].image,
-              fit: BoxFit.fitWidth,
-              width: double.infinity,
-              height: double.infinity,
-            ),
+            ImageLoadView(movie.photos[0].image,
+                fit: BoxFit.fitWidth, width: double.infinity),
 
             /// 加上一层毛玻璃效果
             BackdropFilter(
@@ -49,14 +44,8 @@ class MovieDetailHeader extends StatelessWidget {
               ),
             ),
             Center(
-              child: FadeInImage.memoryNetwork(
-                placeholder: kTransparentImage,
-                image: movie.images.large.toString(),
-                fit: BoxFit.fill,
-                height: 191.5,
-                width: 135.0,
-              ),
-            ),
+                child: ImageLoadView(movie.images.large.toString(),
+                    height: 191.5, width: 135.0)),
           ],
         ),
       ),

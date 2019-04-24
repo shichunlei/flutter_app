@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_detail.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/route_util.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class ItemGridView extends StatelessWidget {
   final List<Movie> movies;
@@ -36,11 +36,7 @@ class ItemGridView extends StatelessWidget {
         return GestureDetector(
           //点击事件
           onTap: () => pushNewPage(context, MovieDetail(movies[index].id)),
-          child: FadeInImage.memoryNetwork(
-            placeholder: kTransparentImage,
-            image: movies[index].images.medium.toString(),
-            fit: BoxFit.fill,
-          ),
+          child: ImageLoadView(movies[index].images.medium.toString()),
         );
       },
 

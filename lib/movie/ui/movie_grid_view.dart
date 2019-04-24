@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_detail.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class MovieGridView extends StatelessWidget {
   final Movie movie;
@@ -26,12 +26,8 @@ class MovieGridView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image: movie.images.medium.toString(),
-              fit: BoxFit.cover,
-              height: height,
-            ),
+            ImageLoadView(movie.images.medium.toString(),
+                fit: BoxFit.cover, height: height),
             SizedBox(height: 5),
             Text(
               movie.title,

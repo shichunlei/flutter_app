@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_search_page.dart';
 import 'package:flutter_app/service/api_service.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/route_util.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class ItemClassifyTag extends StatefulWidget {
   final String tag;
@@ -37,13 +37,10 @@ class _ItemClassifyTagState extends State<ItemClassifyTag> {
         children: <Widget>[
           ClipRRect(
             borderRadius: BorderRadius.circular(3.0),
-            child: FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image: cover,
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: double.infinity,
-            ),
+            child: ImageLoadView(cover,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity),
           ),
           Opacity(
             opacity: 0.5,

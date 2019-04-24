@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/ui/toolbar.dart';
 import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/utils.dart';
 
 class ClassifyPage extends StatefulWidget {
   final String title;
@@ -36,10 +35,10 @@ class _ClassifyPageState extends State<ClassifyPage>
             title: '${widget.title}',
             backgroundColor: Colors.deepPurple,
           ),
-          Container(
+          Expanded(
+              child: Container(
             child: getLoadingWidget(),
-            height: Utils.height - Utils.navigationBarHeight - 48 - 16,
-          ),
+          ))
         ],
       ),
     );

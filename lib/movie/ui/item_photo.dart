@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/photos.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 
 class ItemPhoto extends StatelessWidget {
   final VoidCallback onTap;
@@ -24,11 +24,7 @@ class ItemPhoto extends StatelessWidget {
               ),
               child: Hero(
                 tag: photo.id,
-                child: FadeInImage(
-                  placeholder: AssetImage("images/wallfy.png"),
-                  image: NetworkImage(photo.cover),
-                  fit: BoxFit.cover,
-                ),
+                child: ImageLoadView(photo.cover, fit: BoxFit.cover),
               ),
             ),
             Row(

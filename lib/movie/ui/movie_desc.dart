@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_search_page.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class MovieDesc extends StatefulWidget {
   final Movie movie;
@@ -91,13 +91,8 @@ class _MovieDescState extends State<MovieDesc> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 /// 图片
-                FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: widget.movie.images.large.toString(),
-                  fit: BoxFit.cover,
-                  width: 88,
-                  height: 130,
-                ),
+                ImageLoadView(widget.movie.images.large.toString(),
+                    fit: BoxFit.cover, width: 88, height: 130),
                 SizedBox(width: 10.0),
 
                 /// 名称等

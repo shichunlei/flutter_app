@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/avatar_glow.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class MovieCelebrityHeader extends StatelessWidget {
   final String name;
@@ -36,13 +36,8 @@ class MovieCelebrityHeader extends StatelessWidget {
         title: Text(name),
         background: Stack(
           children: <Widget>[
-            FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image: backgroundImageUrl,
-              fit: BoxFit.fitWidth,
-              width: double.infinity,
-              height: double.infinity,
-            ),
+            ImageLoadView(backgroundImageUrl,
+                fit: BoxFit.fitWidth, width: double.infinity),
 
             /// 加上一层毛玻璃效果
             BackdropFilter(

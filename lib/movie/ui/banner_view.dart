@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/news.dart';
 import 'package:flutter_app/movie/page/web_view.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class BannerView extends StatefulWidget {
   final List<News> banner;
@@ -30,12 +30,7 @@ class _BannerViewState extends State<BannerView> {
             borderRadius: BorderRadius.circular(radius),
             child: Stack(
               children: <Widget>[
-                FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: widget.banner[index].cover,
-                  height: height,
-                  fit: BoxFit.fill,
-                ),
+                ImageLoadView(widget.banner[index].cover, height: height),
                 Opacity(
                   opacity: 0.4,
                   child: Container(

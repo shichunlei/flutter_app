@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/ui/IconText.dart';
 import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/ui/change_appbar.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/toast.dart';
 import 'package:flutter_app/utils/utils.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class MemberPage extends StatefulWidget {
   final String title;
@@ -207,13 +207,8 @@ class _MemberPageState extends State<MemberPage>
       height: headerHeight + Utils.navigationBarHeight,
       child: Stack(
         children: <Widget>[
-          FadeInImage.memoryNetwork(
-            placeholder: kTransparentImage,
-            image: backgroundImage,
-            fit: BoxFit.fill,
-            width: double.infinity,
-            height: double.infinity,
-          ),
+          ImageLoadView('${backgroundImage}',
+              width: double.infinity, height: double.infinity),
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 6.0),
             child: Opacity(
