@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/baixing_life/db/goods_provider.dart';
 import 'package:flutter_app/baixing_life/page/classify.dart';
 import 'package:flutter_app/baixing_life/page/home.dart';
 import 'package:flutter_app/baixing_life/page/member.dart';
@@ -20,16 +21,20 @@ class _IndexPageState extends State<IndexPage>
 
   List<Widget> list = [];
 
+  GoodsPrivider provider;
+
   @override
   void initState() {
     super.initState();
 
+    provider = GoodsPrivider();
+
     currentIndex = 0;
 
     list
-      ..add(HomePage('百姓生活+'))
+      ..add(HomePage('百姓生活+', provider))
       ..add(ClassifyPage('分类'))
-      ..add(ShoppingCartPage('购物车'))
+      ..add(ShoppingCartPage('购物车', provider))
       ..add(MemberPage('会员'));
   }
 

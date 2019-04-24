@@ -59,6 +59,7 @@ class _MemberPageState extends State<MemberPage>
 
   @override
   void dispose() {
+    scrollController.dispose();
     super.dispose();
   }
 
