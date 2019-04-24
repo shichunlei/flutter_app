@@ -45,4 +45,8 @@ class CustomIcon {
       const IconData(0xe628, fontFamily: 'CustomIcon');
   static const IconData account_full =
       const IconData(0xe60c, fontFamily: 'CustomIcon');
+  static const IconData normal =
+      const IconData(0xe625, fontFamily: 'CustomIcon');
+  static const IconData check =
+      const IconData(0xe70c, fontFamily: 'CustomIcon');
 }
