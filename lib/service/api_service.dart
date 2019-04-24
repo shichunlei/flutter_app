@@ -9,6 +9,7 @@ import 'package:flutter_app/bean/city.dart';
 import 'package:flutter_app/bean/comment.dart';
 import 'package:flutter_app/bean/contact.dart';
 import 'package:flutter_app/bean/goods.dart';
+import 'package:flutter_app/bean/goods_info.dart';
 import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/bean/news.dart';
 import 'package:flutter_app/bean/photos.dart';
@@ -674,7 +675,7 @@ class ApiService {
   }
 
   /// 百姓生活分类商品数据接口
-  static Future<Goods> getBaixingGoodsDetailData(String goodId) async {
+  static Future<GoodsInfo> getBaixingGoodsDetailData(String goodId) async {
     Response response = await HttpUtils().post(BAIXING_GOODS_DETAIL_URL, data: {
       "goodId": goodId,
     });
@@ -682,7 +683,7 @@ class ApiService {
       return null;
     }
     if (json.decode(response.data)['code'] == '0') {
-      return Goods.fromMap(json.decode(response.data)['data']);
+      return GoodsInfo.fromMap(json.decode(response.data)['data']);
     } else {
       return null;
     }

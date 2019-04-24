@@ -1,3 +1,5 @@
+import 'package:flutter_app/baixing_life/db/goods_provider.dart';
+
 class Goods {
   /**
    * image5 : ""
@@ -18,13 +20,8 @@ class Goods {
    * state : 1
    */
 
-  String image5;
-  String image3;
-  String image4;
   String goodsId;
   String isOnline;
-  String image1;
-  String image2;
   String goodsSerialNumber;
   String comPic;
   String shopId;
@@ -37,18 +34,15 @@ class Goods {
 
   List<String> pics;
 
+  int isChecked;
+
   static Goods fromMap(Map<String, dynamic> map) {
     Goods goods = Goods();
-    goods.image5 = map['image5'];
-    goods.image3 = map['image3'];
-    goods.image4 = map['image4'];
     goods.goodsId = map['goodsId'];
     goods.isOnline = map['isOnline'];
-    goods.image1 = map['image1'];
-    goods.image2 = map['image2'];
     goods.goodsSerialNumber = map['goodsSerialNumber'];
     goods.comPic = map['comPic'] == null ? map['image'] : map['comPic'];
-    goods.shopId = map['shopId'];
+    goods.shopId = map['shopId'] == null ? '' : map['shopId'];
     goods.goodsName = map['goodsName'] == null ? map['name'] : map['goodsName'];
     goods.goodsDetail = map['goodsDetail'];
     goods.amount = map['amount'];
@@ -81,5 +75,34 @@ class Goods {
       list[i] = fromMap(mapList[i]);
     }
     return list;
+  }
+
+  static Goods fromJson(Map<String, dynamic> map) {
+    Goods goods = Goods();
+    goods.goodsId = map['goods_id'];
+    goods.comPic = map['image'];
+    goods.shopId = map['shop_id'];
+    goods.goodsName = map['name'];
+    goods.amount = map['number'];
+    goods.oriPrice = map['ori_price'];
+    goods.presentPrice = map['price'];
+    goods.isChecked = map['is_checked'];
+    return goods;
+  }
+
+  Map<String, dynamic> toMap() => {
+        '${GoodsPrivider.COLUMN_GOODS_ID}': goodsId,
+        '${GoodsPrivider.COLUMN_IMAGE}': comPic,
+        '${GoodsPrivider.COLUMN_SHOP_ID}': shopId,
+        '${GoodsPrivider.COLUMN_NAME}': goodsName,
+        '${GoodsPrivider.COLUMN_NUM}': amount,
+        '${GoodsPrivider.COLUMN_ORI_PRICE}': oriPrice,
+        '${GoodsPrivider.COLUMN_PRICE}': presentPrice,
+        '${GoodsPrivider.COLUMN_IS_CHECK}': isChecked,
+      };
+
+  @override
+  String toString() {
+    return '{goodsId: $goodsId, comPic: $comPic, shopId: $shopId, goodsName: $goodsName, amount: $amount, oriPrice: $oriPrice, presentPrice: $presentPrice, isChecked: $isChecked}';
   }
 }
