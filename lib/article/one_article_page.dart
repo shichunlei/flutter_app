@@ -263,52 +263,52 @@ class _OneArticlePageState extends State<OneArticlePage>
       children: <Widget>[
         Expanded(
           child: RaisedButton(
-            color: themeColors[_themeColorIndex],
-            onPressed: () {
-              Navigator.pop(context);
-              getArticle('day', date: article.date.prev);
-              mSetState(() {});
-            },
-            child: Text('前一天', style: TextStyle(color: Colors.white)),
-          ),
+              color: themeColors[_themeColorIndex],
+              onPressed: () {
+                Navigator.pop(context);
+                getArticle('day', date: article.date.prev);
+                mSetState(() {});
+              },
+              child: Text('前一天', style: TextStyle(color: Colors.white)),
+              shape: const StadiumBorder()),
         ),
         SizedBox(width: 5),
         Expanded(
           child: RaisedButton(
-            color: themeColors[_themeColorIndex],
-            onPressed: () {
-              Navigator.pop(context);
-              getArticle('random');
-              mSetState(() {});
-            },
-            child: Text('随机', style: TextStyle(color: Colors.white)),
-          ),
+              color: themeColors[_themeColorIndex],
+              onPressed: () {
+                Navigator.pop(context);
+                getArticle('random');
+                mSetState(() {});
+              },
+              child: Text('随机', style: TextStyle(color: Colors.white)),
+              shape: const StadiumBorder()),
         ),
         SizedBox(width: 5),
         Expanded(
           child: RaisedButton(
-            color: themeColors[_themeColorIndex],
-            onPressed: _date != today
-                ? () {
-                    Navigator.pop(context);
-                    getArticle('day', date: article.date.next);
-                    mSetState(() {});
-                  }
-                : null,
-            child: Text('后一天', style: TextStyle(color: Colors.white)),
-          ),
+              color: themeColors[_themeColorIndex],
+              onPressed: _date != today
+                  ? () {
+                      Navigator.pop(context);
+                      getArticle('day', date: article.date.next);
+                      mSetState(() {});
+                    }
+                  : null,
+              child: Text('后一天', style: TextStyle(color: Colors.white)),
+              shape: const StadiumBorder()),
         ),
         SizedBox(width: 5),
         Expanded(
           child: RaisedButton(
-            color: themeColors[_themeColorIndex],
-            onPressed: () {
-              Navigator.pop(context);
-              getArticle('today');
-              mSetState(() {});
-            },
-            child: Text('今天', style: TextStyle(color: Colors.white)),
-          ),
+              color: themeColors[_themeColorIndex],
+              onPressed: () {
+                Navigator.pop(context);
+                getArticle('today');
+                mSetState(() {});
+              },
+              shape: const StadiumBorder(),
+              child: Text('今天', style: TextStyle(color: Colors.white))),
         )
       ],
     );
@@ -319,41 +319,41 @@ class _OneArticlePageState extends State<OneArticlePage>
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         MaterialButton(
-          onPressed: () {
-            if (starred) {
-              starred = false;
-              provider.cancelStarred(date);
-            } else {
-              starred = true;
-              provider.insertOrReplaceToDB(article);
-            }
-            setState(() {});
-            mSetState(() {});
-          },
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Icon(starred ? Icons.star : Icons.star_border,
-                  color: Colors.white),
-              Text(starred ? '已收藏' : '收藏',
-                  style: TextStyle(color: Colors.white))
-            ],
-          ),
-          color: themeColors[_themeColorIndex],
-        ),
+            onPressed: () {
+              if (starred) {
+                starred = false;
+                provider.cancelStarred(date);
+              } else {
+                starred = true;
+                provider.insertOrReplaceToDB(article);
+              }
+              setState(() {});
+              mSetState(() {});
+            },
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Icon(starred ? Icons.star : Icons.star_border,
+                    color: Colors.white),
+                Text(starred ? '已收藏' : '收藏',
+                    style: TextStyle(color: Colors.white))
+              ],
+            ),
+            color: themeColors[_themeColorIndex],
+            shape: const StadiumBorder()),
         MaterialButton(
-          onPressed: () {
-            getList();
-          },
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Icon(Icons.list, color: Colors.white),
-              Text('收藏列表', style: TextStyle(color: Colors.white))
-            ],
-          ),
-          color: themeColors[_themeColorIndex],
-        ),
+            onPressed: () {
+              getList();
+            },
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Icon(Icons.list, color: Colors.white),
+                Text('收藏列表', style: TextStyle(color: Colors.white))
+              ],
+            ),
+            color: themeColors[_themeColorIndex],
+            shape: const StadiumBorder()),
       ],
     );
   }
