@@ -8,6 +8,7 @@ import 'package:flutter_app/bean/celebrity.dart';
 import 'package:flutter_app/bean/city.dart';
 import 'package:flutter_app/bean/comment.dart';
 import 'package:flutter_app/bean/contact.dart';
+import 'package:flutter_app/bean/cryptocurrency.dart';
 import 'package:flutter_app/bean/goods.dart';
 import 'package:flutter_app/bean/goods_info.dart';
 import 'package:flutter_app/bean/he_weather.dart';
@@ -76,6 +77,19 @@ class ApiService {
   static final String BAIXING_GOODS_DETAIL = 'getGoodDetailById';
 
   static final String RANDOMUSER_URL = 'https://randomuser.me/api/';
+
+  static final String COIN_MARKET_CAP_BASE_URL =
+      'https://pro-api.coinmarketcap.com';
+
+  static final String CRYPTOCURRENCY_INFO = '/v1/cryptocurrency/info';
+  static final String CRYPTOCURRENCY_MAP = '/v1/cryptocurrency/map';
+  static final String CRYPTOCURRENCY_LATEST =
+      '/v1/cryptocurrency/listings/latest';
+  static final String CRYPTOCURRENCY_QUOTE_LATEST =
+      '/v1/cryptocurrency/quotes/latest';
+  static final String GLOBAL_QUOTE_LATEST = '/v1/global-metrics/quotes/latest';
+  static final String MARKET_PAIRS_LATEST =
+      '/v1/cryptocurrency/market-pairs/latest';
 
   /// 获取豆瓣电影首页热门新闻文章
   static Future<List<News>> getNewsList() async {
@@ -716,5 +730,118 @@ class ApiService {
     }
     Result result = Result.fromMap(json.decode(response.data));
     return result.contacts;
+  }
+
+  static Future<Cryptocurrency> getCryptocurrencyInfo(String id) async {
+    Response response = await HttpUtils(
+      header: {'X-CMC_PRO_API_KEY': Config.COIN_MARKET_CAP_KEY},
+      baseUrl: COIN_MARKET_CAP_BASE_URL,
+      contentType: HttpUtils.CONTENT_TYPE_JSON,
+    ).get(CRYPTOCURRENCY_INFO, data: {
+      // 一个或多个逗号分隔的硬币市值加密货币id。例如:“1,2”
+      "id": id,
+    });
+    if (json.decode(response.data)['status']['error_code'] == 0) {
+      return Cryptocurrency.fromMap(json.decode(response.data)['data'], id: id);
+    }
+    LogUtil.e('${json.decode(response.data)['status']['error_message']}');
+    return null;
+  }
+
+  static Future<List<KeyBean>> getCryptocurrencyMap(int start,
+      {int limit = 10, String listing_status = 'active'}) async {
+    Response response = await HttpUtils(
+      header: {'X-CMC_PRO_API_KEY': Config.COIN_MARKET_CAP_KEY},
+      baseUrl: COIN_MARKET_CAP_BASE_URL,
+    ).get(CRYPTOCURRENCY_MAP, data: {
+      // 默认情况下，只返回"active"硬币列表。通过“inactive”获得一个"active"的硬币列表。
+      // 有效值: "active" "inactive"
+      "listing_status": listing_status,
+      "start": start,
+      "limit": limit,
+    });
+    if (json.decode(response.data)['status']['error_code'] == 0) {
+      return KeyBean.fromMapList(json.decode(response.data)['data']);
+    }
+    LogUtil.e('${json.decode(response.data)['status']['error_message']}');
+    return null;
+  }
+
+  static Future<List<KeyBean>> getCryptocurrencyLatest({
+    int start = 1,
+    int limit = 10,
+    String convert = 'USD',
+    String sort = 'market_cap',
+    String sort_dir = 'desc',
+    String cryptocurrency_type = 'all',
+  }) async {
+    Response response = await HttpUtils(
+      header: {'X-CMC_PRO_API_KEY': Config.COIN_MARKET_CAP_KEY},
+      baseUrl: COIN_MARKET_CAP_BASE_URL,
+    ).get(CRYPTOCURRENCY_LATEST, data: {
+      // Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be found here. Each conversion is returned in its own "quote" object.
+      "convert": convert,
+      "start": start,
+      "limit": limit,
+      // 按哪个字段对加密货币列表排序。
+      // 有效值 : "name" "symbol" "date_added" "market_cap" "price" "circulating_supply" "total_supply" "max_supply" "num_market_pairs" "volume_24h" "percent_change_1h" "percent_change_24h" "percent_change_7d"
+      "sort": sort,
+      // 根据指定的排序对加密货币排序的方向。
+      // 有效值 : "asc" "desc"
+      "sort_dir": sort_dir,
+      // 要包含的加密货币的类型。
+      // 有效值 : "all" "coins" "tokens"
+      "cryptocurrency_type": cryptocurrency_type,
+    });
+    if (json.decode(response.data)['status']['error_code'] == 0) {
+      return KeyBean.fromMapList(json.decode(response.data)['data'],
+          convert: convert);
+    }
+
+    LogUtil.e('${json.decode(response.data)['status']['error_message']}');
+    return null;
+  }
+
+  static Future<Cryptocurrency> getCryptocurrencyQuoteLatest(String id,
+      {String convert = 'USD'}) async {
+    Response response = await HttpUtils(
+      header: {'X-CMC_PRO_API_KEY': Config.COIN_MARKET_CAP_KEY},
+      baseUrl: COIN_MARKET_CAP_BASE_URL,
+    ).get(CRYPTOCURRENCY_QUOTE_LATEST, data: {'id': id, 'convert': convert});
+    if (json.decode(response.data)['status']['error_code'] == 0) {
+      return Cryptocurrency.fromMap(json.decode(response.data)['data'],
+          id: id, convert: convert);
+    }
+    LogUtil.e('${json.decode(response.data)['status']['error_message']}');
+    return null;
+  }
+
+  static Future<KeyBean> getGlobalQuoteLatest({String convert = 'USD'}) async {
+    Response response = await HttpUtils(
+      header: {'X-CMC_PRO_API_KEY': Config.COIN_MARKET_CAP_KEY},
+      baseUrl: COIN_MARKET_CAP_BASE_URL,
+    ).get(GLOBAL_QUOTE_LATEST, data: {'convert': convert});
+    if (json.decode(response.data)['status']['error_code'] == 0) {
+      return KeyBean.fromMap(json.decode(response.data)['data'],
+          convert: convert);
+    }
+    LogUtil.e('${json.decode(response.data)['status']['error_message']}');
+    return null;
+  }
+
+  static Future<KeyBean> getMarketPairsLatest(String id, int start,
+      {String convert = 'USD', int limit = 20}) async {
+    Response response = await HttpUtils(
+      header: {'X-CMC_PRO_API_KEY': Config.COIN_MARKET_CAP_KEY},
+      baseUrl: COIN_MARKET_CAP_BASE_URL,
+    ).get(MARKET_PAIRS_LATEST, data: {
+      'convert': convert,
+    });
+    if (json.decode(response.data)['status']['error_code'] == 0) {
+      return KeyBean.fromMap(json.decode(response.data)['data'],
+          convert: convert);
+    }
+    LogUtil.e('${json.decode(response.data)['status']['error_message']}');
+    return null;
   }
 }
