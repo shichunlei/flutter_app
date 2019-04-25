@@ -8,9 +8,12 @@ class Config {
 
   static final String DOUBAN_MOVIE_KEY = "0b2bdeda43b5688921839c8ecb20399b";
 
+  static final String COIN_MARKET_CAP_KEY =
+      '00ca39a2-10a7-4617-8eef-897fa860bd8b'; // e74a4062-7219-4143-89d9-6737066c65e0、、36e73e36-c202-4f0e-8f17-0190aa8a0705、4f555a16-64b4-4ec2-87b7-cbf0a7179c71、27d1830b-1b35-46a4-810f-5d035a8cfb8e、90058ea6-90d3-400c-a31e-821ea817f70e
+
   static const String DOUBAN_WEB_URL = 'https://movie.douban.com/';
 
-  static final String MOVIE_BASE_URL = "https://api.douban.com/v2/movie";
+  static const String MOVIE_BASE_URL = "https://api.douban.com/v2/movie";
 
   /// 类型
   static const GenreList = [

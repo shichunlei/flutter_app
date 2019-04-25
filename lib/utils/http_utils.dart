@@ -20,29 +20,36 @@ class HttpUtils {
     return instance;
   }
 
-  HttpUtils() {
+  HttpUtils({
+    String baseUrl = Config.MOVIE_BASE_URL,
+    Map<String, dynamic> header,
+    String contentType = CONTENT_TYPE_FORM,
+    Map<String, dynamic> queryParameters,
+  }) {
     LogUtil.v('dio赋值');
 
     /// 或者通过传递一个 `options`来创建dio实例
     options = BaseOptions(
       /// 请求基地址,可以包含子路径，如: "https://www.google.com/api/".
-      baseUrl: Config.MOVIE_BASE_URL,
+      baseUrl: baseUrl,
 
       /// 连接服务器超时时间，单位是毫秒.
       connectTimeout: 10000,
 
       /// 接收数据的总时限.
       receiveTimeout: 3000,
-      contentType: ContentType.parse("application/x-www-form-urlencoded"),
-      headers: {
-        // "Content-Type": "application/json",
-        // "Accept": "application/json",
-        // "Authorization": "Bearer " + access_token
-      },
+
+      /// [如果返回数据是json(content-type)，dio默认会自动将数据转为json，无需再手动转](https://github.com/flutterchina/dio/issues/30)
+      //responseType: ResponseType.json,
+      contentType: ContentType.parse(contentType),
+
+      /// headers
+      headers: header,
 
       /// 共同的参数可以在此设置
-      /// queryParameters: {"apikey": apiKey}
+      queryParameters: queryParameters,
     );
+
     _dio = Dio(options);
 
     /// 添加拦截器
