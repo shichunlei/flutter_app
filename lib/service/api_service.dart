@@ -116,7 +116,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
 
     return result.subjects;
   }
@@ -132,7 +132,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
 
     return result.subjects;
   }
@@ -149,7 +149,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
 
     return result.subjects;
   }
@@ -162,7 +162,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
 
     List<Movie> movies = [];
     result.subjects.map((m) {
@@ -180,7 +180,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
 
     return result.subjects;
   }
@@ -193,7 +193,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
 
     List<Movie> movies = [];
     result.subjects.map((m) {
@@ -214,7 +214,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
 
     return result.subjects;
   }
@@ -231,7 +231,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
 
     return result.subjects;
   }
@@ -248,7 +248,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
 
     return result.subjects;
   }
@@ -266,7 +266,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
 
     return result.subjects;
   }
@@ -279,7 +279,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    return Movie.fromMap(response.data);
+    return Movie.fromMap(json.decode(response.data));
   }
 
   /// 影片剧照
@@ -294,7 +294,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.photos;
   }
 
@@ -306,7 +306,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    return Celebrity.fromMap(response.data);
+    return Celebrity.fromMap(json.decode(response.data));
   }
 
   /// 影人相片
@@ -321,7 +321,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.photos;
   }
 
@@ -336,7 +336,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.photos;
   }
 
@@ -352,7 +352,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     List<Movie> movies = [];
     result.works.map((work) {
       movies.add(work.subject);
@@ -372,7 +372,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.comments;
   }
 
@@ -388,7 +388,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.reviews;
   }
 
@@ -399,7 +399,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.article;
   }
 
@@ -410,7 +410,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.article;
   }
 
@@ -421,7 +421,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.article;
   }
 
@@ -432,7 +432,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.poetry;
   }
 
@@ -448,7 +448,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.heWeather[0];
   }
 
@@ -464,7 +464,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.heWeather[0];
   }
 
@@ -480,7 +480,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.heWeather[0];
   }
 
@@ -496,7 +496,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.heWeather[0];
   }
 
@@ -512,7 +512,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.heWeather[0];
   }
 
@@ -528,7 +528,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.heWeather[0];
   }
 
@@ -544,7 +544,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.heWeather[0];
   }
 
@@ -560,7 +560,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.heWeather[0];
   }
 
@@ -714,7 +714,7 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(response.data);
+    Result result = Result.fromMap(json.decode(response.data));
     return result.contacts;
   }
 }

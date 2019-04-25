@@ -40,7 +40,7 @@ class HttpUtils {
       receiveTimeout: 3000,
 
       /// [如果返回数据是json(content-type)，dio默认会自动将数据转为json，无需再手动转](https://github.com/flutterchina/dio/issues/30)
-      //responseType: ResponseType.json,
+      responseType: ResponseType.plain,
       contentType: ContentType.parse(contentType),
 
       /// headers
@@ -113,6 +113,8 @@ class HttpUtils {
 
       /// 响应信息, 如果错误发生在在服务器返回数据之前，它为 `null`
       LogUtil.e('get请求发生错误：${e.response}');
+
+      response = e.response;
     }
     return response;
   }

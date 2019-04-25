@@ -4,12 +4,20 @@ class Config {
   static final bool DEBUG = true;
 
   static final String HE_WEATHER_KEY =
-      "d6cfdce8193445ba894d889e7ab2de5b"; // 2d2a76fac8324146a1b17b68bda42c76
+      // '2d2a76fac8324146a1b17b68bda42c76';
+      "d6cfdce8193445ba894d889e7ab2de5b";
 
   static final String DOUBAN_MOVIE_KEY = "0b2bdeda43b5688921839c8ecb20399b";
 
   static final String COIN_MARKET_CAP_KEY =
-      '00ca39a2-10a7-4617-8eef-897fa860bd8b'; // e74a4062-7219-4143-89d9-6737066c65e0、、36e73e36-c202-4f0e-8f17-0190aa8a0705、4f555a16-64b4-4ec2-87b7-cbf0a7179c71、27d1830b-1b35-46a4-810f-5d035a8cfb8e、90058ea6-90d3-400c-a31e-821ea817f70e
+      // '36e73e36-c202-4f0e-8f17-0190aa8a0705';
+      // '00ca39a2-10a7-4617-8eef-897fa860bd8b';
+      // 'e74a4062-7219-4143-89d9-6737066c65e0';
+      // '36e73e36-c202-4f0e-8f17-0190aa8a0705';
+      // '4f555a16-64b4-4ec2-87b7-cbf0a7179c71';
+      // '27d1830b-1b35-46a4-810f-5d035a8cfb8e';
+      // '90058ea6-90d3-400c-a31e-821ea817f70e';
+      'b54bcf4d-1bca-4e8e-9a24-22ff2c3d462c';
 
   static const String DOUBAN_WEB_URL = 'https://movie.douban.com/';
 
