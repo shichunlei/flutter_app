@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/global/custom_icon.dart';
 
 class Config {
   static final bool DEBUG = true;
@@ -121,4 +122,12 @@ final List<Color> themeColors = [
   Colors.teal,
   Colors.lightGreen,
   Colors.grey,
+];
+
+List<Map<String, dynamic>> orderTitles = [
+  {'icon': Icons.all_inclusive, 'title': '全部'},
+  {'icon': CustomIcon.no_payment, 'title': '待付款'},
+  {'icon': CustomIcon.no_send, 'title': '待发货'},
+  {'icon': CustomIcon.no_receive, 'title': '待收货'},
+  {'icon': CustomIcon.comment, 'title': '待评价'}
 ];

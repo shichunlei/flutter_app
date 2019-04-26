@@ -1,12 +1,17 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/baixing_life/page/order/order_home_page.dart';
 import 'package:flutter_app/baixing_life/ui/IconText.dart';
+import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/ui/change_appbar.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
+import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/toast.dart';
 import 'package:flutter_app/utils/utils.dart';
+import 'package:transparent_image/transparent_image.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MemberPage extends StatefulWidget {
   final String title;
@@ -30,6 +35,8 @@ class _MemberPageState extends State<MemberPage>
   double navAlpha = 0;
   double headerHeight;
   ScrollController scrollController = ScrollController();
+
+  String _phone = '0393-8800315';
 
   @override
   void initState() {
@@ -82,53 +89,24 @@ class _MemberPageState extends State<MemberPage>
                     children: <Widget>[
                       ListTile(
                         title: Text('我的订单'),
-                        onTap: () {
-                          Toast.show('我的订单', context);
-
-                          /// TODO
-                        },
+                        onTap: () => pushNewPage(context, OrderHomePage()),
                         leading: Icon(CustomIcon.order),
                         trailing: Icon(Icons.arrow_forward_ios),
                       ),
                       Container(height: 0.5, color: Colors.grey[200]),
                       Row(
-                        children: <Widget>[
-                          Expanded(
-                              child: IconText(
-                                  onPressed: () {
-                                    Toast.show('待付款', context);
-
-                                    /// TODO
-                                  },
-                                  text: '待付款',
-                                  icon: CustomIcon.no_payment)),
-                          Expanded(
-                              child: IconText(
-                                  onPressed: () {
-                                    Toast.show('待发货', context);
-
-                                    /// TODO
-                                  },
-                                  text: '待发货',
-                                  icon: CustomIcon.no_send)),
-                          Expanded(
-                              child: IconText(
-                                  onPressed: () {
-                                    Toast.show('待收货', context);
-
-                                    /// TODO
-                                  },
-                                  text: '待收货',
-                                  icon: CustomIcon.no_receive)),
-                          Expanded(
-                              child: IconText(
-                                  onPressed: () {
-                                    /// TODO
-                                    Toast.show('待评价', context);
-                                  },
-                                  text: '待评价',
-                                  icon: CustomIcon.comment)),
-                        ],
+                        children: orderTitles.map((title) {
+                          int index = orderTitles.indexOf(title);
+                          if (index > 0) {
+                            return Expanded(
+                                child: IconText(
+                                    onPressed: () => pushNewPage(
+                                        context, OrderHomePage(index: index)),
+                                    text: '${title['title']}',
+                                    icon: title['icon']));
+                          }
+                          return Container();
+                        }).toList(),
                       )
                     ],
                   ),
@@ -169,13 +147,16 @@ class _MemberPageState extends State<MemberPage>
                     children: <Widget>[
                       ListTile(
                         title: Text('客服电话'),
-                        onTap: () {
-                          Toast.show('客服电话', context);
-
-                          /// TODO
-                        },
+                        onTap: () => _launchURL('tel:$_phone'),
                         leading: Icon(CustomIcon.custom_service),
-                        trailing: Icon(Icons.arrow_forward_ios),
+                        trailing: Row(
+                          children: <Widget>[
+                            Text(_phone),
+                            SizedBox(width: 10.0),
+                            Icon(Icons.arrow_forward_ios)
+                          ],
+                          mainAxisSize: MainAxisSize.min,
+                        ),
                       ),
                       Container(height: 0.5, color: Colors.grey[200]),
                       ListTile(
@@ -208,8 +189,7 @@ class _MemberPageState extends State<MemberPage>
       height: headerHeight + Utils.navigationBarHeight,
       child: Stack(
         children: <Widget>[
-          ImageLoadView('${backgroundImage}',
-              width: double.infinity, height: double.infinity),
+          ImageLoadView('${backgroundImage}', placeholder: kTransparentImage),
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 6.0),
             child: Opacity(
@@ -236,5 +216,13 @@ class _MemberPageState extends State<MemberPage>
         ],
       ),
     );
+  }
+
+  Future<Null> _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
