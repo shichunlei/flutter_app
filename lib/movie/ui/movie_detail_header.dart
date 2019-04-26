@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class MovieDetailHeader extends StatelessWidget {
   final Movie movie;
@@ -12,6 +13,9 @@ class MovieDetailHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String defaultImage =
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3271389503,231131796&fm=26&gp=0.jpg';
+
     return SliverAppBar(
       floating: true,
       snap: true,
@@ -25,8 +29,11 @@ class MovieDetailHeader extends StatelessWidget {
         title: Text('${movie.title}(${movie.year})'),
         background: Stack(
           children: <Widget>[
-            ImageLoadView(movie.photos[0].image,
-                fit: BoxFit.fitWidth, width: double.infinity),
+            ImageLoadView(
+                movie.photos.length > 0 ? movie.photos[0].image : defaultImage,
+                fit: BoxFit.fitWidth,
+                width: double.infinity,
+                placeholder: kTransparentImage),
 
             /// 加上一层毛玻璃效果
             BackdropFilter(

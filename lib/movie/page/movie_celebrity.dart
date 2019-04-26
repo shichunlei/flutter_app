@@ -12,6 +12,7 @@ import 'package:flutter_app/movie/ui/expandable_text.dart';
 import 'package:flutter_app/movie/ui/home_section_view.dart';
 import 'package:flutter_app/movie/ui/movie_celebrity_header.dart';
 import 'package:flutter_app/movie/ui/movie_grid_view.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/utils.dart';
@@ -161,18 +162,16 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                           padding: const EdgeInsets.symmetric(horizontal: 3.0),
                           child: GestureDetector(
                               child: ClipRRect(
-                                /// 圆角
-                                borderRadius: BorderRadius.circular(6.0),
-                                child: Hero(
-                                    tag: celebrity.photos[index].id,
-                                    child: FadeInImage.memoryNetwork(
-                                      placeholder: kTransparentImage,
-                                      image: celebrity.photos[index].cover,
-                                      fit: BoxFit.cover,
-                                      height: height,
-                                      width: height,
-                                    )),
-                              ),
+
+                                  /// 圆角
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  child: Hero(
+                                      tag: celebrity.photos[index].id,
+                                      child: ImageLoadView(
+                                          celebrity.photos[index].cover,
+                                          fit: BoxFit.cover,
+                                          height: height,
+                                          width: height))),
                               onTap: () => pushNewPage(
                                   context,
                                   MoviePhotoPage(widget.name,

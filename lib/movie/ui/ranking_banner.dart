@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_ranking_home.dart';
 import 'package:flutter_app/movie/page/movie_top250.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
@@ -46,13 +47,11 @@ class _RankingBannerState extends State<RankingBanner> {
               borderRadius: BorderRadius.circular(radius),
               child: Stack(
                 children: <Widget>[
-                  FadeInImage.memoryNetwork(
-                    placeholder: kTransparentImage,
-                    image: widget.movies[index][0].images.medium.toString(),
-                    height: height,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
+                  ImageLoadView(widget.movies[index][0].images.medium,
+                      height: height,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      placeholder: kTransparentImage),
                   Opacity(
                     opacity: 0.5,
                     child: Container(

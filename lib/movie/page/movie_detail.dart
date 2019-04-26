@@ -17,6 +17,7 @@ import 'package:flutter_app/movie/ui/item_comment.dart';
 import 'package:flutter_app/movie/ui/item_cover.dart';
 import 'package:flutter_app/movie/ui/movie_desc.dart';
 import 'package:flutter_app/movie/ui/person_gridview.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
@@ -201,47 +202,50 @@ class _MovieDetailState extends State<MovieDetail> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            HomeSectionView(
-              "剧照",
-              hiddenMore: movie.photos.length < 10,
-              backgroundColor: pageColor,
-              textColor: Colors.white,
-              onPressed: () => pushNewPage(context,
-                  MoviePhotosPage('《${movie.title}》剧照', 'subject', widget.id)),
-            ),
-            SizedBox.fromSize(
-              size: Size.fromHeight(width),
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                scrollDirection: Axis.horizontal,
-                itemCount: movie.photos.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                    child: GestureDetector(
-                      child: ClipRRect(
-                        /// 圆角
-                        borderRadius: BorderRadius.circular(6.0),
-                        child: Hero(
-                          tag: movie.photos[index].id,
-                          child: FadeInImage.memoryNetwork(
-                            placeholder: kTransparentImage,
-                            image: movie.photos[index].cover,
-                            fit: BoxFit.cover,
-                            height: width,
-                            width: width,
-                          ),
-                        ),
-                      ),
-                      onTap: () => pushNewPage(
-                          context,
-                          MoviePhotoPage('《${movie.title}》剧照',
-                              photos: movie.photos, index: index)),
-                    ),
-                  );
-                },
-              ),
-            ),
+            Offstage(
+                offstage: movie.photos.length == 0,
+                child: Column(children: <Widget>[
+                  HomeSectionView(
+                    "剧照",
+                    hiddenMore: movie.photos.length < 10,
+                    backgroundColor: pageColor,
+                    textColor: Colors.white,
+                    onPressed: () => pushNewPage(
+                        context,
+                        MoviePhotosPage(
+                            '《${movie.title}》剧照', 'subject', widget.id)),
+                  ),
+                  SizedBox.fromSize(
+                      size: Size.fromHeight(width),
+                      child: ListView.builder(
+                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: movie.photos.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 3.0),
+                              child: GestureDetector(
+                                child: ClipRRect(
+                                  /// 圆角
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  child: Hero(
+                                      tag: movie.photos[index].id,
+                                      child: ImageLoadView(
+                                          movie.photos[index].cover,
+                                          fit: BoxFit.cover,
+                                          height: width,
+                                          width: width,
+                                          placeholder: kTransparentImage)),
+                                ),
+                                onTap: () => pushNewPage(
+                                    context,
+                                    MoviePhotoPage('《${movie.title}》剧照',
+                                        photos: movie.photos, index: index)),
+                              ),
+                            );
+                          }))
+                ])),
             MovieDesc(movie),
             CoverSectionView(
               '花絮',

@@ -6,6 +6,7 @@ import 'package:flutter_app/contact/ui/build_other.dart';
 import 'package:flutter_app/contact/ui/build_phone.dart';
 import 'package:flutter_app/contact/ui/build_row.dart';
 import 'package:flutter_app/contact/ui/line_widget.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 
 class ContactPage extends StatefulWidget {
   final String name;
@@ -88,14 +89,11 @@ class _ContactPageState extends State<ContactPage> {
                     height: 50.0,
                     edge: Edge.BOTTOM,
                     arcType: ArcType.CONVEX,
-                    child: FadeInImage.assetNetwork(
-                      placeholder: "images/wallfy.png",
-                      image: (widget.avatar == "" || widget.avatar == null)
-                          ? _defaultImage
-                          : widget.avatar,
-                      fit: BoxFit.fill,
-                      height: _appBarHeight,
-                    ),
+                    child: ImageLoadView(
+                        (widget.avatar == "" || widget.avatar == null)
+                            ? _defaultImage
+                            : widget.avatar,
+                        height: _appBarHeight),
                   ),
                   // This gradient ensures that the toolbar icons are distinct
                   // against the background image.

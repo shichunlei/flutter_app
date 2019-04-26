@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:palette_generator/palette_generator.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class ItemSoonView extends StatefulWidget {
   final Movie movie;
@@ -59,13 +59,8 @@ class _ItemSoonViewState extends State<ItemSoonView>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 /// 电影主图
-                FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: widget.movie.images.medium.toString(),
-                  fit: BoxFit.fill,
-                  height: 180,
-                  width: 120,
-                ),
+                ImageLoadView(widget.movie.images.medium.toString(),
+                    height: 180, width: 120),
                 SizedBox(width: 8),
 
                 /// 右侧部分

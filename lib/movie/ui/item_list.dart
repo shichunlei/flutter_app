@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -15,13 +16,8 @@ class ItemList extends StatelessWidget {
     var movieImage = ClipRRect(
       /// 圆角
       borderRadius: BorderRadius.circular(4.0),
-      child: FadeInImage.memoryNetwork(
-        placeholder: kTransparentImage,
-        image: movie.images.medium.toString(),
-        fit: BoxFit.fill,
-        height: 150.0,
-        width: 100.0,
-      ),
+      child: ImageLoadView(movie.images.medium,
+          height: 150.0, width: 100.0),
     );
 
     var casts = '';
