@@ -2,7 +2,10 @@
 
 A new Flutter application.
 
-`本项目仅供学习，如有侵权请联系本人进行删除。`
+`声明：本项目仅供学习，如有侵权请联系本人进行删除。`
+
+`本项目包括各种基本控件使用（Text、TextField、Icon、Image、Listview、Gridview、Picker、Stepper、Dialog、Slider、Row、Appbar、Sizebox、BottomSheet、Chip、Dismissible、FlutterLogo、Check、Switch、TabBar、BottomNavigationBar、Sliver等）
+、豆瓣电影、每日一文、和天气、百姓生活、随机诗词、联系人等板块`
 
 ## API接口
 
