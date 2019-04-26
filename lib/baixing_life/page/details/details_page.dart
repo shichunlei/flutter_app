@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/goods_provider.dart';
-import 'package:flutter_app/baixing_life/page/shopping_cart.dart';
 import 'package:flutter_app/bean/goods.dart';
 import 'package:flutter_app/bean/goods_info.dart';
 import 'package:flutter_app/service/api_service.dart';
@@ -124,7 +123,7 @@ class _DetailsPageState extends State<DetailsPage>
         IconButton(
             icon: Icon(Icons.shopping_cart),
             onPressed: () {
-              pushNewPage(context, ShoppingCartPage('购物车', widget.provider));
+              pushReplacementName(context, '/shopCart');
             }),
       ]),
       Expanded(

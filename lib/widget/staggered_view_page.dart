@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 List<IntSize> _createSizes(int count) {
   Random rnd = Random();
@@ -54,10 +54,8 @@ class _Item extends StatelessWidget {
           Stack(
             children: <Widget>[
               Center(
-                child: FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: 'https://picsum.photos/${size.width}/${size.height}/',
-                ),
+                child: ImageLoadView(
+                    'https://picsum.photos/${size.width}/${size.height}/'),
               ),
             ],
           ),

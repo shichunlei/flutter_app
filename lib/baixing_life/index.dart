@@ -9,7 +9,13 @@ import 'package:flutter_app/custom_widgets/bubble_bottom_bar.dart';
 import 'package:flutter_app/global/custom_icon.dart';
 
 class IndexPage extends StatefulWidget {
-  IndexPage({Key key}) : super(key: key);
+  final int index;
+
+  IndexPage({
+    Key key,
+    this.index = 0,
+  })  : assert(index != null),
+        super(key: key);
 
   @override
   _IndexPageState createState() => _IndexPageState();
@@ -29,7 +35,7 @@ class _IndexPageState extends State<IndexPage>
 
     provider = GoodsPrivider();
 
-    currentIndex = 0;
+    currentIndex = widget.index;
 
     list
       ..add(HomePage('百姓生活+', provider))

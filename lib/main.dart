@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/baixing_life/index.dart';
 import 'package:flutter_app/bloc/bloc_provider.dart';
 import 'package:flutter_app/bloc/setting_bloc.dart';
 import 'package:flutter_app/splash_screen.dart';
@@ -91,6 +92,10 @@ class MyApp extends StatelessWidget {
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate
           ],
+
+          routes: <String, WidgetBuilder>{
+            '/shopCart': (BuildContext context) => IndexPage(index: 2),
+          },
         ));
   }
 }
