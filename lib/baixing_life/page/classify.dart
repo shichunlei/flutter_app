@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/goods_provider.dart';
-import 'package:flutter_app/baixing_life/page/details_page.dart';
+import 'package:flutter_app/baixing_life/ui/item_goods_grid.dart';
 import 'package:flutter_app/bean/category.dart';
 import 'package:flutter_app/bean/goods.dart';
 import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/ui/toolbar.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/log_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
@@ -173,26 +171,24 @@ class _ClassifyPageState extends State<ClassifyPage>
     LogUtil.e('=======================5=========================');
     return Container(
       width: rightWidth,
-      child: Column(
-        children: <Widget>[
-          TabBar(
+      child: Column(children: <Widget>[
+        TabBar(
             indicatorColor: Colors.pinkAccent,
             labelColor: Colors.pinkAccent,
             unselectedLabelColor: Colors.grey,
             controller: changeTabController(
                 category[parentCategoryIndex].bxMallSubDto.length),
             isScrollable: true,
-            tabs: category[parentCategoryIndex].bxMallSubDto.map((category) {
-              return Tab(text: "${category.mallSubName}");
-            }).toList(),
-          ),
-          _buildGoodsListView(
-              category[parentCategoryIndex].mallCategoryId,
-              category[parentCategoryIndex]
-                  .bxMallSubDto[subCategoryIndex]
-                  .mallSubId)
-        ],
-      ),
+            tabs: category[parentCategoryIndex]
+                .bxMallSubDto
+                .map((category) => Tab(text: "${category.mallSubName}"))
+                .toList()),
+        _buildGoodsListView(
+            category[parentCategoryIndex].mallCategoryId,
+            category[parentCategoryIndex]
+                .bxMallSubDto[subCategoryIndex]
+                .mallSubId)
+      ]),
     );
   }
 
@@ -204,10 +200,9 @@ class _ClassifyPageState extends State<ClassifyPage>
         child: EasyRefresh(
             key: _easyRefreshKey,
             refreshFooter: BallPulseFooter(
-              key: _footerKey,
-              color: Colors.indigo,
-              backgroundColor: Colors.white,
-            ),
+                key: _footerKey,
+                color: Colors.indigo,
+                backgroundColor: Colors.white),
             loadMore: isLoadComplete
                 ? null
                 : () async {
@@ -234,51 +229,13 @@ class _ClassifyPageState extends State<ClassifyPage>
 
   Widget _buildItemGoods() {
     return GridView.builder(
-      itemCount: goods.length,
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: rightWidth / 2,
-          crossAxisSpacing: 1.0,
-          mainAxisSpacing: 1.0,
-          childAspectRatio: 0.77),
-      itemBuilder: (BuildContext context, int index) {
-        return Container(
-          color: Colors.white,
-          child: GestureDetector(
-              child: Column(children: <Widget>[
-                Hero(
-                    tag: goods[index].goodsId,
-                    child: ImageLoadView('${goods[index].comPic}')),
-                Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text('${goods[index].goodsName}',
-                        style: TextStyle(color: Colors.pink),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1)),
-                Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Row(children: <Widget>[
-                      Text(
-                        '￥${goods[index].presentPrice}',
-                        style: TextStyle(fontSize: 13.0),
-                      ),
-                      Text(
-                        '￥${goods[index].oriPrice}',
-                        style: TextStyle(
-                            color: Colors.grey[500],
-                            fontSize: 12.0,
-                            decoration: TextDecoration.lineThrough),
-                      ),
-                    ], mainAxisAlignment: MainAxisAlignment.spaceBetween))
-              ]),
-              onTap: () {
-                pushNewPage(
-                    context,
-                    DetailsPage(goods[index].goodsId,
-                        provider: widget.provider));
-              }),
-          alignment: Alignment.center,
-        );
-      },
-    );
+        itemCount: goods.length,
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: rightWidth / 2,
+            crossAxisSpacing: 1.0,
+            mainAxisSpacing: 1.0,
+            childAspectRatio: 0.77),
+        itemBuilder: (BuildContext context, int index) =>
+            ItemGoodsGrid(goods[index], provider: widget.provider));
   }
 }

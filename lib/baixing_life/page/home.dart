@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/goods_provider.dart';
 import 'package:flutter_app/baixing_life/index.dart';
 import 'package:flutter_app/baixing_life/page/details_page.dart';
+import 'package:flutter_app/baixing_life/ui/item_floor_goods.dart';
+import 'package:flutter_app/baixing_life/ui/item_goods_grid.dart';
 import 'package:flutter_app/ui/change_appbar.dart';
 import 'package:flutter_app/bean/advertes_picture.dart';
 import 'package:flutter_app/bean/baixing.dart';
 import 'package:flutter_app/bean/category.dart';
 import 'package:flutter_app/bean/goods.dart';
 import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/custom_sliver_appbar_delegate.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/ui/toolbar.dart';
 import 'package:flutter_app/utils/loading_util.dart';
@@ -98,18 +99,11 @@ class _HomePageState extends State<HomePage>
     if (data == null) {
       return Scaffold(
         backgroundColor: Colors.grey[200],
-        body: Column(
-          children: <Widget>[
-            ToolBar(
-              title: '${widget.title}',
-              backgroundColor: Colors.transparent,
-            ),
-            Expanded(
-                child: Container(
-              child: getLoadingWidget(),
-            ))
-          ],
-        ),
+        body: Column(children: <Widget>[
+          ToolBar(
+              title: '${widget.title}', backgroundColor: Colors.transparent),
+          Expanded(child: Container(child: getLoadingWidget()))
+        ]),
       );
     }
 
@@ -120,53 +114,41 @@ class _HomePageState extends State<HomePage>
           EasyRefresh(
               key: _easyRefreshKey,
               refreshFooter: BallPulseFooter(
-                key: _footerKey,
-                color: Colors.indigo,
-                backgroundColor: Colors.white,
-              ),
+                  key: _footerKey,
+                  color: Colors.indigo,
+                  backgroundColor: Colors.white),
               loadMore: () async {
                 page++;
                 getHotGoods(page);
               },
               child: CustomScrollView(
-                controller: scrollController,
-                slivers: <Widget>[
-                  /// 头部banner
-                  _buildSliverAppBar(data.slides),
+                  controller: scrollController,
+                  slivers: <Widget>[
+                    /// 头部banner
+                    _buildSliverAppBar(data.slides),
 
-                  /// 分类
-                  _buildSliverGridCategory(data.category),
+                    /// 分类
+                    _buildSliverGridCategory(data.category),
 
-                  /// 广告
-                  _buildSliverToBoxAdapterAds(
-                      data.advertesPicture, data.shopInfo, data.ads),
+                    /// 广告
+                    _buildSliverToBoxAdapterAds(
+                        data.advertesPicture, data.shopInfo, data.ads),
 
-                  /// 商品推荐
-                  _buildSliverToBoxAdapter('商品推荐'),
-                  _buildSliverGridRecommend(data.recommend),
+                    /// 商品推荐
+                    _buildSliverToBoxAdapter('商品推荐'),
+                    _buildSliverGridRecommend(data.recommend),
 
-                  /// floor1
-                  _buildSliverPersistentHeader(data.floors[0]),
-                  _buildFloorGoods(data.floors[0].floor),
+                    /// floor
+                    _buildFloorView(data.floors),
 
-                  /// floor2
-                  _buildSliverPersistentHeader(data.floors[1]),
-                  _buildFloorGoods(data.floors[1].floor),
-
-                  /// floor3
-                  _buildSliverPersistentHeader(data.floors[2]),
-                  _buildFloorGoods(data.floors[2].floor),
-
-                  /// 火爆专区
-                  _buildHotGoodsTitle(),
-                  _buildHotGoods(),
-                ],
-              )),
+                    /// 火爆专区
+                    _buildHotGoodsTitle(),
+                    _buildHotGoods()
+                  ])),
           ChangeAppBar(
-            title: widget.title,
-            backgroundColor: Colors.red,
-            navAlpha: navAlpha,
-          ),
+              title: widget.title,
+              backgroundColor: Colors.red,
+              navAlpha: navAlpha)
         ],
       ),
     );
@@ -192,38 +174,29 @@ class _HomePageState extends State<HomePage>
 
   Widget _buildSliverGridCategory(List<Category> category) {
     return SliverGrid(
-      delegate: SliverChildBuilderDelegate(
-        (BuildContext context, int index) {
-          return GestureDetector(
-            onTap: () {
-              pushReplacement(context,
-                  IndexPage(index: 1, category: index, subCategory: 0));
-            },
-            child: Container(
-              color: Colors.white,
-              padding: EdgeInsets.all(5.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  ImageLoadView(
-                    '${category[index].image}',
-                    height: 40,
-                    width: 40,
-                  ),
-                  SizedBox(height: 5),
-                  Text('${category[index].mallCategoryName}'),
-                ],
+        delegate: SliverChildBuilderDelegate(
+          (BuildContext context, int index) {
+            return GestureDetector(
+              onTap: () => pushReplacement(context,
+                  IndexPage(index: 1, category: index, subCategory: 0)),
+              child: Container(
+                color: Colors.white,
+                padding: EdgeInsets.all(5.0),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      ImageLoadView('${category[index].image}',
+                          height: 40, width: 40),
+                      SizedBox(height: 5),
+                      Text('${category[index].mallCategoryName}')
+                    ]),
               ),
-            ),
-          );
-        },
-        childCount: 10,
-      ),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 5,
-        childAspectRatio: 0.9,
-      ),
-    );
+            );
+          },
+          childCount: 10,
+        ),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 5, childAspectRatio: 0.9));
   }
 
   Widget _buildSliverToBoxAdapterAds(AdvertesPicture advertesPicture,
@@ -232,255 +205,147 @@ class _HomePageState extends State<HomePage>
     double height = (Utils.width - 20) / 3 * 287 / 224;
 
     return SliverToBoxAdapter(
-      child: Container(
-        child: Column(
-          children: <Widget>[
-            GestureDetector(
-              child: ImageLoadView('${advertesPicture.pictureAddress}'),
-              onTap: () {
-                /// TODO
-              },
-            ),
-            SizedBox(height: 10),
-            GestureDetector(
-              child: ImageLoadView(shopInfo.leaderImage),
-              onTap: () {
-                /// TODO
-              },
-            ),
-            Row(
+        child: Container(
+            child: Column(
               children: <Widget>[
                 GestureDetector(
-                  child: ImageLoadView('${ads[0].pictureAddress}',
-                      width: width, height: height),
-                  onTap: () {
-                    /// TODO
-                  },
-                ),
+                    child: ImageLoadView('${advertesPicture.pictureAddress}'),
+                    onTap: () {
+                      /// TODO
+                    }),
+                SizedBox(height: 10),
                 GestureDetector(
-                  child: ImageLoadView('${ads[1].pictureAddress}',
-                      width: width, height: height),
-                  onTap: () {
-                    /// TODO
-                  },
-                ),
-                GestureDetector(
-                  child: ImageLoadView('${ads[2].pictureAddress}',
-                      width: width, height: height),
-                  onTap: () {
-                    /// TODO
-                  },
-                ),
+                    child: ImageLoadView(shopInfo.leaderImage),
+                    onTap: () {
+                      /// TODO
+                    }),
+                Row(children: <Widget>[
+                  GestureDetector(
+                      child: ImageLoadView('${ads[0].pictureAddress}',
+                          width: width, height: height),
+                      onTap: () {
+                        /// TODO
+                      }),
+                  GestureDetector(
+                      child: ImageLoadView('${ads[1].pictureAddress}',
+                          width: width, height: height),
+                      onTap: () {
+                        /// TODO
+                      }),
+                  GestureDetector(
+                      child: ImageLoadView('${ads[2].pictureAddress}',
+                          width: width, height: height),
+                      onTap: () {
+                        /// TODO
+                      })
+                ])
               ],
             ),
-          ],
-        ),
-        color: Colors.white,
-        margin: EdgeInsets.only(top: 5.0),
-        padding: EdgeInsets.all(10.0),
-      ),
-    );
+            color: Colors.white,
+            margin: EdgeInsets.only(top: 5.0),
+            padding: EdgeInsets.all(10.0)));
   }
 
   Widget _buildSliverToBoxAdapter(title) {
     return SliverToBoxAdapter(
-      child: Column(
-        children: <Widget>[
-          Container(
+      child: Column(children: <Widget>[
+        Container(
             color: Colors.white,
             margin: EdgeInsets.only(top: 5.0, bottom: 1.0),
             padding: EdgeInsets.only(left: 10.0),
             alignment: Alignment.centerLeft,
-            child: Text(
-              title,
-              style: TextStyle(color: Colors.green, fontSize: 20.0),
-            ),
-            height: 40.0,
-          ),
-          Container(color: Colors.white, height: 5.0)
-        ],
-      ),
+            child: Text(title,
+                style: TextStyle(color: Colors.green, fontSize: 20.0)),
+            height: 40.0),
+        Container(color: Colors.white, height: 5.0)
+      ]),
     );
   }
 
   Widget _buildSliverGridRecommend(List<Goods> recommend) {
     return SliverGrid(
-      delegate: SliverChildBuilderDelegate(
-        (BuildContext context, int index) {
-          return GestureDetector(
-              child: Container(
-                color: Colors.white,
-                child: Column(
-                  children: <Widget>[
-                    ImageLoadView('${recommend[index].comPic}'),
-                    Text('￥${recommend[index].presentPrice}'),
-                    Text(
-                      '￥${recommend[index].oriPrice}',
-                      style: TextStyle(
-                          color: Colors.grey[500],
-                          decoration: TextDecoration.lineThrough),
-                    ),
-                  ],
-                ),
-                alignment: Alignment.center,
-              ),
-              onTap: () => pushNewPage(
-                  context,
-                  Hero(
-                      tag: recommend[index].goodsId,
-                      child: DetailsPage(recommend[index].goodsId,
-                          provider: widget.provider))));
-        },
-        childCount: recommend.length,
-      ),
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: Utils.width / recommend.length,
-        crossAxisSpacing: 1.0,
-        childAspectRatio: 1.45 / 2,
-      ),
+        delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) =>
+                ItemGoodsGrid(recommend[index], provider: widget.provider),
+            childCount: recommend.length),
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: Utils.width / recommend.length,
+            crossAxisSpacing: 1.0,
+            childAspectRatio: 1.45 / 2));
+  }
+
+  Widget _buildFloorView(List<FloorBean> floors) {
+    return SliverList(
+      delegate: SliverChildBuilderDelegate((context, index) {
+        return Container(
+          child: Column(children: <Widget>[
+            _buildFloorHeader(floors[index]),
+            _buildFloorGoods(floors[index])
+          ]),
+        );
+      }, childCount: floors.length),
     );
   }
 
-  Widget _buildSliverPersistentHeader(FloorBean floor) {
-    return SliverPersistentHeader(
-      delegate: CustomSliverAppBarDelegate(
-        minHeight: 60,
-        maxHeight: (Utils.width - 20) * 9 / 35,
-        child: Container(
-          padding: EdgeInsets.all(10.0),
-          child: GestureDetector(
-            child: ImageLoadView('${floor.floorPic.pictureAddress}'),
+  Widget _buildFloorHeader(FloorBean floor) {
+    return Container(
+        padding: EdgeInsets.all(10.0),
+        child: GestureDetector(
             onTap: () {
-              /// TODO
+              /// TODO 跳转商品列表页？
             },
-          ),
-        ),
-      ),
-      pinned: false,
-      floating: false,
-    );
+            child: ImageLoadView('${floor.floorPic.pictureAddress}')));
   }
 
-  Widget _buildFloorGoods(List<Goods> goods) {
-    return SliverToBoxAdapter(
-      child: Container(
+  Widget _buildFloorGoods(FloorBean floor) {
+    return Container(
         child: Column(children: <Widget>[
           Container(
               height: Utils.width / 2,
               child: Row(children: <Widget>[
-                Container(
-                    width: Utils.width / 2,
-                    child: GestureDetector(
-                        child: ImageLoadView('${goods[0].comPic}'),
-                        onTap: () => pushNewPage(
-                            context,
-                            Hero(
-                                tag: goods[0].goodsId,
-                                child: DetailsPage(goods[0].goodsId,
-                                    provider: widget.provider))))),
+                ItemFloorGoods(floor.floor[0],
+                    width: Utils.width / 2, provider: widget.provider),
                 Container(
                     width: Utils.width / 2,
                     child: Column(children: <Widget>[
-                      Container(
-                          height: Utils.width / 4,
-                          child: GestureDetector(
-                              child: ImageLoadView('${goods[1].comPic}'),
-                              onTap: () => pushNewPage(
-                                  context,
-                                  Hero(
-                                      tag: goods[1].goodsId,
-                                      child: DetailsPage(goods[1].goodsId,
-                                          provider: widget.provider))))),
-                      Container(
-                          height: Utils.width / 4,
-                          child: GestureDetector(
-                              child: ImageLoadView('${goods[2].comPic}'),
-                              onTap: () => pushNewPage(
-                                  context,
-                                  Hero(
-                                      tag: goods[2].goodsId,
-                                      child: DetailsPage(goods[2].goodsId,
-                                          provider: widget.provider)))))
+                      ItemFloorGoods(floor.floor[1],
+                          height: Utils.width / 4, provider: widget.provider),
+                      ItemFloorGoods(floor.floor[2],
+                          height: Utils.width / 4, provider: widget.provider)
                     ]))
               ])),
           Container(
               height: Utils.width / 4,
               child: Row(children: <Widget>[
-                Container(
-                    width: Utils.width / 2,
-                    child: GestureDetector(
-                        child: ImageLoadView('${goods[3].comPic}'),
-                        onTap: () => pushNewPage(
-                            context,
-                            Hero(
-                                tag: goods[3].goodsId,
-                                child: DetailsPage(goods[3].goodsId,
-                                    provider: widget.provider))))),
-                Container(
-                    width: Utils.width / 2,
-                    child: GestureDetector(
-                        child: ImageLoadView('${goods[4].comPic}'),
-                        onTap: () => pushNewPage(
-                            context,
-                            Hero(
-                                tag: goods[4].goodsId,
-                                child: DetailsPage(goods[4].goodsId,
-                                    provider: widget.provider)))))
+                ItemFloorGoods(floor.floor[3],
+                    width: Utils.width / 2, provider: widget.provider),
+                ItemFloorGoods(floor.floor[4],
+                    width: Utils.width / 2, provider: widget.provider)
               ]))
         ]),
-        color: Colors.white,
-      ),
-    );
+        color: Colors.white);
   }
 
   Widget _buildHotGoodsTitle() {
     return SliverToBoxAdapter(
-      child: Container(
-        padding: EdgeInsets.all(10.0),
-        alignment: Alignment.center,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[Text('🔥'), SizedBox(width: 10.0), Text('火爆专区')],
-        ),
-      ),
-    );
+        child: Container(
+            padding: EdgeInsets.all(10.0),
+            alignment: Alignment.center,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text('🔥'),
+                  SizedBox(width: 10.0),
+                  Text('火爆专区')
+                ])));
   }
 
   Widget _buildHotGoods() {
     return SliverGrid(
-        delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-          return Container(
-            color: Colors.white,
-            child: GestureDetector(
-                child: Column(children: <Widget>[
-                  ImageLoadView('${goods[index].comPic}'),
-                  Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Text('${goods[index].goodsName}',
-                          style: TextStyle(color: Colors.pink),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1)),
-                  Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Row(children: <Widget>[
-                        Text('￥${goods[index].presentPrice}'),
-                        Text(
-                          '￥${goods[index].oriPrice}',
-                          style: TextStyle(
-                              color: Colors.grey[500],
-                              decoration: TextDecoration.lineThrough),
-                        ),
-                      ], mainAxisAlignment: MainAxisAlignment.spaceBetween))
-                ]),
-                onTap: () => pushNewPage(
-                    context,
-                    Hero(
-                        tag: goods[index].goodsId,
-                        child: DetailsPage(goods[index].goodsId,
-                            provider: widget.provider)))),
-            alignment: Alignment.center,
-          );
-        }, childCount: goods.length),
+        delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) =>
+                ItemGoodsGrid(goods[index], provider: widget.provider),
+            childCount: goods.length),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: Utils.width / 2,
             crossAxisSpacing: 1.0,
@@ -490,8 +355,6 @@ class _HomePageState extends State<HomePage>
 
   void getHotGoods(page) async {
     List<Goods> _goods = await ApiService.getBaixingHomeHotData(page);
-    setState(() {
-      goods.addAll(_goods);
-    });
+    setState(() => goods.addAll(_goods));
   }
 }
