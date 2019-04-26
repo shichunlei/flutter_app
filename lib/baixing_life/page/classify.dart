@@ -245,7 +245,9 @@ class _ClassifyPageState extends State<ClassifyPage>
           color: Colors.white,
           child: GestureDetector(
               child: Column(children: <Widget>[
-                ImageLoadView('${goods[index].comPic}'),
+                Hero(
+                    tag: goods[index].goodsId,
+                    child: ImageLoadView('${goods[index].comPic}')),
                 Container(
                     padding: EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text('${goods[index].goodsName}',
@@ -269,7 +271,6 @@ class _ClassifyPageState extends State<ClassifyPage>
                     ], mainAxisAlignment: MainAxisAlignment.spaceBetween))
               ]),
               onTap: () {
-                /// TODO 这儿有问题
                 pushNewPage(
                     context,
                     DetailsPage(goods[index].goodsId,

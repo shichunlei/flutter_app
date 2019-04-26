@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/goods_provider.dart';
 import 'package:flutter_app/bean/goods.dart';
 import 'package:flutter_app/bean/goods_info.dart';
+import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/ui/sliver_appbar_delegate.dart';
@@ -38,6 +39,8 @@ class _DetailsPageState extends State<DetailsPage>
 
   int currentIndex = 0;
 
+  Color c = Colors.grey;
+
   @override
   void initState() {
     super.initState();
@@ -67,6 +70,13 @@ class _DetailsPageState extends State<DetailsPage>
           });
         }
       } else if (offset < headerHeight) {
+        if (headerHeight - offset <= Utils.navigationBarHeight) {
+          setState(() {
+            c = Colors.white;
+          });
+        } else {
+          c = Colors.grey;
+        }
         setState(() {
           navAlpha = 1 - (headerHeight - offset) / headerHeight;
         });
@@ -103,18 +113,19 @@ class _DetailsPageState extends State<DetailsPage>
 
   Widget _buildBodyView() {
     return Expanded(
-      child: CustomScrollView(
-        controller: scrollController,
-        slivers: <Widget>[
-          /// 头部banner
-          _buildSliverAppBar(goods.goodInfo.pics),
+      child: Stack(
+        children: <Widget>[
+          CustomScrollView(controller: scrollController, slivers: <Widget>[
+            /// 头部banner
+            _buildSliverAppBar(goods.goodInfo.pics),
 
-          /// 简介
-          _buildInfoView(goods.goodInfo),
+            /// 简介
+            _buildInfoView(goods.goodInfo),
 
-          _buildTabBar(),
+            _buildTabBar(),
 
-          _buildDetails(),
+            _buildDetails()
+          ])
         ],
       ),
     );
@@ -167,13 +178,21 @@ class _DetailsPageState extends State<DetailsPage>
 
   Widget _buildSliverAppBar(List<String> pics) {
     return SliverAppBar(
+        title: Text('${goods?.goodInfo?.goodsName}',
+            style: TextStyle(
+                color:
+                    Color.fromARGB((navAlpha * 255).toInt(), 255, 255, 255))),
         backgroundColor: Colors.red,
-        expandedHeight: headerHeight - Utils.topSafeHeight,
         pinned: true,
-        elevation: 0.0,
+        expandedHeight: headerHeight - Utils.topSafeHeight,
+        leading: IconButton(
+            icon: Icon(CustomIcon.back, color: c),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.shopping_cart,color: Colors.grey),
+              icon: Icon(Icons.shopping_cart, color: c),
               onPressed: () => pushReplacementName(context, '/shopCart'))
         ],
         flexibleSpace: FlexibleSpaceBar(
@@ -184,10 +203,12 @@ class _DetailsPageState extends State<DetailsPage>
                   return Stack(
                     alignment: Alignment.bottomRight,
                     children: <Widget>[
-                      ImageLoadView('${pics[index].toString()}',
-                          fit: BoxFit.fill,
-                          height: headerHeight,
-                          width: Utils.width),
+                      Hero(
+                          tag: widget.id,
+                          child: ImageLoadView('${pics[index].toString()}',
+                              fit: BoxFit.fill,
+                              height: headerHeight,
+                              width: Utils.width)),
                       Container(
                         decoration: BoxDecoration(
                             color: Color(0x2a000000),
@@ -214,7 +235,7 @@ class _DetailsPageState extends State<DetailsPage>
                 Text('${goods.goodInfo.goodsName}',
                     style: TextStyle(color: Colors.black, fontSize: 22.0)),
                 SizedBox(height: 8.0),
-                Text('编号：${goods.goodInfo.goodsId}',
+                Text('编号：${goods.goodInfo.goodsSerialNumber}',
                     style: TextStyle(color: Colors.grey[500], fontSize: 14.0)),
                 SizedBox(height: 8.0),
                 Row(

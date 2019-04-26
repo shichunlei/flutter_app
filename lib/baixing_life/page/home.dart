@@ -174,7 +174,7 @@ class _HomePageState extends State<HomePage>
 
   Widget _buildSliverAppBar(List<Goods> slides) {
     return SliverAppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.red,
         expandedHeight: headerHeight,
         flexibleSpace: Container(
             child: Swiper(
@@ -184,8 +184,10 @@ class _HomePageState extends State<HomePage>
                     ImageLoadView('${slides[index].comPic}'),
                 onTap: (int index) => pushNewPage(
                     context,
-                    DetailsPage(slides[index].goodsId,
-                        provider: widget.provider)))));
+                    Hero(
+                        tag: slides[index].goodsId,
+                        child: DetailsPage(slides[index].goodsId,
+                            provider: widget.provider))))));
   }
 
   Widget _buildSliverGridCategory(List<Category> category) {
@@ -324,8 +326,10 @@ class _HomePageState extends State<HomePage>
               ),
               onTap: () => pushNewPage(
                   context,
-                  DetailsPage(recommend[index].goodsId,
-                      provider: widget.provider)));
+                  Hero(
+                      tag: recommend[index].goodsId,
+                      child: DetailsPage(recommend[index].goodsId,
+                          provider: widget.provider))));
         },
         childCount: recommend.length,
       ),
@@ -370,8 +374,10 @@ class _HomePageState extends State<HomePage>
                         child: ImageLoadView('${goods[0].comPic}'),
                         onTap: () => pushNewPage(
                             context,
-                            DetailsPage(goods[0].goodsId,
-                                provider: widget.provider)))),
+                            Hero(
+                                tag: goods[0].goodsId,
+                                child: DetailsPage(goods[0].goodsId,
+                                    provider: widget.provider))))),
                 Container(
                     width: Utils.width / 2,
                     child: Column(children: <Widget>[
@@ -381,16 +387,20 @@ class _HomePageState extends State<HomePage>
                               child: ImageLoadView('${goods[1].comPic}'),
                               onTap: () => pushNewPage(
                                   context,
-                                  DetailsPage(goods[1].goodsId,
-                                      provider: widget.provider)))),
+                                  Hero(
+                                      tag: goods[1].goodsId,
+                                      child: DetailsPage(goods[1].goodsId,
+                                          provider: widget.provider))))),
                       Container(
                           height: Utils.width / 4,
                           child: GestureDetector(
                               child: ImageLoadView('${goods[2].comPic}'),
                               onTap: () => pushNewPage(
                                   context,
-                                  DetailsPage(goods[2].goodsId,
-                                      provider: widget.provider))))
+                                  Hero(
+                                      tag: goods[2].goodsId,
+                                      child: DetailsPage(goods[2].goodsId,
+                                          provider: widget.provider)))))
                     ]))
               ])),
           Container(
@@ -402,16 +412,20 @@ class _HomePageState extends State<HomePage>
                         child: ImageLoadView('${goods[3].comPic}'),
                         onTap: () => pushNewPage(
                             context,
-                            DetailsPage(goods[3].goodsId,
-                                provider: widget.provider)))),
+                            Hero(
+                                tag: goods[3].goodsId,
+                                child: DetailsPage(goods[3].goodsId,
+                                    provider: widget.provider))))),
                 Container(
                     width: Utils.width / 2,
                     child: GestureDetector(
                         child: ImageLoadView('${goods[4].comPic}'),
                         onTap: () => pushNewPage(
                             context,
-                            DetailsPage(goods[4].goodsId,
-                                provider: widget.provider))))
+                            Hero(
+                                tag: goods[4].goodsId,
+                                child: DetailsPage(goods[4].goodsId,
+                                    provider: widget.provider)))))
               ]))
         ]),
         color: Colors.white,
@@ -460,8 +474,10 @@ class _HomePageState extends State<HomePage>
                 ]),
                 onTap: () => pushNewPage(
                     context,
-                    DetailsPage(goods[index].goodsId,
-                        provider: widget.provider))),
+                    Hero(
+                        tag: goods[index].goodsId,
+                        child: DetailsPage(goods[index].goodsId,
+                            provider: widget.provider)))),
             alignment: Alignment.center,
           );
         }, childCount: goods.length),
