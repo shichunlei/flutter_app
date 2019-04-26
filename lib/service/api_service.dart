@@ -587,7 +587,8 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    if (json.decode(response.data)['code'] == '0') {
+    if (json.decode(response.data)['code'] == '0' &&
+        json.decode(response.data)['data'] != null) {
       return Goods.fromMapList(json.decode(response.data)['data']);
     } else {
       return [];
@@ -601,7 +602,8 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    if (json.decode(response.data)['code'] == '0') {
+    if (json.decode(response.data)['code'] == '0' &&
+        json.decode(response.data)['data'] != null) {
       return Category.fromMapList(json.decode(response.data)['data']);
     } else {
       return [];
@@ -623,7 +625,8 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    if (json.decode(response.data)['code'] == '0') {
+    if (json.decode(response.data)['code'] == '0' &&
+        json.decode(response.data)['data'] != null) {
       return Goods.fromMapList(json.decode(response.data)['data']);
     } else {
       return [];
@@ -639,7 +642,8 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    if (json.decode(response.data)['code'] == '0') {
+    if (json.decode(response.data)['code'] == '0' &&
+        json.decode(response.data)['data'] != null) {
       return GoodsInfo.fromMap(json.decode(response.data)['data']);
     } else {
       return null;

@@ -10,11 +10,17 @@ import 'package:flutter_app/global/custom_icon.dart';
 
 class IndexPage extends StatefulWidget {
   final int index;
+  final int subCategory;
+  final int category;
 
   IndexPage({
     Key key,
     this.index = 0,
+    this.category = 0,
+    this.subCategory = 0,
   })  : assert(index != null),
+        assert(category != null),
+        assert(subCategory != null),
         super(key: key);
 
   @override
@@ -39,7 +45,10 @@ class _IndexPageState extends State<IndexPage>
 
     list
       ..add(HomePage('百姓生活+', provider))
-      ..add(ClassifyPage('分类'))
+      ..add(ClassifyPage('分类',
+          categoryIndex: widget.category,
+          subIndex: widget.subCategory,
+          provider: provider))
       ..add(ShoppingCartPage('购物车', provider))
       ..add(MemberPage('会员'));
   }

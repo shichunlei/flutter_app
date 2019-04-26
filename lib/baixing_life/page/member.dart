@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/page/order/order_home_page.dart';
+import 'package:flutter_app/baixing_life/page/order_home_page.dart';
 import 'package:flutter_app/baixing_life/ui/IconText.dart';
 import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/global/custom_icon.dart';

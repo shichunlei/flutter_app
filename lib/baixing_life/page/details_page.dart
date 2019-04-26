@@ -6,6 +6,7 @@ import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/ui/sliver_appbar_delegate.dart';
 import 'package:flutter_app/utils/loading_util.dart';
+import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/toast.dart';
 import 'package:flutter_app/utils/utils.dart';
@@ -40,6 +41,8 @@ class _DetailsPageState extends State<DetailsPage>
   @override
   void initState() {
     super.initState();
+
+    LogUtil.v('=========================================${widget.id}');
 
     titleTabs = <Tab>[Tab(text: '详情'), Tab(text: "评论")];
 
@@ -119,13 +122,6 @@ class _DetailsPageState extends State<DetailsPage>
 
   Widget _buildBottomView() {
     return Row(children: <Widget>[
-      Stack(children: <Widget>[
-        IconButton(
-            icon: Icon(Icons.shopping_cart),
-            onPressed: () {
-              pushReplacementName(context, '/shopCart');
-            }),
-      ]),
       Expanded(
           child: GestureDetector(
               onTap: () {
@@ -175,6 +171,11 @@ class _DetailsPageState extends State<DetailsPage>
         expandedHeight: headerHeight - Utils.topSafeHeight,
         pinned: true,
         elevation: 0.0,
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.shopping_cart,color: Colors.grey),
+              onPressed: () => pushReplacementName(context, '/shopCart'))
+        ],
         flexibleSpace: FlexibleSpaceBar(
             background: Swiper(
                 autoplay: pics.length > 1,

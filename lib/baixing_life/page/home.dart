@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/goods_provider.dart';
-import 'package:flutter_app/baixing_life/page/details/details_page.dart';
+import 'package:flutter_app/baixing_life/index.dart';
+import 'package:flutter_app/baixing_life/page/details_page.dart';
 import 'package:flutter_app/ui/change_appbar.dart';
 import 'package:flutter_app/bean/advertes_picture.dart';
 import 'package:flutter_app/bean/baixing.dart';
@@ -175,9 +176,6 @@ class _HomePageState extends State<HomePage>
     return SliverAppBar(
         backgroundColor: Colors.white,
         expandedHeight: headerHeight,
-        floating: true,
-        snap: true,
-        pinned: true,
         flexibleSpace: Container(
             child: Swiper(
                 autoplay: true,
@@ -196,7 +194,8 @@ class _HomePageState extends State<HomePage>
         (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              /// TODO 进入对应分类下
+              pushReplacement(context,
+                  IndexPage(index: 1, category: index, subCategory: 0));
             },
             child: Container(
               color: Colors.white,
