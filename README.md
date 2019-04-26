@@ -4,8 +4,7 @@ A new Flutter application.
 
 `声明：本项目仅供学习，如有侵权请联系本人进行删除。`
 
-`本项目包括各种基本控件使用（Text、TextField、Icon、Image、Listview、Gridview、Picker、Stepper、Dialog、Slider、Row、Appbar、Sizebox、BottomSheet、Chip、Dismissible、FlutterLogo、Check、Switch、TabBar、BottomNavigationBar、Sliver等）
-、豆瓣电影、每日一文、和天气、百姓生活、随机诗词、联系人等板块`
+`本项目包括各种基本控件使用（Text、TextField、Icon、Image、Listview、Gridview、Picker、Stepper、Dialog、Slider、Row、Appbar、Sizebox、BottomSheet、Chip、Dismissible、FlutterLogo、Check、Switch、TabBar、BottomNavigationBar、Sliver等）、豆瓣电影、每日一文、和天气、百姓生活、随机诗词、联系人等板块`
 
 ## API接口
 
@@ -126,6 +125,8 @@ A new Flutter application.
 | Rounded Letter | [roundedletter](https://github.com/jhomlala/roundedletter) | ![](https://camo.githubusercontent.com/ab6351029d9980584a1120d90dccb654e8ab8dbb/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f726f756e6465645f6c65747465722e737667) | Useful Flutter widget which allows you to create letter inside shape. Can be used for placeholders (for example user avatars). This package is named 'Rounded letter' because main idea was letter inside circle just like Android 5.0 contacts. Later idea has evolved into more shapes. |
 | 数据库 | [sqflite](https://github.com/tekartik/sqflite) | 1.1.5 | SQLite plugin for Flutter. Supports both iOS and Android.|
 
+
+## 特别感谢
 
 
 
