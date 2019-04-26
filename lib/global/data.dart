@@ -580,3 +580,5 @@ class ChartFlutterBean {
     ];
   }
 }
+
+var backgroundImage = 'http://pic1.16pic.com/00/31/72/16pic_3172062_b.jpg';

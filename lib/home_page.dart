@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/ui/home_drawable.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/toast.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
+import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:async';
 
@@ -78,12 +80,8 @@ class HomeStatePage extends State<HomePage> {
                 loop: true,
 
                 ///
-                itemBuilder: (context, index) {
-                  return Image.network(
-                    banner_images[index],
-                    fit: BoxFit.fill,
-                  );
-                },
+                itemBuilder: (context, index) =>
+                    ImageLoadView(banner_images[index]),
 
                 ///
                 itemCount: banner_images.length,

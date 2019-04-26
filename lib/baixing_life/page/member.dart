@@ -5,6 +5,7 @@ import 'package:flutter_app/baixing_life/page/order/order_home_page.dart';
 import 'package:flutter_app/baixing_life/ui/IconText.dart';
 import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/global/custom_icon.dart';
+import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/ui/change_appbar.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/route_util.dart';
@@ -27,9 +28,6 @@ class _MemberPageState extends State<MemberPage>
   @override
   bool get wantKeepAlive => true;
 
-  var backgroundImage =
-      'https://www.snapphotography.co.nz/wp-content/uploads/New-Zealand-Landscape-Photography-prints-12.jpg';
-
   var avatarImage = 'https://t1.onvshen.com:85/gallery/27062/29572/s/0.jpg';
 
   double navAlpha = 0;
@@ -42,7 +40,7 @@ class _MemberPageState extends State<MemberPage>
   void initState() {
     super.initState();
 
-    headerHeight = 180.0;
+    headerHeight = 170.0;
 
     scrollController.addListener(() {
       var offset = scrollController.offset;
@@ -189,16 +187,11 @@ class _MemberPageState extends State<MemberPage>
       height: headerHeight + Utils.navigationBarHeight,
       child: Stack(
         children: <Widget>[
-          ImageLoadView('${backgroundImage}', placeholder: kTransparentImage),
-          BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 6.0),
-            child: Opacity(
-              opacity: 0.1,
-              child: Container(
-                decoration: BoxDecoration(color: Colors.green),
-              ),
-            ),
-          ),
+          ImageLoadView(backgroundImage,
+              placeholder: kTransparentImage,
+              fit: BoxFit.fill,
+              height: headerHeight + Utils.navigationBarHeight,
+              width: Utils.width),
           Container(
               child: Center(
                 child: Column(
@@ -212,7 +205,7 @@ class _MemberPageState extends State<MemberPage>
                   ],
                 ),
               ),
-              padding: EdgeInsets.only(top: Utils.navigationBarHeight))
+              padding: EdgeInsets.only(top: Utils.navigationBarHeight / 2))
         ],
       ),
     );

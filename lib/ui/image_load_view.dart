@@ -14,9 +14,10 @@ class ImageLoadView extends StatelessWidget {
     Key key,
     this.width,
     this.height,
-    this.fit,
+    this.fit = BoxFit.fill,
     this.placeholder = const AssetImage("images/wallfy.png"),
   })  : assert(imageUrl != null),
+        assert(fit != null),
         super(key: key);
 
   @override

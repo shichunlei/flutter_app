@@ -175,17 +175,15 @@ class _HomePageState extends State<HomePage>
     return SliverAppBar(
         backgroundColor: Colors.white,
         expandedHeight: headerHeight,
-        primary: true,
+        floating: true,
+        snap: true,
+        pinned: true,
         flexibleSpace: Container(
             child: Swiper(
                 autoplay: true,
                 itemCount: slides.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ImageLoadView(
-                    '${slides[index].comPic}',
-                    height: headerHeight,
-                  );
-                },
+                itemBuilder: (BuildContext context, int index) =>
+                    ImageLoadView('${slides[index].comPic}'),
                 onTap: (int index) => pushNewPage(
                     context,
                     DetailsPage(slides[index].goodsId,

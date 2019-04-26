@@ -38,7 +38,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
     userName = isLogin ? "SCL" : "未登录";
     email = isLogin ? "1558053958@qq.com" : "";
     avatar = isLogin
-        ? "https://t1.onvshen.com:85/gallery/27062/29572/s/024.jpg"
+        ? "http://hbimg.b0.upaiyun.com/63ddc018b96442eeb24c73f393f5ae066d58fb7e6607e-WScNBs_fw658"
         : "https://user-gold-cdn.xitu.io/2019/1/27/1688f8ce3151738a?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1";
     LogUtil.v(avatar);
   }
