@@ -3,6 +3,7 @@ import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_detail.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/movie/ui/item_ranking_movie.dart';
+import 'package:flutter_app/service/api_url.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 
@@ -41,8 +42,8 @@ class _MovieRankingSubPageState extends State<MovieRankingSubPage>
     } else {
       return ListView.builder(
         itemBuilder: (context, index) {
-          Movie movie = (widget.url == ApiService.US_MOVIES_URL ||
-                  widget.url == ApiService.WEEKLY_MOVIES_URL)
+          Movie movie = (widget.url == ApiUrl.US_MOVIES_URL ||
+                  widget.url == ApiUrl.WEEKLY_MOVIES_URL)
               ? movies[index].subject
               : movies[index];
           return ItemRankingMovie(

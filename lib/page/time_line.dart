@@ -51,11 +51,11 @@ class _TimeLinePageState extends State<TimeLinePage>
 
   timelineModel(TimelinePosition position) => Timeline.builder(
       itemBuilder: centerTimelineBuilder,
-      itemCount: doodles.length,
+      itemCount: Doodle.doodles.length,
       position: position);
 
   TimelineModel centerTimelineBuilder(BuildContext context, int i) {
-    final doodle = doodles[i];
+    final doodle = Doodle.doodles[i];
     final textTheme = Theme.of(context).textTheme;
     return TimelineModel(
         Card(
@@ -82,7 +82,7 @@ class _TimeLinePageState extends State<TimeLinePage>
         position:
             i % 2 == 0 ? TimelineItemPosition.right : TimelineItemPosition.left,
         isFirst: i == 0,
-        isLast: i == doodles.length,
+        isLast: i == Doodle.doodles.length,
         iconBackground: doodle.iconBackground,
         icon: doodle.icon);
   }

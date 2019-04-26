@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_app/global/config.dart';
+import 'package:flutter_app/service/api_url.dart';
 import 'package:flutter_app/utils/log_util.dart';
 
 class HttpUtils {
@@ -21,7 +22,7 @@ class HttpUtils {
   }
 
   HttpUtils({
-    String baseUrl = Config.MOVIE_BASE_URL,
+    String baseUrl = ApiUrl.MOVIE_BASE_URL,
     Map<String, dynamic> header,
     String contentType = CONTENT_TYPE_FORM,
     Map<String, dynamic> queryParameters,

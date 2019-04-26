@@ -6,7 +6,6 @@ import 'package:flutter_app/utils/toast.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:async';
 
@@ -28,7 +27,7 @@ class HomeStatePage extends State<HomePage> {
 
   void _setCurrentIndex(int index, bool isExpand) {
     setState(() {
-      expandStateList.forEach((item) {
+      ExpandStateBean.expandStateList.forEach((item) {
         if (item.index == index) {
           item.isOpen = !isExpand;
         }
@@ -108,7 +107,7 @@ class HomeStatePage extends State<HomePage> {
               ),
             ),
             ExpansionPanelList(
-              children: expandStateList
+              children: ExpandStateBean.expandStateList
                   .map((expand) => ExpansionPanel(
                         headerBuilder: (context, isExpanded) {
                           return ListTile(

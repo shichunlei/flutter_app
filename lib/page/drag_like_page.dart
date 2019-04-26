@@ -40,7 +40,7 @@ class _DragLikePageState extends State<DragLikePage>
       : defaultIconColor;
 
   void setAboveIndex() {
-    if (aboveIndex < girls.length - 1) {
+    if (aboveIndex < Girl.girls.length - 1) {
       aboveIndex++;
     } else {
       aboveIndex = 0;
@@ -48,7 +48,7 @@ class _DragLikePageState extends State<DragLikePage>
   }
 
   void setBelowIndex() {
-    if (belowIndex < girls.length - 1) {
+    if (belowIndex < Girl.girls.length - 1) {
       belowIndex++;
     } else {
       belowIndex = 0;
@@ -126,8 +126,8 @@ class _DragLikePageState extends State<DragLikePage>
         _buildBackground(),
         Positioned(
           child: SlideStack(
-            child: _buildChooseView(girls[aboveIndex]),
-            below: _buildChooseView(girls[belowIndex]),
+            child: _buildChooseView(Girl.girls[aboveIndex]),
+            below: _buildChooseView(Girl.girls[belowIndex]),
             slideDistance: MediaQuery.of(context).size.width - 40.0,
             onSlide: onSlide,
             onSlideCompleted: onSlideCompleted,
