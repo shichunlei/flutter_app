@@ -20,13 +20,13 @@ class ItemGoodsGrid extends StatelessWidget {
             child: Column(children: <Widget>[
               Hero(tag: goods.goodsId, child: ImageLoadView('${goods.comPic}')),
               Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: EdgeInsets.symmetric(horizontal: 5.0),
                   child: Text('${goods.goodsName}',
                       style: TextStyle(color: Colors.pink),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1)),
               Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: EdgeInsets.symmetric(horizontal: 5.0),
                   child: Row(children: <Widget>[
                     Text('￥${goods.presentPrice}',
                         style: TextStyle(fontSize: 13.0)),

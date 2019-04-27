@@ -94,6 +94,9 @@ class _ClassifyPageState extends State<ClassifyPage>
     category = await ApiService.getBaixingCategoryData();
 
     LogUtil.v('${category.toString()}');
+
+    getGoodsList(page, category[parentCategoryIndex].mallCategoryId,
+        category[parentCategoryIndex].bxMallSubDto[subCategoryIndex].mallSubId);
     setState(() {});
   }
 
@@ -108,13 +111,11 @@ class _ClassifyPageState extends State<ClassifyPage>
   }
 
   TabController changeTabController(int length) {
-    LogUtil.e('=======================3=========================');
     return controller = TabController(
         length: length, vsync: this, initialIndex: subCategoryIndex)
       ..addListener(() {
         // 监听滑动/点选位置
         if (controller.index.toDouble() == controller.animation.value) {
-          LogUtil.e('=====================1===========================');
           setState(() {
             subCategoryIndex = controller.index;
             goods = [];
@@ -129,8 +130,6 @@ class _ClassifyPageState extends State<ClassifyPage>
                     .mallSubId);
           });
         }
-
-        LogUtil.e('=======================2=========================');
       });
   }
 
@@ -142,7 +141,6 @@ class _ClassifyPageState extends State<ClassifyPage>
           ListTile(
             title: Text('${category[index].mallCategoryName}'),
             onTap: () {
-              LogUtil.e('=======================4=========================');
               setState(() {
                 parentCategoryIndex = index;
                 subCategoryIndex = 0;
@@ -168,7 +166,6 @@ class _ClassifyPageState extends State<ClassifyPage>
   }
 
   Widget _buildRightView() {
-    LogUtil.e('=======================5=========================');
     return Container(
       width: rightWidth,
       child: Column(children: <Widget>[
@@ -193,9 +190,6 @@ class _ClassifyPageState extends State<ClassifyPage>
   }
 
   Widget _buildGoodsListView(String categoryId, String subId) {
-    LogUtil.e('=======================6=========================');
-
-    /// TODO 第一次进入页面布局没有刷新？
     return Expanded(
         child: EasyRefresh(
             key: _easyRefreshKey,
@@ -214,7 +208,15 @@ class _ClassifyPageState extends State<ClassifyPage>
                             .bxMallSubDto[subCategoryIndex]
                             .mallSubId);
                   },
-            child: _buildItemGoods()));
+            child: GridView.builder(
+                itemCount: goods.length,
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: rightWidth / 2,
+                    crossAxisSpacing: 1.0,
+                    mainAxisSpacing: 1.0,
+                    childAspectRatio: 0.77),
+                itemBuilder: (BuildContext context, int index) =>
+                    ItemGoodsGrid(goods[index], provider: widget.provider))));
   }
 
   void getGoodsList(int page, String categoryId, String subId) async {
@@ -225,17 +227,5 @@ class _ClassifyPageState extends State<ClassifyPage>
     }
     goods.addAll(_goods);
     setState(() {});
-  }
-
-  Widget _buildItemGoods() {
-    return GridView.builder(
-        itemCount: goods.length,
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: rightWidth / 2,
-            crossAxisSpacing: 1.0,
-            mainAxisSpacing: 1.0,
-            childAspectRatio: 0.77),
-        itemBuilder: (BuildContext context, int index) =>
-            ItemGoodsGrid(goods[index], provider: widget.provider));
   }
 }
