@@ -53,9 +53,7 @@ class _DetailsPageState extends State<DetailsPage>
       ..addListener(() {
         // 监听滑动/点选位置
         if (controller.index.toDouble() == controller.animation.value) {
-          setState(() {
-            currentIndex = controller.index;
-          });
+          setState(() => currentIndex = controller.index);
         }
       });
 
@@ -65,25 +63,17 @@ class _DetailsPageState extends State<DetailsPage>
       var offset = scrollController.offset;
       if (offset < 0) {
         if (navAlpha != 0) {
-          setState(() {
-            navAlpha = 0;
-          });
+          setState(() => navAlpha = 0);
         }
       } else if (offset < headerHeight) {
         if (headerHeight - offset <= Utils.navigationBarHeight) {
-          setState(() {
-            c = Colors.white;
-          });
+          setState(() => c = Colors.white);
         } else {
           c = Colors.grey;
         }
-        setState(() {
-          navAlpha = 1 - (headerHeight - offset) / headerHeight;
-        });
+        setState(() => navAlpha = 1 - (headerHeight - offset) / headerHeight);
       } else if (navAlpha != 1) {
-        setState(() {
-          navAlpha = 1;
-        });
+        setState(() => navAlpha = 1);
       }
     });
 
@@ -103,12 +93,7 @@ class _DetailsPageState extends State<DetailsPage>
         backgroundColor: Colors.grey[200],
         body: goods == null
             ? getLoadingWidget()
-            : Column(
-                children: <Widget>[
-                  _buildBodyView(),
-                  _buildBottomView(),
-                ],
-              ));
+            : Column(children: <Widget>[_buildBodyView(), _buildBottomView()]));
   }
 
   Widget _buildBodyView() {
@@ -147,6 +132,7 @@ class _DetailsPageState extends State<DetailsPage>
       Expanded(
           child: GestureDetector(
               onTap: () {
+                /// TODO 立即购买
                 Toast.show('立即购买', context);
               },
               child: Container(
@@ -187,9 +173,7 @@ class _DetailsPageState extends State<DetailsPage>
         expandedHeight: headerHeight - Utils.topSafeHeight,
         leading: IconButton(
             icon: Icon(CustomIcon.back, color: c),
-            onPressed: () {
-              Navigator.pop(context);
-            }),
+            onPressed: () => Navigator.pop(context)),
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.shopping_cart, color: c),
@@ -230,38 +214,32 @@ class _DetailsPageState extends State<DetailsPage>
           Container(
             padding: EdgeInsets.all(10.0),
             color: Colors.white,
-            child: Column(
-              children: <Widget>[
-                Text('${goods.goodInfo.goodsName}',
-                    style: TextStyle(color: Colors.black, fontSize: 22.0)),
-                SizedBox(height: 8.0),
-                Text('编号：${goods.goodInfo.goodsSerialNumber}',
-                    style: TextStyle(color: Colors.grey[500], fontSize: 14.0)),
-                SizedBox(height: 8.0),
-                Row(
+            child: Column(children: <Widget>[
+              Text('${goods.goodInfo.goodsName}',
+                  style: TextStyle(color: Colors.black, fontSize: 22.0)),
+              SizedBox(height: 8.0),
+              Text('编号：${goods.goodInfo.goodsSerialNumber}',
+                  style: TextStyle(color: Colors.grey[500], fontSize: 14.0)),
+              SizedBox(height: 8.0),
+              Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text('￥${goods.goodInfo.presentPrice}',
                         style: TextStyle(color: Colors.red, fontSize: 16.0)),
                     SizedBox(width: 40.0),
-                    Text('市场价：￥${goods.goodInfo.presentPrice}',
+                    Text('市场价：￥${goods.goodInfo.oriPrice}',
                         style:
                             TextStyle(color: Colors.grey[700], fontSize: 14.0))
-                  ],
-                ),
-              ],
-              crossAxisAlignment: CrossAxisAlignment.start,
-            ),
+                  ])
+            ], crossAxisAlignment: CrossAxisAlignment.start),
           ),
           Container(
             width: Utils.width,
             padding: EdgeInsets.all(10.0),
             margin: EdgeInsets.symmetric(vertical: 10.0),
             color: Colors.white,
-            child: Text(
-              '说明 > 极速送达 > 正品保证',
-              style: TextStyle(color: Colors.redAccent),
-            ),
+            child: Text('说明 > 极速送达 > 正品保证',
+                style: TextStyle(color: Colors.redAccent)),
           )
         ],
       ),
@@ -309,8 +287,6 @@ class _DetailsPageState extends State<DetailsPage>
       }
       children.add(adWidget);
     }
-    return SliverList(
-      delegate: SliverChildListDelegate(children),
-    );
+    return SliverList(delegate: SliverChildListDelegate(children));
   }
 }
