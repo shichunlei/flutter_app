@@ -2,7 +2,8 @@
 
 A new Flutter application.
 
-`声明：本项目仅供学习，如有侵权请联系本人进行删除。`
+`声明1：本项目仅供学习，如有侵权请联系本人进行删除。`
+`声明2：本项目中部分功能页面是别人其他项目中的，但是本人并不是完全照抄原作者代码，再次页特别感谢原作者，部分参考别人页面的功能也已标注出原出处，如有侵犯原作者的地方请联系本人进行删除。`
 
 `本项目包括各种基本控件使用（Text、TextField、Icon、Image、Listview、Gridview、Picker、Stepper、Dialog、Slider、Row、Appbar、Sizebox、BottomSheet、Chip、Dismissible、FlutterLogo、Check、Switch、TabBar、BottomNavigationBar、Sliver等）、豆瓣电影、每日一文、和天气、百姓生活、随机诗词、联系人等板块`
 
@@ -19,15 +20,36 @@ A new Flutter application.
 ## 运行截图
 
 
-|![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-13-18-13-58-429.png)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-11-913.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-17-05-27-313.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-44-611.png)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-12-01-953.png)|
-| :--: | :--: | :--: | :--: | :--: |
-|首页|侧边栏|版本信息|随机诗词|二维码（生成/扫描）|
+### 基本控件（Widget）及一些自定义控件（Widget）
 
+|![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-13-18-13-58-429.png)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-11-913.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-17-05-27-313.png)|
+| :--: | :--: | :--: |
+|首页|侧边栏|版本信息|
+|![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-44-611.png)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-12-01-953.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-16-52-55-186.png)|
+|随机诗词|二维码（生成/扫描）|设备信息|
+|![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-28-09-39-35-311.png)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-28-09-39-48-539.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-28-09-40-04-052.png)|
+|瀑布流|评分效果|多边形控件|
+|![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-12-28-563.png)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-12-47-846.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-13-11-31-58-569.png)|
+|LikeButton|Chip|侧滑删除|
+|![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-37-42-680.png)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-38-36-857.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-37-13-394.png)|
+|Icon|Stepper|AppBar|
+|![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-13-11-31-19-566.png)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-27-08-09-22-689.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-27-08-08-59-855.png)|
+|仿探探|BottomSheet|TextField|
+
+
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/timeline_list.png)|
+| :--: |
+|TimeLine|
+
+
+### [登录注册](https://github.com/LXD312569496/flutter-learing/tree/master/login_demo)
 
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-15-38-136.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-15-42-485.png)|
 | :--: | :--: |
 |登录|注册|
 
+
+### [豆瓣电影](https://github.com/Mayandev/morec)
 
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-16-35-569.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-16-49-010.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-16-58-888.png)|
 | :--: | :--: | :--: |
@@ -40,30 +62,12 @@ A new Flutter application.
 |电影花絮|电影花絮（全屏）|电影剧照|
 
 
-
-|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-28-09-39-35-311.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-28-09-39-48-539.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-28-09-40-04-052.png)|
-| :--: | :--: | :--: |
-|瀑布流|评分效果|多边形控件|
-
+### 天气
 
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-23-860.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-34-612.png)|
 | :--: | :--: |
 |城市|城市天气预报|
 
-
-|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-12-28-563.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-12-47-846.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-13-11-31-58-569.png)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-13-11-31-19-566.png)|
-| :--: | :--: | :--: | :--: |
-|LikeButton|Chip|侧滑删除|仿探探|
-
-
-|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/timeline_list.png)|
-| :--: |
-|TimeLine|
-
-
-|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-16-52-55-186.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-37-42-680.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-38-36-857.png)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-37-13-394.png)|
-| :--: | :--: | :--: | :--: |
-|设备信息|Icon|Stepper|AppBar|
 
 #### [百姓生活](https://github.com/shenghy/flutter_shop)
 
@@ -74,16 +78,16 @@ A new Flutter application.
 |购物车|购物车|会员|
 
 
+### [每日一文](https://github.com/chengww5217/one_article)
 
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-22-18-01-34-664.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-22-17-05-37-975.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-22-17-52-45-864.png)|
 | :--: | :--: | :--: |
 |每日一文|每日一文|收藏|
 
 
-
 <table>
   <tr>
-    <p>Rounded Letter</p>
+    <p><a href='https://github.com/jhomlala/roundedletter'>Rounded Letter</a></p>
   </tr>
   <tr>
     <td>
