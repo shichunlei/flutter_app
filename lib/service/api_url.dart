@@ -1,5 +1,4 @@
-class ApiUrl{
-
+class ApiUrl {
   static const String DOUBAN_WEB_URL = 'https://movie.douban.com/';
 
   static const String MOVIE_BASE_URL = "https://api.douban.com/v2/movie";
@@ -45,7 +44,7 @@ class ApiUrl{
   static final String JIANDAN = "http://i.jandan.net";
 
   static final String BAIXING_BASE_URL =
-    'http://v.jspang.com:8088/baixing/wxmini/';
+      'http://v.jspang.com:8088/baixing/wxmini/';
 
   static final String BAIXING_HOME = 'homePageContent';
   static final String BAIXING_HOME_HOT = 'homePageBelowConten';
@@ -56,15 +55,17 @@ class ApiUrl{
   static final String RANDOMUSER_URL = 'https://randomuser.me/api/';
 
   static final String COIN_MARKET_CAP_BASE_URL =
-    'https://pro-api.coinmarketcap.com';
+      'https://pro-api.coinmarketcap.com';
 
   static final String CRYPTOCURRENCY_INFO = '/v1/cryptocurrency/info';
   static final String CRYPTOCURRENCY_MAP = '/v1/cryptocurrency/map';
   static final String CRYPTOCURRENCY_LATEST =
-    '/v1/cryptocurrency/listings/latest';
+      '/v1/cryptocurrency/listings/latest';
   static final String CRYPTOCURRENCY_QUOTE_LATEST =
-    '/v1/cryptocurrency/quotes/latest';
+      '/v1/cryptocurrency/quotes/latest';
   static final String GLOBAL_QUOTE_LATEST = '/v1/global-metrics/quotes/latest';
   static final String MARKET_PAIRS_LATEST =
-    '/v1/cryptocurrency/market-pairs/latest';
+      '/v1/cryptocurrency/market-pairs/latest';
+
+  static final String JUZIMI_URL = 'https://www.juzimi.com/';
 }

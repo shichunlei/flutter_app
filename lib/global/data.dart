@@ -4,6 +4,7 @@ import 'package:flutter_app/bars_demo/fancy_bottom_navigation.dart';
 import 'package:flutter_app/bars_demo/heart_beat_bottombar_widget.dart';
 import 'package:flutter_app/city_pickers/page/fullpage_pickers_page.dart';
 import 'package:flutter_app/city_pickers/page/ios_city_pickers_page.dart';
+import 'package:flutter_app/juzimi/juzimi_home.dart';
 import 'package:flutter_app/movie/page/movie_home_page.dart';
 import 'package:flutter_app/page/charts_widget.dart';
 import 'package:flutter_app/page/city_picker_page.dart';
@@ -286,6 +287,7 @@ class ExpandStateBean {
       SubExpandBean('Question', QuizPage()),
       SubExpandBean('豆瓣电影', MovieHomePage()),
       SubExpandBean('百姓生活+', IndexPage()),
+      SubExpandBean('我是个句子迷', JuzimiHomePage()),
       SubExpandBean('随机单词', RandomWords()),
       SubExpandBean('每日一文', OneArticlePage()),
       SubExpandBean('设备信息', DeviceInfoPage()),

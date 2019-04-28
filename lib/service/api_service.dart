@@ -12,6 +12,7 @@ import 'package:flutter_app/bean/cryptocurrency.dart';
 import 'package:flutter_app/bean/goods.dart';
 import 'package:flutter_app/bean/goods_info.dart';
 import 'package:flutter_app/bean/he_weather.dart';
+import 'package:flutter_app/bean/juzimi.dart';
 import 'package:flutter_app/bean/news.dart';
 import 'package:flutter_app/bean/photos.dart';
 import 'package:flutter_app/bean/poetry.dart';
@@ -45,8 +46,7 @@ class ApiService {
             item.getElementsByTagName('h3')[0].text.toString().trim();
         String summary =
             item.getElementsByTagName('p')[0].text.toString().trim();
-        News movieNews = News(title, cover, summary, link);
-        news.add(movieNews);
+        news.add(News(title, cover, summary, link));
       });
     });
 
@@ -784,5 +784,262 @@ class ApiService {
     }
     LogUtil.e('${json.decode(response.data)['status']['error_message']}');
     return null;
+  }
+
+  /// 获取句子迷上美图美句数据
+  static Future<List<MeiTuMeiJu>> getMeiTuMeiJu(int page) async {
+    final List<MeiTuMeiJu> data = [];
+    await http
+        .get(ApiUrl.JUZIMI_URL + 'meitumeiju/?page=$page')
+        .then((http.Response response) {
+      var document = parse(response.body.toString());
+
+      dom.Element content =
+          document.getElementsByClassName('view-content').first;
+
+      List<dom.Element> items = content.getElementsByClassName("views-row");
+
+      items.forEach((item) {
+        dom.Element field =
+            item.getElementsByClassName('views-field-phpcode').first;
+
+        String image = field
+            .getElementsByClassName('views-field-phpcode')
+            .first
+            .querySelector('a')
+            .querySelector('img')
+            .attributes['src'];
+
+        LogUtil.v('http:$image');
+
+        String desc = field
+            .getElementsByClassName('views-field-phpcode-1')
+            .first
+            .querySelector('a')
+            .text;
+
+        LogUtil.v('$desc');
+
+        String author = field
+            .getElementsByClassName('views-field-name')
+            .first
+            .getElementsByClassName('views-field-xqname')
+            .first
+            .querySelector('a')
+            .text;
+
+        LogUtil.v('$author');
+
+        int like = 0;
+//        int.parse(field
+//            .getElementsByClassName('views-field-ops')
+//            .first
+//            .querySelector('a')
+//            .text
+//            .replaceAll(')', '')
+//            .replaceAll('喜欢(', ''));
+
+        LogUtil.v('$like');
+
+        data.add(MeiTuMeiJu(
+            image: 'http:$image', like: like, desc: desc, author: author));
+      });
+    });
+
+    LogUtil.v('${data.toString()}');
+
+    return data;
+  }
+
+  /// 获取句子迷上美图美句数据
+  /// category = shouxiemeiju、jingdianduibai
+  static Future<List<String>> getMeiTuMeiJuImages(
+      String category, int page) async {
+    final List<String> data = [];
+    await http
+        .get(ApiUrl.JUZIMI_URL + 'meitumeiju/$category/?page=$page')
+        .then((http.Response response) {
+      var document = parse(response.body.toString());
+
+      dom.Element content =
+          document.getElementsByClassName('view-content').first;
+
+      List<dom.Element> items = content.getElementsByClassName("views-row");
+
+      items.forEach((item) {
+        String image = item
+            .getElementsByClassName('views-field-phpcode')
+            .first
+            .querySelector('a')
+            .querySelector('img')
+            .attributes['src'];
+
+        LogUtil.v('http:$image');
+
+        data.add('http:$image');
+      });
+    });
+
+    LogUtil.v('$data');
+
+    return data;
+  }
+
+  /// 获取句子迷上名人名句类别
+  static Future<List<MingjuClassify>> getMingrenmingjuType() async {
+    final List<MingjuClassify> data = [];
+    await http
+        .get(ApiUrl.JUZIMI_URL + '/writers')
+        .then((http.Response response) {
+      var document = parse(response.body.toString());
+
+      dom.Element content = document
+          .getElementById('block-block-20')
+          .getElementsByClassName('block-inner')
+          .first
+          .getElementsByClassName('content')
+          .first
+          .getElementsByClassName('contentin')
+          .first;
+
+      LogUtil.v('${content.toString()}');
+
+      List<dom.Element> itemsTitle = content.getElementsByClassName("wrtitle");
+      List<dom.Element> items = content.getElementsByClassName("wrlist");
+
+      itemsTitle.forEach((item) {
+        int index = itemsTitle.indexOf(item);
+
+        String title = item.text.replaceAll('：', '');
+
+        List<dom.Element> _items =
+            items[index].getElementsByClassName('writersal');
+
+        List<MingjuClassify> subData = [];
+        _items.forEach((item) {
+          String tag = item.attributes['href'];
+          String subTitle = item.text;
+
+          subData.add(MingjuClassify(tag: tag, title: subTitle));
+        });
+
+        data.add(MingjuClassify(title: '$title', classify: subData));
+      });
+    });
+
+    LogUtil.v('${data.toString()}');
+
+    return data;
+  }
+
+  /// 根据类别获取名人列表
+  static Future<List<JuzimiCelebrity>> getCelebrityList(
+      String category, int page) async {
+    LogUtil.e(ApiUrl.JUZIMI_URL + '$category?page=$page');
+    final List<JuzimiCelebrity> data = [];
+    await http
+        .get(ApiUrl.JUZIMI_URL + '$category' + (page == 0 ? '?page=$page' : ''))
+        .then((http.Response response) {
+      var document = parse(response.body.toString());
+
+      dom.Element content =
+          document.getElementsByClassName('view-content').first;
+
+      List<dom.Element> items = content.getElementsByClassName("views-row");
+
+      items.forEach((item) {
+        String imgUrl = item
+            .getElementsByClassName('views-field-tid')
+            .first
+            .querySelector('a')
+            .querySelector('img')
+            .attributes['src'];
+
+        String name = item
+            .getElementsByClassName('views-field-name')
+            .first
+            .querySelector('a')
+            .text;
+
+        String desc = item
+            .getElementsByClassName('views-field-phpcode')
+            .first
+            .getElementsByClassName('wridesccon')
+            .first
+            .getElementsByClassName('xqagepawirdesc')
+            .first
+            .text;
+
+        data.add(
+            JuzimiCelebrity(name: '$name', image: 'http:$imgUrl', desc: desc));
+      });
+    });
+
+    LogUtil.v('${data.toString()}');
+
+    return data;
+  }
+
+  /// 根据类别获取书籍等列表
+  static Future<List<JuzimiBook>> getBookList(String category, int page) async {
+    LogUtil.e(ApiUrl.JUZIMI_URL + '$category?page=$page');
+    final List<JuzimiBook> data = [];
+    await http
+        .get(ApiUrl.JUZIMI_URL + '$category' + (page == 0 ? '?page=$page' : ''))
+        .then((http.Response response) {
+      var document = parse(response.body.toString());
+
+      dom.Element content =
+          document.getElementsByClassName('view-content').first;
+
+      List<dom.Element> items = content.getElementsByClassName("views-row");
+
+      items.forEach((item) {
+        String imgUrl = item
+            .getElementsByClassName('views-field-tid')
+            .first
+            .querySelector('a')
+            .querySelector('img')
+            .attributes['src'];
+
+        dom.Element field =
+            item.getElementsByClassName('views-field-phpcode').first;
+
+        String name = field
+            .getElementsByClassName('xqallarticletilelinkspan')
+            .first
+            .querySelector('a')
+            .text;
+
+        String desc = field
+            .getElementsByClassName('wridesccon')
+            .first
+            .getElementsByClassName('xqagepawirdesc')
+            .first
+            .text;
+
+        String author = '';
+        dom.Element a = field.querySelectorAll('a')[1];
+        if (a != null) {
+          author = field.querySelectorAll('a')[1].text;
+        }
+
+        String id = field
+            .querySelector('a')
+            .attributes['href']
+            .replaceAll('/article/', '');
+
+        data.add(JuzimiBook(
+            name: '$name',
+            image: 'http:$imgUrl',
+            desc: desc,
+            author: author,
+            id: id));
+      });
+    });
+
+    LogUtil.v('${data.toString()}');
+
+    return data;
   }
 }
