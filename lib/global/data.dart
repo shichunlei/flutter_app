@@ -14,7 +14,6 @@ import 'package:flutter_app/page/device_info_page.dart';
 import 'package:flutter_app/page/flipper_widget.dart';
 import 'package:flutter_app/page/loading_json.dart';
 import 'package:flutter_app/page/random_words.dart';
-import 'package:flutter_app/page/swiper_page.dart';
 import 'package:flutter_app/page/swiper_sample.dart';
 import 'package:flutter_app/page/tiktok_home_page.dart';
 import 'package:flutter_app/page/drag_like_page.dart';
@@ -294,7 +293,6 @@ class ExpandStateBean {
           SubExpandBean('RoundedLetter', RoundedLetterWidget()),
           SubExpandBean('Flipper', FlipperWidget()),
           SubExpandBean('ContactPicker', ContactPickerWidget()),
-          SubExpandBean('Swiper', SwiperPage()),
           SubExpandBean('StaggeredView', StaggeredViewPage()),
           SubExpandBean('评分控件', StarRatingWidget()),
           SubExpandBean('Clippy', ClippyWidget()),

@@ -98,21 +98,17 @@ class _DetailsPageState extends State<DetailsPage>
 
   Widget _buildBodyView() {
     return Expanded(
-      child: Stack(
-        children: <Widget>[
-          CustomScrollView(controller: scrollController, slivers: <Widget>[
-            /// 头部banner
-            _buildSliverAppBar(goods.goodInfo.pics),
+      child: CustomScrollView(controller: scrollController, slivers: <Widget>[
+        /// 头部banner
+        _buildSliverAppBar(goods.goodInfo.pics),
 
-            /// 简介
-            _buildInfoView(goods.goodInfo),
+        /// 简介
+        _buildInfoView(goods.goodInfo),
 
-            _buildTabBar(),
+        _buildTabBar(),
 
-            _buildDetails()
-          ])
-        ],
-      ),
+        _buildDetails()
+      ]),
     );
   }
 
@@ -181,30 +177,17 @@ class _DetailsPageState extends State<DetailsPage>
         ],
         flexibleSpace: FlexibleSpaceBar(
             background: Swiper(
+                pagination: SwiperPagination(
+                    builder: SwiperPagination.fraction,
+                    alignment: Alignment.bottomRight),
                 autoplay: pics.length > 1,
                 itemCount: pics.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Stack(
-                    alignment: Alignment.bottomRight,
-                    children: <Widget>[
-                      Hero(
-                          tag: widget.id,
-                          child: ImageLoadView('${pics[index].toString()}',
-                              fit: BoxFit.fill,
-                              height: headerHeight,
-                              width: Utils.width)),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Color(0x2a000000),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(40))),
-                        child: Text(' ${index + 1} / ${pics.length} '),
-                        margin: EdgeInsets.all(10.0),
-                        padding: EdgeInsets.all(8.0),
-                      )
-                    ],
-                  );
-                })));
+                itemBuilder: (BuildContext context, int index) => Hero(
+                    tag: widget.id,
+                    child: ImageLoadView('${pics[index].toString()}',
+                        fit: BoxFit.fill,
+                        height: headerHeight,
+                        width: Utils.width)))));
   }
 
   Widget _buildInfoView(Goods goodInfo) {
