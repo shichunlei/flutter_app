@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/article/one_article_page.dart';
 import 'package:flutter_app/baixing_life/index.dart';
 import 'package:flutter_app/bars_demo/fancy_bottom_navigation.dart';
 import 'package:flutter_app/bars_demo/heart_beat_bottombar_widget.dart';
@@ -11,24 +12,24 @@ import 'package:flutter_app/page/city_picker_page.dart';
 import 'package:flutter_app/page/clippy_widget.dart';
 import 'package:flutter_app/page/device_info_page.dart';
 import 'package:flutter_app/page/flipper_widget.dart';
-import 'package:flutter_app/article/one_article_page.dart';
 import 'package:flutter_app/page/loading_json.dart';
 import 'package:flutter_app/page/random_words.dart';
 import 'package:flutter_app/page/swiper_page.dart';
-import 'package:flutter_app/bars_demo/bottom_appbar.dart';
-import 'package:flutter_app/bars_demo/bubble_bottom_bar.dart';
+import 'package:flutter_app/page/swiper_sample.dart';
 import 'package:flutter_app/page/tiktok_home_page.dart';
 import 'package:flutter_app/page/drag_like_page.dart';
 import 'package:flutter_app/page/like_button_page.dart';
+import 'package:flutter_app/page/time_line.dart';
 import 'package:flutter_app/question/pages/quiz_page.dart';
 import 'package:flutter_app/bars_demo/bottom_navigation_bar.dart';
 import 'package:flutter_app/bars_demo/bottom_navigation_widget.dart';
 import 'package:flutter_app/bars_demo/navigation_keep_alive.dart';
 import 'package:flutter_app/bars_demo/tabbar_home_page.dart';
-import 'package:flutter_app/page/time_line.dart';
 import 'package:flutter_app/widget/appbar_widget.dart';
 import 'package:flutter_app/widget/bottom_sheet.dart';
 import 'package:flutter_app/widget/button_widget.dart';
+import 'package:flutter_app/bars_demo/bottom_appbar.dart';
+import 'package:flutter_app/bars_demo/bubble_bottom_bar.dart';
 import 'package:flutter_app/widget/check_switch_widget.dart';
 import 'package:flutter_app/widget/chip_widget.dart';
 import 'package:flutter_app/widget/contact_picker_widget.dart';
@@ -47,9 +48,9 @@ import 'package:flutter_app/widget/staggered_view_page.dart';
 import 'package:flutter_app/widget/star_rating_widget.dart';
 import 'package:flutter_app/widget/stepper_widget.dart';
 import 'package:flutter_app/widget/text_widget.dart';
+import 'package:flutter_app/widget/textfield_widget.dart';
 
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:flutter_app/widget/textfield_widget.dart';
 
 class Girl {
   final String description;
@@ -234,76 +235,99 @@ class ExpandStateBean {
   var isOpen;
   String title;
   int index;
-  List<SubExpandBean> subExpand;
+  IconData leading;
+  List<SubExpandBean> children;
 
-  ExpandStateBean(this.isOpen, this.title, this.index, this.subExpand);
+  ExpandStateBean(
+      {this.isOpen, this.title, this.index, this.children, this.leading});
 
   static List<ExpandStateBean> expandStateList = [
-    ExpandStateBean(false, 'Widgets', 0, [
-      SubExpandBean('AppBar', AppBarWidget()),
-      SubExpandBean('Text', TextWidget()),
-      SubExpandBean('Button', ButtonWidget()),
-      SubExpandBean('Image', ImageWidget()),
-      SubExpandBean('Icon', IconWidget()),
-      SubExpandBean('TextField', TextFieldWidget()),
-      SubExpandBean('Dialog', DialogWidget()),
-      SubExpandBean('BottomSheet', BottomSheetWidget()),
-      SubExpandBean('Stepper', StepperWidget()),
-      SubExpandBean('Slider', SliderWidget()),
-      SubExpandBean('Sliver', SliverWidget()),
-      SubExpandBean('Chip', ChipWidget()),
-      SubExpandBean('滑动删除', DismissibleWidget()),
-      SubExpandBean('毛玻璃', FrostingWidget()),
-      SubExpandBean('FlutterLogo', FlutterLogoWidget()),
-      SubExpandBean('CheckSwitch', CheckSwitchWidget()),
-    ]),
-    ExpandStateBean(false, 'Bars Widgets', 1, [
-      SubExpandBean('TabBar', TabBarHomePage()),
-      SubExpandBean('BottomNavigationBar', BottomNavigationBarHomePage()),
-      SubExpandBean('BottomNavigation', BottomNavigationWidget()),
-      SubExpandBean('BubbleBottomBar', BubbleBottomBarPage()),
-      SubExpandBean('NavigationKeepAlive', NavigationKeepAlive()),
-      SubExpandBean('不规则底部导航栏', BottomAppbar()),
-      SubExpandBean('HeartBeatBottomBar', HeartBeatBottomBarWidget()),
-      SubExpandBean('FancyBottomNavigationBar', FancyBottomNavigationBar()),
-    ]),
-    ExpandStateBean(false, 'Custom Widgets', 2, [
-      SubExpandBean('DragLike', DragLikePage()),
-      SubExpandBean('LikeButton', LikeButtonPage()),
-      SubExpandBean('时间流', TimeLinePage()),
-      SubExpandBean('LoadImage', LoadImageWidget()),
-      SubExpandBean('RoundedLetter', RoundedLetterWidget()),
-      SubExpandBean('Flipper', FlipperWidget()),
-      SubExpandBean('ContactPicker', ContactPickerWidget()),
-      SubExpandBean('Swiper', SwiperPage()),
-      SubExpandBean('StaggeredView', StaggeredViewPage()),
-      SubExpandBean('评分控件', StarRatingWidget()),
-      SubExpandBean('Clippy', ClippyWidget()),
-      SubExpandBean('城市选择控件', CityPickerPage()),
-      SubExpandBean('iOS风格城市选择控件', IosCityPickersPage()),
-      SubExpandBean('fullpage风格城市选择控件', FullpageCityPickersPage()),
-    ]),
-    ExpandStateBean(false, '功能', 3, [
-      SubExpandBean('Question', QuizPage()),
-      SubExpandBean('豆瓣电影', MovieHomePage()),
-      SubExpandBean('百姓生活+', IndexPage()),
-      SubExpandBean('我是个句子迷', SplashPage()),
-      SubExpandBean('随机单词', RandomWords()),
-      SubExpandBean('每日一文', OneArticlePage()),
-      SubExpandBean('设备信息', DeviceInfoPage()),
-      SubExpandBean('二维码', QrImageWidget()),
-      SubExpandBean('图表', ChartsWidget()),
-      SubExpandBean('Read Assets Json File', LoadingJsonPage()),
-      SubExpandBean('仿抖音首页动画', TikTokPage()),
-    ]),
+    ExpandStateBean(
+        leading: Icons.dashboard,
+        isOpen: false,
+        title: 'Widgets',
+        index: 0,
+        children: [
+          SubExpandBean('AppBar', AppBarWidget()),
+          SubExpandBean('Text', TextWidget()),
+          SubExpandBean('Button', ButtonWidget()),
+          SubExpandBean('Image', ImageWidget()),
+          SubExpandBean('Icon', IconWidget()),
+          SubExpandBean('TextField', TextFieldWidget()),
+          SubExpandBean('Dialog', DialogWidget()),
+          SubExpandBean('BottomSheet', BottomSheetWidget()),
+          SubExpandBean('Stepper', StepperWidget()),
+          SubExpandBean('Slider', SliderWidget()),
+          SubExpandBean('Sliver', SliverWidget()),
+          SubExpandBean('Chip', ChipWidget()),
+          SubExpandBean('滑动删除', DismissibleWidget()),
+          SubExpandBean('毛玻璃', FrostingWidget()),
+          SubExpandBean('FlutterLogo', FlutterLogoWidget()),
+          SubExpandBean('CheckSwitch', CheckSwitchWidget()),
+        ]),
+    ExpandStateBean(
+        leading: Icons.dashboard,
+        isOpen: false,
+        title: 'Bars Widgets',
+        index: 1,
+        children: [
+          SubExpandBean('TabBar', TabBarHomePage()),
+          SubExpandBean('BottomNavigationBar', BottomNavigationBarHomePage()),
+          SubExpandBean('BottomNavigation', BottomNavigationWidget()),
+          SubExpandBean('BubbleBottomBar', BubbleBottomBarPage()),
+          SubExpandBean('NavigationKeepAlive', NavigationKeepAlive()),
+          SubExpandBean('不规则底部导航栏', BottomAppbar()),
+          SubExpandBean('HeartBeatBottomBar', HeartBeatBottomBarWidget()),
+          SubExpandBean('FancyBottomNavigationBar', FancyBottomNavigationBar()),
+        ]),
+    ExpandStateBean(
+        leading: Icons.dashboard,
+        isOpen: false,
+        title: 'Custom Widgets',
+        index: 2,
+        children: [
+          SubExpandBean('Swiper', SwiperSample()),
+          SubExpandBean('DragLike', DragLikePage()),
+          SubExpandBean('LikeButton', LikeButtonPage()),
+          SubExpandBean('时间流', TimeLinePage()),
+          SubExpandBean('LoadImage', LoadImageWidget()),
+          SubExpandBean('RoundedLetter', RoundedLetterWidget()),
+          SubExpandBean('Flipper', FlipperWidget()),
+          SubExpandBean('ContactPicker', ContactPickerWidget()),
+          SubExpandBean('Swiper', SwiperPage()),
+          SubExpandBean('StaggeredView', StaggeredViewPage()),
+          SubExpandBean('评分控件', StarRatingWidget()),
+          SubExpandBean('Clippy', ClippyWidget()),
+          SubExpandBean('城市选择控件', CityPickerPage()),
+          SubExpandBean('iOS风格城市选择控件', IosCityPickersPage()),
+          SubExpandBean('fullpage风格城市选择控件', FullpageCityPickersPage()),
+          SubExpandBean('设备信息', DeviceInfoPage()),
+          SubExpandBean('二维码', QrImageWidget()),
+          SubExpandBean('图表', ChartsWidget()),
+          SubExpandBean('Read Assets Json File', LoadingJsonPage()),
+        ]),
+    ExpandStateBean(
+        leading: Icons.dashboard,
+        isOpen: false,
+        title: '功能',
+        index: 3,
+        children: [
+          SubExpandBean('Flutter 第一个Demo', RandomWords()),
+          SubExpandBean('Question', QuizPage()),
+          SubExpandBean('豆瓣电影', MovieHomePage()),
+          SubExpandBean('百姓生活+', IndexPage()),
+          SubExpandBean('我是个句子迷', SplashPage()),
+          SubExpandBean('每日一文', OneArticlePage()),
+          SubExpandBean('仿抖音首页动画', TikTokPage()),
+        ]),
   ];
 }
 
 class SubExpandBean {
   String title;
-  Widget widget;
+  Widget page;
 
-  SubExpandBean(this.title, this.widget);
+  SubExpandBean(this.title, this.page);
 }
 
 List<String> banner_images = [

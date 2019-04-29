@@ -6,12 +6,13 @@ import 'package:flutter_app/utils/toast.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
+import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:async';
 
 class HomePage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => HomeStatePage();
+  createState() => HomeStatePage();
 }
 
 class HomeStatePage extends State<HomePage> {
@@ -19,21 +20,6 @@ class HomeStatePage extends State<HomePage> {
 
   /// 上次点击时间
   DateTime _lastPressedAt;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void _setCurrentIndex(int index, bool isExpand) {
-    setState(() {
-      ExpandStateBean.expandStateList.forEach((item) {
-        if (item.index == index) {
-          item.isOpen = !isExpand;
-        }
-      });
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +30,7 @@ class HomeStatePage extends State<HomePage> {
     return WillPopScope(
       onWillPop: _onBackPressed,
       child: Scaffold(
+        backgroundColor: Colors.grey[200],
         key: _scaffoldKey,
         appBar: AppBar(
           // Title
@@ -62,89 +49,59 @@ class HomeStatePage extends State<HomePage> {
                 tooltip: "Search"),
             IconButton(
                 icon: Icon(Icons.tune, semanticLabel: "tune"),
-                onPressed: () {},
+                onPressed: () => getTestData(),
                 tooltip: "Tune")
           ],
         ),
         drawer: HomeDrawable(),
-        body: ListView(
-          children: <Widget>[
-            Container(
-              height: 230.0,
+        body: ListView(physics: BouncingScrollPhysics(), children: <Widget>[
+          Container(
+              height: Utils.width * 72 / 108,
               child: Swiper(
-                /// 初始的时候下标位置
-                index: 0,
-
-                /// 无限轮播模式开关
-                loop: true,
-
-                ///
-                itemBuilder: (context, index) =>
-                    ImageLoadView(banner_images[index]),
-
-                ///
-                itemCount: banner_images.length,
-
-                /// 设置 new SwiperPagination() 展示默认分页指示器
-                pagination: SwiperPagination(),
-
-                /// 设置 new SwiperControl() 展示默认分页按钮
-                // control: SwiperControl(),
-
-                /// 自动播放开关.
-                autoplay: true,
-
-                /// 动画时间，单位是毫秒
-                duration: 300,
-
-                /// 当用户点击某个轮播的时候调用
-                onTap: (index) {
-                  LogUtil.v("你点击了第$index个");
-                },
-
-                /// 滚动方向，设置为Axis.vertical如果需要垂直滚动
-                scrollDirection: Axis.horizontal,
-              ),
-            ),
-            ExpansionPanelList(
+                  itemBuilder: (context, index) =>
+                      ImageLoadView(banner_images[index]),
+                  itemCount: banner_images.length,
+                  pagination: SwiperPagination(
+                      builder: SwiperPagination.fraction,
+                      alignment: Alignment.bottomRight),
+                  autoplay: true)),
+          ExpansionPanelList(
               children: ExpandStateBean.expandStateList
                   .map((expand) => ExpansionPanel(
-                        headerBuilder: (context, isExpanded) {
-                          return ListTile(
-                            title: Text(expand.title),
-                          );
-                        },
-                        body: ListBody(
-                          /// 排列的主轴方向
-                          mainAxis: Axis.vertical,
-
-                          /// 是否反向
-                          reverse: false,
-                          children: _buildListBody(expand),
-                        ),
-                        isExpanded: expand.isOpen,
-                      ))
+                      headerBuilder: (context, isExpanded) => ListTile(
+                          leading:
+                              Icon(expand.leading, color: Colors.redAccent),
+                          title: Text('${expand.title}')),
+                      body: ListBody(children: _buildListBody(expand)),
+                      isExpanded: expand.isOpen))
                   .toList(),
               expansionCallback: (index, isExpand) =>
-                  _setCurrentIndex(index, isExpand),
-            )
-          ],
-        ),
+                  _setCurrentIndex(index, isExpand))
+        ]),
       ),
     );
   }
 
+  void _setCurrentIndex(int index, bool isExpand) {
+    setState(() {
+      ExpandStateBean.expandStateList.forEach((item) {
+        if (item.index == index) {
+          item.isOpen = !isExpand;
+        }
+      });
+    });
+  }
+
   List<Widget> _buildListBody(ExpandStateBean bean) {
     List<Widget> widgets = [];
-    for (int i = 0; i < bean.subExpand.length; i++) {
+    for (int i = 0; i < bean.children.length; i++) {
       widgets
         ..add(ListTile(
-          title: Text(bean.subExpand[i].title),
-          onTap: () {
-            pushNewPage(context, bean.subExpand[i].widget);
-          },
-        ))
-        ..add(Divider());
+            contentPadding: EdgeInsets.only(left: 30, right: 20),
+            title: Text(bean.children[i].title),
+            onTap: () => pushNewPage(context, bean.children[i].page),
+            trailing: Icon(Icons.keyboard_arrow_right)))
+        ..add(Container(height: 0.5, color: Colors.grey[200]));
     }
     return widgets;
   }
@@ -164,4 +121,6 @@ class HomeStatePage extends State<HomePage> {
     }
     return true;
   }
+
+  void getTestData() async {}
 }

@@ -7,7 +7,7 @@ class JuzimiCelebrity {
 
   @override
   String toString() {
-    return 'JuzimiCelebrity{name: $name, image: $image, desc: $desc}';
+    return '{name: $name, image: $image, desc: $desc}';
   }
 }
 
@@ -22,21 +22,46 @@ class JuzimiBook {
 
   @override
   String toString() {
-    return 'JuzimiBook{id: $id, name: $name, image: $image, desc: $desc, author: $author}';
+    return '{"id": "$id", "name": "$name", "image": "$image", "desc": "$desc", "author": "$author"}';
   }
 }
 
 class MingjuClassify {
-  String title;
-  String tag;
+  /**
+   * title : "原创句子"
+   * classify : [{"title":"本周热门原创","tag":"original/week","id":1},{"title":"最新原创句子","tag":"original/ju","id":2},{"title":"推荐原创句子","tag":"original/recommend","id":3}]
+   */
 
+  String title;
   List<MingjuClassify> classify;
 
-  MingjuClassify({this.title, this.tag, this.classify});
+  String tag;
+  int id;
+
+  MingjuClassify({this.title, this.classify, this.tag, this.id});
 
   @override
   String toString() {
-    return '{title: $title, tag: $tag, classify: $classify}';
+    return '{"title": "$title", "classify": $classify, "tag": "$tag", "id": $id}';
+  }
+
+  static MingjuClassify fromMap(Map<String, dynamic> map) {
+    MingjuClassify mingjuClassify = new MingjuClassify();
+    mingjuClassify.title = map['title'];
+    mingjuClassify.classify = map['classify'] == null
+        ? []
+        : MingjuClassify.fromMapList(map['classify']);
+    mingjuClassify.tag = map['tag'];
+    mingjuClassify.id = map['id'];
+    return mingjuClassify;
+  }
+
+  static List<MingjuClassify> fromMapList(dynamic mapList) {
+    List<MingjuClassify> list = new List(mapList.length);
+    for (int i = 0; i < mapList.length; i++) {
+      list[i] = fromMap(mapList[i]);
+    }
+    return list;
   }
 }
 
@@ -53,6 +78,6 @@ class MeiTuMeiJu {
 
   @override
   String toString() {
-    return 'MeiTuMeiJu{image: $image, desc: $desc, author: $author, id: $id, like: $like}';
+    return '{"image": "$image", "desc": "$desc", "author": "$author", "id": "$id", "source": "$source", "like": $like}';
   }
 }

@@ -114,7 +114,7 @@ class _JuzimiHomePageState extends State<JuzimiHomePage> {
               pushNewPage(context, AlbumPage(type.classify));
             }
           },
-          trailing: Icon(Icons.arrow_forward_ios)));
+          trailing: Icon(Icons.keyboard_arrow_right)));
     }).toList();
 
     return Drawer(elevation: 10.0, child: ListView(children: children));
