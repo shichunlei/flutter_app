@@ -42,6 +42,8 @@ class ItemList extends StatelessWidget {
           Text(
             movie.title,
             textAlign: TextAlign.left,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24.0,

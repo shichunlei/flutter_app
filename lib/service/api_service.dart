@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_app/bean/article.dart';
@@ -927,6 +928,21 @@ class ApiService {
       });
     });
 
+    /// 精选句集
+    List<MingjuClassify> _subData = [];
+    _subData
+      ..add(MingjuClassify(title: '精选句集', tag: 'albums'))
+      ..add(MingjuClassify(title: '最新句集', tag: 'newalbums'));
+    data.add(MingjuClassify(title: '精选句集', classify: _subData));
+
+    /// 原创
+    List<MingjuClassify> subData = [];
+    subData
+      ..add(MingjuClassify(title: '本周热门原创', tag: 'original/week'))
+      ..add(MingjuClassify(title: '最新原创句子', tag: 'original/ju'))
+      ..add(MingjuClassify(title: '推荐原创句子', tag: 'original/recommend'));
+    data.add(MingjuClassify(title: '原创句子', classify: subData));
+
     LogUtil.v('${data.toString()}');
 
     return data;
@@ -1036,6 +1052,49 @@ class ApiService {
             author: author,
             id: id));
       });
+    });
+
+    LogUtil.v('${data.toString()}');
+
+    return data;
+  }
+
+  /// 获得偶遇佳句
+  static Future<MeiTuMeiJu> getRandom() async {
+    int id = Random().nextInt(1958779);
+    LogUtil.v(ApiUrl.JUZIMI_URL + 'ju/$id');
+    MeiTuMeiJu data;
+    await http.get(ApiUrl.JUZIMI_URL + 'ju/$id').then((http.Response response) {
+      var document = parse(response.body.toString());
+
+      String desc = document.getElementById('xqtitle').querySelector('a').text;
+
+      String author = '';
+      String source = '';
+      dom.Element senconwriart = document
+          .getElementById('sencon')
+          .getElementsByClassName('senconwriart')
+          .first;
+      if (senconwriart != null) {
+        dom.Element authorElement = senconwriart
+            .getElementsByClassName(
+                'field field-type-content-taxonomy field-field-oriwriter')
+            .first;
+        if (authorElement != null) {
+          author = authorElement.querySelector('a').text;
+        }
+
+        dom.Element sourceElement = senconwriart
+            .getElementsByClassName(
+                'field field-type-content-taxonomy field-field-oriarticle')
+            .first;
+
+        if (sourceElement != null) {
+          source = sourceElement.querySelector('a').text;
+        }
+      }
+
+      data = MeiTuMeiJu(author: author, desc: desc, source: source);
     });
 
     LogUtil.v('${data.toString()}');

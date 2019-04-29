@@ -46,8 +46,10 @@ class MeiTuMeiJu {
   String author;
   String id;
   int like;
+  String source;
 
-  MeiTuMeiJu({this.image, this.desc, this.author, this.id, this.like});
+  MeiTuMeiJu(
+      {this.image, this.desc, this.author, this.id, this.like, this.source});
 
   @override
   String toString() {

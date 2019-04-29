@@ -52,7 +52,7 @@ class _CelebrityPageState extends State<CelebrityPage>
           controller: controller,
           children: titleTabs.map((page) {
             int index = titleTabs.indexOf(page);
-            CelebrityListPage(category: widget.classify[index].tag);
+            return CelebrityListPage(category: widget.classify[index].tag);
           }).toList()),
     );
   }
