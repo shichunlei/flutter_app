@@ -11,22 +11,23 @@ class HomeDrawableHeader extends StatelessWidget {
   final String avatar;
 
   HomeDrawableHeader(
-      {Key key, this.isLogin, this.avatar, this.email, this.userName})
-      : super(key: key);
+      {Key key, this.isLogin = false, this.avatar, this.email, this.userName})
+      : assert(isLogin != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return UserAccountsDrawerHeader(
       /// 姓名
-      accountName: Text(userName),
+      accountName: Text('$userName'),
 
       /// 邮箱
-      accountEmail: Text(email),
+      accountEmail: Text('$email'),
 
       /// 用户头像
       currentAccountPicture: InkWell(
         child: CircleAvatar(
-          backgroundImage: NetworkImage(avatar),
+          backgroundImage: NetworkImage('$avatar'),
         ),
         onTap: () {
           if (isLogin) {
