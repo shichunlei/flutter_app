@@ -19,6 +19,7 @@ import 'package:flutter_app/page/tiktok_home_page.dart';
 import 'package:flutter_app/page/drag_like_page.dart';
 import 'package:flutter_app/page/like_button_page.dart';
 import 'package:flutter_app/page/time_line.dart';
+import 'package:flutter_app/page/wechat_friends_circle.dart';
 import 'package:flutter_app/question/pages/quiz_page.dart';
 import 'package:flutter_app/bars_demo/bottom_navigation_bar.dart';
 import 'package:flutter_app/bars_demo/bottom_navigation_widget.dart';
@@ -59,17 +60,17 @@ class Girl {
 
   static final List<Girl> girls = [
     Girl('Sliding to the left means dislike',
-        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554291011581&di=1de4393b38b0adc55ea2852e7b58ebb6&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F32fa828ba61ea8d34fd7b7109d0a304e251f5829.jpg'),
+        'https://img.gsdlcn.com/uploads/allimg/190429/1-1Z42Z11017.jpg'),
     Girl('slipping to the right means expressing love',
-        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554291011581&di=cfd273de58877922b3b76838837b20c9&imgtype=0&src=http%3A%2F%2Fpic9.nipic.com%2F20100816%2F5186946_170208067297_2.jpg'),
+        'https://img.gsdlcn.com/uploads/190426/1-1Z426220112340.jpg'),
     Girl('Hope you like',
-        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554291011580&di=32ef752144ae5db9d3a4bd98ff167433&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F9d82d158ccbf6c8155a5d2cbb63eb13533fa4007.jpg'),
+        'https://img.gsdlcn.com/uploads/190423/1-1Z42303163Ma.jpg'),
     Girl('Hope you like',
-        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554291011578&di=493e8885d95a3b56349bb6bb0d589c5b&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F91529822720e0cf365c8ffdc0046f21fbe09aade.jpg'),
+        'https://img.gsdlcn.com/uploads/190428/1-1Z42P25206293.jpg'),
     Girl('Hope you like',
-        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554291011578&di=67b30231957ba41859b389869ca266cd&imgtype=0&src=http%3A%2F%2Fbbswater-fd.zol-img.com.cn%2Ft_s1200x5000%2Fg5%2FM00%2F0E%2F08%2FChMkJlrdXhCIHezjAAvWP5q8sbMAAn0iAA90kYAC9ZX715.jpg'),
+        'https://img.gsdlcn.com/uploads/190426/1-1Z4261KF4335.jpg'),
     Girl('Hope you like',
-        'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2887193187,3393989183&fm=26&gp=0.jpg')
+        'https://www.7160.com/templets/new7160/hotpic/2/s.jpg')
   ];
 }
 
@@ -316,6 +317,7 @@ class ExpandStateBean {
           SubExpandBean('百姓生活+', IndexPage()),
           SubExpandBean('我是个句子迷', SplashPage()),
           SubExpandBean('每日一文', OneArticlePage()),
+          SubExpandBean('仿朋友圈', WeChatFriendsCircle()),
           SubExpandBean('仿抖音首页动画', TikTokPage()),
         ]),
   ];
