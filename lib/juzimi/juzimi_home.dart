@@ -129,11 +129,10 @@ class _JuzimiHomePageState extends State<JuzimiHomePage> {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  ClipRRect(
+                  ImageLoadView(meitumeiju[index].image,
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10.0),
-                          topRight: Radius.circular(10.0)),
-                      child: ImageLoadView(meitumeiju[index].image)),
+                          topRight: Radius.circular(10.0))),
                   Container(
                       padding: const EdgeInsets.all(5.0),
                       child: Text('${meitumeiju[index].desc}',

@@ -13,12 +13,8 @@ class ItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 影片图片
-    var movieImage = ClipRRect(
-      /// 圆角
-      borderRadius: BorderRadius.circular(4.0),
-      child: ImageLoadView(movie.images.medium,
-          height: 150.0, width: 100.0),
-    );
+    var movieImage = ImageLoadView(movie.images.medium,
+        borderRadius: BorderRadius.circular(4.0), height: 150.0, width: 100.0);
 
     var casts = '';
     movie.casts.map((cast) {

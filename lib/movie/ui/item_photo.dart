@@ -16,17 +16,13 @@ class ItemPhoto extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            ClipRRect(
-              /// 圆角
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(5.0),
-                topRight: Radius.circular(5.0),
-              ),
-              child: Hero(
+            Hero(
                 tag: photo.id,
-                child: ImageLoadView(photo.cover, fit: BoxFit.cover),
-              ),
-            ),
+                child: ImageLoadView(photo.cover,
+                    fit: BoxFit.cover,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(5.0),
+                        topRight: Radius.circular(5.0)))),
             Row(
               children: <Widget>[
                 Padding(

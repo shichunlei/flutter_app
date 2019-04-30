@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/utils.dart';
 
 class ItemCover extends StatelessWidget {
@@ -20,15 +21,12 @@ class ItemCover extends StatelessWidget {
     return GestureDetector(
       child: Container(
           child: Stack(children: <Widget>[
-            ClipRRect(
-              /// 圆角
+            ImageLoadView(
+              url,
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
               borderRadius: BorderRadius.circular(5.0),
-              child: Image.network(
-                url,
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: double.infinity,
-              ),
             ),
             Center(
                 child: Offstage(

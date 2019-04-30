@@ -225,24 +225,20 @@ class _MovieDetailState extends State<MovieDetail> {
                             return Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 3.0),
-                              child: GestureDetector(
-                                child: ClipRRect(
-                                  /// 圆角
-                                  borderRadius: BorderRadius.circular(6.0),
-                                  child: Hero(
-                                      tag: movie.photos[index].id,
-                                      child: ImageLoadView(
-                                          movie.photos[index].cover,
-                                          fit: BoxFit.cover,
-                                          height: width,
-                                          width: width,
-                                          placeholder: kTransparentImage)),
-                                ),
-                                onTap: () => pushNewPage(
-                                    context,
-                                    MoviePhotoPage('《${movie.title}》剧照',
-                                        photos: movie.photos, index: index)),
-                              ),
+                              child: Hero(
+                                  tag: movie.photos[index].id,
+                                  child: ImageLoadView(
+                                      movie.photos[index].cover,
+                                      fit: BoxFit.cover,
+                                      height: width,
+                                      width: width,
+                                      borderRadius: BorderRadius.circular(6.0),
+                                      placeholder: kTransparentImage,
+                                      onPressed: () => pushNewPage(
+                                          context,
+                                          MoviePhotoPage('《${movie.title}》剧照',
+                                              photos: movie.photos,
+                                              index: index)))),
                             );
                           }))
                 ])),

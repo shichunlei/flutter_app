@@ -160,22 +160,19 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                          child: GestureDetector(
-                              child: ClipRRect(
-
-                                  /// 圆角
+                          child: Hero(
+                              tag: celebrity.photos[index].id,
+                              child: ImageLoadView(
+                                  celebrity.photos[index].cover,
                                   borderRadius: BorderRadius.circular(6.0),
-                                  child: Hero(
-                                      tag: celebrity.photos[index].id,
-                                      child: ImageLoadView(
-                                          celebrity.photos[index].cover,
-                                          fit: BoxFit.cover,
-                                          height: height,
-                                          width: height))),
-                              onTap: () => pushNewPage(
-                                  context,
-                                  MoviePhotoPage(widget.name,
-                                      photos: celebrity.photos, index: index))),
+                                  fit: BoxFit.cover,
+                                  height: height,
+                                  width: height,
+                                  onPressed: () => pushNewPage(
+                                      context,
+                                      MoviePhotoPage(widget.name,
+                                          photos: celebrity.photos,
+                                          index: index)))),
                         );
                       },
                     ),

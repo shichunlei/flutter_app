@@ -47,10 +47,10 @@ class SwiperSample extends StatelessWidget {
               color: Colors.grey.shade800,
               padding: EdgeInsets.all(10.0),
               child: Swiper(
-                  itemBuilder: (BuildContext context, int index) => ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: ImageLoadView(banner_images[index],
-                          fit: BoxFit.cover)),
+                  itemBuilder: (BuildContext context, int index) =>
+                      ImageLoadView(banner_images[index],
+                          borderRadius: BorderRadius.circular(10.0),
+                          fit: BoxFit.cover),
                   itemCount: banner_images.length,
                   viewportFraction: 0.8,
                   scale: 0.9,
@@ -64,13 +64,13 @@ class SwiperSample extends StatelessWidget {
                   itemWidth: 300,
                   itemCount: Girl.girls.length,
                   layout: SwiperLayout.STACK,
-                  itemBuilder: (BuildContext context, int index) => ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: ImageLoadView(Girl.girls[index].image,
-                          fit: BoxFit.cover)))),
+                  itemBuilder: (BuildContext context, int index) =>
+                      ImageLoadView(Girl.girls[index].image,
+                          borderRadius: BorderRadius.circular(10.0),
+                          fit: BoxFit.cover))),
           SizedBox(height: 20.0),
           Container(
-            height: 420,
+              height: 420,
               color: Colors.grey.shade500,
               padding: EdgeInsets.all(10.0),
               child: Swiper(
@@ -78,10 +78,10 @@ class SwiperSample extends StatelessWidget {
                   itemHeight: 400,
                   itemCount: Girl.girls.length,
                   layout: SwiperLayout.TINDER,
-                  itemBuilder: (BuildContext context, int index) => ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: ImageLoadView(Girl.girls[index].image,
-                          fit: BoxFit.cover)))),
+                  itemBuilder: (BuildContext context, int index) =>
+                      ImageLoadView(Girl.girls[index].image,
+                          borderRadius: BorderRadius.circular(10.0),
+                          fit: BoxFit.cover))),
           SizedBox(height: 20.0),
           Container(
             height: 340,
