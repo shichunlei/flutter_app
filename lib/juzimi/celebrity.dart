@@ -7,57 +7,6 @@ import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-class CelebrityPage extends StatefulWidget {
-  final List<MingjuClassify> classify;
-
-  CelebrityPage(this.classify, {Key key}) : super(key: key);
-
-  @override
-  createState() => _CelebrityPageState();
-}
-
-class _CelebrityPageState extends State<CelebrityPage>
-    with SingleTickerProviderStateMixin {
-  final List<Tab> titleTabs = [];
-
-  TabController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.classify.forEach((type) {
-      titleTabs.add(Tab(text: type.title));
-    });
-
-    controller = TabController(
-        length: widget.classify.length, vsync: this, initialIndex: 0);
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-          centerTitle: true,
-          title: Text('名人'),
-          bottom: TabBar(
-              tabs: titleTabs, controller: controller, isScrollable: true)),
-      body: TabBarView(
-          controller: controller,
-          children: titleTabs.map((page) {
-            int index = titleTabs.indexOf(page);
-            return CelebrityListPage(category: widget.classify[index].tag);
-          }).toList()),
-    );
-  }
-}
-
 class CelebrityListPage extends StatefulWidget {
   final String category;
 
@@ -106,10 +55,10 @@ class _CelebrityListPageState extends State<CelebrityListPage>
             child: GridView.builder(
                 itemCount: data.length,
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: Utils.width / 2,
+                    maxCrossAxisExtent: Utils.width / 4,
                     crossAxisSpacing: 1.0,
                     mainAxisSpacing: 1.0,
-                    childAspectRatio: 0.9),
+                    childAspectRatio: 0.8),
                 itemBuilder: (BuildContext context, int index) => Container(
                     alignment: Alignment.center,
                     color: Colors.white,
@@ -117,9 +66,12 @@ class _CelebrityListPageState extends State<CelebrityListPage>
                         child: Column(children: <Widget>[
                           Hero(
                               tag: data[index].image,
-                              child: ImageLoadView('${data[index].image}')),
+                              child: ImageLoadView(
+                                '${data[index].image}',
+                                width: Utils.width / 4,
+                              )),
                           Container(
-                              padding: EdgeInsets.symmetric(horizontal: 5.0),
+                              alignment: Alignment.center,
                               child: Text('${data[index].name}',
                                   style: TextStyle(color: Colors.pink),
                                   overflow: TextOverflow.ellipsis,
@@ -130,8 +82,11 @@ class _CelebrityListPageState extends State<CelebrityListPage>
   }
 
   void getCelebrityByCategory(String category, int page) async {
-    List<JuzimiCelebrity> list =
-        await ApiService.getCelebrityList(category, page);
+    JuzimiResult result = await ApiService.getCelebrityList(category, page);
+    if (result.celebrity.length < 20 || result.totalPage == page) {
+      isLoadComplete = true;
+    }
+    List<JuzimiCelebrity> list = result.celebrity;
     data.addAll(list);
     setState(() {});
   }

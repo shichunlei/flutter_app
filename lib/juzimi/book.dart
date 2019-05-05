@@ -7,59 +7,12 @@ import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-class BookPage extends StatefulWidget {
-  final List<MingjuClassify> classify;
-
-  BookPage(this.classify, {Key key}) : super(key: key);
-
-  @override
-  createState() => _BookPageState();
-}
-
-class _BookPageState extends State<BookPage>
-    with SingleTickerProviderStateMixin {
-  final List<Tab> titleTabs = [];
-
-  TabController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.classify.forEach((type) {
-      titleTabs.add(Tab(text: type.title));
-    });
-
-    controller = TabController(length: widget.classify.length, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          centerTitle: true,
-          title: Text('书籍'),
-          bottom: TabBar(
-              tabs: titleTabs, controller: controller, isScrollable: true)),
-      body: TabBarView(
-          children: titleTabs.map((page) {
-            int index = titleTabs.indexOf(page);
-            return BookListPage(category: widget.classify[index].tag);
-          }).toList(),
-          controller: controller),
-    );
-  }
-}
-
 class BookListPage extends StatefulWidget {
   final String category;
 
-  BookListPage({Key key, this.category}) : super(key: key);
+  BookListPage({Key key, @required this.category})
+      : assert(category != null),
+        super(key: key);
 
   @override
   _BookListPageState createState() => _BookListPageState();
@@ -151,7 +104,11 @@ class _BookListPageState extends State<BookListPage>
   }
 
   void getCelebrityByCategory(String category, int page) async {
-    List<JuzimiBook> list = await ApiService.getBookList(category, page);
+    JuzimiResult result = await ApiService.getBookList(category, page);
+    if (result.books.length < 20 || result.totalPage == page) {
+      isLoadComplete = true;
+    }
+    List<JuzimiBook> list = result.books;
     data.addAll(list);
     setState(() {});
   }

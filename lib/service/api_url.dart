@@ -54,18 +54,5 @@ class ApiUrl {
 
   static final String RANDOMUSER_URL = 'https://randomuser.me/api/';
 
-  static final String COIN_MARKET_CAP_BASE_URL =
-      'https://pro-api.coinmarketcap.com';
-
-  static final String CRYPTOCURRENCY_INFO = '/v1/cryptocurrency/info';
-  static final String CRYPTOCURRENCY_MAP = '/v1/cryptocurrency/map';
-  static final String CRYPTOCURRENCY_LATEST =
-      '/v1/cryptocurrency/listings/latest';
-  static final String CRYPTOCURRENCY_QUOTE_LATEST =
-      '/v1/cryptocurrency/quotes/latest';
-  static final String GLOBAL_QUOTE_LATEST = '/v1/global-metrics/quotes/latest';
-  static final String MARKET_PAIRS_LATEST =
-      '/v1/cryptocurrency/market-pairs/latest';
-
   static final String JUZIMI_URL = 'https://www.juzimi.com/';
 }

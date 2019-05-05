@@ -1,3 +1,20 @@
+class JuzimiResult {
+  int totalPage;
+  int currentPage;
+
+  List<JuzimiCelebrity> celebrity;
+  List<JuzimiBook> books;
+  List<MeiTuMeiJu> meijus;
+
+  JuzimiResult(this.totalPage, this.currentPage,
+      {this.celebrity, this.books, this.meijus});
+
+  @override
+  String toString() {
+    return '{totalPage: $totalPage, currentPage: $currentPage, celebrity: $celebrity, books: $books, meijus: $meijus}';
+  }
+}
+
 class JuzimiCelebrity {
   String name;
   String image;
@@ -66,18 +83,25 @@ class MingjuClassify {
 }
 
 class MeiTuMeiJu {
-  String image;
-  String desc;
-  String author;
-  String id;
-  int like;
-  String source;
+  String image; // 图片
+  String desc; // 内容
+  String author; // 作者
+  String id; // ID
+  String like; // 喜欢人数
+  String source; // 出处
+  String publisher; // 发布者
 
   MeiTuMeiJu(
-      {this.image, this.desc, this.author, this.id, this.like, this.source});
+      {this.image,
+      this.desc,
+      this.author,
+      this.id,
+      this.like,
+      this.source,
+      this.publisher});
 
   @override
   String toString() {
-    return '{"image": "$image", "desc": "$desc", "author": "$author", "id": "$id", "source": "$source", "like": $like}';
+    return '{"id": "$id", "image": "$image", "desc": "$desc", "author": "$author", "source": "$source", "like": "$like", "publisher": "$publisher"}';
   }
 }

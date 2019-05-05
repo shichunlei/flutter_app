@@ -1,0 +1,317 @@
+[
+    {
+        "title": "按名人朝代",
+        "classify": [
+            {
+                "title": "先秦",
+                "tag": "dynasty/先秦",
+                "id": 1
+            },
+            {
+                "title": "汉朝",
+                "tag": "dynasty/汉朝",
+                "id": 2
+            },
+            {
+                "title": "魏晋",
+                "tag": "dynasty/魏晋",
+                "id": 3
+            },
+            {
+                "title": "南北朝",
+                "tag": "dynasty/南北朝",
+                "id": 4
+            },
+            {
+                "title": "隋唐五代",
+                "tag": "dynasty/隋唐五代",
+                "id": 6
+            },
+            {
+                "title": "宋朝",
+                "tag": "dynasty/宋朝",
+                "id": 7
+            },
+            {
+                "title": "元朝",
+                "tag": "dynasty/元朝",
+                "id": 8
+            },
+            {
+                "title": "明朝",
+                "tag": "dynasty/明朝",
+                "id": 5
+            },
+            {
+                "title": "清朝",
+                "tag": "dynasty/清朝",
+                "id": 9
+            },
+            {
+                "title": "近现代",
+                "tag": "dynasty/近现代",
+                "id": 10
+            }
+        ]
+    },
+    {
+        "title": "按名人国家",
+        "classify": [
+            {
+                "title": "美国🇺🇸",
+                "tag": "country/美国",
+                "id": 1
+            },
+            {
+                "title": "英国🇬🇧",
+                "tag": "country/英国",
+                "id": 2
+            },
+            {
+                "title": "法国🇫🇷",
+                "tag": "country/法国",
+                "id": 3
+            },
+            {
+                "title": "德国🇩🇪",
+                "tag": "country/德国",
+                "id": 4
+            },
+            {
+                "title": "日本🇯🇵",
+                "tag": "country/日本",
+                "id": 5
+            },
+            {
+                "title": "俄国🇷🇺",
+                "tag": "country/俄国",
+                "id": 6
+            },
+            {
+                "title": "希腊🇬🇷",
+                "tag": "country/希腊",
+                "id": 7
+            },
+            {
+                "title": "罗马",
+                "tag": "country/罗马",
+                "id": 8
+            },
+            {
+                "title": "意大利🇮🇹",
+                "tag": "country/意大利",
+                "id": 9
+            },
+            {
+                "title": "奥地利🇦🇹",
+                "tag": "country/奥地利",
+                "id": 10
+            },
+            {
+                "title": "印度🇮🇳",
+                "tag": "country/印度",
+                "id": 11
+            }
+        ]
+    },
+    {
+        "title": "书籍",
+        "classify": [
+            {
+                "title": "书籍名句",
+                "tag": "books",
+                "id": 1
+            },
+            {
+                "title": "电影台词",
+                "tag": "allarticle/jingdiantaici",
+                "id": 2
+            },
+            {
+                "title": "散文",
+                "tag": "allarticle/sanwen",
+                "id": 3
+            },
+            {
+                "title": "动漫语录",
+                "tag": "allarticle/dongmantaici",
+                "id": 4
+            },
+            {
+                "title": "连续剧台词",
+                "tag": "lianxujutaici",
+                "id": 5
+            },
+            {
+                "title": "古文名句",
+                "tag": "allarticle/guwen",
+                "id": 6
+            },
+            {
+                "title": "小说摘抄",
+                "tag": "allarticle/zhaichao",
+                "id": 7
+            }
+        ]
+    },
+    {
+        "title": "按名言内容类型",
+        "classify": [
+            {
+                "title": "爱情",
+                "tag": "album",
+                "id": 3903448
+            },
+            {
+                "title": "读书",
+                "tag": "album",
+                "id": 3903547
+            },
+            {
+                "title": "励志",
+                "tag": "album",
+                "id": 3903593
+            },
+            {
+                "title": "时间",
+                "tag": "album",
+                "id": 3903628
+            },
+            {
+                "title": "友情",
+                "tag": "album",
+                "id": 3903667
+            },
+            {
+                "title": "诚信",
+                "tag": "album",
+                "id": 3903873
+            },
+            {
+                "title": "爱国",
+                "tag": "album",
+                "id": 3903915
+            },
+            {
+                "title": "激励",
+                "tag": "album",
+                "id": 3903936
+            },
+            {
+                "title": "勤奋",
+                "tag": "album",
+                "id": 3903991
+            },
+            {
+                "title": "奉献",
+                "tag": "album",
+                "id": 3903999
+            },
+            {
+                "title": "真理",
+                "tag": "album",
+                "id": 3904018
+            },
+            {
+                "title": "道德",
+                "tag": "album",
+                "id": 3904028
+            },
+            {
+                "title": "理想",
+                "tag": "album",
+                "id": 3904450
+            },
+            {
+                "title": "人生",
+                "tag": "album",
+                "id": 3904462
+            },
+            {
+                "title": "数学",
+                "tag": "album",
+                "id": 3904522
+            },
+            {
+                "title": "英语",
+                "tag": "album",
+                "id": 3904542
+            },
+            {
+                "title": "母爱",
+                "tag": "album",
+                "id": 3904568
+            },
+            {
+                "title": "劳动",
+                "tag": "album",
+                "id": 3904586
+            },
+            {
+                "title": "亲情",
+                "tag": "album",
+                "id": 3904592
+            },
+            {
+                "title": "创新",
+                "tag": "album",
+                "id": 3904600
+            },
+            {
+                "title": "团结",
+                "tag": "album",
+                "id": 3904605
+            },
+            {
+                "title": "童年",
+                "tag": "album",
+                "id": 3904607
+            },
+            {
+                "title": "感恩",
+                "tag": "album",
+                "id": 3904625
+            },
+            {
+                "title": "目标",
+                "tag": "album",
+                "id": 3904944
+            }
+        ]
+    },
+    {
+        "title": "精选句集",
+        "classify": [
+            {
+                "title": "精选句集",
+                "tag": "albums",
+                "id": 1
+            },
+            {
+                "title": "最新句集",
+                "tag": "newalbums",
+                "id": 2
+            }
+        ]
+    },
+    {
+        "title": "原创句子",
+        "classify": [
+            {
+                "title": "热门",
+                "tag": "original/week",
+                "id": 1
+            },
+            {
+                "title": "最新",
+                "tag": "original/ju",
+                "id": 2
+            },
+            {
+                "title": "推荐",
+                "tag": "original/recommend",
+                "id": 3
+            }
+        ]
+    }
+]

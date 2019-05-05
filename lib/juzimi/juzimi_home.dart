@@ -1,8 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_app/bean/juzimi.dart';
-import 'package:flutter_app/juzimi/album.dart';
-import 'package:flutter_app/juzimi/book.dart';
-import 'package:flutter_app/juzimi/celebrity.dart';
+import 'package:flutter_app/juzimi/classify.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/loading_util.dart';
@@ -76,15 +77,17 @@ class _JuzimiHomePageState extends State<JuzimiHomePage> {
   }
 
   void getMeitumeiju(int page) async {
-    calssify = await ApiService.getMingrenmingjuType();
+    // calssify = await ApiService.getMingrenmingjuType();
+    rootBundle.loadString('assets/data/juzimi_classify.json').then((value) {
+      calssify = MingjuClassify.fromMapList(json.decode(value));
+    });
 
-    List<MeiTuMeiJu> mtmj = await ApiService.getMeiTuMeiJu(page);
-    if (mtmj.length < 15) {
+    JuzimiResult result = await ApiService.getMeiTuMeiJu(page);
+    if (result.meijus.length < 15 || result.totalPage == page) {
       isLoadComplete = true;
     }
-
-    meitumeiju.addAll(mtmj);
-
+    List<MeiTuMeiJu> list = result.meijus;
+    meitumeiju.addAll(list);
     setState(() {});
   }
 
@@ -105,13 +108,34 @@ class _JuzimiHomePageState extends State<JuzimiHomePage> {
             Navigator.pop(context);
 
             if (index == 0 || index == 1) {
-              pushNewPage(context, CelebrityPage(type.classify));
+              pushNewPageBack(
+                  context,
+                  ClassifyPage(
+                      classify: type.classify, title: '名人', flag: 'celebrity'));
             }
             if (index == 2) {
-              pushNewPage(context, BookPage(type.classify));
+              pushNewPageBack(
+                  context,
+                  ClassifyPage(
+                      classify: type.classify, title: '书籍', flag: 'book'));
             }
             if (index == 3) {
-              pushNewPage(context, AlbumPage(type.classify));
+              pushNewPageBack(
+                  context,
+                  ClassifyPage(
+                      classify: type.classify, title: '名言', flag: 'album'));
+            }
+            if (index == 4) {
+              pushNewPageBack(
+                  context,
+                  ClassifyPage(
+                      classify: type.classify, title: '句集', flag: 'juji'));
+            }
+            if (index == 5) {
+              pushNewPageBack(
+                  context,
+                  ClassifyPage(
+                      classify: type.classify, title: '原创', flag: 'original'));
             }
           },
           trailing: Icon(Icons.keyboard_arrow_right)));

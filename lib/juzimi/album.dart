@@ -1,46 +1,84 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/juzimi.dart';
+import 'package:flutter_app/service/api_service.dart';
+import 'package:flutter_app/utils/loading_util.dart';
+import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-class AlbumPage extends StatefulWidget {
-  final List<MingjuClassify> classify;
+class AlbumListPage extends StatefulWidget {
+  final String category;
 
-  AlbumPage(this.classify, {Key key}) : super(key: key);
+  AlbumListPage({Key key, this.category}) : super(key: key);
 
   @override
-   createState() => _AlbumPageState();
+  createState() => _AlbumListPageState();
 }
 
-class _AlbumPageState extends State<AlbumPage>
-    with SingleTickerProviderStateMixin {
-  final List<Tab> titleTabs = [];
+class _AlbumListPageState extends State<AlbumListPage>
+    with AutomaticKeepAliveClientMixin {
+  int page = 0;
 
-  TabController controller;
+  bool isLoadComplete = false;
+
+  List<MeiTuMeiJu> data = [];
+
+  @override
+  bool get wantKeepAlive => true;
+
+  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
+  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
 
   @override
   void initState() {
     super.initState();
-    widget.classify.forEach((type) {
-      titleTabs.add(Tab(text: type.title));
-    });
 
-    controller = TabController(length: widget.classify.length, vsync: this);
+    getData(widget.category, page);
   }
 
   @override
   void dispose() {
-    controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          centerTitle: true,
-          title: Text('名言'),
-          bottom: TabBar(
-              tabs: titleTabs, controller: controller, isScrollable: true)),
-      body: TabBarView(children: <Widget>[], controller: controller),
-    );
+    if (data.length > 0) {
+      return EasyRefresh(
+          key: _easyRefreshKey,
+          refreshFooter: BallPulseFooter(
+              key: _footerKey,
+              color: Colors.indigo,
+              backgroundColor: Colors.white),
+          loadMore: isLoadComplete
+              ? null
+              : () async {
+                  page++;
+                  getData(widget.category, page);
+                },
+          child: ListView.builder(
+              itemBuilder: (context, index) {
+                return Card(
+                  color: Colors.white,
+                  margin: EdgeInsets.all(5.0),
+                  child: Container(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('${data[index].desc}'),
+                  ),
+                );
+              },
+              itemCount: data.length));
+    } else {
+      return getLoadingWidget();
+    }
+  }
+
+  void getData(String category, int page) async {
+    JuzimiResult result = await ApiService.getAlbumList(category, page);
+    if (result.meijus.length < 10 || result.totalPage == page) {
+      isLoadComplete = true;
+    }
+    List<MeiTuMeiJu> list = result.meijus;
+    data.addAll(list);
+    setState(() {});
   }
 }

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_app/bean/article.dart';
@@ -9,7 +8,6 @@ import 'package:flutter_app/bean/celebrity.dart';
 import 'package:flutter_app/bean/city.dart';
 import 'package:flutter_app/bean/comment.dart';
 import 'package:flutter_app/bean/contact.dart';
-import 'package:flutter_app/bean/cryptocurrency.dart';
 import 'package:flutter_app/bean/goods.dart';
 import 'package:flutter_app/bean/goods_info.dart';
 import 'package:flutter_app/bean/he_weather.dart';
@@ -673,127 +671,36 @@ class ApiService {
     return result.contacts;
   }
 
-  static Future<Cryptocurrency> getCryptocurrencyInfo(String id) async {
-    Response response = await HttpUtils(
-      header: {'X-CMC_PRO_API_KEY': Config.COIN_MARKET_CAP_KEY},
-      baseUrl: ApiUrl.COIN_MARKET_CAP_BASE_URL,
-      contentType: HttpUtils.CONTENT_TYPE_JSON,
-    ).get(ApiUrl.CRYPTOCURRENCY_INFO, data: {
-      // 一个或多个逗号分隔的硬币市值加密货币id。例如:“1,2”
-      "id": id,
-    });
-    if (json.decode(response.data)['status']['error_code'] == 0) {
-      return Cryptocurrency.fromMap(json.decode(response.data)['data'], id: id);
-    }
-    LogUtil.e('${json.decode(response.data)['status']['error_message']}');
-    return null;
-  }
-
-  static Future<List<KeyBean>> getCryptocurrencyMap(int start,
-      {int limit = 10, String listing_status = 'active'}) async {
-    Response response = await HttpUtils(
-      header: {'X-CMC_PRO_API_KEY': Config.COIN_MARKET_CAP_KEY},
-      baseUrl: ApiUrl.COIN_MARKET_CAP_BASE_URL,
-    ).get(ApiUrl.CRYPTOCURRENCY_MAP, data: {
-      // 默认情况下，只返回"active"硬币列表。通过“inactive”获得一个"active"的硬币列表。
-      // 有效值: "active" "inactive"
-      "listing_status": listing_status,
-      "start": start,
-      "limit": limit,
-    });
-    if (json.decode(response.data)['status']['error_code'] == 0) {
-      return KeyBean.fromMapList(json.decode(response.data)['data']);
-    }
-    LogUtil.e('${json.decode(response.data)['status']['error_message']}');
-    return null;
-  }
-
-  static Future<List<KeyBean>> getCryptocurrencyLatest({
-    int start = 1,
-    int limit = 10,
-    String convert = 'USD',
-    String sort = 'market_cap',
-    String sort_dir = 'desc',
-    String cryptocurrency_type = 'all',
-  }) async {
-    Response response = await HttpUtils(
-      header: {'X-CMC_PRO_API_KEY': Config.COIN_MARKET_CAP_KEY},
-      baseUrl: ApiUrl.COIN_MARKET_CAP_BASE_URL,
-    ).get(ApiUrl.CRYPTOCURRENCY_LATEST, data: {
-      // Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be found here. Each conversion is returned in its own "quote" object.
-      "convert": convert,
-      "start": start,
-      "limit": limit,
-      // 按哪个字段对加密货币列表排序。
-      // 有效值 : "name" "symbol" "date_added" "market_cap" "price" "circulating_supply" "total_supply" "max_supply" "num_market_pairs" "volume_24h" "percent_change_1h" "percent_change_24h" "percent_change_7d"
-      "sort": sort,
-      // 根据指定的排序对加密货币排序的方向。
-      // 有效值 : "asc" "desc"
-      "sort_dir": sort_dir,
-      // 要包含的加密货币的类型。
-      // 有效值 : "all" "coins" "tokens"
-      "cryptocurrency_type": cryptocurrency_type,
-    });
-    if (json.decode(response.data)['status']['error_code'] == 0) {
-      return KeyBean.fromMapList(json.decode(response.data)['data'],
-          convert: convert);
-    }
-
-    LogUtil.e('${json.decode(response.data)['status']['error_message']}');
-    return null;
-  }
-
-  static Future<Cryptocurrency> getCryptocurrencyQuoteLatest(String id,
-      {String convert = 'USD'}) async {
-    Response response = await HttpUtils(
-      header: {'X-CMC_PRO_API_KEY': Config.COIN_MARKET_CAP_KEY},
-      baseUrl: ApiUrl.COIN_MARKET_CAP_BASE_URL,
-    ).get(ApiUrl.CRYPTOCURRENCY_QUOTE_LATEST,
-        data: {'id': id, 'convert': convert});
-    if (json.decode(response.data)['status']['error_code'] == 0) {
-      return Cryptocurrency.fromMap(json.decode(response.data)['data'],
-          id: id, convert: convert);
-    }
-    LogUtil.e('${json.decode(response.data)['status']['error_message']}');
-    return null;
-  }
-
-  static Future<KeyBean> getGlobalQuoteLatest({String convert = 'USD'}) async {
-    Response response = await HttpUtils(
-      header: {'X-CMC_PRO_API_KEY': Config.COIN_MARKET_CAP_KEY},
-      baseUrl: ApiUrl.COIN_MARKET_CAP_BASE_URL,
-    ).get(ApiUrl.GLOBAL_QUOTE_LATEST, data: {'convert': convert});
-    if (json.decode(response.data)['status']['error_code'] == 0) {
-      return KeyBean.fromMap(json.decode(response.data)['data'],
-          convert: convert);
-    }
-    LogUtil.e('${json.decode(response.data)['status']['error_message']}');
-    return null;
-  }
-
-  static Future<KeyBean> getMarketPairsLatest(String id, int start,
-      {String convert = 'USD', int limit = 20}) async {
-    Response response = await HttpUtils(
-      header: {'X-CMC_PRO_API_KEY': Config.COIN_MARKET_CAP_KEY},
-      baseUrl: ApiUrl.COIN_MARKET_CAP_BASE_URL,
-    ).get(ApiUrl.MARKET_PAIRS_LATEST, data: {
-      'convert': convert,
-    });
-    if (json.decode(response.data)['status']['error_code'] == 0) {
-      return KeyBean.fromMap(json.decode(response.data)['data'],
-          convert: convert);
-    }
-    LogUtil.e('${json.decode(response.data)['status']['error_message']}');
-    return null;
-  }
-
   /// 获取句子迷上美图美句数据
-  static Future<List<MeiTuMeiJu>> getMeiTuMeiJu(int page) async {
-    final List<MeiTuMeiJu> data = [];
+  static Future<JuzimiResult> getMeiTuMeiJu(int page) async {
+    JuzimiResult result;
     await http
-        .get(ApiUrl.JUZIMI_URL + 'meitumeiju/?page=$page')
+        .get(
+            ApiUrl.JUZIMI_URL + 'meitumeiju' + (page == 0 ? '?page=$page' : ''))
         .then((http.Response response) {
       var document = parse(response.body.toString());
+
+      dom.Element pager = document
+          .getElementsByClassName('item-list')
+          .first
+          .getElementsByClassName('pager')
+          .first;
+
+      List<dom.Element> pages = pager.querySelectorAll('li');
+
+      int currentPage =
+          int.parse(pager.getElementsByClassName('pager-current').first.text);
+
+      int totalPage;
+
+      List<dom.Element> nextPage = pager.getElementsByClassName('pager-next');
+      if (nextPage.length == 0) {
+        totalPage = currentPage;
+      } else {
+        totalPage = int.parse(pages[pages.length - 3].text);
+      }
+
+      final List<MeiTuMeiJu> data = [];
 
       dom.Element content =
           document.getElementsByClassName('view-content').first;
@@ -831,36 +738,62 @@ class ApiService {
 
         LogUtil.v('$author');
 
-        int like = 0;
-//        int.parse(field
-//            .getElementsByClassName('views-field-ops')
-//            .first
-//            .querySelector('a')
-//            .text
-//            .replaceAll(')', '')
-//            .replaceAll('喜欢(', ''));
+        String like = field
+            .getElementsByClassName('views-field-ops')
+            .first
+            .querySelector('a')
+            .text
+            .replaceAll(')', '')
+            .replaceAll('(', '');
 
         LogUtil.v('$like');
 
         data.add(MeiTuMeiJu(
             image: 'http:$image', like: like, desc: desc, author: author));
       });
+
+      result = JuzimiResult(totalPage, currentPage, meijus: data);
     });
 
-    LogUtil.v('${data.toString()}');
+    LogUtil.v('${result.toString()}');
 
-    return data;
+    return result;
   }
 
   /// 获取句子迷上美图美句数据
   /// category = shouxiemeiju、jingdianduibai
-  static Future<List<String>> getMeiTuMeiJuImages(
+  static Future<JuzimiResult> getMeiTuMeiJuImages(
       String category, int page) async {
-    final List<String> data = [];
+    JuzimiResult result;
+
     await http
-        .get(ApiUrl.JUZIMI_URL + 'meitumeiju/$category/?page=$page')
+        .get(ApiUrl.JUZIMI_URL +
+            'meitumeiju/$category' +
+            (page == 0 ? '?page=$page' : ''))
         .then((http.Response response) {
       var document = parse(response.body.toString());
+
+      dom.Element pager = document
+          .getElementsByClassName('item-list')
+          .first
+          .getElementsByClassName('pager')
+          .first;
+
+      List<dom.Element> pages = pager.querySelectorAll('li');
+
+      int currentPage =
+          int.parse(pager.getElementsByClassName('pager-current').first.text);
+
+      int totalPage;
+
+      List<dom.Element> nextPage = pager.getElementsByClassName('pager-next');
+      if (nextPage.length == 0) {
+        totalPage = currentPage;
+      } else {
+        totalPage = int.parse(pages[pages.length - 3].text);
+      }
+
+      final List<MeiTuMeiJu> data = [];
 
       dom.Element content =
           document.getElementsByClassName('view-content').first;
@@ -877,13 +810,15 @@ class ApiService {
 
         LogUtil.v('http:$image');
 
-        data.add('http:$image');
+        data.add(MeiTuMeiJu(image: image));
       });
+
+      result = JuzimiResult(totalPage, currentPage, meijus: data);
     });
 
-    LogUtil.v('$data');
+    LogUtil.v('${result.toString()}');
 
-    return data;
+    return result;
   }
 
   /// 获取句子迷上名人名句类别
@@ -949,61 +884,118 @@ class ApiService {
   }
 
   /// 根据类别获取名人列表
-  static Future<List<JuzimiCelebrity>> getCelebrityList(
+  static Future<JuzimiResult> getCelebrityList(
       String category, int page) async {
-    LogUtil.e(ApiUrl.JUZIMI_URL + '$category?page=$page');
+    LogUtil.v('${ApiUrl.JUZIMI_URL}$category?page=$page');
+
+    JuzimiResult result;
+
+    Response response = await HttpUtils(
+      baseUrl: ApiUrl.JUZIMI_URL,
+    ).get(category, data: page == 0 ? null : {"page": page});
+
+    var document = parse(response.data.toString());
+
+    dom.Element pager = document
+        .getElementsByClassName('item-list')
+        .first
+        .getElementsByClassName('pager')
+        .first;
+
+    List<dom.Element> pages = pager.querySelectorAll('li');
+
+    int currentPage =
+        int.parse(pager.getElementsByClassName('pager-current').first.text);
+
+    int totalPage;
+
+    List<dom.Element> nextPage =
+        pager.getElementsByClassName('pager-next last');
+    if (nextPage.length == 0) {
+      totalPage = currentPage;
+    } else {
+      totalPage = int.parse(pages[pages.length - 2].text);
+    }
+
+    LogUtil.v('$totalPage======================$currentPage');
+
     final List<JuzimiCelebrity> data = [];
-    await http
-        .get(ApiUrl.JUZIMI_URL + '$category' + (page == 0 ? '?page=$page' : ''))
-        .then((http.Response response) {
-      var document = parse(response.body.toString());
 
-      dom.Element content =
-          document.getElementsByClassName('view-content').first;
+    dom.Element content = document.getElementsByClassName('view-content').first;
 
-      List<dom.Element> items = content.getElementsByClassName("views-row");
+    List<dom.Element> items = content.getElementsByClassName("views-row");
 
-      items.forEach((item) {
-        String imgUrl = item
-            .getElementsByClassName('views-field-tid')
-            .first
-            .querySelector('a')
-            .querySelector('img')
-            .attributes['src'];
+    items.forEach((item) {
+      dom.Element img = item
+          .getElementsByClassName('views-field-tid')
+          .first
+          .querySelector('a')
+          .querySelector('img');
 
-        String name = item
-            .getElementsByClassName('views-field-name')
-            .first
-            .querySelector('a')
-            .text;
+      String imgUrl =
+          'http://img0.imgtn.bdimg.com/it/u=462445641,233137983&fm=26&gp=0.jpg';
+      if (img != null) {
+        imgUrl = img.attributes['src'];
+      }
 
-        String desc = item
-            .getElementsByClassName('views-field-phpcode')
-            .first
-            .getElementsByClassName('wridesccon')
-            .first
-            .getElementsByClassName('xqagepawirdesc')
-            .first
-            .text;
+      String name = item
+          .getElementsByClassName('views-field-name')
+          .first
+          .querySelector('a')
+          .text;
 
-        data.add(
-            JuzimiCelebrity(name: '$name', image: 'http:$imgUrl', desc: desc));
-      });
+      String desc = item
+          .getElementsByClassName('views-field-phpcode')
+          .first
+          .getElementsByClassName('wridesccon')
+          .first
+          .getElementsByClassName('xqagepawirdesc')
+          .first
+          .text;
+
+      data.add(
+          JuzimiCelebrity(name: '$name', image: 'http:$imgUrl', desc: desc));
     });
 
-    LogUtil.v('${data.toString()}');
+    result = JuzimiResult(totalPage, currentPage, celebrity: data);
 
-    return data;
+//    LogUtil.v('${result.toString()}');
+
+    return result;
   }
 
   /// 根据类别获取书籍等列表
-  static Future<List<JuzimiBook>> getBookList(String category, int page) async {
+  static Future<JuzimiResult> getBookList(String category, int page) async {
     LogUtil.e(ApiUrl.JUZIMI_URL + '$category?page=$page');
-    final List<JuzimiBook> data = [];
+    JuzimiResult result;
+
     await http
         .get(ApiUrl.JUZIMI_URL + '$category' + (page == 0 ? '?page=$page' : ''))
         .then((http.Response response) {
       var document = parse(response.body.toString());
+
+      dom.Element pager = document
+          .getElementsByClassName('item-list')
+          .first
+          .getElementsByClassName('pager')
+          .first;
+
+      List<dom.Element> pages = pager.querySelectorAll('li');
+
+      int currentPage =
+          int.parse(pager.getElementsByClassName('pager-current').first.text);
+
+      int totalPage;
+
+      List<dom.Element> nextPage =
+          pager.getElementsByClassName('pager-next last');
+      if (nextPage.length == 0) {
+        totalPage = currentPage;
+      } else {
+        totalPage = int.parse(pages[pages.length - 2].text);
+      }
+
+      final List<JuzimiBook> data = [];
 
       dom.Element content =
           document.getElementsByClassName('view-content').first;
@@ -1011,12 +1003,16 @@ class ApiService {
       List<dom.Element> items = content.getElementsByClassName("views-row");
 
       items.forEach((item) {
-        String imgUrl = item
+        dom.Element img = item
             .getElementsByClassName('views-field-tid')
             .first
             .querySelector('a')
-            .querySelector('img')
-            .attributes['src'];
+            .querySelector('img');
+        String imgUrl =
+            'http://img0.imgtn.bdimg.com/it/u=462445641,233137983&fm=26&gp=0.jpg';
+        if (img != null) {
+          imgUrl = img.attributes['src'];
+        }
 
         dom.Element field =
             item.getElementsByClassName('views-field-phpcode').first;
@@ -1052,53 +1048,127 @@ class ApiService {
             author: author,
             id: id));
       });
+
+      result = JuzimiResult(totalPage, currentPage, books: data);
     });
 
-    LogUtil.v('${data.toString()}');
+    LogUtil.v('${result.toString()}');
 
-    return data;
+    return result;
   }
 
-  /// 获得偶遇佳句
-  static Future<MeiTuMeiJu> getRandom() async {
-    int id = Random().nextInt(1958779);
-    LogUtil.v(ApiUrl.JUZIMI_URL + 'ju/$id');
-    MeiTuMeiJu data;
-    await http.get(ApiUrl.JUZIMI_URL + 'ju/$id').then((http.Response response) {
+  /// 获取名言/美句列表
+  static Future<JuzimiResult> getAlbumList(String category, int page) async {
+    LogUtil.e(ApiUrl.JUZIMI_URL + '$category?page=$page');
+    JuzimiResult result;
+
+    await http
+        .get(ApiUrl.JUZIMI_URL + '$category' + (page == 0 ? '?page=$page' : ''))
+        .then((http.Response response) {
       var document = parse(response.body.toString());
 
-      String desc = document.getElementById('xqtitle').querySelector('a').text;
-
-      String author = '';
-      String source = '';
-      dom.Element senconwriart = document
-          .getElementById('sencon')
-          .getElementsByClassName('senconwriart')
+      dom.Element pager = document
+          .getElementsByClassName('item-list')
+          .first
+          .getElementsByClassName('pager')
           .first;
-      if (senconwriart != null) {
-        dom.Element authorElement = senconwriart
-            .getElementsByClassName(
-                'field field-type-content-taxonomy field-field-oriwriter')
-            .first;
-        if (authorElement != null) {
-          author = authorElement.querySelector('a').text;
-        }
 
-        dom.Element sourceElement = senconwriart
-            .getElementsByClassName(
-                'field field-type-content-taxonomy field-field-oriarticle')
-            .first;
+      List<dom.Element> pages = pager.querySelectorAll('li');
 
-        if (sourceElement != null) {
-          source = sourceElement.querySelector('a').text;
-        }
+      int currentPage =
+          int.parse(pager.getElementsByClassName('pager-current').first.text);
+
+      int totalPage;
+
+      List<dom.Element> nextPage = pager.getElementsByClassName('pager-next');
+      if (nextPage.length == 0) {
+        totalPage = currentPage;
+      } else {
+        totalPage = int.parse(pages[pages.length - 3].text);
       }
 
-      data = MeiTuMeiJu(author: author, desc: desc, source: source);
+      final List<MeiTuMeiJu> data = [];
+
+      dom.Element content =
+          document.getElementsByClassName('view-content').first;
+
+      List<dom.Element> items = content.getElementsByClassName("views-row");
+
+      items.forEach((item) {
+        dom.Element field =
+            item.getElementsByClassName('views-field-phpcode').first;
+
+        dom.Element phpcode_1 = field
+            .getElementsByClassName('views-field-phpcode-1')
+            .first
+            .querySelector('a');
+
+        String id = phpcode_1.attributes['href'].replaceAll('/ju/', '');
+
+        String desc = phpcode_1.text;
+
+        List<dom.Element> elements =
+            field.getElementsByClassName('xqjulistwafo');
+
+        String author = '';
+        String source = '';
+        if (elements.length > 0) {
+          dom.Element authorElement = elements.first.querySelector('a');
+          if (authorElement != null) {
+            // 作者
+            author = authorElement.text;
+          }
+
+          List<dom.Element> elementAuthor =
+              elements.first.getElementsByClassName('xqjulistori');
+
+          if (elementAuthor.length > 0) {
+            // 原创
+            author = elementAuthor.first
+                .getElementsByClassName('xqfulunvis')
+                .first
+                .text;
+          }
+
+          List<dom.Element> elementSource = elements.first
+              .getElementsByClassName('views-field-field-oriarticle-value');
+
+          if (elementSource.length > 0) {
+            // 出处
+            source = elementSource.first.querySelector('a').text;
+          }
+        }
+
+        String publisher = field
+            .getElementsByClassName('views-field-name')
+            .first
+            .getElementsByClassName('views-field-xqname')
+            .first
+            .querySelector('a')
+            .text;
+
+        String like = field
+            .getElementsByClassName('views-field-ops')
+            .first
+            .querySelector('a')
+            .text
+            .replaceAll('喜欢(', '')
+            .replaceAll(')', '');
+
+        data.add(MeiTuMeiJu(
+            desc: desc,
+            author: author,
+            id: id,
+            publisher: publisher,
+            like: like,
+            source: source));
+      });
+
+      result = JuzimiResult(totalPage, currentPage, meijus: data);
     });
 
-    LogUtil.v('${data.toString()}');
+    LogUtil.v('${result.toString()}');
 
-    return data;
+    return result;
   }
 }
