@@ -33,27 +33,48 @@ class _MovieSearchPageState extends State<MovieSearchPage> {
 
   List<Movie> movies = [];
 
+  var _scrollController = ScrollController();
+  var _showBackTop = false;
+
   @override
   void initState() {
     super.initState();
 
     searchMovies(page, pagesize, widget.q, widget.tag, RefreshType.DEFAULT);
+
+    // 对 scrollController 进行监听
+    _scrollController.addListener(() {
+      // _scrollController.position.pixels 获取当前滚动部件滚动的距离
+      // 当滚动距离大于 800 之后，显示回到顶部按钮
+      setState(() => _showBackTop = _scrollController.position.pixels >= 800);
+    });
   }
 
   @override
   void dispose() {
+    _scrollController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('搜索电影'),
-      ),
-      body: buildBodyView(),
-    );
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('搜索电影'),
+        ),
+        body: buildBodyView(),
+        floatingActionButton: _showBackTop // 当需要显示的时候展示按钮，不需要的时候隐藏，设置 null
+            ? FloatingActionButton(
+                onPressed: () {
+                  // scrollController 通过 animateTo 方法滚动到某个具体高度
+                  // duration 表示动画的时长，curve 表示动画的运行方式，flutter 在 Curves 提供了许多方式
+                  _scrollController.animateTo(0.0,
+                      duration: Duration(milliseconds: 1000),
+                      curve: Curves.decelerate);
+                },
+                child: Icon(Icons.vertical_align_top))
+            : null);
   }
 
   void searchMovies(page, pagesize, String q, String tag, type) async {
@@ -94,6 +115,7 @@ class _MovieSearchPageState extends State<MovieSearchPage> {
                   page, pagesize, widget.q, widget.tag, RefreshType.LOAD_MORE);
             },
       child: ListView.builder(
+        controller: _scrollController,
         itemBuilder: (context, index) {
           return ItemList(
             movie: movies[index],
