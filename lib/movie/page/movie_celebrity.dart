@@ -76,7 +76,7 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
 
       String desc = celebrity.summary;
       desc +=
-          '\n\n星座：${celebrity.constellation.length == 0 ? '未知' : celebrity.constellation}';
+          '\n\n星座：${celebrity.constellation.isEmpty ? '未知' : celebrity.constellation}';
       desc += '\n${celebrity.birthday}生于${celebrity.born_place}';
 
       celebrity.aka_en.map((aka) {
@@ -89,7 +89,7 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
           slivers: <Widget>[
             MovieCelebrityHeader(
               widget.name,
-              backgroundImageUrl: celebrity.photos.length == 0
+              backgroundImageUrl: celebrity.photos.isEmpty
                   ? defaultBgImageUrl
                   : celebrity.photos[0].cover,
               pageColor: pageColor,

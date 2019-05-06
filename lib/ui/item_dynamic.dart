@@ -43,7 +43,7 @@ class ItemDynamic extends StatelessWidget {
 
                         /// 发布的文字描述
                         Offstage(
-                            offstage: desc.length == 0,
+                            offstage: desc.isEmpty,
                             child: Padding(
                                 padding: EdgeInsets.only(top: 8.0),
                                 child: Text('$desc',

@@ -203,7 +203,7 @@ class _MovieDetailState extends State<MovieDetail> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Offstage(
-                offstage: movie.photos.length == 0,
+                offstage: movie.photos.isEmpty,
                 child: Column(children: <Widget>[
                   HomeSectionView(
                     "剧照",

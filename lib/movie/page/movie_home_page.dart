@@ -102,7 +102,7 @@ class _MovieHomePageState extends State<MovieHomePage> {
   }
 
   Widget bodyView() {
-    if (movies.length == 0) {
+    if (movies.isEmpty) {
       return getLoadingWidget();
     } else {
       return ListView(

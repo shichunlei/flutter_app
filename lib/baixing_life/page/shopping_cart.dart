@@ -56,7 +56,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
           ToolBar(title: '${widget.title}', backgroundColor: Colors.indigo),
           Expanded(
               child: Container(
-                  child: products.length == 0
+                  child: products.isEmpty
                       ? EmptyShopCart()
                       : Column(
                           children: <Widget>[

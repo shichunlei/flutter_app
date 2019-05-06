@@ -63,7 +63,7 @@ class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
       isFirst = false;
     } else if (type == RefreshType.LOAD_MORE) {
       movies.addAll(list);
-      if (list.length == 0) {
+      if (list.isEmpty) {
         Toast.show("加载完...", context,
             duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
         isLoadComplete = true;

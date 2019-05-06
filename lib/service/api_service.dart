@@ -694,7 +694,7 @@ class ApiService {
       int totalPage;
 
       List<dom.Element> nextPage = pager.getElementsByClassName('pager-next');
-      if (nextPage.length == 0) {
+      if (nextPage.isEmpty) {
         totalPage = currentPage;
       } else {
         totalPage = int.parse(pages[pages.length - 3].text);
@@ -787,7 +787,7 @@ class ApiService {
       int totalPage;
 
       List<dom.Element> nextPage = pager.getElementsByClassName('pager-next');
-      if (nextPage.length == 0) {
+      if (nextPage.isEmpty) {
         totalPage = currentPage;
       } else {
         totalPage = int.parse(pages[pages.length - 3].text);
@@ -911,7 +911,7 @@ class ApiService {
 
     List<dom.Element> nextPage =
         pager.getElementsByClassName('pager-next last');
-    if (nextPage.length == 0) {
+    if (nextPage.isEmpty) {
       totalPage = currentPage;
     } else {
       totalPage = int.parse(pages[pages.length - 2].text);
@@ -989,7 +989,7 @@ class ApiService {
 
       List<dom.Element> nextPage =
           pager.getElementsByClassName('pager-next last');
-      if (nextPage.length == 0) {
+      if (nextPage.isEmpty) {
         totalPage = currentPage;
       } else {
         totalPage = int.parse(pages[pages.length - 2].text);
@@ -1081,7 +1081,7 @@ class ApiService {
       int totalPage;
 
       List<dom.Element> nextPage = pager.getElementsByClassName('pager-next');
-      if (nextPage.length == 0) {
+      if (nextPage.isEmpty) {
         totalPage = currentPage;
       } else {
         totalPage = int.parse(pages[pages.length - 3].text);

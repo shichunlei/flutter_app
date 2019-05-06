@@ -86,7 +86,7 @@ class _MovieHotPageState extends State<MovieHotPage> {
   void getMovieHotList() async {
     movies = await ApiService.getNowPlayingList(city: '北京');
     loadError = movies == null;
-    if (movies.length == 0) {
+    if (movies.isEmpty) {
       isEmpty = true;
     }
     isFirst = false;

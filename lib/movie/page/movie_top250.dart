@@ -119,14 +119,14 @@ class _MovieTop250State extends State<MovieTop250> {
         start: (page - 1) * pagesize, count: pagesize);
     if (type == RefreshType.DEFAULT) {
       movies.addAll(list);
-      if (isFirst && movies.length == 0) {
+      if (isFirst && movies.isEmpty) {
         text = "暂无数据";
       } else {
         text = "";
       }
     } else if (type == RefreshType.LOAD_MORE) {
       movies.addAll(list);
-      if (list.length == 0) {
+      if (list.isEmpty) {
         Toast.show("加载完...", context,
             duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
         isLoadComplete = true;
