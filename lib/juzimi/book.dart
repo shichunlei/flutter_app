@@ -40,7 +40,7 @@ class _BookListPageState extends State<BookListPage>
 
   @override
   Widget build(BuildContext context) {
-    if (data.length > 0) {
+    if (data.isNotEmpty) {
       return EasyRefresh(
           key: _easyRefreshKey,
           refreshFooter: BallPulseFooter(

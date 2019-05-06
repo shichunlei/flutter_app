@@ -75,7 +75,7 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
     }).toList();
 
     desc +=
-        '\n${widget.movie.durations.length > 0 ? "${widget.movie.durations[0]}" : ""}';
+        '\n${widget.movie.durations.isNotEmpty ? "${widget.movie.durations[0]}" : ""}';
 
     return GestureDetector(
       child: Card(

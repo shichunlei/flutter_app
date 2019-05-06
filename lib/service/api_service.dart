@@ -1112,7 +1112,7 @@ class ApiService {
 
         String author = '';
         String source = '';
-        if (elements.length > 0) {
+        if (elements.isNotEmpty) {
           dom.Element authorElement = elements.first.querySelector('a');
           if (authorElement != null) {
             // 作者
@@ -1122,7 +1122,7 @@ class ApiService {
           List<dom.Element> elementAuthor =
               elements.first.getElementsByClassName('xqjulistori');
 
-          if (elementAuthor.length > 0) {
+          if (elementAuthor.isNotEmpty) {
             // 原创
             author = elementAuthor.first
                 .getElementsByClassName('xqfulunvis')
@@ -1133,7 +1133,7 @@ class ApiService {
           List<dom.Element> elementSource = elements.first
               .getElementsByClassName('views-field-field-oriarticle-value');
 
-          if (elementSource.length > 0) {
+          if (elementSource.isNotEmpty) {
             // 出处
             source = elementSource.first.querySelector('a').text;
           }

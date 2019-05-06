@@ -38,7 +38,7 @@ class GoodsPrivider extends BaseDBProvider {
     List<Goods> products = List();
     Database db = await getDB();
     List<Map<String, dynamic>> maps = await db.query(table_name);
-    if (maps.length > 0) {
+    if (maps.isNotEmpty) {
       for (Map<String, dynamic> map in maps) {
         Goods goods = Goods.fromJson(map);
         products.add(goods);
@@ -52,7 +52,7 @@ class GoodsPrivider extends BaseDBProvider {
     Database db = await getDB();
     List<Map<String, dynamic>> maps = await db
         .query(table_name, where: "$COLUMN_IS_CHECK = ?", whereArgs: [1]);
-    if (maps.length > 0) {
+    if (maps.isNotEmpty) {
       for (Map<String, dynamic> map in maps) {
         Goods goods = Goods.fromJson(map);
         products.add(goods);
@@ -79,7 +79,7 @@ class GoodsPrivider extends BaseDBProvider {
     Database db = await getDB();
     List<Map<String, dynamic>> maps = await db
         .query(table_name, where: "$COLUMN_GOODS_ID = ?", whereArgs: [goodsId]);
-    return maps.length > 0;
+    return maps.isNotEmpty;
   }
 
   Future<int> goodsAmount(String goodsId) async {

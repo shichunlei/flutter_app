@@ -41,7 +41,7 @@ class _ContactListPageState extends State<ContactListPage> {
         backgroundColor: themeColors[_themeColorIndex],
         centerTitle: true,
       ),
-      body: _contacts.length > 0
+      body: _contacts.isNotEmpty
           ? AzListView(
               data: _contacts,
               itemBuilder: (context, model) => _buildListItem(model),

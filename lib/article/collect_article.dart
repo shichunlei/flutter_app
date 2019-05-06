@@ -24,7 +24,7 @@ class _CollectArticleState extends State<CollectArticle> {
         backgroundColor: widget.themeColor,
         title: Text('我的收藏'),
       ),
-      body: widget.list.length > 0
+      body: widget.list.isNotEmpty
           ? ListView.builder(
               itemBuilder: (context, index) {
                 final item = widget.list[index].curr;

@@ -70,7 +70,7 @@ class _ItemClassifyTagState extends State<ItemClassifyTag> {
     List<Movie> movies =
         await ApiService.getSearchListByTag(tag: tag, start: 0, count: 1);
 
-    if (movies != null && movies.length > 0) {
+    if (movies != null && movies.isNotEmpty) {
       setState(() {
         cover = movies[0].images.small.toString();
         print(cover);

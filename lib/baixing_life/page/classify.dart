@@ -80,7 +80,7 @@ class _ClassifyPageState extends State<ClassifyPage>
             backgroundColor: Colors.deepPurple,
           ),
           Expanded(
-              child: category.length > 0
+              child: category.isNotEmpty
                   ? _buildBodyView()
                   : Container(
                       child: getLoadingWidget(),

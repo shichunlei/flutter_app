@@ -45,7 +45,7 @@ class DBHelper {
     await getDB();
     var res = await _db.rawQuery(
         "select * from Sqlite_master where type = 'table' and name = '$tableName'");
-    return res != null && res.length > 0;
+    return res != null && res.isNotEmpty;
   }
 
   Future<Database> getDB() async {

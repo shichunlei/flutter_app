@@ -30,7 +30,7 @@ class MovieDetailHeader extends StatelessWidget {
         background: Stack(
           children: <Widget>[
             ImageLoadView(
-                movie.photos.length > 0 ? movie.photos[0].image : defaultImage,
+                movie.photos.isNotEmpty ? movie.photos[0].image : defaultImage,
                 fit: BoxFit.fitWidth,
                 width: double.infinity,
                 placeholder: kTransparentImage),

@@ -50,7 +50,7 @@ class _JuzimiHomePageState extends State<JuzimiHomePage> {
         backgroundColor: Colors.grey[200],
         appBar: AppBar(title: Text('句子迷')),
         drawer: _leftMenu(),
-        body: meitumeiju.length > 0
+        body: meitumeiju.isNotEmpty
             ? EasyRefresh(
                 key: _easyRefreshKey,
                 refreshFooter: BallPulseFooter(

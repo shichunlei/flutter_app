@@ -39,7 +39,7 @@ class _CelebrityListPageState extends State<CelebrityListPage>
 
   @override
   Widget build(BuildContext context) {
-    return data.length > 0
+    return data.isNotEmpty
         ? EasyRefresh(
             key: _easyRefreshKey,
             refreshFooter: BallPulseFooter(

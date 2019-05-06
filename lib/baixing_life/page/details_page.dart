@@ -257,7 +257,7 @@ class _DetailsPageState extends State<DetailsPage>
         ..add(adWidget);
     }
     if (currentIndex == 1) {
-      if (goods.goodComments.length > 0) {
+      if (goods.goodComments.isNotEmpty) {
         goods.goodComments.forEach((comment) {
           children.add(Container(
               child: Text('${comment.toString()}'),

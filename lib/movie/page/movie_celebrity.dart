@@ -190,7 +190,7 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
   void getPersonDetail(id) async {
     celebrity = await ApiService.getActorDetail(id);
 
-    if (celebrity.photos.length > 0) {
+    if (celebrity.photos.isNotEmpty) {
       paletteGenerator = await PaletteGenerator.fromImageProvider(
           NetworkImage(celebrity.photos[0].cover));
     } else {

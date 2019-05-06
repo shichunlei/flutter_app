@@ -66,7 +66,7 @@ class ItemDynamic extends StatelessWidget {
                                             mainAxisSpacing: 2.0,
                                             childAspectRatio: 1),
                                     itemBuilder: (context, index) => ImageLoadView(
-                                        '${this.dynamic.images.length > 0 ? this.dynamic.images[index].image : ''}',
+                                        '${this.dynamic.images.isNotEmpty ? this.dynamic.images[index].image : ''}',
                                         fit: BoxFit.cover))
                                 : Padding(
                                     padding: EdgeInsets.only(top: 8.0),

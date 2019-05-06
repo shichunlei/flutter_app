@@ -365,7 +365,7 @@ class _OneArticlePageState extends State<OneArticlePage>
 
   void getList() async {
     List<Article> list = await provider.getStarredList();
-    if (list.length > 0) {
+    if (list.isNotEmpty) {
       Navigator.pop(context);
       LogUtil.v(list.toString());
       pushNewPage(context, CollectArticle(themeColors[_themeColorIndex], list));

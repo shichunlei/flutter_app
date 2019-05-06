@@ -41,7 +41,7 @@ class ArticleProvider extends BaseDBProvider {
         ],
         where: "$columnDate = ?",
         whereArgs: [date]);
-    return maps.length > 0;
+    return maps.isNotEmpty;
   }
 
   Future<int> insertOrReplaceToDB(Article article) async {
@@ -67,7 +67,7 @@ class ArticleProvider extends BaseDBProvider {
       columnDate,
       columnDigest,
     ]);
-    if (maps.length > 0) {
+    if (maps.isNotEmpty) {
       for (Map<String, dynamic> map in maps) {
         Article article = Article.fromJson(map);
         articles.add(article);

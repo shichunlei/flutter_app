@@ -42,7 +42,7 @@ class _AlbumListPageState extends State<AlbumListPage>
 
   @override
   Widget build(BuildContext context) {
-    if (data.length > 0) {
+    if (data.isNotEmpty) {
       return EasyRefresh(
           key: _easyRefreshKey,
           refreshFooter: BallPulseFooter(
