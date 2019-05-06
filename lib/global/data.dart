@@ -19,6 +19,7 @@ import 'package:flutter_app/page/tiktok_home_page.dart';
 import 'package:flutter_app/page/drag_like_page.dart';
 import 'package:flutter_app/page/like_button_page.dart';
 import 'package:flutter_app/page/time_line.dart';
+import 'package:flutter_app/page/wave_sample.dart';
 import 'package:flutter_app/page/wechat_friends_circle.dart';
 import 'package:flutter_app/question/pages/quiz_page.dart';
 import 'package:flutter_app/bars_demo/bottom_navigation_bar.dart';
@@ -69,8 +70,8 @@ class Girl {
         'https://img.gsdlcn.com/uploads/190428/1-1Z42P25206293.jpg'),
     Girl('Hope you like',
         'https://img.gsdlcn.com/uploads/190426/1-1Z4261KF4335.jpg'),
-    Girl('Hope you like',
-        'https://www.7160.com/templets/new7160/hotpic/2/s.jpg')
+    Girl(
+        'Hope you like', 'https://www.7160.com/templets/new7160/hotpic/2/s.jpg')
   ];
 }
 
@@ -286,6 +287,7 @@ class ExpandStateBean {
         title: 'Custom Widgets',
         index: 2,
         children: [
+          SubExpandBean('Wave Widget', WavePage()),
           SubExpandBean('Swiper', SwiperSample()),
           SubExpandBean('DragLike', DragLikePage()),
           SubExpandBean('LikeButton', LikeButtonPage()),
