@@ -39,9 +39,7 @@ void main() async {
 void setCustomErrorPage() {
   ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) {
     LogUtil.e(flutterErrorDetails.toString());
-    return Center(
-      child: Text("Flutter 走神了"),
-    );
+    return Center(child: Text("Flutter 走神了"));
   };
 }
 
@@ -72,14 +70,13 @@ class MyApp extends StatelessWidget {
 
           /// 您可以通过配置ThemeData类轻松更改应用程序的主题
           theme: ThemeData(
-            primaryColor: Colors.pinkAccent,
+              primaryColor: Colors.pinkAccent,
 
-            /// 高亮颜色
-            highlightColor: Color.fromRGBO(255, 255, 255, 0.5),
+              /// 高亮颜色
+              highlightColor: Color.fromRGBO(255, 255, 255, 0.5),
 
-            /// 水波纹颜色
-            splashColor: Colors.grey,
-          ),
+              /// 水波纹颜色
+              splashColor: Colors.grey),
 
           /// 右上角显示一个debug的图标
           debugShowCheckedModeBanner: false,
@@ -94,7 +91,7 @@ class MyApp extends StatelessWidget {
           ],
 
           routes: <String, WidgetBuilder>{
-            '/shopCart': (BuildContext context) => IndexPage(index: 2),
+            '/shopCart': (BuildContext context) => IndexPage(index: 2)
           },
         ));
   }

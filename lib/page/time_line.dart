@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/global/data.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:timeline_list/timeline.dart';
 import 'package:timeline_list/timeline_model.dart';
 
@@ -68,7 +69,7 @@ class _TimeLinePageState extends State<TimeLinePage>
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Image.network(doodle.doodle),
+                ImageLoadView(doodle.doodle),
                 const SizedBox(height: 8.0),
                 Text(doodle.time, style: textTheme.caption),
                 const SizedBox(height: 8.0),
