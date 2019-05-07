@@ -17,12 +17,6 @@ class KeepAliveWidgetState extends State<KeepAliveWidget>
     super.initState();
   }
 
-  void _incementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +33,9 @@ class KeepAliveWidgetState extends State<KeepAliveWidget>
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _incementCounter(),
+        onPressed: () => setState(() {
+              _counter++;
+            }),
         tooltip: "Increment",
         child: Icon(Icons.add),
       ),

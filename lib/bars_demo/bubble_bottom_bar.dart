@@ -28,24 +28,13 @@ class _BubbleBottomBarPageState extends State<BubbleBottomBarPage>
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  void changePage(int index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: list[currentIndex],
       bottomNavigationBar: BubbleBottomBar(
         opacity: 0.2,
         currentIndex: currentIndex,
-        onTap: changePage,
+        onTap: (index) => setState(() => currentIndex = index),
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
         elevation: 8,
         items: <BubbleBottomBarItem>[
