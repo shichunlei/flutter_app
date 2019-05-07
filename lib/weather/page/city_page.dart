@@ -1,6 +1,6 @@
 import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/contact/ui/suspension_tag.dart';
+import 'package:flutter_app/ui/suspension_tag.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
@@ -18,7 +18,7 @@ class CityPageState extends State<CityPage> {
   List<City> _hotCityList = [];
 
   int _suspensionHeight = 40;
-  int _itemHeight = 50;
+  int _itemHeight = 58;
   String _suspensionTag = "";
 
   @override
@@ -30,48 +30,29 @@ class CityPageState extends State<CityPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('城市列表')),
-      body: Stack(
-        children: <Widget>[
-          Offstage(
-            /// 默认为true，也就是不显示，当为flase的时候，会显示该控件
-            offstage: _cityList.isNotEmpty,
-            child: Center(
-              child: getLoadingWidget(),
-            ),
-          ),
-          Offstage(
-            offstage: _cityList.isEmpty,
-            child: Column(
-              children: <Widget>[
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: const EdgeInsets.only(left: 15.0),
-                  height: _itemHeight.toDouble(),
-                  child: Text("当前城市: 北京"),
-                ),
-                Expanded(
-                  child: AzListView(
-                    data: _cityList,
-                    topData: _hotCityList,
-                    itemBuilder: (context, cityBean) =>
-                        _buildCityItems(cityBean),
-                    suspensionWidget: SuspensionTag(
-                      susTag: _suspensionTag,
-                      susHeight: _suspensionHeight,
-                    ),
-                    isUseRealIndex: true,
-                    itemHeight: _itemHeight,
-                    suspensionHeight: _suspensionHeight,
-                    onSusTagChanged: _onSusTagChanged,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+        appBar: AppBar(title: Text('城市列表')), body: _buildBodyView());
+  }
+
+  Widget _buildBodyView() {
+    if (_cityList.isEmpty) return getLoadingWidget();
+    return Column(children: <Widget>[
+      Container(
+          alignment: Alignment.centerLeft,
+          padding: const EdgeInsets.only(left: 15.0),
+          height: _itemHeight.toDouble(),
+          child: Text("当前城市: 北京")),
+      Expanded(
+          child: AzListView(
+              data: _cityList,
+              topData: _hotCityList,
+              itemBuilder: (context, cityBean) => _buildCityItems(cityBean),
+              suspensionWidget: SuspensionTag(
+                  susTag: _suspensionTag, susHeight: _suspensionHeight),
+              isUseRealIndex: true,
+              itemHeight: _itemHeight,
+              suspensionHeight: _suspensionHeight,
+              onSusTagChanged: _onSusTagChanged))
+    ]);
   }
 
   void getCityListData() async {
@@ -94,7 +75,7 @@ class CityPageState extends State<CityPage> {
     if (list == null || list.isEmpty) return;
     for (int i = 0, length = list.length; i < length; i++) {
       String pinyin = list[i].namePinyin;
-      String tag = pinyin.substring(0, 1).toUpperCase();
+      String tag = pinyin[0].toUpperCase();
       list[i].namePinyin = pinyin;
       if (RegExp("[A-Z]").hasMatch(tag)) {
         list[i].tagIndex = tag;
@@ -111,28 +92,19 @@ class CityPageState extends State<CityPage> {
   _buildCityItems(model) {
     String susTag = model.getSuspensionTag();
     susTag = (susTag == "★" ? "热门城市" : susTag);
-    return Column(
-      children: <Widget>[
-        Offstage(
+    return Column(children: <Widget>[
+      Offstage(
           offstage: !(model.isShowSuspension == true),
-          child: SuspensionTag(
-            susTag: susTag,
-            susHeight: _suspensionHeight,
-          ),
-        ),
-        SizedBox(
+          child: SuspensionTag(susTag: susTag, susHeight: _suspensionHeight)),
+      SizedBox(
           height: _itemHeight.toDouble(),
           child: ListTile(
-              title: Text(
-                model.parent_city,
-              ),
-              leading: RoundedLetter.withRandomColors(
-                  model.parent_city.substring(0, 1), 40, 20),
+              title: Text(model.parent_city),
+              leading:
+                  RoundedLetter.withRandomColors(model.parent_city[0], 40, 20),
               onTap: () =>
-                  pushNewPage(context, WeatherPage(model.parent_city))),
-        ),
-      ],
-    );
+                  pushNewPage(context, WeatherPage(model.parent_city))))
+    ]);
   }
 
   void _onSusTagChanged(String value) {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/contact.dart';
 import 'package:flutter_app/contact/page/contact_page.dart';
 import 'package:flutter_app/contact/ui/contact_list_header.dart';
-import 'package:flutter_app/contact/ui/suspension_tag.dart';
+import 'package:flutter_app/ui/suspension_tag.dart';
 import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/utils/loading_util.dart';
@@ -21,7 +21,7 @@ class _ContactListPageState extends State<ContactListPage> {
   List<Contact> _contacts = [];
 
   int _suspensionHeight = 40;
-  int _itemHeight = 60;
+  int _itemHeight = 70;
 
   int _themeColorIndex;
 
@@ -35,65 +35,59 @@ class _ContactListPageState extends State<ContactListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("通讯录"),
-        elevation: 0.0,
-        backgroundColor: themeColors[_themeColorIndex],
-        centerTitle: true,
-      ),
-      body: _contacts.isNotEmpty
-          ? AzListView(
-              data: _contacts,
-              itemBuilder: (context, model) => _buildListItem(model),
-              header: AzListViewHeader(
-                height: 220,
-                builder: (context) => Diagonal(
-                      axis: Axis.horizontal,
-                      position: DiagonalPosition.BOTTOM_LEFT,
-                      clipHeight: 50.0,
-                      child:
-                          ContactListHeader(name: "SCL", phone: "18601952581"),
-                    ),
-              ),
-              isUseRealIndex: true,
-              itemHeight: _itemHeight,
-              suspensionHeight: _suspensionHeight,
-              indexBarBuilder: (BuildContext context, List<String> tags,
-                  IndexBarTouchCallback onTouch) {
-                return Container(
-                  margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-                  decoration: BoxDecoration(
-                      color: Colors.grey[50],
-                      borderRadius: BorderRadius.circular(20.0),
-                      border: Border.all(color: Colors.grey[300], width: .5)),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.0),
-                    child: IndexBar(
-                      data: tags,
-                      itemHeight: 20,
-                      onTouch: (details) {
-                        onTouch(details);
-                      },
-                    ),
-                  ),
-                );
-              },
-              indexHintBuilder: (context, hint) {
-                return Container(
-                  alignment: Alignment.center,
-                  width: 60.0,
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                    color: Colors.blue[700].withAlpha(200),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Text(hint,
-                      style: TextStyle(color: Colors.white, fontSize: 30.0)),
-                );
-              },
-            )
-          : getLoadingWidget(),
-    );
+        appBar: AppBar(
+            title: Text("通讯录"),
+            elevation: 0.0,
+            backgroundColor: themeColors[_themeColorIndex]),
+        body: _contacts.isNotEmpty
+            ? AzListView(
+                data: _contacts,
+                itemBuilder: (context, model) => _buildListItem(model),
+                header: AzListViewHeader(
+                  height: 220,
+                  builder: (context) => Diagonal(
+                        axis: Axis.horizontal,
+                        position: DiagonalPosition.BOTTOM_LEFT,
+                        clipHeight: 50.0,
+                        child: ContactListHeader(
+                            name: "SCL", phone: "18601952581"),
+                      ),
+                ),
+                isUseRealIndex: true,
+                itemHeight: _itemHeight,
+                suspensionHeight: _suspensionHeight,
+                indexBarBuilder: (BuildContext context, List<String> tags,
+                    IndexBarTouchCallback onTouch) {
+                  return Container(
+                      margin:
+                          EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+                      decoration: BoxDecoration(
+                          color: Colors.grey[50],
+                          borderRadius: BorderRadius.circular(20.0),
+                          border:
+                              Border.all(color: Colors.grey[300], width: .5)),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: IndexBar(
+                              data: tags,
+                              itemHeight: 20,
+                              onTouch: (details) {
+                                onTouch(details);
+                              })));
+                },
+                indexHintBuilder: (context, hint) {
+                  return Container(
+                    alignment: Alignment.center,
+                    width: 60.0,
+                    height: 60.0,
+                    decoration: BoxDecoration(
+                        color: Colors.blue[700].withAlpha(200),
+                        shape: BoxShape.circle),
+                    child: Text(hint,
+                        style: TextStyle(color: Colors.white, fontSize: 30.0)),
+                  );
+                })
+            : getLoadingWidget());
   }
 
   void getContacts() async {
@@ -107,7 +101,7 @@ class _ContactListPageState extends State<ContactListPage> {
     if (contacts == null || contacts.isEmpty) return;
     for (int i = 0, length = contacts.length; i < length; i++) {
       String pinyin = PinyinHelper.getPinyinE(contacts[i].fullName);
-      String tag = pinyin.substring(0, 1).toUpperCase();
+      String tag = pinyin[0].toUpperCase();
       if (RegExp("[A-Z]").hasMatch(tag)) {
         contacts[i].tagIndex = tag;
       } else {
@@ -125,6 +119,7 @@ class _ContactListPageState extends State<ContactListPage> {
           offstage: model.isShowSuspension != true,
           child: SuspensionTag(susTag: susTag, susHeight: _suspensionHeight)),
       SizedBox(
+          height: _itemHeight.toDouble(),
           child: ListTile(
               leading: model?.picture?.medium == ""
                   ? CircleAvatar(child: Text(model?.fullName[0]))
