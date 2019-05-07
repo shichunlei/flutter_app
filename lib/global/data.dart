@@ -15,6 +15,7 @@ import 'package:flutter_app/page/flipper_widget.dart';
 import 'package:flutter_app/page/loading_json.dart';
 import 'package:flutter_app/page/random_words.dart';
 import 'package:flutter_app/page/swiper_sample.dart';
+import 'package:flutter_app/page/table_sample.dart';
 import 'package:flutter_app/page/tiktok_home_page.dart';
 import 'package:flutter_app/page/drag_like_page.dart';
 import 'package:flutter_app/page/like_button_page.dart';
@@ -306,6 +307,7 @@ class ExpandStateBean {
           SubExpandBean('二维码', QrImageWidget()),
           SubExpandBean('图表', ChartsWidget()),
           SubExpandBean('Read Assets Json File', LoadingJsonPage()),
+          SubExpandBean('Data Table', TablePage()),
         ]),
     ExpandStateBean(
         leading: Icons.dashboard,
