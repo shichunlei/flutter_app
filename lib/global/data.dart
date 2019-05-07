@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/article/one_article_page.dart';
 import 'package:flutter_app/baixing_life/index.dart';
+import 'package:flutter_app/bars_demo/curved_navigation_bar_sample.dart';
 import 'package:flutter_app/bars_demo/fancy_bottom_navigation.dart';
 import 'package:flutter_app/bars_demo/heart_beat_bottombar_widget.dart';
 import 'package:flutter_app/city_pickers/page/fullpage_pickers_page.dart';
@@ -281,6 +282,7 @@ class ExpandStateBean {
           SubExpandBean('不规则底部导航栏', BottomAppbar()),
           SubExpandBean('HeartBeatBottomBar', HeartBeatBottomBarWidget()),
           SubExpandBean('FancyBottomNavigationBar', FancyBottomNavigationBar()),
+          SubExpandBean('CurvedNavigationBar', CurvedNavigationBarSample()),
         ]),
     ExpandStateBean(
         leading: Icons.dashboard,
