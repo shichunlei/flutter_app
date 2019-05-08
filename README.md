@@ -138,4 +138,6 @@ A new Flutter application.
 ## 特别感谢
 
 
+## 许可证
 
+[Apache 2.0](https://github.com/shichunlei/flutter_app/blob/master/LICENSE)
