@@ -4,6 +4,7 @@ import 'package:flutter_app/bean/daily_forecast.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/utils/time_utils.dart';
+import 'package:flutter_app/weather/ui/line.dart';
 
 class WeeklyView extends StatelessWidget {
   final List<DailyForecast> daily_forecast;
@@ -14,18 +15,13 @@ class WeeklyView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 10.0),
-      width: double.infinity,
       color: Color(0x2a000000),
       padding: EdgeInsets.all(10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text('未来一周天气预报', style: TextStyle(color: Colors.white)),
-          Container(
-            height: 0.2,
-            color: Colors.white,
-            margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
-          ),
+          Line(),
           Row(
             children: daily_forecast.map((daily) {
               return Expanded(

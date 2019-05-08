@@ -7,7 +7,9 @@ class CustomIcon {
   static const IconData female =
       const IconData(0xe607, fontFamily: 'CustomIcon');
   static const IconData male = const IconData(0xe621, fontFamily: 'CustomIcon');
+
   static const IconData back = const IconData(0xe60e, fontFamily: 'CustomIcon');
+
   static const IconData share =
       const IconData(0xe61e, fontFamily: 'CustomIcon');
   static const IconData share2 =
@@ -16,15 +18,33 @@ class CustomIcon {
       const IconData(0xe64b, fontFamily: 'CustomIcon');
   static const IconData share4 =
       const IconData(0xe89b, fontFamily: 'CustomIcon');
+
   static const IconData tmp = const IconData(0xe6a3, fontFamily: 'CustomIcon');
   static const IconData hum = const IconData(0xe601, fontFamily: 'CustomIcon');
   static const IconData wind = const IconData(0xe6a6, fontFamily: 'CustomIcon');
+  static const IconData vis = const IconData(0xe9a4, fontFamily: 'CustomIcon');
+  static const IconData cloud =
+      const IconData(0xe613, fontFamily: 'CustomIcon');
+  static const IconData press =
+      const IconData(0xe6cc, fontFamily: 'CustomIcon');
+  static const IconData pcpn = const IconData(0xe9be, fontFamily: 'CustomIcon');
+
   static const IconData sun = const IconData(0xe609, fontFamily: 'CustomIcon');
   static const IconData moon = const IconData(0xe650, fontFamily: 'CustomIcon');
+
+  static const IconData air = const IconData(0xe65a, fontFamily: 'CustomIcon');
+  static const IconData co = const IconData(0xe620, fontFamily: 'CustomIcon');
+  static const IconData no2 = const IconData(0xe631, fontFamily: 'CustomIcon');
+  static const IconData so2 = const IconData(0xe7ea, fontFamily: 'CustomIcon');
+  static const IconData o3 = const IconData(0xe618, fontFamily: 'CustomIcon');
+  static const IconData pm25 = const IconData(0xe663, fontFamily: 'CustomIcon');
+  static const IconData pm10 = const IconData(0xe661, fontFamily: 'CustomIcon');
+
   static const IconData show_password =
       const IconData(0xe708, fontFamily: 'CustomIcon');
   static const IconData hidden_password =
       const IconData(0xed01, fontFamily: 'CustomIcon');
+
   static const IconData order =
       const IconData(0xe661, fontFamily: 'CustomIcon');
   static const IconData address =
@@ -43,8 +63,10 @@ class CustomIcon {
       const IconData(0xe629, fontFamily: 'CustomIcon');
   static const IconData coupon =
       const IconData(0xe628, fontFamily: 'CustomIcon');
+
   static const IconData account_full =
       const IconData(0xe60c, fontFamily: 'CustomIcon');
+
   static const IconData normal =
       const IconData(0xe625, fontFamily: 'CustomIcon');
   static const IconData check =

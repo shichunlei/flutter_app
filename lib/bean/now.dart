@@ -5,6 +5,7 @@ class NowBean {
   String fl; // 体感温度，默认单位：摄氏度
   String hum; // 相对湿度
   String pcpn; // 降水量
+  String pcpn_10m; // 10分钟降水量
   String pres; // 大气压强
   String tmp; // 温度，默认单位：摄氏度
   String vis; // 能见度，默认单位：公里
@@ -16,11 +17,11 @@ class NowBean {
   static NowBean fromMap(Map<String, dynamic> map) {
     NowBean nowBean = NowBean();
     nowBean.cloud = map['cloud'];
-    nowBean.cond_code =
-        "https://cdn.heweather.com/cond_icon/${map['cond_code']}.png";
+    nowBean.cond_code = map['cond_code'];
+//        "https://cdn.heweather.com/cond_icon/${map['cond_code']}.png";
     nowBean.cond_txt = map['cond_txt'];
     nowBean.fl = map['fl'];
-    nowBean.hum = "湿度 ${map['hum']}%";
+    nowBean.hum = "${map['hum']}%";
     nowBean.pcpn = map['pcpn'];
     nowBean.pres = map['pres'];
     nowBean.tmp = "${map['tmp']}°";

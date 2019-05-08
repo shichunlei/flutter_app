@@ -28,6 +28,7 @@ import 'package:flutter_app/bars_demo/bottom_navigation_bar.dart';
 import 'package:flutter_app/bars_demo/bottom_navigation_widget.dart';
 import 'package:flutter_app/bars_demo/navigation_keep_alive.dart';
 import 'package:flutter_app/bars_demo/tabbar_home_page.dart';
+import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/widget/appbar_widget.dart';
 import 'package:flutter_app/widget/bottom_sheet.dart';
 import 'package:flutter_app/widget/button_widget.dart';
@@ -614,3 +615,104 @@ class ChartFlutterBean {
 }
 
 var backgroundImage = 'http://pic1.16pic.com/00/31/72/16pic_3172062_b.jpg';
+
+String weatherBg(String cond_code) {
+  LogUtil.v('$cond_code===============');
+  String bgImage = '';
+  switch (cond_code) {
+    case '100':
+    case '200':
+    case '201':
+    case '202':
+    case '203':
+    case '204':
+    case '205':
+    case '206':
+    case '207':
+    case '208':
+    case '209':
+    case '210':
+    case '211':
+    case '212':
+    case '213':
+    case '999':
+      bgImage = 'images/weather_backgrounds/back_100d.jpg';
+      break;
+    case '101':
+    case '102':
+    case '103':
+      bgImage = 'images/weather_backgrounds/back_101d.jpg';
+      break;
+    case '104':
+      bgImage = 'images/weather_backgrounds/back_104d.jpg';
+      break;
+    case '300':
+    case '301':
+    case '305':
+    case '306':
+    case '307':
+    case '308':
+    case '309':
+    case '310':
+    case '311':
+    case '312':
+    case '313':
+    case '314':
+    case '315':
+    case '316':
+    case '317':
+    case '318':
+    case '399':
+      bgImage = 'images/weather_backgrounds/back_300d.jpg';
+      break;
+    case '302':
+    case '303':
+    case '304':
+      bgImage = 'images/weather_backgrounds/back_302d.jpg';
+      break;
+    case '400':
+    case '401':
+    case '402':
+    case '403':
+    case '404':
+    case '405':
+    case '406':
+    case '407':
+    case '408':
+    case '409':
+    case '410':
+    case '499':
+      bgImage = 'images/weather_backgrounds/back_400d.jpg';
+      break;
+    case '500':
+    case '501':
+    case '509':
+    case '510':
+    case '514':
+    case '515':
+      bgImage = 'images/weather_backgrounds/back_500d.jpg';
+      break;
+    case '502':
+    case '511':
+    case '512':
+    case '513':
+      bgImage = 'images/weather_backgrounds/back_502d.jpg';
+      break;
+    case '503':
+    case '504':
+    case '507':
+    case '508':
+      bgImage = 'images/weather_backgrounds/back_503d.jpg';
+      break;
+    case '900':
+      bgImage = 'images/weather_backgrounds/back_900d.jpg';
+      break;
+    case '901':
+      bgImage = 'images/weather_backgrounds/back_901d.jpg';
+      break;
+    default:
+      bgImage = 'images/weather_bg.jpg';
+      break;
+  }
+  return bgImage;
+}

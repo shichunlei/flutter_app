@@ -36,11 +36,15 @@ class CityPageState extends State<CityPage> {
   Widget _buildBodyView() {
     if (_cityList.isEmpty) return getLoadingWidget();
     return Column(children: <Widget>[
-      Container(
-          alignment: Alignment.centerLeft,
-          padding: const EdgeInsets.only(left: 15.0),
-          height: _itemHeight.toDouble(),
-          child: Text("当前城市: 北京")),
+      GestureDetector(
+          onTap: () {
+            pushNewPage(context, WeatherPage('北京'));
+          },
+          child: Container(
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.only(left: 15.0),
+              height: _itemHeight.toDouble(),
+              child: Text("当前城市: 北京"))),
       Expanded(
           child: AzListView(
               data: _cityList,

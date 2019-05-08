@@ -64,10 +64,20 @@ class DailyForecast {
 
   static DailyForecast fromMap(Map<String, dynamic> map) {
     DailyForecast daily_forecast = DailyForecast();
+    String n = '';
+    if (map['cond_code_n'] == '100' ||
+        map['cond_code_n'] == '103' ||
+        map['cond_code_n'] == '104' ||
+        map['cond_code_n'] == '300' ||
+        map['cond_code_n'] == '301' ||
+        map['cond_code_n'] == '406' ||
+        map['cond_code_n'] == '407') {
+      n = 'n';
+    }
     daily_forecast.cond_code_d =
         "https://cdn.heweather.com/cond_icon/${map['cond_code_d']}.png";
     daily_forecast.cond_code_n =
-        "https://cdn.heweather.com/cond_icon/${map['cond_code_n']}.png";
+        "https://cdn.heweather.com/cond_icon/${map['cond_code_n']}$n.png";
     daily_forecast.cond_txt_d = map['cond_txt_d'];
     daily_forecast.cond_txt_n = map['cond_txt_n'];
     daily_forecast.date = map['date'];

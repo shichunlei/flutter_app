@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class AirNowCity {
   /**
    * aqi : "75"
@@ -23,6 +25,8 @@ class AirNowCity {
   String o3;
   String pub_time;
 
+  Color aqiColor;
+
   static AirNowCity fromMap(Map<String, dynamic> map) {
     AirNowCity air_now_city = AirNowCity();
     air_now_city.aqi = map['aqi'];
@@ -35,6 +39,33 @@ class AirNowCity {
     air_now_city.co = map['co'];
     air_now_city.o3 = map['o3'];
     air_now_city.pub_time = map['pub_time'];
+
+    Color _aqiColor;
+    switch (map['qlty']) {
+      case '优':
+        _aqiColor = Colors.green;
+        break;
+      case '良':
+        _aqiColor = Colors.yellow;
+        break;
+      case '轻度污染':
+        _aqiColor = Colors.orange;
+        break;
+      case '中度污染':
+        _aqiColor = Colors.deepOrangeAccent;
+        break;
+      case '重度污染':
+        _aqiColor = Colors.deepOrange;
+        break;
+      case '严重污染':
+        _aqiColor = Colors.red;
+        break;
+      default:
+        _aqiColor = Colors.grey;
+        break;
+    }
+    air_now_city.aqiColor = _aqiColor;
+
     return air_now_city;
   }
 
