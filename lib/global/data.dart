@@ -711,7 +711,7 @@ String weatherBg(String cond_code) {
       bgImage = 'images/weather_backgrounds/back_901d.jpg';
       break;
     default:
-      bgImage = 'images/weather_bg.jpg';
+      bgImage = 'images/weather_backgrounds/back_100d.jpg';
       break;
   }
   return bgImage;

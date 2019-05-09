@@ -17,6 +17,7 @@ import 'package:flutter_app/weather/ui/lifestyle_view.dart';
 import 'package:flutter_app/weather/ui/now_view.dart';
 import 'package:flutter_app/weather/ui/sun_view.dart';
 import 'package:flutter_app/weather/ui/weekly_view.dart';
+import 'package:palette_generator/palette_generator.dart';
 
 class WeatherPage extends StatefulWidget {
   final String cityname;
@@ -37,11 +38,13 @@ class WeatherPageState extends State<WeatherPage> {
   List<Lifestyle> lifestyle = [];
   List<Hourly> hourly = [];
 
-  String background = 'images/weather_bg.jpg';
+  String background = 'images/weather_backgrounds/back_100d.jpg';
 
   ScrollController scrollController = ScrollController();
   double navAlpha = 0;
   double headerHeight = 200;
+
+  Color barColor = Colors.transparent;
 
   @override
   void initState() {
@@ -78,7 +81,16 @@ class WeatherPageState extends State<WeatherPage> {
   _getWeather(String cityname) async {
     air = await ApiService.getAir(cityname);
     weather = await ApiService.getHeWeather(cityname);
+
+    background = weatherBg(now?.cond_code);
+
+    PaletteGenerator paletteGenerator =
+        await PaletteGenerator.fromImageProvider(AssetImage(background));
+
     setState(() {
+      if (paletteGenerator.darkVibrantColor != null) {
+        barColor = paletteGenerator.darkVibrantColor.color;
+      }
       if (weather != null) {
         now = weather.now;
         background = weatherBg(now?.cond_code);
@@ -104,8 +116,8 @@ class WeatherPageState extends State<WeatherPage> {
                 centerTitle: true,
                 title: Text('${widget.cityname}'),
                 elevation: 0.0,
-                backgroundColor:
-                    Color.fromARGB((navAlpha * 255).toInt(), 239, 83, 80),
+                backgroundColor: Color.fromARGB((navAlpha * 255).toInt(),
+                    barColor.red, barColor.green, barColor.blue),
                 actions: <Widget>[
                   IconButton(
                       icon: Icon(Icons.blur_on, color: Colors.white),
