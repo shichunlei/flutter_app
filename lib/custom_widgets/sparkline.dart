@@ -463,25 +463,6 @@ class _SparklinePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_SparklinePainter old) {
-    return dataPoints != old.dataPoints ||
-        lineWidth != old.lineWidth ||
-        lineColor != old.lineColor ||
-        lineGradient != old.lineGradient ||
-        sharpCorners != old.sharpCorners ||
-        fillMode != old.fillMode ||
-        fillColor != old.fillColor ||
-        fillGradient != old.fillGradient ||
-        pointsMode != old.pointsMode ||
-        pointSize != old.pointSize ||
-        pointColor != old.pointColor ||
-        enableGridLines != old.enableGridLines ||
-        gridLineColor != old.gridLineColor ||
-        gridLineAmount != old.gridLineAmount ||
-        gridLineWidth != old.gridLineWidth ||
-        gridLineLabelColor != old.gridLineLabelColor ||
-        valueColor != old.valueColor ||
-        valueFontSize != old.valueFontSize ||
-        showValue != old.showValue ||
-        showYZero != old.showYZero;
+    return true;
   }
 }

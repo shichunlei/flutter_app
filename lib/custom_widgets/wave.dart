@@ -299,13 +299,13 @@ class CustomConfig extends Config {
     @required this.heightPercentages,
     this.blur,
   })  : assert(() {
-          if (colors == null && gradients == null) {
+          if (colors.isEmpty && gradients.isEmpty) {
             throwNullError('custom', 'colors` or `gradients');
           }
           return true;
         }()),
         assert(() {
-          if (gradients == null &&
+          if (gradients.isEmpty &&
               (gradientBegin != null || gradientEnd != null)) {
             throw FlutterError(
                 'You set a gradient direction but forgot setting `gradients`.');
@@ -325,7 +325,7 @@ class CustomConfig extends Config {
           return true;
         }()),
         assert(() {
-          if (colors != null) {
+          if (colors.isNotEmpty) {
             if (colors.length != durations.length ||
                 colors.length != heightPercentages.length) {
               throw FlutterError(
@@ -334,7 +334,7 @@ class CustomConfig extends Config {
           }
           return true;
         }()),
-        assert(colors == null || gradients == null,
+        assert(colors.isEmpty || gradients.isEmpty,
             'Cannot provide both colors and gradients.'),
         super(colorMode: ColorMode.custom);
 }
