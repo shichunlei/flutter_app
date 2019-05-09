@@ -42,14 +42,14 @@ class HomeDrawableHeader extends StatelessWidget {
         GestureDetector(
           child: CircleAvatar(
             backgroundImage: NetworkImage(
-                "https://t1.onvshen.com:85/gallery/27062/29572/s/0.jpg"),
+                "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g2qrft0upcj30u01hcwpa.jpg"),
           ),
           onTap: () {},
         ),
         GestureDetector(
           child: CircleAvatar(
             backgroundImage: NetworkImage(
-                "https://t1.onvshen.com:85/gallery/27062/29572/s/014.jpg"),
+                "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g2qrf51edvj30u01hbgse.jpg"),
           ),
           onTap: () {},
         ),

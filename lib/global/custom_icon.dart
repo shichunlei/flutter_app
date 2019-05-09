@@ -46,7 +46,7 @@ class CustomIcon {
       const IconData(0xed01, fontFamily: 'CustomIcon');
 
   static const IconData order =
-      const IconData(0xe661, fontFamily: 'CustomIcon');
+      const IconData(0xe662, fontFamily: 'CustomIcon');
   static const IconData address =
       const IconData(0xe615, fontFamily: 'CustomIcon');
   static const IconData about =

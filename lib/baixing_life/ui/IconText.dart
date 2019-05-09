@@ -9,7 +9,7 @@ class IconText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
+    return FlatButton(
       onPressed: onPressed,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 8.0),

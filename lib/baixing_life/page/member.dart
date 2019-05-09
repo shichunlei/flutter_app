@@ -28,7 +28,7 @@ class _MemberPageState extends State<MemberPage>
   @override
   bool get wantKeepAlive => true;
 
-  var avatarImage = 'https://t1.onvshen.com:85/gallery/27062/29572/s/0.jpg';
+  var avatarImage = 'https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g2qrfsns92j30u013y0x3.jpg';
 
   double navAlpha = 0;
   double headerHeight;
@@ -89,7 +89,7 @@ class _MemberPageState extends State<MemberPage>
                         title: Text('我的订单'),
                         onTap: () => pushNewPage(context, OrderHomePage()),
                         leading: Icon(CustomIcon.order),
-                        trailing: Icon(Icons.arrow_forward_ios),
+                        trailing: Icon(Icons.keyboard_arrow_right),
                       ),
                       Container(height: 0.5, color: Colors.grey[200]),
                       Row(
@@ -122,7 +122,7 @@ class _MemberPageState extends State<MemberPage>
                           /// TODO
                         },
                         leading: Icon(CustomIcon.coupon),
-                        trailing: Icon(Icons.arrow_forward_ios),
+                        trailing: Icon(Icons.keyboard_arrow_right),
                       ),
                       Container(height: 0.5, color: Colors.grey[200]),
                       ListTile(
@@ -133,7 +133,7 @@ class _MemberPageState extends State<MemberPage>
                           /// TODO
                         },
                         leading: Icon(CustomIcon.address),
-                        trailing: Icon(Icons.arrow_forward_ios),
+                        trailing: Icon(Icons.keyboard_arrow_right),
                       ),
                     ],
                   ),
@@ -151,7 +151,7 @@ class _MemberPageState extends State<MemberPage>
                           children: <Widget>[
                             Text(_phone),
                             SizedBox(width: 10.0),
-                            Icon(Icons.arrow_forward_ios)
+                            Icon(Icons.keyboard_arrow_right)
                           ],
                           mainAxisSize: MainAxisSize.min,
                         ),
@@ -164,7 +164,7 @@ class _MemberPageState extends State<MemberPage>
                           Toast.show('关于商城', context);
                         },
                         leading: Icon(CustomIcon.about),
-                        trailing: Icon(Icons.arrow_forward_ios),
+                        trailing: Icon(Icons.keyboard_arrow_right),
                       ),
                     ],
                   ),

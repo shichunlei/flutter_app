@@ -37,13 +37,11 @@ class CityPageState extends State<CityPage> {
     if (_cityList.isEmpty) return getLoadingWidget();
     return Column(children: <Widget>[
       GestureDetector(
-          onTap: () {
-            pushNewPage(context, WeatherPage('北京'));
-          },
+          behavior: HitTestBehavior.translucent,
+          onTap: () => pushNewPage(context, WeatherPage('北京')),
           child: Container(
               alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.only(left: 15.0),
-              height: _itemHeight.toDouble(),
+              padding: const EdgeInsets.all(15.0),
               child: Text("当前城市: 北京"))),
       Expanded(
           child: AzListView(
@@ -55,7 +53,8 @@ class CityPageState extends State<CityPage> {
               isUseRealIndex: true,
               itemHeight: _itemHeight,
               suspensionHeight: _suspensionHeight,
-              onSusTagChanged: _onSusTagChanged))
+              onSusTagChanged: (value) =>
+                  setState(() => _suspensionTag = value)))
     ]);
   }
 
@@ -109,11 +108,5 @@ class CityPageState extends State<CityPage> {
               onTap: () =>
                   pushNewPage(context, WeatherPage(model.parent_city))))
     ]);
-  }
-
-  void _onSusTagChanged(String value) {
-    setState(() {
-      _suspensionTag = value;
-    });
   }
 }
