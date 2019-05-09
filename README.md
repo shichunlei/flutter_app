@@ -67,9 +67,12 @@ A new Flutter application.
 
 ### 天气
 
-|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-23-860.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-34-612.png)|
-| :--: | :--: |
-|城市|城市天气预报|
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-34-612.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-05-09-17-47-40-026.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-05-09-17-47-47-861.png)|
+| :--: | :--: | :--: |
+|实况天气/空气质量指数|逐小时、7天天气预报|生活指数|
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-23-860.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/.png)|
+|城市列表|XXX|XXX|
+
 
 
 #### [百姓生活](https://github.com/shenghy/flutter_shop)

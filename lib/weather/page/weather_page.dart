@@ -102,8 +102,7 @@ class WeatherPageState extends State<WeatherPage> {
             height: Utils.navigationBarHeight,
             child: AppBar(
                 centerTitle: true,
-                title: Offstage(
-                    offstage: navAlpha < 1, child: Text('${widget.cityname}')),
+                title: Text('${widget.cityname}'),
                 elevation: 0.0,
                 backgroundColor:
                     Color.fromARGB((navAlpha * 255).toInt(), 239, 83, 80),
