@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/air_now_city.dart';
 import 'package:flutter_app/custom_widgets/seml_circle_progress.dart';
 import 'package:flutter_app/global/custom_icon.dart';
-import 'package:flutter_app/weather/ui/line.dart';
+import 'package:flutter_app/ui/line.dart';
 
 class AirView extends StatelessWidget {
   final AirNowCity air_now_city;

@@ -5,7 +5,7 @@ import 'package:flutter_app/custom_widgets/sunrise_sunset_view.dart';
 import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/utils/time_utils.dart';
-import 'package:flutter_app/weather/ui/line.dart';
+import 'package:flutter_app/ui/line.dart';
 
 class SunView extends StatefulWidget {
   final String cityname;

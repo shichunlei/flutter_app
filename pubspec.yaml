@@ -8,6 +8,8 @@ description: A new Flutter application. # 应用或包的描述、简介
 # build by specifying --build-name and --build-number, respectively.
 # Read more about versioning at semver.org.
 version: 1.0.0+1 # 应用或包的版本号
+author: 师春雷 <1558053958@qq.com>
+homepage: https://github.com/shichunlei/flutter_app
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

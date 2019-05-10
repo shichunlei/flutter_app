@@ -145,6 +145,7 @@ class _OneArticlePageState extends State<OneArticlePage>
       return getLoadingWidget();
     }
     return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
       child: Container(
         alignment: Alignment.topCenter,
         child: Column(
