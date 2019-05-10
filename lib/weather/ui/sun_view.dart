@@ -55,7 +55,9 @@ class _SunViewState extends State<SunView>
                 child: sunrise_sunset == null
                     ? Center()
                     : SunriseSunsetView(
-                        progress: totalMin == 0 ? 0 : progressMin / totalMin),
+                        progress: (totalMin == 0 || progressMin == 0)
+                            ? 0.01
+                            : progressMin / totalMin),
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10)),
             Row(children: <Widget>[
@@ -84,20 +86,34 @@ class _SunViewState extends State<SunView>
     setState(() {
       sunrise_sunset = weather.sunrise_sunset[0];
 
-      totalMin = (int.parse('${sunrise_sunset?.ss.substring(0, 2)}') -
-                  int.parse('${sunrise_sunset?.sr.substring(0, 2)}')) *
-              60 +
-          (int.parse('${sunrise_sunset?.ss.substring(3)}') -
-              int.parse('${sunrise_sunset?.sr.substring(3)}'));
-
       String nowTime = TimeUtils.getDateStrByDateTime(DateTime.now(),
           format: DateFormat.HOUR_MINUTE);
 
-      progressMin = (int.parse('${nowTime.substring(0, 2)}') -
-                  int.parse('${sunrise_sunset?.sr.substring(0, 2)}')) *
-              60 +
-          (int.parse('${nowTime.substring(3)}') -
-              int.parse('${sunrise_sunset?.sr.substring(3)}'));
+      /// 当前时间
+      int currentHour = int.parse('${nowTime.substring(0, 2)}');
+      int currentMin = int.parse('${nowTime.substring(3)}');
+
+      /// 日落
+      int ssHour = int.parse('${sunrise_sunset?.ss.substring(0, 2)}');
+      int ssMin = int.parse('${sunrise_sunset?.ss.substring(3)}');
+
+      /// 日出
+      int srHour = int.parse('${sunrise_sunset?.sr.substring(0, 2)}');
+      int srMin = int.parse('${sunrise_sunset?.sr.substring(3)}');
+
+      /// 日出到日落间的总时间（分钟）
+      totalMin = (ssHour - srHour) * 60 + (ssMin - srMin);
+
+      if (currentHour - ssHour > 0 && currentMin - ssMin > 0) {
+        /// 当前时间太阳已经下山
+        progressMin = totalMin;
+      } else if (currentHour - srHour < 0 && currentMin - srMin < 0) {
+        /// 太阳还未升起
+        progressMin = 0;
+      } else {
+        /// 太阳已经升起
+        progressMin = (currentHour - srHour) * 60 + (currentMin - srMin);
+      }
     });
   }
 }
