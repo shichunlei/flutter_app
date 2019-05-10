@@ -14,7 +14,6 @@ class IconText extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 8.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(icon),

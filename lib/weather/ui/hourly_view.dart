@@ -36,7 +36,7 @@ class HourlyView extends StatelessWidget {
                   children: hourly.map((hour) {
                 return Expanded(
                     child: Center(
-                        child: Text(hour.time.substring(10),
+                        child: Text(hour.time,
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.white))));
               }).toList()),

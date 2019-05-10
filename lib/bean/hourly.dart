@@ -1,3 +1,5 @@
+import 'package:flutter_app/utils/time_utils.dart';
+
 class Hourly {
   /**
    * cloud : "25"
@@ -31,15 +33,44 @@ class Hourly {
 
   static Hourly fromMap(Map<String, dynamic> map) {
     Hourly hourly = Hourly();
+    String n = '';
+    List<String> times = [
+      '00:00',
+      '01:00',
+      '02:00',
+      '03:00',
+      '04:00',
+      '05:00',
+      '06:00',
+      '19:00',
+      '20:00',
+      '21:00',
+      '22:00',
+      '23:00'
+    ];
+    String _time = TimeUtils.getDateStrByTimeStr("${map['time']}:00",
+        format: DateFormat.HOUR_MINUTE);
+
+    if ((map['cond_code'] == '100' ||
+            map['cond_code'] == '103' ||
+            map['cond_code'] == '104' ||
+            map['cond_code'] == '300' ||
+            map['cond_code'] == '301' ||
+            map['cond_code'] == '406' ||
+            map['cond_code'] == '407') &&
+        times.contains(_time)) {
+      n = 'n';
+    }
+
     hourly.cloud = map['cloud'];
     hourly.cond_code =
-        "https://cdn.heweather.com/cond_icon/${map['cond_code']}.png";
+        "https://cdn.heweather.com/cond_icon/${map['cond_code']}$n.png";
     hourly.cond_txt = map['cond_txt'];
     hourly.dew = map['dew'];
     hourly.hum = map['hum'];
     hourly.pop = map['pop'];
     hourly.pres = map['pres'];
-    hourly.time = map['time'];
+    hourly.time = _time;
     hourly.tmp = map['tmp'];
     hourly.wind_deg = map['wind_deg'];
     hourly.wind_dir = map['wind_dir'];
