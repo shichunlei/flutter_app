@@ -9,6 +9,10 @@ import 'package:flutter_app/weather/page/weather_page.dart';
 import 'package:rounded_letter/rounded_letter.dart';
 
 class CityPage extends StatefulWidget {
+  final String currentCity;
+
+  CityPage({Key key, this.currentCity}) : super(key: key);
+
   @override
   createState() => CityPageState();
 }
@@ -38,11 +42,12 @@ class CityPageState extends State<CityPage> {
     return Column(children: <Widget>[
       GestureDetector(
           behavior: HitTestBehavior.translucent,
-          onTap: () => pushNewPage(context, WeatherPage('北京')),
+          onTap: () => pushNewPage(
+              context, WeatherPage('${widget.currentCity ?? '北京'}')),
           child: Container(
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.all(15.0),
-              child: Text("当前城市: 北京"))),
+              child: Text("当前城市: ${widget.currentCity ?? '北京'}"))),
       Expanded(
           child: AzListView(
               data: _cityList,

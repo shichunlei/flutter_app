@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/bean/he_weather.dart';
+import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/ui/home_drawable.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/toast.dart';
@@ -7,6 +9,7 @@ import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/utils.dart';
+import 'package:flutter_app/weather/page/city_page.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:async';
 
@@ -21,6 +24,17 @@ class HomeStatePage extends State<HomePage> {
   /// 上次点击时间
   DateTime _lastPressedAt;
 
+  HeWeather weather;
+  String city;
+
+  @override
+  void initState() {
+    super.initState();
+    city = '北京';
+    // 获取当前位置的天气数据
+    getWeatherData(city);
+  }
+
   @override
   Widget build(BuildContext context) {
     /**
@@ -34,11 +48,26 @@ class HomeStatePage extends State<HomePage> {
         key: _scaffoldKey,
         appBar: AppBar(
           // Title
-          title: Text("Flutter Demo"),
+          title: GestureDetector(
+            onTap: () => pushNewPage(context, CityPage(currentCity: city)),
+            child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text(city, style: TextStyle(fontSize: 17.0)),
+                      Icon(Icons.keyboard_arrow_down)
+                    ],
+                    mainAxisSize: MainAxisSize.min,
+                  ),
+                  Text('${weather?.now?.cond_txt} ${weather?.now?.tmp}',
+                      style: TextStyle(fontSize: 13.0))
+                ],
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center),
+          ),
           // Set the background color of the App Bar
           backgroundColor: Colors.pinkAccent,
           elevation: 4.0,
-          centerTitle: true,
           leading: IconButton(
               icon: Icon(Icons.menu),
               onPressed: () => _scaffoldKey.currentState.openDrawer()),
@@ -120,6 +149,11 @@ class HomeStatePage extends State<HomePage> {
       return false;
     }
     return true;
+  }
+
+  void getWeatherData(String city) async {
+    weather = await ApiService.getHeWeatherNow(city);
+    setState(() {});
   }
 
   void getTestData() async {}

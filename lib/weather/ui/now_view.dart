@@ -24,8 +24,7 @@ class NowView extends StatelessWidget {
         SizedBox(height: 10.0),
         Text(now.cond_txt,
             style: TextStyle(color: Colors.white, fontSize: 17.0)),
-        RaisedButton(
-            elevation: 0,
+        FlatButton(
             color: Color(0x2a000000),
             onPressed: () {},
             child: Row(
@@ -73,7 +72,8 @@ class NowView extends StatelessWidget {
             child: Row(children: <Widget>[
               Icon(CustomIcon.pcpn, color: Colors.white, size: 20.0),
               SizedBox(width: 5.0),
-              Text('  降雨量：${now.pcpn} mm', style: TextStyle(color: Colors.white))
+              Text('  降雨量：${now.pcpn} mm',
+                  style: TextStyle(color: Colors.white))
             ]),
           ),
           Expanded(
