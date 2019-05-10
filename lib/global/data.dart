@@ -22,7 +22,7 @@ import 'package:flutter_app/page/drag_like_page.dart';
 import 'package:flutter_app/page/like_button_page.dart';
 import 'package:flutter_app/page/time_line.dart';
 import 'package:flutter_app/page/wave_sample.dart';
-import 'package:flutter_app/page/wechat_friends_circle.dart';
+import 'package:flutter_app/wechat_friends/page/wechat_friends_circle.dart';
 import 'package:flutter_app/question/pages/quiz_page.dart';
 import 'package:flutter_app/bars_demo/bottom_navigation_bar.dart';
 import 'package:flutter_app/bars_demo/bottom_navigation_widget.dart';

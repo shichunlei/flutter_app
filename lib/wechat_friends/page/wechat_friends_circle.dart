@@ -1,12 +1,18 @@
 import 'dart:convert';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/bean/friends_dynamic.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/ui/item_dynamic.dart';
+import 'package:flutter_app/utils/log_util.dart';
+import 'package:flutter_app/utils/route_util.dart';
+import 'package:flutter_app/wechat_friends/page/publish_dynamic.dart';
+import 'package:flutter_app/wechat_friends/ui/item_dynamic.dart';
 import 'package:flutter_app/utils/utils.dart';
+
+import 'package:multi_image_picker/multi_image_picker.dart';
 
 class WeChatFriendsCircle extends StatefulWidget {
   WeChatFriendsCircle({Key key}) : super(key: key);
@@ -69,6 +75,7 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
         body: Stack(
           children: <Widget>[
             SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
               controller: scrollController,
               child: Column(children: <Widget>[
                 Stack(
@@ -119,7 +126,9 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
                     icon: Icon(Icons.arrow_back_ios),
                     onPressed: () => Navigator.pop(context)),
                 actions: <Widget>[
-                  IconButton(icon: Icon(Icons.add_a_photo), onPressed: () {})
+                  IconButton(
+                      icon: Icon(Icons.add_a_photo),
+                      onPressed: () => loadAssets())
                 ],
                 iconTheme: IconThemeData(color: c, size: 20),
                 elevation: 0.0,
@@ -140,6 +149,28 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
     rootBundle.loadString('assets/data/friends.json').then((value) {
       friends_dynamic = FriendsDynamic.fromMapList(json.decode(value));
       setState(() {});
+    });
+  }
+
+  Future<void> loadAssets() async {
+    List<Asset> resultList = List<Asset>();
+
+    try {
+      resultList = await MultiImagePicker.pickImages(
+          maxImages: 9, options: CupertinoOptions(takePhotoIcon: "chat"));
+    } on PlatformException catch (e) {
+      LogUtil.v('${e.message}');
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      if (resultList.isNotEmpty) {
+        pushNewPage(context, PublishDynamicPage(images: resultList));
+      }
     });
   }
 }

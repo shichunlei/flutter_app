@@ -109,6 +109,9 @@ dependencies: # 应用或包依赖的其它包或插件
   # The Material Design Icons Icon pack available as set of Flutter Icons.
   material_design_icons_flutter: 3.0.3392
 
+  # 选择多张图片，类似于微信发布朋友圈选择图片
+  multi_image_picker: 2.4.11
+
   outline_material_icons: ^0.1.0
 
   package_info: ^0.4.0+3
