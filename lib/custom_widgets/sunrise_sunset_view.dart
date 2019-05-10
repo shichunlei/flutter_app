@@ -23,22 +23,24 @@ class _SunriseSunsetViewState extends State<SunriseSunsetView>
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
-        duration: Duration(milliseconds: widget.duration),
-        upperBound: widget.progress,
-        vsync: this)
-      ..forward();
+    if (widget.progress > 0) {
+      _controller = AnimationController(
+          duration: Duration(milliseconds: widget.duration),
+          upperBound: widget.progress,
+          vsync: this)
+        ..forward();
+    }
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(painter: _SunriseSunsetPainter(_controller.value));
+    return CustomPaint(painter: _SunriseSunsetPainter(_controller?.value ?? 0));
   }
 }
 
@@ -91,38 +93,41 @@ class _SunriseSunsetPainter extends CustomPainter {
     // 绘制进度条圆弧
     canvas.drawArc(rect, startRadians, endRadians, false, arcPaint);
 
-    final Paint dotPaint = Paint()
-      ..color = Colors.deepOrangeAccent
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = dotRadius * 2;
+    /// 当太阳落山后不画太阳
+    if (progress < 1 && progress > 0) {
+      final Paint dotPaint = Paint()
+        ..color = Colors.deepOrangeAccent
+        ..strokeCap = StrokeCap.round
+        ..strokeWidth = dotRadius * 2;
 
-    // 绘制圆点（即太阳的位置）
-    canvas.drawPoints(PointMode.points, [Offset(dx, dy)], dotPaint);
+      // 绘制圆点（即太阳的位置）
+      canvas.drawPoints(PointMode.points, [Offset(dx, dy)], dotPaint);
 
-    final linePaint90 = Paint()
-      ..color = Colors.deepOrangeAccent
-      ..strokeWidth = 0.8;
+      final linePaint90 = Paint()
+        ..color = Colors.deepOrangeAccent
+        ..strokeWidth = 0.8;
 
-    for (int i = 0; i < 4; i++) {
-      canvas.drawLine(
-          Offset(dx - (dotRadius + 3) * cos(degToRad(90 * i)),
-              dy - (dotRadius + 3) * sin(degToRad(90 * i))),
-          Offset(dx - (dotRadius + 10) * cos(degToRad(90 * i)),
-              dy - (dotRadius + 10) * sin(degToRad(90 * i))),
-          linePaint90);
-    }
+      for (int i = 0; i < 4; i++) {
+        canvas.drawLine(
+            Offset(dx - (dotRadius + 3) * cos(degToRad(90 * i)),
+                dy - (dotRadius + 3) * sin(degToRad(90 * i))),
+            Offset(dx - (dotRadius + 10) * cos(degToRad(90 * i)),
+                dy - (dotRadius + 10) * sin(degToRad(90 * i))),
+            linePaint90);
+      }
 
-    final linePaint45 = Paint()
-      ..color = Colors.deepOrangeAccent
-      ..strokeWidth = 0.5;
+      final linePaint45 = Paint()
+        ..color = Colors.deepOrangeAccent
+        ..strokeWidth = 0.5;
 
-    for (int i = 0; i < 4; i++) {
-      canvas.drawLine(
-          Offset(dx - (dotRadius + 3) * cos(degToRad(90 * i + 45)),
-              dy - (dotRadius + 3) * sin(degToRad(90 * i + 45))),
-          Offset(dx - (dotRadius + 8) * cos(degToRad(90 * i + 45)),
-              dy - (dotRadius + 8) * sin(degToRad(90 * i + 45))),
-          linePaint45);
+      for (int i = 0; i < 4; i++) {
+        canvas.drawLine(
+            Offset(dx - (dotRadius + 3) * cos(degToRad(90 * i + 45)),
+                dy - (dotRadius + 3) * sin(degToRad(90 * i + 45))),
+            Offset(dx - (dotRadius + 8) * cos(degToRad(90 * i + 45)),
+                dy - (dotRadius + 8) * sin(degToRad(90 * i + 45))),
+            linePaint45);
+      }
     }
   }
 

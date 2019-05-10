@@ -55,9 +55,7 @@ class _SunViewState extends State<SunView>
                 child: sunrise_sunset == null
                     ? Center()
                     : SunriseSunsetView(
-                        progress: (totalMin == 0 || progressMin == 0)
-                            ? 0.01
-                            : progressMin / totalMin),
+                        progress: totalMin == 0 ? 0 : progressMin / totalMin),
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10)),
             Row(children: <Widget>[
