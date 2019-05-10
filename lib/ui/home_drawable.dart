@@ -60,16 +60,6 @@ class _HomeDrawableState extends State<HomeDrawable> {
           isLogin: isLogin, avatar: avatar, userName: userName, email: email),
       Divider(),
       ListTile(
-        title: Text("城市"),
-        leading: Icon(Icons.location_city),
-        trailing: Icon(Icons.chevron_right),
-        onTap: () {
-          Navigator.of(context).pop();
-          pushNewPageBack(context, CityPage());
-        },
-      ),
-      Divider(),
-      ListTile(
           title: Text("诗词"),
           leading: Icon(Icons.book),
           trailing: Icon(Icons.chevron_right),

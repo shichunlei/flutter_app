@@ -1,4 +1,4 @@
-# flutter_app
+# Flutter Demos
 
 A new Flutter application.
 
@@ -6,7 +6,7 @@ A new Flutter application.
 
 `声明2：本项目中部分功能页面是别人其他项目中的，但是本人并不是完全照抄原作者代码，再次页特别感谢原作者，部分参考别人页面的功能也已标注出原出处，如有侵犯原作者的地方请联系本人进行删除。`
 
-`本项目包括各种基本控件使用（Text、TextField、Icon、Image、Listview、Gridview、Picker、Stepper、Dialog、Slider、Row、Appbar、Sizebox、BottomSheet、Chip、Dismissible、FlutterLogo、Check、Switch、TabBar、BottomNavigationBar、Sliver等）、豆瓣电影、每日一文、和天气、百姓生活、随机诗词、联系人等板块`
+`本项目包括各种基本控件使用（Text、TextField、Icon、Image、Listview、Gridview、Picker、Stepper、Dialog、Slider、Row、Appbar、Sizebox、BottomSheet、Chip、Dismissible、FlutterLogo、Check、Switch、TabBar、BottomNavigationBar、Sliver等）、豆瓣电影、每日一文、和天气、百姓生活、随机诗词、联系人、句子迷、朋友圈等板块`
 
 ## API接口
 
@@ -97,6 +97,13 @@ A new Flutter application.
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-22-18-01-34-664.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-22-17-05-37-975.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-22-17-52-45-864.png)|
 | :--: | :--: | :--: |
 |每日一文|每日一文|收藏|
+
+
+### 仿微信朋友圈布局
+
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-05-10-15-18-34-444.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-05-10-15-18-46-454.png)|
+| :--: | :--: |
+|头部|九宫格|
 
 
 ### [句子迷]()
