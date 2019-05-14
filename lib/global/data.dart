@@ -45,6 +45,7 @@ import 'package:flutter_app/widget/icon_widget.dart';
 import 'package:flutter_app/widget/image_widget.dart';
 import 'package:flutter_app/widget/load_image_widget.dart';
 import 'package:flutter_app/widget/qr_image_wiget.dart';
+import 'package:flutter_app/widget/range_slider_sample.dart';
 import 'package:flutter_app/widget/rounded_letter_widget.dart';
 import 'package:flutter_app/widget/slider_widget.dart';
 import 'package:flutter_app/widget/sliver_widget.dart';
@@ -55,6 +56,7 @@ import 'package:flutter_app/widget/text_widget.dart';
 import 'package:flutter_app/widget/textfield_widget.dart';
 
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:flutter_app/xianyu/home.dart';
 
 class Girl {
   final String description;
@@ -311,6 +313,7 @@ class ExpandStateBean {
           SubExpandBean('图表', ChartsWidget()),
           SubExpandBean('Read Assets Json File', LoadingJsonPage()),
           SubExpandBean('Data Table', TablePage()),
+          SubExpandBean('RangeSlider', RangeSliderSample()),
         ]),
     ExpandStateBean(
         leading: Icons.dashboard,
@@ -326,6 +329,7 @@ class ExpandStateBean {
           SubExpandBean('每日一文', OneArticlePage()),
           SubExpandBean('仿朋友圈', WeChatFriendsCircle()),
           SubExpandBean('仿抖音首页动画', TikTokPage()),
+          SubExpandBean('仿闲鱼', XianyuHomePage()),
         ]),
   ];
 }

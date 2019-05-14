@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/air_now_city.dart';
-import 'package:flutter_app/custom_widgets/seml_circle_progress.dart';
+import 'package:flutter_app/custom_widgets/circle_progress.dart';
 import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/ui/line.dart';
 
@@ -23,11 +23,12 @@ class AirView extends StatelessWidget {
             Container(
                 alignment: Alignment.center,
                 height: 150,
-                child: SemlCircleProgress(
+                child: CircleProgressWidget(
                     progress: double.parse(air_now_city.aqi) / 500,
                     strokeWidth: 15.0,
                     lableFontSize: 40.0,
                     progressColor: air_now_city.aqiColor,
+                    totalDegree:270,
                     lable: '${air_now_city.aqi}')),
             Row(children: <Widget>[
               Expanded(
