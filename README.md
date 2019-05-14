@@ -134,6 +134,7 @@ A new Flutter application.
 | Rounded Letter | [roundedletter](https://github.com/jhomlala/roundedletter) | ![](https://camo.githubusercontent.com/ab6351029d9980584a1120d90dccb654e8ab8dbb/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f726f756e6465645f6c65747465722e737667) | Useful Flutter widget which allows you to create letter inside shape. Can be used for placeholders (for example user avatars). This package is named 'Rounded letter' because main idea was letter inside circle just like Android 5.0 contacts. Later idea has evolved into more shapes. |
 | 数据库 | [sqflite](https://github.com/tekartik/sqflite) | 1.1.5 | SQLite plugin for Flutter. Supports both iOS and Android.|
 | Flutter Multi Image Picker | [Flutter Multi Image Picker](https://github.com/Sh1d0w/multi_image_picker) | ![](https://camo.githubusercontent.com/a92acc7a4217e1e7bfb9a9a4ad0be422ce7ad875/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f6d756c74695f696d6167655f7069636b65722e737667) | Flutter plugin that allows you to display multi image picker on iOS and Android.|
+| Flutter Range Slider | [range_slider](https://github.com/boeledi/RangeSlider) | 1.2.0 | An extension of the Flutter Material Slider to allow selection of a range of values via 2 thumbs.|
 
 
 ## 特别感谢
