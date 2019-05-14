@@ -76,4 +76,8 @@ class CustomIcon {
       const IconData(0xe625, fontFamily: 'CustomIcon');
   static const IconData check =
       const IconData(0xe70c, fontFamily: 'CustomIcon');
+
+  static const IconData xianyu =
+      const IconData(0xe687, fontFamily: 'CustomIcon');
+  static const IconData scan = const IconData(0xe72a, fontFamily: 'CustomIcon');
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/ui/sliver_appbar_delegate.dart';
 import 'package:flutter_app/xianyu/bottom_gridview.dart';
 
@@ -62,13 +63,12 @@ class _XianyuHomePageState extends State<XianyuHomePage>
           ),
           automaticallyImplyLeading: false,
           leading: Container(
-              child: Text('闲鱼',
-                  style: TextStyle(fontSize: 18, color: Colors.black)),
+              child: Image.asset('images/xianyu.png'),
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.only(left: 20)),
           actions: <Widget>[
             IconButton(
-                icon: Icon(Icons.settings_overscan, color: Colors.black),
+                icon: Icon(CustomIcon.scan, color: Colors.black),
                 onPressed: () {})
           ]),
       body: CustomScrollView(
