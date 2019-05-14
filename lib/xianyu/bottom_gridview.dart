@@ -22,14 +22,13 @@ class _BottomGridViewState extends State<BottomGridView> {
     super.initState();
 
     LogUtil.v('---------------${widget.index}');
-
-    getListData();
   }
 
   @override
   Widget build(BuildContext context) {
+    getListData(widget.index);
+
     return StaggeredGridView.countBuilder(
-        physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         primary: false,
         crossAxisCount: 4,
@@ -38,7 +37,7 @@ class _BottomGridViewState extends State<BottomGridView> {
         itemBuilder: (context, index) =>
             Item(index: index, size: _sizes[index]),
         staggeredTileBuilder: (index) => StaggeredTile.fit(2),
-        itemCount: 10);
+        itemCount: 5 * (widget.index + 1));
   }
 
   List<IntSize> _createSizes(int count) {
@@ -49,8 +48,11 @@ class _BottomGridViewState extends State<BottomGridView> {
     );
   }
 
-  void getListData() {
-    _sizes = _createSizes(10).toList();
+  void getListData(int index) async {
+    _sizes.clear();
+    setState(() {});
+    LogUtil.v('$index==========================================');
+    _sizes = _createSizes(5 * (index + 1)).toList();
     setState(() {});
   }
 }
