@@ -59,7 +59,8 @@ class HomeStatePage extends State<HomePage> {
                     ],
                     mainAxisSize: MainAxisSize.min,
                   ),
-                  Text('${weather?.now?.cond_txt} ${weather?.now?.tmp}',
+                  Text(
+                      '${weather?.now?.cond_txt ?? ''} ${weather?.now?.tmp ?? ''}',
                       style: TextStyle(fontSize: 13.0))
                 ],
                 crossAxisAlignment: CrossAxisAlignment.start,

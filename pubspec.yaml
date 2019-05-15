@@ -59,6 +59,9 @@ dependencies: # 应用或包依赖的其它包或插件
   # 图标库地址：https://feathericons.com/
   feather_icons_flutter: ^4.7.4
 
+  # 颜色选择器
+  flutter_colorpicker: ^0.2.1
+
   # 刷新加载控件
   flutter_easyrefresh: ^1.2.7
 
@@ -67,6 +70,9 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_html: ^0.9.6
 
   flutter_icons: ^0.1.3
+
+  # 侧滑菜单
+  flutter_inner_drawer: "^0.2.6"
 
   # 加载提示组件
   flutter_spinkit: ^2.1.0

@@ -13,6 +13,7 @@ import 'package:flutter_app/page/city_picker_page.dart';
 import 'package:flutter_app/page/clippy_widget.dart';
 import 'package:flutter_app/page/device_info_page.dart';
 import 'package:flutter_app/page/flipper_widget.dart';
+import 'package:flutter_app/page/inner_drawer.dart';
 import 'package:flutter_app/page/loading_json.dart';
 import 'package:flutter_app/page/random_words.dart';
 import 'package:flutter_app/page/swiper_sample.dart';
@@ -270,6 +271,7 @@ class ExpandStateBean {
           SubExpandBean('毛玻璃', FrostingWidget()),
           SubExpandBean('FlutterLogo', FlutterLogoWidget()),
           SubExpandBean('CheckSwitch', CheckSwitchWidget()),
+          SubExpandBean('Data Table', TablePage()),
         ]),
     ExpandStateBean(
         leading: Icons.dashboard,
@@ -311,9 +313,9 @@ class ExpandStateBean {
           SubExpandBean('设备信息', DeviceInfoPage()),
           SubExpandBean('二维码', QrImageWidget()),
           SubExpandBean('图表', ChartsWidget()),
-          SubExpandBean('Read Assets Json File', LoadingJsonPage()),
-          SubExpandBean('Data Table', TablePage()),
+          SubExpandBean('本地读取json数据', LoadingJsonPage()),
           SubExpandBean('RangeSlider', RangeSliderSample()),
+          SubExpandBean('侧滑菜单', InnerDrawerSample()),
         ]),
     ExpandStateBean(
         leading: Icons.dashboard,
