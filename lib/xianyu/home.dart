@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/global/data.dart';
-import 'package:flutter_app/ui/gradual_change_view.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/ui/sliver_appbar_delegate.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_app/xianyu/bottom_gridview.dart';
+import 'package:flutter_app/xianyu/ui/appbar.dart';
 
 class XianyuHomePage extends StatefulWidget {
   XianyuHomePage({Key key}) : super(key: key);
@@ -15,7 +14,7 @@ class XianyuHomePage extends StatefulWidget {
 }
 
 class _XianyuHomePageState extends State<XianyuHomePage>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   List<String> titleTabs = ['关注', "新鲜", "附近", "手机", "数码", "租房", "服装"];
 
   List<Tab> tabs = [];
@@ -88,31 +87,6 @@ class _XianyuHomePageState extends State<XianyuHomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-//      appBar: AppBar(
-//          backgroundColor: Colors.yellowAccent,
-//          elevation: 0,
-//          centerTitle: true,
-//          title: Container(
-//            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-//            child: Row(children: <Widget>[
-//              Icon(Icons.search, color: Colors.grey[300]),
-//              Text('关键字',
-//                  style: TextStyle(fontSize: 14, color: Colors.grey[300]))
-//            ]),
-//            decoration: BoxDecoration(
-//                color: Colors.white,
-//                borderRadius: BorderRadius.all(Radius.circular(30))),
-//          ),
-//          automaticallyImplyLeading: false,
-//          leading: Container(
-//              child: Image.asset('images/xianyu.png'),
-//              alignment: Alignment.centerLeft,
-//              padding: EdgeInsets.only(left: 20)),
-//          actions: <Widget>[
-//            IconButton(
-//                icon: Icon(CustomIcon.scan, color: Colors.black),
-//                onPressed: () {})
-//          ]),
       body: Stack(
         children: <Widget>[
           CustomScrollView(
@@ -152,78 +126,16 @@ class _XianyuHomePageState extends State<XianyuHomePage>
             ],
           ),
           showDeepBar
-              ? Container(
-                  height: Utils.navigationBarHeight,
-                  child: AppBar(
-                      flexibleSpace: GradualChangeView(
-                          rotation: Rotation.LR,
-                          colors: [
-                            Colors.cyan,
-                            Colors.blue,
-                            Colors.blueAccent
-                          ]),
-                      elevation: 0,
-                      centerTitle: true,
-                      title: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                        child: Row(children: <Widget>[
-                          Icon(Icons.search, color: Colors.grey[300]),
-                          Text('关键字',
-                              style: TextStyle(
-                                  fontSize: 14, color: Colors.grey[300]))
-                        ]),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30))),
-                      ),
-                      automaticallyImplyLeading: false,
-                      leading: Container(
-                          child: Image.asset('images/xianyu.png'),
-                          alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(left: 20)),
-                      actions: <Widget>[
-                        IconButton(
-                            icon: Icon(CustomIcon.scan, color: Colors.black),
-                            onPressed: () {})
-                      ]),
-                )
-              : Container(
-                  height: Utils.navigationBarHeight,
-                  child: AppBar(
-                      backgroundColor: Colors.transparent,
-                      elevation: 0,
-                      centerTitle: true,
-                      title: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                        child: Row(children: <Widget>[
-                          Icon(Icons.search, color: Colors.grey[300]),
-                          Text('关键字',
-                              style: TextStyle(
-                                  fontSize: 14, color: Colors.grey[300]))
-                        ]),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white54),
-                            color: Colors.transparent,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30))),
-                      ),
-                      automaticallyImplyLeading: false,
-                      leading: Container(
-                          child: Image.asset(
-                            'images/xianyu.png',
-                            color: Colors.white54,
-                          ),
-                          alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(left: 20)),
-                      actions: <Widget>[
-                        IconButton(
-                            icon: Icon(CustomIcon.scan, color: Colors.white54),
-                            onPressed: () {})
-                      ]),
-                )
+              ? MyAppBar(
+                  colors: [Colors.cyan, Colors.blue, Colors.blueAccent],
+                  searchViewColor: Colors.white,
+                  iconColor: Colors.black,
+                  backgroundColor: Colors.blue)
+              : MyAppBar(
+                  backgroundColor: Colors.transparent,
+                  searchViewColor: Colors.transparent,
+                  iconColor: Colors.white54,
+                  searchViewBoderColor: Colors.white54)
         ],
       ),
     );
