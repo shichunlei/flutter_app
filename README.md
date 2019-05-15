@@ -4,9 +4,16 @@ A new Flutter application.
 
 `声明1：本项目仅供学习，如有侵权请联系本人进行删除。`
 
-`声明2：本项目中部分功能页面是别人其他项目中的，但是本人并不是完全照抄原作者代码，再次页特别感谢原作者，部分参考别人页面的功能也已标注出原出处，如有侵犯原作者的地方请联系本人进行删除。`
+`声明2：本项目中部分功能页面是别人其他项目中的，但是本人并不是完全照抄原作者代码，再此也特别感谢原作者，部分参考别人页面的功能也已标注出原出处，如有侵犯原作者的地方请联系本人进行删除。`
 
-`本项目包括各种基本控件使用（Text、TextField、Icon、Image、Listview、Gridview、Picker、Stepper、Dialog、Slider、Row、Appbar、Sizebox、BottomSheet、Chip、Dismissible、FlutterLogo、Check、Switch、TabBar、BottomNavigationBar、Sliver等）、豆瓣电影、每日一文、和天气、百姓生活、随机诗词、联系人、句子迷、朋友圈等板块`
+
+## 本项目包括：
+
+- 各种基本控件使用（Text、TextField、Icon、Image、Listview、Gridview、Picker、Stepper、Dialog、Slider、Row、Appbar、Sizebox、BottomSheet、Chip、Dismissible、FlutterLogo、Check、Switch、TabBar、BottomNavigationBar、Sliver等）
+- 自定义控件及使用
+- 各种UI （豆瓣电影、每日一文、和天气、百姓生活、随机诗词、联系人、句子迷、朋友圈等）
+
+
 
 ## API接口
 
@@ -118,15 +125,15 @@ A new Flutter application.
 | 网络请求 | [dio](https://pub.dartlang.org/packages/dio) | ![](https://camo.githubusercontent.com/cdfb640de2cc8eeb0f6bfa1bda82422d83d87785/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f64696f2e7376673f7374796c653d666c61742d737175617265) | Dart的一个强大的Http客户端，支持拦截器、全局配置、FormData、请求取消、文件下载、超时等。 |
 | 下拉刷新，上拉加载 |[pull_to_refresh](https://github.com/peng8350/flutter_pulltorefresh)|1.1.6|一个提供上拉加载和下拉刷新的组件,同时支持Android和Ios)|
 | 下拉刷新，上拉加载 |[flutter_easyrefresh](https://github.com/xuelongqy/flutter_easyrefresh)|![](https://camo.githubusercontent.com/c96857ee880abb5c8d65ab657cbd60836739533b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7075622d76312e322e352d6f72616e67652e737667)|正如名字一样，EasyRefresh很容易就能在Flutter应用上实现下拉刷新以及上拉加载操作，它支持几乎所有的Flutter控件，但前提是需要包裹成ScrollView。它的功能与Android的SmartRefreshLayout很相似，同样也吸取了很多三方库的优点。EasyRefresh中集成了多种风格的Header和Footer，但是它并没有局限性，你可以很轻松的自定义。使用Flutter强大的动画，甚至随便一个简单的控件也可以完成。EasyRefresh的目标是为Flutter打造一个强大，稳定，成熟的下拉刷新框架。|
-| Shared preferences |[shared_preferences](https://github.com/flutter/plugins/tree/master/packages/shared_preferences)|![](https://camo.githubusercontent.com/b9af89a46da89444505ead9b0a7245e883d17afb/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f7368617265645f707265666572656e6365732e737667)| Shared preferences plugin |
+| Shared Preferences |[shared_preferences](https://github.com/flutter/plugins/tree/master/packages/shared_preferences)|![](https://camo.githubusercontent.com/b9af89a46da89444505ead9b0a7245e883d17afb/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f7368617265645f707265666572656e6365732e737667)| Shared preferences plugin |
 | 中国城市选择器 |[city_picker](https://github.com/CaiJingLong/flutter_city_picker)|![](https://camo.githubusercontent.com/24b9365f7514f94b06178f06f81397d0d75d80c4/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f636974795f7069636b65722e737667)|A city picker of china, 中国城市选择器|
 | 设备信息 |[device_info](https://github.com/flutter/plugins/tree/master/packages/device_info)|![](https://camo.githubusercontent.com/965d0090e8f547b318f37fcf6e0e30ccebc2dfaf/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f6465766963655f696e666f2e737667)|Get current device information from within the Flutter application.|
-| image_picker | [image_picker](https://github.com/flutter/plugins/tree/master/packages/image_picker) | ![](https://camo.githubusercontent.com/50ed2cc4c99917d2dfb12b44e5ab9356f70d63b7/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f696d6167655f7069636b65722e737667) | A Flutter plugin for iOS and Android for picking images from the image library, and taking new pictures with the camera. |
+| 图片选择器 | [image_picker](https://github.com/flutter/plugins/tree/master/packages/image_picker) | ![](https://camo.githubusercontent.com/50ed2cc4c99917d2dfb12b44e5ab9356f70d63b7/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f696d6167655f7069636b65722e737667) | A Flutter plugin for iOS and Android for picking images from the image library, and taking new pictures with the camera. |
 | url_launcher | [url_launcher](https://github.com/flutter/plugins/tree/master/packages/url_launcher) | ![](https://camo.githubusercontent.com/73ce49295f296939f5fc90be9ce94ca8c7bd7e44/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f75726c5f6c61756e636865722e737667) | A Flutter plugin for launching a URL in the mobile platform. Supports iOS and Android. |
-| Video Player | [video_player](https://github.com/flutter/plugins/tree/master/packages/video_player) | ![](https://camo.githubusercontent.com/de09dde7ce935f4e176c1ce00f7e31e4b0e5c14f/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f766964656f5f706c617965722e737667) | A Flutter plugin for iOS and Android for playing back video on a Widget surface. |
+| 视频播放器 | [video_player](https://github.com/flutter/plugins/tree/master/packages/video_player) | ![](https://camo.githubusercontent.com/de09dde7ce935f4e176c1ce00f7e31e4b0e5c14f/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f766964656f5f706c617965722e737667) | A Flutter plugin for iOS and Android for playing back video on a Widget surface. |
 | Flutter WebView Plugin | [flutter_webview_plugin](https://github.com/fluttercommunity/flutter_webview_plugin) | ![](https://img.shields.io/pub/v/flutter_webview_plugin.svg) | Plugin that allows Flutter to communicate with a native WebView. |
 | PackageInfo | [package_info](https://github.com/flutter/plugins/tree/master/packages/package_info) | ![](https://camo.githubusercontent.com/01a75953af6fc91e941c2b5ba32162f55d795403/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f706174685f70726f76696465722e737667) | This Flutter plugin provides an API for querying information about an application package. |
-| Share | [share](https://github.com/flutter/plugins/tree/master/packages/share) | ![](https://camo.githubusercontent.com/afe573869b306315562203bca3cf9a85ac94ccf5/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f73686172652e737667) | A Flutter plugin to share content from your Flutter app via the platform's share dialog. Wraps the ACTION_SEND Intent on Android and UIActivityViewController on iOS. |
+| 系统分享 | [share](https://github.com/flutter/plugins/tree/master/packages/share) | ![](https://camo.githubusercontent.com/afe573869b306315562203bca3cf9a85ac94ccf5/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f73686172652e737667) | A Flutter plugin to share content from your Flutter app via the platform's share dialog. Wraps the ACTION_SEND Intent on Android and UIActivityViewController on iOS. |
 | 引导页 | [intro-slider](https://github.com/duytq94/flutter-intro-slider) | 1.1.5 | A plugin to help you make intro screens to show the major features of your app. You can change the image, button, text style, color, and more things. Create intro screens is never been more quick and easy than this |
 | 评分控件 | [smooth_star_rating](https://github.com/thangmam/smoothratingbar) | 1.0.1 | A Star rating with touch and swipe rate enabled |
 | PhotoView | [photo_view](https://github.com/renancaraujo/photo_view) | ![](https://camo.githubusercontent.com/8a5c98a80bb80f0eed10b5f111cc7440d1aa143e/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f70686f746f5f766965772e7376673f7374796c653d706f706f7574) | A simple zoomable image widget for Flutter. Resolves a image provider and shows the result with useful gestures support, such as pinch to zoom and pan. It also can show any widget instead of an image, such as Container, Text or a SVG. Just use custom child constructor. |
@@ -135,6 +142,8 @@ A new Flutter application.
 | 数据库 | [sqflite](https://github.com/tekartik/sqflite) | 1.1.5 | SQLite plugin for Flutter. Supports both iOS and Android.|
 | Flutter Multi Image Picker | [Flutter Multi Image Picker](https://github.com/Sh1d0w/multi_image_picker) | ![](https://camo.githubusercontent.com/a92acc7a4217e1e7bfb9a9a4ad0be422ce7ad875/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f6d756c74695f696d6167655f7069636b65722e737667) | Flutter plugin that allows you to display multi image picker on iOS and Android.|
 | Flutter Range Slider | [range_slider](https://github.com/boeledi/RangeSlider) | 1.2.0 | An extension of the Flutter Material Slider to allow selection of a range of values via 2 thumbs.|
+| 侧滑菜单 | [flutter_inner_drawer](https://github.com/Dn-a/flutter_inner_drawer) | ![](https://camo.githubusercontent.com/dda1245d1fb2d8ab403c705df11bbf07717d3dce/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7075622d302e322e362d6f72616e67652e737667) | Inner Drawer is an easy way to create an internal side section (left/right) where you can insert a list menu or other.|
+| 字母索引 | [azlistview](https://github.com/flutterchina/azlistview) | ![](https://camo.githubusercontent.com/fe32a6e2c3f42d892ce837927d0499d5608e88c8/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f617a6c697374766965772e7376673f7374796c653d666c61742d737175617265) | AzListView，Flutter 城市列表，联系人列表，自定义Header，索引，悬停效果。|
 
 
 ## 特别感谢
