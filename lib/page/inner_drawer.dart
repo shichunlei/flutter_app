@@ -408,23 +408,24 @@ class _InnerDrawerSampleState extends State<InnerDrawerSample> {
                     onPressed: () {
                       showDialog(
                         context: context,
-                        child: AlertDialog(
-                            title: const Text('Pick a color!'),
-                            content: SingleChildScrollView(
-                                child: ColorPicker(
-                                    pickerColor: pickerColor,
-                                    onColorChanged: (color) =>
-                                        setState(() => pickerColor = color),
-                                    enableLabel: true,
-                                    pickerAreaHeightPercent: 0.8)),
-                            actions: <Widget>[
-                              FlatButton(
-                                  child: Text('Set'),
-                                  onPressed: () {
-                                    setState(() => currentColor = pickerColor);
-                                    Navigator.of(context).pop();
-                                  })
-                            ]),
+                        builder: (_) => AlertDialog(
+                                title: const Text('Pick a color!'),
+                                content: SingleChildScrollView(
+                                    child: ColorPicker(
+                                        pickerColor: pickerColor,
+                                        onColorChanged: (color) =>
+                                            setState(() => pickerColor = color),
+                                        enableLabel: true,
+                                        pickerAreaHeightPercent: 0.8)),
+                                actions: <Widget>[
+                                  FlatButton(
+                                      child: Text('Set'),
+                                      onPressed: () {
+                                        setState(
+                                            () => currentColor = pickerColor);
+                                        Navigator.of(context).pop();
+                                      })
+                                ]),
                       );
                     },
                   ),

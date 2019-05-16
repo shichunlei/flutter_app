@@ -1,0 +1,15 @@
+{
+  "menu": "menu",
+  "poetry": "Poetry",
+  "theme": "Choose Theme",
+  "language": "Choose Language",
+  "contact": "Contact",
+  "setting": "Setting",
+  "exit": "Exit",
+  "update": "Update",
+  "zh": "Chinese",
+  "en": "English",
+  "pick_a_color": "Pick a color!",
+  "sure": "sure",
+  "cancel": "cancel"
+}

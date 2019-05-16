@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/page/contact_list_page.dart';
-import 'package:flutter_app/global/config.dart';
+import 'package:flutter_app/lang/index.dart';
 import 'package:flutter_app/login/page/login_page.dart';
 import 'package:flutter_app/page/random_poetry_page.dart';
+import 'package:flutter_app/page/setting.dart';
 import 'package:flutter_app/ui/home_drawable_header.dart';
 import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/sp_util.dart';
-import 'package:flutter_app/weather/page/city_page.dart';
 import 'package:package_info/package_info.dart';
 
 class HomeDrawable extends StatefulWidget {
@@ -51,7 +51,9 @@ class _HomeDrawableState extends State<HomeDrawable> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        elevation: 10.0, child: _bulderMenuView(), semanticLabel: "左侧菜单");
+        elevation: 10.0,
+        child: _bulderMenuView(),
+        semanticLabel: AppLocalizations.$t('menu'));
   }
 
   Widget _bulderMenuView() {
@@ -60,7 +62,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
           isLogin: isLogin, avatar: avatar, userName: userName, email: email),
       Divider(),
       ListTile(
-          title: Text("诗词"),
+          title: Text("${AppLocalizations.$t('poetry')}"),
           leading: Icon(Icons.book),
           trailing: Icon(Icons.chevron_right),
           onTap: () {
@@ -69,36 +71,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
           }),
       Divider(),
       ListTile(
-          title: Text("主题"),
-          leading: Icon(Icons.color_lens),
-          trailing: Icon(Icons.chevron_right),
-          onTap: () {
-            int _index = SPUtil.getInt('themeIndex', defValue: 0);
-            showDialog(
-                context: context,
-                builder: (context) {
-                  return SimpleDialog(
-                    title: Text('主题'), //标题
-                    titlePadding: EdgeInsets.all(20), //标题的padding值
-                    children: themeColors.map((color) {
-                      int index = themeColors.indexOf(color);
-                      return ListTile(
-                        leading: Icon(Icons.color_lens, color: color),
-                        onTap: () {
-                          SPUtil.putInt('themeIndex', index);
-                          Navigator.pop(context);
-                        },
-                        title: Text('${color.value}'),
-                        selected: _index == index,
-                      );
-                    }).toList(),
-                    contentPadding: EdgeInsets.all(0),
-                  );
-                });
-          }),
-      Divider(),
-      ListTile(
-        title: Text("联系人"),
+        title: Text(AppLocalizations.$t('contact')),
         leading: Icon(Icons.supervisor_account),
         trailing: Icon(Icons.chevron_right),
         onTap: () {
@@ -117,7 +90,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
             maxRadius: 15),
         child: Row(
           children: <Widget>[
-            Text("检查更新"),
+            Text(AppLocalizations.$t('update')),
             Icon(Icons.chevron_right),
           ],
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -135,7 +108,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
       ),
       Divider(),
       ListTile(
-          title: Text("退出账号"),
+          title: Text(AppLocalizations.$t('exit')),
           leading: Icon(Icons.exit_to_app),
           trailing: Icon(Icons.chevron_right),
           onTap: () {
@@ -160,6 +133,15 @@ class _HomeDrawableState extends State<HomeDrawable> {
                             onPressed: () => Navigator.of(context).pop())
                       ]);
                 });
+          }),
+      Divider(),
+      ListTile(
+          title: Text(AppLocalizations.$t('setting')),
+          leading: Icon(Icons.settings),
+          trailing: Icon(Icons.chevron_right),
+          onTap: () {
+            Navigator.of(context).pop();
+            pushNewPageBack(context, SettingPage());
           }),
       Divider(),
     ]);

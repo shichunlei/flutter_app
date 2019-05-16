@@ -124,13 +124,14 @@ dependencies: # 应用或包依赖的其它包或插件
   # PhotoView
   photo_view: ^0.2.4
 
+  # 数据管理层
+  provide: ^1.0.2
+
   # flutter 生成二维码
   qr_flutter: ^2.0.0+51
 
   #
   rounded_letter: ^0.0.6
-
-  rxdart: ^0.21.0
 
   share: ^0.6.1
 
@@ -180,6 +181,7 @@ flutter:
     - assets/data/
     - assets/space_demo.flr
     - packages/flutter_gallery_assets/people/ali_landscape.png
+    - local/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

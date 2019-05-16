@@ -1,71 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bloc/bloc_provider.dart';
-import 'package:flutter_app/bloc/setting_bloc.dart';
-import 'package:flutter_app/global/config.dart';
-import 'package:flutter_app/utils/sp_util.dart';
 
-class MinePage extends StatelessWidget {
+class MinePage extends StatefulWidget {
   MinePage({Key key}) : super(key: key);
 
   @override
+  createState() => _MinePageState();
+}
+
+class _MinePageState extends State<MinePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var _bloc = BlocProvider.of<SettingBloc>(context);
-    return StreamBuilder(
-      stream: _bloc.colorStream,
-      initialData: _bloc.color,
-      builder: (_, AsyncSnapshot<Color> snapshot) => Theme(
-            data: ThemeData(
-                primarySwatch: snapshot.data,
-                iconTheme: IconThemeData(color: snapshot.data)),
-            child: Scaffold(
-              appBar: AppBar(
-                centerTitle: true,
-                title: Text('我的'),
-              ),
-              body: Container(
-                color: Colors.black12,
-                child: CustomScrollView(
-                  slivers: <Widget>[
-                    SliverPadding(
-                      padding: const EdgeInsets.only(right: 12.0),
-                      sliver: SliverToBoxAdapter(
-                          child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Text('当前主题色：',
-                              style: TextStyle(
-                                  fontSize: 16.0, color: snapshot.data)),
-                          Container(
-                              width: 20.0, height: 20.0, color: snapshot.data)
-                        ],
-                      )),
-                    ),
-                    SliverPadding(
-                        padding: const EdgeInsets.symmetric(vertical: 15.0)),
-                    SliverGrid(
-                      delegate: SliverChildBuilderDelegate(
-                          (_, index) => InkWell(
-                                child: Container(
-                                  color: themeColors[index],
-                                ),
-                                onTap: () {
-                                  _bloc.switchTheme(index);
-                                  SPUtil.putInt('themeIndex', index);
-                                },
-                              ),
-                          childCount: themeColors.length),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 20.0,
-                        crossAxisSpacing: 20.0,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
+    return Scaffold(
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(title: Text('')),
+      body: null,
     );
   }
 }

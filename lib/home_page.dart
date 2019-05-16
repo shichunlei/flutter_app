@@ -66,8 +66,6 @@ class HomeStatePage extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center),
           ),
-          // Set the background color of the App Bar
-          backgroundColor: Colors.pinkAccent,
           elevation: 4.0,
           leading: IconButton(
               icon: Icon(Icons.menu),
