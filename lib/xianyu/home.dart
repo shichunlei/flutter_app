@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/ui/sliver_appbar_delegate.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_app/xianyu/bottom_gridview.dart';
-import 'package:flutter_app/xianyu/ui/appbar.dart';
 
 class XianyuHomePage extends StatefulWidget {
   XianyuHomePage({Key key}) : super(key: key);
@@ -22,11 +22,10 @@ class _XianyuHomePageState extends State<XianyuHomePage>
   int currentIndex = 1;
 
   ScrollController scrollController = ScrollController();
+
+  /// 透明度 取值范围[0,1]
   double navAlpha = 0;
   double headerHeight;
-
-  // 标记是否显示渐变的AppBar
-  bool showDeepBar = false;
 
   @override
   void initState() {
@@ -41,24 +40,15 @@ class _XianyuHomePageState extends State<XianyuHomePage>
         if (navAlpha != 0) {
           setState(() {
             navAlpha = 0;
-            showDeepBar = false;
           });
         }
       } else if (offset < headerHeight) {
-        if (headerHeight - offset <= Utils.navigationBarHeight) {
-          setState(() {
-            ///
-            showDeepBar = true;
-          });
-        } else {
-          ///
-          showDeepBar = false;
-        }
-        setState(() => navAlpha = 1 - (headerHeight - offset) / headerHeight);
+        setState(() {
+          navAlpha = 1 - (headerHeight - offset) / headerHeight;
+        });
       } else if (navAlpha != 1) {
         setState(() {
           navAlpha = 1;
-          showDeepBar = true;
         });
       }
     });
@@ -125,17 +115,57 @@ class _XianyuHomePageState extends State<XianyuHomePage>
               SliverToBoxAdapter(child: BottomGridView(index: currentIndex)),
             ],
           ),
-          showDeepBar
-              ? MyAppBar(
-                  colors: [Colors.cyan, Colors.blue, Colors.blueAccent],
-                  searchViewColor: Colors.white,
-                  iconColor: Colors.black,
-                  backgroundColor: Colors.blue)
-              : MyAppBar(
-                  backgroundColor: Colors.transparent,
-                  searchViewColor: Colors.transparent,
-                  iconColor: Colors.white54,
-                  searchViewBoderColor: Colors.white54)
+          Container(
+            height: Utils.navigationBarHeight,
+            child: AppBar(
+
+                /// AppBar背景随着页面向上滑动逐渐由透明色变为白色，即透明度由0->255
+                backgroundColor:
+                    Color.fromARGB((navAlpha * 255).toInt(), 255, 255, 255),
+                elevation: 0,
+                centerTitle: true,
+                title: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    child: Row(children: <Widget>[
+                      Icon(Icons.search, color: Colors.grey[300]),
+                      Text('关键字',
+                          style:
+                              TextStyle(fontSize: 14, color: Colors.grey[300]))
+                    ]),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: Color.fromARGB(
+                                255,
+                                (255 - 255 * navAlpha).toInt(),
+                                (255 - 255 * navAlpha).toInt(),
+                                (255 - 255 * navAlpha).toInt())),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(30)))),
+                automaticallyImplyLeading: false,
+                leading: Container(
+                    child: Image.asset('images/xianyu.png',
+
+                        /// 左侧图标颜色由白色变为黑色即色值的R G B 均随着滑动变化由255 -> 0
+                        color: Color.fromARGB(
+                            255,
+                            (255 - 255 * navAlpha).toInt(),
+                            (255 - 255 * navAlpha).toInt(),
+                            (255 - 255 * navAlpha).toInt())),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(left: 20)),
+                actions: <Widget>[
+                  IconButton(
+                      icon: Icon(CustomIcon.scan,
+
+                          /// 右侧图标颜色由白色变为黑色即色值的R G B 均随着滑动变化由255 -> 0
+                          color: Color.fromARGB(
+                              255,
+                              (255 - 255 * navAlpha).toInt(),
+                              (255 - 255 * navAlpha).toInt(),
+                              (255 - 255 * navAlpha).toInt())),
+                      onPressed: () {})
+                ]),
+          )
         ],
       ),
     );
