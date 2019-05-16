@@ -71,6 +71,7 @@ class _MovieHomePageState extends State<MovieHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text('豆瓣电影'),
         actions: <Widget>[
           IconButton(
@@ -106,6 +107,7 @@ class _MovieHomePageState extends State<MovieHomePage> {
       return getLoadingWidget();
     } else {
       return ListView(
+        physics: const BouncingScrollPhysics(),
         children: <Widget>[
           BannerView(banner: banner),
           HomeSectionView("影院热映",
