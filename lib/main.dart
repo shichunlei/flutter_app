@@ -30,7 +30,7 @@ void main() async {
         // SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
       }
     });
-  }, onError: (dynamic error, dynamic stack) {
+  }, onError: (Object error, StackTrace stack) {
     LogUtil.e(error);
     LogUtil.e(stack);
   });

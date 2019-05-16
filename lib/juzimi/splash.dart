@@ -16,9 +16,7 @@ class SplashPage extends StatelessWidget {
               Column(children: <Widget>[
                 Container(
                     alignment: Alignment.topLeft,
-                    child: IconButton(
-                        icon: Icon(Icons.close, color: Colors.grey),
-                        onPressed: () => Navigator.pop(context)),
+                    child: CloseButton(),
                     margin: EdgeInsets.only(top: 30)),
                 Container(
                     child: Column(children: <Widget>[

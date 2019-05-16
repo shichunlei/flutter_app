@@ -17,6 +17,8 @@ import 'package:flutter_app/weather/ui/lifestyle_view.dart';
 import 'package:flutter_app/weather/ui/now_view.dart';
 import 'package:flutter_app/weather/ui/sun_view.dart';
 import 'package:flutter_app/weather/ui/weekly_view.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_easyrefresh/material_header.dart';
 import 'package:palette_generator/palette_generator.dart';
 
 class WeatherPage extends StatefulWidget {
@@ -29,6 +31,11 @@ class WeatherPage extends StatefulWidget {
 }
 
 class WeatherPageState extends State<WeatherPage> {
+  GlobalKey<EasyRefreshState> _easyRefreshKey =
+      new GlobalKey<EasyRefreshState>();
+  GlobalKey<RefreshHeaderState> _headerKey =
+      new GlobalKey<RefreshHeaderState>();
+
   HeWeather weather;
   HeWeather air;
 
@@ -131,16 +138,23 @@ class WeatherPageState extends State<WeatherPage> {
     if (null == weather) {
       return getLoadingWidget();
     }
-    return SingleChildScrollView(
-        controller: scrollController,
-        child: Column(children: <Widget>[
-          NowView(now,
-              daily_forecast: daily_forecast[0], air_now_city: air_now_city),
-          AirView(air_now_city),
-          HourlyView(hourly),
-          WeeklyView(daily_forecast),
-          LifestyleView(lifestyle),
-          SunView(this.widget.cityname)
-        ]));
+    return EasyRefresh(
+        key: _easyRefreshKey,
+        refreshHeader: MaterialHeader(
+          key: _headerKey,
+        ),
+        child: SingleChildScrollView(
+            controller: scrollController,
+            child: Column(children: <Widget>[
+              NowView(now,
+                  daily_forecast: daily_forecast[0],
+                  air_now_city: air_now_city),
+              AirView(air_now_city),
+              HourlyView(hourly),
+              WeeklyView(daily_forecast),
+              LifestyleView(lifestyle),
+              SunView(this.widget.cityname)
+            ])),
+        onRefresh: () => _getWeather(widget.cityname));
   }
 }
