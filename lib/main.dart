@@ -129,7 +129,10 @@ class _MyAppState extends State<MyApp> {
           // 定义widget默认的文本方向，从左往右或从右往左
           GlobalWidgetsLocalizations.delegate,
 
-          _delegate
+          _delegate,
+
+          /// 解决 ‘使用CupertinoAlertDialog 报 'alertDialogLabel' was called on null’ 的BUG
+          const FallbackCupertinoLocalisationsDelegate(),
         ],
         supportedLocales: LanguageConfig.supportedLocales,
 
