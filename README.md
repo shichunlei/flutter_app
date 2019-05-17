@@ -121,7 +121,7 @@ A new Flutter application.
 ## 使用到的第三方插件
 
 | Plugin | 地址 | 版本号 |
-| :--: | :--: | :--: | -- |
+| :--: | :--: | :--: |
 | 网络请求 | [dio](https://pub.dartlang.org/packages/dio) | ![](https://camo.githubusercontent.com/cdfb640de2cc8eeb0f6bfa1bda82422d83d87785/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f64696f2e7376673f7374796c653d666c61742d737175617265) |
 | 下拉刷新，上拉加载 |[pull_to_refresh](https://github.com/peng8350/flutter_pulltorefresh)|1.1.6|
 | 下拉刷新，上拉加载 |[flutter_easyrefresh](https://github.com/xuelongqy/flutter_easyrefresh)|![](https://camo.githubusercontent.com/c96857ee880abb5c8d65ab657cbd60836739533b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7075622d76312e322e352d6f72616e67652e737667)|
