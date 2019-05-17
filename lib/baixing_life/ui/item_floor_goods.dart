@@ -17,14 +17,12 @@ class ItemFloorGoods extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-        tag: goodsId,
-        child: Container(
-            width: width,
-            height: height,
-            child: GestureDetector(
-                child: ImageLoadView('$goodsImage'),
-                onTap: () => pushNewPage(
-                    context, DetailsPage(goodsId, provider: provider)))));
+    return Container(
+        width: width,
+        height: height,
+        child: GestureDetector(
+            child: Hero(tag: goodsId, child: ImageLoadView('$goodsImage')),
+            onTap: () => pushNewPage(
+                context, DetailsPage(goodsId, provider: provider))));
   }
 }

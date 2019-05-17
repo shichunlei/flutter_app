@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app/ui/custom_sliver_appbar_delegate.dart';
+import 'package:flutter_app/delegates/custom_sliver_appbar_delegate.dart';
 
 class SliverWidget extends StatefulWidget {
   SliverWidget({Key key}) : super(key: key);

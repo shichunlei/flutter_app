@@ -162,14 +162,13 @@ class _HomePageState extends State<HomePage>
             child: Swiper(
                 autoplay: true,
                 itemCount: slides.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    ImageLoadView('${slides[index].comPic}'),
+                itemBuilder: (BuildContext context, int index) => Hero(
+                    tag: slides[index].goodsId,
+                    child: ImageLoadView('${slides[index].comPic}')),
                 onTap: (int index) => pushNewPage(
                     context,
-                    Hero(
-                        tag: slides[index].goodsId,
-                        child: DetailsPage(slides[index].goodsId,
-                            provider: widget.provider))))));
+                    DetailsPage(slides[index].goodsId,
+                        provider: widget.provider)))));
   }
 
   Widget _buildSliverGridCategory(List<Category> category) {

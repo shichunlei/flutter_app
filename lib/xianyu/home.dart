@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/ui/sliver_appbar_delegate.dart';
+import 'package:flutter_app/delegates/sliver_appbar_delegate.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_app/xianyu/bottom_gridview.dart';
 

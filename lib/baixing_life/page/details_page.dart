@@ -5,7 +5,7 @@ import 'package:flutter_app/bean/goods_info.dart';
 import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/ui/sliver_appbar_delegate.dart';
+import 'package:flutter_app/delegates/sliver_appbar_delegate.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
