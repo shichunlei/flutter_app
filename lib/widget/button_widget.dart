@@ -224,32 +224,29 @@ class ButtonWidgetState extends State<ButtonWidget> {
   bool iconButtonToggle = false;
 
   Widget buildIconButton() {
-    return Align(
-      alignment: const Alignment(0.0, -0.2),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.thumb_up,
-              semanticLabel: 'Thumbs up',
-            ),
-            onPressed: () {
-              setState(() => iconButtonToggle = !iconButtonToggle);
-            },
-            color: iconButtonToggle ? Theme.of(context).primaryColor : null,
+          Row(children: <Widget>[
+            IconButton(
+                icon: const Icon(Icons.thumb_up, semanticLabel: 'Thumbs up'),
+                onPressed: () {
+                  setState(() => iconButtonToggle = !iconButtonToggle);
+                },
+                color:
+                    iconButtonToggle ? Theme.of(context).primaryColor : null),
+            const IconButton(
+                icon: Icon(Icons.thumb_up, semanticLabel: 'Thumbs not up'),
+                onPressed: null)
+          ], mainAxisAlignment: MainAxisAlignment.center),
+          SizedBox(
+            height: 20,
           ),
-          const IconButton(
-            icon: Icon(
-              Icons.thumb_up,
-              semanticLabel: 'Thumbs not up',
-            ),
-            onPressed: null,
-          )
-        ]
-            .map<Widget>((Widget button) =>
-                SizedBox(width: 64.0, height: 64.0, child: button))
-            .toList(),
+          Row(
+              children: <Widget>[CloseButton(), BackButton()],
+              mainAxisAlignment: MainAxisAlignment.center)
+        ],
       ),
     );
   }
