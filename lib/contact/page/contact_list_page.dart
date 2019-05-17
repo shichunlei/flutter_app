@@ -4,11 +4,9 @@ import 'package:flutter_app/bean/contact.dart';
 import 'package:flutter_app/contact/page/contact_page.dart';
 import 'package:flutter_app/contact/ui/contact_list_header.dart';
 import 'package:flutter_app/ui/suspension_tag.dart';
-import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/sp_util.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:azlistview/azlistview.dart';
 
@@ -23,22 +21,16 @@ class _ContactListPageState extends State<ContactListPage> {
   int _suspensionHeight = 40;
   int _itemHeight = 70;
 
-  int _themeColorIndex;
-
   @override
   void initState() {
     super.initState();
-    _themeColorIndex = SPUtil.getInt('themeIndex', defValue: 0);
     getContacts();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: Text("通讯录"),
-            elevation: 0.0,
-            backgroundColor: themeColors[_themeColorIndex]),
+        appBar: AppBar(title: Text("通讯录"), elevation: 0.0),
         body: _contacts.isNotEmpty
             ? AzListView(
                 data: _contacts,

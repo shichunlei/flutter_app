@@ -13,13 +13,11 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   Color pickerColor;
-  Color currentColor;
 
   @override
   void initState() {
     super.initState();
-    pickerColor = Colors.yellowAccent;
-    currentColor = Colors.yellowAccent;
+    pickerColor = null;
   }
 
   @override
@@ -45,11 +43,14 @@ class _SettingPageState extends State<SettingPage> {
             title: Text(AppLocalizations.$t('theme')),
             trailing: Container(
               child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                Container(color: currentColor, height: 15, width: 15),
+                Container(
+                    color: Color(Store.value<ConfigModel>(context).theme),
+                    height: 15,
+                    width: 15),
                 Icon(Icons.navigate_next)
               ]),
             )),
-        Divider(),
+        Divider()
       ]),
     );
   }
@@ -61,14 +62,13 @@ class _SettingPageState extends State<SettingPage> {
       builder: (BuildContext bc) => Container(
             child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
               ListTile(
-                title: Text(AppLocalizations.$t('zh')),
-                onTap: () {
-                  AppLocalizations.changeLanguage(Locale('zh'));
-                  setState(() {});
-                  Navigator.pop(context);
-                },
-                selected: AppLocalizations.languageCode == 'zh',
-              ),
+                  title: Text(AppLocalizations.$t('zh')),
+                  onTap: () {
+                    AppLocalizations.changeLanguage(Locale('zh'));
+                    setState(() {});
+                    Navigator.pop(context);
+                  },
+                  selected: AppLocalizations.languageCode == 'zh'),
               ListTile(
                   title: Text(AppLocalizations.$t('en')),
                   onTap: () {
@@ -89,7 +89,8 @@ class _SettingPageState extends State<SettingPage> {
               title: Text(AppLocalizations.$t('pick_a_color')),
               content: SingleChildScrollView(
                   child: ColorPicker(
-                      pickerColor: pickerColor,
+                      pickerColor:
+                          Color(Store.value<ConfigModel>(context).theme),
                       onColorChanged: (color) =>
                           setState(() => pickerColor = color),
                       enableLabel: true,
@@ -98,14 +99,8 @@ class _SettingPageState extends State<SettingPage> {
                 FlatButton(
                     child: Text(AppLocalizations.$t('sure')),
                     onPressed: () {
-                      setState(() {
-                        currentColor = pickerColor;
-                        print('${currentColor.value}');
-                      });
-
                       Store.value<ConfigModel>(context)
-                          .$setTheme(currentColor.value);
-                      print('$currentColor');
+                          .$setTheme(pickerColor.value);
                       Navigator.of(context).pop();
                     })
               ]),

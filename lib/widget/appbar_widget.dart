@@ -33,6 +33,7 @@ class _AppBarWidgetState extends State<AppBarWidget>
 
   @override
   void dispose() {
+    _controller.dispose();
     super.dispose();
   }
 

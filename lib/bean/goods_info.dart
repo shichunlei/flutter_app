@@ -10,13 +10,15 @@ class GoodsInfo {
 
   AdvertesPicture advertesPicture;
   Goods goodInfo;
-  List<dynamic> goodComments;
+  List<GoodComment> goodComments;
 
   static GoodsInfo fromMap(Map<String, dynamic> map) {
     GoodsInfo goods_info = GoodsInfo();
-    goods_info.goodComments = map['goodComments'];
-    goods_info.advertesPicture = map['advertesPicture'] == null
+    goods_info.goodComments = map['goodComments'] == null
         ? []
+        : GoodComment.fromMapList(map['goodComments']);
+    goods_info.advertesPicture = map['advertesPicture'] == null
+        ? null
         : AdvertesPicture.fromMap(map['advertesPicture']);
     goods_info.goodInfo = Goods.fromMap(map['goodInfo']);
     return goods_info;
@@ -24,6 +26,30 @@ class GoodsInfo {
 
   static List<GoodsInfo> fromMapList(dynamic mapList) {
     List<GoodsInfo> list = List(mapList.length);
+    for (int i = 0; i < mapList.length; i++) {
+      list[i] = fromMap(mapList[i]);
+    }
+    return list;
+  }
+}
+
+class GoodComment {
+  int score;
+  String comments;
+  String userName;
+  int discussTime;
+
+  static GoodComment fromMap(Map<String, dynamic> map) {
+    GoodComment comment = GoodComment();
+    comment.score = map['SCORE'];
+    comment.comments = map['comments'];
+    comment.userName = map['userName'];
+    comment.discussTime = map['discussTime'];
+    return comment;
+  }
+
+  static List<GoodComment> fromMapList(dynamic mapList) {
+    List<GoodComment> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }

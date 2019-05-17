@@ -144,6 +144,7 @@ A new Flutter application.
 | Flutter Range Slider | [range_slider](https://github.com/boeledi/RangeSlider) | 1.2.0 | An extension of the Flutter Material Slider to allow selection of a range of values via 2 thumbs.|
 | 侧滑菜单 | [flutter_inner_drawer](https://github.com/Dn-a/flutter_inner_drawer) | ![](https://camo.githubusercontent.com/dda1245d1fb2d8ab403c705df11bbf07717d3dce/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7075622d302e322e362d6f72616e67652e737667) | Inner Drawer is an easy way to create an internal side section (left/right) where you can insert a list menu or other.|
 | 字母索引 | [azlistview](https://github.com/flutterchina/azlistview) | ![](https://camo.githubusercontent.com/fe32a6e2c3f42d892ce837927d0499d5608e88c8/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f617a6c697374766965772e7376673f7374796c653d666c61742d737175617265) | AzListView，Flutter 城市列表，联系人列表，自定义Header，索引，悬停效果。|
+| 状态管理 | [provide](https://github.com/google/flutter-provide) | 1.0.2 ||
 
 
 ## 特别感谢

@@ -164,7 +164,6 @@ class _DetailsPageState extends State<DetailsPage>
             style: TextStyle(
                 color:
                     Color.fromARGB((navAlpha * 255).toInt(), 255, 255, 255))),
-        backgroundColor: Colors.red,
         pinned: true,
         expandedHeight: headerHeight - Utils.topSafeHeight,
         leading: IconButton(

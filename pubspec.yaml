@@ -60,7 +60,7 @@ dependencies: # 应用或包依赖的其它包或插件
   feather_icons_flutter: ^4.7.4
 
   # 颜色选择器
-  flutter_colorpicker: ^0.2.1
+  flutter_colorpicker: ^0.2.3
 
   # 刷新加载控件
   flutter_easyrefresh: ^1.2.7
