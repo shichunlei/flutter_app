@@ -1,58 +1,55 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/log_util.dart';
-import 'package:flutter_app/xianyu/ui/item.dart';
+import 'package:flutter_app/bean/image.dart';
+import 'package:flutter_app/service/api_service.dart';
+import 'package:flutter_app/ui/image_load_view.dart';
+import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class BottomGridView extends StatefulWidget {
   final int index;
+  final String title;
 
-  BottomGridView({Key key, this.index}) : super(key: key);
+  BottomGridView({Key key, this.index, this.title}) : super(key: key);
 
   @override
-  createState() => _BottomGridViewState();
+  createState() => BottomGridViewState();
 }
 
-class _BottomGridViewState extends State<BottomGridView> {
-  List<IntSize> _sizes = [];
+class BottomGridViewState extends State<BottomGridView> {
+  List<ImageModal> images = [];
 
   @override
   void initState() {
     super.initState();
-
-    LogUtil.v('---------------${widget.index}');
+    getListData(widget.title);
   }
 
   @override
   Widget build(BuildContext context) {
-    getListData(widget.index);
+    double itemWidth = Utils.width / 2 - 4;
 
-    return StaggeredGridView.countBuilder(
-        shrinkWrap: true,
-        primary: false,
-        crossAxisCount: 4,
-        mainAxisSpacing: 4.0,
-        crossAxisSpacing: 4.0,
-        itemBuilder: (context, index) =>
-            Item(index: index, size: _sizes[index]),
-        staggeredTileBuilder: (index) => StaggeredTile.fit(2),
-        itemCount: 5 * (widget.index + 1));
+    return images.isEmpty
+        ? Center()
+        : StaggeredGridView.countBuilder(
+            shrinkWrap: true,
+            primary: false,
+            crossAxisCount: 4,
+            mainAxisSpacing: 4.0,
+            crossAxisSpacing: 4.0,
+            itemBuilder: (context, index) => ImageLoadView(
+                  images[index].thumb,
+                  width: itemWidth,
+                  height:
+                      itemWidth * images[index].height / images[index].width,
+                ),
+            staggeredTileBuilder: (index) => StaggeredTile.fit(2),
+            itemCount: images.length);
   }
 
-  List<IntSize> _createSizes(int count) {
-    Random rnd = Random();
-    return List.generate(
-      count,
-      (i) => IntSize(rnd.nextInt(500) + 200, rnd.nextInt(800) + 200),
-    );
-  }
+  void getListData(String key) async {
+    images = [];
+    images = await ApiService.getImagesData(key);
 
-  void getListData(int index) async {
-    _sizes.clear();
-    setState(() {});
-    LogUtil.v('$index==========================================');
-    _sizes = _createSizes(5 * (index + 1)).toList();
     setState(() {});
   }
 }

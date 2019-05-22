@@ -2,6 +2,7 @@ import 'package:flutter_app/bean/article.dart';
 import 'package:flutter_app/bean/celebrity.dart';
 import 'package:flutter_app/bean/contact.dart';
 import 'package:flutter_app/bean/he_weather.dart';
+import 'package:flutter_app/bean/image.dart';
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/bean/photos.dart';
 import 'package:flutter_app/bean/poetry.dart';
@@ -41,6 +42,8 @@ class Result {
   /// 联系人
   List<Contact> contacts;
 
+  List<ImageModal> images;
+
   static Result fromMap(Map<String, dynamic> map) {
     Result result = Result();
     result.title = map['title'] == null ? "" : map['title'];
@@ -68,6 +71,9 @@ class Result {
     result.heWeather = map['HeWeather6'] == null
         ? []
         : HeWeather.fromMapList(map['HeWeather6']);
+
+    result.images =
+        map['list'] == null ? [] : ImageModal.fromMapList(map['list']);
     return result;
   }
 

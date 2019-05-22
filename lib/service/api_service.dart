@@ -11,6 +11,7 @@ import 'package:flutter_app/bean/contact.dart';
 import 'package:flutter_app/bean/goods.dart';
 import 'package:flutter_app/bean/goods_info.dart';
 import 'package:flutter_app/bean/he_weather.dart';
+import 'package:flutter_app/bean/image.dart';
 import 'package:flutter_app/bean/juzimi.dart';
 import 'package:flutter_app/bean/news.dart';
 import 'package:flutter_app/bean/photos.dart';
@@ -1170,5 +1171,24 @@ class ApiService {
     LogUtil.v('${result.toString()}');
 
     return result;
+  }
+
+  ///
+  static Future<List<ImageModal>> getImagesData(String key) async {
+    Response response =
+        await HttpUtils(baseUrl: ApiUrl.MEIZITU_URL).get('j', data: {
+      "src": 'imageonebox',
+      "q": key,
+      "obx_type": "360pic_meinv",
+      "pn": 100,
+      "sn": 0,
+      "kn": 50,
+      "cn": 0
+    });
+    if (response.statusCode != 200) {
+      return null;
+    }
+    Result result = Result.fromMap(json.decode(response.data));
+    return result.images;
   }
 }
