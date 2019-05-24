@@ -80,4 +80,7 @@ class CustomIcon {
   static const IconData xianyu =
       const IconData(0xe687, fontFamily: 'CustomIcon');
   static const IconData scan = const IconData(0xe72a, fontFamily: 'CustomIcon');
+
+  static const IconData qdaily_logo =
+      const IconData(0xe769, fontFamily: 'CustomIcon');
 }
