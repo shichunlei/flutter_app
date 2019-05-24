@@ -9,20 +9,19 @@ class IconText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      onPressed: onPressed,
+    return InkWell(
+      onTap: onPressed,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(icon),
-            SizedBox(height: 5.0),
+            SizedBox(height: 8.0),
             Text('$text'),
           ],
         ),
       ),
-      color: Colors.white,
     );
   }
 }

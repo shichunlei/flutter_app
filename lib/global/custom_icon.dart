@@ -32,11 +32,6 @@ class CustomIcon {
   static const IconData sun = const IconData(0xe609, fontFamily: 'CustomIcon');
   static const IconData moon = const IconData(0xe650, fontFamily: 'CustomIcon');
 
-  static const IconData sunset =
-      const IconData(0xe812, fontFamily: 'CustomIcon');
-  static const IconData sunrise =
-      const IconData(0xe80d, fontFamily: 'CustomIcon');
-
   static const IconData air = const IconData(0xe65a, fontFamily: 'CustomIcon');
   static const IconData co = const IconData(0xe620, fontFamily: 'CustomIcon');
   static const IconData no2 = const IconData(0xe631, fontFamily: 'CustomIcon');

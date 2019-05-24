@@ -263,7 +263,7 @@ class _SignInPageState extends State<SignInPage> {
 
   void _login() async {
     SPUtil.putBool("isLogin", true);
-    Timer(Duration(seconds: 1), () {
+    timer = Timer(Duration(seconds: 1), () {
       if (isShowLoading) {
         Navigator.of(context).pop();
       }
