@@ -2,10 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/global/custom_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
-import 'package:outline_material_icons/outline_material_icons.dart';
-import 'package:groovin_material_icons/groovin_material_icons.dart';
 
 class IconWidget extends StatefulWidget {
   @override
@@ -52,10 +49,7 @@ class _IconWidgetState extends State<IconWidget> with TickerProviderStateMixin {
       AnimatedIcons.view_list,
       Icons.adb,
       FontAwesomeIcons.firefox,
-      MdiIcons.sword,
       FeatherIcons.activity,
-      OMIcons.forward,
-      GroovinMaterialIcons.access_point,
       CustomIcon.man,
       CustomIcon.back,
       CupertinoIcons.home
