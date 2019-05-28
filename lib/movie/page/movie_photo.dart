@@ -244,7 +244,7 @@ class _MoviePhotoPageState extends State<MoviePhotoPage>
             Row(
               children: <Widget>[
                 IconButton(
-                  icon: Icon(Icons.close,color: Colors.white),
+                  icon: Icon(Icons.close, color: Colors.white),
                   onPressed: null,
                 ),
                 Expanded(
@@ -264,7 +264,7 @@ class _MoviePhotoPageState extends State<MoviePhotoPage>
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text('item${index}'),
+                    title: Text('item$index'),
                     leading: Icon(Icons.color_lens),
                   );
                 },

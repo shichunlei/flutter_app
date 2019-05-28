@@ -24,16 +24,15 @@ class ImageLoadView extends StatelessWidget {
   /// 圆角
   final BorderRadius borderRadius;
 
-  ImageLoadView(
-    this.imageUrl, {
-    Key key,
-    this.width,
-    this.height,
-    this.fit = BoxFit.fill,
-    this.onPressed,
-    this.borderRadius = const BorderRadius.all(Radius.circular(0.0)),
-    this.placeholder = const AssetImage("images/wallfy.png"),
-  })  : assert(imageUrl != null),
+  ImageLoadView(this.imageUrl,
+      {Key key,
+      this.width,
+      this.height,
+      this.fit = BoxFit.fill,
+      this.onPressed,
+      this.borderRadius = const BorderRadius.all(Radius.circular(0.0)),
+      this.placeholder = const AssetImage("images/wallfy.png")})
+      : assert(imageUrl != null),
         assert(fit != null),
         assert(borderRadius != null),
         super(key: key);
@@ -41,7 +40,7 @@ class ImageLoadView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPressed,
+        onTap: onPressed,
         child: ClipRRect(
             borderRadius: borderRadius,
             child: (placeholder is Uint8List)

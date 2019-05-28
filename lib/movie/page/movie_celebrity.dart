@@ -17,7 +17,6 @@ import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:palette_generator/palette_generator.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class MovieCelebrityPage extends StatefulWidget {
   final String id;
