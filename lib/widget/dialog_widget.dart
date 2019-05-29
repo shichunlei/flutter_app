@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/rich_alert_dialog.dart';
-import 'package:giffy_dialog/giffy_dialog.dart';
+import 'package:flutter_app/custom_widgets/dialog/asset_giffy_dialog.dart';
+import 'package:flutter_app/custom_widgets/dialog/network_giffy_dialog.dart';
+import 'package:flutter_app/custom_widgets/dialog/rich_alert_dialog.dart';
 
 class DialogWidget extends StatefulWidget {
   @override
@@ -54,28 +55,6 @@ class DialogWidgetState extends State<DialogWidget> {
                       ));
             },
             child: Text('Network giffy dialog'),
-          ),
-          Divider(),
-          RaisedButton(
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (_) => FlareGiffyDialog(
-                        flarePath: 'assets/space_demo.flr',
-                        flareAnimation: 'loading',
-                        title: Text(
-                          'Space Reloading',
-                          style: dialogTextStyle,
-                        ),
-                        description: Text(
-                          'This is a space reloading dialog box. This library helps you easily create fancy flare dialog.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(),
-                        ),
-                        onOkButtonPressed: () {},
-                      ));
-            },
-            child: Text('Flare giffy dialog'),
           ),
           Divider(),
           RaisedButton(

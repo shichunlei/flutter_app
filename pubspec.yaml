@@ -86,8 +86,6 @@ dependencies: # 应用或包依赖的其它包或插件
   # 图标库中文地址：http://www.fontawesome.com.cn/
   font_awesome_flutter: ^8.4.0
 
-  giffy_dialog: ^1.3.0
-
   # 解析html
   html: ^0.13.4+2
 
