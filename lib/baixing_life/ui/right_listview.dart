@@ -32,7 +32,6 @@ class RightListViewState extends State<RightListView>
 
   bool isLoadComplete = false;
 
-  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
   GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
 
   int currentIndex;
@@ -74,7 +73,6 @@ class RightListViewState extends State<RightListView>
   Widget _buildGoodsListView() {
     return Expanded(
         child: EasyRefresh(
-            key: _easyRefreshKey,
             refreshFooter: BallPulseFooter(
                 key: _footerKey,
                 color: Colors.indigo,
@@ -87,6 +85,7 @@ class RightListViewState extends State<RightListView>
                         subCategory.bxMallSubDto[currentIndex].mallSubId);
                   },
             child: GridView.builder(
+                padding: EdgeInsets.only(top: 0),
                 itemCount: goods.length,
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: rightWidth / 2,

@@ -19,6 +19,7 @@ class LifestyleView extends StatelessWidget {
             Text('生活指数', style: TextStyle(color: Colors.white)),
             Line(),
             ListView.builder(
+                padding: EdgeInsets.only(top: 0),
                 itemBuilder: (context, index) => Card(
                     color: Color(0x02000000),
                     child: Container(

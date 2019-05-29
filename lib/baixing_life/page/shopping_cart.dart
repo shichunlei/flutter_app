@@ -98,7 +98,9 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
 
     return Expanded(
         child: ListView(
-            children: children, physics: const BouncingScrollPhysics()));
+            padding: EdgeInsets.only(top: 0),
+            children: children,
+            physics: const BouncingScrollPhysics()));
   }
 
   Widget _buildCartBottom() {

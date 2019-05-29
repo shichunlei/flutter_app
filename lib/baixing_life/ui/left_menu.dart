@@ -35,6 +35,7 @@ class LeftMenuState extends State<LeftMenu> {
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView.builder(
+            padding: EdgeInsets.only(top: 0),
             itemBuilder: (context, index) {
               return InkWell(
                   child: Container(
