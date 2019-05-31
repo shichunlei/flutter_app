@@ -23,6 +23,7 @@ import 'package:flutter_app/page/drag_like_page.dart';
 import 'package:flutter_app/page/like_button_page.dart';
 import 'package:flutter_app/page/time_line.dart';
 import 'package:flutter_app/page/wave_sample.dart';
+import 'package:flutter_app/qdaily/splash.dart';
 import 'package:flutter_app/wechat_friends/page/wechat_friends_circle.dart';
 import 'package:flutter_app/question/pages/quiz_page.dart';
 import 'package:flutter_app/bars_demo/bottom_navigation_bar.dart';
@@ -332,6 +333,7 @@ class ExpandStateBean {
           SubExpandBean('仿朋友圈', WeChatFriendsCircle()),
           SubExpandBean('仿抖音首页动画', TikTokPage()),
           SubExpandBean('仿闲鱼', XianyuHomePage()),
+          SubExpandBean('好奇心日报', QdailySplashPage()),
         ]),
   ];
 }

@@ -16,6 +16,9 @@ import 'package:flutter_app/bean/juzimi.dart';
 import 'package:flutter_app/bean/news.dart';
 import 'package:flutter_app/bean/photos.dart';
 import 'package:flutter_app/bean/poetry.dart';
+import 'package:flutter_app/bean/qdaily.dart';
+import 'package:flutter_app/bean/qdaily_app.dart';
+import 'package:flutter_app/bean/qdaily_web.dart';
 import 'package:flutter_app/bean/reviews.dart';
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/bean/result.dart';
@@ -1173,7 +1176,7 @@ class ApiService {
     return result;
   }
 
-  ///
+  /// 360壁纸
   static Future<List<ImageModal>> getImagesData(String key) async {
     Response response =
         await HttpUtils(baseUrl: ApiUrl.MEIZITU_URL).get('j', data: {
@@ -1190,5 +1193,245 @@ class ApiService {
     }
     Result result = Result.fromMap(json.decode(response.data));
     return result.images;
+  }
+
+  /// 获取全部新闻(首页)
+  static Future<ResponseBean> getQdailyHomeData(String lastKey) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
+        .get("${ApiUrl.QDAILY_HOME_DATA}$lastKey.json", data: null);
+    if (response.statusCode != 200) {
+      return null;
+    }
+    QdailyAppResult result =
+        QdailyAppResult.fromMap(json.decode(response.data));
+    return result.response;
+  }
+
+  /// 获取某分类下的新闻
+  static Future<ResponseBean> getQdailyNewsDataByCategory(
+      int tagId, String lastKey) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
+        .get(ApiUrl.QDAILY_CATEGORY_DATA + "$tagId/$lastKey.json", data: null);
+    if (response.statusCode != 200) {
+      return null;
+    }
+    QdailyAppResult result =
+        QdailyAppResult.fromMap(json.decode(response.data));
+    return result.response;
+  }
+
+  /// 获取文章/新闻评论
+  static Future<ResponseBean> getQdailyCommentData(int id,
+      {String dataType = 'article', String lastKey = '0'}) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).get(
+        "${ApiUrl.QDAILY_COMMENT_DATA}$dataType/$id/$lastKey.json",
+        data: null);
+    if (response.statusCode != 200) {
+      return null;
+    }
+    QdailyAppResult result =
+        QdailyAppResult.fromMap(json.decode(response.data));
+    return result.response;
+  }
+
+  /// 栏目列表
+  static Future<DataBean> getQdailyColumnList(int lastKey) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_WEB_URL)
+        .get("${ApiUrl.QDAILY_COLUMN_LIST_DATA}$lastKey.json", data: null);
+    if (response.statusCode != 200) {
+      return null;
+    }
+    QdailyResult result = QdailyResult.fromMap(json.decode(response.data));
+    return result.data;
+  }
+
+  /// 栏目信息
+  static Future<ResponseBean> getQdailyColumnInfo(int columnId) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
+        .get("${ApiUrl.QDAILY_COLUMN_INFO_DATA}$columnId.json", data: null);
+    if (response.statusCode != 200) {
+      return null;
+    }
+    QdailyAppResult result =
+        QdailyAppResult.fromMap(json.decode(response.data));
+    return result.response;
+  }
+
+  /// 栏目新闻
+  static Future<ResponseBean> getQdailyColumnIndex(
+      int columnId, String lastKey) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).get(
+        "${ApiUrl.QDAILY_COLUMN_INDEX_DATA}$columnId/$lastKey.json",
+        data: null);
+    if (response.statusCode != 200) {
+      return null;
+    }
+    QdailyAppResult result =
+        QdailyAppResult.fromMap(json.decode(response.data));
+    return result.response;
+  }
+
+  /// 好奇心研究所
+  static Future<ResponseBean> getQdailyLabsData(String lastKey) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
+        .get("${ApiUrl.QDAILY_LAB_INDEX_DATA}$lastKey.json", data: null);
+    if (response.statusCode != 200) {
+      return null;
+    }
+    QdailyAppResult result =
+        QdailyAppResult.fromMap(json.decode(response.data));
+    return result.response;
+  }
+
+  /// 好奇心研究所详情
+  static Future<ResponseBean> getQdailyLabsDetailData(int labId) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
+        .get("${ApiUrl.QDAILY_LAB_DETAIL_DATA}$labId.json", data: null);
+    if (response.statusCode != 200) {
+      return null;
+    }
+    QdailyAppResult result =
+        QdailyAppResult.fromMap(json.decode(response.data));
+    return result.response;
+  }
+
+  /// 获取文章/新闻简介
+  static Future<ResponseBean> getQDailyArticleInfoData(int articleId) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
+        .get("${ApiUrl.QDAILY_ARTICLE_INFO_URL}$articleId.json", data: null);
+    if (response.statusCode != 200) {
+      return null;
+    }
+    QdailyAppResult result =
+        QdailyAppResult.fromMap(json.decode(response.data));
+    return result.response;
+  }
+
+  /// 获取文章/新闻详情
+  static Future<DetailBean> getQDailyArticleData(int articleId) async {
+    DetailBean articleDetail;
+
+    String detailsHtml = '';
+    bool longPage = false;
+    List<String> tags = [];
+    String image = '';
+
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_ARTICLE_URL)
+        .get("$articleId", data: null);
+
+    var document = parse(response.data.toString());
+
+    dom.Element pageContent =
+        document.getElementsByClassName('page-content').first;
+
+    List<dom.Element> detailLongDiv =
+        pageContent.getElementsByClassName('com-article-detail long');
+    List<dom.Element> detailShortDiv =
+        pageContent.getElementsByClassName('com-article-detail short');
+
+    dom.Element detailDiv =
+        detailLongDiv.length > 0 ? detailLongDiv.first : detailShortDiv.first;
+
+    dom.Element detailBodyDiv =
+        detailDiv.getElementsByClassName('article-detail-bd').first;
+    dom.Element detailHeaderDiv =
+        detailDiv.getElementsByClassName('article-detail-hd').first;
+    dom.Element detailFooterDiv =
+        detailDiv.getElementsByClassName('article-detail-ft').first;
+
+    if (detailLongDiv.length > 0) {
+      longPage = true;
+    }
+
+    if (detailShortDiv.length > 0) {
+      longPage = false;
+    }
+
+    image = detailHeaderDiv
+        .getElementsByClassName('banner')
+        .first
+        .querySelector('img')
+        .attributes['data-src'];
+
+    detailsHtml =
+        detailBodyDiv.getElementsByClassName('detail').first.outerHtml;
+
+    ////////////////////////////////////////////////////////////////
+
+    List<dom.Element> tagsLi = detailFooterDiv
+        .getElementsByClassName('tags items clearfix')
+        .first
+        .querySelectorAll('li');
+
+    tagsLi.forEach((item) {
+      tags.add(item.querySelector('span').text);
+    });
+
+    ////////////////////////////////////////////////////////////////
+    List<PostBean> posts = [];
+
+    List<dom.Element> banners = pageContent
+        .getElementsByClassName('related-banners-bd')
+        .first
+        .querySelectorAll('a');
+
+    banners.forEach((item) {
+      int articleId = int.parse(item.attributes['href']
+          .replaceAll('/mobile/articles/', '')
+          .replaceAll('.html', ''));
+
+      dom.Element bannerHd =
+          item.getElementsByClassName('grid-key-article-hd').first;
+
+      String image = bannerHd
+          .getElementsByClassName('imgcover pic')
+          .first
+          .querySelector('img')
+          .attributes['data-src'];
+
+      print('-=-=-=-================----------$image');
+
+      dom.Element bannerBd =
+          item.getElementsByClassName('grid-key-article-bd').first;
+
+      String title = bannerBd.getElementsByClassName('title').first.text;
+
+      String category =
+          bannerBd.querySelector('p').querySelectorAll('span')[1].text;
+
+      dom.Element ribbonDiv = bannerBd.getElementsByClassName('ribbon').first;
+
+      List<dom.Element> messageSpans =
+          ribbonDiv.getElementsByClassName('iconfont icon-message');
+      List<dom.Element> heartSpans =
+          ribbonDiv.getElementsByClassName('iconfont icon-heart');
+
+      int commentCount =
+          messageSpans.length > 0 ? int.parse(messageSpans.first.text) : 0;
+
+      int praiseCount =
+          heartSpans.length > 0 ? int.parse(heartSpans.first.text) : 0;
+
+      PostBean post = PostBean(
+          image: image,
+          id: articleId,
+          title: title,
+          categoryTile: category,
+          commentCount: commentCount,
+          praiseCount: praiseCount);
+
+      posts..add(post);
+    });
+
+    articleDetail = DetailBean(
+        description: detailsHtml,
+        image: image,
+        tags: tags,
+        isFullPage: longPage,
+        posts: posts);
+
+    LogUtil.v(articleDetail.toString());
+
+    return articleDetail;
   }
 }

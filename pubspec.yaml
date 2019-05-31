@@ -167,8 +167,8 @@ flutter:
   assets:
     - images/
     - images/weather_backgrounds/
+    - images/qdaily/
     - assets/data/
-    - assets/space_demo.flr
     - packages/flutter_gallery_assets/people/ali_landscape.png
     - local/
 

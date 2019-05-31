@@ -1,6 +1,7 @@
 class ApiUrl {
   static const String DOUBAN_WEB_URL = 'https://movie.douban.com/';
 
+  // https://douban.uieee.com/v2
   static const String MOVIE_BASE_URL = "https://api.douban.com/v2/movie";
 
   static final String MOVIE_LIST_URL = "/in_theaters";
@@ -57,4 +58,34 @@ class ApiUrl {
   static final String JUZIMI_URL = 'https://www.juzimi.com/';
 
   static final String MEIZITU_URL = 'https://m.image.so.com/';
+
+  /// 好奇心日报APP接口
+  static final String QDAILY_APP_URL = "http://app3.qdaily.com/";
+
+  /// 好奇心日报Web接口
+  static final String QDAILY_WEB_URL = "http://www.qdaily.com/";
+
+  static final String QDAILY_HOME_DATA = "app3/homes/index_v2/";
+
+  static final String QDAILY_CATEGORY_DATA = "app3/categories/index/";
+
+  static final String QDAILY_COMMENT_DATA = "app3/comments/index/";
+
+  static final String QDAILY_ARTICLE_URL =
+      "http://m.qdaily.com/mobile/articles/";
+  static final String QDAILY_ARTICLE_INFO_URL = "app3/articles/info/";
+
+  static final String QDAILY_LAB_INDEX_DATA = "app3/papers/index/";
+  static final String QDAILY_LAB_DETAIL_DATA = "app3/papers/detail/";
+
+  static final String QDAILY_COLUMN_LIST_DATA = "special_columns/column_more/";
+  static final String QDAILY_COLUMN_INFO_DATA = "app3/columns/info/";
+  static final String QDAILY_COLUMN_INDEX_DATA = "app3/columns/index/";
+
+  static final String QDAILY_SEARCH_HIGHLIGHTING_DATA =
+      "app3/searches/post_highlighting_list.json?last_key={last_key}&search={content}";
+  static final String QDAILY_SEARCH_DATA =
+      "app3/searches/post_list.json?last_key={last_key}&search={content}";
+
+  static final String QDAILY_CATEGORYS_DATA = "app3/homes/left_sidebar.json";
 }

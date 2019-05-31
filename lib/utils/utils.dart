@@ -1,13 +1,29 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui show window;
 
+import 'package:flutter/services.dart';
+
 class Utils {
+  /// 获取运行平台是Android还是IOS
+  bool get isAndroid => Platform.isAndroid;
+
+  bool get isIOS => Platform.isIOS;
+
   /// 文字转颜色
   static Color strToColor(String name) {
     assert(name.length > 1);
     final int hash = name.hashCode & 0xffff;
     final double hue = (360.0 * hash / (1 << 15)) % 360.0;
     return HSVColor.fromAHSV(1.0, hue, 0.4, 0.90).toColor();
+  }
+
+  /// 随机颜色
+  static Color randomColor() {
+    return Color.fromARGB(255, Random().nextInt(255), Random().nextInt(255),
+        Random().nextInt(255));
   }
 
   /// 屏幕宽
@@ -30,6 +46,10 @@ class Utils {
   static double get topSafeHeight {
     MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     return mediaQuery.padding.top;
+  }
+
+  static updateStatusBarStyle(SystemUiOverlayStyle style) {
+    SystemChrome.setSystemUIOverlayStyle(style);
   }
 
   /// 复制到剪粘板
