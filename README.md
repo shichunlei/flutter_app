@@ -123,7 +123,6 @@ A new Flutter application.
 | Plugin | 地址 | 版本号 |
 | :--: | :--: | :--: |
 | 网络请求 | [dio](https://pub.dartlang.org/packages/dio) | ![](https://camo.githubusercontent.com/cdfb640de2cc8eeb0f6bfa1bda82422d83d87785/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f64696f2e7376673f7374796c653d666c61742d737175617265) |
-| 下拉刷新，上拉加载 |[pull_to_refresh](https://github.com/peng8350/flutter_pulltorefresh)|1.1.6|
 | 下拉刷新，上拉加载 |[flutter_easyrefresh](https://github.com/xuelongqy/flutter_easyrefresh)|![](https://camo.githubusercontent.com/c96857ee880abb5c8d65ab657cbd60836739533b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7075622d76312e322e352d6f72616e67652e737667)|
 | Shared Preferences |[shared_preferences](https://github.com/flutter/plugins/tree/master/packages/shared_preferences)|![](https://camo.githubusercontent.com/b9af89a46da89444505ead9b0a7245e883d17afb/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f7368617265645f707265666572656e6365732e737667)| 
 | 中国城市选择器 |[city_picker](https://github.com/CaiJingLong/flutter_city_picker)|![](https://camo.githubusercontent.com/24b9365f7514f94b06178f06f81397d0d75d80c4/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f636974795f7069636b65722e737667)|

@@ -114,7 +114,7 @@ class _TikTokPageState extends State<TikTokPage> with TickerProviderStateMixin {
         children: List(10)
             .map((_) => Container(
                   child: Image.asset(
-                    "images/middle.png",
+                    "images/middle.jpg",
                     fit: BoxFit.fill,
                   ),
                 ))
@@ -136,7 +136,7 @@ class _TikTokPageState extends State<TikTokPage> with TickerProviderStateMixin {
           height: screenHeight,
           color: Colors.transparent,
           child: Image.asset(
-            "images/right.png",
+            "images/right.jpg",
             fit: BoxFit.fill,
             width: screenWidth,
           ),

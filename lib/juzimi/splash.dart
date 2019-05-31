@@ -9,7 +9,7 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(alignment: Alignment.center, children: <Widget>[
-        Image.asset("images/splash.png", fit: BoxFit.fitWidth),
+        Image.asset("images/splash.jpg", fit: BoxFit.fitWidth),
         Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[

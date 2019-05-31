@@ -22,7 +22,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Image.asset("images/splash.png"),
+      body: Image.asset("images/splash.jpg"),
     );
   }
 
