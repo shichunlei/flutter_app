@@ -1434,4 +1434,105 @@ class ApiService {
 
     return articleDetail;
   }
+
+  /// 获取图书详情
+  static Future<BookBean> getQDailyBookData(int articleId) async {
+    BookBean bookDetail;
+
+    String desc = '';
+    List<String> tags = [];
+    String detail = '';
+
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_ARTICLE_URL)
+        .get("$articleId", data: null);
+
+    var document = parse(response.data.toString());
+
+    dom.Element pageContent =
+        document.getElementsByClassName('page-content').first;
+
+    dom.Element detailBodyDiv =
+        pageContent.getElementsByClassName('article-detail-bd').first;
+    dom.Element detailHeaderDiv =
+        pageContent.getElementsByClassName('article-detail-hd').first;
+    dom.Element detailFooterDiv =
+        pageContent.getElementsByClassName('article-detail-ft').first;
+
+    desc = detailHeaderDiv.getElementsByClassName('info').first.outerHtml;
+
+    detail = detailBodyDiv.getElementsByClassName('detail').first.outerHtml;
+
+    ////////////////////////////////////////////////////////////////
+
+    List<dom.Element> tagsLi = detailFooterDiv
+        .getElementsByClassName('tags items clearfix')
+        .first
+        .querySelectorAll('li');
+
+    tagsLi.forEach((item) {
+      tags.add(item.querySelector('span').text);
+    });
+
+    ////////////////////////////////////////////////////////////////
+    List<PostBean> posts = [];
+
+    List<dom.Element> banners = pageContent
+        .getElementsByClassName('related-banners-bd')
+        .first
+        .querySelectorAll('a');
+
+    banners.forEach((item) {
+      int articleId = int.parse(item.attributes['href']
+          .replaceAll('/mobile/articles/', '')
+          .replaceAll('.html', ''));
+
+      dom.Element bannerHd =
+          item.getElementsByClassName('grid-key-article-hd').first;
+
+      String image = bannerHd
+          .getElementsByClassName('imgcover pic')
+          .first
+          .querySelector('img')
+          .attributes['data-src'];
+
+      print('-=-=-=-================----------$image');
+
+      dom.Element bannerBd =
+          item.getElementsByClassName('grid-key-article-bd').first;
+
+      String title = bannerBd.getElementsByClassName('title').first.text;
+
+      String category =
+          bannerBd.querySelector('p').querySelectorAll('span')[1].text;
+
+      dom.Element ribbonDiv = bannerBd.getElementsByClassName('ribbon').first;
+
+      List<dom.Element> messageSpans =
+          ribbonDiv.getElementsByClassName('iconfont icon-message');
+      List<dom.Element> heartSpans =
+          ribbonDiv.getElementsByClassName('iconfont icon-heart');
+
+      int commentCount =
+          messageSpans.length > 0 ? int.parse(messageSpans.first.text) : 0;
+
+      int praiseCount =
+          heartSpans.length > 0 ? int.parse(heartSpans.first.text) : 0;
+
+      PostBean post = PostBean(
+          image: image,
+          id: articleId,
+          title: title,
+          categoryTile: category,
+          commentCount: commentCount,
+          praiseCount: praiseCount);
+
+      posts..add(post);
+    });
+
+    bookDetail = BookBean(desc: desc, tags: tags, posts: posts, detail: detail);
+
+    LogUtil.v(bookDetail.toString());
+
+    return bookDetail;
+  }
 }

@@ -410,14 +410,19 @@ class DetailBean {
   bool isFullPage;
 
   DetailBean(
-      {this.description,
-      this.tags,
-      this.image,
-      this.posts,
-      this.isFullPage});
+      {this.description, this.tags, this.image, this.posts, this.isFullPage});
 
   @override
   String toString() {
     return 'DetailBean{description: $description, tags: $tags, image: $image,  posts: $posts, isFullPage: $isFullPage}';
   }
+}
+
+class BookBean {
+  String desc;
+  List<String> tags;
+  List<PostBean> posts;
+  String detail;
+
+  BookBean({this.desc, this.tags, this.posts, this.detail});
 }

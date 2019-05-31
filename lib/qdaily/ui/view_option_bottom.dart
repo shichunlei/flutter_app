@@ -11,9 +11,9 @@ class ViewOptionBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(children: <Widget>[
       Icon(Icons.favorite_border, color: Colors.white, size: 20),
-      Expanded(
-          child: Text('$praiseCount赞',
-              style: TextStyle(color: Colors.white, fontSize: 13))),
+      Text('$praiseCount赞',
+          style: TextStyle(color: Colors.white, fontSize: 13)),
+      Spacer(),
       Icon(FeatherIcons.share, color: Colors.white, size: 20)
     ]);
   }

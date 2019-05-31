@@ -18,19 +18,7 @@ class ItemComment extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Row(children: <Widget>[
-            ImageLoadView('${comment.author.avatar}',
-                width: 40,
-                height: 40,
-                borderRadius: BorderRadius.all(Radius.circular(20))),
-            SizedBox(width: 8),
-            Text('${comment.author.name}'),
-            SizedBox(width: 8),
-            Expanded(
-                child: Text(
-                    "${TimeUtils.getDateStrByMs(comment.publishTime * 1000, format: DateFormat.ZH_MONTH_DAY)}")),
-            Icon(FeatherIcons.thumbsUp, size: 20)
-          ]),
+          _buildTopView(comment.author, comment.publishTime),
           Container(
               padding: EdgeInsets.only(left: 48, top: 20, bottom: 20),
               alignment: Alignment.centerLeft,
@@ -44,20 +32,8 @@ class ItemComment extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Container(
                   child: Column(children: <Widget>[
-                    Row(children: <Widget>[
-                      ImageLoadView(
-                          '${comment?.childComments[index]?.author?.avatar}',
-                          width: 40,
-                          height: 40,
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      SizedBox(width: 8),
-                      Text('${comment?.childComments[index]?.author?.name}'),
-                      SizedBox(width: 8),
-                      Expanded(
-                          child: Text(
-                              "${TimeUtils.getDateStrByMs(comment.childComments[index].publishTime * 1000, format: DateFormat.ZH_MONTH_DAY)}")),
-                      Icon(FeatherIcons.thumbsUp, size: 20)
-                    ]),
+                    _buildTopView(comment?.childComments[index]?.author,
+                        comment.childComments[index].publishTime),
                     Container(
                         padding: EdgeInsets.only(left: 48, top: 20, bottom: 20),
                         alignment: Alignment.centerLeft,
@@ -69,5 +45,21 @@ class ItemComment extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _buildTopView(AuthorBean author, int publishTime) {
+    return Row(children: <Widget>[
+      ImageLoadView('${author?.avatar}',
+          width: 40,
+          height: 40,
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      SizedBox(width: 8),
+      Text('${author?.name}'),
+      SizedBox(width: 8),
+      Text(
+          "${TimeUtils.getDateStrByMs(publishTime * 1000, format: DateFormat.ZH_MONTH_DAY)}"),
+      Spacer(),
+      Icon(FeatherIcons.thumbsUp, size: 20)
+    ]);
   }
 }

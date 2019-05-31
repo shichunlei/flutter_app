@@ -144,6 +144,7 @@ class _SpecialPageState extends State<SpecialPage> {
   Widget _buildDataView() {
     return column?.showType == 2 // gridview
         ? GridView.builder(
+            padding: EdgeInsets.only(top: 0),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 childAspectRatio: 704 / 1000,
                 crossAxisCount: 2,
@@ -160,6 +161,7 @@ class _SpecialPageState extends State<SpecialPage> {
             primary: false)
         : column?.showType == 1 // listview
             ? ListView.builder(
+                padding: EdgeInsets.only(top: 0),
                 itemBuilder: (context, index) => ItemFeedTypeTwo(
                     feedsBean: feeds[index],
                     onTap: () => pushNewPage(

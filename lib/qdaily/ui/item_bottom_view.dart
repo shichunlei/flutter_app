@@ -10,27 +10,24 @@ class ItemBottomView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Row(children: <Widget>[
-              Text('${post?.category?.title}',
-                  style: TextStyle(color: Colors.grey, fontSize: 12)),
-              SizedBox(width: 5),
-              Image.asset('images/qdaily/icon_toolbar_comment.png',
-                  width: 15, height: 15, color: Colors.grey),
-              Text('${post?.commentCount}',
-                  style: TextStyle(color: Colors.grey, fontSize: 12)),
-              SizedBox(width: 5),
-              Image.asset('images/qdaily/icon_toolbar_like_unpressed.png',
-                  width: 15, height: 15, color: Colors.grey),
-              Text('${post?.praiseCount}',
-                  style: TextStyle(color: Colors.grey, fontSize: 12))
-            ]),
-            Text(
-                "${(post?.publishTime is int) ? TimeUtils.getDateStrByMs(post?.publishTime * 1000, format: DateFormat.ZH_MONTH_DAY) : TimeUtils.getDateStrByTimeStr(post?.publishTime, format: DateFormat.ZH_MONTH_DAY)}",
-                style: TextStyle(color: Colors.grey, fontSize: 12))
-          ]),
+      child: Row(children: <Widget>[
+        Text('${post?.category?.title}',
+            style: TextStyle(color: Colors.grey, fontSize: 12)),
+        SizedBox(width: 5),
+        Image.asset('images/qdaily/icon_toolbar_comment.png',
+            width: 15, height: 15, color: Colors.grey),
+        Text('${post?.commentCount}',
+            style: TextStyle(color: Colors.grey, fontSize: 12)),
+        SizedBox(width: 5),
+        Image.asset('images/qdaily/icon_toolbar_like_unpressed.png',
+            width: 15, height: 15, color: Colors.grey),
+        Text('${post?.praiseCount}',
+            style: TextStyle(color: Colors.grey, fontSize: 12)),
+        Spacer(),
+        Text(
+            "${(post?.publishTime is int) ? TimeUtils.getDateStrByMs(post.publishTime * 1000, format: DateFormat.ZH_MONTH_DAY) : TimeUtils.getDateStrByTimeStr(post?.publishTime, format: DateFormat.ZH_MONTH_DAY)}",
+            style: TextStyle(color: Colors.grey, fontSize: 12))
+      ]),
     );
   }
 }
