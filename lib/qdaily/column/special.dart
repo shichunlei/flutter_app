@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/qdaily.dart';
 import 'package:flutter_app/bean/qdaily_app.dart';
 import 'package:flutter_app/qdaily/ui/item_feed_type_two.dart';
-import 'package:flutter_app/qdaily/ui/line_text_line.dart';
+import 'package:flutter_app/ui/line_view_line.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
@@ -124,7 +124,9 @@ class _SpecialPageState extends State<SpecialPage> {
       color: Colors.white,
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
       child: Column(children: <Widget>[
-        LineTextLine(text: '  ${column?.subscriberNum}人订阅了本栏目  '),
+        LineViewLine(
+            child: Text('  ${column?.subscriberNum}人订阅了本栏目  ',
+                style: TextStyle(color: Colors.grey))),
         SizedBox(height: 10),
         Wrap(
             spacing: 8,

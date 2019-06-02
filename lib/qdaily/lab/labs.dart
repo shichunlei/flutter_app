@@ -90,7 +90,7 @@ class _LabsPageState extends State<LabsPage>
                         ) //
                     {
                       pushNewPage(
-                          context, LabYouGuessPage(id: feeds[index]?.post?.id));
+                          context, LabYouGuessPage(post: feeds[index]?.post));
                     } else if (feeds[index].post.category.id == 4) // 42%
                     {
                       pushNewPage(

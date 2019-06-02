@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage>
                         feed?.post?.category?.id == 5 // 你猜
                     ) //
                 {
-                  pushNewPage(context, LabYouGuessPage(id: feed?.post?.id));
+                  pushNewPage(context, LabYouGuessPage(post: feed?.post));
                 } else if (feed?.post?.category?.id == 4) // 42%
                 {
                   pushNewPage(context, LabRatioPage(id: feed?.post?.id));

@@ -6,7 +6,7 @@ import 'package:flutter_app/bean/qdaily_app.dart';
 import 'package:flutter_app/qdaily/ui/bottom_appbar.dart';
 import 'package:flutter_app/qdaily/ui/item_option_image.dart';
 import 'package:flutter_app/qdaily/ui/item_option_text.dart';
-import 'package:flutter_app/qdaily/ui/line_text_line.dart';
+import 'package:flutter_app/ui/line_view_line.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/utils.dart';
@@ -127,8 +127,10 @@ class _LabISayPageState extends State<LabISayPage> {
                     },
                     staggeredTileBuilder: (index) => StaggeredTile.fit(2),
                     itemCount: options.length)),
-            LineTextLine(
-                text: '没有更多了', horizontalPadding: 80.0, verticalPadding: 40)
+            LineViewLine(
+                child: Text('没有更多了', style: TextStyle(color: Colors.grey)),
+                horizontalPadding: 80.0,
+                verticalPadding: 40)
           ]),
         ),
         BottomAppbar(actions: <Widget>[

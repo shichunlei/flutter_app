@@ -170,11 +170,21 @@ class Question {
   String content;
   int genre;
   List<Option> options;
+  String image;
+
+  Question(
+      {this.id,
+      this.title,
+      this.content,
+      this.genre,
+      this.options,
+      this.image});
 
   static Question fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     Question questionBean = Question();
     questionBean.id = map['id'];
+    questionBean.image = map['image'];
     questionBean.title = map['title'];
     questionBean.content = map['content'];
     questionBean.genre = map['genre'];
@@ -198,6 +208,14 @@ class Option {
   int praiseCount;
   int perfect;
   AuthorBean author;
+
+  Option(
+      {this.id,
+      this.content,
+      this.image,
+      this.praiseCount,
+      this.perfect,
+      this.author});
 
   static Option fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
