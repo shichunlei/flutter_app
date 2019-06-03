@@ -16,6 +16,7 @@ import 'package:flutter_app/page/flipper_widget.dart';
 import 'package:flutter_app/page/inner_drawer.dart';
 import 'package:flutter_app/page/loading_json.dart';
 import 'package:flutter_app/page/random_words.dart';
+import 'package:flutter_app/page/route_sample.dart';
 import 'package:flutter_app/page/swiper_sample.dart';
 import 'package:flutter_app/page/table_sample.dart';
 import 'package:flutter_app/page/tiktok_home_page.dart';
@@ -317,6 +318,7 @@ class ExpandStateBean {
           SubExpandBean('本地读取json数据', LoadingJsonPage()),
           SubExpandBean('RangeSlider', RangeSliderSample()),
           SubExpandBean('侧滑菜单', InnerDrawerSample()),
+          SubExpandBean('路由过渡动画', RouteSample()),
         ]),
     ExpandStateBean(
         leading: Icons.dashboard,
