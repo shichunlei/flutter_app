@@ -12,6 +12,7 @@ import 'package:flutter_app/page/charts_widget.dart';
 import 'package:flutter_app/page/city_picker_page.dart';
 import 'package:flutter_app/page/clippy_widget.dart';
 import 'package:flutter_app/page/device_info_page.dart';
+import 'package:flutter_app/page/dropdown_menu_sample.dart';
 import 'package:flutter_app/page/flipper_widget.dart';
 import 'package:flutter_app/page/inner_drawer.dart';
 import 'package:flutter_app/page/loading_json.dart';
@@ -319,6 +320,7 @@ class ExpandStateBean {
           SubExpandBean('RangeSlider', RangeSliderSample()),
           SubExpandBean('侧滑菜单', InnerDrawerSample()),
           SubExpandBean('路由过渡动画', RouteSample()),
+          SubExpandBean('DropDown', DropDownSample()),
         ]),
     ExpandStateBean(
         leading: Icons.dashboard,
