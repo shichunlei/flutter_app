@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 
+/// 渐变色
 class GradualChangeView extends StatelessWidget {
   final List<Color> colors;
   final double width;
   final double height;
   final Rotation rotation;
 
+  // 包括三个状态：clamp 为默认方式，自动延伸；repeated 重复效果;mirror 镜面效果，即对称效果
+  final TileMode tileMode;
+  final List<double> stops;
+
   GradualChangeView({
     Key key,
     @required this.colors,
     this.width,
     this.height,
+    this.stops,
     this.rotation = Rotation.TB,
-  }) : super(key: key);
+    this.tileMode = TileMode.clamp,
+  })  : assert(tileMode != null),
+        assert(rotation != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +62,11 @@ class GradualChangeView extends StatelessWidget {
       height: height == null ? double.infinity : height,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: colors,
-          begin: begin,
-          end: end,
-        ),
+            colors: colors,
+            begin: begin,
+            end: end,
+            stops: stops,
+            tileMode: tileMode),
       ),
     );
   }

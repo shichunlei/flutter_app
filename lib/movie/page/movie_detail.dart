@@ -1,26 +1,28 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/casts.dart';
-import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_comment.dart';
-import 'package:flutter_app/movie/page/movie_photos.dart';
-import 'package:flutter_app/movie/ui/movie_detail_header.dart';
-import 'package:flutter_app/movie/page/movie_photo.dart';
-import 'package:flutter_app/movie/page/movie_video.dart';
-import 'package:flutter_app/movie/ui/person_scroller.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/movie/ui/cover_section_view.dart';
-import 'package:flutter_app/movie/ui/expandable_text.dart';
-import 'package:flutter_app/movie/ui/home_section_view.dart';
-import 'package:flutter_app/movie/ui/item_comment.dart';
-import 'package:flutter_app/movie/ui/item_cover.dart';
-import 'package:flutter_app/movie/ui/movie_desc.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/log_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/utils.dart';
+import '../../bean/casts.dart';
+import '../../bean/movie.dart';
+import './movie_comment.dart';
+import './movie_photos.dart';
+import '../ui/bottom_drag_view.dart';
+import '../../custom_widgets/bottom_drag_widget.dart';
+import '../ui/movie_detail_header.dart';
+import './movie_photo.dart';
+import './movie_video.dart';
+import '../ui/person_scroller.dart';
+import '../../service/api_service.dart';
+import '../ui/cover_section_view.dart';
+import '../ui/expandable_text.dart';
+import '../ui/home_section_view.dart';
+import '../ui/item_comment.dart';
+import '../ui/item_cover.dart';
+import '../ui/movie_desc.dart';
+import '../../ui/image_load_view.dart';
+import '../../utils/loading_util.dart';
+import '../../utils/log_util.dart';
+import '../../utils/route_util.dart';
+import '../../utils/utils.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -54,51 +56,47 @@ class _MovieDetailState extends State<MovieDetail> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     if (movie == null) {
       return Scaffold(
         backgroundColor: pageColor,
-        appBar: AppBar(
-          title: Text(""),
-          backgroundColor: pageColor,
-        ),
+        appBar: AppBar(backgroundColor: pageColor),
         body: Center(
-          child: Stack(
-            children: <Widget>[
-              Offstage(
-                offstage: !loadError,
-                child: RaisedButton(
-                  onPressed: () {
-                    getMovieDetail(widget.id);
-                  },
-                  child: Text("加载失败，重新加载"),
-                ),
-              ),
-              Offstage(
-                offstage: loadError,
-                child: getLoadingWidget(),
-              )
-            ],
-          ),
+          child: Stack(children: <Widget>[
+            Offstage(
+              offstage: !loadError,
+              child: RaisedButton(
+                  onPressed: () => getMovieDetail(widget.id),
+                  child: Text("加载失败，重新加载")),
+            ),
+            Offstage(offstage: loadError, child: getLoadingWidget())
+          ]),
         ),
       );
     }
 
     return Scaffold(
       backgroundColor: pageColor,
-      body: CustomScrollView(
-        slivers: <Widget>[
+      body: BottomDragWidget(
+        body: CustomScrollView(slivers: <Widget>[
           MovieDetailHeader(movie, pageColor: pageColor),
+
           _builderDesc(),
 
           /// 剧照、花絮、片段、评论
           _builderContent(),
-        ],
+        ]),
+        dragContainer: DragContainer(
+            drawer: Container(
+              child: OverscrollNotificationWidget(child: BottomDragView()),
+              decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 243, 244, 248),
+                  borderRadius: BorderRadius.only(
+                      topLeft: const Radius.circular(10.0),
+                      topRight: const Radius.circular(10.0))),
+            ),
+            defaultShowHeight: Utils.height * 0.1,
+            height: Utils.height * 0.6),
       ),
     );
   }
