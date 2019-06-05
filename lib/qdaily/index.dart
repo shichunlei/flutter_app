@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/custom_icon.dart';
-import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/qdaily/lab/labs.dart';
-import './home.dart';
-import './setting.dart';
+
+import '../page_index.dart';
 
 class IndexPage extends StatefulWidget {
   IndexPage({Key key}) : super(key: key);

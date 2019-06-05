@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/juzimi/juzimi_home.dart';
-import 'package:flutter_app/utils/route_util.dart';
+
+import '../page_index.dart';
+import 'juzimi_home.dart';
 
 class SplashPage extends StatelessWidget {
   SplashPage({Key key}) : super(key: key);
@@ -21,7 +22,7 @@ class SplashPage extends StatelessWidget {
                 Container(
                     child: Column(children: <Widget>[
                       Text('摘 ~ 抄', style: TextStyle(fontSize: 20.0)),
-                      SizedBox(height: 20),
+                      Gaps.vGap20,
                       Text('你喜欢 的 每一句', style: TextStyle(fontSize: 20.0))
                     ]),
                     margin: EdgeInsets.only(top: 100))

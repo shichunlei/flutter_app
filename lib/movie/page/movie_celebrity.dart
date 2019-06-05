@@ -12,11 +12,9 @@ import 'package:flutter_app/movie/ui/expandable_text.dart';
 import 'package:flutter_app/movie/ui/home_section_view.dart';
 import 'package:flutter_app/movie/ui/movie_celebrity_header.dart';
 import 'package:flutter_app/movie/ui/movie_grid_view.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/utils.dart';
 import 'package:palette_generator/palette_generator.dart';
+
+import '../../page_index.dart';
 
 class MovieCelebrityPage extends StatefulWidget {
   final String id;
@@ -84,104 +82,97 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
 
       return Scaffold(
         backgroundColor: pageColor,
-        body: CustomScrollView(
-          slivers: <Widget>[
-            MovieCelebrityHeader(
-              widget.name,
-              backgroundImageUrl: celebrity.photos.isEmpty
-                  ? defaultBgImageUrl
-                  : celebrity.photos[0].cover,
-              pageColor: pageColor,
-              avatarUrl: celebrity.avatars.medium.toString(),
-              gender: celebrity.gender == '男'
-                  ? 1
-                  : celebrity.gender == '女' ? 0 : -1,
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                <Widget>[
-                  HomeSectionView("简介",
-                      hiddenMore: true,
-                      backgroundColor: pageColor,
-                      textColor: Colors.white),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10.0, left: 10, right: 10),
-                    child: ExpandableText(
-                      desc,
-                      textColor: Colors.white,
-                      iconColor: Colors.white,
-                      iconTextColor: Colors.white,
-                      alignment: MainAxisAlignment.center,
-                      fontSize: 15.0,
-                      isShow: isSummaryUnfold,
-                      onPressed: () => changeSummaryMaxLines(),
-                    ),
-                  ),
-                  CoverSectionView(
-                    '影视作品',
-                    hiddenMore: movies.length < 5,
-                    onPressed: () => pushNewPage(context,
-                        MovieWithCelebrityPage(widget.id, celebrity.name)),
+        body: CustomScrollView(slivers: <Widget>[
+          MovieCelebrityHeader(
+            widget.name,
+            backgroundImageUrl: celebrity.photos.isEmpty
+                ? defaultBgImageUrl
+                : celebrity.photos[0].cover,
+            pageColor: pageColor,
+            avatarUrl: celebrity.avatars.medium.toString(),
+            gender:
+                celebrity.gender == '男' ? 1 : celebrity.gender == '女' ? 0 : -1,
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              <Widget>[
+                HomeSectionView("简介",
+                    hiddenMore: true,
                     backgroundColor: pageColor,
-                    height: height,
-                    size: movies.length,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: movies.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 3.0),
-                            child: MovieGridView(movies[index],
-                                textColor: Colors.white),
-                          );
-                        },
-                      ),
-                    ),
+                    textColor: Colors.white),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 10.0, left: 10, right: 10),
+                  child: ExpandableText(
+                    desc,
+                    textColor: Colors.white,
+                    iconColor: Colors.white,
+                    iconTextColor: Colors.white,
+                    alignment: MainAxisAlignment.center,
+                    fontSize: 15.0,
+                    isShow: isSummaryUnfold,
+                    onPressed: () => changeSummaryMaxLines(),
                   ),
-                  CoverSectionView(
-                    '相册',
-                    hiddenMore: celebrity.photos.length < 10,
-                    onPressed: () => pushNewPage(
-                        context,
-                        MoviePhotosPage(
-                            celebrity.name, 'celebrity', widget.id)),
-                    backgroundColor: pageColor,
-                    height: height,
-                    size: celebrity.photos.length,
+                ),
+                CoverSectionView(
+                  '影视作品',
+                  hiddenMore: movies.length < 5,
+                  onPressed: () => pushNewPage(context,
+                      MovieWithCelebrityPage(widget.id, celebrity.name)),
+                  backgroundColor: pageColor,
+                  height: height,
+                  size: movies.length,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
                     child: ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
                       scrollDirection: Axis.horizontal,
-                      itemCount: celebrity.photos.length,
+                      itemCount: movies.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                          child: Hero(
-                              tag: celebrity.photos[index].id,
-                              child: ImageLoadView(
-                                  celebrity.photos[index].cover,
-                                  borderRadius: BorderRadius.circular(6.0),
-                                  fit: BoxFit.cover,
-                                  height: height,
-                                  width: height,
-                                  onPressed: () => pushNewPage(
-                                      context,
-                                      MoviePhotoPage(widget.name,
-                                          photos: celebrity.photos,
-                                          index: index)))),
+                          child: MovieGridView(movies[index],
+                              textColor: Colors.white),
                         );
                       },
                     ),
                   ),
-                  SizedBox(height: 10),
-                ],
-              ),
+                ),
+                CoverSectionView(
+                  '相册',
+                  hiddenMore: celebrity.photos.length < 10,
+                  onPressed: () => pushNewPage(context,
+                      MoviePhotosPage(celebrity.name, 'celebrity', widget.id)),
+                  backgroundColor: pageColor,
+                  height: height,
+                  size: celebrity.photos.length,
+                  child: ListView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: celebrity.photos.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                        child: Hero(
+                            tag: celebrity.photos[index].id,
+                            child: ImageLoadView(celebrity.photos[index].cover,
+                                borderRadius: BorderRadius.circular(6.0),
+                                fit: BoxFit.cover,
+                                height: height,
+                                width: height,
+                                onPressed: () => pushNewPage(
+                                    context,
+                                    MoviePhotoPage(widget.name,
+                                        photos: celebrity.photos,
+                                        index: index)))),
+                      );
+                    },
+                  ),
+                ),
+                Gaps.vGap10
+              ],
             ),
-          ],
-        ),
+          ),
+        ]),
       );
     }
   }

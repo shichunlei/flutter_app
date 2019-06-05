@@ -28,14 +28,14 @@ class AppLocalizations {
       Function setState, AppLocalizationsDelegate delegate) async {
     _setState = setState;
     _delegate = delegate;
-    print("_delegate = $_delegate");
+    debugPrint("_delegate = $_delegate");
   }
 
   static get languageCode => _inst._locale.languageCode;
 
   static Future getLanguageJson([Locale locale]) async {
     Locale _tmpLocale = _inst._locale;
-    print(_tmpLocale.languageCode);
+    debugPrint(_tmpLocale.languageCode);
     String jsonLang;
     try {
       jsonLang =
@@ -47,8 +47,8 @@ class AppLocalizations {
     }
     json.decode(jsonLang);
     jsonLanguage = json.decode(jsonLang);
-    print("当前语言： ${_inst._locale}");
-    print("Json数据： ${jsonLanguage.toString()}");
+    debugPrint("当前语言： ${_inst._locale}");
+    debugPrint("Json数据： ${jsonLanguage.toString()}");
   }
 
   static void changeLanguage([Locale locale]) {
@@ -85,8 +85,8 @@ class AppLocalizations {
       });
       retValue = retValue.isEmpty ? _dict : retValue;
     } catch (e) {
-      print('i18n exception');
-      print(e);
+      debugPrint('i18n exception');
+      debugPrint(e);
       retValue = key;
     }
     return retValue ?? '';

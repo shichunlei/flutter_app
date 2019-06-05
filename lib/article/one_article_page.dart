@@ -3,16 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/article/collect_article.dart';
 import 'package:flutter_app/article/db/article_provider.dart';
 import 'package:flutter_app/bean/article.dart';
-import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/log_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/sp_util.dart';
-import 'package:flutter_app/utils/time_utils.dart';
-import 'package:flutter_app/utils/toast.dart';
+
 import 'package:flutter_html/flutter_html.dart';
 import 'package:html/dom.dart' as dom;
+
+import '../page_index.dart';
 
 class OneArticlePage extends StatefulWidget {
   final String date;
@@ -239,7 +235,7 @@ class _OneArticlePageState extends State<OneArticlePage>
     return Row(
       children: <Widget>[
         Text('主题'),
-        SizedBox(width: 5),
+        Gaps.hGap5,
         Expanded(
             child: TabBar(
           tabs: tabs,
@@ -273,7 +269,7 @@ class _OneArticlePageState extends State<OneArticlePage>
               child: Text('前一天', style: TextStyle(color: Colors.white)),
               shape: const StadiumBorder()),
         ),
-        SizedBox(width: 5),
+        Gaps.hGap5,
         Expanded(
           child: RaisedButton(
               color: themeColors[_themeColorIndex],
@@ -285,7 +281,7 @@ class _OneArticlePageState extends State<OneArticlePage>
               child: Text('随机', style: TextStyle(color: Colors.white)),
               shape: const StadiumBorder()),
         ),
-        SizedBox(width: 5),
+        Gaps.hGap5,
         Expanded(
           child: RaisedButton(
               color: themeColors[_themeColorIndex],
@@ -299,7 +295,7 @@ class _OneArticlePageState extends State<OneArticlePage>
               child: Text('后一天', style: TextStyle(color: Colors.white)),
               shape: const StadiumBorder()),
         ),
-        SizedBox(width: 5),
+        Gaps.hGap5,
         Expanded(
           child: RaisedButton(
               color: themeColors[_themeColorIndex],

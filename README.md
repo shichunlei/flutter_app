@@ -50,6 +50,9 @@ A new Flutter application.
 |仿探探|BottomSheet|TextField|
 |![0](https://github.com/rafalbednarczuk/curved_navigation_bar/blob/master/example.gif)|![1](https://github.com/tunitowen/fancy_bottom_navigation/blob/master/fancy_gif.gif)|![2](https://camo.githubusercontent.com/6bdfb12848c7fcac62da5fa8c65c8c24f536d824/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f744b394c6866484a357154373164376c59612f67697068792e676966)|
 |CurvedNavigationBar|FancyBottomNavigation|BubbleBottomBar|
+|![0](https://github.com/GanZhiXiong/gzx_dropdown_menu/raw/master/preview_images/美团.gif)|![1]()|![2]()|
+|DropDownMenu|XXX|XXX|
+
 
 
 |![1](https://raw.githubusercontent.com/furkantektas/timeline_list/master/doc/timeline_list.png)|

@@ -2,16 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/home_drawable.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/toast.dart';
-import 'package:flutter_app/global/data.dart';
-import 'package:flutter_app/utils/log_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/utils.dart';
-import 'package:flutter_app/weather/page/city_page.dart';
+
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:async';
+
+import 'page_index.dart';
 
 class HomePage extends StatefulWidget {
   @override

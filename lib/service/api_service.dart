@@ -1,35 +1,15 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_app/bean/article.dart';
-import 'package:flutter_app/bean/baixing.dart';
-import 'package:flutter_app/bean/category.dart';
-import 'package:flutter_app/bean/celebrity.dart';
-import 'package:flutter_app/bean/city.dart';
-import 'package:flutter_app/bean/comment.dart';
-import 'package:flutter_app/bean/contact.dart';
-import 'package:flutter_app/bean/goods.dart';
-import 'package:flutter_app/bean/goods_info.dart';
-import 'package:flutter_app/bean/he_weather.dart';
-import 'package:flutter_app/bean/image.dart';
-import 'package:flutter_app/bean/juzimi.dart';
-import 'package:flutter_app/bean/news.dart';
-import 'package:flutter_app/bean/photos.dart';
-import 'package:flutter_app/bean/poetry.dart';
-import 'package:flutter_app/bean/qdaily.dart';
-import 'package:flutter_app/bean/qdaily_app.dart';
-import 'package:flutter_app/bean/qdaily_web.dart';
-import 'package:flutter_app/bean/reviews.dart';
-import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/bean/result.dart';
-import 'package:flutter_app/global/config.dart';
-import 'package:flutter_app/service/api_url.dart';
-import 'package:flutter_app/utils/http_utils.dart';
-import 'package:flutter_app/utils/log_util.dart';
+
+import '../bean/bean_index.dart';
+import '../service/api_url.dart';
 
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
+
+import '../page_index.dart';
 
 class ApiService {
   /// 获取豆瓣电影首页热门新闻文章

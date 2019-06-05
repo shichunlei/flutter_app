@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 
 import '../baixing_life/ui/IconText.dart';
 import '../bean/qdaily.dart';
-import '../utils/route_util.dart';
-import '../utils/utils.dart';
+import '../page_index.dart';
 
 import './column/columns.dart';
-
-import 'tags.dart';
 
 class SettingPage extends StatefulWidget {
   SettingPage({Key key}) : super(key: key);
@@ -74,7 +71,7 @@ class _SettingPageState extends State<SettingPage>
                         /// 搜索栏
                         _buildSearchView(),
 
-                        SizedBox(height: 20),
+                        Gaps.vGap20,
 
                         /// 设置选项
                         _buildRowView()
@@ -105,9 +102,7 @@ class _SettingPageState extends State<SettingPage>
                 _controller.reverse();
                 Navigator.of(context).pop();
               } else {
-                setState(() {
-                  _currentIndex = 0;
-                });
+                setState(() => _currentIndex = 0);
               }
             },
             child: Icon(

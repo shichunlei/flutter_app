@@ -4,20 +4,16 @@ import 'package:flutter_app/baixing_life/index.dart';
 import 'package:flutter_app/baixing_life/page/details_page.dart';
 import 'package:flutter_app/baixing_life/ui/item_floor_goods.dart';
 import 'package:flutter_app/baixing_life/ui/item_goods_grid.dart';
-import 'package:flutter_app/ui/change_appbar.dart';
 import 'package:flutter_app/bean/advertes_picture.dart';
 import 'package:flutter_app/bean/baixing.dart';
 import 'package:flutter_app/bean/category.dart';
 import 'package:flutter_app/bean/goods.dart';
 import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/ui/toolbar.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+
+import '../../page_index.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -186,7 +182,7 @@ class _HomePageState extends State<HomePage>
                     children: <Widget>[
                       ImageLoadView('${category[index].image}',
                           height: 40, width: 40),
-                      SizedBox(height: 5),
+                      Gaps.vGap5,
                       Text('${category[index].mallCategoryName}')
                     ]),
               ),

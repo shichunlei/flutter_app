@@ -41,27 +41,22 @@ class _MovieRankingSubPageState extends State<MovieRankingSubPage>
       return getLoadingWidget();
     } else {
       return ListView.builder(
-        itemBuilder: (context, index) {
-          Movie movie = (widget.url == ApiUrl.US_MOVIES_URL ||
-                  widget.url == ApiUrl.WEEKLY_MOVIES_URL)
-              ? movies[index].subject
-              : movies[index];
-          return ItemRankingMovie(
-            movie,
-            index: index,
-            onTap: () {
-              pushNewPage(context, MovieDetail(movie.id));
-            },
-          );
-        },
-        itemCount: movies.length,
-        physics: const BouncingScrollPhysics(),
-        padding: EdgeInsets.all(5.0),
-      );
+          itemBuilder: (context, index) {
+            Movie movie = (widget.url == ApiUrl.US_MOVIES_URL ||
+                    widget.url == ApiUrl.WEEKLY_MOVIES_URL)
+                ? movies[index].subject
+                : movies[index];
+            return ItemRankingMovie(movie,
+                index: index,
+                onTap: () => pushNewPage(context, MovieDetail(movie.id)));
+          },
+          itemCount: movies.length,
+          physics: const BouncingScrollPhysics(),
+          padding: EdgeInsets.all(5.0));
     }
   }
 
-  void getMovieList() async {
+  Future getMovieList() async {
     movies = await ApiService.getRankingList(widget.url);
     setState(() {});
   }

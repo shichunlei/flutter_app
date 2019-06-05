@@ -3,21 +3,11 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'baixing_life/index.dart';
-import 'delegates/app_localizations_delegate.dart';
-import 'lang/config.dart';
-import 'lang/index.dart';
-import 'splash_screen.dart';
-import 'store/index.dart';
-import 'store/models/config_state_model.dart';
-import 'utils/log_util.dart';
+
+import 'page_index.dart';
 
 import 'package:flutter/services.dart';
-import 'utils/sp_util.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'delegates/fallback_cupertino_localisations_delegate.dart';
-import 'global/theme.dart';
 
 void main() async {
   setCustomErrorPage();

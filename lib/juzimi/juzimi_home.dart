@@ -5,12 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app/bean/juzimi.dart';
 import 'package:flutter_app/juzimi/classify.dart';
 import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
+import '../page_index.dart';
 
 class JuzimiHomePage extends StatefulWidget {
   JuzimiHomePage({Key key}) : super(key: key);
@@ -22,7 +21,7 @@ class JuzimiHomePage extends StatefulWidget {
 class _JuzimiHomePageState extends State<JuzimiHomePage> {
   List<MeiTuMeiJu> meitumeiju = [];
 
-  List<MingjuClassify> calssify = [];
+  List<MingjuClassify> classify = [];
 
   /// 句子迷所有接口页码均从0开始
   int page = 0;
@@ -79,7 +78,7 @@ class _JuzimiHomePageState extends State<JuzimiHomePage> {
   void getMeitumeiju(int page) async {
     // calssify = await ApiService.getMingrenmingjuType();
     rootBundle.loadString('assets/data/juzimi_classify.json').then((value) {
-      calssify = MingjuClassify.fromMapList(json.decode(value));
+      classify = MingjuClassify.fromMapList(json.decode(value));
     });
 
     JuzimiResult result = await ApiService.getMeiTuMeiJu(page);
@@ -98,10 +97,10 @@ class _JuzimiHomePageState extends State<JuzimiHomePage> {
         'http://img.juzimi.com/juzimi/images/mingrenmingyan.jpg',
         height: 180));
 
-    children.add(SizedBox(height: 20));
+    children.add(Gaps.vGap20);
 
-    calssify.map((type) {
-      int index = calssify.indexOf(type);
+    classify.map((type) {
+      int index = classify.indexOf(type);
       children.add(ListTile(
           title: Text('${type.title}'),
           onTap: () {

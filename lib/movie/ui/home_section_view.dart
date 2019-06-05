@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../page_index.dart';
+
 class HomeSectionView extends StatelessWidget {
   final VoidCallback onPressed;
   final String title;
@@ -39,7 +41,7 @@ class HomeSectionView extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: textColor),
               ),
-              SizedBox(height: 5),
+              Gaps.vGap5,
               Container(
                   width: title.length * 20.0, height: 2, color: textColor),
             ],
@@ -58,7 +60,7 @@ class HomeSectionView extends StatelessWidget {
                         fontSize: 14,
                         color: textColor),
                   ),
-                  SizedBox(width: 3),
+                  Gaps.hGap3,
                   Icon(
                     CupertinoIcons.forward,
                     size: 14,

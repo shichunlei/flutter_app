@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/data.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+
+import '../page_index.dart';
 
 class SwiperSample extends StatelessWidget {
   SwiperSample({Key key}) : super(key: key);
@@ -21,7 +21,7 @@ class SwiperSample extends StatelessWidget {
                     builder: SwiperPagination.fraction,
                     alignment: Alignment.bottomRight)),
           ),
-          SizedBox(height: 20.0),
+          Gaps.vGap20,
           Container(
             height: 200,
             color: Colors.grey.shade800,
@@ -41,7 +41,7 @@ class SwiperSample extends StatelessWidget {
                           '${config.activeIndex + 1}/${config.itemCount}'));
                 })),
           ),
-          SizedBox(height: 20.0),
+          Gaps.vGap20,
           Container(
               height: 200,
               color: Colors.grey.shade800,
@@ -55,7 +55,7 @@ class SwiperSample extends StatelessWidget {
                   viewportFraction: 0.8,
                   scale: 0.9,
                   pagination: SwiperPagination())),
-          SizedBox(height: 20.0),
+          Gaps.vGap20,
           Container(
               height: 400,
               color: Colors.grey.shade500,
@@ -68,7 +68,7 @@ class SwiperSample extends StatelessWidget {
                       ImageLoadView(Girl.girls[index].image,
                           borderRadius: BorderRadius.circular(10.0),
                           fit: BoxFit.cover))),
-          SizedBox(height: 20.0),
+          Gaps.vGap20,
           Container(
               height: 420,
               color: Colors.grey.shade500,
@@ -82,7 +82,7 @@ class SwiperSample extends StatelessWidget {
                       ImageLoadView(Girl.girls[index].image,
                           borderRadius: BorderRadius.circular(10.0),
                           fit: BoxFit.cover))),
-          SizedBox(height: 20.0),
+          Gaps.vGap20,
           Container(
             height: 340,
             color: Colors.grey.shade800,

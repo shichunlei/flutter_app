@@ -2,18 +2,13 @@ import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/qdaily.dart';
 import 'package:flutter_app/bean/qdaily_app.dart';
-import 'package:flutter_app/qdaily/ui/item_feed_type_two.dart';
-import 'package:flutter_app/ui/line_view_line.dart';
+import '../ui/item_feed_type_two.dart';
 import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/utils.dart';
+
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-import '../../ui/image_load_view.dart';
-import '../article_detail.dart';
-import '../book_detail.dart';
+import '../../page_index.dart';
 import '../ui/item_feed_typr_book.dart';
 
 class SpecialPage extends StatefulWidget {

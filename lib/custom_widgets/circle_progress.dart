@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/utils.dart';
 
+import '../page_index.dart';
+
 class CircleProgressWidget extends StatefulWidget {
   final double progress; // 进度 0～1
   final Color progressColor; // 进度条主色
@@ -87,58 +89,56 @@ class _CircleProgressWidgetState extends State<CircleProgressWidget>
         child: Transform.rotate(
           angle: degToRad(widget.totalDegree / 2 + 90),
           child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Offstage(
-                  offstage: widget.topLable == null,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Text('${widget.topLable ?? '2'}',
-                          style: TextStyle(
-                              color: widget.topLableColor ?? Colors.white,
-                              fontSize: 14.0)),
-                      SizedBox(height: 20.0)
-                    ],
-                  ),
+            child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              Offstage(
+                offstage: widget.topLable == null,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text('${widget.topLable ?? '2'}',
+                        style: TextStyle(
+                            color: widget.topLableColor ?? Colors.white,
+                            fontSize: 14.0)),
+                    Gaps.vGap20
+                  ],
                 ),
-                Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                          '${widget.lable ?? (_controller.value * 100).toStringAsFixed(0)}',
+              ),
+              Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                        '${widget.lable ?? (_controller.value * 100).toStringAsFixed(0)}',
+                        style: TextStyle(
+                            color: widget.lableColor ?? Colors.white,
+                            fontSize: widget.lableFontSize)),
+                    Offstage(
+                      offstage: widget.lable != null,
+                      child: Column(children: <Widget>[
+                        Gaps.hGap5,
+                        Text(
+                          '%',
                           style: TextStyle(
                               color: widget.lableColor ?? Colors.white,
-                              fontSize: widget.lableFontSize)),
-                      Offstage(
-                        offstage: widget.lable != null,
-                        child: Column(children: <Widget>[
-                          SizedBox(width: 5.0),
-                          Text(
-                            '%',
-                            style: TextStyle(
-                                color: widget.lableColor ?? Colors.white,
-                                fontSize: 18.0),
-                          )
-                        ]),
-                      ),
-                    ]),
-                Offstage(
-                    offstage: widget.bottomLable == null,
-                    child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          SizedBox(height: 10.0),
-                          Text('${widget.bottomLable ?? '1'}',
-                              style: TextStyle(
-                                  color:
-                                      widget.bottomLableColor ?? Colors.white,
-                                  fontSize: 14.0))
-                        ])),
-              ],
-            ),
+                              fontSize: 18.0),
+                        )
+                      ]),
+                    ),
+                  ]),
+              Offstage(
+                offstage: widget.bottomLable == null,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Gaps.vGap10,
+                    Text('${widget.bottomLable ?? '1'}',
+                        style: TextStyle(
+                            color: widget.bottomLableColor ?? Colors.white,
+                            fontSize: 14.0))
+                  ],
+                ),
+              ),
+            ]),
           ),
         ),
       ),

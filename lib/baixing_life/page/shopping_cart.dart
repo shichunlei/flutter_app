@@ -4,10 +4,8 @@ import 'package:flutter_app/baixing_life/page/details_page.dart';
 import 'package:flutter_app/baixing_life/ui/empty_shop_cart.dart';
 import 'package:flutter_app/baixing_life/ui/item_cart_goods.dart';
 import 'package:flutter_app/bean/goods.dart';
-import 'package:flutter_app/global/custom_icon.dart';
-import 'package:flutter_app/ui/toolbar.dart';
-import 'package:flutter_app/utils/log_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
+
+import '../../page_index.dart';
 
 class ShoppingCartPage extends StatefulWidget {
   final String title;
@@ -114,7 +112,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
               child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                 Icon(isCheckAll ? CustomIcon.check : CustomIcon.normal,
                     size: 20, color: isCheckAll ? Colors.red : Colors.grey),
-                SizedBox(width: 5.0),
+                Gaps.hGap5,
                 Text('全选', style: TextStyle(color: Colors.black))
               ])),
           Expanded(
@@ -130,7 +128,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
                       style: TextStyle(fontSize: 12.0, color: Colors.grey))
                 ]),
           ),
-          SizedBox(width: 10.0),
+          Gaps.hGap10,
           RaisedButton(
               color: Colors.red,
               onPressed: total_price > 0.0

@@ -35,33 +35,25 @@ class _ClassifySectionState extends State<ClassifySection>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        FlatButton(
-          onPressed: () {
-            pushNewPage(
-                context,
-                MovieSearchPage(
-                  tag: widget.title,
-                ));
-          },
-          child: Row(
+    return Column(children: <Widget>[
+      FlatButton(
+        onPressed: () =>
+            pushNewPage(context, MovieSearchPage(tag: widget.title)),
+        child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[Text(widget.title), Icon(Icons.chevron_right)],
-          ),
+            children: <Widget>[Text(widget.title), Icon(Icons.chevron_right)]),
+      ),
+      Container(
+        padding: EdgeInsets.all(6.0),
+        child: Wrap(
+          spacing: 5,
+          runSpacing: 5,
+          children: tagMovies.length == 0
+              ? <Widget>[]
+              : tagMovies.map((movie) => MovieGridView(movie)).toList(),
         ),
-        Container(
-          padding: EdgeInsets.all(6.0),
-          child: Wrap(
-            spacing: 5,
-            runSpacing: 5,
-            children: tagMovies.isEmpty
-                ? <Widget>[]
-                : tagMovies.map((movie) => MovieGridView(movie)).toList(),
-          ),
-        )
-      ],
-    );
+      )
+    ]);
   }
 
   void searchMovie(String title) async {
