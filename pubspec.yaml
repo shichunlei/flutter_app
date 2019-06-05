@@ -46,7 +46,7 @@ dependencies: # 应用或包依赖的其它包或插件
   cupertino_icons: ^0.1.2
 
   # 设备信息
-  device_info: ^0.4.0+1
+  device_info: ^0.3.0
 
   # 网络请求库
   dio: ^2.1.2
@@ -60,7 +60,7 @@ dependencies: # 应用或包依赖的其它包或插件
   feather_icons_flutter: ^4.7.4
 
   # 颜色选择器
-  flutter_colorpicker: ^0.2.3
+  flutter_colorpicker: ^0.2.5
 
   # 刷新加载控件
   flutter_easyrefresh: ^1.2.7
@@ -81,7 +81,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # banner
   flutter_swiper: ^1.1.6
 
-  flutter_webview_plugin: ^0.3.3
+  flutter_webview_plugin: ^0.3.2
 
   # 图标库中文地址：http://www.fontawesome.com.cn/
   font_awesome_flutter: ^8.4.0
@@ -106,7 +106,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # 选择多张图片，类似于微信发布朋友圈选择图片
   multi_image_picker: 2.4.11
 
-  package_info: ^0.4.0+3
+  package_info: ^0.3.2+1
 
   palette_generator: ^0.1.1
 
@@ -122,10 +122,10 @@ dependencies: # 应用或包依赖的其它包或插件
   #
   rounded_letter: ^0.0.6
 
-  share: ^0.6.1
+  share: ^0.5.3
 
   # SP
-  shared_preferences: ^0.5.2
+  shared_preferences: ^0.4.3
 
   # 评分控件
   smooth_star_rating: 1.0.1
@@ -142,10 +142,10 @@ dependencies: # 应用或包依赖的其它包或插件
   # 透明占位图片
   transparent_image: ^0.1.0
 
-  url_launcher: ^5.0.2
+  url_launcher: ^4.1.0+1
 
   # 视频播放器器
-  video_player: ^0.10.0+5
+  video_player: ^0.9.0
 
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:
