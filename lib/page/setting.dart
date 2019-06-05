@@ -99,8 +99,10 @@ class _SettingPageState extends State<SettingPage> {
                 FlatButton(
                     child: Text(AppLocalizations.$t('sure')),
                     onPressed: () {
-                      Store.value<ConfigModel>(context)
-                          .$setTheme(pickerColor.value);
+                      if (pickerColor != null) {
+                        Store.value<ConfigModel>(context)
+                            .$setTheme(pickerColor.value);
+                      }
                       Navigator.of(context).pop();
                     })
               ]),
