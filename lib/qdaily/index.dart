@@ -3,14 +3,14 @@ import 'package:flutter_app/qdaily/lab/labs.dart';
 
 import '../page_index.dart';
 
-class IndexPage extends StatefulWidget {
-  IndexPage({Key key}) : super(key: key);
+class QDailyIndexPage extends StatefulWidget {
+  QDailyIndexPage({Key key}) : super(key: key);
 
   @override
-  createState() => _IndexPageState();
+  createState() => _QDailyIndexPageState();
 }
 
-class _IndexPageState extends State<IndexPage> {
+class _QDailyIndexPageState extends State<QDailyIndexPage> {
   List<Tab> titleTabs = [Tab(text: 'NEWS'), Tab(text: 'LABS')];
 
   @override

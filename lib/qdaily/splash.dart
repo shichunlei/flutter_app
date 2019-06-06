@@ -1,8 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_app/qdaily/index.dart';
-import 'package:flutter_app/utils/route_util.dart';
+
+import '../page_index.dart';
 
 class QdailySplashPage extends StatefulWidget {
   QdailySplashPage({Key key}) : super(key: key);
@@ -21,7 +19,7 @@ class _QdailySplashPageState extends State<QdailySplashPage>
   AnimationController _controller;
   Animation _animation;
 
-  Timer timer;
+  bool showTimer = false;
 
   @override
   void initState() {
@@ -34,8 +32,8 @@ class _QdailySplashPageState extends State<QdailySplashPage>
     _controller.forward();
     _animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        timer = Timer(
-            Duration(seconds: 1), () => pushReplacement(context, IndexPage()));
+        showTimer = true;
+        setState(() {});
       }
     });
   }
@@ -43,8 +41,6 @@ class _QdailySplashPageState extends State<QdailySplashPage>
   @override
   void dispose() {
     _controller?.dispose();
-    timer?.cancel();
-    timer = null;
     super.dispose();
   }
 
@@ -54,22 +50,30 @@ class _QdailySplashPageState extends State<QdailySplashPage>
         animation: _controller,
         builder: (BuildContext context, Widget child) {
           return Transform.scale(
-            scale: _animation.value,
-            child: Scaffold(
-              backgroundColor: Color(0xFF010101),
-              body: Container(
-                padding: EdgeInsets.only(top: 50, bottom: 50),
-                alignment: Alignment.center,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Image.asset('images/qdaily/qdaily_logo.jpeg'),
-                      Text('「好奇驱动你的世界」',
-                          style: TextStyle(color: Colors.white, fontSize: 20))
-                    ]),
-              ),
-            ),
-          );
+              scale: _animation.value,
+              child: Scaffold(
+                  backgroundColor: Color(0xFF010101),
+                  body: Stack(alignment: Alignment.topRight, children: <Widget>[
+                    Container(
+                        padding: EdgeInsets.only(top: 50, bottom: 50),
+                        alignment: Alignment.center,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Image.asset('images/qdaily/qdaily_logo.jpeg'),
+                              Text('「好奇驱动你的世界」',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                            ])),
+                    showTimer
+                        ? CountdownWidget(
+                            seconds: 5,
+                            onCountdownFinishCallBack: (bool value) {
+                              if (value)
+                                pushReplacement(context, QDailyIndexPage());
+                            })
+                        : Center()
+                  ])));
         });
   }
 }

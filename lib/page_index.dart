@@ -81,6 +81,7 @@ export 'ui/line.dart';
 export 'ui/line_view_line.dart';
 export 'ui/suspension_tag.dart';
 export 'ui/toolbar.dart';
+export 'ui/countdown_widget.dart';
 
 export 'qdaily/article_detail.dart';
 export 'qdaily/book_detail.dart';
@@ -89,6 +90,7 @@ export 'qdaily/home.dart';
 export 'qdaily/setting.dart';
 export 'qdaily/splash.dart';
 export 'qdaily/tags.dart';
+export 'qdaily/index.dart';
 
 export 'wechat_friends/page/wechat_friends_circle.dart';
 
