@@ -49,16 +49,14 @@ class ImageLoadView extends StatelessWidget {
                     image: imageUrl,
                     height: height,
                     width: width,
-                    fit: fit,
-                  )
+                    fit: fit)
                 : (placeholder is ImageProvider)
                     ? FadeInImage(
                         placeholder: placeholder,
                         image: NetworkImage(imageUrl),
                         height: height,
                         width: width,
-                        fit: fit,
-                      )
+                        fit: fit)
                     : null));
   }
 }

@@ -11,7 +11,7 @@ import 'lab/lab_i_say.dart';
 import 'lab/lab_ratio.dart';
 import 'lab/lab_vote.dart';
 import 'lab/lab_you_guess.dart';
-import 'ui/item_column_type_one.dart';
+import 'ui/item_column_type.dart';
 import 'ui/item_feed_type_index.dart';
 import 'ui/item_feed_type_one.dart';
 import 'ui/item_feed_type_two.dart';
@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage>
         columns.addAll(responseBean.columns);
 
         responseBean.columns.forEach((column) {
-          Widget view = ItemColumnTypeOne(
+          Widget view = ItemColumnTypeView(
               id: column.id,
               icon: column.icon,
               title: column.name,

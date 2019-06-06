@@ -7,14 +7,14 @@ import 'item_feed_type_book.dart';
 import 'item_feed_type_two.dart';
 import 'item_top_view.dart';
 
-class ItemColumnTypeOne extends StatefulWidget {
+class ItemColumnTypeView extends StatefulWidget {
   final int id;
   final String icon;
   final String imageLarge;
   final String title;
   final int showType;
 
-  ItemColumnTypeOne(
+  ItemColumnTypeView(
       {Key key,
       @required this.id,
       this.icon,
@@ -24,10 +24,10 @@ class ItemColumnTypeOne extends StatefulWidget {
       : super(key: key);
 
   @override
-  createState() => _ItemColumnTypeOneState();
+  createState() => _ItemColumnTypeViewState();
 }
 
-class _ItemColumnTypeOneState extends State<ItemColumnTypeOne> {
+class _ItemColumnTypeViewState extends State<ItemColumnTypeView> {
   final ScrollController _scrollController = new ScrollController();
 
   ResponseBean responseBean;
@@ -74,7 +74,7 @@ class _ItemColumnTypeOneState extends State<ItemColumnTypeOne> {
                             BookDetailPage(id: feeds[index]?.post?.id)),
                         width: (Utils.width - 15) / 2),
                 separatorBuilder: (context, index) =>
-                    Container(width: 8, color: Colors.white),
+                    Container(width: 8, color: Colors.grey[200]),
                 itemCount: feeds.length))
       ]),
     );

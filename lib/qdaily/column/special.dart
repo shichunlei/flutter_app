@@ -2,6 +2,7 @@ import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/qdaily.dart';
 import 'package:flutter_app/bean/qdaily_app.dart';
+import 'package:flutter_app/qdaily/ui/column_author_view.dart';
 import '../ui/item_feed_type_two.dart';
 import 'package:flutter_app/service/api_service.dart';
 
@@ -52,39 +53,37 @@ class _SpecialPageState extends State<SpecialPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: feeds.isEmpty || column == null
-          ? getLoadingWidget()
-          : Stack(children: <Widget>[
-              EasyRefresh(
-                refreshFooter: BallPulseFooter(
-                    color: Colors.red,
-                    backgroundColor: Colors.white,
-                    key: _footerKey),
-                loadMore: isLoadComplete
-                    ? null
-                    : () async => getColumnIndex(lastKey, widget.columnId),
-                child: ListView(
-                    padding: EdgeInsets.only(top: 0),
-                    children: <Widget>[
-                      _buildHeaderView(),
-                      _buildSubscriber(),
-                      _buildDataView()
-                    ]),
-              ),
-              Container(
-                height: Utils.navigationBarHeight,
-                child: AppBar(
-                    backgroundColor: Colors.transparent,
-                    actions: <Widget>[
-                      IconButton(
-                          icon: Icon(FeatherIcons.share, color: Colors.white),
-                          onPressed: null)
-                    ],
-                    elevation: 0.0),
-              )
-            ]),
-    );
+        backgroundColor: Colors.white,
+        body: feeds.isEmpty || column == null
+            ? getLoadingWidget()
+            : Stack(children: <Widget>[
+                EasyRefresh(
+                    refreshFooter: BallPulseFooter(
+                        color: Colors.red,
+                        backgroundColor: Colors.white,
+                        key: _footerKey),
+                    loadMore: isLoadComplete
+                        ? null
+                        : () async => getColumnIndex(lastKey, widget.columnId),
+                    child: ListView(
+                        padding: EdgeInsets.only(top: 0),
+                        children: <Widget>[
+                          _buildHeaderView(),
+                          _buildSubscriber(),
+                          _buildDataView()
+                        ])),
+                Container(
+                    height: Utils.navigationBarHeight,
+                    child: AppBar(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0.0,
+                        actions: <Widget>[
+                          IconButton(
+                              icon:
+                                  Icon(FeatherIcons.share, color: Colors.white),
+                              onPressed: null)
+                        ]))
+              ]));
   }
 
   Widget _buildHeaderView() {
@@ -94,21 +93,23 @@ class _SpecialPageState extends State<SpecialPage> {
           child: ImageLoadView('${widget.image}',
               width: width, height: width, fit: BoxFit.cover)),
       Container(
-        padding: EdgeInsets.only(left: 30, right: 30, bottom: 20),
-        child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-          Text('${column?.name}',
-              style: TextStyle(fontSize: 30, color: Colors.white)),
-          SizedBox(height: 5),
-          Text('${column?.description}',
-              style: TextStyle(fontSize: 15, color: Colors.white)),
-          SizedBox(height: 10),
-          CircleAvatar(
-              child: Image.asset('images/qdaily/all_column_unsub.png',
-                  height: 55, width: 55),
-              radius: 30,
-              backgroundColor: Colors.white)
-        ]),
-      )
+          padding: EdgeInsets.only(left: 30, right: 30),
+          child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+            Text('${column?.name}',
+                style: TextStyle(fontSize: 30, color: Colors.white)),
+            Gaps.vGap5,
+            Text('${column?.description}',
+                style: TextStyle(fontSize: 15, color: Colors.white)),
+            Gaps.vGap10,
+            CircleAvatar(
+                child: Image.asset('images/qdaily/all_column_unsub.png',
+                    height: 55, width: 55),
+                radius: 30,
+                backgroundColor: Colors.white),
+            authors.length > 0
+                ? ColumnAuthorView(author: authors[0])
+                : Gaps.vGap20
+          ]))
     ]);
   }
 
@@ -116,25 +117,23 @@ class _SpecialPageState extends State<SpecialPage> {
     double avatarSize = (width - 2 * 30 - 5 * 8) / 6;
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-      child: Column(children: <Widget>[
-        LineViewLine(
-            child: Text('  ${column?.subscriberNum}人订阅了本栏目  ',
-                style: TextStyle(color: Colors.grey))),
-        SizedBox(height: 10),
-        Wrap(
-            spacing: 8,
-            runSpacing: 10,
-            children: subscribers.map((subscriber) {
-              return ImageLoadView(
-                '${subscriber.avatar}',
-                width: avatarSize,
-                height: avatarSize,
-                borderRadius: BorderRadius.all(Radius.circular(avatarSize / 2)),
-              );
-            }).toList())
-      ]),
-    );
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        child: Column(children: <Widget>[
+          LineViewLine(
+              child: Text('  ${column?.subscriberNum}人订阅了本栏目  ',
+                  style: TextStyle(color: Colors.grey))),
+          Gaps.vGap10,
+          Wrap(
+              spacing: 8,
+              runSpacing: 10,
+              children: subscribers.map((subscriber) {
+                return ImageLoadView('${subscriber.avatar}',
+                    width: avatarSize,
+                    height: avatarSize,
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(avatarSize / 2)));
+              }).toList())
+        ]));
   }
 
   Widget _buildDataView() {
@@ -176,7 +175,7 @@ class _SpecialPageState extends State<SpecialPage> {
 
     if (responseBean == null) {
       // 请求失败
-      print('网络请求失败');
+      debugPrint('网络请求失败');
     } else {
       column = responseBean.column;
       authors.addAll(responseBean.authors);
@@ -193,13 +192,13 @@ class _SpecialPageState extends State<SpecialPage> {
 
     if (responseBean == null) {
       // 请求失败
-      print('网络请求失败');
+      debugPrint('网络请求失败');
     } else {
       this.lastKey = responseBean.lastKey;
       feeds.addAll(responseBean.feeds);
       isLoadComplete = !responseBean.hasMore;
 
-      print('${this.lastKey}=============$isLoadComplete');
+      debugPrint('${this.lastKey}=============$isLoadComplete');
       setState(() {});
     }
   }
