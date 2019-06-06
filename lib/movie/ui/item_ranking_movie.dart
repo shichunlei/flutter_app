@@ -117,7 +117,7 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
                                   widget.movie.images.medium.toString(),
                                   height: 180,
                                   width: 120),
-                              SizedBox(width: 8),
+                              Gaps.hGap8,
 
                               /// 右侧部分
                               Expanded(

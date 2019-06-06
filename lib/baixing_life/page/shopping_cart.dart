@@ -25,16 +25,16 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
   bool get wantKeepAlive => true;
 
   /// 选中的商品中暑
-  int click_number = 0;
+  int clickNumber = 0;
 
   /// 选种商品的总价
-  double total_price = 0.0;
+  double clickTotalPrice = 0.0;
 
   /// 购物车商品总数（既包括选中也包括未选中）
-  int total_number = 0;
+  int totalNumber = 0;
 
   /// 购物车商品总价（既包括选中也包括未选中）
-  double totlePrice = 0.0;
+  double totalPrice = 0.0;
 
   /// 购物车商品是否全选中
   bool isCheckAll = false;
@@ -56,12 +56,10 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
               child: Container(
                   child: products.isEmpty
                       ? EmptyShopCart()
-                      : Column(
-                          children: <Widget>[
-                            _buildCartGoodsList(),
-                            _buildCartBottom()
-                          ],
-                        )))
+                      : Column(children: <Widget>[
+                          _buildCartGoodsList(),
+                          _buildCartBottom()
+                        ])))
         ]));
   }
 
@@ -90,8 +88,8 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text('共$total_number件商品'),
-              Text('小计：￥$totlePrice')
+              Text('共$totalNumber件商品'),
+              Text('小计：￥$totalPrice')
             ])));
 
     return Expanded(
@@ -116,27 +114,26 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
                 Text('全选', style: TextStyle(color: Colors.black))
               ])),
           Expanded(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                    Text('合计：', style: TextStyle(color: Colors.black)),
-                    Text('￥$total_price', style: TextStyle(color: Colors.red))
-                  ]),
-                  Text('满10元免配送费，预购免配送',
-                      style: TextStyle(fontSize: 12.0, color: Colors.grey))
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                  Text('合计：', style: TextStyle(color: Colors.black)),
+                  Text('￥$clickTotalPrice', style: TextStyle(color: Colors.red))
                 ]),
-          ),
+                Text('满10元免配送费，预购免配送',
+                    style: TextStyle(fontSize: 12.0, color: Colors.grey))
+              ])),
           Gaps.hGap10,
           RaisedButton(
               color: Colors.red,
-              onPressed: total_price > 0.0
+              onPressed: clickTotalPrice > 0.0
                   ? () {
                       /// TODO 去结算
                     }
                   : null,
-              child: Text('结算($click_number)',
+              child: Text('结算($clickNumber)',
                   style: TextStyle(color: Colors.white)))
         ]));
   }
@@ -160,8 +157,8 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
     if (isCheckAll) {
       setState(() {
         isCheckAll = false;
-        total_price = 0.0;
-        click_number = 0;
+        clickTotalPrice = 0.0;
+        clickNumber = 0;
       });
 
       products.forEach((goods) {
@@ -175,9 +172,9 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
     else {
       setState(() {
         isCheckAll = true;
-        click_number = products.length;
+        clickNumber = products.length;
       });
-      total_price = 0.0;
+      clickTotalPrice = 0.0;
       products.forEach((goods) {
         goods.isChecked = 1;
         setState(() {});
@@ -190,17 +187,17 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
 
   /// 重新计算选中商品总数、选种商品总价、所有商品总数、所有商品总价
   void goodsNumberOrPrice() {
-    total_price = 0.0;
-    click_number = 0;
-    total_number = 0;
-    totlePrice = 0.0;
+    clickTotalPrice = 0.0;
+    clickNumber = 0;
+    totalNumber = 0;
+    totalPrice = 0.0;
     products.forEach((goods) {
       if (goods.isChecked == 1) {
-        total_price += goods.presentPrice * goods.amount;
-        click_number += goods.amount;
+        clickTotalPrice += goods.presentPrice * goods.amount;
+        clickNumber += goods.amount;
       }
-      total_number += goods.amount;
-      totlePrice += goods.presentPrice * goods.amount;
+      totalNumber += goods.amount;
+      totalPrice += goods.presentPrice * goods.amount;
     });
 
     /// 是否全部选中
@@ -218,7 +215,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
   }
 
   void isCheckedAll() {
-    isCheckAll = click_number == total_number && total_number > 0;
+    isCheckAll = clickNumber == totalNumber && totalNumber > 0;
   }
 
   void minusGoodsAmount(Goods goods) {

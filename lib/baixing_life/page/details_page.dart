@@ -2,17 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/goods_provider.dart';
 import 'package:flutter_app/bean/goods.dart';
 import 'package:flutter_app/bean/goods_info.dart';
-import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/delegates/sliver_appbar_delegate.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/log_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/toast.dart';
-import 'package:flutter_app/utils/utils.dart';
+
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+
+import '../../page_index.dart';
 
 class DetailsPage extends StatefulWidget {
   final String id;
@@ -191,40 +186,36 @@ class _DetailsPageState extends State<DetailsPage>
 
   Widget _buildInfoView(Goods goodInfo) {
     return SliverToBoxAdapter(
-      child: Column(
-        children: <Widget>[
-          Container(
+      child: Column(children: <Widget>[
+        Container(
             padding: EdgeInsets.all(10.0),
             color: Colors.white,
             child: Column(children: <Widget>[
               Text('${goods.goodInfo.goodsName}',
                   style: TextStyle(color: Colors.black, fontSize: 22.0)),
-              SizedBox(height: 8.0),
+              Gaps.vGap8,
               Text('编号：${goods.goodInfo.goodsSerialNumber}',
                   style: TextStyle(color: Colors.grey[500], fontSize: 14.0)),
-              SizedBox(height: 8.0),
+              Gaps.vGap8,
               Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text('￥${goods.goodInfo.presentPrice}',
                         style: TextStyle(color: Colors.red, fontSize: 16.0)),
-                    SizedBox(width: 40.0),
+                    Gaps.hGap40,
                     Text('市场价：￥${goods.goodInfo.oriPrice}',
                         style:
                             TextStyle(color: Colors.grey[700], fontSize: 14.0))
                   ])
-            ], crossAxisAlignment: CrossAxisAlignment.start),
-          ),
-          Container(
+            ], crossAxisAlignment: CrossAxisAlignment.start)),
+        Container(
             width: Utils.width,
             padding: EdgeInsets.all(10.0),
             margin: EdgeInsets.symmetric(vertical: 10.0),
             color: Colors.white,
             child: Text('说明 > 极速送达 > 正品保证',
-                style: TextStyle(color: Colors.redAccent)),
-          )
-        ],
-      ),
+                style: TextStyle(color: Colors.redAccent)))
+      ]),
     );
   }
 

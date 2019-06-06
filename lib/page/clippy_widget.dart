@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:clippy_flutter/clippy_flutter.dart';
-import 'package:flutter_app/utils/utils.dart';
+
+import '../page_index.dart';
 
 class ClippyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Clippy'),
-      ),
+      appBar: AppBar(title: Text('Clippy')),
       body: Padding(
         padding: const EdgeInsets.all(4.0),
         child: SingleChildScrollView(
@@ -33,7 +32,7 @@ class ClippyWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Chevron(
                   triangleHeight: 50.0,
                   edge: Edge.RIGHT,
@@ -47,7 +46,7 @@ class ClippyWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Ticket(
                   radius: 10.0,
                   child: GestureDetector(
@@ -60,7 +59,7 @@ class ClippyWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 ButtCheek(
                   height: 10.0,
                   child: GestureDetector(
@@ -73,7 +72,7 @@ class ClippyWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Triangle.isosceles(
                   edge: Edge.TOP,
                   child: GestureDetector(
@@ -86,7 +85,7 @@ class ClippyWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Arrow(
                   triangleHeight: 30.0,
                   rectangleClipHeight: 10.0,
@@ -101,7 +100,7 @@ class ClippyWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Message(
                   child: GestureDetector(
                     onTap: () => {},
@@ -121,7 +120,7 @@ class ClippyWidget extends StatelessWidget {
                   triangleX3: 80.0,
                   triangleY1: 20.0,
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Trapezoid(
                   cutLength: 15.0,
                   edge: Edge.TOP,
@@ -135,7 +134,7 @@ class ClippyWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Arc(
                   edge: Edge.BOTTOM,
                   arcType: ArcType.CONVEX,
@@ -150,7 +149,7 @@ class ClippyWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Bevel(
                   cutLength: 10.0,
                   child: GestureDetector(
@@ -163,7 +162,7 @@ class ClippyWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Rabbet(
                   cutLength: 10.0,
                   child: Container(
@@ -173,7 +172,7 @@ class ClippyWidget extends StatelessWidget {
                     child: Center(child: Text('Rabbet')),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Point(
                   triangleHeight: 30.0,
                   edge: Edge.LEFT,
@@ -184,7 +183,7 @@ class ClippyWidget extends StatelessWidget {
                     child: Center(child: Text('Point')),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Parallelogram(
                   cutLength: 10.0,
                   edge: Edge.RIGHT,
@@ -195,7 +194,7 @@ class ClippyWidget extends StatelessWidget {
                     child: Center(child: Text('Paralelogram')),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Polygon(
                   sides: 5,
                   child: Container(
@@ -205,7 +204,7 @@ class ClippyWidget extends StatelessWidget {
                     child: Center(child: Text('Polygon')),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Label(
                   triangleHeight: 10.0,
                   edge: Edge.RIGHT,
@@ -216,7 +215,7 @@ class ClippyWidget extends StatelessWidget {
                     child: Text('Label'),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Rhombus(
                   child: Container(
                     color: Utils.strToColor("Rhombus"),

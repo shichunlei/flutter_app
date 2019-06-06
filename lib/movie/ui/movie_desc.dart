@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_search_page.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/utils.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+
+import '../../page_index.dart';
 
 class MovieDesc extends StatefulWidget {
   final Movie movie;
@@ -94,7 +92,7 @@ class _MovieDescState extends State<MovieDesc> {
                 /// 图片
                 ImageLoadView(widget.movie.images.large.toString(),
                     fit: BoxFit.cover, width: 88, height: 130),
-                SizedBox(width: 10.0),
+                Gaps.hGap10,
 
                 /// 名称等
                 Container(
@@ -130,7 +128,7 @@ class _MovieDescState extends State<MovieDesc> {
                       Row(
                         children: <Widget>[
                           _buildButton('想看', Icons.favorite),
-                          SizedBox(width: 8),
+                          Gaps.hGap8,
                           _buildButton('看过', Icons.star),
                         ],
                       ),
@@ -225,11 +223,10 @@ class _MovieDescState extends State<MovieDesc> {
                       ],
                     ),
                     Container(
-                      height: 1,
-                      color: Colors.white,
-                      margin: const EdgeInsets.only(top: 8.0),
-                    ),
-                    SizedBox(height: 8.0),
+                        height: 1,
+                        color: Colors.white,
+                        margin: const EdgeInsets.only(top: 8.0)),
+                    Gaps.vGap8,
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text(
@@ -287,69 +284,52 @@ class _MovieDescState extends State<MovieDesc> {
   }
 
   Widget _buildStarRate(double rating, int starCount, double rate) {
-    return Row(
-      children: <Widget>[
-        SmoothStarRating(
+    return Row(children: <Widget>[
+      SmoothStarRating(
           rating: rating,
           starCount: starCount,
           size: 12,
-          color: Colors.blueGrey,
-        ),
-        SizedBox(width: 8),
-        Container(
+          color: Colors.blueGrey),
+      Gaps.hGap8,
+      Container(
           width: 100,
           child: LinearProgressIndicator(
-            backgroundColor: Colors.grey,
-            value: rate,
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
-          ),
-        )
-      ],
-    );
+              backgroundColor: Colors.grey,
+              value: rate,
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.red)))
+    ]);
   }
 
   Widget _buildAverage(num value) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            Text(
-              '$value',
-              style: TextStyle(color: Colors.white, fontSize: 38.0),
-            ),
-            Text(
-              '分',
-              style: TextStyle(color: Colors.white, fontSize: 18.0),
-            ),
-          ],
-        ),
-        SmoothStarRating(
-          rating: value / 2.0,
-          size: 18,
-          allowHalfRating: false,
-          color: Colors.yellow,
-          borderColor: Colors.white,
-        ),
-      ],
-    );
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Row(children: <Widget>[
+            Text('$value',
+                style: TextStyle(color: Colors.white, fontSize: 38.0)),
+            Text('分', style: TextStyle(color: Colors.white, fontSize: 18.0))
+          ]),
+          SmoothStarRating(
+              rating: value / 2.0,
+              size: 18,
+              allowHalfRating: false,
+              color: Colors.yellow,
+              borderColor: Colors.white)
+        ]);
   }
 
   Widget _buildButton(String title, IconData icon) {
     return Expanded(
-      child: RaisedButton(
-        color: Colors.lightGreen,
-        onPressed: () {},
-        elevation: 0,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(icon, color: Colors.yellow, size: 18),
-            SizedBox(width: 4),
-            Text(title, style: TextStyle(color: Colors.white)),
-          ],
-        ),
-      ),
-    );
+        child: RaisedButton(
+            color: Colors.lightGreen,
+            onPressed: () {},
+            elevation: 0,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(icon, color: Colors.yellow, size: 18),
+                  SizedBox(width: 4),
+                  Text(title, style: TextStyle(color: Colors.white))
+                ])));
   }
 }
