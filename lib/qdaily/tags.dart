@@ -43,7 +43,7 @@ class _TagsPageState extends State<TagsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.white,
         appBar: AppBar(title: Text('${widget.title}')),
         body: feeds.length == 0 ? getLoadingWidget() : _buildBodyView());
   }
@@ -55,7 +55,9 @@ class _TagsPageState extends State<TagsPage> {
         loadMore: isLoadComplete
             ? null
             : () async => getTagNews(widget.id, lastKey: lastKey),
-        child: ListView.builder(
+        child: ListView.separated(
+            separatorBuilder: (BuildContext context, int index) =>
+                Container(height: 5, color: Colors.grey[200]),
             itemBuilder: (context, index) {
               return feeds[index].type == 1
                   ? ItemFeedTypeOne(

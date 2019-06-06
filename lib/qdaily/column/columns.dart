@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily.dart';
-import 'package:flutter_app/bean/qdaily_web.dart';
+import 'package:flutter_app/bean/bean_index.dart';
 import '../column/special.dart';
 import '../ui/item_column.dart';
 import 'package:flutter_app/service/api_service.dart';
@@ -20,7 +19,6 @@ class ColumnsPage extends StatefulWidget {
 class _ColumnsPageState extends State<ColumnsPage> {
   int lastKey = 0;
 
-  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
   GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
 
   bool isLoadComplete = false;
@@ -60,7 +58,6 @@ class _ColumnsPageState extends State<ColumnsPage> {
 
   Widget _buildBodyView() {
     return EasyRefresh(
-        key: _easyRefreshKey,
         refreshFooter: BallPulseFooter(
             key: _footerKey, color: Colors.red, backgroundColor: Colors.white),
         loadMore: isLoadComplete ? null : () async => getColumnsData(lastKey),

@@ -8,21 +8,24 @@ import 'item_bottom_view.dart';
 class ItemFeedTypeTwo extends StatelessWidget {
   final VoidCallback onTap;
   final FeedsBean feedsBean;
+  final double width;
 
-  ItemFeedTypeTwo({Key key, this.onTap, @required this.feedsBean})
+  ItemFeedTypeTwo({Key key, this.onTap, @required this.feedsBean, this.width})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double width = Utils.width;
+    double _width = width;
+    if (_width == null || _width == 0) {
+      _width = Utils.width;
+    }
 
     return InkWell(
         child: Container(
-          color: Colors.white,
-          margin: EdgeInsets.only(top: 5),
+          width: _width,
           child: Column(children: <Widget>[
             ImageLoadView('${feedsBean?.image}',
-                height: width * 14 / 25, width: width),
+                height: _width * 14 / 25, width: _width),
             Container(
               padding: EdgeInsets.all(10),
               child: Column(

@@ -18,7 +18,7 @@ class _IndexPageState extends State<IndexPage> {
     return DefaultTabController(
         length: titleTabs.length,
         child: Scaffold(
-          backgroundColor: Colors.grey[200],
+          backgroundColor: Colors.white,
           appBar: AppBar(
               automaticallyImplyLeading: false,
               elevation: 0.0,

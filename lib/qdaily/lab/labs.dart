@@ -55,7 +55,9 @@ class _LabsPageState extends State<LabsPage>
         refreshFooter: BallPulseFooter(
             key: _footerKey, color: Colors.red, backgroundColor: Colors.white),
         loadMore: isLoadComplete ? null : () async => getLabsData(lastKey),
-        child: ListView.builder(
+        child: ListView.separated(
+            separatorBuilder: (BuildContext context, int index) =>
+                Container(height: 5, color: Colors.grey[200]),
             itemBuilder: (context, index) {
               return ItemFeedTypeZero(
                   feedsBean: feeds[index],

@@ -16,8 +16,6 @@ class ItemFeedTypeIndex extends StatelessWidget {
     return InkWell(
         onTap: onTap,
         child: Container(
-            margin: EdgeInsets.only(top: 5),
-            color: Colors.white,
             padding: EdgeInsets.all(10),
             child: Column(
               children: <Widget>[

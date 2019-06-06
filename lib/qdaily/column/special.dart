@@ -9,7 +9,7 @@ import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import '../../page_index.dart';
-import '../ui/item_feed_typr_book.dart';
+import '../ui/item_feed_type_book.dart';
 
 class SpecialPage extends StatefulWidget {
   final int columnId;
@@ -52,7 +52,7 @@ class _SpecialPageState extends State<SpecialPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       body: feeds.isEmpty || column == null
           ? getLoadingWidget()
           : Stack(children: <Widget>[
@@ -116,7 +116,6 @@ class _SpecialPageState extends State<SpecialPage> {
     double avatarSize = (width - 2 * 30 - 5 * 8) / 6;
 
     return Container(
-      color: Colors.white,
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
       child: Column(children: <Widget>[
         LineViewLine(
@@ -157,7 +156,9 @@ class _SpecialPageState extends State<SpecialPage> {
             shrinkWrap: true,
             primary: false)
         : column?.showType == 1 // listview
-            ? ListView.builder(
+            ? ListView.separated(
+                separatorBuilder: (BuildContext context, int index) =>
+                    Container(height: 5, color: Colors.grey[200]),
                 padding: EdgeInsets.only(top: 0),
                 itemBuilder: (context, index) => ItemFeedTypeTwo(
                     feedsBean: feeds[index],

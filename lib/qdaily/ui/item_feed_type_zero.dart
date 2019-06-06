@@ -3,6 +3,8 @@ import 'package:flutter_app/bean/qdaily.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/utils.dart';
 
+import 'item_top_view.dart';
+
 class ItemFeedTypeZero extends StatelessWidget {
   final VoidCallback onTap;
   final FeedsBean feedsBean;
@@ -23,9 +25,11 @@ class ItemFeedTypeZero extends StatelessWidget {
 
     return InkWell(
         child: Container(
-          color: Colors.white,
-          margin: EdgeInsets.only(top: 5),
           child: Column(children: <Widget>[
+            ItemTopView(
+                icon: feedsBean.post.column.icon,
+                title: feedsBean.post.column.name,
+                onPressed: () {}),
             Stack(children: <Widget>[
               Hero(
                   tag: tag,
