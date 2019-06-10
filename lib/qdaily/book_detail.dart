@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:badges/badges.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/qdaily.dart';
@@ -133,7 +134,11 @@ class _BookDetailPageState extends State<BookDetailPage> {
           BottomAppbar(actions: <Widget>[
             IconButton(icon: Icon(FeatherIcons.heart), onPressed: () {}),
             IconButton(
-                icon: Icon(FeatherIcons.messageSquare),
+                icon: Badge(
+                    shape: BadgeShape.circle,
+                    badgeContent: Text('${post.commentCount}',
+                        style: TextStyle(color: Colors.white, fontSize: 10)),
+                    child: Icon(FeatherIcons.messageSquare)),
                 onPressed: () => pushNewPage(
                     context,
                     CommentPage(

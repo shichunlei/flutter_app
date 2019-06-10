@@ -3,13 +3,14 @@ import 'dart:convert';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/ui/line_view_line.dart';
-import 'package:flutter_app/utils/utils.dart';
+import 'package:badges/badges.dart';
+import '../../ui/line_view_line.dart';
+import '../../utils/utils.dart';
 
 import '../../bean/qdaily.dart';
 import '../../bean/qdaily_app.dart';
-import '../../qdaily/ui/bottom_appbar.dart';
-import '../../qdaily/ui/item_lab_pageview.dart';
+import '../ui/bottom_appbar.dart';
+import '../ui/item_lab_pageview.dart';
 import '../../utils/route_util.dart';
 
 import '../comment.dart';
@@ -50,39 +51,37 @@ class _LabYouGuessPageState extends State<LabYouGuessPage>
       backgroundColor: Colors.grey[200],
       body: Column(children: <Widget>[
         Container(
-          padding: EdgeInsets.only(top: Utils.topSafeHeight + 10, bottom: 20),
-          child: LineViewLine(
-              horizontalPadding: 30,
-              child: CircleAvatar(
-                  radius: 30,
-                  backgroundColor: Colors.yellow,
-                  child: Text('${currentPage + 1} / ${list.length}'))),
-        ),
+            padding: EdgeInsets.only(top: Utils.topSafeHeight + 10, bottom: 20),
+            child: LineViewLine(
+                horizontalPadding: 30,
+                child: CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.yellow,
+                    child: Text('${currentPage + 1} / ${list.length}')))),
         Expanded(
-          child: PageView(
-            controller: _controller,
-            children: list
-                .map((question) => ItemLabPageView(
-                    question: question,
-                    onTap: () {
-                      if (currentPage == list.length - 1) {
-                        Navigator.pop(context);
-                      } else {
-                        _controller.animateToPage(currentPage + 1,
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.decelerate);
-                      }
-                    }))
-                .toList(),
-            onPageChanged: (index) {
-              currentPage = index;
-              setState(() {});
-            },
-          ),
-        ),
+            child: PageView(
+                controller: _controller,
+                children: list
+                    .map((question) => ItemLabPageView(
+                        question: question,
+                        onTap: () {
+                          if (currentPage == list.length - 1) {
+                            Navigator.pop(context);
+                          } else {
+                            _controller.animateToPage(currentPage + 1,
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.decelerate);
+                          }
+                        }))
+                    .toList(),
+                onPageChanged: (index) => setState(() => currentPage = index))),
         BottomAppbar(actions: <Widget>[
           IconButton(
-              icon: Icon(FeatherIcons.messageSquare),
+              icon: Badge(
+                  shape: BadgeShape.circle,
+                  badgeContent: Text('${widget.post.commentCount}',
+                      style: TextStyle(color: Colors.white, fontSize: 10)),
+                  child: Icon(FeatherIcons.messageSquare)),
               onPressed: () => pushNewPage(
                   context,
                   CommentPage(

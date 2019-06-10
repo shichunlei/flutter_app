@@ -23,6 +23,8 @@ dependencies: # 应用或包依赖的其它包或插件
   # AzListView，Flutter 城市列表，联系人列表，自定义Header，索引，悬停效果。
   azlistview: ^0.1.1
 
+  badges: ^1.0.3
+
   # 扫描二维码
   barcode_scan: ^0.0.8
 

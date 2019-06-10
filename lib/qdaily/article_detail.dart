@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +122,12 @@ class _ArticleDetailState extends State<ArticleDetail> {
                     IconButton(
                         icon: Icon(FeatherIcons.heart), onPressed: () {}),
                     IconButton(
-                        icon: Icon(FeatherIcons.messageSquare),
+                        icon: Badge(
+                            shape: BadgeShape.circle,
+                            badgeContent: Text('${post.commentCount}',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 10)),
+                            child: Icon(FeatherIcons.messageSquare)),
                         onPressed: () => pushNewPage(
                             context,
                             CommentPage(
