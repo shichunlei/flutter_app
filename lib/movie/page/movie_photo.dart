@@ -50,21 +50,16 @@ class _MoviePhotoPageState extends State<MoviePhotoPage>
   @override
   Widget build(BuildContext context) {
     final screenHeight = Utils.height;
+    debugPrint('screenHeight===================$screenHeight');
 
     return Scaffold(
       backgroundColor: Colors.black,
       body: GestureDetector(
-        onTap: () {
-          // 如果 isCommentShow 为true ,代表 评论布局已经展开，点击的时候先关闭 评论布局
-          // 否则返回到上个页面
-          if (isCommentShow) {
-            animateToBottom(screenHeight);
-          }
-        },
         onVerticalDragStart: (_) {
           animationController?.stop();
         },
         onVerticalDragEnd: (_) {
+          debugPrint('dy====================$dy');
           // 滑动截止时，根据 dy 判断是展开还是回缩
           if (dy < 0) {
             if (!isCommentShow && dy.abs() > screenHeight * 0.2) {
@@ -85,6 +80,8 @@ class _MoviePhotoPageState extends State<MoviePhotoPage>
           }
         },
         onVerticalDragUpdate: (details) {
+          debugPrint(
+              'details.delta.dy ========================== ${details.delta.dy}');
           // dy 不超过 -screenHeight * 0.6
           dy += details.delta.dy;
           if ((dy < 0 && dy.abs() > screenHeight * 0.6)) {
@@ -93,72 +90,10 @@ class _MoviePhotoPageState extends State<MoviePhotoPage>
             setState(() {});
           }
         },
-        child: Stack(
-          children: <Widget>[
-            PhotoViewGallery(
-              pageOptions: widget.photos
-                  .map((photo) => PhotoViewGalleryPageOptions(
-                        imageProvider: NetworkImage(photo.cover),
-                        heroTag: photo.id,
-                      ))
-                  .toList(),
-              backgroundDecoration: BoxDecoration(color: Colors.black),
-              onPageChanged: (index) {
-                setState(() => count = index + 1);
-              },
-              scrollPhysics: const BouncingScrollPhysics(),
-              loadingChild: getLoadingWidget(),
-              pageController: widget.controller,
-            ),
-            Column(
-              children: <Widget>[
-                AppBar(
-                  elevation: 1.0,
-                  backgroundColor: Color(0x2affffff),
-                  title: Text(widget.title),
-                  actions: <Widget>[
-                    IconButton(
-                        icon: Icon(Icons.share),
-                        onPressed: () {
-                          Share.share(widget.photos[count].cover);
-                        })
-                  ],
-                ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 40.0),
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    width: 80.0,
-                    height: 30.0,
-                    child: Center(
-                      child: Text('$count/$total',
-                          style: TextStyle(color: Colors.white)),
-                    ),
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                  ),
-                ),
-              ],
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            ),
-            Align(
-              child: Container(
-                margin: EdgeInsets.all(20.0),
-                child: IconButton(
-                  highlightColor: Colors.white,
-                  splashColor: Colors.red,
-                  disabledColor: Colors.green,
-                  color: Colors.white,
-                  onPressed: () => _saveImage(widget.photos[count].image),
-                  icon: Icon(Icons.file_download),
-                ),
-              ),
-              alignment: Alignment.bottomRight,
-            ),
-            _buildCommentsView(screenHeight),
-          ],
-        ),
+        child: Stack(children: <Widget>[
+          _buildBgView(screenHeight),
+          _buildCommentsView(screenHeight)
+        ]),
       ),
     );
   }
@@ -171,7 +106,7 @@ class _MoviePhotoPageState extends State<MoviePhotoPage>
         duration: Duration(milliseconds: dy.abs() * 1000 ~/ 800), vsync: this);
     final curve =
         CurvedAnimation(parent: animationController, curve: Curves.decelerate);
-    animation = Tween(begin: dy, end: -screenHeight * 0.6).animate(curve)
+    animation = Tween(begin: dy, end: -screenHeight * .6).animate(curve)
       ..addListener(() {
         setState(() {
           dy = animation.value;
@@ -226,54 +161,92 @@ class _MoviePhotoPageState extends State<MoviePhotoPage>
     Toast.show('保存成功', context);
   }
 
-  Widget _buildCommentsView(screenHeight) {
-    return Transform.translate(
-      offset: Offset(0, dy > 0 ? screenHeight : dy + screenHeight),
-      child: Container(
-        padding: EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10),
-            topRight: Radius.circular(10),
+  Widget _buildBgView(screenHeight) {
+    return Transform.scale(
+        scale: dy >= 0 ? 1 : 0.7 + 0.3 * (dy + screenHeight) / screenHeight,
+        child: Stack(children: <Widget>[
+          PhotoViewGallery(
+            pageOptions: widget.photos
+                .map((photo) => PhotoViewGalleryPageOptions(
+                    imageProvider: NetworkImage(photo.cover),
+                    heroTag: photo.id))
+                .toList(),
+            backgroundDecoration: BoxDecoration(color: Colors.black),
+            onPageChanged: (index) {
+              setState(() => count = index + 1);
+            },
+            scrollPhysics: const BouncingScrollPhysics(),
+            loadingChild: getLoadingWidget(),
+            pageController: widget.controller,
           ),
-        ),
-        height: screenHeight * 0.6,
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.close, color: Colors.white),
-                  onPressed: null,
+          Column(children: <Widget>[
+            AppBar(
+                elevation: 1.0,
+                backgroundColor: Color(0x2affffff),
+                title: Text(widget.title),
+                actions: <Widget>[
+                  IconButton(
+                      icon: Icon(Icons.share),
+                      onPressed: () {
+                        Share.share(widget.photos[count].cover);
+                      })
+                ]),
+            Container(
+              margin: const EdgeInsets.only(bottom: 40.0),
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: 80.0,
+                height: 30.0,
+                child: Center(
+                  child: Text('$count/$total',
+                      style: TextStyle(color: Colors.white)),
                 ),
-                Expanded(
-                    child: Text(
-                  '2.7w条评论',
-                  textAlign: TextAlign.center,
-                )),
-                IconButton(
-                  icon: Icon(Icons.close),
-                  onPressed: () {
-                    animateToBottom(screenHeight * 0.6);
-                  },
-                ),
-              ],
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text('item$index'),
-                    leading: Icon(Icons.color_lens),
-                  );
-                },
-                itemCount: 50,
+                decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.all(Radius.circular(5.0))),
               ),
             ),
-          ],
-        ),
-      ),
+          ], mainAxisAlignment: MainAxisAlignment.spaceBetween),
+          Align(
+              child: Container(
+                  margin: EdgeInsets.all(20.0),
+                  child: IconButton(
+                      highlightColor: Colors.white,
+                      splashColor: Colors.red,
+                      disabledColor: Colors.green,
+                      color: Colors.white,
+                      onPressed: () => _saveImage(widget.photos[count].image),
+                      icon: Icon(Icons.file_download))),
+              alignment: Alignment.bottomRight)
+        ]));
+  }
+
+  Widget _buildCommentsView(screenHeight) {
+    return Transform.translate(
+      offset: Offset(0, dy >= 0 ? screenHeight : dy + screenHeight),
+      child: Container(
+          padding: EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+          height: screenHeight * .6,
+          child: Column(children: <Widget>[
+            Stack(alignment: Alignment.centerRight, children: <Widget>[
+              Container(
+                  child: Text('2.7w条评论', textAlign: TextAlign.center),
+                  width: Utils.width),
+              IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () => animateToBottom(screenHeight * 0.6))
+            ]),
+            Expanded(
+                child: ListView.builder(
+                    itemBuilder: (context, index) => ListTile(
+                        title: Text('item$index'),
+                        leading: Icon(Icons.color_lens)),
+                    itemCount: 50))
+          ])),
     );
   }
 }
