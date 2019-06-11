@@ -25,7 +25,7 @@ class QdailyResult {
 
 class DataBean {
   bool hasMore;
-  int lastKey;
+  String lastKey;
   List<FeedsBean> feeds;
   int totalCount;
   List<ColumnBean> columns;
@@ -34,7 +34,7 @@ class DataBean {
     DataBean dataBean = new DataBean();
     dataBean.hasMore = map['has_more'];
     dataBean.totalCount = map['total_count'];
-    dataBean.lastKey = map['last_key'];
+    dataBean.lastKey = '${map['last_key']}';
     dataBean.feeds = List()
       ..addAll((map['feeds'] as List ?? []).map((o) => FeedsBean.fromMap(o)));
 

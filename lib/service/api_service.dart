@@ -48,7 +48,7 @@ class ApiService {
       'count': count,
     });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
 
@@ -64,7 +64,7 @@ class ApiService {
       'count': count,
     });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
 
@@ -81,7 +81,7 @@ class ApiService {
       'count': count,
     });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
 
@@ -94,7 +94,7 @@ class ApiService {
         await HttpUtils(queryParameters: {'apikey': Config.DOUBAN_MOVIE_KEY})
             .get(ApiUrl.WEEKLY_MOVIES_URL);
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
 
@@ -112,7 +112,7 @@ class ApiService {
         await HttpUtils(queryParameters: {'apikey': Config.DOUBAN_MOVIE_KEY})
             .get(ApiUrl.NEW_MOVIES_URL);
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
 
@@ -125,7 +125,7 @@ class ApiService {
         await HttpUtils(queryParameters: {'apikey': Config.DOUBAN_MOVIE_KEY})
             .get(ApiUrl.US_MOVIES_URL);
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
 
@@ -146,7 +146,7 @@ class ApiService {
       'count': count
     });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
 
@@ -163,7 +163,7 @@ class ApiService {
       'count': count
     });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
 
@@ -180,7 +180,7 @@ class ApiService {
       'count': count
     });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
 
@@ -198,7 +198,7 @@ class ApiService {
       'count': count
     });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
 
@@ -226,7 +226,7 @@ class ApiService {
           'count': count
         });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
     return result.photos;
@@ -253,7 +253,7 @@ class ApiService {
           'count': count
         });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
     return result.photos;
@@ -268,7 +268,7 @@ class ApiService {
       'count': count
     });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
     return result.photos;
@@ -284,7 +284,7 @@ class ApiService {
           'count': count
         });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
     List<Movie> movies = [];
@@ -304,7 +304,7 @@ class ApiService {
           'count': count
         });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
     return result.comments;
@@ -320,7 +320,7 @@ class ApiService {
           'count': count
         });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
     return result.reviews;
@@ -1215,7 +1215,7 @@ class ApiService {
   }
 
   /// 栏目列表
-  static Future<DataBean> getQdailyColumnList(int lastKey) async {
+  static Future<DataBean> getQdailyColumnList(String lastKey) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_WEB_URL)
         .get("${ApiUrl.QDAILY_COLUMN_LIST_DATA}$lastKey.json", data: null);
     if (response.statusCode != 200) {
@@ -1285,6 +1285,19 @@ class ApiService {
     QdailyAppResult result =
         QdailyAppResult.fromMap(json.decode(response.data));
     return result.response;
+  }
+
+  /// 搜索
+  static Future<DataBean> getQDailySearchData(
+      String keywords, String last_key) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_WEB_URL).get(
+        ApiUrl.QDAILY_SEARCH_WEB_DATA,
+        data: {"last_key": last_key, "key": keywords});
+    if (response.statusCode != 200) {
+      return null;
+    }
+    QdailyResult result = QdailyResult.fromMap(json.decode(response.data));
+    return result.data;
   }
 
   /// 获取文章/新闻详情

@@ -17,7 +17,7 @@ class ColumnsPage extends StatefulWidget {
 }
 
 class _ColumnsPageState extends State<ColumnsPage> {
-  int lastKey = 0;
+  String lastKey = '0';
 
   GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
 
@@ -41,7 +41,7 @@ class _ColumnsPageState extends State<ColumnsPage> {
         body: columns.isEmpty ? getLoadingWidget() : _buildBodyView());
   }
 
-  void getColumnsData(int lastKey) async {
+  void getColumnsData(String lastKey) async {
     dataBean = await ApiService.getQdailyColumnList(lastKey);
 
     if (dataBean == null) {

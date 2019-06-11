@@ -671,3 +671,26 @@ String weatherBg(String cond_code) {
   }
   return bgImage;
 }
+
+const List<String> QDailyKeys = <String>[
+  "好莱坞",
+  "亚马逊",
+  "阿里巴巴",
+  "音乐节",
+  "特斯拉",
+  "腾讯",
+  "苹果",
+  "海淘",
+  "百度",
+  "Google",
+  "小米",
+  "时尚",
+  "迪士尼",
+  "万达",
+  "星巴克",
+  "人工智能",
+  "无人机",
+  "华为",
+  "MUJI",
+  "宜家"
+];

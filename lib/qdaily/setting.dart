@@ -1,5 +1,6 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/delegates/search_bar_delegate.dart';
 
 import '../baixing_life/ui/IconText.dart';
 import '../bean/qdaily.dart';
@@ -83,7 +84,7 @@ class _SettingPageState extends State<SettingPage>
                     Transform(
                         transform: Matrix4.translationValues(
                             0, bottomAnimation.value.toDouble(), 0),
-                        child: list[_currentIndex]),
+                        child: list[_currentIndex])
                   ]),
                 ),
                 _buildBackButton()
@@ -113,11 +114,14 @@ class _SettingPageState extends State<SettingPage>
   Widget _buildSearchView() {
     return Container(
         margin: EdgeInsets.only(top: Utils.topSafeHeight),
-        child: Row(children: <Widget>[
-          Icon(FeatherIcons.search),
-          SizedBox(width: 10),
-          Text('搜索')
-        ]),
+        child: InkWell(
+            child: Row(children: <Widget>[
+              Icon(FeatherIcons.search),
+              SizedBox(width: 10),
+              Text('搜索')
+            ]),
+            onTap: () =>
+                showSearch(context: context, delegate: SearchBarDelegate())),
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
             color: Colors.white,
@@ -127,19 +131,17 @@ class _SettingPageState extends State<SettingPage>
   Widget _buildRowView() {
     return Row(children: <Widget>[
       Expanded(
-        child:
-            IconText(text: '设置', icon: FeatherIcons.settings, onPressed: () {}),
-      ),
+          child: IconText(
+              text: '设置', icon: FeatherIcons.settings, onPressed: () {})),
       Expanded(
-        child: IconText(text: '主题', icon: FeatherIcons.sun, onPressed: () {}),
-      ),
+          child:
+              IconText(text: '主题', icon: FeatherIcons.sun, onPressed: () {})),
       Expanded(
-        child: IconText(
-            text: '离线', icon: FeatherIcons.downloadCloud, onPressed: () {}),
-      ),
+          child: IconText(
+              text: '离线', icon: FeatherIcons.downloadCloud, onPressed: () {})),
       Expanded(
-        child: IconText(text: '推荐', icon: FeatherIcons.gift, onPressed: () {}),
-      ),
+          child:
+              IconText(text: '推荐', icon: FeatherIcons.gift, onPressed: () {}))
     ]);
   }
 
@@ -187,6 +189,7 @@ class _SettingPageState extends State<SettingPage>
         shrinkWrap: true,
         primary: false,
         padding: EdgeInsets.only(top: 0),
+        itemCount: category.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, childAspectRatio: (width - 40) / 2 / 55),
         itemBuilder: (BuildContext context, int index) {
@@ -202,7 +205,6 @@ class _SettingPageState extends State<SettingPage>
                       title: category[index].title,
                       id: category[index].id,
                       type: category[index].type)));
-        },
-        itemCount: category.length);
+        });
   }
 }

@@ -1,7 +1,6 @@
 class ApiUrl {
   static const String DOUBAN_WEB_URL = 'https://movie.douban.com/';
 
-  // https://douban.uieee.com/v2
   static const String MOVIE_BASE_URL = "https://api.douban.com/v2/movie";
 
   static final String MOVIE_LIST_URL = "/in_theaters";
@@ -84,8 +83,8 @@ class ApiUrl {
 
   static final String QDAILY_SEARCH_HIGHLIGHTING_DATA =
       "app3/searches/post_highlighting_list.json?last_key={last_key}&search={content}";
-  static final String QDAILY_SEARCH_DATA =
-      "app3/searches/post_list.json?last_key={last_key}&search={content}";
+  static final String QDAILY_SEARCH_DATA = "app3/searches/post_list.json";
+  static final String QDAILY_SEARCH_WEB_DATA = "searches/more_search.json";
 
   static final String QDAILY_CATEGORYS_DATA = "app3/homes/left_sidebar.json";
 }
