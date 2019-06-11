@@ -50,8 +50,8 @@ A new Flutter application.
 |仿探探|BottomSheet|TextField|
 |![0](https://github.com/rafalbednarczuk/curved_navigation_bar/blob/master/example.gif)|![1](https://github.com/tunitowen/fancy_bottom_navigation/blob/master/fancy_gif.gif)|![2](https://camo.githubusercontent.com/6bdfb12848c7fcac62da5fa8c65c8c24f536d824/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f744b394c6866484a357154373164376c59612f67697068792e676966)|
 |CurvedNavigationBar|FancyBottomNavigation|BubbleBottomBar|
-|![0](https://github.com/GanZhiXiong/gzx_dropdown_menu/raw/master/preview_images/美团.gif)|![1]()|![2]()|
-|DropDownMenu|XXX|XXX|
+|![0](https://github.com/GanZhiXiong/gzx_dropdown_menu/raw/master/preview_images/美团.gif)|![1](https://github.com/divyanshub024/Flutter-page-route-transition/raw/master/art/route_transition.gif)|![2](https://github.com/TheProtoss/wave/raw/master/example/assets/demo.gif)|
+|DropDownMenu|路由过度动画|Wave|
 
 
 
@@ -164,6 +164,8 @@ A new Flutter application.
 | 侧滑菜单 | [flutter_inner_drawer](https://github.com/Dn-a/flutter_inner_drawer) | ![](https://camo.githubusercontent.com/dda1245d1fb2d8ab403c705df11bbf07717d3dce/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7075622d302e322e362d6f72616e67652e737667) | 
 | 字母索引、悬停 | [azlistview](https://github.com/flutterchina/azlistview) | ![](https://camo.githubusercontent.com/fe32a6e2c3f42d892ce837927d0499d5608e88c8/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f617a6c697374766965772e7376673f7374796c653d666c61742d737175617265) |
 | 状态管理 | [provide](https://github.com/google/flutter-provide) | 1.0.2 |
+| 图表 | [fl_chart](https://github.com/imaNNeoFighT/fl_chart) | ![](https://camo.githubusercontent.com/9ec4eb28efea48f3229b74bcef4b9b5554517421/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f666c5f63686172742e737667) |
+| Badges for Flutter | [badges](https://github.com/yadaniyil/flutter_badges) | ![](https://camo.githubusercontent.com/c65b82b9f7487ff2a77b09bf7f682677b0312ab9/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7075622d312e302e332d626c756576696f6c65742e737667) |
 
 
 ## 特别感谢
