@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class Wave extends StatefulWidget {
   final Config config;
@@ -299,13 +299,13 @@ class CustomConfig extends Config {
     @required this.heightPercentages,
     this.blur,
   })  : assert(() {
-          if (colors.isEmpty && gradients.isEmpty) {
+          if (colors == null && gradients == null) {
             throwNullError('custom', 'colors` or `gradients');
           }
           return true;
         }()),
         assert(() {
-          if (gradients.isEmpty &&
+          if (gradients == null &&
               (gradientBegin != null || gradientEnd != null)) {
             throw FlutterError(
                 'You set a gradient direction but forgot setting `gradients`.');
@@ -325,7 +325,7 @@ class CustomConfig extends Config {
           return true;
         }()),
         assert(() {
-          if (colors.isNotEmpty) {
+          if (colors != null) {
             if (colors.length != durations.length ||
                 colors.length != heightPercentages.length) {
               throw FlutterError(
@@ -334,7 +334,7 @@ class CustomConfig extends Config {
           }
           return true;
         }()),
-        assert(colors.isEmpty || gradients.isEmpty,
+        assert(colors == null || gradients == null,
             'Cannot provide both colors and gradients.'),
         super(colorMode: ColorMode.custom);
 }
