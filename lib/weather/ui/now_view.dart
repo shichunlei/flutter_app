@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/air_now_city.dart';
-import 'package:flutter_app/bean/daily_forecast.dart';
-import 'package:flutter_app/bean/now.dart';
+import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/ui/line.dart';
 

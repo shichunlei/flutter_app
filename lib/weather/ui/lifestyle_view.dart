@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/lifestyle.dart';
+import 'package:flutter_app/bean/bean_index.dart';
 import 'package:flutter_app/ui/line.dart';
 
 class LifestyleView extends StatelessWidget {

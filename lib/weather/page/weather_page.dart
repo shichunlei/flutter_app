@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/air_now_city.dart';
-import 'package:flutter_app/bean/daily_forecast.dart';
 import 'package:flutter_app/bean/he_weather.dart';
-import 'package:flutter_app/bean/hourly.dart';
-import 'package:flutter_app/bean/lifestyle.dart';
-import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/bean/now.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/utils.dart';
-import 'package:flutter_app/weather/page/city_page.dart';
-import 'package:flutter_app/weather/ui/air_view.dart';
-import 'package:flutter_app/weather/ui/hourly_view.dart';
-import 'package:flutter_app/weather/ui/lifestyle_view.dart';
-import 'package:flutter_app/weather/ui/now_view.dart';
-import 'package:flutter_app/weather/ui/sun_view.dart';
-import 'package:flutter_app/weather/ui/weekly_view.dart';
+
+import '../../page_index.dart';
+import '../page/city_page.dart';
+import '../ui/air_view.dart';
+import '../ui/hourly_view.dart';
+import '../ui/lifestyle_view.dart';
+import '../ui/now_view.dart';
+import '../ui/sun_view.dart';
+import '../ui/weekly_view.dart';
+
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_easyrefresh/material_header.dart';
 import 'package:palette_generator/palette_generator.dart';

@@ -1,7 +1,6 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/he_weather.dart';
-import 'package:flutter_app/bean/sunrise_sunset.dart';
 import 'package:flutter_app/custom_widgets/sunrise_sunset_view.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/utils/time_utils.dart';

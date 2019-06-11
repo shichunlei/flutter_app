@@ -68,20 +68,13 @@ class Result {
     result.poetry =
         map['result'] == null ? null : Poetry.fromMap(map['result']);
     result.article = map['data'] == null ? null : Article.fromMap(map['data']);
-    result.heWeather = map['HeWeather6'] == null
-        ? []
-        : HeWeather.fromMapList(map['HeWeather6']);
+
+    result.heWeather = List()
+      ..addAll(
+          (map['HeWeather6'] as List ?? []).map((o) => HeWeather.fromMap(o)));
 
     result.images =
         map['list'] == null ? [] : ImageModal.fromMapList(map['list']);
     return result;
-  }
-
-  static List<Result> fromMapList(dynamic mapList) {
-    List<Result> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
   }
 }

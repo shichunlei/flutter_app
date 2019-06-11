@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/hourly.dart';
+import 'package:flutter_app/bean/he_weather.dart';
 
 import 'package:flutter_app/custom_widgets/sparkline.dart';
 import 'package:flutter_app/ui/line.dart';

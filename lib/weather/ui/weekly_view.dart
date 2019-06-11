@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/daily_forecast.dart';
 
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/utils/time_utils.dart';
 import 'package:flutter_app/ui/line.dart';
