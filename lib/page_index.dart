@@ -82,6 +82,7 @@ export 'ui/line_view_line.dart';
 export 'ui/suspension_tag.dart';
 export 'ui/toolbar.dart';
 export 'ui/countdown_widget.dart';
+export 'ui/button.dart';
 
 export 'qdaily/article_detail.dart';
 export 'qdaily/book_detail.dart';

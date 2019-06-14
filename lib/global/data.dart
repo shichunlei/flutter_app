@@ -694,3 +694,9 @@ const List<String> QDailyKeys = <String>[
   "MUJI",
   "宜家"
 ];
+
+List<String> guideList = [
+  "images/qdaily/bg_whatsnew_bg_1.jpg",
+  "images/qdaily/bg_whatsnew_bg_2.jpg",
+  "images/qdaily/bg_whatsnew_bg_3.jpg"
+];
