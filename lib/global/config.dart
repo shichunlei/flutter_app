@@ -4,15 +4,13 @@ import 'package:flutter_app/global/custom_icon.dart';
 class Config {
   static final bool DEBUG = true;
 
-  static final String HE_WEATHER_KEY = '';
+  /// 和天气APPKEY
+  static final String HE_WEATHER_KEY =
+      // '2d2a76fac8324146a1b17b68bda42c76';
+      "d6cfdce8193445ba894d889e7ab2de5b";
 
-  static final String DOUBAN_MOVIE_KEY = '';
-
-  static final String COIN_MARKET_CAP_KEY = '';
-
-  static const String DOUBAN_WEB_URL = 'https://movie.douban.com/';
-
-  static const String MOVIE_BASE_URL = "https://api.douban.com/v2/movie";
+  /// 豆瓣电影appkey
+  static final String DOUBAN_MOVIE_KEY = "0b2bdeda43b5688921839c8ecb20399b";
 
   /// 类型
   static const GenreList = [
