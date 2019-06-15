@@ -8,9 +8,9 @@ import 'package:flutter/services.dart';
 
 class Utils {
   /// 获取运行平台是Android还是IOS
-  bool get isAndroid => Platform.isAndroid;
+  static bool get isAndroid => Platform.isAndroid;
 
-  bool get isIOS => Platform.isIOS;
+  static bool get isIOS => Platform.isIOS;
 
   /// 文字转颜色
   static Color strToColor(String name) {

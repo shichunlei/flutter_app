@@ -104,6 +104,9 @@ dependencies: # 应用或包依赖的其它包或插件
   # 引导页
   intro_slider: ^1.2.0
 
+  # 处理键盘事件 https://github.com/diegoveloper/flutter_keyboard_actions
+  keyboard_actions: ^2.1.1
+
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.7
 
@@ -125,6 +128,9 @@ dependencies: # 应用或包依赖的其它包或插件
 
   #
   rounded_letter: ^0.0.6
+
+  # https://github.com/ReactiveX/rxdart
+  rxdart: ^0.21.0
 
   share: ^0.5.3
 

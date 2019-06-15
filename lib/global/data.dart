@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/page/login/login_page.dart';
 
 import 'package:flutter_app/page_index.dart';
 
@@ -281,6 +282,7 @@ class ExpandStateBean {
           SubExpandBean('仿抖音首页动画', TikTokPage()),
           SubExpandBean('仿闲鱼', XianyuHomePage()),
           SubExpandBean('好奇心日报', QdailySplashPage()),
+          SubExpandBean('登录页面', PasswordLoginPage()),
         ]),
   ];
 }

@@ -11,5 +11,19 @@
   "en": "English",
   "pick_a_color": "Pick a color!",
   "sure": "sure",
-  "cancel": "cancel"
+  "cancel": "cancel",
+  "password_login": "Password Login",
+  "login": "Login",
+  "register": "Register",
+  "forgot_password": "Forgot Password",
+  "quickly_login": "Quickly Login",
+  "input_phone": "Please enter your account",
+  "input_password": "Please enter your password",
+  "go_register": "No account? Go and register",
+  "close": "close",
+  "submit": "submit",
+  "input_v_code": "Please enter your identifying code",
+  "get_v_code": "get code",
+  "tip": "Tip : The account is not registered? please ",
+  "reset_password": "Reset Password"
 }
