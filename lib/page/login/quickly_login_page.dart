@@ -15,6 +15,9 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _vCodeController = TextEditingController();
 
+  final FocusNode _nodePhone = FocusNode();
+  final FocusNode _nodeVCode = FocusNode();
+
   bool _isClick = false;
 
   @override
@@ -68,12 +71,15 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
                           fontWeight: FontWeight.bold)),
                   Gaps.vGap16,
                   CustomTextField(
+                      focusNode: _nodePhone,
+                      nextFocusNode: _nodeVCode,
                       controller: _phoneController,
                       maxLength: 11,
                       keyboardType: TextInputType.phone,
                       hintText: "${AppLocalizations.$t('input_phone')}"),
                   Gaps.vGap10,
                   CustomTextField(
+                      focusNode: _nodeVCode,
                       controller: _vCodeController,
                       maxLength: 6,
                       keyboardType: TextInputType.number,

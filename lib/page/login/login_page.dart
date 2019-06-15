@@ -121,6 +121,7 @@ class _LoginPageState extends State<PasswordLoginPage> {
                   focusNode: _nodePhone,
                   controller: _phoneController,
                   maxLength: 11,
+                  nextFocusNode: _nodePassword,
                   keyboardType: TextInputType.phone,
                   hintText: "${AppLocalizations.$t('input_phone')}"),
               Gaps.vGap10,

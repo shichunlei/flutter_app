@@ -15,6 +15,7 @@ class CustomTextField extends StatefulWidget {
   final TextInputType keyboardType;
   final String hintText;
   final FocusNode focusNode;
+  final FocusNode nextFocusNode;
   final bool isInputPwd;
   final Function getVCode;
   final KeyboardActionsConfig config;
@@ -27,6 +28,7 @@ class CustomTextField extends StatefulWidget {
       this.keyboardType: TextInputType.text,
       this.hintText: "",
       this.focusNode,
+      this.nextFocusNode,
       this.isInputPwd: false,
       this.getVCode,
       this.config})
@@ -75,6 +77,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
       TextField(
           focusNode: widget.focusNode,
           maxLength: widget.maxLength,
+
+          /// 键盘动作按钮点击之后执行的代码： 光标切换到指定的输入框
+          onEditingComplete: widget.nextFocusNode == null
+              ? null
+              : () => FocusScope.of(context).requestFocus(widget.nextFocusNode),
           obscureText: widget.isInputPwd ? !_isShowPwd : false,
           autofocus: widget.autoFocus,
           controller: widget.controller,

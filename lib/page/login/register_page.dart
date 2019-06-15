@@ -16,6 +16,10 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _vCodeController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
+  final FocusNode _nodePhone = FocusNode();
+  final FocusNode _nodeVCode = FocusNode();
+  final FocusNode _nodePassword = FocusNode();
+
   bool _isClick = false;
 
   @override
@@ -85,12 +89,16 @@ class _RegisterPageState extends State<RegisterPage> {
                           fontWeight: FontWeight.bold)),
                   Gaps.vGap16,
                   CustomTextField(
+                      focusNode: _nodePhone,
+                      nextFocusNode: _nodeVCode,
                       controller: _phoneController,
                       maxLength: 11,
                       keyboardType: TextInputType.phone,
                       hintText: "${AppLocalizations.$t('input_phone')}"),
                   Gaps.vGap10,
                   CustomTextField(
+                      focusNode: _nodeVCode,
+                      nextFocusNode: _nodePassword,
                       controller: _vCodeController,
                       keyboardType: TextInputType.number,
                       getVCode: () {},
@@ -98,6 +106,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       hintText: "${AppLocalizations.$t('input_v_code')}"),
                   Gaps.vGap10,
                   CustomTextField(
+                      focusNode: _nodePassword,
                       isInputPwd: true,
                       controller: _passwordController,
                       maxLength: 16,
