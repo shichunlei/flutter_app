@@ -158,7 +158,7 @@ A new Flutter application.
 | Flutter WebView Plugin | [flutter_webview_plugin](https://github.com/fluttercommunity/flutter_webview_plugin) | ![](https://img.shields.io/pub/v/flutter_webview_plugin.svg) | 
 | PackageInfo | [package_info](https://github.com/flutter/plugins/tree/master/packages/package_info) | ![](https://camo.githubusercontent.com/01a75953af6fc91e941c2b5ba32162f55d795403/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f706174685f70726f76696465722e737667) | 
 | 系统分享 | [share](https://github.com/flutter/plugins/tree/master/packages/share) | ![](https://camo.githubusercontent.com/afe573869b306315562203bca3cf9a85ac94ccf5/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f73686172652e737667) |
-| 引导页 | [intro-slider](https://github.com/duytq94/flutter-intro-slider) | 1.1.5 |
+| 引导页 | [intro-slider](https://github.com/duytq94/flutter-intro-slider) | 2.2.2 |
 | 评分控件 | [smooth_star_rating](https://github.com/thangmam/smoothratingbar) | 1.0.1 | 
 | PhotoView | [photo_view](https://github.com/renancaraujo/photo_view) | ![](https://camo.githubusercontent.com/8a5c98a80bb80f0eed10b5f111cc7440d1aa143e/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f70686f746f5f766965772e7376673f7374796c653d706f706f7574) | 
 | 时间轴 | [Timeline](https://github.com/furkantektas/timeline_list) | ![](https://camo.githubusercontent.com/81e25a24fd6072e2979c03e4d716be55eff89763/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f74696d656c696e655f6c6973742e737667) | 
