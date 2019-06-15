@@ -13,7 +13,6 @@ import '../ui/weekly_view.dart';
 
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_easyrefresh/material_header.dart';
-import 'package:palette_generator/palette_generator.dart';
 
 class WeatherPage extends StatefulWidget {
   final String cityname;
@@ -85,13 +84,9 @@ class WeatherPageState extends State<WeatherPage> {
 
     background = weatherBg(now?.cond_code);
 
-    PaletteGenerator paletteGenerator =
-        await PaletteGenerator.fromImageProvider(AssetImage(background));
+    barColor = await Utils.getImageDominantColor(background, type: "asset");
 
     setState(() {
-      if (paletteGenerator.darkVibrantColor != null) {
-        barColor = paletteGenerator.darkVibrantColor.color;
-      }
       if (weather != null) {
         now = weather.now;
         background = weatherBg(now?.cond_code);

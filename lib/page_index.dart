@@ -44,6 +44,7 @@ export 'page/drag_like_page.dart';
 export 'page/like_button_page.dart';
 export 'page/time_line.dart';
 export 'page/wave_sample.dart';
+export 'page/palette_generator_sample.dart';
 
 export 'city_pickers/page/fullpage_pickers_page.dart';
 export 'city_pickers/page/ios_city_pickers_page.dart';

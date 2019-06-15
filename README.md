@@ -171,6 +171,7 @@ A new Flutter application.
 | 状态管理 | [provide](https://github.com/google/flutter-provide) | 1.0.2 |
 | 图表 | [fl_chart](https://github.com/imaNNeoFighT/fl_chart) | ![](https://camo.githubusercontent.com/9ec4eb28efea48f3229b74bcef4b9b5554517421/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f666c5f63686172742e737667) |
 | Badges for Flutter | [badges](https://github.com/yadaniyil/flutter_badges) | ![](https://camo.githubusercontent.com/c65b82b9f7487ff2a77b09bf7f682677b0312ab9/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7075622d312e302e332d626c756576696f6c65742e737667) |
+| Palette Generator | [palette_generator](https://github.com/flutter/packages/tree/master/packages/palette_generator) | ![](https://img.shields.io/pub/v/palette_generator.svg) |
 
 
 ## 特别感谢

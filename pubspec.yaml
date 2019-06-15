@@ -118,7 +118,7 @@ dependencies: # 应用或包依赖的其它包或插件
   palette_generator: ^0.1.1
 
   # PhotoView
-  photo_view: ^0.2.4
+  photo_view: ^0.3.3
 
   # 数据管理层
   provide: ^1.0.2

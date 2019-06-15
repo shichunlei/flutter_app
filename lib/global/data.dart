@@ -265,6 +265,7 @@ class ExpandStateBean {
           SubExpandBean('侧滑菜单', InnerDrawerSample()),
           SubExpandBean('路由过渡动画', RouteSample()),
           SubExpandBean('DropDown', DropDownSample()),
+          SubExpandBean('Image Colors', ImageColors())
         ]),
     ExpandStateBean(
         leading: Icons.dashboard,

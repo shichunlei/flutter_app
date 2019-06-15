@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
-import 'package:palette_generator/palette_generator.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 import '../../page_index.dart';
@@ -43,17 +42,10 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
   }
 
   void getBackgroundColor() async {
-    PaletteGenerator paletteGenerator =
-        await PaletteGenerator.fromImageProvider(
-            NetworkImage(widget.movie.images.small));
-
-    setState(() {
-      if (paletteGenerator.darkVibrantColor != null) {
-        cardBackgroundColor = paletteGenerator.darkVibrantColor.color;
-      } else {
-        cardBackgroundColor = Color(0xff35374c);
-      }
-    });
+    cardBackgroundColor = await Utils.getImageDarkMutedColor(
+        widget.movie.images.small,
+        defaultColor: Color(0xff35374c));
+    setState(() {});
   }
 
   @override

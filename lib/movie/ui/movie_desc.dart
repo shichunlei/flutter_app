@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_search_page.dart';
-import 'package:palette_generator/palette_generator.dart';
+import '../page/movie_search_page.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 import '../../page_index.dart';
@@ -25,17 +24,9 @@ class _MovieDescState extends State<MovieDesc> {
   }
 
   void getBackgroundColor() async {
-    PaletteGenerator paletteGenerator =
-        await PaletteGenerator.fromImageProvider(
-            NetworkImage(widget.movie.images.medium));
-
-    setState(() {
-      if (paletteGenerator.lightVibrantColor != null) {
-        pageColor = paletteGenerator.lightVibrantColor.color;
-      } else {
-        pageColor = Color(0xff35374c);
-      }
-    });
+    pageColor =
+        await Utils.getImageLightVibrantColor(widget.movie.images.medium);
+    setState(() {});
   }
 
   @override
@@ -78,209 +69,179 @@ class _MovieDescState extends State<MovieDesc> {
         widget.movie.rating.details.star1;
 
     return Card(
-      color: pageColor,
-      margin: const EdgeInsets.all(10.0),
-      elevation: 1.0,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: <Widget>[
-            /// 图片，名称等
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                /// 图片
-                ImageLoadView(widget.movie.images.large.toString(),
-                    fit: BoxFit.cover, width: 88, height: 130),
-                Gaps.hGap10,
-
-                /// 名称等
-                Container(
-                  width: Utils.width - 138.0,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      /// 中文名
-                      Text(
-                        widget.movie.title,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.bold),
-                      ),
-
-                      /// 原名
-                      Text(
-                        '${widget.movie.original_title}(${widget.movie.year})',
-                        style: TextStyle(color: Colors.grey, fontSize: 15.0),
-                      ),
-
-                      /// 国家、类型、上映（时间）等
-                      Text(
-                        desc,
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 13.0,
-                        ),
-                      ),
-
-                      /// 想看、看过
-                      Row(
-                        children: <Widget>[
-                          _buildButton('想看', Icons.favorite),
-                          Gaps.hGap8,
-                          _buildButton('看过', Icons.star),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-
-            /// 豆瓣评分
-            Card(
-              elevation: 0.0,
-              color: Color(0x20000000),
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
+        color: pageColor,
+        margin: const EdgeInsets.all(10.0),
+        elevation: 1.0,
+        child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(children: <Widget>[
+              /// 图片，名称等
+              Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                      child: Row(
-                        /// 两端对齐
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            '豆瓣评分',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 18.0),
-                          ),
-                          Icon(
-                            Icons.arrow_right,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        _buildAverage(widget.movie.rating.average),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: <Widget>[
-                            _buildStarRate(
-                              5.0,
-                              5,
-                              totalRating == 0
-                                  ? 0.0
-                                  : widget.movie.rating.details.star5 /
-                                      totalRating,
-                            ),
-                            _buildStarRate(
-                              4.0,
-                              4,
-                              totalRating == 0
-                                  ? 0.0
-                                  : widget.movie.rating.details.star4 /
-                                      totalRating,
-                            ),
-                            _buildStarRate(
-                              3.0,
-                              3,
-                              totalRating == 0
-                                  ? 0.0
-                                  : widget.movie.rating.details.star3 /
-                                      totalRating,
-                            ),
-                            _buildStarRate(
-                              2.0,
-                              2,
-                              totalRating == 0
-                                  ? 0.0
-                                  : widget.movie.rating.details.star2 /
-                                      totalRating,
-                            ),
-                            _buildStarRate(
-                              1.0,
-                              1,
-                              totalRating == 0
-                                  ? 0.0
-                                  : widget.movie.rating.details.star1 /
-                                      totalRating,
-                            ),
-                            Text(
-                              '${widget.movie.reviews_count}人评论',
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 12.0),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Container(
-                        height: 1,
-                        color: Colors.white,
-                        margin: const EdgeInsets.only(top: 8.0)),
-                    Gaps.vGap8,
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        '${widget.movie.collect_count > 1000 ? "${(widget.movie.collect_count / 1000).toStringAsFixed(1)}k" : widget.movie.collect_count}人看过 ${widget.movie.wish_count > 1000 ? "${(widget.movie.wish_count / 1000).toStringAsFixed(1)}k" : widget.movie.wish_count}人想看',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+                    /// 图片
+                    ImageLoadView(widget.movie.images.large.toString(),
+                        fit: BoxFit.cover, width: 88, height: 130),
+                    Gaps.hGap10,
 
-            /// 所属频道
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Text(
-                      '所属频道',
-                      style: TextStyle(color: Colors.blueGrey),
-                    ),
-                  ),
-                  Expanded(
-                    child: SizedBox.fromSize(
-                      size: Size.fromHeight(30.0),
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: widget.movie.tags.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                            child: InputChip(
-                              label: Text(widget.movie.tags[index].toString()),
-                              onPressed: () => pushNewPage(
-                                  context,
-                                  MovieSearchPage(
-                                    tag: widget.movie.tags[index],
-                                  )),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+                    /// 名称等
+                    Container(
+                        width: Utils.width - 138.0,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              /// 中文名
+                              Text(widget.movie.title,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 22.0,
+                                      fontWeight: FontWeight.bold)),
+
+                              /// 原名
+                              Text(
+                                  '${widget.movie.original_title}(${widget.movie.year})',
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 15.0)),
+
+                              /// 国家、类型、上映（时间）等
+                              Text(desc,
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 13.0)),
+
+                              /// 想看、看过
+                              Row(children: <Widget>[
+                                _buildButton('想看', Icons.favorite),
+                                Gaps.hGap8,
+                                _buildButton('看过', Icons.star)
+                              ])
+                            ]))
+                  ]),
+
+              /// 豆瓣评分
+              Card(
+                  elevation: 0.0,
+                  color: Color(0x20000000),
+                  child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 8.0, bottom: 8.0),
+                                child: Row(
+
+                                    /// 两端对齐
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text('豆瓣评分',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18.0)),
+                                      Icon(Icons.arrow_right,
+                                          color: Colors.white)
+                                    ])),
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  _buildAverage(widget.movie.rating.average),
+                                  Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: <Widget>[
+                                        _buildStarRate(
+                                            5.0,
+                                            5,
+                                            totalRating == 0
+                                                ? 0.0
+                                                : widget.movie.rating.details
+                                                        .star5 /
+                                                    totalRating),
+                                        _buildStarRate(
+                                            4.0,
+                                            4,
+                                            totalRating == 0
+                                                ? 0.0
+                                                : widget.movie.rating.details
+                                                        .star4 /
+                                                    totalRating),
+                                        _buildStarRate(
+                                            3.0,
+                                            3,
+                                            totalRating == 0
+                                                ? 0.0
+                                                : widget.movie.rating.details
+                                                        .star3 /
+                                                    totalRating),
+                                        _buildStarRate(
+                                            2.0,
+                                            2,
+                                            totalRating == 0
+                                                ? 0.0
+                                                : widget.movie.rating.details
+                                                        .star2 /
+                                                    totalRating),
+                                        _buildStarRate(
+                                            1.0,
+                                            1,
+                                            totalRating == 0
+                                                ? 0.0
+                                                : widget.movie.rating.details
+                                                        .star1 /
+                                                    totalRating),
+                                        Text('${widget.movie.reviews_count}人评论',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12.0))
+                                      ])
+                                ]),
+                            Container(
+                                height: 1,
+                                color: Colors.white,
+                                margin: const EdgeInsets.only(top: 8.0)),
+                            Gaps.vGap8,
+                            Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                    '${widget.movie.collect_count > 1000 ? "${(widget.movie.collect_count / 1000).toStringAsFixed(1)}k" : widget.movie.collect_count}人看过 ${widget.movie.wish_count > 1000 ? "${(widget.movie.wish_count / 1000).toStringAsFixed(1)}k" : widget.movie.wish_count}人想看',
+                                    style: TextStyle(color: Colors.white)))
+                          ]))),
+
+              /// 所属频道
+              Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: Text('所属频道',
+                                style: TextStyle(color: Colors.blueGrey))),
+                        Expanded(
+                            child: SizedBox.fromSize(
+                                size: Size.fromHeight(30.0),
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: widget.movie.tags.length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 5),
+                                        child: InputChip(
+                                            label: Text(widget.movie.tags[index]
+                                                .toString()),
+                                            onPressed: () => pushNewPage(
+                                                context,
+                                                MovieSearchPage(
+                                                    tag: widget
+                                                        .movie.tags[index]))),
+                                      );
+                                    })))
+                      ]))
+            ])));
   }
 
   Widget _buildStarRate(double rating, int starCount, double rate) {

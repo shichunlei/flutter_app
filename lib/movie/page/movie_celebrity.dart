@@ -3,16 +3,15 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/celebrity.dart';
 import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_photo.dart';
-import 'package:flutter_app/movie/page/movie_photos.dart';
-import 'package:flutter_app/movie/page/movie_with_celebrity.dart';
+import '../page/movie_photo.dart';
+import '../page/movie_photos.dart';
+import '../page/movie_with_celebrity.dart';
 import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/movie/ui/cover_section_view.dart';
-import 'package:flutter_app/movie/ui/expandable_text.dart';
-import 'package:flutter_app/movie/ui/home_section_view.dart';
-import 'package:flutter_app/movie/ui/movie_celebrity_header.dart';
-import 'package:flutter_app/movie/ui/movie_grid_view.dart';
-import 'package:palette_generator/palette_generator.dart';
+import '../ui/cover_section_view.dart';
+import '../ui/expandable_text.dart';
+import '../ui/home_section_view.dart';
+import '../ui/movie_celebrity_header.dart';
+import '../ui/movie_grid_view.dart';
 
 import '../../page_index.dart';
 
@@ -36,8 +35,6 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
   Celebrity celebrity;
 
   bool isSummaryUnfold = false;
-
-  PaletteGenerator paletteGenerator;
 
   String defaultBgImageUrl =
       'http://pic36.nipic.com/20131206/15190732_161014639124_2.png';
@@ -181,18 +178,12 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
     celebrity = await ApiService.getActorDetail(id);
 
     if (celebrity.photos.isNotEmpty) {
-      paletteGenerator = await PaletteGenerator.fromImageProvider(
-          NetworkImage(celebrity.photos[0].cover));
+      pageColor = await Utils.getImageDominantColor(celebrity.photos[0].cover);
     } else {
-      paletteGenerator = await PaletteGenerator.fromImageProvider(
-          NetworkImage(celebrity.avatars.small));
+      pageColor = await Utils.getImageDominantColor(celebrity.avatars.small);
     }
 
-    setState(() {
-      if (paletteGenerator.darkVibrantColor != null) {
-        pageColor = paletteGenerator.darkVibrantColor.color;
-      }
-    });
+    setState(() {});
   }
 
   /// 展开 or 收起
