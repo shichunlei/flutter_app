@@ -137,9 +137,6 @@ dependencies: # 应用或包依赖的其它包或插件
   # SP
   shared_preferences: ^0.4.3
 
-  # 评分控件
-  smooth_star_rating: 1.0.1
-
   # 数据库
   sqflite: ^1.1.5
 

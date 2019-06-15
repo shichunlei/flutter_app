@@ -5,7 +5,7 @@ import 'package:flutter_app/movie/page/movie_top250.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:flutter_app/custom_widgets/smooth_star_rating.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class RankingBanner extends StatefulWidget {
