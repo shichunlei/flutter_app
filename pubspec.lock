@@ -218,6 +218,15 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.2.6"
+  flutter_jd_address_selector:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "8133559fb2d209c5f2d00d81ddb560920ea67281"
+      url: "https://github.com/shichunlei/flutter_jd_address_selector"
+    source: git
+    version: "0.0.1"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
