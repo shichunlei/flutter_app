@@ -8,7 +8,9 @@ class CustomIcon {
       const IconData(0xe607, fontFamily: 'CustomIcon');
   static const IconData male = const IconData(0xe621, fontFamily: 'CustomIcon');
 
-  static const IconData back = const IconData(0xe60e, fontFamily: 'CustomIcon');
+  static const IconData back = const IconData(0xe605, fontFamily: 'CustomIcon');
+  static const IconData choose =
+      const IconData(0xe501, fontFamily: 'CustomIcon');
 
   static const IconData share =
       const IconData(0xe61e, fontFamily: 'CustomIcon');
