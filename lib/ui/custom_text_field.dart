@@ -95,9 +95,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
               hintText: widget.hintText,
+              hintStyle: TextStyles.textGrayC14,
               counterText: "",
               focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xff4688FA), width: 0.8)),
+                  borderSide: BorderSide(color: Colors.blueAccent, width: 0.8)),
               enabledBorder: UnderlineInputBorder(
                   borderSide:
                       BorderSide(color: Color(0xFFEEEEEE), width: 0.8)))),
@@ -108,11 +109,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 highlightColor: Colors.transparent,
                 splashColor: Colors.transparent,
                 child: Icon(Icons.close, size: 18.0),
-                onTap: () {
-                  setState(() {
-                    widget.controller.text = "";
-                  });
-                })),
+                onTap: () => setState(() => widget.controller.text = ""))),
         Offstage(
             offstage: !widget.isInputPwd,
             child: Padding(
@@ -126,9 +123,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                             : CustomIcon.hidden_password,
                         size: 18.0),
                     onTap: () {
-                      setState(() {
-                        _isShowPwd = !_isShowPwd;
-                      });
+                      setState(() => _isShowPwd = !_isShowPwd);
                     }))),
         Offstage(
             offstage: widget.getVCode == null,
@@ -148,17 +143,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
                                 _subscription = Observable.periodic(
                                         Duration(seconds: 1), (i) => i)
                                     .take(second)
-                                    .listen((i) {
-                                  setState(() {
-                                    s = second - i - 1;
-                                    _isClick = s < 1;
-                                  });
-                                });
+                                    .listen((i) => setState(() {
+                                          s = second - i - 1;
+                                          _isClick = s < 1;
+                                        }));
                               }
                             : null,
                         padding: const EdgeInsetsDirectional.only(
                             start: 8.0, end: 8.0),
-                        textColor: Color(0xff4688FA),
+                        textColor: Colors.blueAccent,
                         color: Colors.transparent,
                         disabledTextColor: Colors.white,
                         disabledColor: Color(0xFFcccccc),
@@ -166,7 +159,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                             borderRadius: BorderRadius.circular(1.0),
                             side: BorderSide(
                                 color: _isClick
-                                    ? Color(0xff4688FA)
+                                    ? Colors.blueAccent
                                     : Color(0xFFcccccc),
                                 width: 0.8)),
                         child: Text(

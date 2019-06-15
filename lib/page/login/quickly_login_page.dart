@@ -65,10 +65,7 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text("${AppLocalizations.$t('quickly_login')}",
-                      style: TextStyle(
-                          fontSize: Dimens.font_sp26,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold)),
+                      style: TextStyles.textBoldDark26),
                   Gaps.vGap16,
                   CustomTextField(
                       focusNode: _nodePhone,
@@ -95,9 +92,7 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
                           child: RichText(
                               text: TextSpan(
                                   text: '${AppLocalizations.$t('tip')}',
-                                  style: TextStyle(
-                                      fontSize: Dimens.font_sp14,
-                                      color: Colors.grey),
+                                  style: TextStyles.textGray14,
                                   children: <TextSpan>[
                                 TextSpan(
                                     text: '${AppLocalizations.$t('register')}',
@@ -117,9 +112,7 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
                           child: Padding(
                               child: Text(
                                   '${AppLocalizations.$t('forgot_password')}',
-                                  style: TextStyle(
-                                      fontSize: Dimens.font_sp16,
-                                      color: Colors.grey)),
+                                  style: TextStyles.textGray14),
                               padding: EdgeInsets.all(10)),
                           onTap: () =>
                               pushNewPage(context, ResetPasswordPage())))

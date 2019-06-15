@@ -83,26 +83,24 @@ class _LoginPageState extends State<PasswordLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
-          backgroundColor: Colors.white,
-          elevation: 0,
-          leading: CloseButton(),
-          actions: <Widget>[
-            InkWell(
-                child: Container(
-                  child: Text('${AppLocalizations.$t('quickly_login')}',
-                      style: TextStyle(color: Color(0xff222222))),
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.only(left: 10, right: 10),
-                ),
-                onTap: () => pushReplacement(context, QuicklyLoginPage()))
-          ]),
-      body: Utils.isIOS
-          ? FormKeyboardActions(child: _buildBodyView())
-          : SingleChildScrollView(child: _buildBodyView()),
-    );
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+            iconTheme: IconThemeData(color: Colors.black),
+            backgroundColor: Colors.white,
+            elevation: 0,
+            leading: CloseButton(),
+            actions: <Widget>[
+              InkWell(
+                  child: Container(
+                      child: Text('${AppLocalizations.$t('quickly_login')}',
+                          style: TextStyles.textDark14),
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.only(left: 10, right: 10)),
+                  onTap: () => pushReplacement(context, QuicklyLoginPage()))
+            ]),
+        body: Utils.isIOS
+            ? FormKeyboardActions(child: _buildBodyView())
+            : SingleChildScrollView(child: _buildBodyView()));
   }
 
   Widget _buildBodyView() {
@@ -112,10 +110,7 @@ class _LoginPageState extends State<PasswordLoginPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(AppLocalizations.$t('password_login'),
-                  style: TextStyle(
-                      fontSize: Dimens.font_sp26,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold)),
+                  style: TextStyles.textBoldDark26),
               Gaps.vGap16,
               CustomTextField(
                   focusNode: _nodePhone,
@@ -144,9 +139,7 @@ class _LoginPageState extends State<PasswordLoginPage> {
                       child: Padding(
                           child: Text(
                               '${AppLocalizations.$t('forgot_password')}',
-                              style: TextStyle(
-                                  fontSize: Dimens.font_sp16,
-                                  color: Colors.grey)),
+                              style: TextStyles.textGray14),
                           padding: EdgeInsets.all(10)),
                       onTap: () => pushNewPage(context, ResetPasswordPage()))),
               Gaps.vGap6,
@@ -155,7 +148,7 @@ class _LoginPageState extends State<PasswordLoginPage> {
                   child: InkWell(
                       child: Padding(
                           child: Text('${AppLocalizations.$t('go_register')}',
-                              style: TextStyle(color: Colors.blueAccent)),
+                              style: TextStyles.textBlue16),
                           padding: EdgeInsets.all(10)),
                       onTap: () => pushNewPage(context, RegisterPage())))
             ]));

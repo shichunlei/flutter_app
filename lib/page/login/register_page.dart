@@ -83,10 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text("${AppLocalizations.$t('register')}",
-                      style: TextStyle(
-                          fontSize: Dimens.font_sp26,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold)),
+                      style: TextStyles.textBoldDark26),
                   Gaps.vGap16,
                   CustomTextField(
                       focusNode: _nodePhone,
