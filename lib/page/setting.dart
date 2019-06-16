@@ -137,7 +137,7 @@ class _SettingPageState extends State<SettingPage> {
                   Toast.show('$province-$city-$county', context);
                 });
               },
-              title: '选择地址');
+              title: '${AppLocalizations.$t('choice_address')}');
         });
   }
 }

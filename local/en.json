@@ -6,6 +6,8 @@
   "contact": "Contact",
   "setting": "Setting",
   "exit": "Exit",
+  "delete": "Delete",
+  "edit": "Edit",
   "update": "Update",
   "zh": "Chinese",
   "en": "English",
@@ -26,5 +28,10 @@
   "get_v_code": "get code",
   "tip": "Tip : The account is not registered? please ",
   "reset_password": "Reset Password",
-  "choice_address": "Choice Address"
+  "choice_address": "Choice Address",
+  "address": "Address List",
+  "eidt_address": "Update Address",
+  "create_address": "Create Address",
+  "success": " Success",
+  "fail": " Fail"
 }

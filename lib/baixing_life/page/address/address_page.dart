@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/address_provider.dart';
-import 'package:flutter_app/bean/address.dart';
 import 'package:flutter_app/store/models/address_model.dart';
 import 'package:provide/provide.dart';
 
@@ -18,8 +17,6 @@ class AddressPage extends StatefulWidget {
 class _AddressPageState extends State<AddressPage> {
   AddressProvider addressProvider;
 
-  List<Address> addresses = [];
-
   bool isEmpty = false;
 
   @override
@@ -30,29 +27,28 @@ class _AddressPageState extends State<AddressPage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[200],
-        appBar: AppBar(title: Text('收货地址'), elevation: 0, actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () => pushNewPage(
-                  context,
-                  CreateEditAddressPage(
-                      title: '新增地址', addressProvider: addressProvider)))
-        ]),
+        appBar: AppBar(
+            title: Text('${AppLocalizations.$t('address')}'),
+            elevation: 0,
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () => pushNewPage(
+                      context,
+                      CreateEditAddressPage(
+                          title: '${AppLocalizations.$t('create_address')}',
+                          addressProvider: addressProvider)))
+            ]),
         body: _builderBodyView());
   }
 
   Future _getAddresses(BuildContext context) async {
     await Store.value<AddressModel>(context).$getAddresses(addressProvider);
 
-    return '加载完成';
+    return '${AppLocalizations.$t('success')}';
   }
 
   Widget _builderBodyView() {

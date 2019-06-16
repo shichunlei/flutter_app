@@ -139,7 +139,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
                     const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8.0),
                 child: Button(
                     onPressed: _isClick ? () => _submit() : null,
-                    text: "提交",
+                    text: "${AppLocalizations.$t('submit')}",
                     borderRadius: 0))
           ]),
         ));
@@ -263,14 +263,13 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
     LogUtil.v('$success=====================');
 
     if (success > 0) {
-      /// todo
-      Toast.show('${widget.title}成功！', context);
+      Toast.show('${widget.title}${AppLocalizations.$t('success')}！', context);
 
       Store.value<AddressModel>(context)
           .$changeAddresses(widget.addressProvider);
       Navigator.of(context).pop();
     } else {
-      Toast.show('${widget.title}失败！', context);
+      Toast.show('${widget.title}${AppLocalizations.$t('fail')}！', context);
     }
   }
 }

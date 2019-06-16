@@ -148,12 +148,14 @@ class _ItemAddressState extends State<ItemAddress>
                                 pushNewPage(
                                     context,
                                     CreateEditAddressPage(
-                                        title: '修改地址',
+                                        title:
+                                            '${AppLocalizations.$t('update_address')}',
                                         id: widget.address.id,
                                         addressProvider:
                                             widget.addressProvider));
                               },
-                              child: Text('编辑', style: TextStyles.textBlue14)),
+                              child: Text('${AppLocalizations.$t('edit')}',
+                                  style: TextStyles.textBlue14)),
                           FlatButton(
                               color: Colors.white,
                               onPressed: () {
@@ -162,7 +164,8 @@ class _ItemAddressState extends State<ItemAddress>
 
                                 _showDeleteBottomSheet(widget.address?.id);
                               },
-                              child: Text('删除', style: TextStyles.textRed14)),
+                              child: Text('${AppLocalizations.$t('delete')}',
+                                  style: TextStyles.textRed14)),
                           FlatButton(
                               color: Colors.white,
                               onPressed: () {
@@ -185,8 +188,8 @@ class _ItemAddressState extends State<ItemAddress>
     LogUtil.v('$success===============');
     if (success) {
       Toast.show('设置成功', context);
-      Store.value<AddressModel>(context).$changeAddresses(widget.addressProvider);
-      /// todo
+      Store.value<AddressModel>(context)
+          .$changeAddresses(widget.addressProvider);
     } else {
       Toast.show('设置失败', context);
     }
@@ -224,7 +227,8 @@ class _ItemAddressState extends State<ItemAddress>
                             width: double.infinity,
                             child: FlatButton(
                                 textColor: Colors.grey,
-                                child: Text("取消", style: TextStyles.textGray16),
+                                child: Text("${AppLocalizations.$t('cancel')}",
+                                    style: TextStyles.textGray16),
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 }))
@@ -240,8 +244,8 @@ class _ItemAddressState extends State<ItemAddress>
     if (success == 1) {
       Toast.show('删除成功', context);
 
-      Store.value<AddressModel>(context).$changeAddresses(widget.addressProvider);
-      /// todo
+      Store.value<AddressModel>(context)
+          .$changeAddresses(widget.addressProvider);
     } else {
       Toast.show('删除失败', context);
     }
