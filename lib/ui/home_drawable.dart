@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/page/contact_list_page.dart';
 import 'package:flutter_app/lang/index.dart';
 import 'package:flutter_app/login/page/login_page.dart';
-import 'package:flutter_app/page/random_poetry_page.dart';
-import 'package:flutter_app/page/setting.dart';
-import 'package:flutter_app/ui/home_drawable_header.dart';
-import 'package:flutter_app/utils/log_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/sp_util.dart';
 import 'package:package_info/package_info.dart';
+
+import '../page_index.dart';
 
 class HomeDrawable extends StatefulWidget {
   HomeDrawable({Key key}) : super(key: key);

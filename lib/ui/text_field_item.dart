@@ -36,7 +36,7 @@ class TextFieldItem extends StatelessWidget {
       FormKeyboardActions.setKeyboardActions(context, config);
     }
     return Container(
-        height: maxLines == 1 ? 50.0 : maxLines * 50.0 * 0.75,
+        height: maxLines == 1 ? 55.0 : maxLines * 55.0 * 0.75,
         margin: const EdgeInsets.only(left: 16.0, right: 16),
         width: double.infinity,
         child: Row(

@@ -45,6 +45,9 @@ export 'page/like_button_page.dart';
 export 'page/time_line.dart';
 export 'page/wave_sample.dart';
 export 'page/palette_generator_sample.dart';
+export 'page/mine_page.dart';
+export 'page/setting.dart';
+export 'page/random_poetry_page.dart';
 
 export 'city_pickers/page/fullpage_pickers_page.dart';
 export 'city_pickers/page/ios_city_pickers_page.dart';
@@ -84,9 +87,12 @@ export 'ui/line_view_line.dart';
 export 'ui/suspension_tag.dart';
 export 'ui/toolbar.dart';
 export 'ui/countdown_widget.dart';
+export 'ui/search_bar.dart';
 export 'ui/button.dart';
 export 'ui/custom_text_field.dart';
 export 'ui/text_field_item.dart';
+export 'ui/select_text_item.dart';
+export 'ui/selected_text.dart';
 
 export 'qdaily/article_detail.dart';
 export 'qdaily/book_detail.dart';

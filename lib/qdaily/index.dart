@@ -35,7 +35,7 @@ class _QDailyIndexPageState extends State<QDailyIndexPage> {
                 child: FloatingActionButton(
                     backgroundColor: Colors.black,
                     mini: true,
-                    onPressed: () => pushNewPage(context, SettingPage()),
+                    onPressed: () => pushNewPage(context, SettingMenuPage()),
                     child: Icon(CustomIcon.qdaily_logo,
                         color: Color(0xFFFFD003), size: 28)))
           ]),

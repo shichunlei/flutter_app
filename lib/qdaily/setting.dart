@@ -8,14 +8,14 @@ import '../page_index.dart';
 
 import './column/columns.dart';
 
-class SettingPage extends StatefulWidget {
-  SettingPage({Key key}) : super(key: key);
+class SettingMenuPage extends StatefulWidget {
+  SettingMenuPage({Key key}) : super(key: key);
 
   @override
   createState() => _SettingPageState();
 }
 
-class _SettingPageState extends State<SettingPage>
+class _SettingPageState extends State<SettingMenuPage>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation topAnimation;
