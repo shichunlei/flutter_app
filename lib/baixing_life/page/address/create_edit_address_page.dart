@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/address_provider.dart';
 import 'package:flutter_app/bean/address.dart';
+import 'package:flutter_app/store/models/address_model.dart';
 import 'package:flutter_app/ui/select_text_item.dart';
 import 'package:flutter_jd_address_selector/flutter_jd_address_selector.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
@@ -99,7 +100,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
     _addressController?.dispose();
     _nameController?.dispose();
     _zipcodeController?.dispose();
-    _addressController?.dispose();
+    _phoneController?.dispose();
     super.dispose();
   }
 
@@ -264,6 +265,9 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
     if (success > 0) {
       /// todo
       Toast.show('${widget.title}成功！', context);
+
+      Store.value<AddressModel>(context)
+          .$changeAddresses(widget.addressProvider);
       Navigator.of(context).pop();
     } else {
       Toast.show('${widget.title}失败！', context);

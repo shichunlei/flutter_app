@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/address_provider.dart';
 import 'package:flutter_app/bean/address.dart';
+import 'package:flutter_app/store/models/address_model.dart';
 
 import '../../../page_index.dart';
 import 'create_edit_address_page.dart';
@@ -184,7 +185,7 @@ class _ItemAddressState extends State<ItemAddress>
     LogUtil.v('$success===============');
     if (success) {
       Toast.show('设置成功', context);
-
+      Store.value<AddressModel>(context).$changeAddresses(widget.addressProvider);
       /// todo
     } else {
       Toast.show('设置失败', context);
@@ -239,6 +240,7 @@ class _ItemAddressState extends State<ItemAddress>
     if (success == 1) {
       Toast.show('删除成功', context);
 
+      Store.value<AddressModel>(context).$changeAddresses(widget.addressProvider);
       /// todo
     } else {
       Toast.show('删除失败', context);

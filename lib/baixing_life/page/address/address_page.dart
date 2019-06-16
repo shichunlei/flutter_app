@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/address_provider.dart';
 import 'package:flutter_app/bean/address.dart';
+import 'package:flutter_app/store/models/address_model.dart';
+import 'package:provide/provide.dart';
 
 import '../../../page_index.dart';
 import 'create_edit_address_page.dart';
@@ -25,8 +27,6 @@ class _AddressPageState extends State<AddressPage> {
     super.initState();
 
     addressProvider = AddressProvider();
-
-    getAddresses();
   }
 
   @override
@@ -49,30 +49,44 @@ class _AddressPageState extends State<AddressPage> {
         body: _builderBodyView());
   }
 
-  void getAddresses() async {
-    addresses = await addressProvider.getAddressList();
+  Future _getAddresses(BuildContext context) async {
+    await Store.value<AddressModel>(context).$getAddresses(addressProvider);
 
-    setState(() {
-      if (addresses.length > 0) {
-        isEmpty = false;
-      } else {
-        isEmpty = true;
-      }
-    });
+    return '加载完成';
   }
 
   Widget _builderBodyView() {
-    return addresses.length > 0
-        ? ListView.separated(
-            physics: BouncingScrollPhysics(),
-            padding: EdgeInsets.only(top: 8, bottom: 8),
-            itemBuilder: (context, index) => ItemAddress(
-                address: addresses[index], addressProvider: addressProvider),
-            separatorBuilder: (BuildContext context, int index) =>
-                Container(height: 5, color: Colors.grey[200]),
-            itemCount: addresses.length)
-        : isEmpty
-            ? EmptyPage(text: '暂无收货地址', imageAsset: 'images/empty.jpeg')
-            : getLoadingWidget();
+    return FutureBuilder(
+        future: _getAddresses(context),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Provide<AddressModel>(builder: (context, child, value) {
+              List addresses = Store.value<AddressModel>(context).addresses;
+
+              if (addresses.length > 0) {
+                isEmpty = false;
+              } else {
+                isEmpty = true;
+              }
+
+              return addresses.length > 0
+                  ? ListView.separated(
+                      physics: BouncingScrollPhysics(),
+                      padding: EdgeInsets.only(top: 8, bottom: 8),
+                      itemBuilder: (context, index) => ItemAddress(
+                          address: addresses[index],
+                          addressProvider: addressProvider),
+                      separatorBuilder: (BuildContext context, int index) =>
+                          Container(height: 5, color: Colors.grey[200]),
+                      itemCount: addresses.length)
+                  : isEmpty
+                      ? EmptyPage(
+                          text: '暂无收货地址', imageAsset: 'images/empty.jpeg')
+                      : getLoadingWidget();
+            });
+          } else {
+            return EmptyPage(text: '暂无收货地址', imageAsset: 'images/empty.jpeg');
+          }
+        });
   }
 }

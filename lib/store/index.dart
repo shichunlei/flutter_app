@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/store/models/config_state_model.dart';
+import 'models/config_state_model.dart';
 import 'package:provide/provide.dart'
     show
         Provider,
@@ -9,26 +9,26 @@ import 'package:provide/provide.dart'
         ProvideMulti,
         ProviderScope;
 
+import 'models/address_model.dart';
+
 class Store {
   static dynamic storeCtx;
   static dynamic widgetCtx;
 
   static init({model, child, dispose = true}) {
-    final providers = Providers()..provide(Provider.value(ConfigModel()));
+    final providers = Providers()
+      ..provide(Provider.value(ConfigModel()))
+      ..provide(Provider.value(AddressModel()));
 
-    return ProviderNode(
-      child: child,
-      providers: providers,
-      dispose: dispose,
-    );
+    return ProviderNode(child: child, providers: providers, dispose: dispose);
   }
 
-  ///设置数据层上下文
+  /// 设置数据层上下文
   static setStoreCtx(context) {
     storeCtx = context;
   }
 
-  ///设置Widget上下文
+  /// 设置Widget上下文
   static setWidgetCtx(context) {
     widgetCtx = context;
   }
@@ -38,12 +38,12 @@ class Store {
     return Provide.value<T>(storeCtx);
   }
 
-  ///根据 Context 获取
+  /// 根据 Context 获取
   static T value<T>(context, {scope}) {
     return Provide.value<T>(context, scope: scope);
   }
 
-  ///监听
+  /// 监听
   static connect<T>({builder, child, scope}) {
     return Provide<T>(
       builder: builder,
@@ -52,7 +52,7 @@ class Store {
     );
   }
 
-  ///通过流的方式 监听
+  /// 通过流的方式 监听
   static stream<T>({builder, model, context}) {
     return StreamBuilder<T>(
         initialData: model,
@@ -60,7 +60,7 @@ class Store {
         builder: builder);
   }
 
-  ///链接多个类型
+  /// 链接多个类型
   static multi(
       {builder,
       child,
