@@ -33,13 +33,13 @@ class _IndexPageState extends State<IndexPage>
 
   List<Widget> list = [];
 
-  GoodsPrivider provider;
+  GoodsProvider provider;
 
   @override
   void initState() {
     super.initState();
 
-    provider = GoodsPrivider();
+    provider = GoodsProvider();
 
     currentIndex = widget.index;
 

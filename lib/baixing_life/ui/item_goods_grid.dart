@@ -7,7 +7,7 @@ import 'package:flutter_app/utils/route_util.dart';
 
 class ItemGoodsGrid extends StatelessWidget {
   final Goods goods;
-  final GoodsPrivider provider;
+  final GoodsProvider provider;
 
   ItemGoodsGrid(this.goods, {Key key, this.provider}) : super(key: key);
 

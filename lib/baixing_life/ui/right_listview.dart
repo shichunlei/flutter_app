@@ -10,7 +10,7 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 class RightListView extends StatefulWidget {
   final Category subCategory;
   final int subCategoryIndex;
-  final GoodsPrivider provider;
+  final GoodsProvider provider;
 
   RightListView(
       {Key key, this.subCategory, this.subCategoryIndex, this.provider})

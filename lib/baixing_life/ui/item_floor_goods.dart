@@ -7,7 +7,7 @@ import 'package:flutter_app/utils/route_util.dart';
 class ItemFloorGoods extends StatelessWidget {
   final String goodsId;
   final String goodsImage;
-  final GoodsPrivider provider;
+  final GoodsProvider provider;
   final double height;
   final double width;
 

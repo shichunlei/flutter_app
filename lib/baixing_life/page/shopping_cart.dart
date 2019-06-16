@@ -9,7 +9,7 @@ import '../../page_index.dart';
 
 class ShoppingCartPage extends StatefulWidget {
   final String title;
-  final GoodsPrivider provider;
+  final GoodsProvider provider;
 
   ShoppingCartPage(this.title, this.provider, {Key key}) : super(key: key);
 

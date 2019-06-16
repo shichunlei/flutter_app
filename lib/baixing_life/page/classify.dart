@@ -11,7 +11,7 @@ class ClassifyPage extends StatefulWidget {
   final String title;
   final int categoryIndex;
   final int subIndex;
-  final GoodsPrivider provider;
+  final GoodsProvider provider;
 
   ClassifyPage(
     this.title, {

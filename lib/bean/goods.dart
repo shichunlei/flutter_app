@@ -91,14 +91,14 @@ class Goods {
   }
 
   Map<String, dynamic> toMap() => {
-        '${GoodsPrivider.COLUMN_GOODS_ID}': goodsId,
-        '${GoodsPrivider.COLUMN_IMAGE}': comPic,
-        '${GoodsPrivider.COLUMN_SHOP_ID}': shopId,
-        '${GoodsPrivider.COLUMN_NAME}': goodsName,
-        '${GoodsPrivider.COLUMN_NUM}': amount,
-        '${GoodsPrivider.COLUMN_ORI_PRICE}': oriPrice,
-        '${GoodsPrivider.COLUMN_PRICE}': presentPrice,
-        '${GoodsPrivider.COLUMN_IS_CHECK}': isChecked,
+        '${GoodsProvider.COLUMN_GOODS_ID}': goodsId,
+        '${GoodsProvider.COLUMN_IMAGE}': comPic,
+        '${GoodsProvider.COLUMN_SHOP_ID}': shopId,
+        '${GoodsProvider.COLUMN_NAME}': goodsName,
+        '${GoodsProvider.COLUMN_NUM}': amount,
+        '${GoodsProvider.COLUMN_ORI_PRICE}': oriPrice,
+        '${GoodsProvider.COLUMN_PRICE}': presentPrice,
+        '${GoodsProvider.COLUMN_IS_CHECK}': isChecked,
       };
 
   @override

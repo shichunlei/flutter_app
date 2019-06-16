@@ -11,7 +11,7 @@ import '../../page_index.dart';
 
 class DetailsPage extends StatefulWidget {
   final String id;
-  final GoodsPrivider provider;
+  final GoodsProvider provider;
 
   DetailsPage(this.id, {Key key, this.provider}) : super(key: key);
 

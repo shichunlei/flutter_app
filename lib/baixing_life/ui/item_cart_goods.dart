@@ -9,7 +9,7 @@ class ItemCartGoods extends StatefulWidget {
   final VoidCallback onTap;
   final Goods goods;
   final VoidCallback deleteOnTap;
-  final GoodsPrivider provider;
+  final GoodsProvider provider;
   final VoidCallback checkOnTap;
   final bool isChecked;
   final int amount;

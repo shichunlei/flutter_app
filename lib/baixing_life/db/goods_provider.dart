@@ -3,7 +3,7 @@ import 'package:flutter_app/utils/database.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:quiver/strings.dart' as strings;
 
-class GoodsPrivider extends BaseDBProvider {
+class GoodsProvider extends BaseDBProvider {
   /// DataBase table name
   static final String table_name = "products";
 
