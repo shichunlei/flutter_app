@@ -8,7 +8,7 @@ import 'package:meta/meta.dart';
 
 class DBHelper {
   static const _VERSION = 1;
-  static const _DB_NAME = "one_article.db";
+  static const _DB_NAME = "scl_flutter_app.db";
   Database _db;
   final _lock = Lock();
 

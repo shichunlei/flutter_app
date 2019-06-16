@@ -6,6 +6,7 @@ import 'dart:ui' as ui show window;
 
 import 'package:flutter/services.dart';
 import 'package:palette_generator/palette_generator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
   /// 获取运行平台是Android还是IOS
@@ -114,5 +115,13 @@ class Utils {
             : Image.asset(imagePath));
 
     return paletteGenerator.darkMutedColor?.color ?? defaultColor;
+  }
+
+  static Future<Null> launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

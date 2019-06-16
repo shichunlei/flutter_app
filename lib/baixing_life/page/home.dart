@@ -17,7 +17,7 @@ import '../../page_index.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
-  final GoodsPrivider provider;
+  final GoodsProvider provider;
 
   HomePage(this.title, this.provider, {Key key}) : super(key: key);
 

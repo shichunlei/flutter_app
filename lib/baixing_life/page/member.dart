@@ -1,18 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/page/order_home_page.dart';
-import 'package:flutter_app/baixing_life/ui/IconText.dart';
-import 'package:flutter_app/global/config.dart';
-import 'package:flutter_app/global/custom_icon.dart';
-import 'package:flutter_app/global/data.dart';
-import 'package:flutter_app/ui/change_appbar.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/toast.dart';
-import 'package:flutter_app/utils/utils.dart';
+import '../page/order_home_page.dart';
+import '../ui/IconText.dart';
 import 'package:transparent_image/transparent_image.dart';
-import 'package:url_launcher/url_launcher.dart';
+
+import '../../page_index.dart';
+import 'address/address_page.dart';
 
 class MemberPage extends StatefulWidget {
   final String title;
@@ -28,7 +22,8 @@ class _MemberPageState extends State<MemberPage>
   @override
   bool get wantKeepAlive => true;
 
-  var avatarImage = 'https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g2qrfsns92j30u013y0x3.jpg';
+  var avatarImage =
+      'https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g2qrfsns92j30u013y0x3.jpg';
 
   double navAlpha = 0;
   double headerHeight;
@@ -71,20 +66,17 @@ class _MemberPageState extends State<MemberPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      body: Stack(
-        children: <Widget>[
+        backgroundColor: Colors.grey[200],
+        body: Stack(children: <Widget>[
           SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            controller: scrollController,
-            child: Column(
-              children: <Widget>[
+              physics: const BouncingScrollPhysics(),
+              controller: scrollController,
+              child: Column(children: <Widget>[
                 _buildHeader(),
                 Container(
-                  margin: EdgeInsets.only(top: 10.0),
-                  color: Colors.white,
-                  child: Column(
-                    children: <Widget>[
+                    margin: EdgeInsets.only(top: 10.0),
+                    color: Colors.white,
+                    child: Column(children: <Widget>[
                       ListTile(
                         title: Text('我的订单'),
                         onTap: () => pushNewPage(context, OrderHomePage()),
@@ -106,14 +98,11 @@ class _MemberPageState extends State<MemberPage>
                           return Container();
                         }).toList(),
                       )
-                    ],
-                  ),
-                ),
+                    ])),
                 Container(
-                  margin: EdgeInsets.only(top: 10.0),
-                  color: Colors.white,
-                  child: Column(
-                    children: <Widget>[
+                    margin: EdgeInsets.only(top: 10.0),
+                    color: Colors.white,
+                    child: Column(children: <Widget>[
                       ListTile(
                         title: Text('优惠券'),
                         onTap: () {
@@ -126,67 +115,46 @@ class _MemberPageState extends State<MemberPage>
                       ),
                       Container(height: 0.5, color: Colors.grey[200]),
                       ListTile(
-                        title: Text('收货地址'),
-                        onTap: () {
-                          Toast.show('收货地址', context);
-
-                          /// TODO
-                        },
-                        leading: Icon(CustomIcon.address),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                      ),
-                    ],
-                  ),
-                ),
+                          title: Text('收货地址'),
+                          onTap: () => pushNewPage(context, AddressPage()),
+                          leading: Icon(CustomIcon.address),
+                          trailing: Icon(Icons.keyboard_arrow_right))
+                    ])),
                 Container(
-                  margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                  color: Colors.white,
-                  child: Column(
-                    children: <Widget>[
+                    margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                    color: Colors.white,
+                    child: Column(children: <Widget>[
                       ListTile(
-                        title: Text('客服电话'),
-                        onTap: () => _launchURL('tel:$_phone'),
-                        leading: Icon(CustomIcon.custom_service),
-                        trailing: Row(
-                          children: <Widget>[
+                          title: Text('客服电话'),
+                          onTap: () => Utils.launchURL('tel:$_phone'),
+                          leading: Icon(CustomIcon.custom_service),
+                          trailing: Row(children: <Widget>[
                             Text(_phone),
                             SizedBox(width: 10.0),
                             Icon(Icons.keyboard_arrow_right)
-                          ],
-                          mainAxisSize: MainAxisSize.min,
-                        ),
-                      ),
+                          ], mainAxisSize: MainAxisSize.min)),
                       Container(height: 0.5, color: Colors.grey[200]),
                       ListTile(
-                        title: Text('关于商城'),
-                        onTap: () {
-                          /// TODO
-                          Toast.show('关于商城', context);
-                        },
-                        leading: Icon(CustomIcon.about),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+                          title: Text('关于商城'),
+                          onTap: () {
+                            /// TODO
+                            Toast.show('关于商城', context);
+                          },
+                          leading: Icon(CustomIcon.about),
+                          trailing: Icon(Icons.keyboard_arrow_right))
+                    ]))
+              ])),
           ChangeAppBar(
-            title: widget.title,
-            backgroundColor: Colors.green,
-            navAlpha: navAlpha,
-          ),
-        ],
-      ),
-    );
+              title: widget.title,
+              backgroundColor: Colors.green,
+              navAlpha: navAlpha)
+        ]));
   }
 
   Widget _buildHeader() {
     return Container(
-      height: headerHeight + Utils.navigationBarHeight,
-      child: Stack(
-        children: <Widget>[
+        height: headerHeight + Utils.navigationBarHeight,
+        child: Stack(children: <Widget>[
           ImageLoadView(backgroundImage,
               placeholder: kTransparentImage,
               fit: BoxFit.fill,
@@ -194,28 +162,16 @@ class _MemberPageState extends State<MemberPage>
               width: Utils.width),
           Container(
               child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
                     CircleAvatar(
                         backgroundImage: NetworkImage(avatarImage),
                         radius: 40.0),
                     Text('张三',
                         style: TextStyle(color: Colors.white, fontSize: 24.0))
-                  ],
-                ),
-              ),
+                  ])),
               padding: EdgeInsets.only(top: Utils.navigationBarHeight / 2))
-        ],
-      ),
-    );
-  }
-
-  Future<Null> _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+        ]));
   }
 }

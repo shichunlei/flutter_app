@@ -86,6 +86,7 @@ export 'ui/toolbar.dart';
 export 'ui/countdown_widget.dart';
 export 'ui/button.dart';
 export 'ui/custom_text_field.dart';
+export 'ui/text_field_item.dart';
 
 export 'qdaily/article_detail.dart';
 export 'qdaily/book_detail.dart';
