@@ -7,7 +7,7 @@ packages:
       name: after_layout
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.7"
+    version: "1.0.7+1"
   async:
     dependency: transitive
     description:
@@ -21,7 +21,7 @@ packages:
       name: azlistview
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.1"
+    version: "0.1.2"
   badges:
     dependency: "direct main"
     description:
@@ -156,7 +156,7 @@ packages:
       name: dio
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.2"
+    version: "2.1.7"
   english_words:
     dependency: "direct main"
     description:
@@ -217,13 +217,13 @@ packages:
       name: flutter_inner_drawer
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.6"
+    version: "0.2.8"
   flutter_jd_address_selector:
     dependency: "direct main"
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "8133559fb2d209c5f2d00d81ddb560920ea67281"
+      resolved-ref: "025dcbfaff6e89e97b32fd042e77073c7f93cb5f"
       url: "https://github.com/shichunlei/flutter_jd_address_selector"
     source: git
     version: "0.0.1"
@@ -271,7 +271,7 @@ packages:
       name: flutter_webview_plugin
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.3"
+    version: "0.3.2"
   font_awesome_flutter:
     dependency: "direct main"
     description:
@@ -425,14 +425,14 @@ packages:
       name: qr
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.1"
+    version: "1.1.1"
   qr_flutter:
     dependency: "direct main"
     description:
       name: qr_flutter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.0+51"
+    version: "2.1.0+55"
   quiver:
     dependency: transitive
     description:
@@ -570,7 +570,7 @@ packages:
       name: url_launcher
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.1.0+1"
+    version: "4.2.0+3"
   utf:
     dependency: transitive
     description:
