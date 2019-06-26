@@ -15,9 +15,9 @@ class ConfigModel extends ConfigInfo with ChangeNotifier {
     }
   }
 
-  Future $setTheme(payload) async {
-    theme = payload;
-    SPUtil.putInt('theme', payload);
+  Future $setTheme(theme) async {
+    this.theme = theme;
+    SPUtil.putInt('theme', theme);
     notifyListeners();
   }
 }

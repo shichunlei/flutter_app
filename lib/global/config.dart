@@ -12,6 +12,16 @@ class Config {
   /// 豆瓣电影appkey
   static final String DOUBAN_MOVIE_KEY = "0b2bdeda43b5688921839c8ecb20399b";
 
+  static final String HOLIDAYS_API_KEY =
+      // 'd0e77032a65c58a0ea07eddf508c31da4dd16f2e';
+      // 'e3d29a00c8e79f50211cfd05e47f92c7c5735a5e';
+      // '28395347787004033c45afe35e659151463fbae4f8acd3c7c874b59edbe812aa';
+      // '1adf4a3e7f5fe650030caf52535da3bd697c3150';
+      // '7fb42d57b3f2f2f5e9dce6d5abc8802c2c3350d2';
+      // '40c1b39db558e1ca5d926c255e8454e6fcf4f38c';
+      // 'c9c76abee7787da52647b74276aac02b303ccf30';
+      'afbba6c2a5506d4d663f0ee8fd25ada775b39885';
+
   /// 类型
   static const GenreList = [
     '剧情',

@@ -87,4 +87,9 @@ class ApiUrl {
   static final String QDAILY_SEARCH_WEB_DATA = "searches/more_search.json";
 
   static final String QDAILY_CATEGORYS_DATA = "app3/homes/left_sidebar.json";
+
+  static final String HOLIDAY_BASE_URL = 'https://calendarific.com';
+  // 假日API文档
+  static final String HOLIDAYS_URL =
+      '/api/v2/holidays?&api_key=afbba6c2a5506d4d663f0ee8fd25ada775b39885&country=CN&year=2019';
 }
