@@ -29,8 +29,6 @@ class _ItemAddressState extends State<ItemAddress>
   void initState() {
     super.initState();
 
-    LogUtil.v('${widget.address.toString()}');
-
     // 初始化动画控制
     _controller = new AnimationController(
         duration: const Duration(milliseconds: 450), vsync: this);
@@ -185,7 +183,6 @@ class _ItemAddressState extends State<ItemAddress>
   void _updateAddressDefault(int id) async {
     bool success = await widget.addressProvider.updateAddressDefault(id, true);
 
-    LogUtil.v('$success===============');
     if (success) {
       Toast.show('设置成功', context);
       Store.value<AddressModel>(context)
@@ -238,8 +235,6 @@ class _ItemAddressState extends State<ItemAddress>
 
   void _deleteAddress(int id) async {
     int success = await widget.addressProvider.deleteAddress(id);
-
-    LogUtil.v('$success===============');
 
     if (success == 1) {
       Toast.show('删除成功', context);

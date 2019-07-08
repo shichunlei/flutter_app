@@ -4,6 +4,9 @@ import 'package:flutter_app/bean/qdaily.dart';
 
 import '../../page_index.dart';
 
+import 'package:flustars/flustars.dart';
+import 'package:common_utils/common_utils.dart';
+
 class ItemComment extends StatelessWidget {
   final CommentBean comment;
 
@@ -53,7 +56,7 @@ class ItemComment extends StatelessWidget {
       Text('${author?.name}'),
       Gaps.hGap8,
       Text(
-          "${TimeUtils.getDateStrByMs(publishTime * 1000, format: DateFormat.ZH_MONTH_DAY)}"),
+          "${DateUtil.getDateStrByMs(publishTime * 1000, format: DateFormat.ZH_MONTH_DAY)}"),
       Spacer(),
       Icon(FeatherIcons.thumbsUp, size: 20)
     ]);

@@ -27,14 +27,14 @@ void main() async {
       }
     });
   }, onError: (Object error, StackTrace stack) {
-    LogUtil.e(error);
-    LogUtil.e(stack);
+    print(error);
+    print(stack);
   });
 }
 
 void setCustomErrorPage() {
   ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) {
-    LogUtil.e(flutterErrorDetails.toString());
+    print(flutterErrorDetails.toString());
     return Center(child: Text("Flutter 走神了"));
   };
 }

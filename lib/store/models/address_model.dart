@@ -10,7 +10,6 @@ class AddressModel with ChangeNotifier {
   Future $getAddresses(AddressProvider provider) async {
     addresses = await provider.getAddressList();
 
-    LogUtil.v('$addresses');
     $setAddress(addresses);
   }
 

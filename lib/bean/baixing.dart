@@ -1,7 +1,6 @@
 import 'package:flutter_app/bean/advertes_picture.dart';
 import 'package:flutter_app/bean/category.dart';
 import 'package:flutter_app/bean/goods.dart';
-import 'package:flutter_app/utils/log_util.dart';
 
 class Baixing {
   /**
@@ -51,21 +50,21 @@ class Baixing {
     floorBean1.floorPic = AdvertesPicture.fromMap(map['floor1Pic']);
     floorBean1.floor = Goods.fromMapList(map['floor1']);
 
-    LogUtil.v(floorBean1.toString());
+    print(floorBean1.toString());
 
     FloorBean floorBean2 = new FloorBean();
     floorBean2.floorName = map['floorName']['floor2'];
     floorBean2.floorPic = AdvertesPicture.fromMap(map['floor2Pic']);
     floorBean2.floor = Goods.fromMapList(map['floor2']);
 
-    LogUtil.v(floorBean2.toString());
+    print(floorBean2.toString());
 
     FloorBean floorBean3 = new FloorBean();
     floorBean3.floorName = map['floorName']['floor3'];
     floorBean3.floorPic = AdvertesPicture.fromMap(map['floor3Pic']);
     floorBean3.floor = Goods.fromMapList(map['floor3']);
 
-    LogUtil.v(floorBean3.toString());
+    print(floorBean3.toString());
 
     baixing.floors = [floorBean1, floorBean2, floorBean3];
 

@@ -5,7 +5,6 @@ import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_app/bean/photos.dart';
-import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/toast.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:share/share.dart';
@@ -149,7 +148,6 @@ class _MoviePhotoPageState extends State<MoviePhotoPage>
   }
 
   void _saveImage(String imageUrl) async {
-    LogUtil.v("_onImageSaveButtonPressed");
     Toast.show('正在保存...', context);
 
     var response = await http.get(imageUrl);

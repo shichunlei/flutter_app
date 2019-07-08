@@ -20,7 +20,6 @@ import '../ui/item_cover.dart';
 import '../ui/movie_desc.dart';
 import '../../ui/image_load_view.dart';
 import '../../utils/loading_util.dart';
-import '../../utils/log_util.dart';
 import '../../utils/route_util.dart';
 import '../../utils/utils.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -50,7 +49,6 @@ class _MovieDetailState extends State<MovieDetail> {
     super.initState();
     height = width * 405 / 720 + 10;
 
-    LogUtil.v('${widget.id}');
     getMovieDetail(widget.id);
   }
 

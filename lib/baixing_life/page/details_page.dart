@@ -40,8 +40,6 @@ class _DetailsPageState extends State<DetailsPage>
   void initState() {
     super.initState();
 
-    LogUtil.v('=========================================${widget.id}');
-
     titleTabs = <Tab>[Tab(text: '详情'), Tab(text: "评论")];
 
     controller = TabController(length: titleTabs.length, vsync: this)

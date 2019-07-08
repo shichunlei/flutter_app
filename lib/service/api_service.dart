@@ -33,7 +33,7 @@ class ApiService {
       });
     });
 
-    LogUtil.v(news.toString());
+    print(news.toString());
 
     return news;
   }
@@ -702,7 +702,7 @@ class ApiService {
             .querySelector('img')
             .attributes['src'];
 
-        LogUtil.v('http:$image');
+        print('http:$image');
 
         String desc = field
             .getElementsByClassName('views-field-phpcode-1')
@@ -710,7 +710,7 @@ class ApiService {
             .querySelector('a')
             .text;
 
-        LogUtil.v('$desc');
+        print('$desc');
 
         String author = field
             .getElementsByClassName('views-field-name')
@@ -720,7 +720,7 @@ class ApiService {
             .querySelector('a')
             .text;
 
-        LogUtil.v('$author');
+        print('$author');
 
         String like = field
             .getElementsByClassName('views-field-ops')
@@ -730,7 +730,7 @@ class ApiService {
             .replaceAll(')', '')
             .replaceAll('(', '');
 
-        LogUtil.v('$like');
+        print('$like');
 
         data.add(MeiTuMeiJu(
             image: 'http:$image', like: like, desc: desc, author: author));
@@ -739,7 +739,7 @@ class ApiService {
       result = JuzimiResult(totalPage, currentPage, meijus: data);
     });
 
-    LogUtil.v('${result.toString()}');
+    print('${result.toString()}');
 
     return result;
   }
@@ -792,7 +792,7 @@ class ApiService {
             .querySelector('img')
             .attributes['src'];
 
-        LogUtil.v('http:$image');
+        print('http:$image');
 
         data.add(MeiTuMeiJu(image: image));
       });
@@ -800,7 +800,7 @@ class ApiService {
       result = JuzimiResult(totalPage, currentPage, meijus: data);
     });
 
-    LogUtil.v('${result.toString()}');
+    print('${result.toString()}');
 
     return result;
   }
@@ -822,7 +822,7 @@ class ApiService {
           .getElementsByClassName('contentin')
           .first;
 
-      LogUtil.v('${content.toString()}');
+      print('${content.toString()}');
 
       List<dom.Element> itemsTitle = content.getElementsByClassName("wrtitle");
       List<dom.Element> items = content.getElementsByClassName("wrlist");
@@ -862,7 +862,7 @@ class ApiService {
       ..add(MingjuClassify(title: '推荐原创句子', tag: 'original/recommend'));
     data.add(MingjuClassify(title: '原创句子', classify: subData));
 
-    LogUtil.v('${data.toString()}');
+    print('${data.toString()}');
 
     return data;
   }
@@ -870,7 +870,7 @@ class ApiService {
   /// 根据类别获取名人列表
   static Future<JuzimiResult> getCelebrityList(
       String category, int page) async {
-    LogUtil.v('${ApiUrl.JUZIMI_URL}$category?page=$page');
+    print('${ApiUrl.JUZIMI_URL}$category?page=$page');
 
     JuzimiResult result;
 
@@ -901,7 +901,7 @@ class ApiService {
       totalPage = int.parse(pages[pages.length - 2].text);
     }
 
-    LogUtil.v('$totalPage======================$currentPage');
+    print('$totalPage======================$currentPage');
 
     final List<JuzimiCelebrity> data = [];
 
@@ -943,14 +943,14 @@ class ApiService {
 
     result = JuzimiResult(totalPage, currentPage, celebrity: data);
 
-//    LogUtil.v('${result.toString()}');
+//    print('${result.toString()}');
 
     return result;
   }
 
   /// 根据类别获取书籍等列表
   static Future<JuzimiResult> getBookList(String category, int page) async {
-    LogUtil.e(ApiUrl.JUZIMI_URL + '$category?page=$page');
+    print(ApiUrl.JUZIMI_URL + '$category?page=$page');
     JuzimiResult result;
 
     await http
@@ -1036,14 +1036,14 @@ class ApiService {
       result = JuzimiResult(totalPage, currentPage, books: data);
     });
 
-    LogUtil.v('${result.toString()}');
+    print('${result.toString()}');
 
     return result;
   }
 
   /// 获取名言/美句列表
   static Future<JuzimiResult> getAlbumList(String category, int page) async {
-    LogUtil.e(ApiUrl.JUZIMI_URL + '$category?page=$page');
+    print(ApiUrl.JUZIMI_URL + '$category?page=$page');
     JuzimiResult result;
 
     await http
@@ -1151,7 +1151,7 @@ class ApiService {
       result = JuzimiResult(totalPage, currentPage, meijus: data);
     });
 
-    LogUtil.v('${result.toString()}');
+    print('${result.toString()}');
 
     return result;
   }
@@ -1423,7 +1423,7 @@ class ApiService {
         isFullPage: longPage,
         posts: posts);
 
-    LogUtil.v(articleDetail.toString());
+    print(articleDetail.toString());
 
     return articleDetail;
   }
@@ -1524,7 +1524,7 @@ class ApiService {
 
     bookDetail = BookBean(desc: desc, tags: tags, posts: posts, detail: detail);
 
-    LogUtil.v(bookDetail.toString());
+    print(bookDetail.toString());
 
     return bookDetail;
   }

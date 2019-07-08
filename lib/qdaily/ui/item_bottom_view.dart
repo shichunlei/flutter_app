@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/qdaily.dart';
-import 'package:flutter_app/utils/time_utils.dart';
+
+import 'package:flustars/flustars.dart';
 
 class ItemBottomView extends StatelessWidget {
   final PostBean post;
@@ -25,7 +26,7 @@ class ItemBottomView extends StatelessWidget {
             style: TextStyle(color: Colors.grey, fontSize: 12)),
         Spacer(),
         Text(
-            "${(post?.publishTime is int) ? TimeUtils.getDateStrByMs(post.publishTime * 1000, format: DateFormat.ZH_MONTH_DAY) : TimeUtils.getDateStrByTimeStr(post?.publishTime, format: DateFormat.ZH_MONTH_DAY)}",
+            "${(post?.publishTime is int) ? DateUtil.getDateStrByMs(post.publishTime * 1000, format: DateFormat.ZH_MONTH_DAY) : DateUtil.getDateStrByTimeStr(post?.publishTime, format: DateFormat.ZH_MONTH_DAY)}",
             style: TextStyle(color: Colors.grey, fontSize: 12))
       ]),
     );

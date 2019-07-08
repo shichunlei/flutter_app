@@ -140,7 +140,6 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
 
   void getCartProducts() async {
     products = await widget.provider.getGoodsList();
-    LogUtil.v(products.toString());
 
     goodsNumberOrPrice();
   }

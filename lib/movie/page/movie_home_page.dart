@@ -16,7 +16,6 @@ import 'package:flutter_app/movie/ui/home_section_view.dart';
 import 'package:flutter_app/movie/ui/item_grid_view.dart';
 import 'package:flutter_app/movie/ui/movie_grid_view.dart';
 import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 
 class MovieHomePage extends StatefulWidget {
@@ -90,7 +89,6 @@ class _MovieHomePageState extends State<MovieHomePage> {
     hotMovies =
         await ApiService.getNowPlayingList(city: "北京", start: 0, count: 6);
     soonMovies = await ApiService.getComingList(start: 0, count: 6);
-    LogUtil.v(banner.toString());
 
     top250 = await ApiService.getTop250List(start: 0, count: 10);
     news = await ApiService.getNewMoviesList();

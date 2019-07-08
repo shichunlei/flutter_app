@@ -132,10 +132,10 @@ class HomeStatePage extends State<HomePage> {
   /// 监听返回键，点击两下退出程序
   Future<bool> _onBackPressed() async {
     if (_scaffoldKey.currentState.isDrawerOpen) {
-      LogUtil.v("菜单打开着");
+      print("菜单打开着");
     } else if (_lastPressedAt == null ||
         DateTime.now().difference(_lastPressedAt) > Duration(seconds: 2)) {
-      LogUtil.v("点击时间");
+      print("点击时间");
       //两次点击间隔超过2秒则重新计时
       _lastPressedAt = DateTime.now();
       Toast.show("再按一次退出", context,

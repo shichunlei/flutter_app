@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app/bean/friends_dynamic.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/wechat_friends/page/publish_dynamic.dart';
 import 'package:flutter_app/wechat_friends/ui/item_dynamic.dart';
@@ -159,7 +158,6 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
       resultList = await MultiImagePicker.pickImages(
           maxImages: 9, options: CupertinoOptions(takePhotoIcon: "chat"));
     } on PlatformException catch (e) {
-      LogUtil.v('${e.message}');
     }
 
     // If the widget was removed from the tree while the asynchronous platform

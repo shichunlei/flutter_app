@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/global/custom_icon.dart';
-import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:share/share.dart';
 
@@ -18,8 +17,6 @@ class WebViewPage extends StatefulWidget {
 class _WebViewPageState extends State<WebViewPage> {
   @override
   Widget build(BuildContext context) {
-    LogUtil.v('${widget.url}');
-
     return WebviewScaffold(
       url: this.widget.url,
       appBar: AppBar(

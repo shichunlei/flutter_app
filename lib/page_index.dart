@@ -63,17 +63,13 @@ export 'bars_demo/heart_beat_bottombar_widget.dart';
 export 'bars_demo/bottom_appbar.dart';
 export 'bars_demo/bubble_bottom_bar.dart';
 
-export 'utils/log_util.dart';
 export 'utils/sp_util.dart';
-export 'utils/time_utils.dart';
 export 'utils/utils.dart';
 export 'utils/http_utils.dart';
 export 'utils/toast.dart';
-export 'utils/regex_util.dart';
 export 'utils/route_util.dart';
 export 'utils/loading_util.dart';
 export 'utils/database.dart';
-export 'utils/timeline_util.dart';
 export 'utils/md5_util.dart';
 
 export 'ui/change_appbar.dart';

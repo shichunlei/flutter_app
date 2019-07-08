@@ -13,10 +13,11 @@ import 'package:flutter_html/flutter_html.dart';
 import 'column/special.dart';
 import 'comment.dart';
 import 'ui/item_feed_type_recommend.dart';
-import '../utils/time_utils.dart';
 import '../utils/loading_util.dart';
 import '../utils/route_util.dart';
 import '../utils/utils.dart';
+
+import 'package:common_utils/common_utils.dart';
 
 class ArticleDetail extends StatefulWidget {
   final int id;
@@ -175,7 +176,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
                 Text('${author.name}'),
                 Spacer(),
                 Text(
-                    "${(post?.publishTime is int) ? TimeUtils.getDateStrByMs(post.publishTime * 1000, format: DateFormat.ZH_MONTH_DAY) : TimeUtils.getDateStrByTimeStr(post?.publishTime, format: DateFormat.ZH_MONTH_DAY)}")
+                    "${(post?.publishTime is int) ? DateUtil.getDateStrByMs(post.publishTime * 1000, format: DateFormat.ZH_MONTH_DAY) : DateUtil.getDateStrByTimeStr(post?.publishTime, format: DateFormat.ZH_MONTH_DAY)}")
               ])
             ]),
           ),
@@ -220,7 +221,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
                         style: TextStyle(color: Colors.white)),
                     Spacer(),
                     Text(
-                        "${(post?.publishTime is int) ? TimeUtils.getDateStrByMs(post.publishTime * 1000, format: DateFormat.ZH_MONTH_DAY) : TimeUtils.getDateStrByTimeStr(post?.publishTime, format: DateFormat.ZH_MONTH_DAY)}",
+                        "${(post?.publishTime is int) ? DateUtil.getDateStrByMs(post.publishTime * 1000, format: DateFormat.ZH_MONTH_DAY) : DateUtil.getDateStrByTimeStr(post?.publishTime, format: DateFormat.ZH_MONTH_DAY)}",
                         style: TextStyle(color: Colors.white))
                   ])
                 ]),

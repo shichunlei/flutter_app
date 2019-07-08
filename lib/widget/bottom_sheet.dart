@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/log_util.dart';
 
 class BottomSheetWidget extends StatefulWidget {
   BottomSheetWidget({Key key}) : super(key: key);
@@ -94,7 +93,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
               ),
               title: Text('Item ${index + 1}'),
               onTap: () {
-                LogUtil.v('tapped item ${index + 1}');
+                print('tapped item ${index + 1}');
                 Navigator.pop(context);
               },
             ),

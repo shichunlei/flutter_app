@@ -7,11 +7,12 @@ import 'package:flutter_app/login/page/forgot_password_page.dart';
 import 'package:flutter_app/login/ui/submit_button.dart';
 import 'package:flutter_app/login/ui/third_login_button.dart';
 import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/regex_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/sp_util.dart';
 import 'package:flutter_app/utils/toast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:common_utils/common_utils.dart';
 
 class SignInPage extends StatefulWidget {
   @override

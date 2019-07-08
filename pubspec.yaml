@@ -41,6 +41,8 @@ dependencies: # 应用或包依赖的其它包或插件
     git:
       url: https://github.com/figengungor/clippy_flutter
 
+  common_utils: ^1.1.1
+
   contact_picker: ^0.0.2
 
   crypto: ^2.0.6

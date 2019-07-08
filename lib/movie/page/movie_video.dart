@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/log_util.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 
@@ -19,7 +18,6 @@ class _MovieVideoPageState extends State<MovieVideoPage> {
   @override
   void initState() {
     super.initState();
-    LogUtil.v('${this.widget.url}');
 
     videoPlayerController = VideoPlayerController.network(this.widget.url);
     chewieController = ChewieController(

@@ -124,4 +124,10 @@ class Utils {
       throw 'Could not launch $url';
     }
   }
+
+  static bool isEmail(String email) {
+    RegExp exp =
+        RegExp("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*\$");
+    return exp.hasMatch(email);
+  }
 }

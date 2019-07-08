@@ -260,8 +260,6 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
 
     int success = await widget.addressProvider.insertOrReplaceToDB(address);
 
-    LogUtil.v('$success=====================');
-
     if (success > 0) {
       Toast.show('${widget.title}${AppLocalizations.$t('success')}！', context);
 

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/service/api_url.dart';
-import 'package:flutter_app/utils/log_util.dart';
 
 class HttpUtils {
   static HttpUtils instance;
@@ -14,7 +13,7 @@ class HttpUtils {
   static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 
   static HttpUtils getInstance() {
-    LogUtil.v('getInstance');
+    print('getInstance');
     if (instance == null) {
       instance = HttpUtils();
     }
@@ -27,7 +26,7 @@ class HttpUtils {
     String contentType = CONTENT_TYPE_FORM,
     Map<String, dynamic> queryParameters,
   }) {
-    LogUtil.v('dio赋值');
+    print('dio赋值');
 
     /// 或者通过传递一个 `options`来创建dio实例
     options = BaseOptions(
@@ -81,7 +80,7 @@ class HttpUtils {
 
   // get
   get(path, {data, options, cancelToken}) async {
-    LogUtil.v('get请求启动! path：$path ,body: $data');
+    print('get请求启动! path：$path ,body: $data');
     Response response;
     try {
       response = await _dio.get(
@@ -90,30 +89,30 @@ class HttpUtils {
         queryParameters: data,
         cancelToken: cancelToken,
         onReceiveProgress: (int count, int total) {
-          LogUtil.v(
+          print(
               'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
         },
       );
 
       /// 响应数据，可能已经被转换了类型, 详情请参考Options中的[ResponseType].
-      LogUtil.v('get请求成功!response.data：${response.data}');
+      print('get请求成功!response.data：${response.data}');
 
       /// 响应头
-      LogUtil.v('get请求成功!response.headers：${response.headers}');
+      print('get请求成功!response.headers：${response.headers}');
 
       /// 本次请求信息
-      LogUtil.v('get请求成功!response.request：${response.request}');
+      print('get请求成功!response.request：${response.request}');
 
       /// Http status code.
-      LogUtil.v('get请求成功!response.statusCode：${response.statusCode}');
+      print('get请求成功!response.statusCode：${response.statusCode}');
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) {
         /// 错误描述
-        LogUtil.v('get请求取消! ' + e.message);
+        print('get请求取消! ' + e.message);
       }
 
       /// 响应信息, 如果错误发生在在服务器返回数据之前，它为 `null`
-      LogUtil.e('get请求发生错误：${e.response}');
+      print('get请求发生错误：${e.response}');
 
       response = e.response;
     }
@@ -122,7 +121,7 @@ class HttpUtils {
 
   // get
   post(path, {data, options, cancelToken}) async {
-    LogUtil.v('post请求启动! path：$path ,body: $data');
+    print('post请求启动! path：$path ,body: $data');
     Response response;
     try {
       response = await _dio.post(
@@ -131,38 +130,38 @@ class HttpUtils {
         data: data,
         cancelToken: cancelToken,
         onSendProgress: (int count, int total) {
-          LogUtil.v(
+          print(
               'onSendProgress: ${(count / total * 100).toStringAsFixed(0)} %');
         },
         onReceiveProgress: (int count, int total) {
-          LogUtil.v(
+          print(
               'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
         },
       );
-      LogUtil.v('post请求成功!response.data：${response.data}');
+      print('post请求成功!response.data：${response.data}');
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) {
-        LogUtil.v('post请求取消! ' + e.message);
+        print('post请求取消! ' + e.message);
       }
-      LogUtil.e('post请求发生错误：$e');
+      print('post请求发生错误：$e');
     }
     return response;
   }
 
   download(path, savePath) async {
-    LogUtil.v('download请求启动! path：$path');
+    print('download请求启动! path：$path');
     Response response;
     try {
       response = await _dio.download(
         path,
         savePath,
         onReceiveProgress: (int count, int total) {
-          LogUtil.v(
+          print(
               'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
         },
       );
     } on DioError catch (e) {
-      LogUtil.e(e.response.toString());
+      print(e.response.toString());
     }
 
     return response;

@@ -38,7 +38,6 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
   void initState() {
     super.initState();
     getBackgroundColor();
-    LogUtil.v('===============${widget.index}================');
   }
 
   void getBackgroundColor() async {

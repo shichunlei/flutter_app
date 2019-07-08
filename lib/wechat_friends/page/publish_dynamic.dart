@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/ui/line.dart';
 
-import 'package:flutter_app/utils/log_util.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_app/wechat_friends/ui/assets_view.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
@@ -119,7 +118,6 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
           maxImages: maxImages,
           options: CupertinoOptions(takePhotoIcon: "chat"));
     } on PlatformException catch (e) {
-      LogUtil.v('${e.message}');
     }
 
     if (images.isNotEmpty && images.length < maxImages) {

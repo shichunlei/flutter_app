@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/custom_icon.dart';
-import 'package:flutter_app/utils/regex_util.dart';
 import 'package:flutter_app/login/ui/submit_button.dart';
-import 'package:flutter_app/utils/toast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../page_index.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -88,7 +87,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         Toast.show("用户名不能为空", context);
                       } else if (_emailController.text.isEmpty) {
                         Toast.show("邮箱不能为空", context);
-                      } else if (!RegexUtil.isEmail(_emailController.text)) {
+                      } else if (!Utils.isEmail(_emailController.text)) {
                         Toast.show("邮箱格式不正确", context);
                       } else if (_passwordController.text.isEmpty) {
                         Toast.show("密码不能为空", context);
@@ -123,7 +122,11 @@ class _SignUpPageState extends State<SignUpPage> {
         onEditingComplete: () =>
             FocusScope.of(context).requestFocus(emailFocusNode),
         decoration: InputDecoration(
-          icon: Icon(FontAwesomeIcons.userAlt, color: Colors.black,size: 20,),
+          icon: Icon(
+            FontAwesomeIcons.userAlt,
+            color: Colors.black,
+            size: 20,
+          ),
           hintText: "请输入用户名",
           border: InputBorder.none,
         ),

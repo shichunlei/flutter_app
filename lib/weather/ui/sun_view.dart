@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/custom_widgets/sunrise_sunset_view.dart';
 import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/utils/time_utils.dart';
 import 'package:flutter_app/ui/line.dart';
+import 'package:common_utils/common_utils.dart';
 
 class SunView extends StatefulWidget {
   final String cityname;
@@ -83,7 +83,7 @@ class _SunViewState extends State<SunView>
     setState(() {
       sunrise_sunset = weather.sunrise_sunset[0];
 
-      String nowTime = TimeUtils.getDateStrByDateTime(DateTime.now(),
+      String nowTime = DateUtil.getDateStrByDateTime(DateTime.now(),
           format: DateFormat.HOUR_MINUTE);
 
       /// 当前时间

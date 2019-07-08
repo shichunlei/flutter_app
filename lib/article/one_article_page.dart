@@ -8,6 +8,8 @@ import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:html/dom.dart' as dom;
 
+import 'package:common_utils/common_utils.dart';
+
 import '../page_index.dart';
 
 class OneArticlePage extends StatefulWidget {
@@ -36,7 +38,7 @@ class _OneArticlePageState extends State<OneArticlePage>
 
   String _date;
   String today =
-      TimeUtils.getDateStrByDateTime(DateTime.now(), format: DateFormat.YMD);
+  DateUtil.getDateStrByDateTime(DateTime.now(), format: DateFormat.YEAR_MONTH_DAY);
 
   @override
   void initState() {
@@ -55,7 +57,7 @@ class _OneArticlePageState extends State<OneArticlePage>
 
     provider = ArticleProvider();
 
-    LogUtil.v('${widget.date}================');
+    print('${widget.date}================');
 
     if (widget.date == null) {
       getArticle('today');
@@ -130,7 +132,7 @@ class _OneArticlePageState extends State<OneArticlePage>
       isShowLoading = false;
     }
     _date = article.date.curr;
-    LogUtil.v(_date.toString());
+    print(_date.toString());
     isFirst = false;
     collectState(_date);
     setState(() {});
@@ -182,7 +184,7 @@ class _OneArticlePageState extends State<OneArticlePage>
                 decoration: TextDecoration.underline,
               ),
               onLinkTap: (url) {
-                LogUtil.v("Opening $url...");
+                print("Opening $url...");
               },
               customRender: (node, children) {
                 if (node is dom.Element) {
@@ -364,7 +366,7 @@ class _OneArticlePageState extends State<OneArticlePage>
     List<Article> list = await provider.getStarredList();
     if (list.isNotEmpty) {
       Navigator.pop(context);
-      LogUtil.v(list.toString());
+      print(list.toString());
       pushNewPage(context, CollectArticle(themeColors[_themeColorIndex], list));
     } else {
       Toast.show('暂无收藏', context);

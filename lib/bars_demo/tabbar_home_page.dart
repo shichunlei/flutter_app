@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bars_demo/keep_alive.dart';
-import 'package:flutter_app/utils/log_util.dart';
 
 class TabBarHomePage extends StatefulWidget {
   @override
@@ -47,13 +46,13 @@ class TabBarHomeStatePage extends State<TabBarHomePage>
         if (controller.index.toDouble() == controller.animation.value) {
           switch (controller.index) {
             case 0:
-              LogUtil.v('0');
+              print('0');
               break;
             case 1:
-              LogUtil.v('1');
+              print('1');
               break;
             case 2:
-              LogUtil.v('2');
+              print('2');
               break;
             default:
               break;

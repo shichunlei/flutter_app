@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/log_util.dart';
 
 class OrderHomePage extends StatefulWidget {
   final int index;
@@ -19,8 +18,6 @@ class _OrderHomePageState extends State<OrderHomePage> {
   void initState() {
     super.initState();
     currentIndex = widget.index;
-
-    LogUtil.v('currentIndex========$currentIndex');
   }
 
   @override

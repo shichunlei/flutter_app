@@ -36,7 +36,6 @@ class _HomeDrawableState extends State<HomeDrawable> {
     avatar = isLogin
         ? "http://hbimg.b0.upaiyun.com/63ddc018b96442eeb24c73f393f5ae066d58fb7e6607e-WScNBs_fw658"
         : "https://user-gold-cdn.xitu.io/2019/1/27/1688f8ce3151738a?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1";
-    LogUtil.v(avatar);
   }
 
   @override
@@ -153,7 +152,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
       buildNumber = packageInfo.buildNumber;
     });
 
-    LogUtil.v(
+    print(
         'APP名称：$appName-====包名：$packageName=====版本名：$version======版本号：$buildNumber');
   }
 }

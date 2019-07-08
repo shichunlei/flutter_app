@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CheckSwitchWidget extends StatefulWidget {
@@ -12,6 +13,7 @@ class _CheckSwitchWidgetState extends State<CheckSwitchWidget> {
   var _isTitleChecked = false;
   var _isOn = false;
   var _isTitleOn = false;
+  var _isOff = false;
 
   @override
   Widget build(BuildContext context) {
@@ -97,6 +99,14 @@ class _CheckSwitchWidgetState extends State<CheckSwitchWidget> {
             selected: true,
             onChanged: (onState) {
               setState(() => _isTitleOn = onState);
+            }),
+        CupertinoSwitch(
+            activeColor: Colors.green,
+            value: _isOff,
+            onChanged: (value) {
+              setState(() {
+                _isOff = value;
+              });
             })
       ]),
     );
