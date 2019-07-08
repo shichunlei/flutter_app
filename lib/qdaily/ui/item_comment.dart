@@ -4,7 +4,6 @@ import 'package:flutter_app/bean/qdaily.dart';
 
 import '../../page_index.dart';
 
-import 'package:flustars/flustars.dart';
 import 'package:common_utils/common_utils.dart';
 
 class ItemComment extends StatelessWidget {

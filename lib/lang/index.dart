@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:shared_preferences/shared_preferences.dart';
 import '../delegates/app_localizations_delegate.dart';
 
 import '../lang/config.dart' as I18NConfig;
-import '../utils/sp_util.dart';
 
 class AppLocalizations {
   Locale _locale; // language
@@ -51,14 +51,15 @@ class AppLocalizations {
     debugPrint("Json数据： ${jsonLanguage.toString()}");
   }
 
-  static void changeLanguage([Locale locale]) {
+  static void changeLanguage([Locale locale]) async {
     if (locale == null) {
       locale = AppLocalizations.languageCode == 'zh'
           ? Locale('en', "US")
           : Locale("zh", "CH");
     }
     _inst._locale = locale;
-    SPUtil.putString('lang', locale.languageCode);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('lang', locale.languageCode);
     getLanguageJson().then((v) {
       _setState(() {
         _delegate = AppLocalizationsDelegate(locale);

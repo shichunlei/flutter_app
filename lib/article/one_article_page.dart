@@ -9,6 +9,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:html/dom.dart' as dom;
 
 import 'package:common_utils/common_utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../page_index.dart';
 
@@ -27,6 +28,8 @@ class _OneArticlePageState extends State<OneArticlePage>
   bool isFirst = true;
   bool starred = false;
 
+  SharedPreferences prefs;
+
   Article article;
 
   ArticleProvider provider;
@@ -37,80 +40,54 @@ class _OneArticlePageState extends State<OneArticlePage>
   TabController _tabController;
 
   String _date;
-  String today =
-  DateUtil.getDateStrByDateTime(DateTime.now(), format: DateFormat.YEAR_MONTH_DAY);
+  String today = DateUtil.getDateStrByDateTime(DateTime.now(),
+      format: DateFormat.YEAR_MONTH_DAY);
 
   @override
   void initState() {
     super.initState();
 
-    _fontSize = SPUtil.getDouble('article_font_size', defValue: 18.0);
-    setState(() {
-      _themeColorIndex = SPUtil.getInt('themeIndex', defValue: 0);
-    });
-
-    _tabController = TabController(
-      length: themeColors.length,
-      vsync: this,
-      initialIndex: _themeColorIndex,
-    );
-
-    provider = ArticleProvider();
-
-    print('${widget.date}================');
-
-    if (widget.date == null) {
-      getArticle('today');
-    } else {
-      getArticle('day', date: widget.date);
-    }
+    _init();
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: themeColors[_themeColorIndex],
-        centerTitle: true,
-        title: Text('每日一文'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (builder) {
-                  collectState(_date);
-                  return StatefulBuilder(
-                    builder: (context, mSetState) {
-                      return Container(
-                        padding: EdgeInsets.all(10.0),
-                        child: Column(
-                          children: <Widget>[
-                            _buildFontSizeSelector(mSetState),
-                            _buildThemeSelector(mSetState),
-                            _buildArticleChange(mSetState),
-                            _buildCollect(_date, mSetState),
-                          ],
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        ),
-                      );
-                    },
-                  );
-                },
-              );
-            },
-          )
-        ],
-      ),
-      body: _buildBodyView(),
-    );
+        appBar: AppBar(
+            backgroundColor: themeColors[_themeColorIndex],
+            centerTitle: true,
+            title: Text('每日一文'),
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.menu),
+                  onPressed: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (builder) {
+                          collectState(_date);
+                          return StatefulBuilder(builder: (context, mSetState) {
+                            return Container(
+                                padding: EdgeInsets.all(10.0),
+                                child: Column(
+                                    children: <Widget>[
+                                      _buildFontSizeSelector(mSetState),
+                                      _buildThemeSelector(mSetState),
+                                      _buildArticleChange(mSetState),
+                                      _buildCollect(_date, mSetState)
+                                    ],
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly));
+                          });
+                        });
+                  })
+            ]),
+        body: _buildBodyView());
   }
 
   void getArticle(type, {date}) async {
@@ -210,7 +187,7 @@ class _OneArticlePageState extends State<OneArticlePage>
           child: Slider(
             onChanged: (double value) {
               double valueRound = value.roundToDouble();
-              SPUtil.putDouble('article_font_size', valueRound);
+              prefs.setDouble('article_font_size', valueRound);
               mSetState(() {});
               setState(() {
                 _fontSize = valueRound;
@@ -245,7 +222,7 @@ class _OneArticlePageState extends State<OneArticlePage>
           controller: _tabController,
           indicatorPadding: const EdgeInsets.only(left: 5, right: 5),
           onTap: (int index) {
-            SPUtil.putInt('themeIndex', index);
+            prefs.setInt('themeIndex', index);
             setState(() {
               _themeColorIndex = index;
             });
@@ -370,6 +347,35 @@ class _OneArticlePageState extends State<OneArticlePage>
       pushNewPage(context, CollectArticle(themeColors[_themeColorIndex], list));
     } else {
       Toast.show('暂无收藏', context);
+    }
+  }
+
+  void _init() async {
+    prefs = await SharedPreferences.getInstance();
+
+    _fontSize = prefs.getDouble('article_font_size');
+    _themeColorIndex = prefs.getInt('themeIndex');
+    if (_fontSize == null) {
+      _fontSize = 18.0;
+    }
+    if (_themeColorIndex == null) {
+      _themeColorIndex = 0;
+    }
+    setState(() {});
+
+    _tabController = TabController(
+        length: themeColors.length,
+        vsync: this,
+        initialIndex: _themeColorIndex);
+
+    provider = ArticleProvider();
+
+    print('${widget.date}================');
+
+    if (widget.date == null) {
+      getArticle('today');
+    } else {
+      getArticle('day', date: widget.date);
     }
   }
 }

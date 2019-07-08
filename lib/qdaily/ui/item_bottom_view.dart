@@ -1,7 +1,6 @@
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/qdaily.dart';
-
-import 'package:flustars/flustars.dart';
 
 class ItemBottomView extends StatelessWidget {
   final PostBean post;

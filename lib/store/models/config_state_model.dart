@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/sp_util.dart';
 import 'package:flutter/foundation.dart' show ChangeNotifier;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ConfigInfo {
   int theme = Colors.red.value;
@@ -8,7 +8,8 @@ class ConfigInfo {
 
 class ConfigModel extends ConfigInfo with ChangeNotifier {
   Future $getTheme() async {
-    int _theme = SPUtil.getInt('theme');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int _theme = prefs.getInt('theme');
     print('config get Theme $_theme');
     if (null != _theme && 0 != _theme) {
       $setTheme(_theme);
@@ -16,8 +17,9 @@ class ConfigModel extends ConfigInfo with ChangeNotifier {
   }
 
   Future $setTheme(theme) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     this.theme = theme;
-    SPUtil.putInt('theme', theme);
+    prefs.setInt('theme', theme);
     notifyListeners();
   }
 }

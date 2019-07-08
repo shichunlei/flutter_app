@@ -3,6 +3,7 @@ import 'package:flutter_app/contact/page/contact_list_page.dart';
 import 'package:flutter_app/lang/index.dart';
 import 'package:flutter_app/login/page/login_page.dart';
 import 'package:package_info/package_info.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../page_index.dart';
 
@@ -24,23 +25,13 @@ class _HomeDrawableState extends State<HomeDrawable> {
   String version;
   String buildNumber;
 
+  SharedPreferences prefs;
+
   @override
   void initState() {
     super.initState();
 
-    _initPackageInfo();
-    isLogin = SPUtil.getBool("isLogin");
-
-    userName = isLogin ? "SCL" : "未登录";
-    email = isLogin ? "1558053958@qq.com" : "";
-    avatar = isLogin
-        ? "http://hbimg.b0.upaiyun.com/63ddc018b96442eeb24c73f393f5ae066d58fb7e6607e-WScNBs_fw658"
-        : "https://user-gold-cdn.xitu.io/2019/1/27/1688f8ce3151738a?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1";
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+    _initInfo();
   }
 
   @override
@@ -66,41 +57,29 @@ class _HomeDrawableState extends State<HomeDrawable> {
           }),
       Divider(),
       ListTile(
-        title: Text(AppLocalizations.$t('contact')),
-        leading: Icon(Icons.supervisor_account),
-        trailing: Icon(Icons.chevron_right),
-        onTap: () {
-          Navigator.of(context).pop();
-          pushNewPageBack(context, ContactListPage());
-        },
-      ),
+          title: Text(AppLocalizations.$t('contact')),
+          leading: Icon(Icons.supervisor_account),
+          trailing: Icon(Icons.chevron_right),
+          onTap: () {
+            Navigator.of(context).pop();
+            pushNewPageBack(context, ContactListPage());
+          }),
       Divider(),
       AboutListTile(
-        icon: CircleAvatar(
-            child: Icon(
-              Icons.update,
-              color: Colors.white,
-              size: 20.0,
-            ),
-            maxRadius: 15),
-        child: Row(
-          children: <Widget>[
+          icon: CircleAvatar(
+              child: Icon(Icons.update, color: Colors.white, size: 20.0),
+              maxRadius: 15),
+          child: Row(children: <Widget>[
             Text(AppLocalizations.$t('update')),
-            Icon(Icons.chevron_right),
-          ],
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        ),
-        applicationName: '${appName}',
-        applicationIcon: Image.asset(
-          'images/flutter_logo.png',
-          width: 64.0,
-          height: 64.0,
-        ),
-        applicationVersion: '${version}',
-        //版本号，默认为空
-        applicationLegalese: '版权所有：${userName}',
-        aboutBoxChildren: <Widget>[Text("BoxChildren"), Text("box child 2")],
-      ),
+            Icon(Icons.chevron_right)
+          ], mainAxisAlignment: MainAxisAlignment.spaceBetween),
+          applicationName: '$appName',
+          applicationIcon:
+              Image.asset('images/flutter_logo.png', width: 64.0, height: 64.0),
+          applicationVersion: '$version',
+          //版本号，默认为空
+          applicationLegalese: '版权所有：$userName',
+          aboutBoxChildren: <Widget>[Text("BoxChildren"), Text("box child 2")]),
       Divider(),
       ListTile(
           title: Text(AppLocalizations.$t('exit')),
@@ -119,7 +98,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
                         FlatButton(
                             child: Text("退出"),
                             onPressed: () {
-                              SPUtil.remove('isLogin');
+                              prefs.remove('isLogin');
                               pushAndRemovePage(context, LoginPage());
                             }),
                         FlatButton(
@@ -142,7 +121,20 @@ class _HomeDrawableState extends State<HomeDrawable> {
     ]);
   }
 
-  Future<void> _initPackageInfo() async {
+  Future<void> _initInfo() async {
+    prefs = await SharedPreferences.getInstance();
+
+    isLogin = prefs.getBool("isLogin");
+
+    if (isLogin == null) {
+      isLogin = false;
+    }
+    userName = isLogin ? "SCL" : "未登录";
+    email = isLogin ? "1558053958@qq.com" : "";
+    avatar = isLogin
+        ? "http://hbimg.b0.upaiyun.com/63ddc018b96442eeb24c73f393f5ae066d58fb7e6607e-WScNBs_fw658"
+        : "https://user-gold-cdn.xitu.io/2019/1/27/1688f8ce3151738a?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1";
+
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
     setState(() {
@@ -152,7 +144,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
       buildNumber = packageInfo.buildNumber;
     });
 
-    print(
+    debugPrint(
         'APP名称：$appName-====包名：$packageName=====版本名：$version======版本号：$buildNumber');
   }
 }

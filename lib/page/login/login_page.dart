@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../page_index.dart';
 import 'quickly_login_page.dart';
@@ -49,7 +50,8 @@ class _LoginPageState extends State<PasswordLoginPage> {
     /// 监听输入改变
     _phoneController.addListener(_verify);
     _passwordController.addListener(_verify);
-    setState(() => _phoneController.text = SPUtil.getString('login_phone'));
+
+    initSpDate();
   }
 
   void _verify() {
@@ -154,9 +156,15 @@ class _LoginPageState extends State<PasswordLoginPage> {
             ]));
   }
 
-  void _login() {
-    SPUtil.putString('login_phone', _phoneController.text);
+  void _login() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('login_phone', _phoneController.text);
 
     Navigator.pop(context);
+  }
+
+  void initSpDate() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() => _phoneController.text = prefs.getString('login_phone'));
   }
 }

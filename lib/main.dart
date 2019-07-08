@@ -12,7 +12,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 void main() async {
   setCustomErrorPage();
   _setTargetPlatformForDesktop();
-  await SPUtil.getInstance();
   runZoned(() {
     /// 强制竖屏
     SystemChrome.setPreferredOrientations(

@@ -63,7 +63,6 @@ export 'bars_demo/heart_beat_bottombar_widget.dart';
 export 'bars_demo/bottom_appbar.dart';
 export 'bars_demo/bubble_bottom_bar.dart';
 
-export 'utils/sp_util.dart';
 export 'utils/utils.dart';
 export 'utils/http_utils.dart';
 export 'utils/toast.dart';

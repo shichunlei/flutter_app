@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../page_index.dart';
 
@@ -27,6 +28,8 @@ class _QdailySplashPageState extends State<QdailySplashPage>
 
   List<Widget> _bannerList = new List();
 
+  SharedPreferences prefs;
+
   @override
   void initState() {
     super.initState();
@@ -43,11 +46,7 @@ class _QdailySplashPageState extends State<QdailySplashPage>
       }
     });
 
-    isFirst = SPUtil.getBool('qdaily_isFirst', defValue: true);
-
-    if (isFirst) {
-      _initBannerData();
-    }
+    initSpDate();
   }
 
   @override
@@ -124,7 +123,7 @@ class _QdailySplashPageState extends State<QdailySplashPage>
               child: Button(
                   borderRadius: 10,
                   onPressed: () {
-                    SPUtil.putBool('qdaily_isFirst', false);
+                    prefs.setBool('qdaily_isFirst', false);
                     pushReplacement(context, QDailyIndexPage());
                   },
                   text: '立即体验'),
@@ -136,6 +135,16 @@ class _QdailySplashPageState extends State<QdailySplashPage>
         _bannerList.add(Image.asset(guideList[i],
             fit: BoxFit.fill, width: double.infinity, height: double.infinity));
       }
+    }
+  }
+
+  void initSpDate() async {
+    prefs = await SharedPreferences.getInstance();
+
+    isFirst = prefs.getBool('qdaily_isFirst');
+
+    if (isFirst || isFirst == null) {
+      _initBannerData();
     }
   }
 }
