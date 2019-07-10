@@ -49,6 +49,7 @@ export 'page/mine_page.dart';
 export 'page/setting.dart';
 export 'page/random_poetry_page.dart';
 export 'page/ruler_sample.dart';
+export 'page/preview_sample.dart';
 
 export 'city_pickers/page/fullpage_pickers_page.dart';
 export 'city_pickers/page/ios_city_pickers_page.dart';
