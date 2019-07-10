@@ -197,7 +197,7 @@ class ExpandStateBean {
 
   static List<ExpandStateBean> expandStateList = [
     ExpandStateBean(
-        leading: Icons.dashboard,
+        leading: Icons.filter_1,
         isOpen: false,
         title: 'Widgets',
         index: 0,
@@ -221,7 +221,7 @@ class ExpandStateBean {
           SubExpandBean('Data Table', TablePage()),
         ]),
     ExpandStateBean(
-        leading: Icons.dashboard,
+        leading: Icons.filter_2,
         isOpen: false,
         title: 'Bars Widgets',
         index: 1,
@@ -237,7 +237,7 @@ class ExpandStateBean {
           SubExpandBean('CurvedNavigationBar', CurvedNavigationBarSample()),
         ]),
     ExpandStateBean(
-        leading: Icons.dashboard,
+        leading: Icons.filter_3,
         isOpen: false,
         title: 'Custom Widgets',
         index: 2,
@@ -266,10 +266,11 @@ class ExpandStateBean {
           SubExpandBean('路由过渡动画', RouteSample()),
           SubExpandBean('DropDown', DropDownSample()),
           SubExpandBean('Image Colors', ImageColors()),
-          SubExpandBean('Ruler', RulerSample())
+          SubExpandBean('Ruler', RulerSample()),
+          SubExpandBean('Preview', PreviewSample())
         ]),
     ExpandStateBean(
-        leading: Icons.dashboard,
+        leading: Icons.filter_4,
         isOpen: false,
         title: '功能',
         index: 3,

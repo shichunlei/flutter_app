@@ -39,80 +39,78 @@ class HomeStatePage extends State<HomePage> {
     return WillPopScope(
       onWillPop: _onBackPressed,
       child: Scaffold(
-        backgroundColor: Colors.grey[200],
-        key: _scaffoldKey,
-        appBar: AppBar(
-          // Title
-          title: GestureDetector(
-            onTap: () => pushNewPage(context, CityPage(currentCity: city)),
-            child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
+          backgroundColor: Colors.grey[200],
+          key: _scaffoldKey,
+          appBar: AppBar(
+            // Title
+            title: GestureDetector(
+              onTap: () => pushNewPage(context, CityPage(currentCity: city)),
+              child: Column(
+                  children: <Widget>[
+                    Row(children: <Widget>[
                       Text(city, style: TextStyle(fontSize: 17.0)),
                       Icon(Icons.keyboard_arrow_down)
-                    ],
-                    mainAxisSize: MainAxisSize.min,
-                  ),
-                  Text(
-                      '${weather?.now?.cond_txt ?? ''} ${weather?.now?.tmp ?? ''}',
-                      style: TextStyle(fontSize: 13.0))
-                ],
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center),
+                    ], mainAxisSize: MainAxisSize.min),
+                    Text(
+                        '${weather?.now?.cond_txt ?? ''} ${weather?.now?.tmp ?? ''}',
+                        style: TextStyle(fontSize: 13.0))
+                  ],
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center),
+            ),
+            elevation: 4.0,
+            leading: IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: () => _scaffoldKey.currentState.openDrawer()),
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.tune, semanticLabel: "tune"),
+                  onPressed: () => getTestData(),
+                  tooltip: "Tune")
+            ],
           ),
-          elevation: 4.0,
-          leading: IconButton(
-              icon: Icon(Icons.menu),
-              onPressed: () => _scaffoldKey.currentState.openDrawer()),
-          actions: <Widget>[
-            IconButton(
-                icon: Icon(Icons.search, semanticLabel: "search"),
-                onPressed: () {},
-                tooltip: "Search"),
-            IconButton(
-                icon: Icon(Icons.tune, semanticLabel: "tune"),
-                onPressed: () => getTestData(),
-                tooltip: "Tune")
-          ],
-        ),
-        drawer: HomeDrawable(),
-        body: ListView(physics: BouncingScrollPhysics(), children: <Widget>[
-          Container(
-              height: Utils.width * 72 / 108,
-              child: Swiper(
-                  itemBuilder: (context, index) =>
-                      ImageLoadView(banner_images[index]),
-                  itemCount: banner_images.length,
-                  pagination: SwiperPagination(
-                      builder: SwiperPagination.fraction,
-                      alignment: Alignment.bottomRight),
-                  autoplay: true)),
-          ExpansionPanelList(
-              children: ExpandStateBean.expandStateList
-                  .map((expand) => ExpansionPanel(
-                      headerBuilder: (context, isExpanded) => ListTile(
-                          leading:
-                              Icon(expand.leading, color: Colors.redAccent),
-                          title: Text('${expand.title}')),
-                      body: ListBody(children: _buildListBody(expand)),
-                      isExpanded: expand.isOpen))
-                  .toList(),
-              expansionCallback: (index, isExpand) =>
-                  _setCurrentIndex(index, isExpand))
-        ]),
-      ),
+          drawer: HomeDrawable(),
+          body: ListView(physics: BouncingScrollPhysics(), children: <Widget>[
+            Container(
+                height: Utils.width * 72 / 108,
+                child: Swiper(
+                    itemBuilder: (context, index) =>
+                        ImageLoadView(banner_images[index]),
+                    itemCount: banner_images.length,
+                    pagination: SwiperPagination(
+                        builder: SwiperPagination.fraction,
+                        alignment: Alignment.bottomRight),
+                    autoplay: true)),
+            ExpansionTile(
+                title: Text('${ExpandStateBean.expandStateList[0].title}'),
+                backgroundColor:
+                    Theme.of(context).accentColor.withOpacity(0.025),
+                children: _buildListBody(ExpandStateBean.expandStateList[0]),
+                onExpansionChanged: (bool value) {},
+                leading: Icon(ExpandStateBean.expandStateList[0].leading)),
+            ExpansionTile(
+                title: Text('${ExpandStateBean.expandStateList[1].title}'),
+                backgroundColor:
+                    Theme.of(context).accentColor.withOpacity(0.025),
+                children: _buildListBody(ExpandStateBean.expandStateList[1]),
+                onExpansionChanged: (bool value) {},
+                leading: Icon(ExpandStateBean.expandStateList[1].leading)),
+            ExpansionTile(
+                title: Text('${ExpandStateBean.expandStateList[2].title}'),
+                backgroundColor:
+                    Theme.of(context).accentColor.withOpacity(0.025),
+                children: _buildListBody(ExpandStateBean.expandStateList[2]),
+                onExpansionChanged: (bool value) {},
+                leading: Icon(ExpandStateBean.expandStateList[2].leading)),
+            ExpansionTile(
+                title: Text('${ExpandStateBean.expandStateList[3].title}'),
+                backgroundColor:
+                    Theme.of(context).accentColor.withOpacity(0.025),
+                children: _buildListBody(ExpandStateBean.expandStateList[3]),
+                onExpansionChanged: (bool value) {},
+                leading: Icon(ExpandStateBean.expandStateList[3].leading))
+          ])),
     );
-  }
-
-  void _setCurrentIndex(int index, bool isExpand) {
-    setState(() {
-      ExpandStateBean.expandStateList.forEach((item) {
-        if (item.index == index) {
-          item.isOpen = !isExpand;
-        }
-      });
-    });
   }
 
   List<Widget> _buildListBody(ExpandStateBean bean) {
