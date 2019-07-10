@@ -267,7 +267,8 @@ class ExpandStateBean {
           SubExpandBean('DropDown', DropDownSample()),
           SubExpandBean('Image Colors', ImageColors()),
           SubExpandBean('Ruler', RulerSample()),
-          SubExpandBean('Preview', PreviewSample())
+          SubExpandBean('Preview', PreviewSample()),
+          SubExpandBean('CardFlip', CardFlipPage())
         ]),
     ExpandStateBean(
         leading: Icons.filter_4,
