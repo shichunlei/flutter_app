@@ -1,4 +1,3 @@
-import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/qdaily.dart';
 
@@ -24,8 +23,7 @@ class ItemBottomView extends StatelessWidget {
         Text('${post?.praiseCount}',
             style: TextStyle(color: Colors.grey, fontSize: 12)),
         Spacer(),
-        Text(
-            "${(post?.publishTime is int) ? DateUtil.getDateStrByMs(post.publishTime * 1000, format: DateFormat.ZH_MONTH_DAY) : DateUtil.getDateStrByTimeStr(post?.publishTime, format: DateFormat.ZH_MONTH_DAY)}",
+        Text("${post?.publishTime}",
             style: TextStyle(color: Colors.grey, fontSize: 12))
       ]),
     );

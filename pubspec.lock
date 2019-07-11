@@ -101,13 +101,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.14.11"
-  common_utils:
-    dependency: "direct main"
-    description:
-      name: common_utils
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.1.1"
   contact_picker:
     dependency: "direct main"
     description:
@@ -150,13 +143,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.2"
-  decimal:
-    dependency: transitive
-    description:
-      name: decimal
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.3.3"
   device_info:
     dependency: "direct main"
     description:
@@ -454,13 +440,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.2"
-  rational:
-    dependency: transitive
-    description:
-      name: rational
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.3.4"
   rounded_letter:
     dependency: "direct main"
     description:

@@ -9,9 +9,9 @@ import 'package:flutter_app/login/ui/third_login_button.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_app/utils/toast.dart';
+import 'package:flutter_app/utils/utils.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:common_utils/common_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInPage extends StatefulWidget {
@@ -124,7 +124,7 @@ class _SignInPageState extends State<SignInPage> {
                     onTap: () {
                       if (_emailController.text.isEmpty) {
                         Toast.show("邮箱不能为空", context);
-                      } else if (!RegexUtil.isEmail(_emailController.text)) {
+                      } else if (!Utils.isEmail(_emailController.text)) {
                         Toast.show("邮箱格式不正确", context);
                       } else if (_pwdController.text.isEmpty) {
                         Toast.show("密码不能为空", context);

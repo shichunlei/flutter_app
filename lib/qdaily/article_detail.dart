@@ -17,8 +17,6 @@ import '../utils/loading_util.dart';
 import '../utils/route_util.dart';
 import '../utils/utils.dart';
 
-import 'package:common_utils/common_utils.dart';
-
 class ArticleDetail extends StatefulWidget {
   final int id;
 
@@ -175,8 +173,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
                 SizedBox(width: 5),
                 Text('${author.name}'),
                 Spacer(),
-                Text(
-                    "${(post?.publishTime is int) ? DateUtil.getDateStrByMs(post.publishTime * 1000, format: DateFormat.ZH_MONTH_DAY) : DateUtil.getDateStrByTimeStr(post?.publishTime, format: DateFormat.ZH_MONTH_DAY)}")
+                Text(post?.publishTime)
               ])
             ]),
           ),
@@ -190,43 +187,39 @@ class _ArticleDetailState extends State<ArticleDetail> {
       child: Stack(children: <Widget>[
         ImageLoadView('${detailBean.image}',
             height: Utils.height, width: Utils.width),
-        Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              _buildColumnView(Utils.topSafeHeight, Utils.navigationBarHeight),
-              Container(
-                padding: EdgeInsets.only(
-                    left: 20, right: 20, bottom: Utils.navigationBarHeight),
-                child: Column(children: <Widget>[
-                  Row(children: <Widget>[
-                    ImageLoadView('${post.category.imageLab}',
-                        width: 20,
-                        height: 20,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    SizedBox(width: 5),
-                    Text('${post.category.title}',
-                        style: TextStyle(color: Colors.white))
-                  ]),
-                  SizedBox(height: 8),
-                  Text('${post.title}',
-                      style: TextStyle(fontSize: 22, color: Colors.white)),
-                  SizedBox(height: 8),
-                  Row(children: <Widget>[
-                    ImageLoadView('${author.avatar}',
-                        width: 25,
-                        height: 25,
-                        borderRadius: BorderRadius.all(Radius.circular(12.5))),
-                    SizedBox(width: 5),
-                    Text('${author.name}',
-                        style: TextStyle(color: Colors.white)),
-                    Spacer(),
-                    Text(
-                        "${(post?.publishTime is int) ? DateUtil.getDateStrByMs(post.publishTime * 1000, format: DateFormat.ZH_MONTH_DAY) : DateUtil.getDateStrByTimeStr(post?.publishTime, format: DateFormat.ZH_MONTH_DAY)}",
-                        style: TextStyle(color: Colors.white))
-                  ])
-                ]),
-              )
-            ])
+        Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <
+            Widget>[
+          _buildColumnView(Utils.topSafeHeight, Utils.navigationBarHeight),
+          Container(
+            padding: EdgeInsets.only(
+                left: 20, right: 20, bottom: Utils.navigationBarHeight),
+            child: Column(children: <Widget>[
+              Row(children: <Widget>[
+                ImageLoadView('${post.category.imageLab}',
+                    width: 20,
+                    height: 20,
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                SizedBox(width: 5),
+                Text('${post.category.title}',
+                    style: TextStyle(color: Colors.white))
+              ]),
+              SizedBox(height: 8),
+              Text('${post.title}',
+                  style: TextStyle(fontSize: 22, color: Colors.white)),
+              SizedBox(height: 8),
+              Row(children: <Widget>[
+                ImageLoadView('${author.avatar}',
+                    width: 25,
+                    height: 25,
+                    borderRadius: BorderRadius.all(Radius.circular(12.5))),
+                SizedBox(width: 5),
+                Text('${author.name}', style: TextStyle(color: Colors.white)),
+                Spacer(),
+                Text(post?.publishTime, style: TextStyle(color: Colors.white))
+              ])
+            ]),
+          )
+        ])
       ]),
     );
   }

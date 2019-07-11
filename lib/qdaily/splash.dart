@@ -33,6 +33,8 @@ class _QdailySplashPageState extends State<QdailySplashPage>
   @override
   void initState() {
     super.initState();
+    initSpDate();
+
     _controller = AnimationController(
         vsync: this, duration: Duration(seconds: 3, milliseconds: 500));
     _animation = Tween(begin: 0.0, end: 1.0)
@@ -46,7 +48,7 @@ class _QdailySplashPageState extends State<QdailySplashPage>
       }
     });
 
-    initSpDate();
+    _initBannerData();
   }
 
   @override
@@ -142,9 +144,7 @@ class _QdailySplashPageState extends State<QdailySplashPage>
     prefs = await SharedPreferences.getInstance();
 
     isFirst = prefs.getBool('qdaily_isFirst');
-
-    if (isFirst || isFirst == null) {
-      _initBannerData();
-    }
+    debugPrint('===================$isFirst');
+    setState(() {});
   }
 }

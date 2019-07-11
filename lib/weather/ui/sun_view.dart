@@ -4,12 +4,12 @@ import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/custom_widgets/sunrise_sunset_view.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/ui/line.dart';
-import 'package:common_utils/common_utils.dart';
+import 'package:flutter_app/utils/date_format.dart';
 
 class SunView extends StatefulWidget {
-  final String cityname;
+  final String cityName;
 
-  SunView(this.cityname, {Key key}) : super(key: key);
+  SunView(this.cityName, {Key key}) : super(key: key);
 
   @override
   createState() => _SunViewState();
@@ -21,7 +21,7 @@ class _SunViewState extends State<SunView>
   bool get wantKeepAlive => true;
 
   HeWeather weather;
-  SunriseSunset sunrise_sunset = null;
+  SunriseSunset sunriseSunset;
 
   int totalMin = 0;
   int progressMin = 0;
@@ -34,69 +34,63 @@ class _SunViewState extends State<SunView>
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 10.0),
-      color: Color(0x2a000000),
-      padding: EdgeInsets.all(10.0),
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('日出日落', style: TextStyle(color: Colors.white)),
-            Line(),
-            Container(
-                height: 160,
-                child: sunrise_sunset == null
-                    ? Center()
-                    : SunriseSunsetView(
-                        progress: totalMin == 0 ? 0 : progressMin / totalMin),
-                width: double.infinity,
-                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10)),
-            Row(children: <Widget>[
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(FeatherIcons.sunrise, color: Colors.white),
-                    Text('日出${sunrise_sunset?.sr}',
-                        style: TextStyle(color: Colors.white))
-                  ]),
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(FeatherIcons.sunset, color: Colors.white),
-                    Text('日落${sunrise_sunset?.ss}',
-                        style: TextStyle(color: Colors.white))
-                  ]),
-            ], mainAxisAlignment: MainAxisAlignment.spaceBetween)
-          ]),
-    );
+        margin: EdgeInsets.only(top: 10.0),
+        color: Color(0x2a000000),
+        padding: EdgeInsets.all(10.0),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text('日出日落', style: TextStyle(color: Colors.white)),
+              Line(),
+              Container(
+                  height: 160,
+                  child: sunriseSunset == null
+                      ? Center()
+                      : SunriseSunsetView(
+                          progress: totalMin == 0 ? 0 : progressMin / totalMin),
+                  width: double.infinity,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 10)),
+              Row(children: <Widget>[
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(FeatherIcons.sunrise, color: Colors.white),
+                      Text('日出${sunriseSunset?.sr}',
+                          style: TextStyle(color: Colors.white))
+                    ]),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(FeatherIcons.sunset, color: Colors.white),
+                      Text('日落${sunriseSunset?.ss}',
+                          style: TextStyle(color: Colors.white))
+                    ]),
+              ], mainAxisAlignment: MainAxisAlignment.spaceBetween)
+            ]));
   }
 
   void getSunData() async {
-    weather = await ApiService.getSunriseSunset(widget.cityname);
+    weather = await ApiService.getSunriseSunset(widget.cityName);
 
     setState(() {
-      sunrise_sunset = weather.sunrise_sunset[0];
+      sunriseSunset = weather.sunrise_sunset[0];
 
-      String nowTime = DateUtil.getDateStrByDateTime(DateTime.now(),
-          format: DateFormat.HOUR_MINUTE);
+      String nowTime = formatDate(DateTime.now(), [HH, ':', nn]);
 
       /// 当前时间
       int currentHour = int.parse('${nowTime.substring(0, 2)}');
       int currentMin = int.parse('${nowTime.substring(3)}');
 
       /// 日落
-      int ssHour = int.parse('${sunrise_sunset?.ss.substring(0, 2)}');
-      int ssMin = int.parse('${sunrise_sunset?.ss.substring(3)}');
+      int ssHour = int.parse('${sunriseSunset.ss.substring(0, 2)}');
+      int ssMin = int.parse('${sunriseSunset.ss.substring(3)}');
 
       /// 日出
-      int srHour = int.parse('${sunrise_sunset?.sr.substring(0, 2)}');
-      int srMin = int.parse('${sunrise_sunset?.sr.substring(3)}');
+      int srHour = int.parse('${sunriseSunset.sr.substring(0, 2)}');
+      int srMin = int.parse('${sunriseSunset.sr.substring(3)}');
 
       /// 日出到日落间的总时间（分钟）
       totalMin = (ssHour - srHour) * 60 + (ssMin - srMin);

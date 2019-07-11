@@ -4,11 +4,11 @@ import 'package:flutter_app/article/collect_article.dart';
 import 'package:flutter_app/article/db/article_provider.dart';
 import 'package:flutter_app/bean/article.dart';
 import 'package:flutter_app/service/api_service.dart';
+import 'package:flutter_app/utils/date_format.dart';
 
 import 'package:flutter_html/flutter_html.dart';
 import 'package:html/dom.dart' as dom;
 
-import 'package:common_utils/common_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../page_index.dart';
@@ -40,12 +40,14 @@ class _OneArticlePageState extends State<OneArticlePage>
   TabController _tabController;
 
   String _date;
-  String today = DateUtil.getDateStrByDateTime(DateTime.now(),
-      format: DateFormat.YEAR_MONTH_DAY);
+
+  String today = formatDate(DateTime.now(), [yyyy, mm, d]);
 
   @override
   void initState() {
     super.initState();
+
+    debugPrint(today);
 
     _init();
   }
@@ -120,89 +122,79 @@ class _OneArticlePageState extends State<OneArticlePage>
       return getLoadingWidget();
     }
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
-      child: Container(
-        alignment: Alignment.topCenter,
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Text(
-                article.title,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600, fontSize: _fontSize + 1),
-              ),
-            ),
-            Label(
-              triangleHeight: 10.0,
-              edge: Edge.RIGHT,
-              child: Container(
-                padding: const EdgeInsets.only(
-                    left: 8.0, right: 18.0, top: 8.0, bottom: 8.0),
-                color: themeColors[_themeColorIndex],
+        physics: BouncingScrollPhysics(),
+        child: Container(
+            alignment: Alignment.topCenter,
+            child: Column(children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Text(
-                  article.author,
-                  style:
-                      TextStyle(color: Colors.white, fontSize: _fontSize - 1),
+                  article.title,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600, fontSize: _fontSize + 1),
                 ),
               ),
-            ),
-            Html(
-              data: article.content,
-              defaultTextStyle: TextStyle(fontSize: _fontSize),
-              // Optional parameters:
-              padding: EdgeInsets.all(8.0),
-              blockSpacing: 2.0,
-              useRichText: true,
-              linkStyle: const TextStyle(
-                color: Colors.redAccent,
-                decorationColor: Colors.redAccent,
-                decoration: TextDecoration.underline,
+              Label(
+                triangleHeight: 10.0,
+                edge: Edge.RIGHT,
+                child: Container(
+                  padding: const EdgeInsets.only(
+                      left: 8.0, right: 18.0, top: 8.0, bottom: 8.0),
+                  color: themeColors[_themeColorIndex],
+                  child: Text(
+                    article.author,
+                    style:
+                        TextStyle(color: Colors.white, fontSize: _fontSize - 1),
+                  ),
+                ),
               ),
-              onLinkTap: (url) {
-                print("Opening $url...");
-              },
-              customRender: (node, children) {
-                if (node is dom.Element) {
-                  switch (node.localName) {
-                    case "custom_tag":
-                      return Column(children: children);
-                  }
-                }
-              },
-            ),
-          ],
-        ),
-      ),
-    );
+              Html(
+                  data: article.content,
+                  defaultTextStyle: TextStyle(fontSize: _fontSize),
+                  // Optional parameters:
+                  padding: EdgeInsets.all(8.0),
+                  blockSpacing: 2.0,
+                  useRichText: true,
+                  linkStyle: const TextStyle(
+                    color: Colors.redAccent,
+                    decorationColor: Colors.redAccent,
+                    decoration: TextDecoration.underline,
+                  ),
+                  onLinkTap: (url) {
+                    print("Opening $url...");
+                  },
+                  customRender: (node, children) {
+                    if (node is dom.Element) {
+                      switch (node.localName) {
+                        case "custom_tag":
+                          return Column(children: children);
+                      }
+                    }
+                  })
+            ])));
   }
 
   Widget _buildFontSizeSelector(mSetState) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text('字号'),
-        Expanded(
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+      Text('字号'),
+      Expanded(
           child: Slider(
-            onChanged: (double value) {
-              double valueRound = value.roundToDouble();
-              prefs.setDouble('article_font_size', valueRound);
-              mSetState(() {});
-              setState(() {
-                _fontSize = valueRound;
-              });
-            },
-            divisions: 16,
-            label: "${_fontSize.round()}",
-            value: _fontSize,
-            activeColor: themeColors[_themeColorIndex],
-            min: 10,
-            max: 26,
-          ),
-        ),
-      ],
-    );
+              onChanged: (double value) {
+                double valueRound = value.roundToDouble();
+                prefs.setDouble('article_font_size', valueRound);
+                mSetState(() {});
+                setState(() {
+                  _fontSize = valueRound;
+                });
+              },
+              divisions: 16,
+              label: "${_fontSize.round()}",
+              value: _fontSize,
+              activeColor: themeColors[_themeColorIndex],
+              min: 10,
+              max: 26))
+    ]);
   }
 
   Widget _buildThemeSelector(mSetState) {
@@ -211,33 +203,29 @@ class _OneArticlePageState extends State<OneArticlePage>
       tabs.add(Tab(icon: Icon(Icons.markunread_mailbox, color: color)));
     }
 
-    return Row(
-      children: <Widget>[
-        Text('主题'),
-        Gaps.hGap5,
-        Expanded(
-            child: TabBar(
-          tabs: tabs,
-          isScrollable: true,
-          controller: _tabController,
-          indicatorPadding: const EdgeInsets.only(left: 5, right: 5),
-          onTap: (int index) {
-            prefs.setInt('themeIndex', index);
-            setState(() {
-              _themeColorIndex = index;
-            });
-            mSetState(() {});
-          },
-          indicatorColor: themeColors[_themeColorIndex],
-        ))
-      ],
-    );
+    return Row(children: <Widget>[
+      Text('主题'),
+      Gaps.hGap5,
+      Expanded(
+          child: TabBar(
+              tabs: tabs,
+              isScrollable: true,
+              controller: _tabController,
+              indicatorPadding: const EdgeInsets.only(left: 5, right: 5),
+              onTap: (int index) {
+                prefs.setInt('themeIndex', index);
+                setState(() {
+                  _themeColorIndex = index;
+                });
+                mSetState(() {});
+              },
+              indicatorColor: themeColors[_themeColorIndex]))
+    ]);
   }
 
   Widget _buildArticleChange(mSetState) {
-    return Row(
-      children: <Widget>[
-        Expanded(
+    return Row(children: <Widget>[
+      Expanded(
           child: RaisedButton(
               color: themeColors[_themeColorIndex],
               onPressed: () {
@@ -246,10 +234,9 @@ class _OneArticlePageState extends State<OneArticlePage>
                 mSetState(() {});
               },
               child: Text('前一天', style: TextStyle(color: Colors.white)),
-              shape: const StadiumBorder()),
-        ),
-        Gaps.hGap5,
-        Expanded(
+              shape: const StadiumBorder())),
+      Gaps.hGap5,
+      Expanded(
           child: RaisedButton(
               color: themeColors[_themeColorIndex],
               onPressed: () {
@@ -258,10 +245,9 @@ class _OneArticlePageState extends State<OneArticlePage>
                 mSetState(() {});
               },
               child: Text('随机', style: TextStyle(color: Colors.white)),
-              shape: const StadiumBorder()),
-        ),
-        Gaps.hGap5,
-        Expanded(
+              shape: const StadiumBorder())),
+      Gaps.hGap5,
+      Expanded(
           child: RaisedButton(
               color: themeColors[_themeColorIndex],
               onPressed: _date != today
@@ -272,10 +258,9 @@ class _OneArticlePageState extends State<OneArticlePage>
                     }
                   : null,
               child: Text('后一天', style: TextStyle(color: Colors.white)),
-              shape: const StadiumBorder()),
-        ),
-        Gaps.hGap5,
-        Expanded(
+              shape: const StadiumBorder())),
+      Gaps.hGap5,
+      Expanded(
           child: RaisedButton(
               color: themeColors[_themeColorIndex],
               onPressed: () {
@@ -284,54 +269,51 @@ class _OneArticlePageState extends State<OneArticlePage>
                 mSetState(() {});
               },
               shape: const StadiumBorder(),
-              child: Text('今天', style: TextStyle(color: Colors.white))),
-        )
-      ],
-    );
+              child: Text('今天', style: TextStyle(color: Colors.white))))
+    ]);
   }
 
   Widget _buildCollect(String date, mSetState) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        MaterialButton(
-            onPressed: () {
-              if (starred) {
-                starred = false;
-                provider.cancelStarred(date);
-              } else {
-                starred = true;
-                provider.insertOrReplaceToDB(article);
-              }
-              setState(() {});
-              mSetState(() {});
-            },
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Icon(starred ? Icons.star : Icons.star_border,
-                    color: Colors.white),
-                Text(starred ? '已收藏' : '收藏',
-                    style: TextStyle(color: Colors.white))
-              ],
-            ),
-            color: themeColors[_themeColorIndex],
-            shape: const StadiumBorder()),
-        MaterialButton(
-            onPressed: () {
-              getList();
-            },
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Icon(Icons.list, color: Colors.white),
-                Text('收藏列表', style: TextStyle(color: Colors.white))
-              ],
-            ),
-            color: themeColors[_themeColorIndex],
-            shape: const StadiumBorder()),
-      ],
-    );
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          MaterialButton(
+              onPressed: () {
+                if (starred) {
+                  starred = false;
+                  provider.cancelStarred(date);
+                } else {
+                  starred = true;
+                  provider.insertOrReplaceToDB(article);
+                }
+                setState(() {});
+                mSetState(() {});
+              },
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Icon(starred ? Icons.star : Icons.star_border,
+                      color: Colors.white),
+                  Text(starred ? '已收藏' : '收藏',
+                      style: TextStyle(color: Colors.white))
+                ],
+              ),
+              color: themeColors[_themeColorIndex],
+              shape: const StadiumBorder()),
+          MaterialButton(
+              onPressed: () {
+                getList();
+              },
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.list, color: Colors.white),
+                  Text('收藏列表', style: TextStyle(color: Colors.white))
+                ],
+              ),
+              color: themeColors[_themeColorIndex],
+              shape: const StadiumBorder())
+        ]);
   }
 
   void collectState(date) async {
@@ -370,7 +352,7 @@ class _OneArticlePageState extends State<OneArticlePage>
 
     provider = ArticleProvider();
 
-    print('${widget.date}================');
+    debugPrint('${widget.date}================');
 
     if (widget.date == null) {
       getArticle('today');

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:common_utils/common_utils.dart';
+import 'package:flutter_app/utils/date_format.dart';
 
 class HeWeather {
   /// 接口状态
@@ -296,8 +295,9 @@ class Hourly {
       '22:00',
       '23:00'
     ];
-    String _time = DateUtil.getDateStrByTimeStr("${map['time']}:00",
-        format: DateFormat.HOUR_MINUTE);
+
+    String _time =
+        formatDate(DateTime.parse("${map['time']}:00"), [HH, ':', nn]);
 
     if ((map['cond_code'] == '100' ||
             map['cond_code'] == '103' ||

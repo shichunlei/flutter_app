@@ -26,14 +26,14 @@ void main() async {
       }
     });
   }, onError: (Object error, StackTrace stack) {
-    print(error);
-    print(stack);
+    debugPrint(error);
+    debugPrint(stack.toString());
   });
 }
 
 void setCustomErrorPage() {
   ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) {
-    print(flutterErrorDetails.toString());
+    debugPrint(flutterErrorDetails.toString());
     return Center(child: Text("Flutter 走神了"));
   };
 }
@@ -96,7 +96,7 @@ class _MyAppState extends State<MyApp> {
 
         /// locale: Locale('zh', 'CH'),
         localeResolutionCallback: (deviceLocale, supportedLocal) {
-          print(
+          debugPrint(
               '当前设备语种 deviceLocale: $deviceLocale, 支持语种 supportedLocale: $supportedLocal}');
           // 判断传入语言是否支持
           Locale _locale = supportedLocal.contains(deviceLocale)

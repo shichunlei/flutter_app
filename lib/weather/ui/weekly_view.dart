@@ -4,12 +4,12 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/global/data.dart';
 import 'package:flutter_app/ui/line.dart';
-import 'package:common_utils/common_utils.dart';
+import 'package:flutter_app/utils/date_format.dart';
 
 class WeeklyView extends StatelessWidget {
-  final List<DailyForecast> daily_forecast;
+  final List<DailyForecast> dailyForecast;
 
-  WeeklyView(this.daily_forecast, {Key key}) : super(key: key);
+  WeeklyView(this.dailyForecast, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +23,19 @@ class WeeklyView extends StatelessWidget {
               Text('未来一周天气预报', style: TextStyle(color: Colors.white)),
               Line(),
               Row(
-                  children: daily_forecast.map((daily) {
-                DateTime dt = DateTime.parse(daily.date).toLocal();
+                  children: dailyForecast.map((daily) {
+                DateTime dt = DateTime.parse(daily.date);
                 return Expanded(
                     child: Center(
                         child: Text(
-                            DateUtil.isToday(dt.millisecondsSinceEpoch)
-                                ? '今天'
-                                : DateUtil.getZHWeekDay(dt),
+                            isToday(daily.date)
+                                ? "今天"
+                                : formatDate(dt, [EE_ZH]),
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.white))));
               }).toList()),
               Row(
-                  children: daily_forecast.map((daily) {
+                  children: dailyForecast.map((daily) {
                 return Expanded(
                     child: Center(
                         child: Text(daily.cond_txt_d,
@@ -43,7 +43,7 @@ class WeeklyView extends StatelessWidget {
                             style: TextStyle(color: Colors.white))));
               }).toList()),
               Row(
-                  children: daily_forecast.map((daily) {
+                  children: dailyForecast.map((daily) {
                 return Expanded(
                     child: Center(
                         child: Image.network(daily.cond_code_d,
@@ -75,7 +75,7 @@ class WeeklyView extends StatelessWidget {
                       ),
                       customSeriesRenderers: [])),
               Row(
-                  children: daily_forecast.map((daily) {
+                  children: dailyForecast.map((daily) {
                 return Expanded(
                     child: Center(
                         child: Text(daily.cond_txt_n,
@@ -83,14 +83,14 @@ class WeeklyView extends StatelessWidget {
                             style: TextStyle(color: Colors.white))));
               }).toList()),
               Row(
-                  children: daily_forecast.map((daily) {
+                  children: dailyForecast.map((daily) {
                 return Expanded(
                     child: Center(
                         child: Image.network(daily.cond_code_n,
                             width: 20.0, height: 20.0)));
               }).toList()),
               Row(
-                  children: daily_forecast.map((daily) {
+                  children: dailyForecast.map((daily) {
                 return Expanded(
                     child: Center(
                         child: Text(daily.wind_dir,
@@ -98,7 +98,7 @@ class WeeklyView extends StatelessWidget {
                             style: TextStyle(color: Colors.white))));
               }).toList()),
               Row(
-                  children: daily_forecast.map((daily) {
+                  children: dailyForecast.map((daily) {
                 return Expanded(
                     child: Center(
                         child: Text('${daily.wind_sc}级',
@@ -109,14 +109,14 @@ class WeeklyView extends StatelessWidget {
   }
 
   List<charts.Series<LinearSales, num>> _createDailyTmps() {
-    final List<LinearSales> max = daily_forecast.map((daily) {
+    final List<LinearSales> max = dailyForecast.map((daily) {
       return LinearSales(
-          daily_forecast.indexOf(daily), int.parse(daily.tmp_max));
+          dailyForecast.indexOf(daily), int.parse(daily.tmp_max));
     }).toList();
 
-    final List<LinearSales> min = daily_forecast.map((daily) {
+    final List<LinearSales> min = dailyForecast.map((daily) {
       return LinearSales(
-          daily_forecast.indexOf(daily), int.parse(daily.tmp_min));
+          dailyForecast.indexOf(daily), int.parse(daily.tmp_min));
     }).toList();
 
     return [

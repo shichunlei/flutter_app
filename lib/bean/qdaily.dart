@@ -1,3 +1,5 @@
+import 'package:flutter_app/utils/date_format.dart';
+
 /// image : "http://img.qdaily.com/article/article_show/20190523001508leXuFoOV5hpGsAaC.png?imageMogr2/auto-orient/thumbnail/!640x380r/gravity/Center/crop/640x380/quality/85/format/jpg/ignore-error/1"
 /// type : 2
 /// datatype : "article"
@@ -62,7 +64,7 @@ class NewList {
 class PostBean {
   String title;
   String description;
-  dynamic publishTime;
+  String publishTime;
   String startTime;
   String superTag;
   dynamic duration;
@@ -110,7 +112,9 @@ class PostBean {
     postBean.title = map['title'];
     postBean.image = map['image'];
     postBean.description = map['description'];
-    postBean.publishTime = map['publish_time'];
+    postBean.publishTime = (map['publish_time'] is int)
+        ? formatDateByMs(map['publish_time'] * 1000, [mm, '月', dd, '日'])
+        : formatDateByStr(map['publish_time'], [mm, '月', dd, '日']);
     postBean.startTime = "${map['start_time']}";
     postBean.superTag = map['super_tag'];
     postBean.duration = map['duration'];

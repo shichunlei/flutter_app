@@ -1,10 +1,9 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/qdaily.dart';
+import 'package:flutter_app/utils/date_format.dart';
 
 import '../../page_index.dart';
-
-import 'package:common_utils/common_utils.dart';
 
 class ItemComment extends StatelessWidget {
   final CommentBean comment;
@@ -54,8 +53,7 @@ class ItemComment extends StatelessWidget {
       Gaps.hGap8,
       Text('${author?.name}'),
       Gaps.hGap8,
-      Text(
-          "${DateUtil.getDateStrByMs(publishTime * 1000, format: DateFormat.ZH_MONTH_DAY)}"),
+      Text("${formatDateByMs(publishTime * 1000, [mm, '月', dd, '日'])}"),
       Spacer(),
       Icon(FeatherIcons.thumbsUp, size: 20)
     ]);
