@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../lang/index.dart';
 
 import '../lang/config.dart' as I18NConfig;
+import '../page_index.dart';
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   final Locale locale;
@@ -18,8 +18,7 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
 
   @override
   Future<AppLocalizations> load(Locale _locale) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String lang = prefs.getString('lang');
+    String lang = SpUtil.getString('lang');
     Locale __locale = locale ?? _locale;
     if (null != lang && '' != lang) {
       __locale = Locale(lang);

@@ -72,6 +72,7 @@ export 'utils/route_util.dart';
 export 'utils/loading_util.dart';
 export 'utils/database.dart';
 export 'utils/md5_util.dart';
+export 'utils/sp_util.dart';
 
 export 'ui/change_appbar.dart';
 export 'ui/empty.dart';

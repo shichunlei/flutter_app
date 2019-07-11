@@ -9,8 +9,6 @@ import 'package:flutter_app/utils/date_format.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:html/dom.dart' as dom;
 
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../page_index.dart';
 
 class OneArticlePage extends StatefulWidget {
@@ -27,8 +25,6 @@ class _OneArticlePageState extends State<OneArticlePage>
   bool isShowLoading = false;
   bool isFirst = true;
   bool starred = false;
-
-  SharedPreferences prefs;
 
   Article article;
 
@@ -49,7 +45,23 @@ class _OneArticlePageState extends State<OneArticlePage>
 
     debugPrint(today);
 
-    _init();
+    _fontSize = SpUtil.getDouble('article_font_size', defValue: 18.0);
+    _themeColorIndex = SpUtil.getInt('themeIndex', defValue: 0);
+
+    _tabController = TabController(
+        length: themeColors.length,
+        vsync: this,
+        initialIndex: _themeColorIndex);
+
+    provider = ArticleProvider();
+
+    debugPrint('${widget.date}================');
+
+    if (widget.date == null) {
+      getArticle('today');
+    } else {
+      getArticle('day', date: widget.date);
+    }
   }
 
   @override
@@ -182,7 +194,7 @@ class _OneArticlePageState extends State<OneArticlePage>
           child: Slider(
               onChanged: (double value) {
                 double valueRound = value.roundToDouble();
-                prefs.setDouble('article_font_size', valueRound);
+                SpUtil.setDouble('article_font_size', valueRound);
                 mSetState(() {});
                 setState(() {
                   _fontSize = valueRound;
@@ -213,7 +225,7 @@ class _OneArticlePageState extends State<OneArticlePage>
               controller: _tabController,
               indicatorPadding: const EdgeInsets.only(left: 5, right: 5),
               onTap: (int index) {
-                prefs.setInt('themeIndex', index);
+                SpUtil.setInt('themeIndex', index);
                 setState(() {
                   _themeColorIndex = index;
                 });
@@ -329,35 +341,6 @@ class _OneArticlePageState extends State<OneArticlePage>
       pushNewPage(context, CollectArticle(themeColors[_themeColorIndex], list));
     } else {
       Toast.show('暂无收藏', context);
-    }
-  }
-
-  void _init() async {
-    prefs = await SharedPreferences.getInstance();
-
-    _fontSize = prefs.getDouble('article_font_size');
-    _themeColorIndex = prefs.getInt('themeIndex');
-    if (_fontSize == null) {
-      _fontSize = 18.0;
-    }
-    if (_themeColorIndex == null) {
-      _themeColorIndex = 0;
-    }
-    setState(() {});
-
-    _tabController = TabController(
-        length: themeColors.length,
-        vsync: this,
-        initialIndex: _themeColorIndex);
-
-    provider = ArticleProvider();
-
-    debugPrint('${widget.date}================');
-
-    if (widget.date == null) {
-      getArticle('today');
-    } else {
-      getArticle('day', date: widget.date);
     }
   }
 }

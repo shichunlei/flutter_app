@@ -3,7 +3,6 @@ import 'package:flutter_app/contact/page/contact_list_page.dart';
 import 'package:flutter_app/lang/index.dart';
 import 'package:flutter_app/login/page/login_page.dart';
 import 'package:package_info/package_info.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../page_index.dart';
 
@@ -25,13 +24,19 @@ class _HomeDrawableState extends State<HomeDrawable> {
   String version;
   String buildNumber;
 
-  SharedPreferences prefs;
-
   @override
   void initState() {
     super.initState();
 
-    _initInfo();
+    isLogin = SpUtil.getBool("isLogin", defValue: false);
+
+    userName = isLogin ? "SCL" : "未登录";
+    email = isLogin ? "1558053958@qq.com" : "";
+    avatar = isLogin
+        ? "http://hbimg.b0.upaiyun.com/63ddc018b96442eeb24c73f393f5ae066d58fb7e6607e-WScNBs_fw658"
+        : "https://user-gold-cdn.xitu.io/2019/1/27/1688f8ce3151738a?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1";
+
+    _initPackageInfo();
   }
 
   @override
@@ -98,7 +103,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
                         FlatButton(
                             child: Text("退出"),
                             onPressed: () {
-                              prefs.remove('isLogin');
+                              SpUtil.remove('isLogin');
                               pushAndRemovePage(context, LoginPage());
                             }),
                         FlatButton(
@@ -121,20 +126,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
     ]);
   }
 
-  Future<void> _initInfo() async {
-    prefs = await SharedPreferences.getInstance();
-
-    isLogin = prefs.getBool("isLogin");
-
-    if (isLogin == null) {
-      isLogin = false;
-    }
-    userName = isLogin ? "SCL" : "未登录";
-    email = isLogin ? "1558053958@qq.com" : "";
-    avatar = isLogin
-        ? "http://hbimg.b0.upaiyun.com/63ddc018b96442eeb24c73f393f5ae066d58fb7e6607e-WScNBs_fw658"
-        : "https://user-gold-cdn.xitu.io/2019/1/27/1688f8ce3151738a?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1";
-
+  Future<void> _initPackageInfo() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
     setState(() {

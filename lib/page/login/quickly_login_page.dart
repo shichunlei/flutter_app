@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../page_index.dart';
 import 'register_page.dart';
@@ -27,7 +26,7 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
     _phoneController.addListener(_verify);
     _vCodeController.addListener(_verify);
 
-    initSpDate();
+    setState(() => _phoneController.text = SpUtil.getString('login_phone'));
   }
 
   void _verify() {
@@ -122,14 +121,8 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
   }
 
   void _login() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('login_phone', _phoneController.text);
+    SpUtil.setString('login_phone', _phoneController.text);
 
     Navigator.pop(context);
-  }
-
-  void initSpDate() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() => _phoneController.text = prefs.getString('login_phone'));
   }
 }

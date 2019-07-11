@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_app/utils/sp_util.dart';
 import '../delegates/app_localizations_delegate.dart';
 
 import '../lang/config.dart' as I18NConfig;
@@ -58,8 +58,7 @@ class AppLocalizations {
           : Locale("zh", "CH");
     }
     _inst._locale = locale;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('lang', locale.languageCode);
+    SpUtil.setString('lang', locale.languageCode);
     getLanguageJson().then((v) {
       _setState(() {
         _delegate = AppLocalizationsDelegate(locale);
