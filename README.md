@@ -14,6 +14,51 @@ A new Flutter application.
 - 各种UI （豆瓣电影、好奇心日报、每日一文、和天气、百姓生活、随机诗词、联系人、句子迷、朋友圈等）
 
 
+## 运行环境
+
+```
+[✓] Flutter (Channel beta, v1.5.4-hotfix.2, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
+    • Flutter version 1.5.4-hotfix.2 at /Users/14cells/Android/flutter
+    • Framework revision 7a4c33425d (2 months ago), 2019-04-29 11:05:24 -0700
+    • Engine revision 52c7a1e849
+    • Dart version 2.3.0 (build 2.3.0-dev.0.5 a1668566e5)
+
+[✓] Android toolchain - develop for Android devices (Android SDK version 29.0.0)
+    • Android SDK at /Users/14cells/Android/SDK
+    • Android NDK location not configured (optional; useful for native profiling support)
+    • Platform android-29, build-tools 29.0.0
+    • Java binary at: /Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin/java
+    • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1343-b01)
+    • All Android licenses accepted.
+
+[✗] iOS toolchain - develop for iOS devices
+    ✗ Xcode installation is incomplete; a full installation is necessary for iOS development.
+      Download at: https://developer.apple.com/xcode/download/
+      Or install Xcode via the App Store.
+      Once installed, run:
+        sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+    ✗ libimobiledevice and ideviceinstaller are not installed. To install with Brew, run:
+        brew update
+        brew install --HEAD usbmuxd
+        brew link usbmuxd
+        brew install --HEAD libimobiledevice
+        brew install ideviceinstaller
+    ✗ ios-deploy not installed. To install:
+        brew install ios-deploy
+    ✗ CocoaPods not installed.
+        CocoaPods is used to retrieve the iOS platform side's plugin code that responds to your plugin usage on the Dart side.
+        Without resolving iOS dependencies with CocoaPods, plugins will not work on iOS.
+        For more info, see https://flutter.dev/platform-plugins
+      To install:
+        brew install cocoapods
+        pod setup
+
+[✓] Android Studio (version 3.4)
+    • Android Studio at /Applications/Android Studio.app/Contents
+    • Flutter plugin version 36.0.1
+    • Dart plugin version 183.6270
+    • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1343-b01)
+```
 
 ## API接口
 

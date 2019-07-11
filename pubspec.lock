@@ -7,7 +7,7 @@ packages:
       name: after_layout
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.7+1"
+    version: "1.0.7+2"
   async:
     dependency: transitive
     description:
@@ -28,7 +28,7 @@ packages:
       name: badges
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.3"
+    version: "1.1.0"
   barcode_scan:
     dependency: "direct main"
     description:
@@ -84,7 +84,7 @@ packages:
       name: city_pickers
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.16"
+    version: "0.1.20"
   clippy_flutter:
     dependency: "direct main"
     description:
@@ -121,7 +121,7 @@ packages:
       name: cookie_jar
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   crypto:
     dependency: "direct main"
     description:
@@ -156,7 +156,7 @@ packages:
       name: dio
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.7"
+    version: "2.1.13"
   english_words:
     dependency: "direct main"
     description:
@@ -217,7 +217,7 @@ packages:
       name: flutter_inner_drawer
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.8"
+    version: "0.2.9"
   flutter_jd_address_selector:
     dependency: "direct main"
     description:
@@ -334,7 +334,7 @@ packages:
       name: keyboard_actions
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.1+1"
   logging:
     dependency: transitive
     description:
@@ -425,7 +425,7 @@ packages:
       name: qr
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.1"
+    version: "1.2.0"
   qr_flutter:
     dependency: "direct main"
     description:
@@ -493,7 +493,7 @@ packages:
       name: sqflite
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.5"
+    version: "1.1.6+1"
   stack_trace:
     dependency: transitive
     description:
@@ -521,7 +521,7 @@ packages:
       name: synchronized
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.0+1"
   term_glyph:
     dependency: transitive
     description:

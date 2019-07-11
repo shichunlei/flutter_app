@@ -23,7 +23,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # AzListView，Flutter 城市列表，联系人列表，自定义Header，索引，悬停效果。
   azlistview: ^0.1.2
 
-  badges: ^1.0.3
+  badges: ^1.1.0
 
   # 扫描二维码
   barcode_scan: ^0.0.8
@@ -35,7 +35,7 @@ dependencies: # 应用或包依赖的其它包或插件
 
   city_picker: ^0.1.3
 
-  city_pickers: ^0.1.16
+  city_pickers: ^0.1.20
 
   clippy_flutter:
     git:
@@ -53,7 +53,7 @@ dependencies: # 应用或包依赖的其它包或插件
   device_info: ^0.3.0
 
   # 网络请求库
-  dio: ^2.1.7
+  dio: ^2.1.13
 
   # 英文单词库
   english_words: ^3.1.5
@@ -74,7 +74,7 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_html: ^0.9.6
 
   # 侧滑菜单
-  flutter_inner_drawer: ^0.2.8
+  flutter_inner_drawer: ^0.2.9
 
   flutter_jd_address_selector:
     git:
@@ -109,7 +109,7 @@ dependencies: # 应用或包依赖的其它包或插件
   intro_slider: ^1.2.0
 
   # 处理键盘事件 https://github.com/diegoveloper/flutter_keyboard_actions
-  keyboard_actions: ^2.1.1
+  keyboard_actions: ^2.1.1+1
 
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.7
