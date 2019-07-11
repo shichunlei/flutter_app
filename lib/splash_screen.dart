@@ -5,8 +5,7 @@ import 'package:flutter_app/home_page.dart';
 import 'package:flutter_app/intro_slide_page.dart';
 import 'package:flutter_app/login/page/login_page.dart';
 import 'package:flutter_app/utils/route_util.dart';
-
-import 'utils/sp_util.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreenPage extends StatefulWidget {
   @override
@@ -26,8 +25,9 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   }
 
   Future checkFirstSeen(context) async {
-    bool _seen = SpUtil.getBool("first_open", defValue: false);
-    bool isLogin = SpUtil.getBool("isLogin", defValue: false);
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    bool _seen = _prefs.getBool("first_open") ?? false;
+    bool isLogin = _prefs.getBool("isLogin") ?? false;
 
     if (_seen) {
       if (isLogin) {
@@ -36,7 +36,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         pushAndRemovePage(context, LoginPage());
       }
     } else {
-      SpUtil.setBool("first_open", true);
+      _prefs.setBool("first_open", true);
       pushAndRemovePage(context, IntroSlidePage());
     }
   }

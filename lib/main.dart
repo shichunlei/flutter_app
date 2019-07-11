@@ -27,7 +27,7 @@ void main() async {
       }
     });
   }, onError: (Object error, StackTrace stack) {
-    debugPrint(error);
+    debugPrint(error.toString());
     debugPrint(stack.toString());
   });
 }
@@ -70,11 +70,6 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     _delegate = AppLocalizationsDelegate();
     Store.setStoreCtx(context); // 初始化数据层
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override
