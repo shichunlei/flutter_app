@@ -265,7 +265,7 @@ class ExpandStateBean {
           SubExpandBean('侧滑菜单', InnerDrawerSample()),
           SubExpandBean('路由过渡动画', RouteSample()),
           SubExpandBean('DropDown', DropDownSample()),
-          SubExpandBean('Image Colors', ImageColors()),
+//          SubExpandBean('Image Colors', ImageColors()),
           SubExpandBean('Ruler', RulerSample()),
           SubExpandBean('Preview', PreviewSample()),
           SubExpandBean('CardFlip', CardFlipPage())
@@ -577,9 +577,9 @@ class ChartFlutterBean {
 
 var backgroundImage = 'http://pic1.16pic.com/00/31/72/16pic_3172062_b.jpg';
 
-String weatherBg(String cond_code) {
+String weatherBg(String condCode) {
   String bgImage = '';
-  switch (cond_code) {
+  switch (condCode) {
     case '100':
     case '200':
     case '201':

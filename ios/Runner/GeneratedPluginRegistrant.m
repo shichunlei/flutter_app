@@ -12,7 +12,6 @@
 #import <image_picker/ImagePickerPlugin.h>
 #import <image_picker_saver/ImagePickerSaverPlugin.h>
 #import <intro_slider/IntroSliderPlugin.h>
-#import <multi_image_picker/MultiImagePickerPlugin.h>
 #import <package_info/PackageInfoPlugin.h>
 #import <rounded_letter/RoundedLetterPlugin.h>
 #import <screen/ScreenPlugin.h>
@@ -34,7 +33,6 @@
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
   [FLTImagePickerSaverPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerSaverPlugin"]];
   [IntroSliderPlugin registerWithRegistrar:[registry registrarForPlugin:@"IntroSliderPlugin"]];
-  [MultiImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"MultiImagePickerPlugin"]];
   [FLTPackageInfoPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPackageInfoPlugin"]];
   [RoundedLetterPlugin registerWithRegistrar:[registry registrarForPlugin:@"RoundedLetterPlugin"]];
   [ScreenPlugin registerWithRegistrar:[registry registrarForPlugin:@"ScreenPlugin"]];

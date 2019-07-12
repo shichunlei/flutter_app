@@ -58,9 +58,9 @@ typedef RangeSliderValueIndicatorFormatter(int index, double value);
 /// See also:
 ///
 ///  * [SliderTheme] and [SliderThemeData] for information about controlling
-///    the visual appearance of the RangeSlider.
-class RangeSlider extends StatefulWidget {
-  /// Creates a material design RangeSlider.
+///    the visual appearance of the CustomRangeSlider.
+class CustomRangeSlider extends StatefulWidget {
+  /// Creates a material design CustomRangeSlider.
   ///
   /// The RangeSlider itself does not maintain any state. Instead, when the state of
   /// the RangeSlider changes, the widget calls the [onChanged] callback. Most
@@ -88,7 +88,7 @@ class RangeSlider extends StatefulWidget {
   /// * [valueIndicatorFormatter] if defined, is called to format the text to be displayed
   ///   inside a "value indicator"
   /// A fine-grained control of the appearance is achieved using a [SliderThemeData].
-  const RangeSlider({
+  const CustomRangeSlider({
     Key key,
     this.min: 0.0,
     this.max: 1.0,
@@ -301,15 +301,15 @@ class RangeSlider extends StatefulWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(new DoubleProperty('lowerValue', lowerValue));
-    properties.add(new DoubleProperty('upperValue', upperValue));
-    properties.add(new DoubleProperty('min', min));
-    properties.add(new DoubleProperty('max', max));
-    properties.add(new IntProperty('divisions', divisions));
+    properties.add(DoubleProperty('lowerValue', lowerValue));
+    properties.add(DoubleProperty('upperValue', upperValue));
+    properties.add(DoubleProperty('min', min));
+    properties.add(DoubleProperty('max', max));
+    properties.add(IntProperty('divisions', divisions));
   }
 }
 
-class _RangeSliderState extends State<RangeSlider>
+class _RangeSliderState extends State<CustomRangeSlider>
     with TickerProviderStateMixin {
   static const Duration kEnableAnimationDuration =
       const Duration(milliseconds: 75);
@@ -332,17 +332,17 @@ class _RangeSliderState extends State<RangeSlider>
     super.initState();
 
     // Initialize the animation controllers
-    overlayController = new AnimationController(
+    overlayController = AnimationController(
       duration: kRadialReactionDuration,
       vsync: this,
     );
 
-    enableController = new AnimationController(
+    enableController = AnimationController(
       duration: kEnableAnimationDuration,
       vsync: this,
     );
 
-    valueIndicatorController = new AnimationController(
+    valueIndicatorController = AnimationController(
       duration: kValueIndicatorAnimationDuration,
       vsync: this,
     );
@@ -469,7 +469,7 @@ class _RangeSliderState extends State<RangeSlider>
           ),
     );
 
-    return new _RangeSliderRenderObjectWidget(
+    return _RangeSliderRenderObjectWidget(
       lowerValue: _unlerp(widget.lowerValue),
       upperValue: _unlerp(widget.upperValue),
       divisions: widget.divisions,
@@ -521,7 +521,7 @@ class _RangeSliderRenderObjectWidget extends LeafRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return new _RenderRangeSlider(
+    return _RenderRangeSlider(
       lowerValue: lowerValue,
       upperValue: upperValue,
       divisions: divisions,
@@ -588,26 +588,26 @@ class _RenderRangeSlider extends RenderBox {
     this.valueIndicatorFormatter = valueIndicatorFormatter;
 
     // Initialization of the Drag Gesture Recognizer
-    _drag = new HorizontalDragGestureRecognizer()
+    _drag = HorizontalDragGestureRecognizer()
       ..onStart = _handleDragStart
       ..onEnd = _handleDragEnd
       ..onUpdate = _handleDragUpdate
       ..onCancel = _handleDragCancel;
 
     // Initialization of the overlay animation
-    _overlayAnimation = new CurvedAnimation(
+    _overlayAnimation = CurvedAnimation(
       parent: state.overlayController,
       curve: Curves.fastOutSlowIn,
     );
 
     // Initialization of the enable/disable animation
-    _enableAnimation = new CurvedAnimation(
+    _enableAnimation = CurvedAnimation(
       parent: state.enableController,
       curve: Curves.easeInOut,
     );
 
     // Initialization of the animation to show the value indicator
-    _valueIndicatorAnimation = new CurvedAnimation(
+    _valueIndicatorAnimation = CurvedAnimation(
       parent: state.valueIndicatorController,
       curve: Curves.fastOutSlowIn,
     );
@@ -624,7 +624,7 @@ class _RenderRangeSlider extends RenderBox {
       _preferredTrackWidth + 2 * _overlayDiameter;
   static const double _tickRadius = _trackHeight / 2.0;
   static final Tween<double> _overlayRadiusTween =
-      new Tween<double>(begin: 0.0, end: _overlayRadius);
+      Tween<double>(begin: 0.0, end: _overlayRadius);
 
   // -------------------------------------------------
   // Instance specific properties
@@ -644,7 +644,7 @@ class _RenderRangeSlider extends RenderBox {
   bool _showValueIndicator;
   double _touchRadiusExpansionRatio;
   int _valueIndicatorMaxDecimals;
-  final TextPainter _valueIndicatorPainter = new TextPainter();
+  final TextPainter _valueIndicatorPainter = TextPainter();
   RangeSliderValueIndicatorFormatter _valueIndicatorFormatter;
 
   // --------------------------------------------------
@@ -787,8 +787,7 @@ class _RenderRangeSlider extends RenderBox {
   void _updateValueIndicatorPainter() {
     if (_showValueIndicator != false) {
       _valueIndicatorPainter
-        ..text =
-            new TextSpan(style: _sliderTheme.valueIndicatorTextStyle, text: '')
+        ..text = TextSpan(style: _sliderTheme.valueIndicatorTextStyle, text: '')
         ..textDirection = TextDirection.ltr
         ..layout();
     } else {
@@ -833,7 +832,7 @@ class _RenderRangeSlider extends RenderBox {
   // -------------------------------------------
   @override
   void performResize() {
-    size = new Size(
+    size = Size(
       constraints.hasBoundedWidth ? constraints.maxWidth : _preferredTotalWidth,
       constraints.hasBoundedHeight
           ? constraints.maxHeight
@@ -927,11 +926,11 @@ class _RenderRangeSlider extends RenderBox {
     _thumbRightPosition = _trackLeft + _upperValue * _trackLength;
 
     // Define the paint colors for both unselected and selected track segments
-    Paint unselectedTrackPaint = new Paint()
+    Paint unselectedTrackPaint = Paint()
       ..color = isInteractive
           ? _sliderTheme.inactiveTrackColor
           : _sliderTheme.disabledInactiveTrackColor;
-    Paint selectedTrackPaint = new Paint()
+    Paint selectedTrackPaint = Paint()
       ..color = isInteractive
           ? _sliderTheme.activeTrackColor
           : _sliderTheme.disabledActiveTrackColor;
@@ -940,20 +939,20 @@ class _RenderRangeSlider extends RenderBox {
     if (_lowerValue > 0.0) {
       // Draw the unselected left range
       canvas.drawRect(
-          new Rect.fromLTRB(
+          Rect.fromLTRB(
               _trackLeft, _trackTop, _thumbLeftPosition, _trackBottom),
           unselectedTrackPaint);
     }
     // Draw the selected range
     canvas.drawRect(
-        new Rect.fromLTRB(
+        Rect.fromLTRB(
             _thumbLeftPosition, _trackTop, _thumbRightPosition, _trackBottom),
         selectedTrackPaint);
 
     if (_upperValue < 1.0) {
       // Draw the unselected right range
       canvas.drawRect(
-          new Rect.fromLTRB(
+          Rect.fromLTRB(
               _thumbRightPosition, _trackTop, _trackRight, _trackBottom),
           unselectedTrackPaint);
     }
@@ -965,15 +964,15 @@ class _RenderRangeSlider extends RenderBox {
   void _paintOverlay(Canvas canvas) {
     if (!_overlayAnimation.isDismissed &&
         _previousActiveThumb != _ActiveThumb.none) {
-      final Paint overlayPaint = new Paint()..color = _sliderTheme.overlayColor;
+      final Paint overlayPaint = Paint()..color = _sliderTheme.overlayColor;
       final double radius = _overlayRadiusTween.evaluate(_overlayAnimation);
 
       // We need to find the position of the overlay % active thumb
       Offset center;
       if (_previousActiveThumb == _ActiveThumb.lowerThumb) {
-        center = new Offset(_thumbLeftPosition, _trackVerticalCenter);
+        center = Offset(_thumbLeftPosition, _trackVerticalCenter);
       } else {
-        center = new Offset(_thumbRightPosition, _trackVerticalCenter);
+        center = Offset(_thumbRightPosition, _trackVerticalCenter);
       }
 
       canvas.drawCircle(center, radius, overlayPaint);
@@ -989,13 +988,12 @@ class _RenderRangeSlider extends RenderBox {
 
     for (int i = 0; i <= _divisions; i++) {
       final double left = _trackLeft + i * dx;
-      final Offset center =
-          new Offset(left + _tickRadius, _trackTop + _tickRadius);
+      final Offset center = Offset(left + _tickRadius, _trackTop + _tickRadius);
 
       canvas.drawCircle(
           center,
           _tickRadius,
-          new Paint()
+          Paint()
             ..color = isInteractive
                 ? _sliderTheme.activeTickMarkColor
                 : _sliderTheme.disabledActiveTickMarkColor);
@@ -1010,15 +1008,15 @@ class _RenderRangeSlider extends RenderBox {
 
   void _paintThumbs(PaintingContext context, Offset offset) {
     final Offset thumbLowerCenter =
-        new Offset(_thumbLeftPosition, _trackVerticalCenter);
+        Offset(_thumbLeftPosition, _trackVerticalCenter);
     final Offset thumbUpperCenter =
-        new Offset(_thumbRightPosition, _trackVerticalCenter);
+        Offset(_thumbRightPosition, _trackVerticalCenter);
     final double thumbRadius = _thumbRadius;
 
-    _thumbLowerRect = new Rect.fromCircle(
-        center: thumbLowerCenter - offset, radius: thumbRadius);
-    _thumbUpperRect = new Rect.fromCircle(
-        center: thumbUpperCenter - offset, radius: thumbRadius);
+    _thumbLowerRect =
+        Rect.fromCircle(center: thumbLowerCenter - offset, radius: thumbRadius);
+    _thumbUpperRect =
+        Rect.fromCircle(center: thumbUpperCenter - offset, radius: thumbRadius);
 
     // Paint the thumbs, via the Theme
     _sliderTheme.thumbShape.paint(
@@ -1065,10 +1063,10 @@ class _RenderRangeSlider extends RenderBox {
         int index = 0;
 
         if (_previousActiveThumb == _ActiveThumb.lowerThumb) {
-          thumbCenter = new Offset(_thumbLeftPosition, _trackVerticalCenter);
+          thumbCenter = Offset(_thumbLeftPosition, _trackVerticalCenter);
           value = _lowerValue;
         } else {
-          thumbCenter = new Offset(_thumbRightPosition, _trackVerticalCenter);
+          thumbCenter = Offset(_thumbRightPosition, _trackVerticalCenter);
           value = _upperValue;
           index = 1;
         }
@@ -1088,7 +1086,7 @@ class _RenderRangeSlider extends RenderBox {
 
         // Adapt the value indicator with the active thumb value
         _valueIndicatorPainter
-          ..text = new TextSpan(
+          ..text = TextSpan(
             style: _sliderTheme.valueIndicatorTextStyle,
             text: textValue,
           )
@@ -1236,7 +1234,7 @@ class _RenderRangeSlider extends RenderBox {
         _drag.addPointer(event);
 
         // Force the event related to a drag start
-        _handleDragStart(new DragStartDetails(globalPosition: event.position));
+        _handleDragStart(DragStartDetails(globalPosition: event.position));
       }
     }
   }

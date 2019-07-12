@@ -17,11 +17,11 @@ A new Flutter application.
 ## 运行环境
 
 ```
-[✓] Flutter (Channel beta, v1.5.4-hotfix.2, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
-    • Flutter version 1.5.4-hotfix.2 at /Users/14cells/Android/flutter
-    • Framework revision 7a4c33425d (2 months ago), 2019-04-29 11:05:24 -0700
-    • Engine revision 52c7a1e849
-    • Dart version 2.3.0 (build 2.3.0-dev.0.5 a1668566e5)
+[✓] Flutter (Channel beta, v1.7.8+hotfix.3, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
+    • Flutter version 1.7.8+hotfix.3 at /Users/14cells/Android/flutter
+    • Framework revision b712a172f9 (2 days ago), 2019-07-09 13:14:38 -0700
+    • Engine revision 54ad777fd2
+    • Dart version 2.4.0
 
 [✓] Android toolchain - develop for Android devices (Android SDK version 29.0.0)
     • Android SDK at /Users/14cells/Android/SDK

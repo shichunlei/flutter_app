@@ -12,7 +12,7 @@ author: 师春雷 <1558053958@qq.com>
 homepage: https://github.com/shichunlei/flutter_app
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies: # 应用或包依赖的其它包或插件
   flutter:
@@ -26,7 +26,7 @@ dependencies: # 应用或包依赖的其它包或插件
   badges: ^1.1.0
 
   # 扫描二维码
-  barcode_scan: ^0.0.8
+  barcode_scan: ^1.0.0
 
   # 图表
   charts_flutter: ^0.6.0
@@ -50,7 +50,7 @@ dependencies: # 应用或包依赖的其它包或插件
   cupertino_icons: ^0.1.2
 
   # 设备信息
-  device_info: ^0.3.0
+  device_info: ^0.4.0+2
 
   # 网络请求库
   dio: ^2.1.13
@@ -69,12 +69,12 @@ dependencies: # 应用或包依赖的其它包或插件
   # 刷新加载控件
   flutter_easyrefresh: ^1.2.7
 
-  flutter_gallery_assets: 0.1.6
+  flutter_gallery_assets: 0.1.9+2
 
-  flutter_html: ^0.9.6
+  flutter_html: ^0.10.4
 
   # 侧滑菜单
-  flutter_inner_drawer: ^0.2.9
+  flutter_inner_drawer: ^0.3.0
 
   flutter_jd_address_selector:
     git:
@@ -89,21 +89,21 @@ dependencies: # 应用或包依赖的其它包或插件
   # banner
   flutter_swiper: ^1.1.6
 
-  flutter_webview_plugin: 0.3.2
+  flutter_webview_plugin: ^0.3.5
 
   # 图标库中文地址：http://www.fontawesome.com.cn/
   font_awesome_flutter: ^8.4.0
 
   # 解析html
-  html: ^0.13.4+2
+  html: ^0.14.0+2
 
   http: ^0.12.0+2
 
   # 图片选择器
-  image_picker: ^0.4.12+1
+  image_picker: ^0.6.0+15
 
   # 保存图片
-  image_picker_saver: ^0.1.0
+  image_picker_saver: ^0.3.0
 
   # 引导页
   intro_slider: ^1.2.0
@@ -114,15 +114,12 @@ dependencies: # 应用或包依赖的其它包或插件
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.7
 
-  # 选择多张图片，类似于微信发布朋友圈选择图片
-  multi_image_picker: 2.4.11
+  package_info: ^0.4.0+4
 
-  package_info: ^0.3.2+1
-
-  palette_generator: ^0.1.1
+#  palette_generator: ^0.1.1
 
   # PhotoView
-  photo_view: ^0.3.3
+  photo_view: ^0.4.0
 
   # 数据管理层
   provide: ^1.0.2
@@ -134,15 +131,15 @@ dependencies: # 应用或包依赖的其它包或插件
   rounded_letter: ^0.0.6
 
   # https://github.com/ReactiveX/rxdart
-  rxdart: ^0.21.0
+  rxdart: ^0.22.0
 
-  share: ^0.5.3
+  share: ^0.6.1+1
 
   # SP
-  shared_preferences: ^0.4.3
+  shared_preferences: ^0.5.3+2
 
   # 数据库
-  sqflite: ^1.1.5
+  sqflite: ^1.1.6+1
 
   # 时间线 https://github.com/furkantektas/timeline_list
   timeline_list: ^0.0.4
@@ -150,10 +147,10 @@ dependencies: # 应用或包依赖的其它包或插件
   # 透明占位图片
   transparent_image: ^0.1.0
 
-  url_launcher: ^4.2.0+3
+  url_launcher: ^5.0.5
 
   # 视频播放器器
-  video_player: ^0.9.0
+  video_player: ^0.10.1+3
 
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:

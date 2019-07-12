@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui show window;
 
 import 'package:flutter/services.dart';
-import 'package:palette_generator/palette_generator.dart';
+
+//import 'package:palette_generator/palette_generator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
@@ -89,32 +90,36 @@ class Utils {
 
   static Future<Color> getImageLightVibrantColor(String imagePath,
       {Color defaultColor: Colors.white30, String type: "network"}) async {
-    PaletteGenerator paletteGenerator =
-        await PaletteGenerator.fromImageProvider(type == "network"
-            ? NetworkImage(imagePath)
-            : Image.asset(imagePath));
-
-    return paletteGenerator.lightVibrantColor?.color ?? defaultColor;
+//    PaletteGenerator paletteGenerator =
+//        await PaletteGenerator.fromImageProvider(type == "network"
+//            ? NetworkImage(imagePath)
+//            : Image.asset(imagePath));
+//
+//    return paletteGenerator.lightVibrantColor?.color ?? defaultColor;
+    return Colors.white30;
   }
 
   static Future<Color> getImageDominantColor(String imagePath,
       {Color defaultColor: Colors.blueAccent, String type: "network"}) async {
-    PaletteGenerator paletteGenerator =
-        await PaletteGenerator.fromImageProvider(type == "network"
-            ? NetworkImage(imagePath)
-            : AssetImage(imagePath));
+//    PaletteGenerator paletteGenerator =
+//        await PaletteGenerator.fromImageProvider(type == "network"
+//            ? NetworkImage(imagePath)
+//            : AssetImage(imagePath));
+//
+//    return paletteGenerator.dominantColor?.color ?? defaultColor;
 
-    return paletteGenerator.dominantColor?.color ?? defaultColor;
+    return Colors.blueAccent;
   }
 
   static Future<Color> getImageDarkMutedColor(String imagePath,
       {Color defaultColor: Colors.blueAccent, String type: "network"}) async {
-    PaletteGenerator paletteGenerator =
-        await PaletteGenerator.fromImageProvider(type == "network"
-            ? NetworkImage(imagePath)
-            : Image.asset(imagePath));
-
-    return paletteGenerator.darkMutedColor?.color ?? defaultColor;
+//    PaletteGenerator paletteGenerator =
+//        await PaletteGenerator.fromImageProvider(type == "network"
+//            ? NetworkImage(imagePath)
+//            : Image.asset(imagePath));
+//
+//    return paletteGenerator.darkMutedColor?.color ?? defaultColor;
+    return Colors.blueAccent;
   }
 
   static Future<Null> launchURL(String url) async {

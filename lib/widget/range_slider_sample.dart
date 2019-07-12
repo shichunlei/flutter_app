@@ -25,20 +25,20 @@ class _RangeSliderSampleState extends State<RangeSliderSample> {
 
   @override
   Widget build(BuildContext context) {
-    return new SafeArea(
+    return SafeArea(
       top: false,
       bottom: false,
-      child: new Scaffold(
-        appBar: new AppBar(title: new Text('RangeSlider Demo')),
-        body: new Container(
+      child: Scaffold(
+        appBar: AppBar(title: Text('RangeSlider Demo')),
+        body: Container(
           padding: const EdgeInsets.only(top: 50.0, left: 10.0, right: 10.0),
-          child: new Column(
+          child: Column(
             children: <Widget>[]
               ..add(
                 //
                 // Simple example
                 //
-                new RangeSlider(
+                CustomRangeSlider(
                   min: 0.0,
                   max: 100.0,
                   lowerValue: _lowerValue,
@@ -65,7 +65,7 @@ class _RangeSliderSampleState extends State<RangeSliderSample> {
               )
               // Add some space
               ..add(
-                new SizedBox(height: 24.0),
+                SizedBox(height: 24.0),
               )
               //
               // Add a series of RangeSliders, built as regular Widgets
@@ -77,7 +77,7 @@ class _RangeSliderSampleState extends State<RangeSliderSample> {
               // Add a disabled version
               //
               ..add(
-                new RangeSlider(
+                CustomRangeSlider(
                   min: 0.0,
                   max: 100.0,
                   lowerValue: 25.0,
@@ -93,7 +93,7 @@ class _RangeSliderSampleState extends State<RangeSliderSample> {
               // Add custom value formatter
               //
               ..add(
-                new RangeSlider(
+                CustomRangeSlider(
                   min: 0.0,
                   max: 100.0,
                   lowerValue: _lowerValueFormatter,
@@ -134,7 +134,7 @@ class _RangeSliderSampleState extends State<RangeSliderSample> {
         });
       }));
       // Add an extra padding at the bottom of each RangeSlider
-      children.add(new SizedBox(height: 8.0));
+      children.add(SizedBox(height: 8.0));
     }
 
     return children;
@@ -244,19 +244,19 @@ class RangeSliderData {
   // based on parameters
   //
   Widget build(BuildContext context, RangeSliderCallback callback) {
-    return new Container(
+    return Container(
       width: double.infinity,
-      child: new Row(
+      child: Row(
         children: <Widget>[
-          new Container(
-            constraints: new BoxConstraints(
+          Container(
+            constraints: BoxConstraints(
               minWidth: 40.0,
               maxWidth: 40.0,
             ),
-            child: new Text(lowerValueText),
+            child: Text(lowerValueText),
           ),
-          new Expanded(
-            child: new SliderTheme(
+          Expanded(
+            child: SliderTheme(
               // Customization of the SliderTheme
               // based on individual definitions
               // (see rangeSliders in _RangeSliderSampleState)
@@ -271,7 +271,7 @@ class RangeSliderData {
                     ? ShowValueIndicator.always
                     : ShowValueIndicator.onlyForDiscrete,
               ),
-              child: new RangeSlider(
+              child: CustomRangeSlider(
                 min: min,
                 max: max,
                 lowerValue: lowerValue,
@@ -286,12 +286,12 @@ class RangeSliderData {
               ),
             ),
           ),
-          new Container(
-            constraints: new BoxConstraints(
+          Container(
+            constraints: BoxConstraints(
               minWidth: 40.0,
               maxWidth: 40.0,
             ),
-            child: new Text(upperValueText),
+            child: Text(upperValueText),
           ),
         ],
       ),

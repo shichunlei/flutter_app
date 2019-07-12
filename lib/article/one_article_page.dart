@@ -7,7 +7,6 @@ import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/utils/date_format.dart';
 
 import 'package:flutter_html/flutter_html.dart';
-import 'package:html/dom.dart' as dom;
 
 import '../page_index.dart';
 
@@ -175,14 +174,6 @@ class _OneArticlePageState extends State<OneArticlePage>
                   ),
                   onLinkTap: (url) {
                     print("Opening $url...");
-                  },
-                  customRender: (node, children) {
-                    if (node is dom.Element) {
-                      switch (node.localName) {
-                        case "custom_tag":
-                          return Column(children: children);
-                      }
-                    }
                   })
             ])));
   }
