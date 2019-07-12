@@ -2,6 +2,11 @@
 
 A new Flutter application.
 
+## Android APK 下载地址
+
+![](https://github.com/shichunlei/flutter_app/blob/master/1562927446.png)
+
+
 `声明1：本项目仅供学习，如有侵权请联系本人进行删除。`
 
 `声明2：本项目中部分功能页面是别人其他项目中的，但是本人并不是完全照抄原作者代码，再此也特别感谢原作者，部分参考别人页面的功能也已标注出原出处，如有侵犯原作者的地方请联系本人进行删除。`
