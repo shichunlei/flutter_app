@@ -190,6 +190,9 @@ A new Flutter application.
 |分类列表（设计）|新闻详情1|新闻详情2|评论|
 
 
+### [Flutter i18n 实现国际化](https://github.com/shichunlei/flutter_app/wiki/Flutter-i18n-%E5%AE%9E%E7%8E%B0%E5%9B%BD%E9%99%85%E5%8C%96)
+
+
 ## 使用到的第三方插件
 
 | Plugin | 地址 | 版本号 |

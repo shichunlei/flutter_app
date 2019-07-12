@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'generated/i18n.dart';
 import 'page_index.dart';
 
 import 'package:flutter/services.dart';
@@ -62,69 +63,60 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // 定义全局 语言代理
-  AppLocalizationsDelegate _delegate;
-
   @override
   void initState() {
     super.initState();
-    _delegate = AppLocalizationsDelegate();
     Store.setStoreCtx(context); // 初始化数据层
   }
 
   @override
   Widget build(BuildContext context) {
     Store.value<ConfigModel>(context).$getTheme();
+    Store.value<ConfigModel>(context).$getLocal();
 
     return Store.connect<ConfigModel>(builder: (context, child, model) {
       return MaterialApp(
-        /// 任务管理器显示的标题
-        title: "Flutter Demo",
 
-        /// 您可以通过配置ThemeData类轻松更改应用程序的主题
-        theme: AppTheme.getThemeData(model.theme),
+          /// 任务管理器显示的标题
+          title: "Flutter Demo",
 
-        /// 右上角显示一个debug的图标
-        debugShowCheckedModeBanner: false,
+          /// 您可以通过配置ThemeData类轻松更改应用程序的主题
+          theme: AppTheme.getThemeData(model.theme),
 
-        /// 主页
-        home: SplashScreenPage(),
+          /// 右上角显示一个debug的图标
+          debugShowCheckedModeBanner: false,
 
-        /// locale: Locale('zh', 'CH'),
-        localeResolutionCallback: (deviceLocale, supportedLocal) {
-          debugPrint(
-              '当前设备语种 deviceLocale: $deviceLocale, 支持语种 supportedLocale: $supportedLocal}');
-          // 判断传入语言是否支持
-          Locale _locale = supportedLocal.contains(deviceLocale)
-              ? deviceLocale
-              : Locale('zh', 'CH');
-          return _locale;
-        },
-        onGenerateTitle: (context) {
-          // 设置多语言代理
-          AppLocalizations.setProxy(setState, _delegate);
-          return 'flutter';
-        },
+          /// 主页
+          home: SplashScreenPage(),
 
-        /// localizationsDelegates 列表中的元素时生成本地化集合的工厂
-        localizationsDelegates: [
-          // 为Material Components库提供本地化的字符串和其他值
-          GlobalMaterialLocalizations.delegate,
+          /// localizationsDelegates 列表中的元素时生成本地化集合的工厂
+          localizationsDelegates: [
+            // 为Material Components库提供本地化的字符串和其他值
+            GlobalMaterialLocalizations.delegate,
 
-          // 定义widget默认的文本方向，从左往右或从右往左
-          GlobalWidgetsLocalizations.delegate,
+            // 定义widget默认的文本方向，从左往右或从右往左
+            GlobalWidgetsLocalizations.delegate,
 
-          _delegate,
+            S.delegate,
 
-          /// 解决 ‘使用CupertinoAlertDialog 报 'alertDialogLabel' was called on null’ 的BUG
-          const FallbackCupertinoLocalisationsDelegate(),
-        ],
-        supportedLocales: LanguageConfig.supportedLocales,
+            /// 解决 ‘使用CupertinoAlertDialog 报 'alertDialogLabel' was called on null’ 的BUG
+            const FallbackCupertinoLocalisationsDelegate(),
+          ],
 
-        routes: <String, WidgetBuilder>{
-          '/shopCart': (BuildContext context) => IndexPage(index: 2)
-        },
-      );
+          ///
+          supportedLocales: S.delegate.supportedLocales,
+
+          ///
+          locale: mapLocales[SupportLocale.values[model.local]],
+
+          /// 不存对应locale时，默认取值Locale('zh', 'CN')
+          localeResolutionCallback:
+              S.delegate.resolution(fallback: const Locale('zh', 'CN')),
+
+          /// 路由
+          routes: <String, WidgetBuilder>{
+            '/shopCart': (BuildContext context) => IndexPage(index: 2)
+          });
     });
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/generated/i18n.dart';
 
 import '../../page_index.dart';
 
@@ -82,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("${AppLocalizations.$t('register')}",
+                  Text("${S.of(context).register}",
                       style: TextStyles.textBoldDark26),
                   Gaps.vGap16,
                   CustomTextField(
@@ -91,7 +92,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       controller: _phoneController,
                       maxLength: 11,
                       keyboardType: TextInputType.phone,
-                      hintText: "${AppLocalizations.$t('input_phone')}"),
+                      hintText: "${S.of(context).input_phone}"),
                   Gaps.vGap10,
                   CustomTextField(
                       focusNode: _nodeVCode,
@@ -100,19 +101,19 @@ class _RegisterPageState extends State<RegisterPage> {
                       keyboardType: TextInputType.number,
                       getVCode: () {},
                       maxLength: 6,
-                      hintText: "${AppLocalizations.$t('input_v_code')}"),
+                      hintText: "${S.of(context).input_v_code}"),
                   Gaps.vGap10,
                   CustomTextField(
                       focusNode: _nodePassword,
                       isInputPwd: true,
                       controller: _passwordController,
                       maxLength: 16,
-                      hintText: "${AppLocalizations.$t('input_password')}"),
+                      hintText: "${S.of(context).input_password}"),
                   Gaps.vGap25,
                   Button(
                       borderRadius: 0,
                       onPressed: _isClick ? _register : null,
-                      text: "${AppLocalizations.$t('submit')}")
+                      text: "${S.of(context).submit}")
                 ])));
   }
 

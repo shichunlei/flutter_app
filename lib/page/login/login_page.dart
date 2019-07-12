@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/i18n.dart';
 
 import 'package:keyboard_actions/keyboard_actions.dart';
 
@@ -33,12 +34,12 @@ class _LoginPageState extends State<PasswordLoginPage> {
               focusNode: _nodePhone,
               closeWidget: Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: Text("${AppLocalizations.$t('close')}"))),
+                  child: Text("${S.of(context).close}"))),
           KeyboardAction(
               focusNode: _nodePassword,
               closeWidget: Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: Text("${AppLocalizations.$t('close')}")))
+                  child: Text("${S.of(context).close}")))
         ]);
   }
 
@@ -93,7 +94,7 @@ class _LoginPageState extends State<PasswordLoginPage> {
             actions: <Widget>[
               InkWell(
                   child: Container(
-                      child: Text('${AppLocalizations.$t('quickly_login')}',
+                      child: Text('${S.of(context).quickly_login}',
                           style: TextStyles.textDark14),
                       alignment: Alignment.center,
                       margin: EdgeInsets.only(left: 10, right: 10)),
@@ -110,7 +111,7 @@ class _LoginPageState extends State<PasswordLoginPage> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(AppLocalizations.$t('password_login'),
+              Text(S.of(context).password_login,
                   style: TextStyles.textBoldDark26),
               Gaps.vGap16,
               CustomTextField(
@@ -119,7 +120,7 @@ class _LoginPageState extends State<PasswordLoginPage> {
                   maxLength: 11,
                   nextFocusNode: _nodePassword,
                   keyboardType: TextInputType.phone,
-                  hintText: "${AppLocalizations.$t('input_phone')}"),
+                  hintText: "${S.of(context).input_phone}"),
               Gaps.vGap10,
               CustomTextField(
                   focusNode: _nodePassword,
@@ -127,11 +128,11 @@ class _LoginPageState extends State<PasswordLoginPage> {
                   isInputPwd: true,
                   controller: _passwordController,
                   maxLength: 16,
-                  hintText: "${AppLocalizations.$t('input_password')}"),
+                  hintText: "${S.of(context).input_password}"),
               Gaps.vGap25,
               Button(
                   onPressed: _isClick ? _login : null,
-                  text: "${AppLocalizations.$t('login')}",
+                  text: "${S.of(context).login}",
                   borderRadius: 0),
               Gaps.vGap16,
               Container(
@@ -139,7 +140,7 @@ class _LoginPageState extends State<PasswordLoginPage> {
                   child: InkWell(
                       child: Padding(
                           child: Text(
-                              '${AppLocalizations.$t('forgot_password')}',
+                              '${S.of(context).forgot_password}',
                               style: TextStyles.textGray14),
                           padding: EdgeInsets.all(10)),
                       onTap: () => pushNewPage(context, ResetPasswordPage()))),
@@ -148,7 +149,7 @@ class _LoginPageState extends State<PasswordLoginPage> {
                   alignment: Alignment.center,
                   child: InkWell(
                       child: Padding(
-                          child: Text('${AppLocalizations.$t('go_register')}',
+                          child: Text('${S.of(context).go_register}',
                               style: TextStyles.textBlue16),
                           padding: EdgeInsets.all(10)),
                       onTap: () => pushNewPage(context, RegisterPage())))

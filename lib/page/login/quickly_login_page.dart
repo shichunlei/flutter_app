@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/i18n.dart';
 
 import '../../page_index.dart';
 import 'register_page.dart';
@@ -65,7 +66,7 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("${AppLocalizations.$t('quickly_login')}",
+                  Text("${S.of(context).quickly_login}",
                       style: TextStyles.textBoldDark26),
                   Gaps.vGap16,
                   CustomTextField(
@@ -74,17 +75,17 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
                       controller: _phoneController,
                       maxLength: 11,
                       keyboardType: TextInputType.phone,
-                      hintText: "${AppLocalizations.$t('input_phone')}"),
+                      hintText: "${S.of(context).input_phone}"),
                   Gaps.vGap10,
                   CustomTextField(
                       focusNode: _nodeVCode,
                       controller: _vCodeController,
                       maxLength: 6,
                       keyboardType: TextInputType.number,
-                      hintText: "${AppLocalizations.$t('input_v_code')}",
+                      hintText: "${S.of(context).input_v_code}",
                       getVCode: () {
                         Toast.show(
-                            '${AppLocalizations.$t('get_v_code')}', context);
+                            '${S.of(context).get_v_code}', context);
                       }),
                   Gaps.vGap10,
                   Container(
@@ -92,11 +93,11 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
                       child: InkWell(
                           child: RichText(
                               text: TextSpan(
-                                  text: '${AppLocalizations.$t('tip')}',
+                                  text: '${S.of(context).tip}',
                                   style: TextStyles.textGray14,
                                   children: <TextSpan>[
                                 TextSpan(
-                                    text: '${AppLocalizations.$t('register')}',
+                                    text: '${S.of(context).register}',
                                     style: TextStyle(color: Colors.redAccent)),
                                 TextSpan(text: '。')
                               ])),
@@ -105,14 +106,14 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
                   Button(
                       borderRadius: 0,
                       onPressed: _isClick ? _login : null,
-                      text: "${AppLocalizations.$t('login')}"),
+                      text: "${S.of(context).login}"),
                   Gaps.vGap10,
                   Container(
                       alignment: Alignment.centerRight,
                       child: InkWell(
                           child: Padding(
                               child: Text(
-                                  '${AppLocalizations.$t('forgot_password')}',
+                                  '${S.of(context).forgot_password}',
                                   style: TextStyles.textGray14),
                               padding: EdgeInsets.all(10)),
                           onTap: () =>

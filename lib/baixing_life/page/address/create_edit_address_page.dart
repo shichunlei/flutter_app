@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/address_provider.dart';
 import 'package:flutter_app/bean/address.dart';
+import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/store/models/address_model.dart';
 import 'package:flutter_app/ui/select_text_item.dart';
 import 'package:flutter_jd_address_selector/flutter_jd_address_selector.dart';
@@ -139,7 +140,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
                     const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8.0),
                 child: Button(
                     onPressed: _isClick ? () => _submit() : null,
-                    text: "${AppLocalizations.$t('submit')}",
+                    text: "${S.of(context).submit}",
                     borderRadius: 0))
           ]),
         ));
@@ -261,13 +262,13 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
     int success = await widget.addressProvider.insertOrReplaceToDB(address);
 
     if (success > 0) {
-      Toast.show('${widget.title}${AppLocalizations.$t('success')}！', context);
+      Toast.show('${widget.title}${S.of(context).success}！', context);
 
       Store.value<AddressModel>(context)
           .$changeAddresses(widget.addressProvider);
       Navigator.of(context).pop();
     } else {
-      Toast.show('${widget.title}${AppLocalizations.$t('fail')}！', context);
+      Toast.show('${widget.title}${S.of(context).fail}！', context);
     }
   }
 }

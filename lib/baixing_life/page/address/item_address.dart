@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/address_provider.dart';
 import 'package:flutter_app/bean/address.dart';
+import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/store/models/address_model.dart';
 
 import '../../../page_index.dart';
@@ -146,13 +147,12 @@ class _ItemAddressState extends State<ItemAddress>
                                 pushNewPage(
                                     context,
                                     CreateEditAddressPage(
-                                        title:
-                                            '${AppLocalizations.$t('update_address')}',
+                                        title: '${S.of(context).eidt_address}',
                                         id: widget.address.id,
                                         addressProvider:
                                             widget.addressProvider));
                               },
-                              child: Text('${AppLocalizations.$t('edit')}',
+                              child: Text('${S.of(context).edit}',
                                   style: TextStyles.textBlue14)),
                           FlatButton(
                               color: Colors.white,
@@ -162,7 +162,7 @@ class _ItemAddressState extends State<ItemAddress>
 
                                 _showDeleteBottomSheet(widget.address?.id);
                               },
-                              child: Text('${AppLocalizations.$t('delete')}',
+                              child: Text('${S.of(context).delete}',
                                   style: TextStyles.textRed14)),
                           FlatButton(
                               color: Colors.white,
@@ -224,7 +224,7 @@ class _ItemAddressState extends State<ItemAddress>
                             width: double.infinity,
                             child: FlatButton(
                                 textColor: Colors.grey,
-                                child: Text("${AppLocalizations.$t('cancel')}",
+                                child: Text("${S.of(context).cancel}",
                                     style: TextStyles.textGray16),
                                 onPressed: () {
                                   Navigator.of(context).pop();

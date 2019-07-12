@@ -33,5 +33,6 @@
   "eidt_address": "修改地址",
   "create_address": "新增地址",
   "success": "成功",
-  "fail": "失败"
+  "fail": "失败",
+  "choose": "请选择"
 }

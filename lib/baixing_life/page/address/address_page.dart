@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/address_provider.dart';
+import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/store/models/address_model.dart';
 import 'package:provide/provide.dart';
 
@@ -31,7 +32,7 @@ class _AddressPageState extends State<AddressPage> {
     return Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
-            title: Text('${AppLocalizations.$t('address')}'),
+            title: Text('${S.of(context).address}'),
             elevation: 0,
             actions: <Widget>[
               IconButton(
@@ -39,7 +40,7 @@ class _AddressPageState extends State<AddressPage> {
                   onPressed: () => pushNewPage(
                       context,
                       CreateEditAddressPage(
-                          title: '${AppLocalizations.$t('create_address')}',
+                          title: '${S.of(context).create_address}',
                           addressProvider: addressProvider)))
             ]),
         body: _builderBodyView());
@@ -48,7 +49,7 @@ class _AddressPageState extends State<AddressPage> {
   Future _getAddresses(BuildContext context) async {
     await Store.value<AddressModel>(context).$getAddresses(addressProvider);
 
-    return '${AppLocalizations.$t('success')}';
+    return '${S.of(context).success}';
   }
 
   Widget _builderBodyView() {

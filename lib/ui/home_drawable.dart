@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/page/contact_list_page.dart';
-import 'package:flutter_app/lang/index.dart';
+import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/login/page/login_page.dart';
 import 'package:package_info/package_info.dart';
 
@@ -44,7 +44,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
     return Drawer(
         elevation: 10.0,
         child: _bulderMenuView(),
-        semanticLabel: AppLocalizations.$t('menu'));
+        semanticLabel: S.of(context).menu);
   }
 
   Widget _bulderMenuView() {
@@ -53,7 +53,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
           isLogin: isLogin, avatar: avatar, userName: userName, email: email),
       Divider(),
       ListTile(
-          title: Text("${AppLocalizations.$t('poetry')}"),
+          title: Text("${S.of(context).poetry}"),
           leading: Icon(Icons.book),
           trailing: Icon(Icons.chevron_right),
           onTap: () {
@@ -62,7 +62,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
           }),
       Divider(),
       ListTile(
-          title: Text(AppLocalizations.$t('contact')),
+          title: Text(S.of(context).contact),
           leading: Icon(Icons.supervisor_account),
           trailing: Icon(Icons.chevron_right),
           onTap: () {
@@ -75,7 +75,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
               child: Icon(Icons.update, color: Colors.white, size: 20.0),
               maxRadius: 15),
           child: Row(children: <Widget>[
-            Text(AppLocalizations.$t('update')),
+            Text(S.of(context).update),
             Icon(Icons.chevron_right)
           ], mainAxisAlignment: MainAxisAlignment.spaceBetween),
           applicationName: '$appName',
@@ -87,7 +87,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
           aboutBoxChildren: <Widget>[Text("BoxChildren"), Text("box child 2")]),
       Divider(),
       ListTile(
-          title: Text(AppLocalizations.$t('exit')),
+          title: Text(S.of(context).exit),
           leading: Icon(Icons.exit_to_app),
           trailing: Icon(Icons.chevron_right),
           onTap: () {
@@ -115,7 +115,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
           }),
       Divider(),
       ListTile(
-          title: Text(AppLocalizations.$t('setting')),
+          title: Text(S.of(context).setting),
           leading: Icon(Icons.settings),
           trailing: Icon(Icons.chevron_right),
           onTap: () {

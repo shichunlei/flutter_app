@@ -129,12 +129,8 @@ export 'global/data.dart';
 export 'global/config.dart';
 
 export 'delegates/fallback_cupertino_localisations_delegate.dart';
-export 'delegates/app_localizations_delegate.dart';
 export 'delegates/sliver_appbar_delegate.dart';
 export 'delegates/custom_sliver_appbar_delegate.dart';
 
 export 'store/index.dart';
 export 'store/models/config_state_model.dart';
-
-export 'lang/config.dart';
-export 'lang/index.dart';

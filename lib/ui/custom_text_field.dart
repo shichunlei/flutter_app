@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/generated/i18n.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 
@@ -164,7 +165,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                                 width: 0.8)),
                         child: Text(
                             _isClick
-                                ? "${AppLocalizations.$t('get_v_code')}"
+                                ? "${S.of(context).get_v_code}"
                                 : "（$s s）",
                             style: TextStyle(fontSize: Dimens.font_sp12))))))
       ])

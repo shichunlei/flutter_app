@@ -33,5 +33,6 @@
   "eidt_address": "Update Address",
   "create_address": "Create Address",
   "success": " Success",
-  "fail": " Fail"
+  "fail": " Fail",
+  "choose": "Please Choose"
 }

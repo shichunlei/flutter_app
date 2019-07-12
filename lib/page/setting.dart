@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/lang/index.dart';
-import 'package:flutter_app/store/index.dart';
-import 'package:flutter_app/store/models/config_state_model.dart';
+import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_jd_address_selector/flutter_jd_address_selector.dart';
 
@@ -17,27 +15,31 @@ class SettingPage extends StatefulWidget {
 class _SettingPageState extends State<SettingPage> {
   Color pickerColor;
 
-  String address = '请选择';
+  String address;
+
+  int localIndex;
 
   @override
   void initState() {
     super.initState();
     pickerColor = null;
+
+    localIndex = SpUtil.getInt('key_support_locale');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(title: Text(AppLocalizations.$t('setting'))),
+        appBar: AppBar(title: Text(S.of(context).setting)),
         body: ListView(padding: EdgeInsets.all(10), children: <Widget>[
           ListTile(
               onTap: () => _openLanguageSelectMenu(),
               leading: Icon(Icons.language),
-              title: Text(AppLocalizations.$t('language')),
+              title: Text(S.of(context).language),
               trailing: Container(
                 child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                  Text(AppLocalizations.$t('${AppLocalizations.languageCode}')),
+                  Text('${mapSupportLocale[SupportLocale.values[localIndex]]}'),
                   Icon(Icons.navigate_next)
                 ]),
               )),
@@ -45,7 +47,7 @@ class _SettingPageState extends State<SettingPage> {
           ListTile(
               onTap: () => _chooseColor(),
               leading: Icon(Icons.color_lens),
-              title: Text(AppLocalizations.$t('theme')),
+              title: Text(S.of(context).theme),
               trailing: Container(
                 child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                   Container(
@@ -59,12 +61,12 @@ class _SettingPageState extends State<SettingPage> {
           ListTile(
               onTap: () => _chooseAddress(),
               leading: Icon(Icons.location_on),
-              title: Text(AppLocalizations.$t('choice_address')),
+              title: Text(S.of(context).choice_address),
               trailing: Container(
                   width: 160.0,
                   child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     Expanded(
-                        child: Text('$address',
+                        child: Text('${address ?? S.of(context).choose}',
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             textAlign: TextAlign.right)),
@@ -79,24 +81,7 @@ class _SettingPageState extends State<SettingPage> {
     await showModalBottomSheet(
         context: context,
         builder: (BuildContext bc) => Container(
-              child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                ListTile(
-                    title: Text(AppLocalizations.$t('zh')),
-                    onTap: () {
-                      AppLocalizations.changeLanguage(Locale('zh'));
-                      setState(() {});
-                      Navigator.pop(context);
-                    },
-                    selected: AppLocalizations.languageCode == 'zh'),
-                ListTile(
-                    title: Text(AppLocalizations.$t('en')),
-                    onTap: () {
-                      AppLocalizations.changeLanguage(Locale('en'));
-                      setState(() {});
-                      Navigator.pop(context);
-                    },
-                    selected: AppLocalizations.languageCode == 'en')
-              ]),
+              child: Column(mainAxisSize: MainAxisSize.min, children: _items()),
             ));
   }
 
@@ -104,7 +89,7 @@ class _SettingPageState extends State<SettingPage> {
     showDialog(
         context: context,
         builder: (_) => AlertDialog(
-                title: Text(AppLocalizations.$t('pick_a_color')),
+                title: Text(S.of(context).pick_a_color),
                 content: SingleChildScrollView(
                     child: ColorPicker(
                         pickerColor:
@@ -115,7 +100,7 @@ class _SettingPageState extends State<SettingPage> {
                         pickerAreaHeightPercent: 0.8)),
                 actions: <Widget>[
                   FlatButton(
-                      child: Text(AppLocalizations.$t('sure')),
+                      child: Text(S.of(context).sure),
                       onPressed: () {
                         if (pickerColor != null) {
                           Store.value<ConfigModel>(context)
@@ -137,7 +122,22 @@ class _SettingPageState extends State<SettingPage> {
                   Toast.show('$province-$city-$county', context);
                 });
               },
-              title: '${AppLocalizations.$t('choice_address')}');
+              title: '${S.of(context).choice_address}');
         });
+  }
+
+  List<Widget> _items() {
+    return SupportLocale.values.map((local) {
+      int index = SupportLocale.values.indexOf(local);
+      return ListTile(
+          title: Text("${mapSupportLocale[local]}"),
+          onTap: () {
+            Store.value<ConfigModel>(context).$setLocal(index);
+            localIndex = Store.value<ConfigModel>(context).local;
+            setState(() {});
+            Navigator.pop(context);
+          },
+          selected: Store.value<ConfigModel>(context).local == index);
+    }).toList();
   }
 }
