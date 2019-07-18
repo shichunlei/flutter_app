@@ -71,8 +71,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    Store.value<ConfigModel>(context).$getTheme();
-    Store.value<ConfigModel>(context).$getLocal();
+    Store.value<ConfigModel>(context)
+      ..$getTheme()
+      ..$getLocal();
 
     return Store.connect<ConfigModel>(builder: (context, child, model) {
       return MaterialApp(

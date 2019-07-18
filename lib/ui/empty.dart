@@ -4,7 +4,7 @@ class EmptyPage extends StatelessWidget {
   final String text;
   final String imageAsset;
 
-  EmptyPage({Key key, this.text, this.imageAsset}) : super(key: key);
+  EmptyPage({Key key, this.text: '暂无数据', this.imageAsset}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import '../../baixing_life/db/address_provider.dart';
 import '../../bean/address.dart';
 
-import '../../page_index.dart';
-
 class AddressModel with ChangeNotifier {
   List<Address> addresses = [];
 

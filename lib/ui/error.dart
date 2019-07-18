@@ -5,7 +5,7 @@ class ErrorPage extends StatelessWidget {
   final String imageAsset;
   final VoidCallback onPressed;
 
-  ErrorPage({Key key, this.imageAsset, this.text, this.onPressed})
+  ErrorPage({Key key, this.imageAsset, this.text: '网络加载失败', this.onPressed})
       : super(key: key);
 
   @override

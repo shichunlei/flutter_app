@@ -79,37 +79,12 @@ class _OneArticlePageState extends State<OneArticlePage>
             actions: <Widget>[
               IconButton(
                   icon: Icon(Icons.menu),
-                  onPressed: () {
-                    showModalBottomSheet(
-                        context: context,
-                        builder: (builder) {
-                          collectState(_date);
-                          return StatefulBuilder(builder: (context, mSetState) {
-                            return Container(
-                                padding: EdgeInsets.all(10.0),
-                                child: Column(
-                                    children: <Widget>[
-                                      _buildFontSizeSelector(mSetState),
-                                      _buildThemeSelector(mSetState),
-                                      _buildArticleChange(mSetState),
-                                      _buildCollect(_date, mSetState)
-                                    ],
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly));
-                          });
-                        });
-                  })
+                  onPressed: () => _showModalBottomSheet())
             ]),
         body: _buildBodyView());
   }
 
   void getArticle(type, {date}) async {
-    if (!isFirst) {
-      showLoadingDialog(context, "正在加载...");
-      isShowLoading = true;
-      article = null;
-    }
-
     if (type == 'today') {
       article = await ApiService.getTodayArticle();
     } else if (type == 'random') {
@@ -117,21 +92,24 @@ class _OneArticlePageState extends State<OneArticlePage>
     } else if (type == 'day') {
       article = await ApiService.getDayArticle(date);
     }
-    if (isShowLoading) {
-      Navigator.of(context).pop();
-      isShowLoading = false;
-    }
+
     _date = article.date.curr;
     print(_date.toString());
     isFirst = false;
     collectState(_date);
+
+    if (isShowLoading) {
+      Navigator.of(context).pop();
+      isShowLoading = false;
+    }
     setState(() {});
   }
 
   Widget _buildBodyView() {
-    if (article == null) {
+    if (article == null && isFirst) {
       return getLoadingWidget();
     }
+
     return SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Container(
@@ -176,6 +154,24 @@ class _OneArticlePageState extends State<OneArticlePage>
                     print("Opening $url...");
                   })
             ])));
+  }
+
+  void _showModalBottomSheet() {
+    showModalBottomSheet(
+        context: context,
+        builder: (builder) {
+          collectState(_date);
+          return StatefulBuilder(builder: (context, mSetState) {
+            return Container(
+                padding: EdgeInsets.all(10.0),
+                child: Column(children: <Widget>[
+                  _buildFontSizeSelector(mSetState),
+                  _buildThemeSelector(mSetState),
+                  _buildArticleChange(mSetState),
+                  _buildCollect(_date, mSetState)
+                ], mainAxisAlignment: MainAxisAlignment.spaceEvenly));
+          });
+        });
   }
 
   Widget _buildFontSizeSelector(mSetState) {
@@ -233,6 +229,8 @@ class _OneArticlePageState extends State<OneArticlePage>
               color: themeColors[_themeColorIndex],
               onPressed: () {
                 Navigator.pop(context);
+                showLoadingDialog(context, "正在加载...");
+                isShowLoading = true;
                 getArticle('day', date: article.date.prev);
                 mSetState(() {});
               },
@@ -244,6 +242,8 @@ class _OneArticlePageState extends State<OneArticlePage>
               color: themeColors[_themeColorIndex],
               onPressed: () {
                 Navigator.pop(context);
+                showLoadingDialog(context, "正在加载...");
+                isShowLoading = true;
                 getArticle('random');
                 mSetState(() {});
               },
@@ -256,6 +256,8 @@ class _OneArticlePageState extends State<OneArticlePage>
               onPressed: _date != today
                   ? () {
                       Navigator.pop(context);
+                      showLoadingDialog(context, "正在加载...");
+                      isShowLoading = true;
                       getArticle('day', date: article.date.next);
                       mSetState(() {});
                     }
@@ -268,6 +270,8 @@ class _OneArticlePageState extends State<OneArticlePage>
               color: themeColors[_themeColorIndex],
               onPressed: () {
                 Navigator.pop(context);
+                showLoadingDialog(context, "正在加载...");
+                isShowLoading = true;
                 getArticle('today');
                 mSetState(() {});
               },
