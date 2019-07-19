@@ -171,24 +171,15 @@ class _ItemAddressState extends State<ItemAddress>
                                 _isCheck = false;
 
                                 if (!widget.address.isDefault) {
-                                  _updateAddressDefault(widget.address?.id);
+                                  Store.value<AddressModel>(context)
+                                      .$updateAddressDefault(
+                                          context, widget.address?.id, true);
                                 }
                               },
                               child:
                                   Text('设为默认', style: TextStyles.textGray14)),
                           Gaps.hGap8
                         ])))));
-  }
-
-  void _updateAddressDefault(int id) async {
-    bool success = await widget.addressProvider.updateAddressDefault(id, true);
-
-    if (success) {
-      Toast.show('设置成功', context);
-      Store.value<AddressModel>(context).$changeAddresses();
-    } else {
-      Toast.show('设置失败', context);
-    }
   }
 
   _showDeleteBottomSheet(int id) async {
@@ -214,9 +205,9 @@ class _ItemAddressState extends State<ItemAddress>
                                 textColor: Colors.red,
                                 child:
                                     Text("确认删除", style: TextStyles.textRed16),
-                                onPressed: () {
-                                  _deleteAddress(id);
-                                })),
+                                onPressed: () =>
+                                    Store.value<AddressModel>(context)
+                                        .$deleteAddress(context, id))),
                         Gaps.line,
                         Container(
                             height: 54.0,
@@ -225,24 +216,8 @@ class _ItemAddressState extends State<ItemAddress>
                                 textColor: Colors.grey,
                                 child: Text("${S.of(context).cancel}",
                                     style: TextStyles.textGray16),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                }))
+                                onPressed: () => Navigator.of(context).pop()))
                       ]))));
         });
-  }
-
-  void _deleteAddress(int id) async {
-    int success = await widget.addressProvider.deleteAddress(id);
-
-    if (success == 1) {
-      Toast.show('删除成功', context);
-
-      Store.value<AddressModel>(context).$changeAddresses();
-    } else {
-      Toast.show('删除失败', context);
-    }
-
-    Navigator.of(context).pop();
   }
 }

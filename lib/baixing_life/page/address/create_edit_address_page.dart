@@ -258,15 +258,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
         city: _city,
         county: _county);
 
-    int success = await widget.addressProvider.insertOrReplaceToDB(address);
-
-    if (success > 0) {
-      Toast.show('${widget.title}${S.of(context).success}！', context);
-
-      Store.value<AddressModel>(context).$changeAddresses();
-      Navigator.of(context).pop();
-    } else {
-      Toast.show('${widget.title}${S.of(context).fail}！', context);
-    }
+    await Store.value<AddressModel>(context)
+        .$insertOrReplaceAddress(context, address, widget.title);
   }
 }
