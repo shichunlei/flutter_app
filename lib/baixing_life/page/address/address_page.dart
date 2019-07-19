@@ -47,7 +47,7 @@ class _AddressPageState extends State<AddressPage> {
   }
 
   Future _getAddresses(BuildContext context) async {
-    await Store.value<AddressModel>(context).$getAddresses(addressProvider);
+    await Store.value<AddressModel>(context).$getAddresses();
 
     return '${S.of(context).success}';
   }

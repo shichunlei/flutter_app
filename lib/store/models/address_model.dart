@@ -3,20 +3,23 @@ import '../../baixing_life/db/address_provider.dart';
 import '../../bean/address.dart';
 
 class AddressModel with ChangeNotifier {
-  List<Address> addresses = [];
+  List<Address> _addresses = [];
 
-  Future $getAddresses(AddressProvider provider) async {
-    addresses = await provider.getAddressList();
+  AddressProvider provider;
 
-    $setAddress(addresses);
+  AddressModel() {
+    provider = AddressProvider();
   }
 
-  Future $changeAddresses(AddressProvider provider) async {
-    $getAddresses(provider);
-  }
+  Future<void> $getAddresses() async {
+    this._addresses = await provider.getAddressList();
 
-  Future $setAddress(List<Address> addresses) async {
-    this.addresses = addresses;
     notifyListeners();
+  }
+
+  List<Address> get addresses => _addresses;
+
+  Future $changeAddresses() async {
+    $getAddresses();
   }
 }

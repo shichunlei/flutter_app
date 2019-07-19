@@ -39,8 +39,6 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
 
   List<String> tags = ["家", "公司", "学校"];
 
-  Address address;
-
   TextEditingController _nameController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _addressController = TextEditingController();
@@ -106,19 +104,20 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
   }
 
   void getAddressData(int id) async {
-    address = await widget.addressProvider.getAddress(id);
+    await widget.addressProvider.getAddress(id).then((address) {
+      _tag = address?.tag;
+      _isDefault = address?.isDefault;
 
-    _tag = address?.tag;
-    _isDefault = address?.isDefault;
+      _province = address?.province;
+      _city = address?.city;
+      _county = address?.county;
+      area = '$_province $_city $_county';
+      _address = _addressController.text = address?.address;
+      _name = _nameController.text = address?.name;
+      _phone = _phoneController.text = address?.phone;
+      _zipcode = _zipcodeController.text = address?.zipcode;
+    });
 
-    _province = address?.province;
-    _city = address?.city;
-    _county = address?.county;
-    area = '$_province $_city $_county';
-    _address = _addressController.text = address?.address;
-    _name = _nameController.text = address?.name;
-    _phone = _phoneController.text = address?.phone;
-    _zipcode = _zipcodeController.text = address?.zipcode;
     _verify();
 
     setState(() {});
@@ -264,8 +263,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
     if (success > 0) {
       Toast.show('${widget.title}${S.of(context).success}！', context);
 
-      Store.value<AddressModel>(context)
-          .$changeAddresses(widget.addressProvider);
+      Store.value<AddressModel>(context).$changeAddresses();
       Navigator.of(context).pop();
     } else {
       Toast.show('${widget.title}${S.of(context).fail}！', context);

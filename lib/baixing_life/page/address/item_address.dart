@@ -185,8 +185,7 @@ class _ItemAddressState extends State<ItemAddress>
 
     if (success) {
       Toast.show('设置成功', context);
-      Store.value<AddressModel>(context)
-          .$changeAddresses(widget.addressProvider);
+      Store.value<AddressModel>(context).$changeAddresses();
     } else {
       Toast.show('设置失败', context);
     }
@@ -239,8 +238,7 @@ class _ItemAddressState extends State<ItemAddress>
     if (success == 1) {
       Toast.show('删除成功', context);
 
-      Store.value<AddressModel>(context)
-          .$changeAddresses(widget.addressProvider);
+      Store.value<AddressModel>(context).$changeAddresses();
     } else {
       Toast.show('删除失败', context);
     }
