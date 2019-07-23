@@ -92,6 +92,7 @@ export 'ui/custom_text_field.dart';
 export 'ui/text_field_item.dart';
 export 'ui/select_text_item.dart';
 export 'ui/selected_text.dart';
+export 'ui/section_view.dart';
 
 export 'qdaily/article_detail.dart';
 export 'qdaily/book_detail.dart';

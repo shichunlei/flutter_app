@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/movie/ui/home_section_view.dart';
+
+import '../../page_index.dart';
 
 class CoverSectionView extends StatelessWidget {
   final Color backgroundColor;
@@ -27,7 +28,7 @@ class CoverSectionView extends StatelessWidget {
       offstage: size == 0,
       child: Column(
         children: <Widget>[
-          HomeSectionView(
+          SectionView(
             "$title（$size）",
             hiddenMore: hiddenMore,
             backgroundColor: backgroundColor,

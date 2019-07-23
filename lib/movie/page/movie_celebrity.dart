@@ -9,7 +9,6 @@ import '../page/movie_with_celebrity.dart';
 import 'package:flutter_app/service/api_service.dart';
 import '../ui/cover_section_view.dart';
 import '../ui/expandable_text.dart';
-import '../ui/home_section_view.dart';
 import '../ui/movie_celebrity_header.dart';
 import '../ui/movie_grid_view.dart';
 
@@ -93,7 +92,7 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
           SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
-                HomeSectionView("简介",
+                SectionView("简介",
                     hiddenMore: true,
                     backgroundColor: pageColor,
                     textColor: Colors.white),

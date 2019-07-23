@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/news.dart';
-import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_classify_page.dart';
 import 'package:flutter_app/movie/page/movie_hot.dart';
@@ -12,11 +11,10 @@ import 'package:flutter_app/movie/ui/ranking_banner.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/movie/ui/banner_view.dart';
 import 'package:flutter_app/movie/ui/classify_section_home.dart';
-import 'package:flutter_app/movie/ui/home_section_view.dart';
 import 'package:flutter_app/movie/ui/item_grid_view.dart';
 import 'package:flutter_app/movie/ui/movie_grid_view.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
+
+import '../../page_index.dart';
 
 class MovieHomePage extends StatefulWidget {
   @override
@@ -108,7 +106,7 @@ class _MovieHomePageState extends State<MovieHomePage> {
         physics: const BouncingScrollPhysics(),
         children: <Widget>[
           BannerView(banner: banner),
-          HomeSectionView("影院热映",
+          SectionView("影院热映",
               onPressed: () => pushNewPage(context, MovieHotPage())),
           Container(
             padding: EdgeInsets.all(6.0),
@@ -118,12 +116,12 @@ class _MovieHomePageState extends State<MovieHomePage> {
               children: hotMovies.map((movie) => MovieGridView(movie)).toList(),
             ),
           ),
-          HomeSectionView("即将上映",
+          SectionView("即将上映",
               onPressed: () => pushNewPage(context, MovieSoonPage())),
           ItemGridView(movies: soonMovies),
-          HomeSectionView("电影榜单", hiddenMore: true),
+          SectionView("电影榜单", hiddenMore: true),
           RankingBanner(movies),
-          HomeSectionView("分类浏览",
+          SectionView("分类浏览",
               onPressed: () => pushNewPage(context, MovieClassifyPage())),
           ClassifySection(tags[0]),
           ClassifySection(tags[1]),

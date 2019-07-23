@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../bean/casts.dart';
 import '../../bean/movie.dart';
+import '../../page_index.dart';
 import './movie_comment.dart';
 import './movie_photos.dart';
 import '../ui/bottom_drag_view.dart';
@@ -14,14 +15,9 @@ import '../ui/person_scroller.dart';
 import '../../service/api_service.dart';
 import '../ui/cover_section_view.dart';
 import '../ui/expandable_text.dart';
-import '../ui/home_section_view.dart';
 import '../ui/item_comment.dart';
 import '../ui/item_cover.dart';
 import '../ui/movie_desc.dart';
-import '../../ui/image_load_view.dart';
-import '../../utils/loading_util.dart';
-import '../../utils/route_util.dart';
-import '../../utils/utils.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MovieDetail extends StatefulWidget {
@@ -123,7 +119,7 @@ class _MovieDetailState extends State<MovieDetail> {
 
     return SliverList(
       delegate: SliverChildListDelegate(<Widget>[
-        HomeSectionView("简介",
+        SectionView("简介",
             hiddenMore: true,
             backgroundColor: pageColor,
             textColor: Colors.white),
@@ -137,7 +133,7 @@ class _MovieDetailState extends State<MovieDetail> {
                 fontSize: 15.0,
                 isShow: isSummaryUnfold,
                 onPressed: () => changeSummaryMaxLines())),
-        HomeSectionView("演职员",
+        SectionView("演职员",
             hiddenMore: true,
             backgroundColor: pageColor,
             textColor: Colors.white),
@@ -156,7 +152,7 @@ class _MovieDetailState extends State<MovieDetail> {
             Offstage(
                 offstage: movie.photos.isEmpty,
                 child: Column(children: <Widget>[
-                  HomeSectionView("剧照",
+                  SectionView("剧照",
                       hiddenMore: movie.photos.length < 10,
                       backgroundColor: pageColor,
                       textColor: Colors.white,
@@ -220,7 +216,7 @@ class _MovieDetailState extends State<MovieDetail> {
                         offstage: false,
                         onTop: () => pushNewPage(context,
                             MovieVideoPage(movie.clips[index].resource_url))))),
-            HomeSectionView("热评",
+            SectionView("热评",
                 hiddenMore: movie.popular_comments.length < 4,
                 onPressed: () => pushNewPage(context,
                     MovieCommentPage(movie.id, itemBackgroundColor: cardColor)),

@@ -19,11 +19,14 @@ class EmptyShopCart extends StatelessWidget {
           Gaps.vGap15,
           Text('购物车还空着，快去挑选商品吧'),
           Gaps.vGap15,
-          RaisedButton(
-              onPressed: () => pushReplacement(context, IndexPage()),
-              child: Text('随便逛逛', style: TextStyle(color: Colors.white)),
-              color: Colors.red,
-              shape: const StadiumBorder())
+          Button(
+            onPressed: () => pushReplacement(context, IndexPage()),
+            text: '随便逛逛',
+            color: Colors.red,
+            borderRadius: 24,
+            width: 80,
+            height: 36,
+          )
         ]));
   }
 }

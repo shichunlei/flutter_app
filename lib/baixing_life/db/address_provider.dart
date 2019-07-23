@@ -37,16 +37,16 @@ class AddressProvider extends BaseDBProvider {
 
   Future<int> insertOrReplaceToDB(Address address) async {
     if (address == null) return -1;
+    if (address.id != null) return await updateAddress(address);
     Database db = await getDB();
     Map<String, dynamic> map = address.toMap();
-    if (address.id != null) return await updateAddress(address);
-    int successId = await db.insert(table_name, map);
+    int addressId = await db.insert(table_name, map);
     if (address.isDefault) {
-      return await updateAddressDefault(successId, address.isDefault)
-          ? successId
+      return await updateAddressDefault(addressId, address.isDefault)
+          ? addressId
           : -1;
     } else {
-      return successId;
+      return addressId;
     }
   }
 
@@ -56,8 +56,8 @@ class AddressProvider extends BaseDBProvider {
     List<Map<String, dynamic>> maps = await db.query(table_name);
     if (maps.isNotEmpty) {
       for (Map<String, dynamic> map in maps) {
-        Address goods = Address.fromMap(map);
-        addresses.add(goods);
+        Address address = Address.fromMap(map);
+        addresses.add(address);
       }
     }
     return addresses;

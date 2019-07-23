@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/config.dart';
-import 'package:flutter_app/movie/ui/home_section_view.dart';
 import 'package:flutter_app/movie/ui/item_classify_tag.dart';
+
+import '../../page_index.dart';
 
 class ClassifySectionView extends StatelessWidget {
   final String title;
@@ -30,7 +30,7 @@ class ClassifySectionView extends StatelessWidget {
 
     return Column(
       children: <Widget>[
-        HomeSectionView(title, hiddenMore: true),
+        SectionView(title, hiddenMore: true),
         Container(
           padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
           child: GridView.builder(
