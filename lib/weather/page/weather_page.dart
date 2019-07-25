@@ -11,30 +11,22 @@ import '../ui/now_view.dart';
 import '../ui/sun_view.dart';
 import '../ui/weekly_view.dart';
 
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_easyrefresh/material_header.dart';
-
 class WeatherPage extends StatefulWidget {
-  final String cityname;
+  final String cityName;
 
-  WeatherPage(this.cityname, {Key key}) : super(key: key);
+  WeatherPage(this.cityName, {Key key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => WeatherPageState();
 }
 
 class WeatherPageState extends State<WeatherPage> {
-  GlobalKey<EasyRefreshState> _easyRefreshKey =
-      new GlobalKey<EasyRefreshState>();
-  GlobalKey<RefreshHeaderState> _headerKey =
-      new GlobalKey<RefreshHeaderState>();
-
   HeWeather weather;
   HeWeather air;
 
-  AirNowCity air_now_city;
+  AirNowCity airNowCity;
   NowBean now;
-  List<DailyForecast> daily_forecast = [];
+  List<DailyForecast> dailyForecast = [];
   List<Lifestyle> lifestyle = [];
   List<Hourly> hourly = [];
 
@@ -68,7 +60,7 @@ class WeatherPageState extends State<WeatherPage> {
       }
     });
 
-    _getWeather(widget.cityname);
+    _getWeather(widget.cityName);
   }
 
   @override
@@ -78,26 +70,25 @@ class WeatherPageState extends State<WeatherPage> {
   }
 
   /// 根据城市名查询该城市天气预报
-  _getWeather(String cityname) async {
-    air = await ApiService.getAir(cityname);
-    weather = await ApiService.getHeWeather(cityname);
+  _getWeather(String cityName) async {
+    air = await ApiService.getAir(cityName);
+    weather = await ApiService.getHeWeather(cityName);
 
-    background = weatherBg(now?.cond_code);
+    if (weather != null) {
+      now = weather.now;
 
-    barColor = await Utils.getImageDominantColor(background, type: "asset");
+      background = weatherBg(now?.cond_code);
+      barColor = await Utils.getImageDominantColor(background, type: "asset");
 
-    setState(() {
-      if (weather != null) {
-        now = weather.now;
-        background = weatherBg(now?.cond_code);
-        daily_forecast = weather.daily_forecast;
-        lifestyle = weather.lifestyle;
-        hourly = weather.hourly;
-      }
-      if (air != null) {
-        air_now_city = air.air_now_city;
-      }
-    });
+      dailyForecast = weather.daily_forecast;
+      lifestyle = weather.lifestyle;
+      hourly = weather.hourly;
+    }
+    if (air != null) {
+      airNowCity = air.air_now_city;
+    }
+
+    setState(() {});
   }
 
   @override
@@ -110,7 +101,7 @@ class WeatherPageState extends State<WeatherPage> {
             height: Utils.navigationBarHeight,
             child: AppBar(
                 centerTitle: true,
-                title: Text('${widget.cityname}'),
+                title: Text('${widget.cityName}'),
                 elevation: 0.0,
                 backgroundColor: Color.fromARGB((navAlpha * 255).toInt(),
                     barColor.red, barColor.green, barColor.blue),
@@ -124,26 +115,21 @@ class WeatherPageState extends State<WeatherPage> {
   }
 
   Widget _buildContentView() {
-    if (null == weather) {
+    if (null == weather || air == null) {
       return getLoadingWidget();
     }
-    return EasyRefresh(
-        key: _easyRefreshKey,
-        refreshHeader: MaterialHeader(
-          key: _headerKey,
-        ),
+    return RefreshIndicator(
         child: SingleChildScrollView(
             controller: scrollController,
             child: Column(children: <Widget>[
               NowView(now,
-                  daily_forecast: daily_forecast[0],
-                  air_now_city: air_now_city),
-              AirView(air_now_city),
+                  daily_forecast: dailyForecast[0], air_now_city: airNowCity),
+              AirView(airNowCity),
               HourlyView(hourly),
-              WeeklyView(daily_forecast),
+              WeeklyView(dailyForecast),
               LifestyleView(lifestyle),
-              SunView(this.widget.cityname)
+              SunView(this.widget.cityName)
             ])),
-        onRefresh: () => _getWeather(widget.cityname));
+        onRefresh: () => _getWeather(widget.cityName));
   }
 }
