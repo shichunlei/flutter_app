@@ -121,7 +121,6 @@ class _MovieDetailState extends State<MovieDetail> {
       delegate: SliverChildListDelegate(<Widget>[
         SectionView("简介",
             hiddenMore: true,
-            backgroundColor: pageColor,
             textColor: Colors.white),
         Padding(
             padding: const EdgeInsets.only(top: 10.0, left: 10, right: 10),
@@ -135,7 +134,6 @@ class _MovieDetailState extends State<MovieDetail> {
                 onPressed: () => changeSummaryMaxLines())),
         SectionView("演职员",
             hiddenMore: true,
-            backgroundColor: pageColor,
             textColor: Colors.white),
         PersonScroller(casts: casts)
       ]),
@@ -154,7 +152,6 @@ class _MovieDetailState extends State<MovieDetail> {
                 child: Column(children: <Widget>[
                   SectionView("剧照",
                       hiddenMore: movie.photos.length < 10,
-                      backgroundColor: pageColor,
                       textColor: Colors.white,
                       onPressed: () => pushNewPage(
                           context,
@@ -220,7 +217,6 @@ class _MovieDetailState extends State<MovieDetail> {
                 hiddenMore: movie.popular_comments.length < 4,
                 onPressed: () => pushNewPage(context,
                     MovieCommentPage(movie.id, itemBackgroundColor: cardColor)),
-                backgroundColor: pageColor,
                 textColor: Colors.white),
             Padding(
                 padding: const EdgeInsets.only(

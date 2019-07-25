@@ -93,6 +93,7 @@ export 'ui/text_field_item.dart';
 export 'ui/select_text_item.dart';
 export 'ui/selected_text.dart';
 export 'ui/section_view.dart';
+export 'ui/web_view.dart';
 
 export 'qdaily/article_detail.dart';
 export 'qdaily/book_detail.dart';

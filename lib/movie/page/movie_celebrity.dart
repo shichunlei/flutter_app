@@ -94,7 +94,6 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
               <Widget>[
                 SectionView("简介",
                     hiddenMore: true,
-                    backgroundColor: pageColor,
                     textColor: Colors.white),
                 Padding(
                   padding:

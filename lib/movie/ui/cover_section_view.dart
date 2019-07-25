@@ -31,7 +31,6 @@ class CoverSectionView extends StatelessWidget {
           SectionView(
             "$title（$size）",
             hiddenMore: hiddenMore,
-            backgroundColor: backgroundColor,
             textColor: Colors.white,
             onPressed: onPressed,
           ),
