@@ -64,7 +64,7 @@ class HomeStatePage extends State<HomePage> {
                 onPressed: () => _scaffoldKey.currentState.openDrawer()),
             actions: <Widget>[
               IconButton(
-                  icon: Icon(Icons.tune, semanticLabel: "tune"),
+                  icon: Icon(Icons.refresh, semanticLabel: "refresh"),
                   onPressed: () => getTestData(),
                   tooltip: "Tune")
             ],

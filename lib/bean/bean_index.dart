@@ -12,7 +12,6 @@ export 'image.dart';
 export 'juzimi.dart';
 export 'news.dart';
 export 'photos.dart';
-export 'poetry.dart';
 export 'qdaily.dart';
 export 'qdaily_app.dart';
 export 'qdaily_web.dart';

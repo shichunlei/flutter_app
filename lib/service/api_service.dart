@@ -359,17 +359,6 @@ class ApiService {
     return result.article;
   }
 
-  /// 随机诗词
-  static Future<Poetry> getRecommendPoetry() async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.API_OPEN_BASE_URL)
-        .get(ApiUrl.RECOMMEND_POETRY, data: null);
-    if (response.statusCode != 200) {
-      return null;
-    }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.poetry;
-  }
-
   /// 得到实况天气
   static Future<HeWeather> getHeWeatherNow(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)

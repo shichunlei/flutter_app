@@ -5,7 +5,6 @@ import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/bean/image.dart';
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/bean/photos.dart';
-import 'package:flutter_app/bean/poetry.dart';
 import 'package:flutter_app/bean/reviews.dart';
 import 'package:flutter_app/bean/works.dart';
 
@@ -19,9 +18,6 @@ class Result {
 
   /// 每日一文
   Article article;
-
-  /// 随机诗词
-  Poetry poetry;
 
   /// 相册
   List<Photos> photos;
@@ -65,8 +61,6 @@ class Result {
         map['celebrity'] == null ? null : Celebrity.fromMap(map['celebrity']);
     result.subject =
         map['subject'] == null ? null : Movie.fromMap(map['subject']);
-    result.poetry =
-        map['result'] == null ? null : Poetry.fromMap(map['result']);
     result.article = map['data'] == null ? null : Article.fromMap(map['data']);
 
     result.heWeather = List()

@@ -18,10 +18,6 @@ class ApiUrl {
   static final String ARTICLE_DAY_URL = "/article/day";
   static final String ARTICLE_RANDOM_URL = "/article/random";
 
-  static final String API_OPEN_BASE_URL = 'https://api.apiopen.top';
-
-  static final String RECOMMEND_POETRY = '/recommendPoetry';
-
   static final String WEATHER_BASE_URL = "https://free-api.heweather.net/s6";
 
   static final String WEATHER = "/weather";
@@ -88,8 +84,4 @@ class ApiUrl {
 
   static final String QDAILY_CATEGORYS_DATA = "app3/homes/left_sidebar.json";
 
-  static final String HOLIDAY_BASE_URL = 'https://calendarific.com';
-  // 假日API文档
-  static final String HOLIDAYS_URL =
-      '/api/v2/holidays?&api_key=afbba6c2a5506d4d663f0ee8fd25ada775b39885&country=CN&year=2019';
 }
