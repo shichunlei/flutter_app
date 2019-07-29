@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../page_index.dart';
 
 class SliderWidget extends StatefulWidget {
   @override
@@ -16,10 +19,11 @@ class _SliderWidgetState extends State<SliderWidget> {
         centerTitle: true,
         title: Text('Slider Widget'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: ListView(
+        padding: EdgeInsets.all(20),
         children: <Widget>[
-          Text('$_value'),
+          Text('${_value.toInt()}'),
+          Gaps.vGap15,
           Slider(
             value: _value,
             min: 0.0,
@@ -29,8 +33,10 @@ class _SliderWidgetState extends State<SliderWidget> {
             inactiveColor: Colors.orangeAccent,
           ),
           const Text('Continuous'),
+          Gaps.vGap15,
           Slider(value: 0.25, onChanged: null),
           const Text('Disabled'),
+          Gaps.vGap15,
           Slider(
             value: _discreteValue,
             min: 0.0,
@@ -44,6 +50,17 @@ class _SliderWidgetState extends State<SliderWidget> {
             },
           ),
           const Text('Discrete'),
+          Gaps.vGap15,
+          CupertinoSlider(
+            onChanged: (double value) {
+              setState(() => _value = value);
+            },
+            value: _value,
+            max: 100,
+            min: 0,
+          ),
+          const Text('CupertinoSlider'),
+          Gaps.vGap15,
         ],
       ),
     );
