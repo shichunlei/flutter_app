@@ -25,6 +25,8 @@ export 'widget/star_rating_widget.dart';
 export 'widget/stepper_widget.dart';
 export 'widget/text_widget.dart';
 export 'widget/textfield_widget.dart';
+export 'widget/animated_switcher.dart';
+export 'widget/aspect_ratio.dart';
 
 export 'page/charts_widget.dart';
 export 'page/city_picker_page.dart';
