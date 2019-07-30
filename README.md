@@ -228,13 +228,14 @@ A new Flutter application.
 | Badges for Flutter | [badges](https://github.com/yadaniyil/flutter_badges) | ![](https://camo.githubusercontent.com/c65b82b9f7487ff2a77b09bf7f682677b0312ab9/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7075622d312e302e332d626c756576696f6c65742e737667) |
 | Palette Generator | [palette_generator](https://github.com/flutter/packages/tree/master/packages/palette_generator) | ![](https://img.shields.io/pub/v/palette_generator.svg) |
 | 仿京东地址选择器 | [flutter_jd_address_selector](https://github.com/shichunlei/flutter_jd_address_selector) | 0.0.1 |
+| 图片裁剪 | [image_crop](https://github.com/VolodymyrLykhonis/image_crop) |![](https://img.shields.io/pub/v/image_crop.svg)|
 
 
 ## 赞赏
 
-    如果您喜欢FlutterApp，或感觉FlutterApp帮助到了您，可以点右上角“Star”支持一下，您的支持就是我的动力，谢谢 😃
+如果您喜欢FlutterApp，或感觉FlutterApp帮助到了您，可以点右上角“Star”支持一下，您的支持就是我的动力，谢谢🙂
 
-    您也可以扫描下面的二维码，请作者喝杯咖啡 ☕️
+您也可以扫描下面的二维码，请作者喝杯咖啡☕️
 
 
 - 先领个红包
