@@ -73,7 +73,7 @@ A new Flutter application.
 
 - [天气接口>>](https://www.heweather.com/documents/api/)
 
-- [诗词接口>>](https://blog.csdn.net/qq_35695041/article/details/83024632)
+- [免费接口API>>](https://blog.csdn.net/qq_35695041/article/details/83024632)
 
 - [好奇心日报接口>>](https://github.com/pkuhonker/qdaily/blob/master/src/services/apiService.ts)
 
@@ -198,37 +198,39 @@ A new Flutter application.
 ### [Flutter i18n 实现国际化](https://github.com/shichunlei/flutter_app/wiki/Flutter-i18n-%E5%AE%9E%E7%8E%B0%E5%9B%BD%E9%99%85%E5%8C%96)
 
 
-## 使用到的第三方插件
+## 使用到的或推荐使用的一些第三方插件
 
 | Plugin | 地址 | 版本号 |
 | :--: | :--: | :--: |
-| 网络请求 | [dio](https://pub.dartlang.org/packages/dio) | ![](https://camo.githubusercontent.com/cdfb640de2cc8eeb0f6bfa1bda82422d83d87785/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f64696f2e7376673f7374796c653d666c61742d737175617265) |
-| 下拉刷新，上拉加载 |[flutter_easyrefresh](https://github.com/xuelongqy/flutter_easyrefresh)|![](https://camo.githubusercontent.com/c96857ee880abb5c8d65ab657cbd60836739533b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7075622d76312e322e352d6f72616e67652e737667)|
-| Shared Preferences |[shared_preferences](https://github.com/flutter/plugins/tree/master/packages/shared_preferences)|![](https://camo.githubusercontent.com/b9af89a46da89444505ead9b0a7245e883d17afb/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f7368617265645f707265666572656e6365732e737667)| 
-| 中国城市选择器 |[city_picker](https://github.com/CaiJingLong/flutter_city_picker)|![](https://camo.githubusercontent.com/24b9365f7514f94b06178f06f81397d0d75d80c4/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f636974795f7069636b65722e737667)|
-| 设备信息 |[device_info](https://github.com/flutter/plugins/tree/master/packages/device_info)|![](https://camo.githubusercontent.com/965d0090e8f547b318f37fcf6e0e30ccebc2dfaf/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f6465766963655f696e666f2e737667)|
-| 图片选择器 | [image_picker](https://github.com/flutter/plugins/tree/master/packages/image_picker) | ![](https://camo.githubusercontent.com/50ed2cc4c99917d2dfb12b44e5ab9356f70d63b7/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f696d6167655f7069636b65722e737667) | 
-| url_launcher | [url_launcher](https://github.com/flutter/plugins/tree/master/packages/url_launcher) | ![](https://camo.githubusercontent.com/73ce49295f296939f5fc90be9ce94ca8c7bd7e44/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f75726c5f6c61756e636865722e737667) | 
-| 视频播放器 | [video_player](https://github.com/flutter/plugins/tree/master/packages/video_player) | ![](https://camo.githubusercontent.com/de09dde7ce935f4e176c1ce00f7e31e4b0e5c14f/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f766964656f5f706c617965722e737667) | 
-| Flutter WebView Plugin | [flutter_webview_plugin](https://github.com/fluttercommunity/flutter_webview_plugin) | ![](https://img.shields.io/pub/v/flutter_webview_plugin.svg) | 
-| PackageInfo | [package_info](https://github.com/flutter/plugins/tree/master/packages/package_info) | ![](https://camo.githubusercontent.com/01a75953af6fc91e941c2b5ba32162f55d795403/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f706174685f70726f76696465722e737667) | 
-| 系统分享 | [share](https://github.com/flutter/plugins/tree/master/packages/share) | ![](https://camo.githubusercontent.com/afe573869b306315562203bca3cf9a85ac94ccf5/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f73686172652e737667) |
-| 引导页 | [intro-slider](https://github.com/duytq94/flutter-intro-slider) | 2.2.2 |
-| 评分控件 | [smooth_star_rating](https://github.com/thangmam/smoothratingbar) | 1.0.1 | 
-| PhotoView | [photo_view](https://github.com/renancaraujo/photo_view) | ![](https://camo.githubusercontent.com/8a5c98a80bb80f0eed10b5f111cc7440d1aa143e/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f70686f746f5f766965772e7376673f7374796c653d706f706f7574) | 
-| 时间轴 | [Timeline](https://github.com/furkantektas/timeline_list) | ![](https://camo.githubusercontent.com/81e25a24fd6072e2979c03e4d716be55eff89763/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f74696d656c696e655f6c6973742e737667) | 
-| Rounded Letter | [roundedletter](https://github.com/jhomlala/roundedletter) | ![](https://camo.githubusercontent.com/ab6351029d9980584a1120d90dccb654e8ab8dbb/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f726f756e6465645f6c65747465722e737667) | 
-| 数据库 | [sqflite](https://github.com/tekartik/sqflite) | 1.1.5 | 
-| Flutter Multi Image Picker | [Flutter Multi Image Picker](https://github.com/Sh1d0w/multi_image_picker) | ![](https://camo.githubusercontent.com/a92acc7a4217e1e7bfb9a9a4ad0be422ce7ad875/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f6d756c74695f696d6167655f7069636b65722e737667) | 
-| Flutter Range Slider | [range_slider](https://github.com/boeledi/RangeSlider) | 1.2.0 | 
-| 侧滑菜单 | [flutter_inner_drawer](https://github.com/Dn-a/flutter_inner_drawer) | ![](https://camo.githubusercontent.com/dda1245d1fb2d8ab403c705df11bbf07717d3dce/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7075622d302e322e362d6f72616e67652e737667) | 
-| 字母索引、悬停 | [azlistview](https://github.com/flutterchina/azlistview) | ![](https://camo.githubusercontent.com/fe32a6e2c3f42d892ce837927d0499d5608e88c8/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f617a6c697374766965772e7376673f7374796c653d666c61742d737175617265) |
-| 状态管理 | [provide](https://github.com/google/flutter-provide) | 1.0.2 |
-| 图表 | [fl_chart](https://github.com/imaNNeoFighT/fl_chart) | ![](https://camo.githubusercontent.com/9ec4eb28efea48f3229b74bcef4b9b5554517421/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f666c5f63686172742e737667) |
-| Badges for Flutter | [badges](https://github.com/yadaniyil/flutter_badges) | ![](https://camo.githubusercontent.com/c65b82b9f7487ff2a77b09bf7f682677b0312ab9/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7075622d312e302e332d626c756576696f6c65742e737667) |
+| 网络请求 | [dio](https://pub.dartlang.org/packages/dio) | ![](https://img.shields.io/pub/v/dio.svg) |
+| 下拉刷新，上拉加载 |[FlutterEasyRefresh](https://github.com/xuelongqy/flutter_easyrefresh)|![](https://img.shields.io/pub/v/flutter_easyrefresh.svg)|
+| Shared Preferences |[shared_preferences](https://github.com/flutter/plugins/tree/master/packages/shared_preferences)|![](https://img.shields.io/pub/v/shared_preferences.svg)| 
+| 中国城市选择器 |[city_picker](https://github.com/CaiJingLong/flutter_city_picker)|![](https://img.shields.io/pub/v/city_picker.svg)|
+| 设备信息 |[device_info](https://github.com/flutter/plugins/tree/master/packages/device_info)|![](https://img.shields.io/pub/v/device_info.svg)|
+| 图片选择器 | [image_picker](https://github.com/flutter/plugins/tree/master/packages/image_picker) | ![](https://img.shields.io/pub/v/image_picker.svg) | 
+| url_launcher | [url_launcher](https://github.com/flutter/plugins/tree/master/packages/url_launcher) | ![](https://img.shields.io/pub/v/url_launcher.svg) | 
+| 视频播放器 | [video_player](https://github.com/flutter/plugins/tree/master/packages/video_player) | ![](https://img.shields.io/pub/v/video_player.svg) | 
+| Flutter WebView Plugin | [WebView](https://github.com/fluttercommunity/flutter_webview_plugin) | ![](https://img.shields.io/pub/v/flutter_webview_plugin.svg) | 
+| PackageInfo | [package_info](https://github.com/flutter/plugins/tree/master/packages/package_info) | ![](https://img.shields.io/pub/v/package_info.svg) | 
+| 系统分享 | [share](https://github.com/flutter/plugins/tree/master/packages/share) | ![](https://img.shields.io/pub/v/share.svg) |
+| 引导页 | [intro-slider](https://github.com/duytq94/flutter-intro-slider) | ![](https://img.shields.io/pub/v/intro_slider.svg) |
+| 评分控件 | [smooth_star_rating](https://github.com/thangmam/smoothratingbar) | ![](https://img.shields.io/pub/v/smooth_star_rating.svg) | 
+| PhotoView | [photo_view](https://github.com/renancaraujo/photo_view) | ![](https://img.shields.io/pub/v/photo_view.svg) | 
+| 时间轴 | [Timeline](https://github.com/furkantektas/timeline_list) | ![](https://img.shields.io/pub/v/timeline_list.svg) | 
+| Rounded Letter | [rounded_letter](https://github.com/jhomlala/roundedletter) | ![](https://img.shields.io/pub/v/rounded_letter.svg) | 
+| 数据库 | [sqfLite](https://github.com/tekartik/sqflite) | ![](https://img.shields.io/pub/v/sqflite.svg) | 
+| Flutter Multi Image Picker | [Flutter Multi Image Picker](https://github.com/Sh1d0w/multi_image_picker) | ![](https://img.shields.io/pub/v/multi_image_picker.svg) | 
+| Flutter Range Slider | [range_slider](https://github.com/boeledi/RangeSlider) | ![](https://img.shields.io/pub/v/flutter_range_slider.svg) | 
+| 侧滑菜单 | [flutter_inner_drawer](https://github.com/Dn-a/flutter_inner_drawer) | ![](https://img.shields.io/pub/v/flutter_inner_drawer.svg) | 
+| 字母索引、悬停 | [AZListView](https://github.com/flutterchina/azlistview) | ![](https://img.shields.io/pub/v/azlistview.svg) |
+| 状态管理 | [provide](https://github.com/google/flutter-provide) | ![](https://img.shields.io/pub/v/provide.svg) |
+| 状态管理 | [provider](https://github.com/rrousselGit/provider) | ![](https://img.shields.io/pub/v/provider.svg) |
+| 图表 | [fl_chart](https://github.com/imaNNeoFighT/fl_chart) | ![](https://img.shields.io/pub/v/fl_chart.svg) |
+| Badges for Flutter | [badges](https://github.com/yadaniyil/flutter_badges) | ![](https://img.shields.io/pub/v/badges.svg) |
 | Palette Generator | [palette_generator](https://github.com/flutter/packages/tree/master/packages/palette_generator) | ![](https://img.shields.io/pub/v/palette_generator.svg) |
 | 仿京东地址选择器 | [flutter_jd_address_selector](https://github.com/shichunlei/flutter_jd_address_selector) | 0.0.1 |
 | 图片裁剪 | [image_crop](https://github.com/VolodymyrLykhonis/image_crop) |![](https://img.shields.io/pub/v/image_crop.svg)|
+| path_provider | [path_provider](https://github.com/flutter/plugins/tree/master/packages/path_provider) | ![](https://img.shields.io/pub/v/path_provider.svg) |
 
 
 ## 赞赏
