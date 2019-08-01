@@ -1,3 +1,4 @@
+import 'package:amap_base_location/amap_base_location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/he_weather.dart';
@@ -16,18 +17,29 @@ class HomePage extends StatefulWidget {
 class HomeStatePage extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  final _amapLocation = AMapLocation();
+
+  Location location;
+
   /// 上次点击时间
   DateTime _lastPressedAt;
 
   HeWeather weather;
-  String city;
+  String city = '正在定位...';
 
   @override
   void initState() {
     super.initState();
-    city = '北京';
-    // 获取当前位置的天气数据
-    getWeatherData(city);
+    _amapLocation.init();
+
+    _location();
+  }
+
+  @override
+  void dispose() {
+    _amapLocation.stopLocate();
+
+    super.dispose();
   }
 
   @override
@@ -44,11 +56,15 @@ class HomeStatePage extends State<HomePage> {
           appBar: AppBar(
             // Title
             title: GestureDetector(
-              onTap: () => pushNewPage(context, CityPage(currentCity: city)),
+              onTap: () {
+                if (city != '正在定位...') {
+                  pushNewPage(context, CityPage(currentCity: city));
+                }
+              },
               child: Column(
                   children: <Widget>[
                     Row(children: <Widget>[
-                      Text(city, style: TextStyle(fontSize: 17.0)),
+                      Text('$city', style: TextStyle(fontSize: 17.0)),
                       Icon(Icons.keyboard_arrow_down)
                     ], mainAxisSize: MainAxisSize.min),
                     Text(
@@ -141,6 +157,24 @@ class HomeStatePage extends State<HomePage> {
       return false;
     }
     return true;
+  }
+
+  Future<void> _location() async {
+    final options = LocationClientOptions(
+      isOnceLocation: true,
+      locatingWithReGeocode: true,
+    );
+
+    if (await Permissions.requestMapPermission()) {
+      _amapLocation.getLocation(options).then((value) {
+        location = value;
+        debugPrint("location==========${location.city}");
+        city = location.city;
+        getWeatherData(city);
+      });
+    } else {
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text('权限不足')));
+    }
   }
 
   void getWeatherData(String city) async {

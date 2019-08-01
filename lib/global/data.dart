@@ -270,7 +270,8 @@ class ExpandStateBean {
           SubExpandBean('Image Colors', ImageColors()),
           SubExpandBean('Ruler', RulerSample()),
           SubExpandBean('Preview', PreviewSample()),
-          SubExpandBean('CardFlip', CardFlipPage())
+          SubExpandBean('CardFlip', CardFlipPage()),
+          SubExpandBean('高德地图定位', AMapLocationDemo()),
         ]),
     ExpandStateBean(
         leading: Icons.filter_4,

@@ -8,6 +8,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.7+2"
+  amap_base_core:
+    dependency: transitive
+    description:
+      name: amap_base_core
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.5+1"
+  amap_base_location:
+    dependency: "direct main"
+    description:
+      name: amap_base_location
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.4.0+1"
   async:
     dependency: transitive
     description:
@@ -398,6 +412,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.7.0"
+  permission_handler:
+    dependency: transitive
+    description:
+      name: permission_handler
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.2.1+1"
   photo_view:
     dependency: "direct main"
     description:

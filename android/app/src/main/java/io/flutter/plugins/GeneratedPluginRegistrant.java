@@ -1,6 +1,7 @@
 package io.flutter.plugins;
 
 import io.flutter.plugin.common.PluginRegistry;
+import me.yohom.amapbaselocation.AMapBaseLocationPlugin;
 import com.apptreesoftware.barcodescan.BarcodeScanPlugin;
 import com.example.citypickers.CityPickersPlugin;
 import net.goderbauer.flutter.contactpicker.ContactPickerPlugin;
@@ -11,6 +12,7 @@ import io.flutter.plugins.imagepicker.ImagePickerPlugin;
 import io.flutter.plugins.imagepickersaver.ImagePickerSaverPlugin;
 import com.dfa.introslider.IntroSliderPlugin;
 import io.flutter.plugins.packageinfo.PackageInfoPlugin;
+import com.baseflow.permissionhandler.PermissionHandlerPlugin;
 import com.jhomlala.roundedletter.RoundedLetterPlugin;
 import flutter.plugins.screen.screen.ScreenPlugin;
 import io.flutter.plugins.share.SharePlugin;
@@ -27,6 +29,7 @@ public final class GeneratedPluginRegistrant {
     if (alreadyRegisteredWith(registry)) {
       return;
     }
+    AMapBaseLocationPlugin.registerWith(registry.registrarFor("me.yohom.amapbaselocation.AMapBaseLocationPlugin"));
     BarcodeScanPlugin.registerWith(registry.registrarFor("com.apptreesoftware.barcodescan.BarcodeScanPlugin"));
     CityPickersPlugin.registerWith(registry.registrarFor("com.example.citypickers.CityPickersPlugin"));
     ContactPickerPlugin.registerWith(registry.registrarFor("net.goderbauer.flutter.contactpicker.ContactPickerPlugin"));
@@ -37,6 +40,7 @@ public final class GeneratedPluginRegistrant {
     ImagePickerSaverPlugin.registerWith(registry.registrarFor("io.flutter.plugins.imagepickersaver.ImagePickerSaverPlugin"));
     IntroSliderPlugin.registerWith(registry.registrarFor("com.dfa.introslider.IntroSliderPlugin"));
     PackageInfoPlugin.registerWith(registry.registrarFor("io.flutter.plugins.packageinfo.PackageInfoPlugin"));
+    PermissionHandlerPlugin.registerWith(registry.registrarFor("com.baseflow.permissionhandler.PermissionHandlerPlugin"));
     RoundedLetterPlugin.registerWith(registry.registrarFor("com.jhomlala.roundedletter.RoundedLetterPlugin"));
     ScreenPlugin.registerWith(registry.registrarFor("flutter.plugins.screen.screen.ScreenPlugin"));
     SharePlugin.registerWith(registry.registrarFor("io.flutter.plugins.share.SharePlugin"));

@@ -3,6 +3,7 @@
 //
 
 #import "GeneratedPluginRegistrant.h"
+#import <amap_base_location/AMapBaseLocationPlugin.h>
 #import <barcode_scan/BarcodeScanPlugin.h>
 #import <city_pickers/CityPickersPlugin.h>
 #import <contact_picker/ContactPickerPlugin.h>
@@ -13,6 +14,7 @@
 #import <image_picker_saver/ImagePickerSaverPlugin.h>
 #import <intro_slider/IntroSliderPlugin.h>
 #import <package_info/PackageInfoPlugin.h>
+#import <permission_handler/PermissionHandlerPlugin.h>
 #import <rounded_letter/RoundedLetterPlugin.h>
 #import <screen/ScreenPlugin.h>
 #import <share/SharePlugin.h>
@@ -24,6 +26,7 @@
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
+  [AMapBaseLocationPlugin registerWithRegistrar:[registry registrarForPlugin:@"AMapBaseLocationPlugin"]];
   [BarcodeScanPlugin registerWithRegistrar:[registry registrarForPlugin:@"BarcodeScanPlugin"]];
   [CityPickersPlugin registerWithRegistrar:[registry registrarForPlugin:@"CityPickersPlugin"]];
   [ContactPickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"ContactPickerPlugin"]];
@@ -34,6 +37,7 @@
   [FLTImagePickerSaverPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerSaverPlugin"]];
   [IntroSliderPlugin registerWithRegistrar:[registry registrarForPlugin:@"IntroSliderPlugin"]];
   [FLTPackageInfoPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPackageInfoPlugin"]];
+  [PermissionHandlerPlugin registerWithRegistrar:[registry registrarForPlugin:@"PermissionHandlerPlugin"]];
   [RoundedLetterPlugin registerWithRegistrar:[registry registrarForPlugin:@"RoundedLetterPlugin"]];
   [ScreenPlugin registerWithRegistrar:[registry registrarForPlugin:@"ScreenPlugin"]];
   [FLTSharePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTSharePlugin"]];

@@ -39,5 +39,9 @@
             </intent-filter>
         </activity>
         <activity android:name="com.apptreesoftware.barcodescan.BarcodeScannerActivity" />
+        <!-- 高德地图API_KEY -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="f9d17a113bace1ff32fed97166efcff3"/>
     </application>
 </manifest>

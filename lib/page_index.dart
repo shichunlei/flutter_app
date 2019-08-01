@@ -53,6 +53,7 @@ export 'page/random_poetry_page.dart';
 export 'page/ruler_sample.dart';
 export 'page/preview_sample.dart';
 export 'page/card_flip_page.dart';
+export 'page/amap_location_demo.dart';
 
 export 'city_pickers/page/fullpage_pickers_page.dart';
 export 'city_pickers/page/ios_city_pickers_page.dart';

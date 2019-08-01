@@ -231,6 +231,7 @@ A new Flutter application.
 | 仿京东地址选择器 | [flutter_jd_address_selector](https://github.com/shichunlei/flutter_jd_address_selector) | 0.0.1 |
 | 图片裁剪 | [image_crop](https://github.com/VolodymyrLykhonis/image_crop) |![](https://img.shields.io/pub/v/image_crop.svg)|
 | path_provider | [path_provider](https://github.com/flutter/plugins/tree/master/packages/path_provider) | ![](https://img.shields.io/pub/v/path_provider.svg) |
+| 高德地图定位 | [AMapBaseLocation](https://github.com/OpenFlutter/amap_base_flutter) | ![](https://img.shields.io/pub/v/amap_base_location.svg) |
 
 
 ## 赞赏
