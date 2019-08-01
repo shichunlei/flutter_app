@@ -16,7 +16,7 @@ A new Flutter application.
 
 - 各种基本控件使用（Text、TextField、Icon、Image、Listview、Gridview、Picker、Stepper、Dialog、Slider、Row、Appbar、Sizebox、BottomSheet、Chip、Dismissible、FlutterLogo、Check、Switch、TabBar、BottomNavigationBar、Sliver等）
 - 自定义控件及使用
-- 各种UI （豆瓣电影、好奇心日报、每日一文、和天气、百姓生活、随机诗词、联系人、句子迷、朋友圈等）
+- 各种UI （豆瓣电影、好奇心日报、每日一文、和天气、百姓生活、随机诗词、联系人、句子迷、朋友圈、高德地图应用demo等）
 
 
 ## 运行环境
@@ -64,6 +64,13 @@ A new Flutter application.
     • Dart plugin version 183.6270
     • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1343-b01)
 ```
+
+#### 注意事项
+
+
+- 高德定位ios设备的apikey没有配置，使用ios设备的朋友们可以自己去高德地图申请apikey，ios具体配置见[高德地图flutter插件](https://github.com/OpenFlutter/amap_base_flutter)配置。
+
+
 
 ## API接口
 
