@@ -65,6 +65,10 @@ dependencies: # 应用或包依赖的其它包或插件
   # 图标库地址：https://feathericons.com/
   feather_icons_flutter: ^4.7.4
 
+  flute_music_player:
+    git:
+      url: https://github.com/iampawan/Flute-Music-Player
+
   # 颜色选择器
   flutter_colorpicker: ^0.2.5
 
@@ -92,6 +96,8 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_swiper: ^1.1.6
 
   flutter_webview_plugin: ^0.3.5
+
+  fluttery_seekbar: ^0.0.1
 
   # 图标库中文地址：http://www.fontawesome.com.cn/
   font_awesome_flutter: ^8.4.0

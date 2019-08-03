@@ -287,6 +287,7 @@ class ExpandStateBean {
           SubExpandBean('每日一文', OneArticlePage()),
           SubExpandBean('仿朋友圈', WeChatFriendsCircle()),
           SubExpandBean('仿抖音首页动画', TikTokPage()),
+          SubExpandBean('Music Player', MusicHomePage()),
           SubExpandBean('仿闲鱼', XianyuHomePage()),
           SubExpandBean('好奇心日报', QdailySplashPage()),
           SubExpandBean('登录页面', PasswordLoginPage()),

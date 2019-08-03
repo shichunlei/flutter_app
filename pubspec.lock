@@ -192,6 +192,15 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "4.7.4"
+  flute_music_player:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "1195ba57f144ab7ad23cc8b054f8153096b5ee60"
+      url: "https://github.com/iampawan/Flute-Music-Player"
+    source: git
+    version: "0.0.6"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -286,6 +295,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.3.5"
+  fluttery:
+    dependency: transitive
+    description:
+      name: fluttery
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.8"
+  fluttery_seekbar:
+    dependency: "direct main"
+    description:
+      name: fluttery_seekbar
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.1"
   font_awesome_flutter:
     dependency: "direct main"
     description:
