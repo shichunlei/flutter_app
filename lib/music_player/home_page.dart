@@ -77,12 +77,12 @@ class _MusicHomePageState extends State<MusicHomePage> {
 
     audioPlayer.setDurationHandler((d) => setState(() {
           duration = d;
-          print('setDurationHandler========$duration');
+          debugPrint('setDurationHandler========$duration');
         }));
 
     audioPlayer.setPositionHandler((p) => setState(() {
           position = p;
-          print('setPositionHandler========$position');
+          debugPrint('setPositionHandler========$position');
           _thumbPercent = position != null && position.inMilliseconds > 0
               ? (position?.inMilliseconds?.toDouble() ?? 0.0) /
                   (duration?.inMilliseconds?.toDouble() ?? 0.0)
@@ -94,7 +94,7 @@ class _MusicHomePageState extends State<MusicHomePage> {
       setState(() {
         position = duration;
 
-        print('setCompletionHandler========$position');
+        debugPrint('setCompletionHandler========$position');
       });
     });
 
@@ -104,13 +104,13 @@ class _MusicHomePageState extends State<MusicHomePage> {
         duration = Duration(seconds: 0);
         position = Duration(seconds: 0);
 
-        print('setErrorHandler========$position============$duration');
+        debugPrint('setErrorHandler========$position============$duration');
       });
     });
   }
 
   void onComplete() {
-    print('onComplete========');
+    debugPrint('onComplete========');
     setState(() {
       playerState = PlayerState.stopped;
       _icon = Icons.stop;
@@ -234,7 +234,7 @@ class _MusicHomePageState extends State<MusicHomePage> {
                         ),
                       ),
                       ImageLoadView(
-                        '',
+                        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564830238704&di=11798dafaaad4d5f727bac5113ed9ba5&imgtype=0&src=http%3A%2F%2Fpic41.nipic.com%2F20140507%2F7160980_232207178322_2.jpg',
                         borderRadius: BorderRadius.all(Radius.circular(75.0)),
                         width: 150,
                         height: 150,
