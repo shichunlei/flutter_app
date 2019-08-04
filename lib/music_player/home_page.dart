@@ -6,10 +6,6 @@ import '../page_index.dart';
 
 enum PlayerState { stopped, playing, paused }
 
-const Color accentColor = const Color(0xFFF08F8F);
-const Color lightAccentColor = const Color(0xFFFfaFaF);
-const Color darkAccentColor = const Color(0xFFd06F6F);
-
 class MusicHomePage extends StatefulWidget {
   MusicHomePage({Key key}) : super(key: key);
 

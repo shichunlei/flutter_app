@@ -128,7 +128,6 @@ export 'xianyu/home.dart';
 
 export 'res/colors.dart';
 export 'res/dimens.dart';
-export 'res/strings.dart';
 export 'res/styles.dart';
 
 export 'global/custom_icon.dart';
