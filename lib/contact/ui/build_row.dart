@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/ui/contact_image_text.dart';
 import 'package:flutter_app/contact/ui/line_widget.dart';
+import 'package:flutter_app/generated/i18n.dart';
 
 class BuildRowView extends StatefulWidget {
   @override
@@ -23,7 +24,7 @@ class _BuildRowViewState extends State<BuildRowView> {
     bool isFavorite = false;
     IconData favoriteIcon = Icons.favorite_border;
     Color favoriteColor = Colors.grey;
-    String favoriteText = "收藏";
+    String favoriteText = "${S.of(context).collect}";
 
     void _toggleFavorite() {
       setState(() {
@@ -31,16 +32,16 @@ class _BuildRowViewState extends State<BuildRowView> {
           isFavorite = false;
           favoriteIcon = Icons.favorite_border;
           favoriteColor = Colors.grey;
-          favoriteText = "收藏";
+          favoriteText = "${S.of(context).collect}";
         } else {
           isFavorite = true;
           favoriteIcon = Icons.favorite;
           favoriteColor = Colors.redAccent;
-          favoriteText = "取消收藏";
+          favoriteText = "${S.of(context).cancel_collect}";
         }
       });
     }
-    
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -50,7 +51,7 @@ class _BuildRowViewState extends State<BuildRowView> {
             Icons.share,
             color: Colors.grey,
           ),
-          text: Text("分享"),
+          text: Text("${S.of(context).share}"),
           onPressed: () {},
         ),
         LineWidget(
@@ -63,7 +64,7 @@ class _BuildRowViewState extends State<BuildRowView> {
             Icons.history,
             color: Colors.grey,
           ),
-          text: Text("通话记录"),
+          text: Text("${S.of(context).call_history}"),
           onPressed: () {},
         ),
         LineWidget(

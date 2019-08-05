@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/contact.dart';
 import 'package:flutter_app/contact/page/contact_page.dart';
 import 'package:flutter_app/contact/ui/contact_list_header.dart';
+import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/ui/suspension_tag.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/utils/loading_util.dart';
@@ -30,7 +31,7 @@ class _ContactListPageState extends State<ContactListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("通讯录"), elevation: 0.0),
+        appBar: AppBar(title: Text(S.of(context).contacts), elevation: 0.0),
         body: _contacts.isNotEmpty
             ? AzListView(
                 data: _contacts,
@@ -38,12 +39,11 @@ class _ContactListPageState extends State<ContactListPage> {
                 header: AzListViewHeader(
                   height: 220,
                   builder: (context) => Diagonal(
-                        axis: Axis.horizontal,
-                        position: DiagonalPosition.BOTTOM_LEFT,
-                        clipHeight: 50.0,
-                        child: ContactListHeader(
-                            name: "SCL", phone: "18601952581"),
-                      ),
+                    axis: Axis.horizontal,
+                    position: DiagonalPosition.BOTTOM_LEFT,
+                    clipHeight: 50.0,
+                    child: ContactListHeader(name: "SCL", phone: "18601952581"),
+                  ),
                 ),
                 isUseRealIndex: true,
                 itemHeight: _itemHeight,

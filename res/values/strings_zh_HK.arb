@@ -34,5 +34,10 @@
   "create_address": "新增地址",
   "success": "成功",
   "fail": "失敗",
-  "choose": "請選擇"
+  "choose": "請選擇",
+  "contacts": "通訊錄",
+  "share": "分享",
+  "call_history": "通話記錄",
+  "collect": "收藏",
+  "cancel_collect": "取消收藏"
 }

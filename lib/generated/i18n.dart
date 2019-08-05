@@ -20,11 +20,15 @@ class S implements WidgetsLocalizations {
   TextDirection get textDirection => TextDirection.ltr;
 
   String get address => "Address List";
+  String get call_history => "Call History";
   String get cancel => "cancel";
+  String get cancel_collect => "cancel collect";
   String get choice_address => "Choice Address";
   String get choose => "Please Choose";
   String get close => "close";
+  String get collect => "collect";
   String get contact => "Contact";
+  String get contacts => "Please Choose";
   String get create_address => "Create Address";
   String get delete => "Delete";
   String get edit => "Edit";
@@ -48,6 +52,7 @@ class S implements WidgetsLocalizations {
   String get register => "Register";
   String get reset_password => "Reset Password";
   String get setting => "Setting";
+  String get share => "share";
   String get submit => "submit";
   String get success => " Success";
   String get sure => "sure";
@@ -88,6 +93,8 @@ class $zh_HK extends S {
   @override
   String get eidt_address => "修改地址";
   @override
+  String get cancel_collect => "取消收藏";
+  @override
   String get get_v_code => "獲取驗證碼";
   @override
   String get contact => "聯繫人";
@@ -95,6 +102,8 @@ class $zh_HK extends S {
   String get theme => "選擇主題";
   @override
   String get tip => "提示：位註冊賬號的手機號，請先";
+  @override
+  String get share => "分享";
   @override
   String get close => "關閉";
   @override
@@ -124,6 +133,8 @@ class $zh_HK extends S {
   @override
   String get choice_address => "選擇地址";
   @override
+  String get call_history => "通話記錄";
+  @override
   String get reset_password => "重置登錄密碼";
   @override
   String get input_phone => "請輸入賬號";
@@ -131,6 +142,10 @@ class $zh_HK extends S {
   String get password_login => "密碼登錄";
   @override
   String get create_address => "新增地址";
+  @override
+  String get collect => "收藏";
+  @override
+  String get contacts => "通訊錄";
   @override
   String get register => "註冊";
   @override
@@ -168,6 +183,8 @@ class $zh_TW extends S {
   @override
   String get eidt_address => "修改地址";
   @override
+  String get cancel_collect => "取消收藏";
+  @override
   String get get_v_code => "獲取驗證碼";
   @override
   String get contact => "聯繫人";
@@ -175,6 +192,8 @@ class $zh_TW extends S {
   String get theme => "選擇主題";
   @override
   String get tip => "提示：位註冊賬號的手機號，請先";
+  @override
+  String get share => "分享";
   @override
   String get close => "關閉";
   @override
@@ -204,6 +223,8 @@ class $zh_TW extends S {
   @override
   String get choice_address => "選擇地址";
   @override
+  String get call_history => "通話記錄";
+  @override
   String get reset_password => "重置登錄密碼";
   @override
   String get input_phone => "請輸入賬號";
@@ -211,6 +232,10 @@ class $zh_TW extends S {
   String get password_login => "密碼登錄";
   @override
   String get create_address => "新增地址";
+  @override
+  String get collect => "收藏";
+  @override
+  String get contacts => "通訊錄";
   @override
   String get register => "註冊";
   @override
@@ -252,6 +277,8 @@ class $zh_CN extends S {
   @override
   String get eidt_address => "修改地址";
   @override
+  String get cancel_collect => "取消收藏";
+  @override
   String get get_v_code => "获取验证码";
   @override
   String get contact => "联系人";
@@ -259,6 +286,8 @@ class $zh_CN extends S {
   String get theme => "选择主题";
   @override
   String get tip => "提示：未注册账号的手机号，请先";
+  @override
+  String get share => "分享";
   @override
   String get close => "关闭";
   @override
@@ -288,6 +317,8 @@ class $zh_CN extends S {
   @override
   String get choice_address => "选择地址";
   @override
+  String get call_history => "通话记录";
+  @override
   String get reset_password => "重置登录密码";
   @override
   String get input_phone => "请输入账号";
@@ -295,6 +326,10 @@ class $zh_CN extends S {
   String get password_login => "密码登录";
   @override
   String get create_address => "新增地址";
+  @override
+  String get collect => "收藏";
+  @override
+  String get contacts => "通讯录";
   @override
   String get register => "注册";
   @override
