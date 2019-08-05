@@ -196,16 +196,19 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Pacifico
-      fonts:
-        - asset: assets/fonts/Pacifico-Regular.ttf
-          style: italic
-          weight: 700
-
     - family: CustomIcon
       fonts:
         - asset: assets/fonts/custom/iconfont.ttf
-          weight: 400
+
+    - family: Aleo
+      fonts:
+        - asset: assets/fonts/Aleo-Regular.ttf
+        - asset: assets/fonts/Aleo-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Aleo-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Aleo-Light.ttf
+          weight: 300
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages

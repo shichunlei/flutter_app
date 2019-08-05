@@ -30,23 +30,27 @@ class RouteSample extends StatelessWidget {
           ),
           RaisedButton(
             child: Text('SlideRightTransition'),
-            onPressed: () =>
-                Navigator.push(context, SlideRightRoute(page: SecondPage())),
+            onPressed: () => Navigator.push(
+                context,
+                SlideRoute(
+                    page: SecondPage(), direction: SlideDirection.right)),
           ),
           RaisedButton(
             child: Text('SlideLeftTransition'),
-            onPressed: () =>
-                Navigator.push(context, SlideLeftRoute(page: SecondPage())),
+            onPressed: () => Navigator.push(context,
+                SlideRoute(page: SecondPage(), direction: SlideDirection.left)),
           ),
           RaisedButton(
             child: Text('SlideTopTransition'),
-            onPressed: () =>
-                Navigator.push(context, SlideTopRoute(page: SecondPage())),
+            onPressed: () => Navigator.push(context,
+                SlideRoute(page: SecondPage(), direction: SlideDirection.top)),
           ),
           RaisedButton(
             child: Text('SlideBottomTransition'),
-            onPressed: () =>
-                Navigator.push(context, SlideBottomRoute(page: SecondPage())),
+            onPressed: () => Navigator.push(
+                context,
+                SlideRoute(
+                    page: SecondPage(), direction: SlideDirection.bottom)),
           ),
           RaisedButton(
             child: Text('EnterExitSlideTransition'),
