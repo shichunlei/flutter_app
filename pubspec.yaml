@@ -122,6 +122,8 @@ dependencies: # 应用或包依赖的其它包或插件
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.7
 
+  multi_image_picker: ^4.4.0
+
   package_info: ^0.4.0+4
 
   palette_generator: ^0.2.0

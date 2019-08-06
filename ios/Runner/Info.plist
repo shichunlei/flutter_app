@@ -41,6 +41,8 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>Example usage description</string>
 	<key>NSCameraUsageDescription</key>
     <string>Camera permission is required for barcode scanning.</string>
     <key>NSAppTransportSecurity</key>

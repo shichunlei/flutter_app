@@ -1,12 +1,16 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/bean/friends_dynamic.dart';
-import 'package:flutter_app/global/data.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/wechat_friends/ui/item_dynamic.dart';
-import 'package:flutter_app/utils/utils.dart';
+import 'package:flutter_app/generated/i18n.dart';
+import '../ui/item_dynamic.dart';
+
+import 'package:multi_image_picker/multi_image_picker.dart';
+
+import '../../page_index.dart';
+import 'publish_dynamic.dart';
 
 class WeChatFriendsCircle extends StatefulWidget {
   WeChatFriendsCircle({Key key}) : super(key: key);
@@ -24,6 +28,10 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
 
   Color c = Colors.grey;
   String title = '';
+
+  List<Asset> images = List<Asset>();
+
+  int maxImages = 9;
 
   @override
   void initState() {
@@ -120,7 +128,10 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
                     icon: Icon(Icons.arrow_back_ios),
                     onPressed: () => Navigator.pop(context)),
                 actions: <Widget>[
-                  IconButton(icon: Icon(Icons.add_a_photo), onPressed: () {})
+                  IconButton(
+                    icon: Icon(Icons.add_a_photo),
+                    onPressed: () => _showDialog(context),
+                  )
                 ],
                 iconTheme: IconThemeData(color: c, size: 20),
                 elevation: 0.0,
@@ -141,6 +152,101 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
     rootBundle.loadString('assets/data/friends.json').then((value) {
       friendsDynamic = FriendsDynamic.fromMapList(json.decode(value));
       setState(() {});
+    });
+  }
+
+  void _showDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) => CupertinoAlertDialog(actions: <Widget>[
+              CupertinoDialogAction(
+                child: const Text('拍摄', style: TextStyles.textBlue16),
+                onPressed: () {
+                  /// TODO
+                  Navigator.pop(context);
+                },
+              ),
+              CupertinoDialogAction(
+                child: const Text('从相册选择', style: TextStyles.textBlue16),
+                onPressed: () {
+                  /// TODO
+                  if (images.isNotEmpty) {
+                    deleteAssets();
+                  }
+                  loadAssets();
+                  Navigator.pop(context);
+                },
+              ),
+              CupertinoDialogAction(
+                child: Text('${S.of(context).cancel}',
+                    style: TextStyles.textRed16),
+                onPressed: () {
+                  deleteAssets();
+                  Navigator.pop(context);
+                },
+              )
+            ]));
+  }
+
+  Future<void> loadAssets() async {
+    List<Asset> resultList = List<Asset>();
+
+    try {
+      resultList = await MultiImagePicker.pickImages(
+        maxImages: maxImages,
+        enableCamera: false,
+        selectedAssets: images,
+        materialOptions: MaterialOptions(
+          actionBarColor: "#ff00a5",
+          actionBarTitle: "Flutter App",
+          actionBarTitleColor: "#ffffffff",
+          allViewTitle: "All Photos",
+          useDetailsView: true,
+          lightStatusBar: false,
+          selectCircleStrokeColor: "#ff11ab",
+          statusBarColor: '#ff00a5',
+          startInAllView: true,
+          selectionLimitReachedText: "You can't select any more.",
+        ),
+        cupertinoOptions: CupertinoOptions(
+          selectionFillColor: "#ff11ab",
+          selectionTextColor: "#ff00a5",
+          selectionCharacter: "✓",
+        ),
+      );
+    } on PlatformException catch (e) {
+      debugPrint(e.message.toString());
+    } on NoImagesSelectedException catch (e) {
+      debugPrint(e.message.toString());
+    } on PermissionDeniedException catch (e) {
+      debugPrint(e.message.toString());
+    } on PermissionPermanentlyDeniedExeption catch (e) {
+      debugPrint(e.message.toString());
+    } on Exception catch (e) {
+      debugPrint(e.toString());
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      images = resultList;
+
+      debugPrint(images.toString());
+
+      if (images.isNotEmpty) {
+        pushNewPage(
+            context, PublishDynamicPage(images: images, maxImages: maxImages));
+      }
+    });
+  }
+
+  Future<void> deleteAssets() async {
+    await MultiImagePicker.deleteImages(assets: images);
+    setState(() {
+      images = List<Asset>();
     });
   }
 }

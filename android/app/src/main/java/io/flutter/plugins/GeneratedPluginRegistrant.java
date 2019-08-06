@@ -12,6 +12,7 @@ import com.flutter_webview_plugin.FlutterWebviewPlugin;
 import io.flutter.plugins.imagepicker.ImagePickerPlugin;
 import io.flutter.plugins.imagepickersaver.ImagePickerSaverPlugin;
 import com.dfa.introslider.IntroSliderPlugin;
+import com.vitanov.multiimagepicker.MultiImagePickerPlugin;
 import io.flutter.plugins.packageinfo.PackageInfoPlugin;
 import com.baseflow.permissionhandler.PermissionHandlerPlugin;
 import com.jhomlala.roundedletter.RoundedLetterPlugin;
@@ -41,6 +42,7 @@ public final class GeneratedPluginRegistrant {
     ImagePickerPlugin.registerWith(registry.registrarFor("io.flutter.plugins.imagepicker.ImagePickerPlugin"));
     ImagePickerSaverPlugin.registerWith(registry.registrarFor("io.flutter.plugins.imagepickersaver.ImagePickerSaverPlugin"));
     IntroSliderPlugin.registerWith(registry.registrarFor("com.dfa.introslider.IntroSliderPlugin"));
+    MultiImagePickerPlugin.registerWith(registry.registrarFor("com.vitanov.multiimagepicker.MultiImagePickerPlugin"));
     PackageInfoPlugin.registerWith(registry.registrarFor("io.flutter.plugins.packageinfo.PackageInfoPlugin"));
     PermissionHandlerPlugin.registerWith(registry.registrarFor("com.baseflow.permissionhandler.PermissionHandlerPlugin"));
     RoundedLetterPlugin.registerWith(registry.registrarFor("com.jhomlala.roundedletter.RoundedLetterPlugin"));

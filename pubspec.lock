@@ -400,6 +400,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.6"
+  multi_image_picker:
+    dependency: "direct main"
+    description:
+      name: multi_image_picker
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.4.0"
   open_iconic_flutter:
     dependency: transitive
     description:
