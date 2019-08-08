@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/custom_widgets/dots_indicator.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../page_index.dart';
@@ -27,19 +28,58 @@ class SwiperSample extends StatelessWidget {
             color: Colors.grey.shade800,
             padding: EdgeInsets.all(10.0),
             child: Swiper(
-                itemBuilder: (BuildContext context, int index) =>
-                    ImageLoadView(banner_images[index], fit: BoxFit.cover),
-                itemCount: banner_images.length,
-                pagination: SwiperCustomPagination(
-                    builder: (BuildContext context, SwiperPluginConfig config) {
+              itemBuilder: (BuildContext context, int index) => ImageLoadView(
+                banner_images[index],
+                fit: BoxFit.cover,
+              ),
+              itemCount: banner_images.length,
+              pagination: SwiperCustomPagination(
+                builder: (BuildContext context, SwiperPluginConfig config) {
                   return Container(
-                      padding: EdgeInsets.all(5.0),
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0))),
-                      child: Text(
-                          '${config.activeIndex + 1}/${config.itemCount}'));
-                })),
+                    alignment: Alignment.bottomRight,
+                    child: DotsIndicator(
+                      dotsCount: banner_images.length,
+                      position: config.activeIndex,
+                      reversed: false,
+                      decorator: DotsDecorator(
+                        activeColor: Colors.red,
+                        activeSize: Size.square(12.0),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+          Gaps.vGap20,
+          Container(
+            height: 200,
+            color: Colors.grey.shade800,
+            child: Swiper(
+              itemBuilder: (BuildContext context, int index) => ImageLoadView(
+                banner_images[index],
+                fit: BoxFit.cover,
+              ),
+              itemCount: banner_images.length,
+              pagination: SwiperCustomPagination(
+                builder: (BuildContext context, SwiperPluginConfig config) {
+                  return Container(
+                    alignment: Alignment.bottomCenter,
+                    child: DotsIndicator(
+                      dotsCount: banner_images.length,
+                      position: config.activeIndex,
+                      reversed: false,
+                      decorator: DotsDecorator(
+                        size: const Size.square(9.0),
+                        activeSize: const Size(18.0, 9.0),
+                        activeShape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0)),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
           ),
           Gaps.vGap20,
           Container(
