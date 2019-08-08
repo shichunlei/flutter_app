@@ -1,19 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class DateTimePage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return DateTimePageState();
-  }
-}
+import '../page_index.dart';
 
-class DateTimePageState extends State<DateTimePage> {
+class DateTimePicker extends StatelessWidget {
+  DateTimePicker({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("时间控件"),
+        title: Text("日期时间控件"),
       ),
       body: Center(
         child: Column(
@@ -43,7 +40,7 @@ class DateTimePageState extends State<DateTimePage> {
                       DatePickerMode.day, //初始化选择模式，有day和year两种
                 ).then((dateTime) {
                   //选择日期后点击OK拿到的日期结果
-                  print(
+                  debugPrint(
                       '当前选择了：${dateTime.year}年${dateTime.month}月${dateTime.day}日');
                 });
               },
@@ -61,13 +58,13 @@ class DateTimePageState extends State<DateTimePage> {
               // 点击按钮后过渡动画时间
               child: Text('DatePicker'),
             ),
-            CupertinoButton(
+            Gaps.vGap10,
+            RaisedButton(
               child: Text(
                 'TimePicker',
                 textAlign: TextAlign.center,
               ),
               color: Colors.lightBlue, // 按钮颜色
-              borderRadius: BorderRadius.all(Radius.circular(15.0)), // 按钮圆角设置
               onPressed: () {
                 showTimePicker(
                   context: context,
@@ -77,8 +74,56 @@ class DateTimePageState extends State<DateTimePage> {
                   if (timeOfDay == null) {
                     return;
                   }
-                  print('当前选择了：${timeOfDay.hour}时${timeOfDay.minute}分');
+                  debugPrint('当前选择了：${timeOfDay.hour}时${timeOfDay.minute}分');
                 });
+              },
+            ),
+            Gaps.vGap10,
+            CupertinoButton(
+              child: Text(
+                'CupertinoDatePicker',
+                textAlign: TextAlign.center,
+              ),
+              color: Colors.lightBlue, // 按钮颜色
+              borderRadius: BorderRadius.all(Radius.circular(15.0)), // 按钮圆角设置
+              onPressed: () {
+                showCupertinoModalPopup(
+                    context: context,
+                    builder: (cxt) {
+                      return Container(
+                        height: 200,
+                        child: CupertinoDatePicker(
+                          onDateTimeChanged: (date) {
+                            debugPrint("当前日期、时间 ${date.toString()}");
+                          },
+                          initialDateTime: DateTime(1994),
+                        ),
+                      );
+                    });
+              },
+            ),
+            Gaps.vGap10,
+            CupertinoButton(
+              child: Text(
+                'CupertinoTimerPicker',
+                textAlign: TextAlign.center,
+              ),
+              color: Colors.lightBlue, // 按钮颜色
+              borderRadius: BorderRadius.all(Radius.circular(15.0)), // 按钮圆角设置
+              onPressed: () {
+                showCupertinoModalPopup(
+                    context: context,
+                    builder: (cxt) {
+                      return Material(
+                        child: Container(
+                          height: 200,
+                          child: CupertinoTimerPicker(
+                              onTimerDurationChanged: (duration) {
+                            debugPrint('当前时间 $duration');
+                          }),
+                        ),
+                      );
+                    });
               },
             ),
           ],

@@ -210,6 +210,7 @@ class ExpandStateBean {
           SubExpandBean('Icon', IconWidget()),
           SubExpandBean('TextField', TextFieldWidget()),
           SubExpandBean('Dialog', DialogWidget()),
+          SubExpandBean('日期时间选择', DateTimePicker()),
           SubExpandBean('BottomSheet', BottomSheetWidget()),
           SubExpandBean('Stepper', StepperWidget()),
           SubExpandBean('Slider', SliderWidget()),
