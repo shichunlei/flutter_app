@@ -105,4 +105,7 @@ class TextStyles {
 
   static const TextStyle textBoldDark26 = TextStyle(
       fontSize: 26.0, color: Colors.black, fontWeight: FontWeight.bold);
+
+  static const TextStyle textBoldWhile40 = TextStyle(
+      fontSize: 40.0, color: Colors.white, fontWeight: FontWeight.w400);
 }
