@@ -64,7 +64,6 @@ export 'bars_demo/navigation_keep_alive.dart';
 export 'bars_demo/tabbar_home_page.dart';
 export 'bars_demo/curved_navigation_bar_sample.dart';
 export 'bars_demo/fancy_bottom_navigation.dart';
-export 'bars_demo/heart_beat_bottombar_widget.dart';
 export 'bars_demo/bottom_appbar.dart';
 export 'bars_demo/bubble_bottom_bar.dart';
 

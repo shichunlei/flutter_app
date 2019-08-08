@@ -37,7 +37,7 @@ dependencies: # 应用或包依赖的其它包或插件
 
   city_picker: ^0.1.3
 
-  city_pickers: ^0.1.20
+  city_pickers: ^0.1.22
 
   clippy_flutter:
     git:
@@ -45,7 +45,7 @@ dependencies: # 应用或包依赖的其它包或插件
 
   contact_picker: ^0.0.2
 
-  crypto: ^2.0.6
+  crypto: ^2.1.1+1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -70,7 +70,7 @@ dependencies: # 应用或包依赖的其它包或插件
       url: https://github.com/iampawan/Flute-Music-Player
 
   # 颜色选择器
-  flutter_colorpicker: ^0.2.5
+  flutter_colorpicker: ^0.2.6
 
   # 刷新加载控件
   flutter_easyrefresh: ^1.2.7
@@ -100,7 +100,7 @@ dependencies: # 应用或包依赖的其它包或插件
   fluttery_seekbar: ^0.0.1
 
   # 图标库中文地址：http://www.fontawesome.com.cn/
-  font_awesome_flutter: ^8.4.0
+  font_awesome_flutter: ^8.5.0
 
   # 解析html
   html: ^0.14.0+2
@@ -108,7 +108,7 @@ dependencies: # 应用或包依赖的其它包或插件
   http: ^0.12.0+2
 
   # 图片选择器
-  image_picker: ^0.6.0+15
+  image_picker: ^0.6.1
 
   # 保存图片
   image_picker_saver: ^0.3.0
@@ -117,19 +117,19 @@ dependencies: # 应用或包依赖的其它包或插件
   intro_slider: ^1.2.0
 
   # 处理键盘事件 https://github.com/diegoveloper/flutter_keyboard_actions
-  keyboard_actions: ^2.1.1+1
+  keyboard_actions: ^2.1.2
 
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.7
 
-  multi_image_picker: ^4.4.0
+  multi_image_picker: ^4.4.1
 
-  package_info: ^0.4.0+4
+  package_info: ^0.4.0+6
 
   palette_generator: ^0.2.0
 
   # PhotoView
-  photo_view: ^0.4.0
+  photo_view: ^0.4.2
 
   # 数据管理层
   provide: ^1.0.2
@@ -141,18 +141,18 @@ dependencies: # 应用或包依赖的其它包或插件
   rounded_letter: ^0.0.6
 
   # https://github.com/ReactiveX/rxdart
-  rxdart: ^0.22.0
+  rxdart: ^0.22.1+1
 
-  share: ^0.6.1+1
+  share: ^0.6.2+1
 
   # SP
-  shared_preferences: ^0.5.3+2
+  shared_preferences: ^0.5.3+4
 
   # 数据库
-  sqflite: ^1.1.6+1
+  sqflite: ^1.1.6+3
 
   # 时间线 https://github.com/furkantektas/timeline_list
-  timeline_list: ^0.0.4
+  timeline_list: ^0.0.5
 
   # 透明占位图片
   transparent_image: ^0.1.0
@@ -160,7 +160,7 @@ dependencies: # 应用或包依赖的其它包或插件
   url_launcher: ^5.0.5
 
   # 视频播放器器
-  video_player: ^0.10.1+3
+  video_player: ^0.10.1+6
 
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:
