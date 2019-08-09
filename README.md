@@ -22,47 +22,42 @@ A new Flutter application.
 ## 运行环境
 
 ```
-[✓] Flutter (Channel beta, v1.7.8+hotfix.3, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
-    • Flutter version 1.7.8+hotfix.3 at /Users/14cells/Android/flutter
-    • Framework revision b712a172f9 (2 days ago), 2019-07-09 13:14:38 -0700
-    • Engine revision 54ad777fd2
-    • Dart version 2.4.0
+[✓] Flutter (Channel beta, v1.8.3, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
+    • Flutter version 1.8.3 at /Users/14cells/Android/flutter
+    • Framework revision e4ebcdf6f4 (13 days ago), 2019-07-27 11:48:24 -0700
+    • Engine revision 38ac5f30a7
+    • Dart version 2.5.0 (build 2.5.0-dev.1.0 0ca1582afd)
 
-[✓] Android toolchain - develop for Android devices (Android SDK version 29.0.0)
+[✓] Android toolchain - develop for Android devices (Android SDK version 29.0.2)
     • Android SDK at /Users/14cells/Android/SDK
     • Android NDK location not configured (optional; useful for native profiling support)
-    • Platform android-29, build-tools 29.0.0
+    • Platform android-29, build-tools 29.0.2
     • Java binary at: /Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin/java
     • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1343-b01)
     • All Android licenses accepted.
 
-[✗] iOS toolchain - develop for iOS devices
+[✗] Xcode - develop for iOS and macOS
     ✗ Xcode installation is incomplete; a full installation is necessary for iOS development.
       Download at: https://developer.apple.com/xcode/download/
       Or install Xcode via the App Store.
       Once installed, run:
         sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-    ✗ libimobiledevice and ideviceinstaller are not installed. To install with Brew, run:
-        brew update
-        brew install --HEAD usbmuxd
-        brew link usbmuxd
-        brew install --HEAD libimobiledevice
-        brew install ideviceinstaller
-    ✗ ios-deploy not installed. To install:
-        brew install ios-deploy
     ✗ CocoaPods not installed.
-        CocoaPods is used to retrieve the iOS platform side's plugin code that responds to your plugin usage on the Dart side.
-        Without resolving iOS dependencies with CocoaPods, plugins will not work on iOS.
+        CocoaPods is used to retrieve the iOS and macOS platform side's plugin code that responds to your plugin usage on the Dart side.
+        Without CocoaPods, plugins will not work on iOS or macOS.
         For more info, see https://flutter.dev/platform-plugins
       To install:
-        brew install cocoapods
+        sudo gem install cocoapods
         pod setup
 
 [✓] Android Studio (version 3.4)
     • Android Studio at /Applications/Android Studio.app/Contents
-    • Flutter plugin version 36.0.1
+    • Flutter plugin version 38.2.1
     • Dart plugin version 183.6270
     • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1343-b01)
+
+[✓] Connected device (1 available)
+    • MI 5X • 1c7664100104 • android-arm64 • Android 8.1.0 (API 27)
 ```
 
 #### 注意事项

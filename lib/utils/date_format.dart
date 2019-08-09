@@ -272,7 +272,7 @@ String formatDate(DateTime date, List<String> formats) {
     } else if (format == MM) {
       sb.write(monthLong[date.month - 1]);
     } else if (format == MM_ZH) {
-      sb.write(monthLongZH[date.month - 1]);
+      sb.write(monthZH[date.month - 1]);
     } else if (format == M) {
       sb.write(monthShort[date.month - 1]);
     } else if (format == dd) {
@@ -387,7 +387,7 @@ const List<String> monthLong = const <String>[
   'December'
 ];
 
-const List<String> monthLongZH = const <String>[
+const List<String> monthZH = const <String>[
   '正月',
   '二月',
   '三月',

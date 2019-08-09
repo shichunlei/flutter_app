@@ -22,7 +22,7 @@ class DateTimePicker extends StatelessWidget {
                   context: context,
                   initialDate: DateTime.parse("20181209"),
                   // 初始选中日期
-                  firstDate: DateTime.parse("20181109"),
+                  firstDate: DateTime.now(),
                   // 可选日期范围第一个日期
                   lastDate: DateTime.parse("20190109"),
                   // 可选日期范围最后一个日期
