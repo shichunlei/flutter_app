@@ -623,11 +623,11 @@ class ApiService {
   }
 
   static Future<List<Contact>> getRandomUser({
-    int page = 1,
-    int results = 50,
-    String gender,
-    String format = 'json',
-    String nat,
+    int page: 1,
+    int results: 50,
+    String gender: '',
+    String format: 'json',
+    String nat: '',
   }) async {
     Response response =
         await HttpUtils(baseUrl: ApiUrl.RANDOMUSER_URL).get('', data: {

@@ -110,7 +110,7 @@ class _DetailsPageState extends State<DetailsPage>
       Expanded(
           child: GestureDetector(
               onTap: () {
-                Toast.show('加入购物车', context);
+                Toast.show(context, '加入购物车');
                 addCart();
               },
               child: Container(
@@ -122,7 +122,7 @@ class _DetailsPageState extends State<DetailsPage>
           child: GestureDetector(
               onTap: () {
                 /// TODO 立即购买
-                Toast.show('立即购买', context);
+                Toast.show(context, '立即购买');
               },
               child: Container(
                   height: 48.0,

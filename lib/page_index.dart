@@ -7,7 +7,7 @@ export 'widget/button_widget.dart';
 export 'widget/check_switch_widget.dart';
 export 'widget/chip_widget.dart';
 export 'widget/contact_picker_widget.dart';
-export 'widget/date_time_page.dart';
+export 'widget/date_time_picker.dart';
 export 'widget/dialog_widget.dart';
 export 'widget/dismissible_widget.dart';
 export 'widget/flutter_logo.dart';

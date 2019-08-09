@@ -29,20 +29,19 @@ class CircleProgressWidget extends StatefulWidget {
       this.progressColor,
       this.ringColor,
       this.colors,
-      this.duration = 1000,
-      this.strokeWidth = 10.0,
+      this.duration: 1000,
+      this.strokeWidth: 10.0,
       this.topLable,
       this.bottomLable,
-      this.lable,
+      this.lable: '',
       this.lableFontSize = 30.0,
       this.lableColor,
       this.topLableColor,
       this.bottomLableColor,
       this.backgroundColor,
-      this.totalDegree = 360,
-      this.strokeCapRound = true})
+      this.totalDegree: 360,
+      this.strokeCapRound: true})
       : assert(progress >= 0 && progress <= 1),
-        assert(strokeWidth != null),
         super(key: key);
 
   @override
@@ -156,6 +155,12 @@ class _CircleProgressPainter extends CustomPainter {
   final int totalDegree;
   final bool strokeCapRound;
 
+  // 定义一个背景圆环的画笔
+  final Paint ringPaint;
+
+  // 定义一个进度路径的画笔
+  final Paint progressPaint;
+
   _CircleProgressPainter(
       this.progress,
       this.progressColor,
@@ -165,7 +170,18 @@ class _CircleProgressPainter extends CustomPainter {
       this.backgroundColor,
       this.totalDegree,
       this.strokeCapRound)
-      : assert(progress >= 0 && progress <= 1);
+      : assert(progress >= 0 && progress <= 1),
+        ringPaint = Paint()
+          ..color = ringColor // 画笔颜色
+          ..style = PaintingStyle.stroke // 绘制模式，画线 or 充满
+          ..strokeWidth = strokeWidth // 画笔宽度
+          ..isAntiAlias = true //是否启动抗锯齿
+          ..strokeCap = strokeCapRound ? StrokeCap.round : StrokeCap.butt,
+        progressPaint = Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = strokeWidth
+          ..isAntiAlias = true
+          ..strokeCap = strokeCapRound ? StrokeCap.round : StrokeCap.butt;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -195,13 +211,6 @@ class _CircleProgressPainter extends CustomPainter {
     canvas.drawCircle(center, centerRadius, backgroundPaint);
 
     ///////////////////////////////// 绘制圆环 ////////////////////////////////////
-    // 定义一个背景圆环的画笔
-    final ringPaint = Paint()
-      ..color = ringColor // 画笔颜色
-      ..style = PaintingStyle.stroke // 绘制模式，画线 or 充满
-      ..strokeWidth = ringStrokeWidth
-      ..strokeCap = strokeCapRound ? StrokeCap.round : StrokeCap.butt;
-
     double startAngle =
         strokeCapRound ? asin(progressStrokeWidth * 0.5 / radius) : 0.0;
     double sweepAngle = radians - startAngle;
@@ -210,15 +219,6 @@ class _CircleProgressPainter extends CustomPainter {
     canvas.drawArc(
         rect, startAngle, degToRad(totalDegree) - startAngle, false, ringPaint);
     /////////////////////////////// 绘制进度条 ////////////////////////////////////
-
-    // 定义一个进度路径的画笔
-    final progressPaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = progressStrokeWidth // 线条宽度
-      ..isAntiAlias = true //是否启动抗锯齿
-      ..strokeCap =
-          strokeCapRound ? StrokeCap.round : StrokeCap.butt; // 线条结束时的绘制样式
-
     var _colors = colors;
     if (_colors == null) {
       _colors = [progressColor, progressColor];

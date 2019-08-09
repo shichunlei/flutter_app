@@ -32,12 +32,12 @@ class AddressModel with ChangeNotifier {
     int success = await provider.insertOrReplaceToDB(address);
 
     if (success > 0) {
-      Toast.show('$title${S.of(context).success}！', context);
+      Toast.show(context, '$title${S.of(context).success}！');
 
       $changeAddresses();
       Navigator.of(context).pop();
     } else {
-      Toast.show('$title${S.of(context).fail}！', context);
+      Toast.show(context, '$title${S.of(context).fail}！');
     }
   }
 
@@ -48,10 +48,10 @@ class AddressModel with ChangeNotifier {
     bool success = await provider.updateAddressDefault(id, isDefault);
 
     if (success) {
-      Toast.show('设置成功', context);
+      Toast.show(context, '设置成功');
       $changeAddresses();
     } else {
-      Toast.show('设置失败', context);
+      Toast.show(context, '设置失败');
     }
   }
 
@@ -61,11 +61,11 @@ class AddressModel with ChangeNotifier {
     int success = await provider.deleteAddress(id);
 
     if (success == 1) {
-      Toast.show('删除成功', context);
+      Toast.show(context, '删除成功');
 
       $changeAddresses();
     } else {
-      Toast.show('删除失败', context);
+      Toast.show(context, '删除失败');
     }
 
     Navigator.of(context).pop();

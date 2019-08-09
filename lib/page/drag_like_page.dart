@@ -66,7 +66,7 @@ class _DragLikePageState extends State<DragLikePage>
     _controller.forward();
     String isLike =
         (slideDirection == SlideDirection.left) ? 'dislike' : 'like';
-    Toast.show('You $isLike this !', context,
+    Toast.show(context, 'You $isLike this !',
         duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
     setAboveIndex();
   }

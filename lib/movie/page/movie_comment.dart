@@ -63,12 +63,12 @@ class _MovieCommentPageState extends State<MovieCommentPage> {
     if (isFirst) {
       isFirst = false;
       if (reviews.isEmpty) {
-        Toast.show('暂无评论', context);
+        Toast.show(context, '暂无评论');
         isLoadComplete = true;
       }
     } else {
       if (reviews.isEmpty) {
-        Toast.show('数据加载完成...', context);
+        Toast.show(context, '数据加载完成...');
         isLoadComplete = true;
       }
     }

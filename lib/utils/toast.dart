@@ -9,7 +9,7 @@ class Toast {
   static final int TOP = 2;
   static ToastView _toastView;
 
-  static void show(String msg, BuildContext context,
+  static void show(BuildContext context, String msg,
       {int duration = 1,
       int gravity = 0,
       Color backgroundColor = const Color(0xAA000000),
@@ -17,7 +17,7 @@ class Toast {
       double backgroundRadius = 20}) {
     _toastView?.dismiss();
     _toastView = null;
-    _toastView = ToastView(msg, context, duration, gravity, backgroundColor,
+    _toastView = ToastView(context, msg, duration, gravity, backgroundColor,
         textColor, backgroundRadius);
   }
 }
@@ -27,13 +27,13 @@ class ToastView {
   OverlayState overlayState;
   OverlayEntry overlayEntry;
 
-  ToastView(String msg, BuildContext context, int duration, int gravity,
+  ToastView(BuildContext context, String msg, int duration, int gravity,
       Color background, Color textColor, double backgroundRadius) {
-    createView(msg, context, duration, gravity, background, textColor,
+    createView(context, msg, duration, gravity, background, textColor,
         backgroundRadius);
   }
 
-  void createView(String msg, BuildContext context, int duration, int gravity,
+  void createView(BuildContext context, String msg, int duration, int gravity,
       Color background, Color textColor, double backgroundRadius) async {
     overlayState = Overlay.of(context);
     overlayEntry = OverlayEntry(

@@ -129,7 +129,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     seconds: 10,
                     available: true,
                     onTapCallback: () {
-                      Toast.show('获取验证码', context);
+                      Toast.show(context, '获取验证码');
                     },
                   ),
                 ),

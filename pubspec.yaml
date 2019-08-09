@@ -102,9 +102,6 @@ dependencies: # 应用或包依赖的其它包或插件
   # 图标库中文地址：http://www.fontawesome.com.cn/
   font_awesome_flutter: ^8.5.0
 
-  # 解析html
-  html: ^0.14.0+2
-
   http: ^0.12.0+2
 
   # 图片选择器

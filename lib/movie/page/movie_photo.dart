@@ -148,7 +148,7 @@ class _MoviePhotoPageState extends State<MoviePhotoPage>
   }
 
   void _saveImage(String imageUrl) async {
-    Toast.show('正在保存...', context);
+    Toast.show(context, '正在保存...');
 
     var response = await http.get(imageUrl);
 
@@ -156,7 +156,7 @@ class _MoviePhotoPageState extends State<MoviePhotoPage>
         await ImagePickerSaver.saveFile(fileData: response.bodyBytes);
     var savedFile = File.fromUri(Uri.file(filePath));
     Future<File>.sync(() => savedFile);
-    Toast.show('保存成功', context);
+    Toast.show(context, '保存成功');
   }
 
   Widget _buildBgView(screenHeight) {

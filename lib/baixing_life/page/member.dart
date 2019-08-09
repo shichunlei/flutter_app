@@ -106,7 +106,7 @@ class _MemberPageState extends State<MemberPage>
                       ListTile(
                         title: Text('优惠券'),
                         onTap: () {
-                          Toast.show('优惠券', context);
+                          Toast.show(context, '优惠券');
 
                           /// TODO
                         },
@@ -138,7 +138,7 @@ class _MemberPageState extends State<MemberPage>
                           title: Text('关于商城'),
                           onTap: () {
                             /// TODO
-                            Toast.show('关于商城', context);
+                            Toast.show(context, '关于商城');
                           },
                           leading: Icon(CustomIcon.about),
                           trailing: Icon(Icons.keyboard_arrow_right))

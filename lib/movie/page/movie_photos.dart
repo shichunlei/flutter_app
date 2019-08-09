@@ -60,13 +60,13 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
     );
   }
 
-  void getPhotosList(
-      String url, String id, int start, int count, RefreshType loadDataType) async {
+  void getPhotosList(String url, String id, int start, int count,
+      RefreshType loadDataType) async {
     List<Photos> _photos =
         await ApiService.getPhotos(url, id, start: start, count: count);
 
     if (_photos.length < pagesize) {
-      Toast.show('数据加载完成...', context);
+      Toast.show(context, '数据加载完成...');
       isLoadComplete = true;
     }
 

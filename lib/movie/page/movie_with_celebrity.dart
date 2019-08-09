@@ -23,7 +23,7 @@ class MovieWithCelebrityPage extends StatefulWidget {
 
 class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
   int page = 1;
-  int pagesize = 30;
+  int pageSize = 30;
 
   GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
   GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
@@ -38,7 +38,7 @@ class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
   void initState() {
     super.initState();
 
-    getMovieList(widget.celebrityId, page, pagesize, RefreshType.DEFAULT);
+    getMovieList(widget.celebrityId, page, pageSize, RefreshType.DEFAULT);
   }
 
   @override
@@ -55,16 +55,16 @@ class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
   }
 
   void getMovieList(
-      String celebrityId, int page, int pagesize, RefreshType type) async {
+      String celebrityId, int page, int pageSize, RefreshType type) async {
     List<Movie> list = await ApiService.getActorMovies(celebrityId,
-        start: (page - 1) * pagesize, count: pagesize);
+        start: (page - 1) * pageSize, count: pageSize);
     if (type == RefreshType.DEFAULT) {
       movies.addAll(list);
       isFirst = false;
     } else if (type == RefreshType.LOAD_MORE) {
       movies.addAll(list);
       if (list.isEmpty) {
-        Toast.show("加载完...", context,
+        Toast.show(context, "加载完...",
             duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
         isLoadComplete = true;
       }
@@ -90,7 +90,7 @@ class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
           : () async {
               page++;
               getMovieList(
-                  widget.celebrityId, page, pagesize, RefreshType.LOAD_MORE);
+                  widget.celebrityId, page, pageSize, RefreshType.LOAD_MORE);
             },
       child: ListView.builder(
         itemBuilder: (context, index) {

@@ -84,8 +84,7 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
                       keyboardType: TextInputType.number,
                       hintText: "${S.of(context).input_v_code}",
                       getVCode: () {
-                        Toast.show(
-                            '${S.of(context).get_v_code}', context);
+                        Toast.show(context, '${S.of(context).get_v_code}');
                       }),
                   Gaps.vGap10,
                   Container(
@@ -112,8 +111,7 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
                       alignment: Alignment.centerRight,
                       child: InkWell(
                           child: Padding(
-                              child: Text(
-                                  '${S.of(context).forgot_password}',
+                              child: Text('${S.of(context).forgot_password}',
                                   style: TextStyles.textGray14),
                               padding: EdgeInsets.all(10)),
                           onTap: () =>

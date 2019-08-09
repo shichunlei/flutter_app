@@ -84,18 +84,18 @@ class _SignUpPageState extends State<SignUpPage> {
                     title: "注册",
                     onTap: () {
                       if (_usernameController.text.isEmpty) {
-                        Toast.show("用户名不能为空", context);
+                        Toast.show(context, "用户名不能为空");
                       } else if (_emailController.text.isEmpty) {
-                        Toast.show("邮箱不能为空", context);
+                        Toast.show(context, "邮箱不能为空");
                       } else if (!Utils.isEmail(_emailController.text)) {
-                        Toast.show("邮箱格式不正确", context);
+                        Toast.show(context, "邮箱格式不正确");
                       } else if (_passwordController.text.isEmpty) {
-                        Toast.show("密码不能为空", context);
+                        Toast.show(context, "密码不能为空");
                       } else if (_passwordController.text.length < 6) {
-                        Toast.show("密码长度不能小于6位！", context);
+                        Toast.show(context, "密码长度不能小于6位！");
                       } else if (_repasswordController.text.toString() !=
                           _passwordController.text.toString()) {
-                        Toast.show("两次密码不一致", context);
+                        Toast.show(context, "两次密码不一致");
                       } else {
                         _regist();
                       }
@@ -215,6 +215,6 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void _regist() async {
-    Toast.show("注册", context);
+    Toast.show(context, "注册");
   }
 }

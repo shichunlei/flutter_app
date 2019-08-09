@@ -127,7 +127,7 @@ class _MovieTop250State extends State<MovieTop250> {
     } else if (type == RefreshType.LOAD_MORE) {
       movies.addAll(list);
       if (list.isEmpty) {
-        Toast.show("加载完...", context,
+        Toast.show(context, "加载完...",
             duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
         isLoadComplete = true;
       }

@@ -119,7 +119,7 @@ class _SettingPageState extends State<SettingPage> {
               onSelected: (province, city, county) {
                 setState(() {
                   address = '$province$city$county';
-                  Toast.show('$province-$city-$county', context);
+                  Toast.show(context, '$province-$city-$county');
                 });
               },
               title: '${S.of(context).choice_address}');

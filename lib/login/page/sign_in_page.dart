@@ -25,18 +25,10 @@ class _SignInPageState extends State<SignInPage> {
   var _emailController = TextEditingController();
   var _pwdController = TextEditingController();
 
-  Timer timer;
-
-  /**
-   * 利用FocusNode和FocusScopeNode来控制焦点
-   * 可以通过FocusNode.of(context)来获取widget树中默认的FocusScopeNode
-   */
+  /// 利用FocusNode和FocusScopeNode来控制焦点,
+  ///
+  /// 可以通过FocusNode.of(context)来获取widget树中默认的FocusScopeNode
   FocusNode passwordFocusNode = FocusNode();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,13 +95,13 @@ class _SignInPageState extends State<SignInPage> {
                       children: <Widget>[
                         ThirdLoginButton(
                             onPressed: () {
-                              Toast.show("微信", context);
+                              Toast.show(context, "微信");
                             },
                             icon: FontAwesomeIcons.weixin),
                         SizedBox(width: 40.0),
                         ThirdLoginButton(
                             onPressed: () {
-                              Toast.show("QQ", context);
+                              Toast.show(context, "QQ");
                             },
                             icon: FontAwesomeIcons.qq)
                       ]))
@@ -122,15 +114,15 @@ class _SignInPageState extends State<SignInPage> {
                     title: "登录",
                     onTap: () {
                       if (_emailController.text.isEmpty) {
-                        Toast.show("邮箱不能为空", context);
+                        Toast.show(context, "邮箱不能为空");
                       } else if (!Utils.isEmail(_emailController.text)) {
-                        Toast.show("邮箱格式不正确", context);
+                        Toast.show(context, "邮箱格式不正确");
                       } else if (_pwdController.text.isEmpty) {
-                        Toast.show("密码不能为空", context);
+                        Toast.show(context, "密码不能为空");
                       } else if (_pwdController.text.length < 6) {
-                        Toast.show("密码长度不能小于6位！", context);
+                        Toast.show(context, "密码长度不能小于6位！");
                       } else {
-                        getLoadingWidget();
+                        showLoadingDialog(context, '登录中...');
                         isShowLoading = true;
                         _login();
                       }
@@ -261,20 +253,13 @@ class _SignInPageState extends State<SignInPage> {
     });
   }
 
-  void _login() async {
+  Future<void> _login() async {
     SpUtil.setBool("isLogin", true);
-    timer = Timer(Duration(seconds: 1), () {
+    Future.delayed(Duration(seconds: 3), () {
       if (isShowLoading) {
         Navigator.of(context).pop();
       }
       pushAndRemovePage(context, HomePage());
     });
-  }
-
-  @override
-  void dispose() {
-    timer?.cancel();
-    timer = null;
-    super.dispose();
   }
 }

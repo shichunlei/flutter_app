@@ -36,7 +36,7 @@ class _OneArticlePageState extends State<OneArticlePage>
 
   String _date;
 
-  String today = formatDate(DateTime.now(), [yyyy, mm, d]);
+  String today = formatDate(DateTime.now(), [yyyy, mm, dd]);
 
   @override
   void initState() {
@@ -94,7 +94,7 @@ class _OneArticlePageState extends State<OneArticlePage>
     }
 
     _date = article.date.curr;
-    print(_date.toString());
+    debugPrint(_date.toString());
     isFirst = false;
     collectState(_date);
 
@@ -141,7 +141,6 @@ class _OneArticlePageState extends State<OneArticlePage>
               Html(
                   data: article.content,
                   defaultTextStyle: TextStyle(fontSize: _fontSize),
-                  // Optional parameters:
                   padding: EdgeInsets.all(8.0),
                   blockSpacing: 2.0,
                   useRichText: true,
@@ -151,7 +150,7 @@ class _OneArticlePageState extends State<OneArticlePage>
                     decoration: TextDecoration.underline,
                   ),
                   onLinkTap: (url) {
-                    print("Opening $url...");
+                    debugPrint("Opening $url...");
                   })
             ])));
   }
@@ -308,9 +307,7 @@ class _OneArticlePageState extends State<OneArticlePage>
               color: themeColors[_themeColorIndex],
               shape: const StadiumBorder()),
           MaterialButton(
-              onPressed: () {
-                getList();
-              },
+              onPressed: () => getList(),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
@@ -332,10 +329,10 @@ class _OneArticlePageState extends State<OneArticlePage>
     List<Article> list = await provider.getStarredList();
     if (list.isNotEmpty) {
       Navigator.pop(context);
-      print(list.toString());
+      debugPrint(list.toString());
       pushNewPage(context, CollectArticle(themeColors[_themeColorIndex], list));
     } else {
-      Toast.show('暂无收藏', context);
+      Toast.show(context, '暂无收藏');
     }
   }
 }
