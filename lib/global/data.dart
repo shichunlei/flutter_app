@@ -293,6 +293,7 @@ class ExpandStateBean {
           SubExpandBean('好奇心日报', QdailySplashPage()),
           SubExpandBean('登录页面', PasswordLoginPage()),
           SubExpandBean('视频背景登录页面', LoginVideoPage()),
+          SubExpandBean('元素周期表', ElementsPage()),
         ]),
   ];
 }

@@ -16,7 +16,7 @@ export 'widget/icon_widget.dart';
 export 'widget/image_widget.dart';
 export 'widget/load_image_widget.dart';
 export 'widget/qr_image_wiget.dart';
-export 'widget/range_slider_sample.dart';
+export 'widget/range_slider_demo.dart';
 export 'widget/rounded_letter_widget.dart';
 export 'widget/slider_widget.dart';
 export 'widget/sliver_widget.dart';
@@ -54,6 +54,7 @@ export 'page/ruler_sample.dart';
 export 'page/preview_sample.dart';
 export 'page/card_flip_page.dart';
 export 'page/amap_location_demo.dart';
+export 'page/elements.dart';
 
 export 'city_pickers/page/fullpage_pickers_page.dart';
 export 'city_pickers/page/ios_city_pickers_page.dart';
