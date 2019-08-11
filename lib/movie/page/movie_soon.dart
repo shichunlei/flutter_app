@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/toast.dart';
-import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_detail.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/movie/ui/item_soon_view.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
+
+import '../page/movie_detail.dart';
+import '../ui/item_soon_view.dart';
+
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+import '../../page_index.dart';
 
 class MovieSoonPage extends StatefulWidget {
   @override
@@ -19,7 +18,6 @@ class _MovieSoonPageState extends State<MovieSoonPage> {
   int page = 1;
   int pagesize = 20;
 
-  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
   GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
 
   bool isFirst = true;
@@ -70,7 +68,6 @@ class _MovieSoonPageState extends State<MovieSoonPage> {
       return getLoadingWidget();
     }
     return EasyRefresh(
-      key: _easyRefreshKey,
       autoControl: true,
       refreshFooter: BallPulseFooter(
         key: _footerKey,

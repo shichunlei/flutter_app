@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+
 import '../../bean/casts.dart';
 import '../../bean/movie.dart';
 import '../../page_index.dart';
@@ -12,12 +13,12 @@ import '../ui/movie_detail_header.dart';
 import './movie_photo.dart';
 import './movie_video.dart';
 import '../ui/person_scroller.dart';
-import '../../service/api_service.dart';
 import '../ui/cover_section_view.dart';
 import '../ui/expandable_text.dart';
 import '../ui/item_comment.dart';
 import '../ui/item_cover.dart';
 import '../ui/movie_desc.dart';
+
 import 'package:transparent_image/transparent_image.dart';
 
 class MovieDetail extends StatefulWidget {
@@ -39,6 +40,8 @@ class _MovieDetailState extends State<MovieDetail> {
 
   double width = (Utils.width - 5 * 4) / 2;
   double height;
+
+  var data;
 
   @override
   void initState() {
@@ -119,9 +122,7 @@ class _MovieDetailState extends State<MovieDetail> {
 
     return SliverList(
       delegate: SliverChildListDelegate(<Widget>[
-        SectionView("简介",
-            hiddenMore: true,
-            textColor: Colors.white),
+        SectionView("简介", hiddenMore: true, textColor: Colors.white),
         Padding(
             padding: const EdgeInsets.only(top: 10.0, left: 10, right: 10),
             child: ExpandableText(movie.summary,
@@ -132,9 +133,7 @@ class _MovieDetailState extends State<MovieDetail> {
                 fontSize: 15.0,
                 isShow: isSummaryUnfold,
                 onPressed: () => changeSummaryMaxLines())),
-        SectionView("演职员",
-            hiddenMore: true,
-            textColor: Colors.white),
+        SectionView("演职员", hiddenMore: true, textColor: Colors.white),
         PersonScroller(casts: casts)
       ]),
     );

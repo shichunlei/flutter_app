@@ -13,22 +13,8 @@ const kGutterWidth = 2.0;
 
 const kGutterInset = EdgeInsets.all(kGutterWidth);
 
-class ElementsPage extends StatefulWidget {
+class ElementsPage extends StatelessWidget {
   ElementsPage({Key key}) : super(key: key);
-
-  @override
-  createState() => _ElementsPageState();
-}
-
-class _ElementsPageState extends State<ElementsPage> {
-  List<ElementData> gridList = [];
-
-  @override
-  void initState() {
-    super.initState();
-
-    getElements();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +24,45 @@ class _ElementsPageState extends State<ElementsPage> {
             title: Text('元素周期表'),
             centerTitle: true,
             backgroundColor: Colors.blueGrey[800]),
-        body: gridList.length > 0 ? _buildTable() : getLoadingWidget());
+        body: FutureBuilder<List<ElementData>>(
+          future: fetchData(),
+          builder: (BuildContext context,
+              AsyncSnapshot<List<ElementData>> snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                debugPrint('none');
+                return Text('没有联网吗？');
+              case ConnectionState.waiting:
+                debugPrint('waiting');
+                return getLoadingWidget();
+              case ConnectionState.done:
+                if (snapshot.hasError) {
+                  debugPrint(snapshot.error.toString());
+                  return ErrorPage(text: '数据加载失败');
+                } else {
+                  return _buildTable(snapshot.data);
+                }
+                break;
+              default:
+                return null;
+                break;
+            }
+          },
+        ));
   }
 
-  void getElements() async {
-    rootBundle.loadString('assets/data/elements.json').then((value) {
+  Future<List<ElementData>> fetchData() async {
+    List<ElementData> _gridList =
+        await rootBundle.loadString('assets/data/elements.json').then((value) {
       debugPrint('$value');
-      gridList = ElementData.fromMapList(json.decode(value));
-      setState(() {});
+      return ElementData.fromMapList(json.decode(value));
     });
+
+    return _gridList;
   }
 
-  Widget _buildTable() {
-    final tiles = gridList
+  Widget _buildTable(List<ElementData> list) {
+    final tiles = list
         .map((element) => element != null
             ? ElementTile(element)
             : Container(color: Colors.black38, margin: kGutterInset))

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/toast.dart';
-import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_detail.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/movie/ui/item_list.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
+
+import '../page/movie_detail.dart';
+import '../ui/item_list.dart';
+
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+import '../../page_index.dart';
 
 class MovieWithCelebrityPage extends StatefulWidget {
   final String celebrityId;
@@ -25,7 +24,6 @@ class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
   int page = 1;
   int pageSize = 30;
 
-  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
   GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
 
   bool isFirst = true;
@@ -78,7 +76,6 @@ class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
       return getLoadingWidget();
     }
     return EasyRefresh(
-      key: _easyRefreshKey,
       autoControl: true,
       refreshFooter: BallPulseFooter(
         key: _footerKey,

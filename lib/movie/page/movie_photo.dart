@@ -1,15 +1,16 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/utils.dart';
 import 'package:http/http.dart' as http;
+
 import 'package:flutter_app/bean/photos.dart';
-import 'package:flutter_app/utils/toast.dart';
+
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:share/share.dart';
 
 import 'package:image_picker_saver/image_picker_saver.dart';
+
+import '../../page_index.dart';
 
 class MoviePhotoPage extends StatefulWidget {
   final List<Photos> photos;
