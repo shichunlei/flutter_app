@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'models/config_state_model.dart';
 import 'package:provide/provide.dart'
     show
         Provider,
@@ -10,6 +9,7 @@ import 'package:provide/provide.dart'
         ProviderScope;
 
 import 'models/address_model.dart';
+import 'models/config_state_model.dart';
 
 class Store {
   static dynamic storeCtx;

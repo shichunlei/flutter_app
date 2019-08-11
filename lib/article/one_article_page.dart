@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/article/collect_article.dart';
 import 'package:flutter_app/article/db/article_provider.dart';
 import 'package:flutter_app/bean/article.dart';
-import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/utils/date_format.dart';
 
 import 'package:flutter_html/flutter_html.dart';
@@ -11,10 +10,6 @@ import 'package:flutter_html/flutter_html.dart';
 import '../page_index.dart';
 
 class OneArticlePage extends StatefulWidget {
-  final String date;
-
-  OneArticlePage({Key key, this.date}) : super(key: key);
-
   @override
   _OneArticlePageState createState() => _OneArticlePageState();
 }
@@ -54,13 +49,7 @@ class _OneArticlePageState extends State<OneArticlePage>
 
     provider = ArticleProvider();
 
-    debugPrint('${widget.date}================');
-
-    if (widget.date == null) {
-      getArticle('today');
-    } else {
-      getArticle('day', date: widget.date);
-    }
+    getArticle('today');
   }
 
   @override
@@ -330,7 +319,13 @@ class _OneArticlePageState extends State<OneArticlePage>
     if (list.isNotEmpty) {
       Navigator.pop(context);
       debugPrint(list.toString());
-      pushNewPage(context, CollectArticle(themeColors[_themeColorIndex], list));
+      pushNewPage(context, CollectArticle(themeColors[_themeColorIndex]),
+          callBack: (value) {
+        if (value != null) {
+          debugPrint('-----------------------------$value');
+          getArticle('day', date: value);
+        }
+      });
     } else {
       Toast.show(context, '暂无收藏');
     }

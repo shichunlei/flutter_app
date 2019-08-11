@@ -8,13 +8,24 @@ void pushAndRemovePage(BuildContext context, Widget routePage) {
   );
 }
 
-void pushNewPage(BuildContext context, Widget routePage) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) => routePage));
+void pushNewPage(BuildContext context, Widget routePage, {Function callBack}) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => routePage))
+      .then((value) {
+    if (value != null) {
+      callBack(value);
+    }
+  });
 }
 
-void pushNewPageBack(BuildContext context, Widget routePage) {
+void pushNewPageBack(BuildContext context, Widget routePage,
+    {Function callBack}) {
   Navigator.of(context)
-      .push(CupertinoPageRoute(builder: (context) => routePage));
+      .push(CupertinoPageRoute(builder: (context) => routePage))
+      .then((data) {
+    if (data != null) {
+      callBack(data);
+    }
+  });
 }
 
 void popAndPushNewPage(BuildContext context, String routeName) {

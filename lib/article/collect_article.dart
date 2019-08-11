@@ -4,11 +4,12 @@ import 'package:flutter_app/article/one_article_page.dart';
 import 'package:flutter_app/bean/article.dart';
 import 'package:flutter_app/utils/route_util.dart';
 
+import '../page_index.dart';
+
 class CollectArticle extends StatefulWidget {
   final Color themeColor;
-  final List<Article> list;
 
-  CollectArticle(this.themeColor, this.list, {Key key}) : super(key: key);
+  CollectArticle(this.themeColor, {Key key}) : super(key: key);
 
   @override
   _CollectArticleState createState() => _CollectArticleState();
@@ -17,6 +18,15 @@ class CollectArticle extends StatefulWidget {
 class _CollectArticleState extends State<CollectArticle> {
   ArticleProvider provider = ArticleProvider();
 
+  var data;
+
+  @override
+  void initState() {
+    super.initState();
+
+    data = fetchData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,61 +34,100 @@ class _CollectArticleState extends State<CollectArticle> {
         backgroundColor: widget.themeColor,
         title: Text('我的收藏'),
       ),
-      body: widget.list.isNotEmpty
-          ? ListView.builder(
-              itemBuilder: (context, index) {
-                final item = widget.list[index].curr;
-                return GestureDetector(
-                  child: Dismissible(
-                    key: Key(item),
-                    onDismissed: (direction) {
-                      provider.cancelStarred(widget.list[index].curr);
-                      setState(() {
-                        widget.list.removeAt(index);
-                      });
-                    },
-                    child: Card(
-                      child: Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(widget.list[index].title,
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 20.0)),
-                                Text(widget.list[index].curr),
-                              ],
-                            ),
-                            Text(
-                              widget.list[index].digest,
-                              style: TextStyle(
-                                  color: Colors.grey[500], fontSize: 14.0),
-                            ),
-                          ],
-                        ),
-                        padding: EdgeInsets.all(10.0),
-                      ),
-                    ),
-                    background: Container(
-                      color: Colors.red,
-                      child: Icon(
-                        Icons.delete,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  onTap: () {
-                    pushNewPage(context, OneArticlePage(date: widget.list[index].curr));
-                  },
-                );
-              },
-              itemCount: widget.list.length,
-            )
-          : Center(
-              child: Text('暂无收藏'),
-            ),
+      body: _buildBodyView(),
     );
+  }
+
+  Widget _buildBodyView() {
+    return FutureBuilder<List<Article>>(
+        future: data,
+        builder: (_, AsyncSnapshot<List<Article>> snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              debugPrint('none');
+              return Text('');
+            case ConnectionState.waiting:
+              debugPrint('waiting');
+              return getLoadingWidget();
+            case ConnectionState.done:
+              debugPrint('done');
+              if (snapshot.hasError) {
+                debugPrint(snapshot.error.toString());
+                return ErrorPage(text: '网络请求错误');
+              } else {
+                debugPrint('${snapshot.data.length}');
+                if (snapshot.data.length > 0) {
+                  return ListView.builder(
+                    itemBuilder: (context, index) {
+                      final item = snapshot.data[index].curr;
+                      return GestureDetector(
+                        child: Dismissible(
+                          key: Key(item),
+                          onDismissed: (direction) async {
+                            provider
+                                .cancelStarred(snapshot.data[index].curr)
+                                .then((_) {
+                              setState(() {
+                                snapshot.data.removeAt(index);
+                              });
+                            });
+                          },
+                          child: Card(
+                            child: Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text('${snapshot.data[index]?.title}',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20.0)),
+                                      Text('${snapshot.data[index]?.curr}'),
+                                    ],
+                                  ),
+                                  Text(
+                                    '${snapshot.data[index]?.digest}',
+                                    style: TextStyle(
+                                        color: Colors.grey[500],
+                                        fontSize: 14.0),
+                                  ),
+                                ],
+                              ),
+                              padding: EdgeInsets.all(10.0),
+                            ),
+                          ),
+                          background: Container(
+                            color: Colors.red,
+                            child: Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+//                          pushNewPage(context,
+//                              OneArticlePage(date: snapshot.data[index].curr));
+
+                          Navigator.of(context).pop(snapshot.data[index].curr);
+                        },
+                      );
+                    },
+                    itemCount: snapshot.data.length,
+                  );
+                }
+                return EmptyPage(text: '暂无收藏', imageAsset: 'images/empty.jpeg');
+              }
+              break;
+            default:
+              return EmptyPage(text: '暂无收藏', imageAsset: 'images/empty.jpeg');
+          }
+        });
+  }
+
+  Future<List<Article>> fetchData() async {
+    return await provider.getStarredList();
   }
 }
