@@ -36,10 +36,6 @@ class HeWeather {
     HeWeather he_weather = HeWeather();
     he_weather.status = map['status'];
 
-//    he_weather.citys = (map['basic'] == null || !(map['basic'] is List))
-//        ? []
-//        : City.fromMapList(map['basic']);
-
     he_weather.basic = (map['basic'] == null || !(map['basic'] is Map))
         ? null
         : Basic.fromMap(map['basic']);

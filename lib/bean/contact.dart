@@ -1,4 +1,5 @@
 import 'package:azlistview/azlistview.dart';
+import 'package:lpinyin/lpinyin.dart';
 
 class Contact extends ISuspensionBean {
   /**
@@ -30,7 +31,7 @@ class Contact extends ISuspensionBean {
   RegisteredBean registered;
 
   String fullName;
-  String tagIndex;
+  String firstLetter;
 
   static Contact fromMap(Map<String, dynamic> map) {
     Contact contact = new Contact();
@@ -48,6 +49,14 @@ class Contact extends ISuspensionBean {
     contact.registered = RegisteredBean.fromMap(map['registered']);
     contact.fullName =
         '${NameBean.fromMap(map['name']).first} ${NameBean.fromMap(map['name']).last}';
+
+    String tag = PinyinHelper.getPinyinE(NameBean.fromMap(map['name']).first)[0]
+        .toUpperCase();
+    if (RegExp("[A-Z]").hasMatch(tag)) {
+      contact.firstLetter = tag;
+    } else {
+      contact.firstLetter = "#";
+    }
     return contact;
   }
 
@@ -60,7 +69,7 @@ class Contact extends ISuspensionBean {
   }
 
   @override
-  String getSuspensionTag() => tagIndex;
+  String getSuspensionTag() => firstLetter;
 }
 
 class DobBean {

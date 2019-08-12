@@ -3,7 +3,7 @@ import 'package:flutter_app/baixing_life/db/goods_provider.dart';
 import 'package:flutter_app/baixing_life/page/details_page.dart';
 import 'package:flutter_app/baixing_life/ui/empty_shop_cart.dart';
 import 'package:flutter_app/baixing_life/ui/item_cart_goods.dart';
-import 'package:flutter_app/bean/goods.dart';
+import 'package:flutter_app/bean/baixing.dart';
 
 import '../../page_index.dart';
 

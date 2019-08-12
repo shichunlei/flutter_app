@@ -4,11 +4,7 @@ import 'package:flutter_app/baixing_life/index.dart';
 import 'package:flutter_app/baixing_life/page/details_page.dart';
 import 'package:flutter_app/baixing_life/ui/item_floor_goods.dart';
 import 'package:flutter_app/baixing_life/ui/item_goods_grid.dart';
-import 'package:flutter_app/bean/advertes_picture.dart';
 import 'package:flutter_app/bean/baixing.dart';
-import 'package:flutter_app/bean/category.dart';
-import 'package:flutter_app/bean/goods.dart';
-import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -40,7 +36,6 @@ class _HomePageState extends State<HomePage>
 
   int page;
 
-  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
   GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
 
   @override
@@ -108,7 +103,6 @@ class _HomePageState extends State<HomePage>
       body: Stack(
         children: <Widget>[
           EasyRefresh(
-              key: _easyRefreshKey,
               refreshFooter: BallPulseFooter(
                   key: _footerKey,
                   color: Colors.indigo,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/ui/right_listview.dart';
-import 'package:flutter_app/bean/category.dart';
+import 'package:flutter_app/bean/baixing.dart';
 
 class LeftMenu extends StatefulWidget {
   final int index;

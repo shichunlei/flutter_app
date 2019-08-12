@@ -1,6 +1,4 @@
-import 'package:flutter_app/bean/advertes_picture.dart';
-import 'package:flutter_app/bean/category.dart';
-import 'package:flutter_app/bean/goods.dart';
+import 'package:flutter_app/baixing_life/db/goods_provider.dart';
 
 class Baixing {
   /**
@@ -121,6 +119,264 @@ class ShopInfo {
 
   static List<ShopInfo> fromMapList(dynamic mapList) {
     List<ShopInfo> list = new List(mapList.length);
+    for (int i = 0; i < mapList.length; i++) {
+      list[i] = fromMap(mapList[i]);
+    }
+    return list;
+  }
+}
+
+class Goods {
+  /**
+   * image5 : ""
+   * image3 : ""
+   * image4 : ""
+   * goodsId : "3b792c26aaca48f48d9ad13de36feb69"
+   * isOnline : "yes"
+   * image1 : "http://images.baixingliangfan.cn/shopGoodsImg/20190128/20190128203813_31.jpg"
+   * image2 : ""
+   * goodsSerialNumber : "6953296962252"
+   * comPic : "http://images.baixingliangfan.cn/compressedPic/20190128203813_31.jpg"
+   * shopId : "402880e860166f3c0160167897d60002"
+   * goodsName : "稻香社五常大米绿钻5kg"
+   * goodsDetail : ""
+   * amount : 10
+   * oriPrice : 59
+   * presentPrice : 49
+   * state : 1
+   */
+
+  String goodsId;
+  String isOnline;
+  String goodsSerialNumber;
+  String comPic;
+  String shopId;
+  String goodsName;
+  String goodsDetail;
+  int amount;
+  num oriPrice;
+  num presentPrice;
+  int state;
+
+  List<String> pics;
+
+  int isChecked;
+
+  static Goods fromMap(Map<String, dynamic> map) {
+    Goods goods = Goods();
+    goods.goodsId = map['goodsId'];
+    goods.isOnline = map['isOnline'];
+    goods.goodsSerialNumber = map['goodsSerialNumber'];
+    goods.comPic = map['comPic'] == null ? map['image'] : map['comPic'];
+    goods.shopId = map['shopId'] == null ? '' : map['shopId'];
+    goods.goodsName = map['goodsName'] == null ? map['name'] : map['goodsName'];
+    goods.goodsDetail = map['goodsDetail'];
+    goods.amount = map['amount'];
+    goods.oriPrice = map['oriPrice'] == null ? map['price'] : map['oriPrice'];
+    goods.presentPrice =
+        map['presentPrice'] == null ? map['mallPrice'] : map['presentPrice'];
+    goods.state = map['state'];
+    goods.pics = [];
+    if (null != map['image1'] && '' != map['image1']) {
+      goods.pics.add(map['image1']);
+    }
+    if (null != map['image2'] && '' != map['image2']) {
+      goods.pics.add(map['image2']);
+    }
+    if (null != map['image3'] && '' != map['image3']) {
+      goods.pics.add(map['image3']);
+    }
+    if (null != map['image4'] && '' != map['image4']) {
+      goods.pics.add(map['image4']);
+    }
+    if (null != map['image5'] && '' != map['image5']) {
+      goods.pics.add(map['image5']);
+    }
+    return goods;
+  }
+
+  static List<Goods> fromMapList(dynamic mapList) {
+    List<Goods> list = List(mapList.length);
+    for (int i = 0; i < mapList.length; i++) {
+      list[i] = fromMap(mapList[i]);
+    }
+    return list;
+  }
+
+  static Goods fromJson(Map<String, dynamic> map) {
+    Goods goods = Goods();
+    goods.goodsId = map['goods_id'];
+    goods.comPic = map['image'];
+    goods.shopId = map['shop_id'];
+    goods.goodsName = map['name'];
+    goods.amount = map['number'];
+    goods.oriPrice = map['ori_price'];
+    goods.presentPrice = map['price'];
+    goods.isChecked = map['is_checked'];
+    return goods;
+  }
+
+  Map<String, dynamic> toMap() => {
+        '${GoodsProvider.COLUMN_GOODS_ID}': goodsId,
+        '${GoodsProvider.COLUMN_IMAGE}': comPic,
+        '${GoodsProvider.COLUMN_SHOP_ID}': shopId,
+        '${GoodsProvider.COLUMN_NAME}': goodsName,
+        '${GoodsProvider.COLUMN_NUM}': amount,
+        '${GoodsProvider.COLUMN_ORI_PRICE}': oriPrice,
+        '${GoodsProvider.COLUMN_PRICE}': presentPrice,
+        '${GoodsProvider.COLUMN_IS_CHECK}': isChecked,
+      };
+
+  @override
+  String toString() {
+    return '{goodsId: $goodsId, comPic: $comPic, shopId: $shopId, goodsName: $goodsName, amount: $amount, oriPrice: $oriPrice, presentPrice: $presentPrice, isChecked: $isChecked}';
+  }
+}
+
+class GoodsInfo {
+  /**
+   * advertesPicture : {"PICTURE_ADDRESS":"http://images.baixingliangfan.cn/advertesPicture/20190113/20190113134955_5825.jpg","TO_PLACE":"1"}
+   * goodInfo : {"image5":"","amount":10,"image3":"","image4":"","goodsId":"3b792c26aaca48f48d9ad13de36feb69","isOnline":"yes","image1":"http://images.baixingliangfan.cn/shopGoodsImg/20190128/20190128203813_31.jpg","image2":"","goodsSerialNumber":"6953296962252","oriPrice":59,"presentPrice":49,"comPic":"http://images.baixingliangfan.cn/compressedPic/20190128203813_31.jpg","state":1,"shopId":"402880e860166f3c0160167897d60002","goodsName":"稻香社五常大米绿钻5kg","goodsDetail":""}
+   * goodComments : []
+   */
+
+  AdvertesPicture advertesPicture;
+  Goods goodInfo;
+  List<GoodComment> goodComments;
+
+  static GoodsInfo fromMap(Map<String, dynamic> map) {
+    GoodsInfo goods_info = GoodsInfo();
+    goods_info.goodComments = map['goodComments'] == null
+        ? []
+        : GoodComment.fromMapList(map['goodComments']);
+    goods_info.advertesPicture = map['advertesPicture'] == null
+        ? null
+        : AdvertesPicture.fromMap(map['advertesPicture']);
+    goods_info.goodInfo = Goods.fromMap(map['goodInfo']);
+    return goods_info;
+  }
+
+  static List<GoodsInfo> fromMapList(dynamic mapList) {
+    List<GoodsInfo> list = List(mapList.length);
+    for (int i = 0; i < mapList.length; i++) {
+      list[i] = fromMap(mapList[i]);
+    }
+    return list;
+  }
+}
+
+class GoodComment {
+  int score;
+  String comments;
+  String userName;
+  int discussTime;
+
+  static GoodComment fromMap(Map<String, dynamic> map) {
+    GoodComment comment = GoodComment();
+    comment.score = map['SCORE'];
+    comment.comments = map['comments'];
+    comment.userName = map['userName'];
+    comment.discussTime = map['discussTime'];
+    return comment;
+  }
+
+  static List<GoodComment> fromMapList(dynamic mapList) {
+    List<GoodComment> list = List(mapList.length);
+    for (int i = 0; i < mapList.length; i++) {
+      list[i] = fromMap(mapList[i]);
+    }
+    return list;
+  }
+}
+
+class AdvertesPicture {
+  /**
+   * PICTURE_ADDRESS : "http://images.baixingliangfan.cn/advertesPicture/20190113/20190113134955_5825.jpg"
+   * TO_PLACE : "1"
+   */
+
+  String pictureAddress;
+  String toPlace;
+
+  static AdvertesPicture fromMap(Map<String, dynamic> map) {
+    AdvertesPicture advertes_picture = AdvertesPicture();
+    advertes_picture.pictureAddress = map['PICTURE_ADDRESS'];
+    advertes_picture.toPlace = map['TO_PLACE'];
+    return advertes_picture;
+  }
+
+  static List<AdvertesPicture> fromMapList(dynamic mapList) {
+    List<AdvertesPicture> list = List(mapList.length);
+    for (int i = 0; i < mapList.length; i++) {
+      list[i] = fromMap(mapList[i]);
+    }
+    return list;
+  }
+
+  @override
+  String toString() {
+    return 'AdvertesPicture{pictureAddress: $pictureAddress, toPlace: $toPlace}';
+  }
+}
+
+class Category {
+  /**
+   * mallCategoryId : "4"
+   * mallCategoryName : "白酒"
+   * image : "http://images.baixingliangfan.cn/firstCategoryPicture/20190131/20190131170036_4477.png"
+   * comments : null
+   * bxMallSubDto : [{"mallSubId":"2c9f6c94621970a801626a35cb4d0175","mallCategoryId":"4","mallSubName":"名酒","comments":""}]
+   */
+
+  String mallCategoryId;
+  String mallCategoryName;
+  String image;
+  String comments;
+  List<SubCategory> bxMallSubDto;
+
+  static Category fromMap(Map<String, dynamic> map) {
+    Category category = Category();
+    category.mallCategoryId = map['mallCategoryId'];
+    category.mallCategoryName = map['mallCategoryName'];
+    category.image = map['image'];
+    category.comments = map['comments'];
+    category.bxMallSubDto = SubCategory.fromMapList(map['bxMallSubDto']);
+    return category;
+  }
+
+  static List<Category> fromMapList(dynamic mapList) {
+    List<Category> list = List(mapList.length);
+    for (int i = 0; i < mapList.length; i++) {
+      list[i] = fromMap(mapList[i]);
+    }
+    return list;
+  }
+}
+
+class SubCategory {
+  /**
+   * mallSubId : "2c9f6c94621970a801626a35cb4d0175"
+   * mallCategoryId : "4"
+   * mallSubName : "名酒"
+   * comments : ""
+   */
+
+  String mallSubId;
+  String mallCategoryId;
+  String mallSubName;
+  String comments;
+
+  static SubCategory fromMap(Map<String, dynamic> map) {
+    SubCategory bxMallSubDtoListBean = SubCategory();
+    bxMallSubDtoListBean.mallSubId = map['mallSubId'];
+    bxMallSubDtoListBean.mallCategoryId = map['mallCategoryId'];
+    bxMallSubDtoListBean.mallSubName = map['mallSubName'];
+    bxMallSubDtoListBean.comments = map['comments'];
+    return bxMallSubDtoListBean;
+  }
+
+  static List<SubCategory> fromMapList(dynamic mapList) {
+    List<SubCategory> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }

@@ -488,10 +488,11 @@ class ApiService {
   }
 
   /// 热门城市
-  static Future<List<City>> getHotCitys() async {
+  static Future<List<City>> getHotCities(
+      {String group: 'world', int number: 50}) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.CITY_BASE_URL)
         .get(ApiUrl.CITY_TOP, data: {
-      "group": "cn",
+      "group": "world",
       "key": Config.HE_WEATHER_KEY,
       "number": 50,
     });
@@ -503,7 +504,7 @@ class ApiService {
   }
 
   /// 搜索城市
-  static Future<List<City>> getSeacherCitys(String keyword) async {
+  static Future<List<City>> getSearchCities(String keyword) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.CITY_BASE_URL)
         .get(ApiUrl.CITY_FIND, data: {
       "location": keyword,

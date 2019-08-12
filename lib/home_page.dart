@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 class HomeStatePage extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final _amapLocation = AMapLocation();
+  final _aMapLocation = AMapLocation();
 
   Location location;
 
@@ -30,14 +30,14 @@ class HomeStatePage extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _amapLocation.init();
+    _aMapLocation.init();
 
     _location();
   }
 
   @override
   void dispose() {
-    _amapLocation.stopLocate();
+    _aMapLocation.stopLocate();
 
     super.dispose();
   }
@@ -166,10 +166,10 @@ class HomeStatePage extends State<HomePage> {
     );
 
     if (await Permissions.requestMapPermission()) {
-      _amapLocation.getLocation(options).then((value) {
+      _aMapLocation.getLocation(options).then((value) {
         location = value;
         debugPrint("location==========${location.city}");
-        city = location.city;
+        city = location.district;
         getWeatherData(city);
       });
     } else {

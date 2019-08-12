@@ -1,4 +1,4 @@
-import 'package:flutter_app/bean/goods.dart';
+import 'package:flutter_app/bean/baixing.dart';
 import 'package:flutter_app/utils/database.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:quiver/strings.dart' as strings;

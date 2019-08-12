@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/article/db/article_provider.dart';
-import 'package:flutter_app/article/one_article_page.dart';
 import 'package:flutter_app/bean/article.dart';
-import 'package:flutter_app/utils/route_util.dart';
 
 import '../page_index.dart';
 
@@ -108,9 +106,6 @@ class _CollectArticleState extends State<CollectArticle> {
                           ),
                         ),
                         onTap: () {
-//                          pushNewPage(context,
-//                              OneArticlePage(date: snapshot.data[index].curr));
-
                           Navigator.of(context).pop(snapshot.data[index].curr);
                         },
                       );

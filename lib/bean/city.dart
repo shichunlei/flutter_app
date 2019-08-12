@@ -9,11 +9,10 @@ class City extends ISuspensionBean {
   String type;
   String lon;
   String lat;
-  String parent_city;
-  String admin_area;
+  String parentCity;
+  String adminArea;
 
-  String tagIndex;
-  String namePinyin;
+  String firstLetter;
 
   City({
     this.cid,
@@ -23,10 +22,9 @@ class City extends ISuspensionBean {
     this.type,
     this.lon,
     this.lat,
-    this.parent_city,
-    this.admin_area,
-    this.tagIndex,
-    this.namePinyin,
+    this.parentCity,
+    this.adminArea,
+    this.firstLetter,
   });
 
   static City fromMap(Map<String, dynamic> map) {
@@ -34,12 +32,17 @@ class City extends ISuspensionBean {
     city.type = map['type'];
     city.cid = map['cid'];
     city.location = map['location'];
-    city.admin_area = map['admin_area'];
-    city.parent_city = map['parent_city'];
+    city.adminArea = map['admin_area'];
+    city.parentCity = map['parent_city'];
     city.lon = map['lon'];
     city.cnty = map['cnty'];
     city.tz = map['tz'];
-    city.namePinyin = PinyinHelper.getPinyinE(map['parent_city']);
+    String tag = PinyinHelper.getPinyinE(map['parent_city'])[0].toUpperCase();
+    if (RegExp("[A-Z]").hasMatch(tag)) {
+      city.firstLetter = tag;
+    } else {
+      city.firstLetter = "#";
+    }
     return city;
   }
 
@@ -53,6 +56,6 @@ class City extends ISuspensionBean {
 
   @override
   String getSuspensionTag() {
-    return tagIndex;
+    return firstLetter;
   }
 }

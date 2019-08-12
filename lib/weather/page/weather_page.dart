@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/he_weather.dart';
-import 'package:flutter_app/service/api_service.dart';
 
 import '../../page_index.dart';
-import '../page/city_page.dart';
+
 import '../ui/air_view.dart';
 import '../ui/hourly_view.dart';
 import '../ui/lifestyle_view.dart';
@@ -37,6 +36,10 @@ class WeatherPageState extends State<WeatherPage> {
   double headerHeight = 200;
 
   Color barColor = Colors.transparent;
+
+  bool favorite = false;
+
+  IconData _favoriteIcon = Icons.favorite_border;
 
   @override
   void initState() {
@@ -107,8 +110,13 @@ class WeatherPageState extends State<WeatherPage> {
                     barColor.red, barColor.green, barColor.blue),
                 actions: <Widget>[
                   IconButton(
-                      icon: Icon(Icons.blur_on, color: Colors.white),
-                      onPressed: () => pushNewPage(context, CityPage()))
+                      icon: Icon(_favoriteIcon, color: Colors.white),
+                      onPressed: () {
+                        _toggleFavorite();
+
+                        ///
+                        /// pushNewPage(context, CityPage());
+                      })
                 ]))
       ]),
     );
@@ -122,14 +130,25 @@ class WeatherPageState extends State<WeatherPage> {
         child: SingleChildScrollView(
             controller: scrollController,
             child: Column(children: <Widget>[
-              NowView(now,
-                  daily_forecast: dailyForecast[0], air_now_city: airNowCity),
-              AirView(airNowCity),
+              NowView(now, dailyForecast: dailyForecast[0], air: airNowCity),
+              airNowCity == null ? Container() : AirView(airNowCity),
               HourlyView(hourly),
               WeeklyView(dailyForecast),
               LifestyleView(lifestyle),
               SunView(this.widget.cityName)
             ])),
         onRefresh: () => _getWeather(widget.cityName));
+  }
+
+  void _toggleFavorite() {
+    setState(() {
+      if (favorite) {
+        favorite = false;
+        _favoriteIcon = Icons.favorite_border;
+      } else {
+        favorite = true;
+        _favoriteIcon = Icons.favorite;
+      }
+    });
   }
 }

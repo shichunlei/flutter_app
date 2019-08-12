@@ -5,11 +5,10 @@ import 'package:flutter_app/ui/line.dart';
 
 class NowView extends StatelessWidget {
   final NowBean now;
-  final DailyForecast daily_forecast;
-  final AirNowCity air_now_city;
+  final DailyForecast dailyForecast;
+  final AirNowCity air;
 
-  NowView(this.now, {this.daily_forecast, this.air_now_city, Key key})
-      : super(key: key);
+  NowView(this.now, {this.dailyForecast, this.air, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,25 +21,27 @@ class NowView extends StatelessWidget {
         SizedBox(height: 10.0),
         Text(now.cond_txt,
             style: TextStyle(color: Colors.white, fontSize: 17.0)),
-        FlatButton(
-            color: Color(0x2a000000),
-            onPressed: () {},
-            child: Row(
-                children: <Widget>[
-                  Icon(CustomIcon.air, color: air_now_city?.aqiColor),
-                  Text('${air_now_city?.aqi}  ${air_now_city?.qlty}',
-                      style: TextStyle(color: Colors.white)),
-                  Icon(Icons.keyboard_arrow_right, color: Colors.white)
-                ],
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min)),
+        air == null
+            ? Container()
+            : FlatButton(
+                color: Color(0x2a000000),
+                onPressed: () {},
+                child: Row(
+                    children: <Widget>[
+                      Icon(CustomIcon.air, color: air?.aqiColor),
+                      Text('${air?.aqi}  ${air?.qlty}',
+                          style: TextStyle(color: Colors.white)),
+                      Icon(Icons.keyboard_arrow_right, color: Colors.white)
+                    ],
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min)),
         Line(),
         Row(children: <Widget>[
           Expanded(
             child: Row(children: <Widget>[
               Icon(CustomIcon.tmp, color: Colors.white, size: 20.0),
               SizedBox(width: 5.0),
-              Text('${daily_forecast?.tmp_max}/${daily_forecast?.tmp_min}℃',
+              Text('${dailyForecast?.tmp_max}/${dailyForecast?.tmp_min}℃',
                   style: TextStyle(color: Colors.white))
             ]),
           ),

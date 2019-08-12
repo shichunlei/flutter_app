@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/goods_provider.dart';
 import 'package:flutter_app/baixing_life/ui/item_goods_grid.dart';
-import 'package:flutter_app/bean/category.dart';
-import 'package:flutter_app/bean/goods.dart';
+import 'package:flutter_app/bean/baixing.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';

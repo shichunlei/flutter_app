@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/goods_provider.dart';
-import 'package:flutter_app/bean/goods.dart';
-import 'package:flutter_app/bean/goods_info.dart';
+import 'package:flutter_app/bean/baixing.dart';
 import 'package:flutter_app/service/api_service.dart';
 
 import 'package:flutter_html/flutter_html.dart';
