@@ -13,7 +13,7 @@ class AddressModel with ChangeNotifier {
     provider = AddressProvider();
   }
 
-  Future<void> $getAddresses() async {
+  Future<void> $fetchData() async {
     this._addresses = await provider.getAddressList();
 
     notifyListeners();
@@ -22,7 +22,7 @@ class AddressModel with ChangeNotifier {
   List<Address> get addresses => _addresses;
 
   Future<void> $changeAddresses() async {
-    $getAddresses();
+    $fetchData();
   }
 
   /// 新建或修改地址
@@ -34,7 +34,6 @@ class AddressModel with ChangeNotifier {
     if (success > 0) {
       Toast.show(context, '$title${S.of(context).success}！');
 
-      $changeAddresses();
       Navigator.of(context).pop();
     } else {
       Toast.show(context, '$title${S.of(context).fail}！');

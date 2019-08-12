@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/address_provider.dart';
-import 'package:flutter_app/bean/address.dart';
 import 'package:flutter_app/generated/i18n.dart';
+import 'package:flutter_app/store/models/address_model.dart';
+import 'package:provide/provide.dart';
 
 import '../../../page_index.dart';
 import 'create_edit_address_page.dart';
@@ -40,46 +41,37 @@ class _AddressPageState extends State<AddressPage> {
                           title: '${S.of(context).create_address}',
                           addressProvider: provider)))
             ]),
-        body: FutureBuilder<List<Address>>(
-            future: fetchAddress(),
-            builder: (_, AsyncSnapshot<List<Address>> snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.none:
-                  debugPrint('none');
-                  return Text('');
-                case ConnectionState.waiting:
-                  debugPrint('waiting');
-                  return getLoadingWidget();
-                case ConnectionState.done:
-                  debugPrint('done');
-                  if (snapshot.hasError) {
-                    debugPrint(snapshot.error.toString());
-                    return ErrorPage(text: '网络请求错误');
+        body: FutureBuilder<String>(
+            future: _fetchAddress(),
+            builder: (_, AsyncSnapshot<String> snapshot) {
+              if (ConnectionState.waiting == snapshot.connectionState) {
+                return getLoadingWidget();
+              } else if (ConnectionState.done == snapshot.connectionState) {
+                return Provide<AddressModel>(builder: (context, child, value) {
+                  if (value.addresses.length > 0) {
+                    return ListView.separated(
+                        physics: BouncingScrollPhysics(),
+                        padding: EdgeInsets.only(top: 8, bottom: 8),
+                        itemBuilder: (context, index) => ItemAddress(
+                            address: value.addresses[index],
+                            addressProvider: provider),
+                        separatorBuilder: (_, int index) =>
+                            Container(height: 5, color: Colors.grey[200]),
+                        itemCount: value.addresses.length);
                   } else {
-                    debugPrint('${snapshot.data.length}');
-                    if (snapshot.data.length > 0) {
-                      return ListView.separated(
-                          physics: BouncingScrollPhysics(),
-                          padding: EdgeInsets.only(top: 8, bottom: 8),
-                          itemBuilder: (context, index) => ItemAddress(
-                              address: snapshot.data[index],
-                              addressProvider: provider),
-                          separatorBuilder: (BuildContext context, int index) =>
-                              Container(height: 5, color: Colors.grey[200]),
-                          itemCount: snapshot.data.length);
-                    }
                     return EmptyPage(
                         text: '暂无收货地址', imageAsset: 'images/empty.jpeg');
                   }
-                  break;
-                default:
-                  return EmptyPage(
-                      text: '暂无收货地址', imageAsset: 'images/empty.jpeg');
+                });
+              } else {
+                return null;
               }
             }));
   }
 
-  Future<List<Address>> fetchAddress() async {
-    return await provider.getAddressList();
+  Future<String> _fetchAddress() async {
+    await Store.value<AddressModel>(context).$fetchData();
+
+    return '${S.of(context).success}';
   }
 }
