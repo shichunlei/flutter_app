@@ -239,8 +239,7 @@ class _DetailsPageState extends State<DetailsPage>
             data: goods.goodInfo.goodsDetail,
             defaultTextStyle: TextStyle(fontSize: 18.0),
             padding: EdgeInsets.all(8.0),
-            blockSpacing: 2.0,
-            useRichText: true))
+            blockSpacing: 2.0))
         ..add(adWidget);
     }
     if (currentIndex == 1) {

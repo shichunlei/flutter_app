@@ -75,8 +75,6 @@ dependencies: # 应用或包依赖的其它包或插件
   # 刷新加载控件
   flutter_easyrefresh: ^1.2.7
 
-  flutter_gallery_assets: 0.1.9+2
-
   flutter_html: ^0.10.4
 
   # 侧滑菜单
@@ -181,7 +179,6 @@ flutter:
     - images/weather_backgrounds/
     - images/qdaily/
     - assets/data/
-    - packages/flutter_gallery_assets/people/ali_landscape.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

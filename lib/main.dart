@@ -39,7 +39,7 @@ void main() async {
 void setCustomErrorPage() {
   ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) {
     debugPrint(flutterErrorDetails.toString());
-    return Center(child: Text("Flutter 走神了"));
+    return Center(child: Text("${flutterErrorDetails.toString()}"));
   };
 }
 

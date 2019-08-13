@@ -214,6 +214,7 @@ class ExpandStateBean {
           SubExpandBean('FlutterLogo', FlutterLogoWidget()),
           SubExpandBean('CheckSwitch', CheckSwitchWidget()),
           SubExpandBean('AnimatedSwitcher', AnimatedSwitcherSample()),
+          SubExpandBean('主题', ThemeSample()),
         ]),
     ExpandStateBean(
         leading: Icons.filter_2,

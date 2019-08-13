@@ -220,13 +220,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.2.7"
-  flutter_gallery_assets:
-    dependency: "direct main"
-    description:
-      name: flutter_gallery_assets
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.1.9+2"
   flutter_html:
     dependency: "direct main"
     description:

@@ -80,12 +80,6 @@ class ImageWidgetState extends State<ImageWidget> {
                 image: NetworkImage(
                     "https://github.com/hjnilsson/country-flags/blob/master/png1000px/cn.png?raw=true"),
               ),
-
-              Divider(),
-
-              /// 导入第三方库图片
-              Image.asset(
-                  'packages/flutter_gallery_assets/people/ali_landscape.png'),
             ],
           ),
         ));
