@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 
 import '../bean/bean_index.dart';
-import '../service/api_url.dart';
 
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' show parse;
@@ -41,7 +40,7 @@ class ApiService {
   /// 获取正在热映电影
   static Future<List<Movie>> getNowPlayingList(
       {String city, int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get(ApiUrl.MOVIE_LIST_URL, data: {
+    Response response = await HttpUtils().request(ApiUrl.MOVIE_LIST_URL, data: {
       'apikey': Config.DOUBAN_MOVIE_KEY,
       'city': city,
       'start': start,
@@ -58,7 +57,7 @@ class ApiService {
   /// 获取即将上映电影
   static Future<List<Movie>> getComingList(
       {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get(ApiUrl.MOVIE_SOON_URL, data: {
+    Response response = await HttpUtils().request(ApiUrl.MOVIE_SOON_URL, data: {
       'apikey': Config.DOUBAN_MOVIE_KEY,
       "start": start,
       'count': count,
@@ -74,9 +73,8 @@ class ApiService {
   /// 获取排行榜电影
   static Future<List<Movie>> getRankingList(String url,
       {int start = 0, int count = 20}) async {
-    Response response =
-        await HttpUtils(queryParameters: {'apikey': Config.DOUBAN_MOVIE_KEY})
-            .get(url, data: {
+    Response response = await HttpUtils().request(url, data: {
+      'apikey': Config.DOUBAN_MOVIE_KEY,
       'start': start,
       'count': count,
     });
@@ -90,9 +88,8 @@ class ApiService {
 
   /// 获取本周口碑榜电影
   static Future<List<Movie>> getWeeklyList() async {
-    Response response =
-        await HttpUtils(queryParameters: {'apikey': Config.DOUBAN_MOVIE_KEY})
-            .get(ApiUrl.WEEKLY_MOVIES_URL);
+    Response response = await HttpUtils().request(ApiUrl.WEEKLY_MOVIES_URL,
+        data: {'apikey': Config.DOUBAN_MOVIE_KEY});
     if (response.statusCode != 200) {
       return [];
     }
@@ -108,9 +105,8 @@ class ApiService {
 
   /// 获取新片榜电影
   static Future<List<Movie>> getNewMoviesList() async {
-    Response response =
-        await HttpUtils(queryParameters: {'apikey': Config.DOUBAN_MOVIE_KEY})
-            .get(ApiUrl.NEW_MOVIES_URL);
+    Response response = await HttpUtils().request(ApiUrl.NEW_MOVIES_URL,
+        data: {'apikey': Config.DOUBAN_MOVIE_KEY});
     if (response.statusCode != 200) {
       return [];
     }
@@ -121,9 +117,8 @@ class ApiService {
 
   /// 获取北美票房榜电影
   static Future<List<Movie>> getUsBoxList() async {
-    Response response =
-        await HttpUtils(queryParameters: {'apikey': Config.DOUBAN_MOVIE_KEY})
-            .get(ApiUrl.US_MOVIES_URL);
+    Response response = await HttpUtils().request(ApiUrl.US_MOVIES_URL,
+        data: {'apikey': Config.DOUBAN_MOVIE_KEY});
     if (response.statusCode != 200) {
       return [];
     }
@@ -140,11 +135,12 @@ class ApiService {
   /// 获取 top250 榜单
   static Future<List<Movie>> getTop250List(
       {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get(ApiUrl.MOVIE_TOP250_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'start': start,
-      'count': count
-    });
+    Response response = await HttpUtils().request(ApiUrl.MOVIE_TOP250_URL,
+        data: {
+          'apikey': Config.DOUBAN_MOVIE_KEY,
+          'start': start,
+          'count': count
+        });
     if (response.statusCode != 200) {
       return [];
     }
@@ -156,12 +152,13 @@ class ApiService {
   /// 根据标签搜索
   static Future<List<Movie>> getSearchListByTag(
       {String tag, int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get(ApiUrl.MOVIE_SEARCH_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'tag': tag,
-      'start': start,
-      'count': count
-    });
+    Response response = await HttpUtils().request(ApiUrl.MOVIE_SEARCH_URL,
+        data: {
+          'apikey': Config.DOUBAN_MOVIE_KEY,
+          'tag': tag,
+          'start': start,
+          'count': count
+        });
     if (response.statusCode != 200) {
       return [];
     }
@@ -173,12 +170,13 @@ class ApiService {
   /// 根据关键字搜索
   static Future<List<Movie>> getSearchListByKey(
       {String key, int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get(ApiUrl.MOVIE_SEARCH_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'q': key,
-      'start': start,
-      'count': count
-    });
+    Response response = await HttpUtils().request(ApiUrl.MOVIE_SEARCH_URL,
+        data: {
+          'apikey': Config.DOUBAN_MOVIE_KEY,
+          'q': key,
+          'start': start,
+          'count': count
+        });
     if (response.statusCode != 200) {
       return [];
     }
@@ -190,7 +188,8 @@ class ApiService {
   /// 搜索电影
   static Future<List<Movie>> getSearchList(
       {String key, String tag, int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get(ApiUrl.MOVIE_SEARCH_URL, data: {
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_SEARCH_URL, data: {
       'apikey': Config.DOUBAN_MOVIE_KEY,
       'q': key,
       'tag': tag,
@@ -207,8 +206,10 @@ class ApiService {
 
   /// 获取电影详情
   static Future<Movie> getMovieDetail(String movieId) async {
-    Response response = await HttpUtils().get('/subject/$movieId', data: {
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_DETAIL_URL, data: {
       'apikey': Config.DOUBAN_MOVIE_KEY,
+      'movieId': movieId,
     });
     if (response.statusCode != 200) {
       return null;
@@ -219,12 +220,13 @@ class ApiService {
   /// 影片剧照
   static Future<List<Photos>> getMovieAlbum(String movieId,
       {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get('/subject/$movieId/photos',
-        data: {
-          'apikey': Config.DOUBAN_MOVIE_KEY,
-          'start': start,
-          'count': count
-        });
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_PHOTO_URL, data: {
+      'apikey': Config.DOUBAN_MOVIE_KEY,
+      'start': start,
+      'count': count,
+      'movieId': movieId
+    });
     if (response.statusCode != 200) {
       return [];
     }
@@ -234,8 +236,10 @@ class ApiService {
 
   /// 影人详细信息
   static Future<Celebrity> getActorDetail(String actorId) async {
-    Response response = await HttpUtils().get('/celebrity/$actorId', data: {
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_CELEBRITY_URL, data: {
       'apikey': Config.DOUBAN_MOVIE_KEY,
+      'actorId': actorId,
     });
     if (response.statusCode != 200) {
       return null;
@@ -246,12 +250,13 @@ class ApiService {
   /// 影人相片
   static Future<List<Photos>> getActorPhotos(String actorId,
       {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get('/celebrity/$actorId/photos',
-        data: {
-          'apikey': Config.DOUBAN_MOVIE_KEY,
-          'start': start,
-          'count': count
-        });
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_CELEBRITY_PHOTOS_URL, data: {
+      'apikey': Config.DOUBAN_MOVIE_KEY,
+      'start': start,
+      'count': count,
+      'actorId': actorId,
+    });
     if (response.statusCode != 200) {
       return [];
     }
@@ -262,10 +267,13 @@ class ApiService {
   /// 剧照
   static Future<List<Photos>> getPhotos(String url, String id,
       {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get('/$url/$id/photos', data: {
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_PHOTOS_URL, data: {
       'apikey': Config.DOUBAN_MOVIE_KEY,
       'start': start,
-      'count': count
+      'count': count,
+      'url': url,
+      'id': id
     });
     if (response.statusCode != 200) {
       return [];
@@ -277,12 +285,13 @@ class ApiService {
   /// 影人作品
   static Future<List<Movie>> getActorMovies(String actorId,
       {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get('/celebrity/$actorId/works',
-        data: {
-          'apikey': Config.DOUBAN_MOVIE_KEY,
-          'start': start,
-          'count': count
-        });
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_CELEBRITY_WORKS_URL, data: {
+      'apikey': Config.DOUBAN_MOVIE_KEY,
+      'start': start,
+      'count': count,
+      'actorId': actorId
+    });
     if (response.statusCode != 200) {
       return [];
     }
@@ -297,12 +306,13 @@ class ApiService {
   /// 短评
   static Future<List<Reviews>> getComments(String movieId,
       {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get('/subject/$movieId/comments',
-        data: {
-          'apikey': Config.DOUBAN_MOVIE_KEY,
-          'start': start,
-          'count': count
-        });
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_COMMENTS_URL, data: {
+      'apikey': Config.DOUBAN_MOVIE_KEY,
+      'start': start,
+      'count': count,
+      'movieId': movieId
+    });
     if (response.statusCode != 200) {
       return [];
     }
@@ -313,12 +323,13 @@ class ApiService {
   /// 影评
   static Future<List<Reviews>> getReviews(String movieId,
       {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get('/subject/$movieId/reviews',
-        data: {
-          'apikey': Config.DOUBAN_MOVIE_KEY,
-          'start': start,
-          'count': count
-        });
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_REVIEWS_URL, data: {
+      'apikey': Config.DOUBAN_MOVIE_KEY,
+      'start': start,
+      'count': count,
+      'movieId': movieId
+    });
     if (response.statusCode != 200) {
       return [];
     }
@@ -329,7 +340,7 @@ class ApiService {
   /// 每日一文
   static Future<Article> getTodayArticle() async {
     Response response = await HttpUtils(baseUrl: ApiUrl.ARTICLE_BASE_URL)
-        .get(ApiUrl.ARTICLE_TODAY_URL, data: {'dev': 1});
+        .request(ApiUrl.ARTICLE_TODAY_URL, data: {'dev': 1});
     if (response.statusCode != 200) {
       return null;
     }
@@ -340,7 +351,7 @@ class ApiService {
   /// 特定日期文章
   static Future<Article> getDayArticle(String date) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.ARTICLE_BASE_URL)
-        .get(ApiUrl.ARTICLE_DAY_URL, data: {'dev': 1, 'date': date});
+        .request(ApiUrl.ARTICLE_DAY_URL, data: {'dev': 1, 'date': date});
     if (response.statusCode != 200) {
       return null;
     }
@@ -351,7 +362,7 @@ class ApiService {
   /// 随机文章
   static Future<Article> getRandomArticle() async {
     Response response = await HttpUtils(baseUrl: ApiUrl.ARTICLE_BASE_URL)
-        .get(ApiUrl.ARTICLE_RANDOM_URL, data: {'dev': 1});
+        .request(ApiUrl.ARTICLE_RANDOM_URL, data: {'dev': 1});
     if (response.statusCode != 200) {
       return null;
     }
@@ -362,7 +373,7 @@ class ApiService {
   /// 得到实况天气
   static Future<HeWeather> getHeWeatherNow(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.WEATHER_NOW, data: {
+        .request(ApiUrl.WEATHER_NOW, data: {
       "location": city,
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -378,7 +389,7 @@ class ApiService {
   /// 得到逐小时天气
   static Future<HeWeather> getHeWeatherHourly(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.WEATHER_HOURLY, data: {
+        .request(ApiUrl.WEATHER_HOURLY, data: {
       "location": city,
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -394,7 +405,7 @@ class ApiService {
   /// 得到3-10天天气
   static Future<HeWeather> getHeWeatherForecast(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.WEATHER_FORECAST, data: {
+        .request(ApiUrl.WEATHER_FORECAST, data: {
       "location": city,
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -410,7 +421,7 @@ class ApiService {
   /// 常规天气数据集合
   static Future<HeWeather> getHeWeather(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.WEATHER, data: {
+        .request(ApiUrl.WEATHER, data: {
       "location": city,
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -426,7 +437,7 @@ class ApiService {
   /// 日出日落
   static Future<HeWeather> getSunriseSunset(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.SUNRISE_SUNSET, data: {
+        .request(ApiUrl.SUNRISE_SUNSET, data: {
       "location": city,
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -442,7 +453,7 @@ class ApiService {
   /// 空气质量数据集合
   static Future<HeWeather> getAir(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.AIR, data: {
+        .request(ApiUrl.AIR, data: {
       "location": city, // 所查询地区的纬度 纬度采用十进制格式，北纬为正，南纬为负
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -458,7 +469,7 @@ class ApiService {
   /// 空气质量实况
   static Future<HeWeather> getAirNow(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.AIR_NOW, data: {
+        .request(ApiUrl.AIR_NOW, data: {
       "location": city, // 所查询地区的纬度 纬度采用十进制格式，北纬为正，南纬为负
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -474,7 +485,7 @@ class ApiService {
   /// 生活指数
   static Future<HeWeather> getLifeStyle(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.LIFESTYLE, data: {
+        .request(ApiUrl.LIFESTYLE, data: {
       "location": city, // 所查询地区的纬度 纬度采用十进制格式，北纬为正，南纬为负
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -491,7 +502,7 @@ class ApiService {
   static Future<List<City>> getHotCities(
       {String group: 'world', int number: 50}) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.CITY_BASE_URL)
-        .get(ApiUrl.CITY_TOP, data: {
+        .request(ApiUrl.CITY_TOP, data: {
       "group": "world",
       "key": Config.HE_WEATHER_KEY,
       "number": 50,
@@ -506,7 +517,7 @@ class ApiService {
   /// 搜索城市
   static Future<List<City>> getSearchCities(String keyword) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.CITY_BASE_URL)
-        .get(ApiUrl.CITY_FIND, data: {
+        .request(ApiUrl.CITY_FIND, data: {
       "location": keyword,
       "group": "cn",
       // group=world 查询全球城市（默认值）;group=cn 仅查询中国城市;group=us,scenic 查询美国城市和中国景点地区;group=cn,us,ru 查询中国、美国和俄罗斯城市
@@ -524,7 +535,7 @@ class ApiService {
 
   /// 煎蛋XXOO图
   static Future<List<Comment>> getJiandan(int page) async {
-    Response response = await HttpUtils().get(ApiUrl.JIANDAN, data: {
+    Response response = await HttpUtils().request(ApiUrl.JIANDAN, data: {
       "page": page,
       'oxwlxojflwblxbsapi': 'jandan.get_ooxx_comments',
     });
@@ -537,10 +548,12 @@ class ApiService {
   /// 百姓生活首页数据接口
   static Future<Baixing> getBaixingHomeData(String lon, String lat) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
-        .post(ApiUrl.BAIXING_HOME, data: {
-      "lon": lon,
-      'lat': lat,
-    });
+        .request(ApiUrl.BAIXING_HOME,
+            data: {
+              "lon": lon,
+              'lat': lat,
+            },
+            method: HttpUtils.POST);
     if (response.statusCode != 200) {
       return null;
     }
@@ -554,9 +567,11 @@ class ApiService {
   /// 百姓生活首页火爆专区商品数据接口
   static Future<List<Goods>> getBaixingHomeHotData(int page) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
-        .post(ApiUrl.BAIXING_HOME_HOT, data: {
-      "page": page,
-    });
+        .request(ApiUrl.BAIXING_HOME_HOT,
+            data: {
+              "page": page,
+            },
+            method: HttpUtils.POST);
     if (response.statusCode != 200) {
       return null;
     }
@@ -571,7 +586,7 @@ class ApiService {
   /// 百姓生活分类数据接口
   static Future<List<Category>> getBaixingCategoryData() async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
-        .post(ApiUrl.BAIXING_CATEGORY);
+        .request(ApiUrl.BAIXING_CATEGORY, method: HttpUtils.POST, data: null);
     if (response.statusCode != 200) {
       return null;
     }
@@ -590,11 +605,13 @@ class ApiService {
     String categorySubId,
   ) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
-        .post(ApiUrl.BAIXING_GOODS, data: {
-      "page": page,
-      "categoryId": categoryId,
-      "categorySubId": categorySubId,
-    });
+        .request(ApiUrl.BAIXING_GOODS,
+            data: {
+              "page": page,
+              "categoryId": categoryId,
+              "categorySubId": categorySubId,
+            },
+            method: HttpUtils.POST);
     if (response.statusCode != 200) {
       return null;
     }
@@ -609,9 +626,11 @@ class ApiService {
   /// 百姓生活分类商品数据接口
   static Future<GoodsInfo> getBaixingGoodsDetailData(String goodId) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
-        .post(ApiUrl.BAIXING_GOODS_DETAIL, data: {
-      "goodId": goodId,
-    });
+        .request(ApiUrl.BAIXING_GOODS_DETAIL,
+            data: {
+              "goodId": goodId,
+            },
+            method: HttpUtils.POST);
     if (response.statusCode != 200) {
       return null;
     }
@@ -631,7 +650,7 @@ class ApiService {
     String nat: '',
   }) async {
     Response response =
-        await HttpUtils(baseUrl: ApiUrl.RANDOMUSER_URL).get('', data: {
+        await HttpUtils(baseUrl: ApiUrl.RANDOMUSER_URL).request('', data: {
       "page": page,
       "results": results,
       "gender": gender,
@@ -866,7 +885,7 @@ class ApiService {
 
     Response response = await HttpUtils(
       baseUrl: ApiUrl.JUZIMI_URL,
-    ).get(category, data: page == 0 ? null : {"page": page});
+    ).request(category, data: page == 0 ? null : {"page": page});
 
     var document = parse(response.data.toString());
 
@@ -1149,7 +1168,7 @@ class ApiService {
   /// 360壁纸
   static Future<List<ImageModal>> getImagesData(String key) async {
     Response response =
-        await HttpUtils(baseUrl: ApiUrl.MEIZITU_URL).get('j', data: {
+        await HttpUtils(baseUrl: ApiUrl.MEIZITU_URL).request('j', data: {
       "src": 'imageonebox',
       "q": key,
       "obx_type": "360pic_meinv",
@@ -1168,7 +1187,7 @@ class ApiService {
   /// 获取全部新闻(首页)
   static Future<ResponseBean> getQdailyHomeData(String lastKey) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .get("${ApiUrl.QDAILY_HOME_DATA}$lastKey.json", data: null);
+        .request("${ApiUrl.QDAILY_HOME_DATA}$lastKey.json", data: null);
     if (response.statusCode != 200) {
       return null;
     }
@@ -1180,8 +1199,9 @@ class ApiService {
   /// 获取某分类下的新闻
   static Future<ResponseBean> getQdailyNewsDataByCategory(
       int tagId, String lastKey) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .get(ApiUrl.QDAILY_CATEGORY_DATA + "$tagId/$lastKey.json", data: null);
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).request(
+        ApiUrl.QDAILY_CATEGORY_DATA + "$tagId/$lastKey.json",
+        data: null);
     if (response.statusCode != 200) {
       return null;
     }
@@ -1193,7 +1213,7 @@ class ApiService {
   /// 获取文章/新闻评论
   static Future<ResponseBean> getQdailyCommentData(int id,
       {String dataType = 'article', String lastKey = '0'}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).get(
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).request(
         "${ApiUrl.QDAILY_COMMENT_DATA}$dataType/$id/$lastKey.json",
         data: null);
     if (response.statusCode != 200) {
@@ -1207,7 +1227,7 @@ class ApiService {
   /// 栏目列表
   static Future<DataBean> getQdailyColumnList(String lastKey) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_WEB_URL)
-        .get("${ApiUrl.QDAILY_COLUMN_LIST_DATA}$lastKey.json", data: null);
+        .request("${ApiUrl.QDAILY_COLUMN_LIST_DATA}$lastKey.json", data: null);
     if (response.statusCode != 200) {
       return null;
     }
@@ -1218,7 +1238,7 @@ class ApiService {
   /// 栏目信息
   static Future<ResponseBean> getQdailyColumnInfo(int columnId) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .get("${ApiUrl.QDAILY_COLUMN_INFO_DATA}$columnId.json", data: null);
+        .request(ApiUrl.QDAILY_COLUMN_INFO_DATA, data: {'columnId': columnId});
     if (response.statusCode != 200) {
       return null;
     }
@@ -1230,9 +1250,9 @@ class ApiService {
   /// 栏目新闻
   static Future<ResponseBean> getQdailyColumnIndex(
       int columnId, String lastKey) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).get(
-        "${ApiUrl.QDAILY_COLUMN_INDEX_DATA}$columnId/$lastKey.json",
-        data: null);
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).request(
+        ApiUrl.QDAILY_COLUMN_INDEX_DATA,
+        data: {'lastKey': lastKey, 'columnId': columnId});
     if (response.statusCode != 200) {
       return null;
     }
@@ -1244,7 +1264,7 @@ class ApiService {
   /// 好奇心研究所
   static Future<ResponseBean> getQdailyLabsData(String lastKey) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .get("${ApiUrl.QDAILY_LAB_INDEX_DATA}$lastKey.json", data: null);
+        .request(ApiUrl.QDAILY_LAB_INDEX_DATA, data: {'lastKey': lastKey});
     if (response.statusCode != 200) {
       return null;
     }
@@ -1256,7 +1276,7 @@ class ApiService {
   /// 好奇心研究所详情
   static Future<ResponseBean> getQdailyLabsDetailData(int labId) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .get("${ApiUrl.QDAILY_LAB_DETAIL_DATA}$labId.json", data: null);
+        .request(ApiUrl.QDAILY_LAB_DETAIL_DATA, data: {'labId': labId});
     if (response.statusCode != 200) {
       return null;
     }
@@ -1267,8 +1287,9 @@ class ApiService {
 
   /// 获取文章/新闻简介
   static Future<ResponseBean> getQDailyArticleInfoData(int articleId) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .get("${ApiUrl.QDAILY_ARTICLE_INFO_URL}$articleId.json", data: null);
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).request(
+        ApiUrl.QDAILY_ARTICLE_INFO_URL,
+        data: {'articleId': articleId});
     if (response.statusCode != 200) {
       return null;
     }
@@ -1280,7 +1301,7 @@ class ApiService {
   /// 搜索
   static Future<DataBean> getQDailySearchData(
       String keywords, String last_key) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_WEB_URL).get(
+    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_WEB_URL).request(
         ApiUrl.QDAILY_SEARCH_WEB_DATA,
         data: {"last_key": last_key, "key": keywords});
     if (response.statusCode != 200) {
@@ -1300,7 +1321,7 @@ class ApiService {
     String image = '';
 
     Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_ARTICLE_URL)
-        .get("$articleId", data: null);
+        .request(":articleId", data: {'articleId': articleId});
 
     var document = parse(response.data.toString());
 
@@ -1427,7 +1448,7 @@ class ApiService {
     String detail = '';
 
     Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_ARTICLE_URL)
-        .get("$articleId", data: null);
+        .request(":articleId", data: {'articleId': articleId});
 
     var document = parse(response.data.toString());
 

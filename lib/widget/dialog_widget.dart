@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/custom_widgets/dialog/asset_giffy_dialog.dart';
 import 'package:flutter_app/custom_widgets/dialog/network_giffy_dialog.dart';
 import 'package:flutter_app/custom_widgets/dialog/rich_alert_dialog.dart';
+import 'package:package_info/package_info.dart';
 
 import '../page_index.dart';
 
@@ -14,6 +15,18 @@ class DialogWidget extends StatefulWidget {
 }
 
 class DialogWidgetState extends State<DialogWidget> {
+  String appName;
+  String packageName;
+  String version;
+  String buildNumber;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _initPackageInfo();
+  }
+
   @override
   Widget build(BuildContext context) {
     final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -180,9 +193,10 @@ class DialogWidgetState extends State<DialogWidget> {
                   barrierDismissible: false,
                   builder: (context) {
                     return AboutDialog(
-                      applicationName: 'Flutter App',
-                      applicationIcon: Icon(Icons.add),
-                      applicationVersion: '1.0',
+                      applicationName: '$appName',
+                      applicationIcon: Image.asset('images/flutter_logo.png',
+                          width: 60.0, height: 60.0),
+                      applicationVersion: '$version',
                       //版本号，默认为空
                       applicationLegalese: '版权所有：SCL',
                       children: <Widget>[
@@ -194,6 +208,22 @@ class DialogWidgetState extends State<DialogWidget> {
             },
             child: Text("AboutDialog"),
           ),
+          Divider(),
+          AboutListTile(
+              icon: CircleAvatar(
+                  child: Icon(Icons.update, color: Colors.white, size: 20.0),
+                  maxRadius: 15),
+              child: Text('AboutListTile'),
+              applicationName: '$appName',
+              applicationIcon: Image.asset('images/flutter_logo.png',
+                  width: 60.0, height: 60.0),
+              applicationVersion: '$version',
+              //版本号，默认为空
+              applicationLegalese: '版权所有：SCL',
+              aboutBoxChildren: <Widget>[
+                Text("BoxChildren"),
+                Text("box child 2")
+              ]),
           Divider(),
           RaisedButton(
             onPressed: () {
@@ -461,5 +491,19 @@ class DialogWidgetState extends State<DialogWidget> {
       },
     );
     showDialog(context: context, builder: (ctx) => statefulBuilder);
+  }
+
+  Future<void> _initPackageInfo() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+    setState(() {
+      appName = packageInfo.appName;
+      packageName = packageInfo.packageName;
+      version = packageInfo.version;
+      buildNumber = packageInfo.buildNumber;
+    });
+
+    debugPrint(
+        'APP名称：$appName-====包名：$packageName=====版本名：$version======版本号：$buildNumber');
   }
 }

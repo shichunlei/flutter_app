@@ -5,49 +5,37 @@ import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/service/api_url.dart';
 
 class HttpUtils {
-  static HttpUtils instance;
+  /// http request methods
+  static const String GET = 'get';
+  static const String POST = 'post';
+  static const String PUT = 'put';
+  static const String PATCH = 'patch';
+  static const String DELETE = 'delete';
+
   Dio _dio;
   BaseOptions options;
 
   static const CONTENT_TYPE_JSON = "application/json";
   static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 
-  static HttpUtils getInstance() {
-    print('getInstance');
-    if (instance == null) {
-      instance = HttpUtils();
-    }
-    return instance;
-  }
-
-  HttpUtils({
-    String baseUrl = ApiUrl.MOVIE_BASE_URL,
-    Map<String, dynamic> header,
-    String contentType = CONTENT_TYPE_FORM,
-    Map<String, dynamic> queryParameters,
-  }) {
-    print('dio赋值');
+  HttpUtils({String baseUrl: ApiUrl.MOVIE_BASE_URL}) {
+    print('dio赋值=====$baseUrl');
 
     /// 或者通过传递一个 `options`来创建dio实例
-    options = BaseOptions(
+    BaseOptions options = BaseOptions(
       /// 请求基地址,可以包含子路径，如: "https://www.google.com/api/".
       baseUrl: baseUrl,
 
       /// 连接服务器超时时间，单位是毫秒.
-      connectTimeout: 10000,
+      connectTimeout: 15000,
 
       /// 接收数据的总时限.
-      receiveTimeout: 3000,
+      receiveTimeout: 15000,
 
       /// [如果返回数据是json(content-type)，dio默认会自动将数据转为json，无需再手动转](https://github.com/flutterchina/dio/issues/30)
       responseType: ResponseType.plain,
-      contentType: ContentType.parse(contentType),
-
-      /// headers
-      headers: header,
-
-      /// 共同的参数可以在此设置
-      queryParameters: queryParameters,
+      contentType:
+          ContentType('application', CONTENT_TYPE_FORM, charset: 'utf-8'),
     );
 
     _dio = Dio(options);
@@ -78,85 +66,82 @@ class HttpUtils {
     }
   }
 
-  // get
-  get(path, {data, options, cancelToken}) async {
-    print('get请求启动! path：$path ,body: $data');
+  /// request method
+  request(
+    String url, {
+    data,
+    method: GET,
+  }) async {
+    if (data != null) {
+      /// restful 请求处理
+      /// /gysw/search/hist/:user_id        user_id=27
+      /// 最终生成 url 为     /gysw/search/hist/27
+      data.forEach((key, value) {
+        if (url.indexOf(key) != -1) {
+          url = url.replaceAll(':$key', value.toString());
+        }
+      });
+    }
+
+    /// 打印请求相关信息：请求地址、请求方式、请求参数
+    print('请求地址：【' + method + '  ' + url + '】');
+    print('请求参数：' + data.toString());
     Response response;
     try {
-      response = await _dio.get(
+      response = await _dio.request(
         /// 请求路径，如果 `path` 以 "http(s)"开始, 则 `baseURL` 会被忽略； 否则, 将会和baseUrl拼接出完整的的url.
-        path,
+        url,
+        data: data,
         queryParameters: data,
-        cancelToken: cancelToken,
+        options: Options(method: method),
         onReceiveProgress: (int count, int total) {
           print(
               'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
         },
-      );
-
-      /// 响应数据，可能已经被转换了类型, 详情请参考Options中的[ResponseType].
-      print('get请求成功!response.data：${response.data}');
-
-      /// 响应头
-      print('get请求成功!response.headers：${response.headers}');
-
-      /// 本次请求信息
-      print('get请求成功!response.request：${response.request}');
-
-      /// Http status code.
-      print('get请求成功!response.statusCode：${response.statusCode}');
-    } on DioError catch (e) {
-      if (CancelToken.isCancel(e)) {
-        /// 错误描述
-        print('get请求取消! ' + e.message);
-      }
-
-      /// 响应信息, 如果错误发生在在服务器返回数据之前，它为 `null`
-      print('get请求发生错误：${e.response}');
-
-      response = e.response;
-    }
-    return response;
-  }
-
-  // post
-  post(path, {data, options, cancelToken}) async {
-    print('post请求启动! path：$path ,body: $data');
-    Response response;
-    try {
-      response = await _dio.post(
-        /// 请求路径，如果 `path` 以 "http(s)"开始, 则 `baseURL` 会被忽略； 否则, 将会和baseUrl拼接出完整的的url.
-        path,
-        data: data,
         onSendProgress: (int count, int total) {
           print(
               'onSendProgress: ${(count / total * 100).toStringAsFixed(0)} %');
         },
-        onReceiveProgress: (int count, int total) {
-          print(
-              'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
-        },
       );
-      print('post请求成功!response.data：${response.data}');
+
+      /// 响应数据，可能已经被转换了类型, 详情请参考Options中的[ResponseType].
+      print('$method请求成功!response.data：${response.data}');
+
+      /// 响应头
+      print('$method请求成功!response.headers：${response.headers}');
+
+      /// 本次请求信息
+      print('$method请求成功!response.request：${response.request}');
+
+      /// Http status code.
+      print('$method请求成功!response.statusCode：${response.statusCode}');
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) {
-        print('post请求取消! ' + e.message);
+        /// 错误描述
+        print('$method请求取消! ' + e.message);
       }
-      print('post请求发生错误：$e');
+      response = e.response;
+
+      /// 响应信息, 如果错误发生在在服务器返回数据之前，它为 `null`
+      print('$method请求发生错误：${e.response}');
     }
+
     return response;
   }
 
-  download(path, savePath) async {
-    print('download请求启动! path：$path');
+  download(url, savePath,
+      {Function(int count, int total) onReceiveProgress}) async {
+    print('download请求启动! url：$url');
     Response response;
     try {
       response = await _dio.download(
-        path,
+        url,
         savePath,
         onReceiveProgress: (int count, int total) {
           print(
               'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
+
+          onReceiveProgress(count, total);
         },
       );
     } on DioError catch (e) {

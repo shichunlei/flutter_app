@@ -4,13 +4,23 @@ class ApiUrl {
   static const String MOVIE_BASE_URL = "https://api.douban.com/v2/movie";
 
   static final String MOVIE_LIST_URL = "/in_theaters";
-  static final String MOVIE_DETAIL_URL = "/subject";
+  static final String MOVIE_DETAIL_URL = '/subject/:movieId';
+  static final String MOVIE_PHOTO_URL = '/subject/:movieId/photos';
   static final String MOVIE_TOP250_URL = "/top250";
   static final String MOVIE_SEARCH_URL = "/search";
   static final String MOVIE_SOON_URL = "/coming_soon";
   static final String NEW_MOVIES_URL = "/new_movies";
   static final String WEEKLY_MOVIES_URL = "/weekly";
   static final String US_MOVIES_URL = "/us_box";
+
+  static final String MOVIE_PHOTOS_URL = '/:url/:id/photos';
+
+  static final String MOVIE_CELEBRITY_URL = "/celebrity/:actorId";
+  static final String MOVIE_CELEBRITY_PHOTOS_URL = "/celebrity/:actorId/photos";
+  static final String MOVIE_CELEBRITY_WORKS_URL = "/celebrity/:actorId/works";
+
+  static final String MOVIE_COMMENTS_URL = '/subject/:movieId/comments';
+  static final String MOVIE_REVIEWS_URL = '/subject/:movieId/reviews';
 
   static final String ARTICLE_BASE_URL = "https://interface.meiriyiwen.com";
 
@@ -68,14 +78,17 @@ class ApiUrl {
 
   static final String QDAILY_ARTICLE_URL =
       "http://m.qdaily.com/mobile/articles/";
-  static final String QDAILY_ARTICLE_INFO_URL = "app3/articles/info/";
+  static final String QDAILY_ARTICLE_INFO_URL =
+      "app3/articles/info/:articleId.json";
 
-  static final String QDAILY_LAB_INDEX_DATA = "app3/papers/index/";
-  static final String QDAILY_LAB_DETAIL_DATA = "app3/papers/detail/";
+  static final String QDAILY_LAB_INDEX_DATA = "app3/papers/index/:lastKey.json";
+  static final String QDAILY_LAB_DETAIL_DATA = "app3/papers/detail/:labId.json";
 
   static final String QDAILY_COLUMN_LIST_DATA = "special_columns/column_more/";
-  static final String QDAILY_COLUMN_INFO_DATA = "app3/columns/info/";
-  static final String QDAILY_COLUMN_INDEX_DATA = "app3/columns/index/";
+  static final String QDAILY_COLUMN_INFO_DATA =
+      "app3/columns/info/:columnId.json";
+  static final String QDAILY_COLUMN_INDEX_DATA =
+      "app3/columns/index/:columnId/:lastKey.json";
 
   static final String QDAILY_SEARCH_HIGHLIGHTING_DATA =
       "app3/searches/post_highlighting_list.json?last_key={last_key}&search={content}";
