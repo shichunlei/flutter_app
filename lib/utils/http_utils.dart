@@ -15,6 +15,8 @@ class HttpUtils {
   Dio _dio;
   BaseOptions options;
 
+  get dio => Dio();
+
   static const CONTENT_TYPE_JSON = "application/json";
   static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 
@@ -62,16 +64,12 @@ class HttpUtils {
         }))
 
         /// 添加 LogInterceptor 拦截器来自动打印请求、响应日志
-        ..add(LogInterceptor(responseBody: false));
+        ..add(LogInterceptor());
     }
   }
 
   /// request method
-  request(
-    String url, {
-    data,
-    method: GET,
-  }) async {
+  request(String url, {data, method: GET, CancelToken cancelToken}) async {
     if (data != null) {
       /// restful 请求处理
       /// /gysw/search/hist/:user_id        user_id=27
@@ -89,20 +87,18 @@ class HttpUtils {
     Response response;
     try {
       response = await _dio.request(
-        /// 请求路径，如果 `path` 以 "http(s)"开始, 则 `baseURL` 会被忽略； 否则, 将会和baseUrl拼接出完整的的url.
-        url,
-        data: data,
-        queryParameters: data,
-        options: Options(method: method),
-        onReceiveProgress: (int count, int total) {
-          print(
-              'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
-        },
-        onSendProgress: (int count, int total) {
-          print(
-              'onSendProgress: ${(count / total * 100).toStringAsFixed(0)} %');
-        },
-      );
+
+          /// 请求路径，如果 `path` 以 "http(s)"开始, 则 `baseURL` 会被忽略； 否则, 将会和baseUrl拼接出完整的的url.
+          url,
+          data: data,
+          queryParameters: data,
+          options: Options(method: method),
+          onReceiveProgress: (int count, int total) {
+        print(
+            'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
+      }, onSendProgress: (int count, int total) {
+        print('onSendProgress: ${(count / total * 100).toStringAsFixed(0)} %');
+      }, cancelToken: cancelToken);
 
       /// 响应数据，可能已经被转换了类型, 详情请参考Options中的[ResponseType].
       print('$method请求成功!response.data：${response.data}');
@@ -130,13 +126,15 @@ class HttpUtils {
   }
 
   download(url, savePath,
-      {Function(int count, int total) onReceiveProgress}) async {
+      {Function(int count, int total) onReceiveProgress,
+      CancelToken cancelToken}) async {
     print('download请求启动! url：$url');
     Response response;
     try {
-      response = await _dio.download(
+      response = await dio.download(
         url,
         savePath,
+        cancelToken: cancelToken,
         onReceiveProgress: (int count, int total) {
           print(
               'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');

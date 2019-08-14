@@ -16,6 +16,7 @@
 #import <intro_slider/IntroSliderPlugin.h>
 #import <multi_image_picker/MultiImagePickerPlugin.h>
 #import <package_info/PackageInfoPlugin.h>
+#import <path_provider/PathProviderPlugin.h>
 #import <permission_handler/PermissionHandlerPlugin.h>
 #import <rounded_letter/RoundedLetterPlugin.h>
 #import <screen/ScreenPlugin.h>
@@ -41,6 +42,7 @@
   [IntroSliderPlugin registerWithRegistrar:[registry registrarForPlugin:@"IntroSliderPlugin"]];
   [MultiImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"MultiImagePickerPlugin"]];
   [FLTPackageInfoPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPackageInfoPlugin"]];
+  [FLTPathProviderPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPathProviderPlugin"]];
   [PermissionHandlerPlugin registerWithRegistrar:[registry registrarForPlugin:@"PermissionHandlerPlugin"]];
   [RoundedLetterPlugin registerWithRegistrar:[registry registrarForPlugin:@"RoundedLetterPlugin"]];
   [ScreenPlugin registerWithRegistrar:[registry registrarForPlugin:@"ScreenPlugin"]];
