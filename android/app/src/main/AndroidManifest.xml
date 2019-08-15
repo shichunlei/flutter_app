@@ -18,7 +18,8 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:icon="@mipmap/ic_launcher"
-        android:label="flutter_app">
+        android:label="flutter_app"
+        android:networkSecurityConfig="@xml/network_security_config">
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
@@ -42,6 +43,6 @@
         <!-- 高德地图API_KEY -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="f9d17a113bace1ff32fed97166efcff3"/>
+            android:value="f9d17a113bace1ff32fed97166efcff3" />
     </application>
 </manifest>
