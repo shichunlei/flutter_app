@@ -37,7 +37,7 @@ dependencies: # 应用或包依赖的其它包或插件
 
   city_picker: ^0.1.3
 
-  city_pickers: ^0.1.22
+  city_pickers: ^0.1.23
 
   clippy_flutter:
     git:
@@ -103,7 +103,7 @@ dependencies: # 应用或包依赖的其它包或插件
   http: ^0.12.0+2
 
   # 图片选择器
-  image_picker: ^0.6.1
+  image_picker: ^0.6.1+2
 
   # 保存图片
   image_picker_saver: ^0.3.0
@@ -117,7 +117,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.7
 
-  multi_image_picker: ^4.4.1
+  multi_image_picker: ^4.5.0+2
 
   package_info: ^0.4.0+6
 

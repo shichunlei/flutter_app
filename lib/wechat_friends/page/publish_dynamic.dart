@@ -135,6 +135,11 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
           selectionCharacter: "✓",
         ),
       );
+
+      for (var r in resultList) {
+        var t = await r.filePath;
+        print(t);
+      }
     } on PlatformException catch (e) {
       debugPrint(e.message.toString());
     } on NoImagesSelectedException catch (e) {
@@ -159,17 +164,8 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
     });
   }
 
-  Future<void> deleteAssets() async {
-    await MultiImagePicker.deleteImages(assets: _images);
-    setState(() {
-      _images = List<Asset>();
-
-      imageNum = 0;
-    });
-  }
-
   Future<bool> _onBackPressed() {
-    showDialog(
+    return showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
@@ -182,7 +178,6 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
               FlatButton(
                 onPressed: () {
                   debugPrint("不保留");
-                  deleteAssets();
                   Navigator.pop(context);
                   Navigator.pop(context, true);
                 },

@@ -98,7 +98,7 @@ packages:
       name: city_pickers
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.22"
+    version: "0.1.23"
   clippy_flutter:
     dependency: "direct main"
     description:
@@ -336,7 +336,7 @@ packages:
       name: image_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.6.1"
+    version: "0.6.1+2"
   image_picker_saver:
     dependency: "direct main"
     description:
@@ -399,7 +399,7 @@ packages:
       name: multi_image_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.4.1"
+    version: "4.5.0+2"
   open_iconic_flutter:
     dependency: transitive
     description:
@@ -448,7 +448,7 @@ packages:
       name: permission_handler
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.2.1+1"
+    version: "3.2.2"
   photo_view:
     dependency: "direct main"
     description:

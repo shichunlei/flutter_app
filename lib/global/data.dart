@@ -262,6 +262,8 @@ class ExpandStateBean {
           SubExpandBean('LoadImage', LoadImageWidget()),
           SubExpandBean('RoundedLetter', RoundedLetterWidget()),
           SubExpandBean('Flipper', FlipperWidget()),
+          SubExpandBean('FlipView Sample', FlutterFlipViewSample()),
+          SubExpandBean('FlipView Custom', FlipViewCustom()),
           SubExpandBean('ContactPicker', ContactPickerWidget()),
           SubExpandBean('StaggeredView', StaggeredViewPage()),
           SubExpandBean('评分控件', StarRatingWidget()),

@@ -169,10 +169,6 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
               CupertinoDialogAction(
                 child: const Text('从相册选择', style: TextStyles.textBlue16),
                 onPressed: () {
-                  /// TODO
-                  if (images.isNotEmpty) {
-                    deleteAssets();
-                  }
                   loadAssets();
                   Navigator.pop(context);
                 },
@@ -181,7 +177,6 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
                 child: Text('${S.of(context).cancel}',
                     style: TextStyles.textRed16),
                 onPressed: () {
-                  deleteAssets();
                   Navigator.pop(context);
                 },
               )
@@ -214,6 +209,11 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
           selectionCharacter: "✓",
         ),
       );
+
+      for (var r in resultList) {
+        var t = await r.filePath;
+        print(t);
+      }
     } on PlatformException catch (e) {
       debugPrint(e.message.toString());
     } on NoImagesSelectedException catch (e) {
@@ -240,13 +240,6 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
         pushNewPage(
             context, PublishDynamicPage(images: images, maxImages: maxImages));
       }
-    });
-  }
-
-  Future<void> deleteAssets() async {
-    await MultiImagePicker.deleteImages(assets: images);
-    setState(() {
-      images = List<Asset>();
     });
   }
 }
