@@ -6,6 +6,9 @@ class GradualChangeView extends StatelessWidget {
   final double width;
   final double height;
   final Rotation rotation;
+  final Widget child;
+  final EdgeInsetsGeometry padding;
+  final AlignmentGeometry alignment;
 
   // 包括三个状态：clamp 为默认方式，自动延伸；repeated 重复效果;mirror 镜面效果，即对称效果
   final TileMode tileMode;
@@ -19,6 +22,9 @@ class GradualChangeView extends StatelessWidget {
     this.stops,
     this.rotation = Rotation.TB,
     this.tileMode = TileMode.clamp,
+    this.child,
+    this.padding,
+    this.alignment,
   })  : assert(tileMode != null),
         assert(rotation != null),
         super(key: key);
@@ -68,6 +74,9 @@ class GradualChangeView extends StatelessWidget {
             stops: stops,
             tileMode: tileMode),
       ),
+      child: child,
+      padding: padding ?? EdgeInsets.all(10),
+      alignment: alignment,
     );
   }
 }

@@ -37,92 +37,93 @@ class _HomeDrawableState extends State<HomeDrawable> {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-        elevation: 10.0,
-        child: _bulderMenuView(),
-        semanticLabel: S.of(context).menu);
-  }
+    return SafeArea(
+      child: ListView(
+        padding: EdgeInsets.only(top: 0),
+        children: <Widget>[
+          HomeDrawableHeader(
+              isLogin: isLogin,
+              avatar: avatar,
+              userName: userName,
+              email: email),
+          Divider(),
+          ListTile(
+              title: Text("${S.of(context).poetry}"),
+              leading: Icon(Icons.book),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () {
+                Navigator.of(context).pop();
+                pushNewPageBack(context, RandomPoetryPage());
+              }),
+          Divider(),
+          ListTile(
+              title: Text(S.of(context).contact),
+              leading: Icon(Icons.supervisor_account),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () {
+                Navigator.of(context).pop();
+                pushNewPageBack(context, ContactListPage());
+              }),
+          Divider(),
+          ListTile(
+              title: Text(S.of(context).update),
+              leading: Icon(Icons.update),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () async {
+                Directory appDocDir = await getApplicationDocumentsDirectory();
+                String appDocPath = appDocDir.path;
 
-  Widget _bulderMenuView() {
-    return ListView(children: <Widget>[
-      HomeDrawableHeader(
-          isLogin: isLogin, avatar: avatar, userName: userName, email: email),
-      Divider(),
-      ListTile(
-          title: Text("${S.of(context).poetry}"),
-          leading: Icon(Icons.book),
-          trailing: Icon(Icons.chevron_right),
-          onTap: () {
-            Navigator.of(context).pop();
-            pushNewPageBack(context, RandomPoetryPage());
-          }),
-      Divider(),
-      ListTile(
-          title: Text(S.of(context).contact),
-          leading: Icon(Icons.supervisor_account),
-          trailing: Icon(Icons.chevron_right),
-          onTap: () {
-            Navigator.of(context).pop();
-            pushNewPageBack(context, ContactListPage());
-          }),
-      Divider(),
-      ListTile(
-          title: Text(S.of(context).update),
-          leading: Icon(Icons.update),
-          trailing: Icon(Icons.chevron_right),
-          onTap: () async {
-            Directory appDocDir = await getApplicationDocumentsDirectory();
-            String appDocPath = appDocDir.path;
-
-            Navigator.of(context).pop();
-            showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (context) {
-                  return UpdateDialog(
-                    url:
-                        'https://cdn.jsdelivr.net/gh/flutterchina/flutter-in-action@1.0/docs/imgs/book.jpg',
-                    savePath: "${appDocPath.toString()}/temp.jpg",
-                  );
-                });
-          }),
-      Divider(),
-      ListTile(
-          title: Text(S.of(context).exit),
-          leading: Icon(Icons.exit_to_app),
-          trailing: Icon(Icons.chevron_right),
-          onTap: () {
-            Navigator.of(context).pop();
-            showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                      title: Text("退出账号"),
-                      content: Text("您确定要退出账号吗？"),
-                      actions: <Widget>[
-                        FlatButton(
-                            child: Text("退出"),
-                            onPressed: () {
-                              SpUtil.remove('isLogin');
-                              pushAndRemovePage(context, LoginPage());
-                            }),
-                        FlatButton(
-                            child: Text("再想想",
-                                style: Theme.of(context).textTheme.button),
-                            onPressed: () => Navigator.of(context).pop())
-                      ]);
-                });
-          }),
-      Divider(),
-      ListTile(
-          title: Text(S.of(context).setting),
-          leading: Icon(Icons.settings),
-          trailing: Icon(Icons.chevron_right),
-          onTap: () {
-            Navigator.of(context).pop();
-            pushNewPageBack(context, SettingPage());
-          }),
-      Divider(),
-    ]);
+                Navigator.of(context).pop();
+                showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (context) {
+                      return UpdateDialog(
+                        url:
+                            'https://cdn.jsdelivr.net/gh/flutterchina/flutter-in-action@1.0/docs/imgs/book.jpg',
+                        savePath: "${appDocPath.toString()}/temp.jpg",
+                      );
+                    });
+              }),
+          Divider(),
+          ListTile(
+              title: Text(S.of(context).exit),
+              leading: Icon(Icons.exit_to_app),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () {
+                Navigator.of(context).pop();
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                          title: Text("退出账号"),
+                          content: Text("您确定要退出账号吗？"),
+                          actions: <Widget>[
+                            FlatButton(
+                                child: Text("退出"),
+                                onPressed: () {
+                                  SpUtil.remove('isLogin');
+                                  pushAndRemovePage(context, LoginPage());
+                                }),
+                            FlatButton(
+                                child: Text("再想想",
+                                    style: Theme.of(context).textTheme.button),
+                                onPressed: () => Navigator.of(context).pop())
+                          ]);
+                    });
+              }),
+          Divider(),
+          ListTile(
+              title: Text(S.of(context).setting),
+              leading: Icon(Icons.settings),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () {
+                Navigator.of(context).pop();
+                pushNewPageBack(context, SettingPage());
+              }),
+          Divider(),
+        ],
+      ),
+    );
   }
 }

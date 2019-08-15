@@ -54,6 +54,6 @@ class HomeDrawableHeader extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.blue,
             image: DecorationImage(
-                image: NetworkImage(backgroundImage), fit: BoxFit.fill)));
+                image: NetworkImage(backgroundImage), fit: BoxFit.cover)));
   }
 }
