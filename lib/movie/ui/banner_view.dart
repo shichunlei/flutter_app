@@ -5,18 +5,13 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../../page_index.dart';
 
-class BannerView extends StatefulWidget {
+class BannerView extends StatelessWidget {
   final List<News> banner;
 
   BannerView({Key key, this.banner}) : super(key: key);
 
-  @override
-  _BannerViewState createState() => _BannerViewState();
-}
-
-class _BannerViewState extends State<BannerView> {
-  double radius = 5.0;
-  double height = 210.0;
+  final double radius = 5.0;
+  final double height = 210.0;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +25,7 @@ class _BannerViewState extends State<BannerView> {
             borderRadius: BorderRadius.circular(radius),
             child: Stack(
               children: <Widget>[
-                ImageLoadView(widget.banner[index].cover, height: height),
+                ImageLoadView(banner[index].cover, height: height),
                 Opacity(
                   opacity: 0.4,
                   child: Container(
@@ -47,11 +42,11 @@ class _BannerViewState extends State<BannerView> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       Text(
-                        widget.banner[index].title,
+                        banner[index].title,
                         style: TextStyle(color: Colors.white, fontSize: 20.0),
                       ),
                       Text(
-                        widget.banner[index].summary,
+                        banner[index].summary,
                         maxLines: 2,
                         style: TextStyle(color: Colors.white),
                       ),
@@ -62,7 +57,7 @@ class _BannerViewState extends State<BannerView> {
             ),
           );
         },
-        itemCount: widget.banner.length,
+        itemCount: banner.length,
         viewportFraction: 0.8,
         scale: 0.9,
         autoplay: true,
@@ -70,8 +65,8 @@ class _BannerViewState extends State<BannerView> {
           pushNewPage(
             context,
             WebViewPage(
-              url: widget.banner[index].link,
-              title: widget.banner[index].title,
+              url: banner[index].link,
+              title: banner[index].title,
             ),
           );
         },

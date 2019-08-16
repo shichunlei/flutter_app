@@ -1,37 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_ranking_home.dart';
-import 'package:flutter_app/movie/page/movie_top250.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/route_util.dart';
+import '../../page_index.dart';
+import '../page/movie_ranking_home.dart';
+import '../page/movie_top250.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_app/custom_widgets/smooth_star_rating.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class RankingBanner extends StatefulWidget {
+class RankingBanner extends StatelessWidget {
   final List<List<Movie>> movies;
 
   RankingBanner(this.movies);
 
-  @override
-  _RankingBannerState createState() => _RankingBannerState();
-}
+  final double radius = 10.0;
+  final double height = 200.0;
 
-class _RankingBannerState extends State<RankingBanner> {
-  double radius = 10.0;
-  double height = 200.0;
-
-  List<String> titles = ['一周口碑电影榜', '豆瓣电影Top250', '一周新电影榜', '北美电影票房榜'];
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  final List<String> titles = ['一周口碑电影榜', '豆瓣电影Top250', '一周新电影榜', '北美电影票房榜'];
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +31,7 @@ class _RankingBannerState extends State<RankingBanner> {
               borderRadius: BorderRadius.circular(radius),
               child: Stack(
                 children: <Widget>[
-                  ImageLoadView(widget.movies[index][0].images.medium,
+                  ImageLoadView(movies[index][0].images.medium,
                       height: height,
                       width: double.infinity,
                       fit: BoxFit.cover,
@@ -73,7 +57,7 @@ class _RankingBannerState extends State<RankingBanner> {
                             Text(
                               index == 1
                                   ? "豆瓣榜单~共250部"
-                                  : '每周五更新~共${widget.movies[index].length}部',
+                                  : '每周五更新~共${movies[index].length}部',
                               style: TextStyle(
                                   color: Colors.white, fontSize: 15.0),
                             ),
@@ -92,10 +76,35 @@ class _RankingBannerState extends State<RankingBanner> {
                           width: double.infinity,
                           color: Color(0xaa000000),
                           child: ListView.builder(
-                            itemBuilder: (context, i) {
-                              return _buildItem(widget.movies[index][i], i + 1);
-                            },
-                            itemCount: widget.movies[index].length,
+                            itemBuilder: (context, i) => Container(
+                              height: 30.0,
+                              alignment: Alignment.center,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(
+                                      '${i + 1}.${movies[index][i].title}',
+                                      style: TextStyle(color: Colors.white),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  SmoothStarRating(
+                                    rating:
+                                        movies[index][i].rating.average / 2.0,
+                                    size: 18,
+                                    allowHalfRating: false,
+                                    color: Colors.deepOrangeAccent,
+                                    borderColor: Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            ///   _buildItem(movies[index][i], i + 1),
+                            itemCount: movies[index].length,
                           ),
                         ),
                       ),
@@ -106,7 +115,7 @@ class _RankingBannerState extends State<RankingBanner> {
             ),
           );
         },
-        itemCount: widget.movies.length,
+        itemCount: movies.length,
         viewportFraction: 0.9,
         autoplay: true,
         onTap: (index) {
@@ -120,34 +129,6 @@ class _RankingBannerState extends State<RankingBanner> {
             pushNewPage(context, MovieRakingHome(index: 2));
           }
         },
-      ),
-    );
-  }
-
-  Widget _buildItem(Movie movie, int index) {
-    return Container(
-      height: 30.0,
-      alignment: Alignment.center,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(
-            '$index.${movie.title}',
-            style: TextStyle(color: Colors.white),
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              SmoothStarRating(
-                rating: movie.rating.average / 2.0,
-                size: 18,
-                allowHalfRating: false,
-                color: Colors.deepOrangeAccent,
-                borderColor: Colors.white,
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

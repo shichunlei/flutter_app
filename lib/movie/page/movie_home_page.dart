@@ -2,17 +2,15 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_app/bean/news.dart';
 import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_classify_page.dart';
-import 'package:flutter_app/movie/page/movie_hot.dart';
-import 'package:flutter_app/movie/page/movie_soon.dart';
-import 'package:flutter_app/movie/ui/ranking_banner.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/movie/ui/banner_view.dart';
-import 'package:flutter_app/movie/ui/classify_section_home.dart';
-import 'package:flutter_app/movie/ui/item_grid_view.dart';
-import 'package:flutter_app/movie/ui/movie_grid_view.dart';
+
+import 'movie_classify_page.dart';
+import 'movie_hot.dart';
+import 'movie_soon.dart';
+
+import '../ui/index.dart';
 
 import '../../page_index.dart';
 
@@ -48,6 +46,8 @@ class _MovieHomePageState extends State<MovieHomePage> {
 
   List<List<Movie>> movies = [];
 
+  LoaderState _status = LoaderState.Loading;
+
   @override
   void initState() {
     super.initState();
@@ -67,19 +67,16 @@ class _MovieHomePageState extends State<MovieHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text('豆瓣电影'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search, color: Colors.white),
-            onPressed: () {},
-          )
-        ],
-      ),
-      body: bodyView(),
-      backgroundColor: Colors.white,
-    );
+        appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: Text('豆瓣电影'),
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.search, color: Colors.white),
+                  onPressed: () {})
+            ]),
+        body: bodyView(),
+        backgroundColor: Colors.white);
   }
 
   Future<void> getHomeData() async {
@@ -95,40 +92,41 @@ class _MovieHomePageState extends State<MovieHomePage> {
 
     setState(() {
       movies..add(weekly)..add(top250)..add(news)..add(us);
+
+      _status = LoaderState.Succeed;
     });
   }
 
   Widget bodyView() {
-    if (movies.isEmpty) {
-      return getLoadingWidget();
-    } else {
-      return ListView(
-        physics: const BouncingScrollPhysics(),
-        children: <Widget>[
-          BannerView(banner: banner),
-          SectionView("影院热映",
-              onPressed: () => pushNewPage(context, MovieHotPage())),
-          Container(
-            padding: EdgeInsets.all(6.0),
-            child: Wrap(
-              spacing: 5,
-              runSpacing: 5,
-              children: hotMovies.map((movie) => MovieGridView(movie)).toList(),
-            ),
-          ),
-          SectionView("即将上映",
-              onPressed: () => pushNewPage(context, MovieSoonPage())),
-          ItemGridView(movies: soonMovies),
-          SectionView("电影榜单", hiddenMore: true),
-          RankingBanner(movies),
-          SectionView("分类浏览",
-              onPressed: () => pushNewPage(context, MovieClassifyPage())),
-          ClassifySection(tags[0]),
-          ClassifySection(tags[1]),
-          ClassifySection(tags[2]),
-          ClassifySection(tags[3]),
-        ],
-      );
-    }
+    return LoaderContainer(
+        loaderState: _status,
+        loadingView: getLoadingWidget(),
+        contentView: ListView(
+          physics: const BouncingScrollPhysics(),
+          children: <Widget>[
+            BannerView(banner: banner),
+            SectionView("影院热映",
+                onPressed: () => pushNewPage(context, MovieHotPage())),
+            Container(
+                padding: EdgeInsets.all(6.0),
+                child: Wrap(
+                    spacing: 5,
+                    runSpacing: 5,
+                    children: hotMovies
+                        .map((movie) => MovieGridView(movie))
+                        .toList())),
+            SectionView("即将上映",
+                onPressed: () => pushNewPage(context, MovieSoonPage())),
+            ItemGridView(movies: soonMovies),
+            SectionView("电影榜单", hiddenMore: true),
+            RankingBanner(movies),
+            SectionView("分类浏览",
+                onPressed: () => pushNewPage(context, MovieClassifyPage())),
+            ClassifySection(tags[0]),
+            ClassifySection(tags[1]),
+            ClassifySection(tags[2]),
+            ClassifySection(tags[3]),
+          ],
+        ));
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/casts.dart';
-import 'package:flutter_app/movie/page/movie_celebrity.dart';
-import 'package:flutter_app/movie/ui/person_gridview.dart';
+import '../page/movie_celebrity.dart';
+import 'person_gridview.dart';
 import 'package:flutter_app/utils/route_util.dart';
 
 class PersonScroller extends StatelessWidget {

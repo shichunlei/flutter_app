@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/utils.dart';
+
+import '../../page_index.dart';
 
 class ItemCover extends StatelessWidget {
   final String url;

@@ -85,6 +85,7 @@ export 'utils/file_util.dart';
 export 'ui/change_appbar.dart';
 export 'ui/empty.dart';
 export 'ui/error.dart';
+export 'ui/loader.dart';
 export 'ui/gradual_change_view.dart';
 export 'ui/home_drawable.dart';
 export 'ui/home_drawable_header.dart';

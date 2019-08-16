@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/utils.dart';
 
-class BottomDragView extends StatefulWidget {
+class BottomDragView extends StatelessWidget {
   BottomDragView({Key key}) : super(key: key);
 
-  @override
-  createState() => _BottomDragViewState();
-}
-
-class _BottomDragViewState extends State<BottomDragView> {
   @override
   Widget build(BuildContext context) {
     return Container(

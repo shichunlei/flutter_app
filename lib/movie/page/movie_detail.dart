@@ -4,20 +4,17 @@ import 'package:flutter/material.dart';
 
 import '../../bean/casts.dart';
 import '../../bean/movie.dart';
+
 import '../../page_index.dart';
-import './movie_comment.dart';
-import './movie_photos.dart';
-import '../ui/bottom_drag_view.dart';
+
 import '../../custom_widgets/bottom_drag_widget.dart';
-import '../ui/movie_detail_header.dart';
-import './movie_photo.dart';
-import './movie_video.dart';
-import '../ui/person_scroller.dart';
-import '../ui/cover_section_view.dart';
-import '../ui/expandable_text.dart';
-import '../ui/item_comment.dart';
-import '../ui/item_cover.dart';
-import '../ui/movie_desc.dart';
+
+import 'movie_photo.dart';
+import 'movie_video.dart';
+import 'movie_comment.dart';
+import 'movie_photos.dart';
+
+import '../ui/index.dart';
 
 import 'package:transparent_image/transparent_image.dart';
 

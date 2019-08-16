@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_search_page.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/movie/ui/movie_grid_view.dart';
-import 'package:flutter_app/utils/route_util.dart';
+import '../page/movie_search_page.dart';
+import 'movie_grid_view.dart';
+
+import '../../page_index.dart';
 
 class ClassifySection extends StatefulWidget {
   final String title;

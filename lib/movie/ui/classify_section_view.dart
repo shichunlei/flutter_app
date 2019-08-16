@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/movie/ui/item_classify_tag.dart';
+import 'item_classify_tag.dart';
 
 import '../../page_index.dart';
 

@@ -1,7 +1,6 @@
 import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app/ui/suspension_tag.dart';
 import 'package:flutter_app/bean/city.dart';
 
 import 'package:rounded_letter/rounded_letter.dart';
@@ -25,6 +24,8 @@ class CityPageState extends State<CityPage> {
   int _itemHeight = 58;
   String _suspensionTag = "";
 
+  LoaderState _status = LoaderState.Loading;
+
   @override
   void initState() {
     super.initState();
@@ -35,24 +36,26 @@ class CityPageState extends State<CityPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text('城市列表')),
-        body: _cityList.isEmpty
-            ? getLoadingWidget()
-            : AzListView(
-                data: _cityList,
-                topData: _hotCityList,
-                itemBuilder: (context, cityBean) => _buildCityItems(cityBean),
-                suspensionWidget: SuspensionTag(
-                    susTag: _suspensionTag, susHeight: _suspensionHeight),
-                isUseRealIndex: true,
-                itemHeight: _itemHeight,
-                suspensionHeight: _suspensionHeight,
-                indexBarBuilder: (context, list, onTouch) => IndexBar(
-                    onTouch: onTouch,
-                    data: list,
-                    touchDownColor: Colors.transparent,
-                    textStyle: TextStyles.textGray12),
-                onSusTagChanged: (value) =>
-                    setState(() => _suspensionTag = value)));
+        body: LoaderContainer(
+          loaderState: _status,
+          loadingView: getLoadingWidget(),
+          contentView: AzListView(
+              data: _cityList,
+              topData: _hotCityList,
+              itemBuilder: (context, cityBean) => _buildCityItems(cityBean),
+              suspensionWidget: SuspensionTag(
+                  susTag: _suspensionTag, susHeight: _suspensionHeight),
+              isUseRealIndex: true,
+              itemHeight: _itemHeight,
+              suspensionHeight: _suspensionHeight,
+              indexBarBuilder: (context, list, onTouch) => IndexBar(
+                  onTouch: onTouch,
+                  data: list,
+                  touchDownColor: Colors.transparent,
+                  textStyle: TextStyles.textGray12),
+              onSusTagChanged: (value) =>
+                  setState(() => _suspensionTag = value)),
+        ));
   }
 
   void getCityListData() async {
@@ -74,7 +77,9 @@ class CityPageState extends State<CityPage> {
 
     _suspensionTag = _hotCityList[0].getSuspensionTag();
 
-    setState(() {});
+    setState(() {
+      _status = LoaderState.Succeed;
+    });
   }
 
   /// 构建列表 item Widget.
