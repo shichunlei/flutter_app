@@ -144,8 +144,5 @@ export 'delegates/fallback_cupertino_localisations_delegate.dart';
 export 'delegates/sliver_appbar_delegate.dart';
 export 'delegates/custom_sliver_appbar_delegate.dart';
 
-export 'store/index.dart';
-export 'store/models/config_state_model.dart';
-
 export 'service/api_service.dart';
 export 'service/api_url.dart';

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/store/provider_store.dart';
 
 import 'my_app.dart';
 import 'page_index.dart';

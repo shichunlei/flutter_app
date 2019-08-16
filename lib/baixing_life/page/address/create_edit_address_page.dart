@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/db/address_provider.dart';
-import 'package:flutter_app/bean/address.dart';
-import 'package:flutter_app/generated/i18n.dart';
-import 'package:flutter_app/store/models/address_model.dart';
+
+import '../../db/address_provider.dart';
+import '../../../bean/address.dart';
+import '../../../generated/i18n.dart';
+import '../../../store/index.dart';
+
 import 'package:flutter_jd_address_selector/flutter_jd_address_selector.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 
@@ -50,6 +52,8 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
 
   bool _isClick = false;
 
+  LoaderState _status = LoaderState.NoAction;
+
   @override
   void initState() {
     super.initState();
@@ -60,6 +64,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
     _zipCodeController.addListener(_verify);
 
     if (widget.id != null) {
+      _status = LoaderState.Loading;
       getAddressData(widget.id);
     }
   }
@@ -102,7 +107,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
     super.dispose();
   }
 
-  void getAddressData(int id) async {
+  getAddressData(int id) async {
     await widget.addressProvider.getAddress(id).then((address) {
       _tag = address?.tag;
       _isDefault = address?.isDefault;
@@ -118,7 +123,9 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
 
       _verify();
 
-      setState(() {});
+      setState(() {
+        _status = LoaderState.Succeed;
+      });
     });
   }
 
@@ -127,21 +134,23 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(title: Text('${widget.title}'), elevation: 0),
-        body: SafeArea(
-          child: Column(children: <Widget>[
-            Expanded(
-                child: Utils.isIOS
-                    ? FormKeyboardActions(child: _buildBody())
-                    : SingleChildScrollView(child: _buildBody())),
-            Padding(
-                padding:
-                    const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8.0),
-                child: Button(
-                    onPressed: _isClick ? () => _submit() : null,
-                    text: "${S.of(context).submit}",
-                    borderRadius: 0))
-          ]),
-        ));
+        body: LoaderContainer(
+            loaderState: _status,
+            contentView: SafeArea(
+              child: Column(children: <Widget>[
+                Expanded(
+                    child: Utils.isIOS
+                        ? FormKeyboardActions(child: _buildBody())
+                        : SingleChildScrollView(child: _buildBody())),
+                Padding(
+                    padding: const EdgeInsets.only(
+                        left: 16.0, right: 16.0, bottom: 8.0),
+                    child: Button(
+                        onPressed: _isClick ? () => _submit() : null,
+                        text: "${S.of(context).submit}",
+                        borderRadius: 0))
+              ]),
+            )));
   }
 
   Widget _buildBody() {
@@ -155,6 +164,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
                   hintText: "请输入收货人姓名",
                   controller: _nameController,
                   focusNode: _nodeName,
+                  maxLength: 4,
                   nextFocusNode: _nodePhone),
               Gaps.line,
               TextFieldItem(
@@ -259,6 +269,6 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
         county: _county);
 
     await Store.value<AddressModel>(context)
-        .$insertOrReplaceAddress(context, address, widget.title);
+        .insertOrReplaceAddress(context, address, widget.title);
   }
 }

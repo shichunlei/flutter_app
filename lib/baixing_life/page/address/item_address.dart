@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/db/address_provider.dart';
+import 'package:flutter_app/baixing_life/page/address/store/address_model.dart';
 import 'package:flutter_app/bean/address.dart';
 import 'package:flutter_app/generated/i18n.dart';
-import 'package:flutter_app/store/models/address_model.dart';
+import 'package:flutter_app/store/provider_store.dart';
 
 import '../../../page_index.dart';
 import 'create_edit_address_page.dart';
@@ -172,7 +173,7 @@ class _ItemAddressState extends State<ItemAddress>
 
                                 if (!widget.address.isDefault) {
                                   Store.value<AddressModel>(context)
-                                      .$updateAddressDefault(
+                                      .updateAddressDefault(
                                           context, widget.address?.id, true);
                                 }
                               },
@@ -207,7 +208,7 @@ class _ItemAddressState extends State<ItemAddress>
                                     Text("确认删除", style: TextStyles.textRed16),
                                 onPressed: () =>
                                     Store.value<AddressModel>(context)
-                                        .$deleteAddress(context, id))),
+                                        .deleteAddress(context, id))),
                         Gaps.line,
                         Container(
                             height: 54.0,

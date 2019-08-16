@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/generated/i18n.dart';
+
+import '../generated/i18n.dart';
+import '../store/index.dart';
+
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_jd_address_selector/flutter_jd_address_selector.dart';
 

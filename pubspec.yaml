@@ -129,7 +129,7 @@ dependencies: # 应用或包依赖的其它包或插件
   photo_view: ^0.4.2
 
   # 数据管理层
-  provide: ^1.0.2
+  provider: ^3.0.0+1
 
   # flutter 生成二维码
   qr_flutter: ^2.1.0+55

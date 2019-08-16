@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/generated/i18n.dart';
-import '../../baixing_life/db/address_provider.dart';
-import '../../bean/address.dart';
-import '../../page_index.dart';
 
-class AddressModel with ChangeNotifier {
+import '../../../db/address_provider.dart';
+import '../../../../bean/address.dart';
+import '../../../../generated/i18n.dart';
+import '../../../../page_index.dart';
+
+class AddressModel extends ChangeNotifier {
   List<Address> _addresses = [];
+
+  LoaderState _status = LoaderState.Loading;
 
   AddressProvider provider;
 
@@ -13,21 +16,24 @@ class AddressModel with ChangeNotifier {
     provider = AddressProvider();
   }
 
-  Future<void> $fetchData() async {
-    this._addresses = await provider.getAddressList();
+  get status => _status;
+
+  List<Address> get addresses => _addresses;
+
+  Future<void> getAddresses() async {
+    _addresses = await provider.getAddressList();
+    if (_addresses.length > 0) {
+      _status = LoaderState.Succeed;
+    } else {
+      _status = LoaderState.NoData;
+    }
 
     notifyListeners();
   }
 
-  List<Address> get addresses => _addresses;
-
-  Future<void> $changeAddresses() async {
-    $fetchData();
-  }
-
   /// 新建或修改地址
   ///
-  Future<void> $insertOrReplaceAddress(
+  insertOrReplaceAddress(
       BuildContext context, Address address, String title) async {
     int success = await provider.insertOrReplaceToDB(address);
 
@@ -42,13 +48,12 @@ class AddressModel with ChangeNotifier {
 
   /// 设置默认地址
   ///
-  Future<void> $updateAddressDefault(
-      BuildContext context, int id, bool isDefault) async {
+  updateAddressDefault(BuildContext context, int id, bool isDefault) async {
     bool success = await provider.updateAddressDefault(id, isDefault);
 
     if (success) {
       Toast.show(context, '设置成功');
-      $changeAddresses();
+      notifyListeners();
     } else {
       Toast.show(context, '设置失败');
     }
@@ -56,13 +61,13 @@ class AddressModel with ChangeNotifier {
 
   /// 删除地址
   ///
-  Future<void> $deleteAddress(BuildContext context, int id) async {
+  deleteAddress(BuildContext context, int id) async {
     int success = await provider.deleteAddress(id);
 
     if (success == 1) {
       Toast.show(context, '删除成功');
 
-      $changeAddresses();
+      notifyListeners();
     } else {
       Toast.show(context, '删除失败');
     }
