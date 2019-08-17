@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/bean_index.dart';
-import '../column/special.dart';
-import '../ui/item_column.dart';
-import 'package:flutter_app/service/api_service.dart';
 
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import '../../page_index.dart';
+import '../index.dart';
 
 class ColumnsPage extends StatefulWidget {
   ColumnsPage({Key key}) : super(key: key);

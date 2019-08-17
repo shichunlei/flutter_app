@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/qdaily/ui/bottom_appbar.dart';
+import '../ui/bottom_appbar.dart';
 
 /// 42%
 class LabRatioPage extends StatefulWidget {

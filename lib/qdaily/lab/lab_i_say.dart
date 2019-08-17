@@ -1,16 +1,10 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_app/bean/qdaily.dart';
-import 'package:flutter_app/bean/qdaily_app.dart';
-import 'package:flutter_app/qdaily/ui/bottom_appbar.dart';
-import 'package:flutter_app/qdaily/ui/item_option_image.dart';
-import 'package:flutter_app/qdaily/ui/item_option_text.dart';
-import 'package:flutter_app/ui/line_view_line.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
+import '../../page_index.dart';
+import '../index.dart';
 
 /// 我说/焦点小组
 class LabISayPage extends StatefulWidget {

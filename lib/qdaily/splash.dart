@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../page_index.dart';
+import 'index.dart';
 
 class QdailySplashPage extends StatefulWidget {
   QdailySplashPage({Key key}) : super(key: key);

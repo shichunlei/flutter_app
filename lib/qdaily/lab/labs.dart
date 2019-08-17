@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../bean/qdaily.dart';
-import '../../bean/qdaily_app.dart';
-import '../ui/item_feed_type_zero.dart';
-import '../../service/api_service.dart';
-import '../../utils/loading_util.dart';
-import '../../utils/route_util.dart';
+import '../../page_index.dart';
+import '../index.dart';
+
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-
-import 'lab_i_say.dart';
-import 'lab_ratio.dart';
-import 'lab_vote.dart';
-import 'lab_you_guess.dart';
 
 class LabsPage extends StatefulWidget {
   final String title;

@@ -3,19 +3,10 @@ import 'dart:ui';
 import 'package:badges/badges.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily.dart';
-import 'package:flutter_app/bean/qdaily_app.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_html/flutter_html.dart';
 
-import 'article_detail.dart';
-import 'comment.dart';
-import 'ui/bottom_appbar.dart';
-import 'ui/item_feed_type_recommend.dart';
+import '../page_index.dart';
+import 'index.dart';
 
 class BookDetailPage extends StatefulWidget {
   final int id;

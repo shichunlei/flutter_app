@@ -1,44 +1,41 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_app/qdaily/lab/labs.dart';
+export 'article_detail.dart';
+export 'book_detail.dart';
+export 'comment.dart';
+export 'home.dart';
+export 'setting.dart';
+export 'tags.dart';
+export 'qdaily_index.dart';
 
-import '../page_index.dart';
+export 'column/columns.dart';
+export 'column/special.dart';
 
-class QDailyIndexPage extends StatefulWidget {
-  QDailyIndexPage({Key key}) : super(key: key);
+export 'ui/banner_view.dart';
+export 'ui/item_column.dart';
+export 'ui/item_column_type.dart';
+export 'ui/item_feed_type_index.dart';
+export 'ui/item_feed_type_one.dart';
+export 'ui/item_feed_type_two.dart';
+export 'ui/item_feed_type_zero.dart';
+export 'ui/item_feed_type_recommend.dart';
+export 'ui/item_feed_type_book.dart';
+export 'ui/bottom_appbar.dart';
+export 'ui/item_option_image.dart';
+export 'ui/item_option_text.dart';
+export 'ui/item_comment.dart';
+export 'ui/item_option_checkbox.dart';
+export 'ui/item_lab_pageview.dart';
+export 'ui/column_author_view.dart';
+export 'ui/item_top_view.dart';
+export 'ui/item_bottom_view.dart';
+export 'ui/view_option_author.dart';
+export 'ui/view_option_bottom.dart';
 
-  @override
-  createState() => _QDailyIndexPageState();
-}
+export 'lab/lab_i_say.dart';
+export 'lab/lab_ratio.dart';
+export 'lab/lab_vote.dart';
+export 'lab/lab_you_guess.dart';
+export 'lab/labs.dart';
 
-class _QDailyIndexPageState extends State<QDailyIndexPage> {
-  List<Tab> titleTabs = [Tab(text: 'NEWS'), Tab(text: 'LABS')];
-
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-        length: titleTabs.length,
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-              automaticallyImplyLeading: false,
-              elevation: 0.0,
-              title: TabBar(
-                  tabs: titleTabs,
-                  labelStyle: TextStyle(fontSize: 18.0),
-                  indicatorSize: TabBarIndicatorSize.label,
-                  indicatorWeight: 1.0,
-                  indicatorColor: Color(0xFFFFD003))),
-          body: Stack(alignment: Alignment.bottomLeft, children: <Widget>[
-            TabBarView(children: <Widget>[HomePage(), LabsPage()]),
-            Padding(
-                padding: EdgeInsets.only(left: 10, bottom: 10),
-                child: FloatingActionButton(
-                    backgroundColor: Colors.black,
-                    mini: true,
-                    onPressed: () => pushNewPage(context, SettingMenuPage()),
-                    child: Icon(CustomIcon.qdaily_logo,
-                        color: Color(0xFFFFD003), size: 28)))
-          ]),
-        ));
-  }
-}
+export '../bean/qdaily.dart';
+export '../bean/qdaily_app.dart';
+export '../bean/qdaily_web.dart';

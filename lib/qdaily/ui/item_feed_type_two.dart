@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/utils.dart';
 
-import 'item_bottom_view.dart';
+import '../../page_index.dart';
+import '../index.dart';
 
 class ItemFeedTypeTwo extends StatelessWidget {
   final VoidCallback onTap;

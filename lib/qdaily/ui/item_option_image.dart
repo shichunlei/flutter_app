@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/utils.dart';
-import '../../bean/qdaily_app.dart';
-import 'view_option_author.dart';
-import 'view_option_bottom.dart';
+
+import '../../page_index.dart';
+import '../index.dart';
 
 class ItemOptionImage extends StatelessWidget {
   final Option option;

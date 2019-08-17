@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily.dart';
-import 'package:flutter_app/bean/qdaily_app.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
+
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-import 'article_detail.dart';
-import 'ui/item_feed_type_two.dart';
-import 'ui/item_feed_type_one.dart';
+import '../page_index.dart';
+import 'index.dart';
 
 class TagsPage extends StatefulWidget {
   final String title;

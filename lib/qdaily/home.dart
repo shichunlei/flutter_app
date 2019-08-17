@@ -1,21 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/bean_index.dart';
-import 'package:flutter_app/qdaily/ui/banner_view.dart';
-import 'package:flutter_app/service/api_service.dart';
+
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import '../page_index.dart';
-import 'article_detail.dart';
-import 'lab/lab_i_say.dart';
-import 'lab/lab_ratio.dart';
-import 'lab/lab_vote.dart';
-import 'lab/lab_you_guess.dart';
-import 'ui/item_column_type.dart';
-import 'ui/item_feed_type_index.dart';
-import 'ui/item_feed_type_one.dart';
-import 'ui/item_feed_type_two.dart';
-import 'ui/item_feed_type_zero.dart';
+import 'index.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);

@@ -104,14 +104,7 @@ export 'ui/selected_text.dart';
 export 'ui/section_view.dart';
 export 'ui/web_view.dart';
 
-export 'qdaily/article_detail.dart';
-export 'qdaily/book_detail.dart';
-export 'qdaily/comment.dart';
-export 'qdaily/home.dart';
-export 'qdaily/setting.dart';
 export 'qdaily/splash.dart';
-export 'qdaily/tags.dart';
-export 'qdaily/index.dart';
 
 export 'wechat_friends/page/wechat_friends_circle.dart';
 

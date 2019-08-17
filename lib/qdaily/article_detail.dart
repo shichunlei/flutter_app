@@ -2,20 +2,12 @@ import 'package:badges/badges.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily.dart';
-import 'package:flutter_app/bean/qdaily_app.dart';
-import 'package:flutter_app/qdaily/ui/bottom_appbar.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
 
 import 'package:flutter_html/flutter_html.dart';
 
-import 'column/special.dart';
-import 'comment.dart';
-import 'ui/item_feed_type_recommend.dart';
-import '../utils/loading_util.dart';
-import '../utils/route_util.dart';
-import '../utils/utils.dart';
+import '../page_index.dart';
+
+import 'index.dart';
 
 class ArticleDetail extends StatefulWidget {
   final int id;

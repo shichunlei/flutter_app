@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/bean_index.dart';
 import 'package:flutter_app/service/api_service.dart';
 
 import '../../page_index.dart';
-import 'item_feed_type_book.dart';
-import 'item_feed_type_two.dart';
-import 'item_top_view.dart';
+import '../index.dart';
 
 class ItemColumnTypeView extends StatefulWidget {
   final int id;

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/delegates/search_bar_delegate.dart';
 
 import '../baixing_life/ui/IconText.dart';
-import '../bean/qdaily.dart';
+
 import '../page_index.dart';
 
-import './column/columns.dart';
+import 'index.dart';
 
 class SettingMenuPage extends StatefulWidget {
   SettingMenuPage({Key key}) : super(key: key);

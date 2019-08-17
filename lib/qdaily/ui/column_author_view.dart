@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/bean_index.dart';
 
 import '../../page_index.dart';
+import '../index.dart';
 
 class ColumnAuthorView extends StatelessWidget {
   final AuthorBean author;

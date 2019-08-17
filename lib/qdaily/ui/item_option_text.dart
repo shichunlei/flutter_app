@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/utils.dart';
-import '../../bean/qdaily_app.dart';
-import 'view_option_author.dart';
-import 'view_option_bottom.dart';
+
+import '../index.dart';
 
 class ItemOptionText extends StatelessWidget {
   final Option option;

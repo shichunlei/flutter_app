@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily_app.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+
+import '../../page_index.dart';
+import '../index.dart';
 
 class BannerView extends StatelessWidget {
   final List<BannersBean> banners;

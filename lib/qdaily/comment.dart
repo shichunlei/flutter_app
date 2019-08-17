@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily.dart';
-import 'package:flutter_app/bean/qdaily_app.dart';
-import 'package:flutter_app/qdaily/ui/item_comment.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/empty.dart';
-import 'package:flutter_app/utils/loading_util.dart';
+
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+import '../page_index.dart';
+import 'index.dart';
 
 class CommentPage extends StatefulWidget {
   final int id;

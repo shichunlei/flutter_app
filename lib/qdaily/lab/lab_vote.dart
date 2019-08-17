@@ -1,16 +1,10 @@
 import 'package:badges/badges.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily.dart';
-import 'package:flutter_app/bean/qdaily_app.dart';
-import 'package:flutter_app/qdaily/ui/bottom_appbar.dart';
-import 'package:flutter_app/qdaily/ui/item_option_checkbox.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/utils.dart';
 
+import '../../page_index.dart';
 import '../comment.dart';
+import '../index.dart';
 
 /// 投票
 class LabVotePage extends StatefulWidget {

@@ -244,7 +244,7 @@ class ExpandStateBean {
           SubExpandBean('BottomNavigation', BottomNavigationWidget()),
           SubExpandBean('BubbleBottomBar', BubbleBottomBarPage()),
           SubExpandBean('NavigationKeepAlive', NavigationKeepAlive()),
-          SubExpandBean('不规则底部导航栏', BottomAppbar()),
+          SubExpandBean('不规则底部导航栏', BottomAppbarSample()),
           SubExpandBean('FancyBottomNavigationBar', FancyBottomNavigationBar()),
           SubExpandBean('CurvedNavigationBar', CurvedNavigationBarSample()),
         ]),

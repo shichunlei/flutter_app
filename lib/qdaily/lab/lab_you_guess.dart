@@ -4,16 +4,9 @@ import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:badges/badges.dart';
-import '../../ui/line_view_line.dart';
-import '../../utils/utils.dart';
 
-import '../../bean/qdaily.dart';
-import '../../bean/qdaily_app.dart';
-import '../ui/bottom_appbar.dart';
-import '../ui/item_lab_pageview.dart';
-import '../../utils/route_util.dart';
-
-import '../comment.dart';
+import '../../page_index.dart';
+import '../index.dart';
 
 /// 你猜/你谁啊/
 class LabYouGuessPage extends StatefulWidget {

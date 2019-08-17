@@ -1,16 +1,11 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily.dart';
-import 'package:flutter_app/bean/qdaily_app.dart';
-import 'package:flutter_app/qdaily/ui/column_author_view.dart';
-import '../ui/item_feed_type_two.dart';
-import 'package:flutter_app/service/api_service.dart';
+import '../index.dart';
 
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import '../../page_index.dart';
-import '../ui/item_feed_type_book.dart';
 
 class SpecialPage extends StatefulWidget {
   final int columnId;
