@@ -1,9 +1,10 @@
 import 'package:clippy_flutter/label.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/article/collect_article.dart';
-import 'package:flutter_app/article/db/article_provider.dart';
-import 'package:flutter_app/bean/article.dart';
 import 'package:flutter_app/utils/date_format.dart';
+
+import './collect_article.dart';
+import './db/article_provider.dart';
+import '../bean/article.dart';
 
 import 'package:flutter_html/flutter_html.dart';
 

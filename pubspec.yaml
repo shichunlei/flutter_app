@@ -22,6 +22,9 @@ dependencies: # 应用或包依赖的其它包或插件
 
   amap_base_location: ^0.4.0+1
 
+  # https://github.com/aagarwal1012/Animated-Text-Kit
+  animated_text_kit: ^1.3.1
+
   # AzListView，Flutter 城市列表，联系人列表，自定义Header，索引，悬停效果。
   azlistview: ^0.1.2
 

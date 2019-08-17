@@ -225,15 +225,16 @@ A new Flutter application.
 | Flutter Range Slider | [range_slider](https://github.com/boeledi/RangeSlider) | ![](https://img.shields.io/pub/v/flutter_range_slider.svg) | 
 | 侧滑菜单 | [flutter_inner_drawer](https://github.com/Dn-a/flutter_inner_drawer) | ![](https://img.shields.io/pub/v/flutter_inner_drawer.svg) | 
 | 字母索引、悬停 | [AZListView](https://github.com/flutterchina/azlistview) | ![](https://img.shields.io/pub/v/azlistview.svg) |
-| 状态管理 | [provide](https://github.com/google/flutter-provide) | ![](https://img.shields.io/pub/v/provide.svg) |
 | 状态管理 | [provider](https://github.com/rrousselGit/provider) | ![](https://img.shields.io/pub/v/provider.svg) |
 | 图表 | [fl_chart](https://github.com/imaNNeoFighT/fl_chart) | ![](https://img.shields.io/pub/v/fl_chart.svg) |
 | Badges for Flutter | [badges](https://github.com/yadaniyil/flutter_badges) | ![](https://img.shields.io/pub/v/badges.svg) |
 | Palette Generator | [palette_generator](https://github.com/flutter/packages/tree/master/packages/palette_generator) | ![](https://img.shields.io/pub/v/palette_generator.svg) |
 | 仿京东地址选择器 | [flutter_jd_address_selector](https://github.com/shichunlei/flutter_jd_address_selector) | 0.0.1 |
 | 图片裁剪 | [image_crop](https://github.com/VolodymyrLykhonis/image_crop) |![](https://img.shields.io/pub/v/image_crop.svg)|
+| 图片裁剪 | [image_cropper](https://github.com/hnvn/flutter_image_cropper) |![](https://camo.githubusercontent.com/b8fbf5d5502729096a88fd9d29a25231fa980a12/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f696d6167655f63726f707065722e737667)|
 | path_provider | [path_provider](https://github.com/flutter/plugins/tree/master/packages/path_provider) | ![](https://img.shields.io/pub/v/path_provider.svg) |
 | 高德地图定位 | [AMapBaseLocation](https://github.com/OpenFlutter/amap_base_flutter) | ![](https://img.shields.io/pub/v/amap_base_location.svg) |
+| Flutter 字体动画 | [animated_text_kit](https://github.com/aagarwal1012/Animated-Text-Kit) | ![](https://camo.githubusercontent.com/d1d5eae95a6eeec94d60d086c00ca9f7e2d969e6/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f616e696d617465645f746578745f6b69742e737667) |
 
 
 ## 赞赏

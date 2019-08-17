@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../page_index.dart';
 import 'juzimi_home.dart';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
+
 class SplashPage extends StatelessWidget {
   SplashPage({Key key}) : super(key: key);
 
@@ -21,9 +23,20 @@ class SplashPage extends StatelessWidget {
                     margin: EdgeInsets.only(top: 30)),
                 Container(
                     child: Column(children: <Widget>[
-                      Text('摘 ~ 抄', style: TextStyle(fontSize: 20.0)),
+                      ColorizeAnimatedTextKit(
+                        text: ['摘 ~ 抄'],
+                        textStyle: TextStyle(fontSize: 20.0),
+                        colors: <Color>[
+                          Colors.purple,
+                          Colors.blue,
+                          Colors.yellow,
+                          Colors.red
+                        ],
+                      ),
                       Gaps.vGap20,
-                      Text('你喜欢 的 每一句', style: TextStyle(fontSize: 20.0))
+                      TyperAnimatedTextKit(
+                          text: ['你喜欢 的 每一句'],
+                          textStyle: TextStyle(fontSize: 20.0))
                     ]),
                     margin: EdgeInsets.only(top: 100))
               ]),
