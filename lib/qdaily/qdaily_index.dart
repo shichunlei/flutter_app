@@ -29,7 +29,7 @@ class _QDailyIndexPageState extends State<QDailyIndexPage> {
                   indicatorWeight: 1.0,
                   indicatorColor: Color(0xFFFFD003))),
           body: Stack(alignment: Alignment.bottomLeft, children: <Widget>[
-            TabBarView(children: <Widget>[HomePage(), LabsPage()]),
+            TabBarView(children: <Widget>[QHomePage(), LabsPage()]),
             Padding(
                 padding: EdgeInsets.only(left: 10, bottom: 10),
                 child: FloatingActionButton(

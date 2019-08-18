@@ -1,13 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/home_page.dart';
-import 'package:flutter_app/intro_slide_page.dart';
 import 'package:flutter_app/login/page/login_page.dart';
-import 'package:flutter_app/utils/route_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'custom_widgets/skip_down_time_progress.dart';
+import 'store/index.dart';
+import 'page_index.dart';
 
 class SplashScreenPage extends StatefulWidget {
   @override
@@ -58,12 +57,11 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   Future checkFirstSeen(context) async {
     _prefs = await SharedPreferences.getInstance();
     firstOpen = _prefs.getBool("first_open") ?? true;
-    isLogin = _prefs.getBool("isLogin") ?? false;
   }
 
   void goToHomePage() {
     if (!firstOpen) {
-      if (isLogin) {
+      if (Store.value<UserModel>(context).isLogin()) {
         pushAndRemovePage(context, HomePage());
       } else {
         pushAndRemovePage(context, LoginPage());

@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../page/order_home_page.dart';
 import '../ui/IconText.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 import '../../page_index.dart';
 import 'address/address_page.dart';
@@ -156,7 +155,6 @@ class _MemberPageState extends State<MemberPage>
         height: headerHeight + Utils.navigationBarHeight,
         child: Stack(children: <Widget>[
           ImageLoadView(backgroundImage,
-              placeholder: kTransparentImage,
               fit: BoxFit.fill,
               height: headerHeight + Utils.navigationBarHeight,
               width: Utils.width),

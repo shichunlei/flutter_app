@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class MovieDetailHeader extends StatelessWidget {
   final Movie movie;
@@ -32,8 +31,7 @@ class MovieDetailHeader extends StatelessWidget {
             ImageLoadView(
                 movie.photos.isNotEmpty ? movie.photos[0].image : defaultImage,
                 fit: BoxFit.fitWidth,
-                width: double.infinity,
-                placeholder: kTransparentImage),
+                width: double.infinity),
 
             /// 加上一层毛玻璃效果
             BackdropFilter(

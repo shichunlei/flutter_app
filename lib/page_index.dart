@@ -1,5 +1,7 @@
 export 'splash_screen.dart';
 export 'intro_slide_page.dart';
+export 'home_page.dart';
+export 'my_app.dart';
 
 export 'widget/appbar_widget.dart';
 export 'widget/bottom_sheet.dart';
@@ -103,6 +105,7 @@ export 'ui/select_text_item.dart';
 export 'ui/selected_text.dart';
 export 'ui/section_view.dart';
 export 'ui/web_view.dart';
+export 'ui/input_text_view.dart';
 
 export 'qdaily/splash.dart';
 

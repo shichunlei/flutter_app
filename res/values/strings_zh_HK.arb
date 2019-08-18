@@ -39,5 +39,6 @@
   "share": "分享",
   "call_history": "通話記錄",
   "collect": "收藏",
-  "cancel_collect": "取消收藏"
+  "cancel_collect": "取消收藏",
+  "save": "保存"
 }

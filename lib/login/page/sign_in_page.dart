@@ -1,16 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/custom_icon.dart';
-import 'package:flutter_app/home_page.dart';
-import 'package:flutter_app/login/page/forgot_password_page.dart';
-import 'package:flutter_app/login/ui/submit_button.dart';
-import 'package:flutter_app/login/ui/third_login_button.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/sp_util.dart';
-import 'package:flutter_app/utils/toast.dart';
-import 'package:flutter_app/utils/utils.dart';
+
+import '../../page_index.dart';
+import 'forgot_password_page.dart';
+import '../ui/submit_button.dart';
+import '../ui/third_login_button.dart';
+import '../../store/index.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignInPage extends StatefulWidget {
@@ -254,9 +251,11 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   Future<void> _login() async {
-    SpUtil.setBool("isLogin", true);
     Future.delayed(Duration(seconds: 3), () {
       if (isShowLoading) {
+        Store.value<UserModel>(context)
+          ..setUser(email: '${_emailController.text}')
+          ..initLogin(true);
         Navigator.of(context).pop();
       }
       pushAndRemovePage(context, HomePage());

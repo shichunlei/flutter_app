@@ -12,6 +12,7 @@ class Store {
       providers: [
         ChangeNotifierProvider(builder: (_) => AddressModel()),
         ChangeNotifierProvider(builder: (_) => ConfigModel()),
+        ChangeNotifierProvider(builder: (_) => UserModel()),
       ],
       child: child,
     );

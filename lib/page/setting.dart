@@ -16,19 +16,9 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  Color pickerColor;
+  Color _pickerColor;
 
   String address;
-
-  int localIndex;
-
-  @override
-  void initState() {
-    super.initState();
-    pickerColor = null;
-
-    localIndex = SpUtil.getInt('key_support_locale');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +32,8 @@ class _SettingPageState extends State<SettingPage> {
               title: Text(S.of(context).language),
               trailing: Container(
                 child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                  Text('${mapSupportLocale[SupportLocale.values[localIndex]]}'),
+                  Text(
+                      '${mapSupportLocale[SupportLocale.values[Store.value<ConfigModel>(context).getLocal()]]}'),
                   Icon(Icons.navigate_next)
                 ]),
               )),
@@ -54,7 +45,8 @@ class _SettingPageState extends State<SettingPage> {
               trailing: Container(
                 child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                   Container(
-                      color: Color(Store.value<ConfigModel>(context).theme),
+                      color:
+                          Color(Store.value<ConfigModel>(context).getTheme()),
                       height: 15,
                       width: 15),
                   Icon(Icons.navigate_next)
@@ -96,18 +88,18 @@ class _SettingPageState extends State<SettingPage> {
                 content: SingleChildScrollView(
                     child: ColorPicker(
                         pickerColor:
-                            Color(Store.value<ConfigModel>(context).theme),
+                            Color(Store.value<ConfigModel>(context).getTheme()),
                         onColorChanged: (color) =>
-                            setState(() => pickerColor = color),
+                            setState(() => _pickerColor = color),
                         enableLabel: true,
                         pickerAreaHeightPercent: 0.8)),
                 actions: <Widget>[
                   FlatButton(
                       child: Text(S.of(context).sure),
                       onPressed: () {
-                        if (pickerColor != null) {
+                        if (_pickerColor != null) {
                           Store.value<ConfigModel>(context)
-                              .$setTheme(pickerColor.value);
+                              .$setTheme(_pickerColor.value);
                         }
                         Navigator.of(context).pop();
                       })
@@ -136,11 +128,9 @@ class _SettingPageState extends State<SettingPage> {
           title: Text("${mapSupportLocale[local]}"),
           onTap: () {
             Store.value<ConfigModel>(context).$setLocal(index);
-            localIndex = Store.value<ConfigModel>(context).local;
-            setState(() {});
             Navigator.pop(context);
           },
-          selected: Store.value<ConfigModel>(context).local == index);
+          selected: Store.value<ConfigModel>(context).getLocal() == index);
     }).toList();
   }
 }

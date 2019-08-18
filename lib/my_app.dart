@@ -18,9 +18,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final _data = Store.value<ConfigModel>(context);
-    _data
-      ..$initTheme()
-      ..$initLocal();
 
     return MaterialApp(
 
@@ -28,7 +25,7 @@ class _MyAppState extends State<MyApp> {
         title: "Flutter Demo",
 
         /// 您可以通过配置ThemeData类轻松更改应用程序的主题
-        theme: AppTheme.getThemeData(_data.theme),
+        theme: AppTheme.getThemeData(_data.getTheme()),
 
         /// 右上角显示一个debug的图标
         debugShowCheckedModeBanner: false,
@@ -58,7 +55,7 @@ class _MyAppState extends State<MyApp> {
         supportedLocales: S.delegate.supportedLocales,
 
         ///
-        locale: mapLocales[SupportLocale.values[_data.local]],
+        locale: mapLocales[SupportLocale.values[_data.getLocal()]],
 
         /// 不存对应locale时，默认取值Locale('zh', 'CN')
         localeResolutionCallback:

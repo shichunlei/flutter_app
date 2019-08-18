@@ -16,8 +16,6 @@ import 'movie_photos.dart';
 
 import '../ui/index.dart';
 
-import 'package:transparent_image/transparent_image.dart';
-
 class MovieDetail extends StatefulWidget {
   final String id;
 
@@ -172,7 +170,6 @@ class _MovieDetailState extends State<MovieDetail> {
                                         width: width,
                                         borderRadius:
                                             BorderRadius.circular(6.0),
-                                        placeholder: kTransparentImage,
                                         onPressed: () => pushNewPage(
                                             context,
                                             MoviePhotoPage('《${movie.title}》剧照',

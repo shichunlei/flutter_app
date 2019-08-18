@@ -5,7 +5,6 @@ import '../page/movie_ranking_home.dart';
 import '../page/movie_top250.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_app/custom_widgets/smooth_star_rating.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class RankingBanner extends StatelessWidget {
   final List<List<Movie>> movies;
@@ -34,8 +33,7 @@ class RankingBanner extends StatelessWidget {
                   ImageLoadView(movies[index][0].images.medium,
                       height: height,
                       width: double.infinity,
-                      fit: BoxFit.cover,
-                      placeholder: kTransparentImage),
+                      fit: BoxFit.cover),
                   Opacity(
                     opacity: 0.5,
                     child: Container(

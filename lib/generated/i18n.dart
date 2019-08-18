@@ -53,6 +53,7 @@ class S implements WidgetsLocalizations {
   String get quickly_login => "Quickly Login";
   String get register => "Register";
   String get reset_password => "Reset Password";
+  String get save => "save";
   String get setting => "Setting";
   String get share => "share";
   String get submit => "submit";
@@ -78,6 +79,8 @@ class $zh_HK extends S {
   String get go_register => "還沒賬號？快去註冊";
   @override
   String get input_password => "請輸入密碼";
+  @override
+  String get save => "保存";
   @override
   String get update => "檢查更新";
   @override
@@ -168,6 +171,8 @@ class $zh_TW extends S {
   String get go_register => "還沒賬號？快去註冊";
   @override
   String get input_password => "請輸入密碼";
+  @override
+  String get save => "保存";
   @override
   String get update => "檢查更新";
   @override
@@ -262,6 +267,8 @@ class $zh_CN extends S {
   String get go_register => "还没账号？快去注册";
   @override
   String get input_password => "请输入密码";
+  @override
+  String get save => "保存";
   @override
   String get update => "检查更新";
   @override

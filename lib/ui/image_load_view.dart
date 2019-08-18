@@ -1,10 +1,12 @@
-import 'dart:typed_data';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+enum ImageType { network, assets, localFile }
+
 class ImageLoadView extends StatelessWidget {
   /// 图片URL
-  final String imageUrl;
+  final String path;
 
   /// 宽
   final double width;
@@ -16,7 +18,7 @@ class ImageLoadView extends StatelessWidget {
   final BoxFit fit;
 
   /// 加载中图片
-  final dynamic placeholder;
+  final String placeholder;
 
   /// 点击事件
   final VoidCallback onPressed;
@@ -24,39 +26,60 @@ class ImageLoadView extends StatelessWidget {
   /// 圆角
   final BorderRadius borderRadius;
 
-  ImageLoadView(this.imageUrl,
-      {Key key,
-      this.width,
-      this.height,
-      this.fit = BoxFit.fill,
-      this.onPressed,
-      this.borderRadius = const BorderRadius.all(Radius.circular(0.0)),
-      this.placeholder = const AssetImage("images/wallfy.png")})
-      : assert(imageUrl != null),
+  ///
+  final ImageType imageType;
+
+  ImageLoadView(
+    this.path, {
+    Key key,
+    this.width,
+    this.height,
+    this.fit: BoxFit.fill,
+    this.onPressed,
+    this.borderRadius: const BorderRadius.all(Radius.circular(0.0)),
+    this.placeholder: "images/wallfy.png",
+    this.imageType: ImageType.network,
+  })  : assert(path != null),
         assert(fit != null),
         assert(borderRadius != null),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Widget imageWidget;
+
+    switch (imageType) {
+      case ImageType.network:
+        imageWidget = FadeInImage(
+            placeholder: AssetImage(placeholder),
+            image: NetworkImage(path),
+            height: height,
+            width: width,
+            fit: fit);
+        break;
+      case ImageType.assets:
+        imageWidget = FadeInImage(
+            placeholder: AssetImage(placeholder),
+            image: AssetImage(path),
+            height: height,
+            width: width,
+            fit: fit);
+        break;
+      case ImageType.localFile:
+        imageWidget = FadeInImage(
+            placeholder: AssetImage(placeholder),
+            image: FileImage(File(path)),
+            height: height,
+            width: width,
+            fit: fit);
+        break;
+      default:
+        imageWidget = Image.asset(placeholder);
+        break;
+    }
+
     return InkWell(
         onTap: onPressed,
-        child: ClipRRect(
-            borderRadius: borderRadius,
-            child: (placeholder is Uint8List)
-                ? FadeInImage.memoryNetwork(
-                    placeholder: placeholder,
-                    image: imageUrl,
-                    height: height,
-                    width: width,
-                    fit: fit)
-                : (placeholder is ImageProvider)
-                    ? FadeInImage(
-                        placeholder: placeholder,
-                        image: NetworkImage(imageUrl),
-                        height: height,
-                        width: width,
-                        fit: fit)
-                    : null));
+        child: ClipRRect(borderRadius: borderRadius, child: imageWidget));
   }
 }

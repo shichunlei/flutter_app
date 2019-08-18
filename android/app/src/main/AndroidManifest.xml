@@ -44,5 +44,10 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="f9d17a113bace1ff32fed97166efcff3" />
+        <!-- Image Cropper -->
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 </manifest>

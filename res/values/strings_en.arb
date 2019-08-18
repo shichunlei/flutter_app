@@ -39,5 +39,6 @@
   "share": "share",
   "call_history": "Call History",
   "collect": "collect",
-  "cancel_collect": "cancel collect"
+  "cancel_collect": "cancel collect",
+  "save": "save"
 }

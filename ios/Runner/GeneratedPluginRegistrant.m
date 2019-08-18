@@ -11,6 +11,7 @@
 #import <flute_music_player/MusicFinderPlugin.h>
 #import <flutter_jd_address_selector/FlutterJdAddressSelectorPlugin.h>
 #import <flutter_webview_plugin/FlutterWebviewPlugin.h>
+#import <image_cropper/ImageCropperPlugin.h>
 #import <image_picker/ImagePickerPlugin.h>
 #import <image_picker_saver/ImagePickerSaverPlugin.h>
 #import <intro_slider/IntroSliderPlugin.h>
@@ -37,6 +38,7 @@
   [MusicFinderPlugin registerWithRegistrar:[registry registrarForPlugin:@"MusicFinderPlugin"]];
   [FlutterJdAddressSelectorPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterJdAddressSelectorPlugin"]];
   [FlutterWebviewPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterWebviewPlugin"]];
+  [FLTImageCropperPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImageCropperPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
   [FLTImagePickerSaverPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerSaverPlugin"]];
   [IntroSliderPlugin registerWithRegistrar:[registry registrarForPlugin:@"IntroSliderPlugin"]];

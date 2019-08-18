@@ -4,36 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/page/contact_list_page.dart';
 import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/login/page/login_page.dart';
-import 'package:flutter_app/ui/update_dialog.dart';
+import 'package:flutter_app/store/index.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../page_index.dart';
+import 'update_dialog.dart';
 
-class HomeDrawable extends StatefulWidget {
+class HomeDrawable extends StatelessWidget {
   HomeDrawable({Key key}) : super(key: key);
-
-  @override
-  _HomeDrawableState createState() => _HomeDrawableState();
-}
-
-class _HomeDrawableState extends State<HomeDrawable> {
-  bool isLogin;
-  String userName;
-  String email;
-  String avatar;
-
-  @override
-  void initState() {
-    super.initState();
-
-    isLogin = SpUtil.getBool("isLogin", defValue: false);
-
-    userName = isLogin ? "SCL" : "未登录";
-    email = isLogin ? "1558053958@qq.com" : "";
-    avatar = isLogin
-        ? "http://hbimg.b0.upaiyun.com/63ddc018b96442eeb24c73f393f5ae066d58fb7e6607e-WScNBs_fw658"
-        : "https://user-gold-cdn.xitu.io/2019/1/27/1688f8ce3151738a?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1";
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +19,7 @@ class _HomeDrawableState extends State<HomeDrawable> {
       child: ListView(
         padding: EdgeInsets.only(top: 0),
         children: <Widget>[
-          HomeDrawableHeader(
-              isLogin: isLogin,
-              avatar: avatar,
-              userName: userName,
-              email: email),
+          HomeDrawableHeader(),
           Divider(),
           ListTile(
               title: Text("${S.of(context).poetry}"),
@@ -77,13 +51,10 @@ class _HomeDrawableState extends State<HomeDrawable> {
                 showDialog(
                     context: context,
                     barrierDismissible: false,
-                    builder: (context) {
-                      return UpdateDialog(
+                    builder: (context) => UpdateDialog(
                         url:
                             'https://cdn.jsdelivr.net/gh/flutterchina/flutter-in-action@1.0/docs/imgs/book.jpg',
-                        savePath: "${appDocPath.toString()}/temp.jpg",
-                      );
-                    });
+                        savePath: "${appDocPath.toString()}/temp.jpg"));
               }),
           Divider(),
           ListTile(
@@ -102,7 +73,8 @@ class _HomeDrawableState extends State<HomeDrawable> {
                             FlatButton(
                                 child: Text("退出"),
                                 onPressed: () {
-                                  SpUtil.remove('isLogin');
+                                  Store.value<UserModel>(context)
+                                      .cleanUserInfo();
                                   pushAndRemovePage(context, LoginPage());
                                 }),
                             FlatButton(

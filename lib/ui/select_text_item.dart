@@ -13,7 +13,7 @@ class SelectTextItem extends StatelessWidget {
       this.leading,
       this.subTitle: "",
       this.height: 55.0,
-      this.trailing: Icons.chevron_right,
+      this.trailing,
       this.margin})
       : super(key: key);
 
@@ -61,7 +61,9 @@ class SelectTextItem extends StatelessWidget {
                           textAlign: textAlign,
                           overflow: TextOverflow.ellipsis,
                           style: style ?? TextStyles.textDark14))),
-              Icon(trailing, size: 22.0)
+              Offstage(
+                  offstage: onTap == null,
+                  child: Icon(trailing ?? Icons.chevron_right, size: 22.0))
             ])));
   }
 }

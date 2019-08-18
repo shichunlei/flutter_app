@@ -6,14 +6,14 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import '../page_index.dart';
 import 'index.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+class QHomePage extends StatefulWidget {
+  QHomePage({Key key}) : super(key: key);
 
   @override
   createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
+class _HomePageState extends State<QHomePage>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
