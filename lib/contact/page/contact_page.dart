@@ -1,12 +1,9 @@
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/contact/ui/build_address.dart';
-import 'package:flutter_app/contact/ui/build_email.dart';
-import 'package:flutter_app/contact/ui/build_other.dart';
-import 'package:flutter_app/contact/ui/build_phone.dart';
-import 'package:flutter_app/contact/ui/build_row.dart';
-import 'package:flutter_app/contact/ui/line_widget.dart';
+
 import 'package:flutter_app/ui/image_load_view.dart';
+
+import '../index.dart';
 
 class ContactPage extends StatefulWidget {
   final String name;
@@ -62,19 +59,19 @@ class _ContactPageState extends State<ContactPage> {
                 },
                 itemBuilder: (BuildContext context) =>
                     <PopupMenuItem<AppBarBehavior>>[
-                      const PopupMenuItem<AppBarBehavior>(
-                          value: AppBarBehavior.normal,
-                          child: Text('App bar scrolls away')),
-                      const PopupMenuItem<AppBarBehavior>(
-                          value: AppBarBehavior.pinned,
-                          child: Text('App bar stays put')),
-                      const PopupMenuItem<AppBarBehavior>(
-                          value: AppBarBehavior.floating,
-                          child: Text('App bar floats')),
-                      const PopupMenuItem<AppBarBehavior>(
-                          value: AppBarBehavior.snapping,
-                          child: Text('App bar snaps')),
-                    ],
+                  const PopupMenuItem<AppBarBehavior>(
+                      value: AppBarBehavior.normal,
+                      child: Text('App bar scrolls away')),
+                  const PopupMenuItem<AppBarBehavior>(
+                      value: AppBarBehavior.pinned,
+                      child: Text('App bar stays put')),
+                  const PopupMenuItem<AppBarBehavior>(
+                      value: AppBarBehavior.floating,
+                      child: Text('App bar floats')),
+                  const PopupMenuItem<AppBarBehavior>(
+                      value: AppBarBehavior.snapping,
+                      child: Text('App bar snaps')),
+                ],
               ),
             ],
             flexibleSpace: FlexibleSpaceBar(

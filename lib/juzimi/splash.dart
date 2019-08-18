@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../page_index.dart';
-import 'juzimi_home.dart';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 
@@ -35,15 +34,18 @@ class SplashPage extends StatelessWidget {
                       ),
                       Gaps.vGap20,
                       TyperAnimatedTextKit(
-                          text: ['你喜欢 的 每一句'],
+                          text: ['你喜欢的每一句'],
                           textStyle: TextStyle(fontSize: 20.0))
                     ]),
                     margin: EdgeInsets.only(top: 100))
               ]),
               Container(
                   child: FlatButton(
-                      onPressed: () =>
-                          pushReplacement(context, JuzimiHomePage()),
+                      onPressed: () {
+                        /// TODO 句子迷因技术升级，暂时停止访问。
+                        /// pushReplacement(context, JuzimiHomePage());
+                        Toast.show(context, '句子迷因技术升级，暂时停止访问');
+                      },
                       child: Text('进入',
                           style:
                               TextStyle(fontSize: 30.0, color: Colors.grey))),

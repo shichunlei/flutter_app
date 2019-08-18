@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/contact/ui/contact_image_text.dart';
-import 'package:flutter_app/contact/ui/line_widget.dart';
+import '../index.dart';
 import 'package:flutter_app/generated/i18n.dart';
 
 class BuildRowView extends StatefulWidget {

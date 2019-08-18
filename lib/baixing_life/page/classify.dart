@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/db/goods_provider.dart';
-import 'package:flutter_app/baixing_life/ui/left_menu.dart';
-import 'package:flutter_app/baixing_life/ui/right_listview.dart';
-import 'package:flutter_app/bean/baixing.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/toolbar.dart';
-import 'package:flutter_app/utils/loading_util.dart';
+
+import '../../page_index.dart';
+import '../index.dart';
 
 class ClassifyPage extends StatefulWidget {
   final String title;
@@ -46,11 +42,6 @@ class _ClassifyPageState extends State<ClassifyPage>
     parentCategoryIndex = widget.categoryIndex;
     subCategoryIndex = widget.subIndex;
     getCategoryData();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override

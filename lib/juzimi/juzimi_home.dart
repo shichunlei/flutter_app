@@ -141,7 +141,10 @@ class _JuzimiHomePageState extends State<JuzimiHomePage> {
     }).toList();
 
     return Drawer(
-        child: ListView(children: children, padding: EdgeInsets.only(top: 0)));
+      child: Container(
+          child:
+              ListView(children: children, padding: EdgeInsets.only(top: 0))),
+    );
   }
 
   Widget _buildItemMeiTuMeiJuGridView(int index) {

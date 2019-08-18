@@ -1,11 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import '../page/order_home_page.dart';
-import '../ui/IconText.dart';
 
 import '../../page_index.dart';
-import 'address/address_page.dart';
+import '../index.dart';
 
 class MemberPage extends StatefulWidget {
   final String title;

@@ -1,14 +1,11 @@
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app/bean/contact.dart';
-import 'package:flutter_app/contact/page/contact_page.dart';
-import 'package:flutter_app/contact/ui/contact_list_header.dart';
-
 import 'package:azlistview/azlistview.dart';
 import 'package:flutter_app/generated/i18n.dart';
 
 import '../../page_index.dart';
+import '../index.dart';
 
 class ContactListPage extends StatefulWidget {
   @override

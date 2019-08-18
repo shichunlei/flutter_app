@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/ui/right_listview.dart';
-import 'package:flutter_app/bean/baixing.dart';
+
+import '../index.dart';
 
 class LeftMenu extends StatefulWidget {
   final int index;
@@ -24,11 +24,6 @@ class LeftMenuState extends State<LeftMenu> {
     super.initState();
 
     currentItemIndex = widget.index;
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override

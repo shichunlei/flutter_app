@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/db/goods_provider.dart';
-import 'package:flutter_app/baixing_life/ui/cart_amount_view.dart';
-import 'package:flutter_app/bean/baixing.dart';
-import 'package:flutter_app/global/custom_icon.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
+
+import '../../page_index.dart';
+import '../index.dart';
 
 class ItemCartGoods extends StatefulWidget {
   final VoidCallback onTap;

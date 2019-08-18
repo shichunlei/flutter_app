@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/db/goods_provider.dart';
-import 'package:flutter_app/bean/baixing.dart';
-import 'package:flutter_app/service/api_service.dart';
 
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../../page_index.dart';
+import '../index.dart';
 
 class DetailsPage extends StatefulWidget {
   final String id;

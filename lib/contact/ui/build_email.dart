@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/contact/ui/contact_category.dart';
-import 'package:flutter_app/contact/ui/contact_item.dart';
+import '../index.dart';
 
 class BuildEmailView extends StatelessWidget {
   @override

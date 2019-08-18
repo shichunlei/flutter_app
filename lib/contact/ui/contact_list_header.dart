@@ -13,7 +13,7 @@ class ContactListHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
+      color: Theme.of(context).primaryColor,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

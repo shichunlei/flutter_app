@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/db/address_provider.dart';
-import 'package:flutter_app/baixing_life/page/address/store/address_model.dart';
-import 'package:flutter_app/bean/address.dart';
 import 'package:flutter_app/generated/i18n.dart';
-import 'package:flutter_app/store/provider_store.dart';
+import 'package:flutter_app/store/index.dart';
 
 import '../../../page_index.dart';
-import 'create_edit_address_page.dart';
-import 'menu_reveal.dart';
+import '../../index.dart';
 
 class ItemAddress extends StatefulWidget {
   final Address address;

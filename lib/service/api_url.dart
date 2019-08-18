@@ -1,4 +1,5 @@
 class ApiUrl {
+  /// 豆瓣电影
   static const String DOUBAN_WEB_URL = 'https://movie.douban.com/';
 
   static const String MOVIE_BASE_URL = "https://api.douban.com/v2/movie";
@@ -22,12 +23,14 @@ class ApiUrl {
   static final String MOVIE_COMMENTS_URL = '/subject/:movieId/comments';
   static final String MOVIE_REVIEWS_URL = '/subject/:movieId/reviews';
 
+  /// 每日一文
   static final String ARTICLE_BASE_URL = "https://interface.meiriyiwen.com";
 
   static final String ARTICLE_TODAY_URL = "/article/today";
   static final String ARTICLE_DAY_URL = "/article/day";
   static final String ARTICLE_RANDOM_URL = "/article/random";
 
+  /// 和风天气
   static final String WEATHER_BASE_URL = "https://free-api.heweather.net/s6";
 
   static final String WEATHER = "/weather";
@@ -47,8 +50,10 @@ class ApiUrl {
   static final String CITY_FIND = "/find";
   static final String CITY_TOP = "/top";
 
+  /// 煎蛋
   static final String JIANDAN = "http://i.jandan.net";
 
+  /// 百姓生活
   static final String BAIXING_BASE_URL =
       'http://v.jspang.com:8088/baixing/wxmini/';
 

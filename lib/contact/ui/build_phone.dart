@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/contact/ui/contact_category.dart';
-import 'package:flutter_app/contact/ui/contact_item.dart';
+import '../index.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BuildPhoneView extends StatefulWidget {

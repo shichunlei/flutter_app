@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/store/index.dart';
-import '../../db/address_provider.dart';
 import 'package:flutter_app/generated/i18n.dart';
 
 import '../../../page_index.dart';
-
-import 'create_edit_address_page.dart';
-import 'item_address.dart';
+import '../../index.dart';
 
 class AddressPage extends StatefulWidget {
   AddressPage({Key key}) : super(key: key);

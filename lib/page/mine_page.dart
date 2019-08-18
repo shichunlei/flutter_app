@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../generated/i18n.dart';
 import '../store/index.dart';
@@ -49,7 +50,7 @@ class _MinePageState extends State<MinePage> {
               ),
             ),
             Container(
-                height: 150,
+                height: 130,
                 width: double.infinity,
                 child: Center(
                   child: Stack(children: <Widget>[
@@ -68,7 +69,7 @@ class _MinePageState extends State<MinePage> {
                 color: Theme.of(context).primaryColor),
             Divider(),
             SelectTextItem(
-                leading: Icons.verified_user,
+                leading: FontAwesomeIcons.user,
                 title: '姓名',
                 content: '${_data.getName()}',
                 margin: EdgeInsets.only(left: 16.0, right: 8),
@@ -87,6 +88,7 @@ class _MinePageState extends State<MinePage> {
                 textAlign: TextAlign.right),
             Divider(),
             SelectTextItem(
+                leading: Icons.email,
                 title: '邮箱',
                 content: '${_data.getEmail()}',
                 margin: EdgeInsets.only(left: 16.0, right: 8),
@@ -116,24 +118,15 @@ class _MinePageState extends State<MinePage> {
         context: context,
         builder: (context) => CupertinoAlertDialog(actions: <Widget>[
               CupertinoDialogAction(
-                child: const Text('拍摄', style: TextStyles.textBlue16),
-                onPressed: () {
-                  fromCamera();
-                },
-              ),
+                  child: const Text('拍摄', style: TextStyles.textBlue16),
+                  onPressed: () => fromCamera()),
               CupertinoDialogAction(
-                child: const Text('从相册选择', style: TextStyles.textBlue16),
-                onPressed: () {
-                  fromGallery();
-                },
-              ),
+                  child: const Text('从相册选择', style: TextStyles.textBlue16),
+                  onPressed: () => fromGallery()),
               CupertinoDialogAction(
-                child: Text('${S.of(context).cancel}',
-                    style: TextStyles.textRed16),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              )
+                  child: Text('${S.of(context).cancel}',
+                      style: TextStyles.textRed16),
+                  onPressed: () => Navigator.pop(context))
             ]));
   }
 

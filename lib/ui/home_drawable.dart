@@ -15,7 +15,7 @@ class HomeDrawable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return Container(
       child: ListView(
         padding: EdgeInsets.only(top: 0),
         children: <Widget>[

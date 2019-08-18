@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/db/goods_provider.dart';
-import 'package:flutter_app/baixing_life/page/details_page.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/route_util.dart';
+
+import '../../page_index.dart';
+import '../index.dart';
 
 class ItemFloorGoods extends StatelessWidget {
   final String goodsId;
