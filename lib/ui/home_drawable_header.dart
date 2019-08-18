@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_app/login/page/login_page.dart';
 import '../page/mine_page.dart';
@@ -22,10 +20,12 @@ class HomeDrawableHeader extends StatelessWidget {
 
           /// 用户头像
           currentAccountPicture: InkWell(
-              child: CircleAvatar(
-                  backgroundImage: _data.isLocal()
-                      ? FileImage(File('${_data.getAvatarPath()}'))
-                      : NetworkImage('${_data.getAvatarPath()}')),
+              child: ImageLoadView('${_data.getAvatarPath()}',
+                  imageType:
+                      _data.isLocal() ? ImageType.localFile : ImageType.network,
+                  borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                  width: 80,
+                  height: 80),
               onTap: () {
                 if (_data.isLogin()) {
                   Navigator.pop(context);

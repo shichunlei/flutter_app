@@ -593,7 +593,7 @@ class ChartFlutterBean {
   }
 }
 
-var backgroundImage = 'http://pic1.16pic.com/00/31/72/16pic_3172062_b.jpg';
+var backgroundImage = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566123324419&di=df1015dd0fcf9fd90a2127190f5c1e39&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fbcaca7ee3601c6e24762946e9b9d313be5cd4369b0f1-CKjm9d_fw658';
 
 String weatherBg(String condCode) {
   String bgImage = '';
