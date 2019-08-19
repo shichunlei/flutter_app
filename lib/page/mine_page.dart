@@ -26,7 +26,7 @@ class _MinePageState extends State<MinePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Store.connect<UserModel>(builder: (_, UserModel _data, __) {
+    return Store.connect<UserModel>(builder: (_, UserModel userModel, __) {
       return Scaffold(
           backgroundColor: Colors.grey[200],
           body: Stack(
@@ -56,16 +56,16 @@ class _MinePageState extends State<MinePage> {
                                                 InputTextPage(
                                                     title: '修改姓名',
                                                     content:
-                                                        '${_data.getName()}',
+                                                        '${userModel.getName()}',
                                                     maxLines: 1,
                                                     maxLength: 5),
-                                                callBack: (value) =>
-                                                    _data.setUser(name: value))
+                                                callBack: (value) => userModel
+                                                    .setUser(name: value))
                                             : null,
                                         child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: <Widget>[
-                                              Text('${_data.getName()}',
+                                              Text('${userModel.getName()}',
                                                   style:
                                                       TextStyles.textWhite16),
                                               Offstage(
@@ -78,8 +78,9 @@ class _MinePageState extends State<MinePage> {
                                 Stack(
                                     alignment: Alignment.center,
                                     children: <Widget>[
-                                      ImageLoadView('${_data.getAvatarPath()}',
-                                          imageType: _data.isLocal()
+                                      ImageLoadView(
+                                          '${userModel.getAvatarPath()}',
+                                          imageType: userModel.isLocal()
                                               ? ImageType.localFile
                                               : ImageType.network,
                                           borderRadius: BorderRadius.all(
@@ -103,18 +104,18 @@ class _MinePageState extends State<MinePage> {
                   SelectTextItem(
                       leading: Icons.email,
                       title: '邮箱',
-                      content: '${_data.getEmail()}',
+                      content: '${userModel.getEmail()}',
                       margin: EdgeInsets.only(left: 16.0, right: 8),
                       onTap: isEdit
                           ? () => pushNewPage(
                                   context,
                                   InputTextPage(
                                     title: '修改邮箱',
-                                    content: '${_data.getEmail()}',
+                                    content: '${userModel.getEmail()}',
                                     maxLines: 1,
                                     keyboardType: TextInputType.emailAddress,
                                   ), callBack: (value) {
-                                _data.setUser(email: value);
+                                userModel.setUser(email: value);
                               })
                           : null,
                       textAlign: TextAlign.right),

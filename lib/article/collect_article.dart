@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/article/db/article_provider.dart';
-import 'package:flutter_app/bean/article.dart';
 
 import '../page_index.dart';
+import 'index.dart';
 
 class CollectArticle extends StatefulWidget {
   final Color themeColor;

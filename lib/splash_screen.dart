@@ -31,26 +31,25 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(children: <Widget>[
-      Image.asset("images/splash.jpg", fit: BoxFit.cover),
-      Container(
-        child: Align(
-          alignment: Alignment.topRight,
-          child: SkipDownTimeProgress(
-            color: Colors.red,
-            radius: 22.0,
-            duration: Duration(seconds: 5),
-            size: Size(25.0, 25.0),
-            skipText: "跳过",
-            onTap: () => goToHomePage(),
-            onFinishCallBack: (bool value) {
-              if (value) {
-                goToHomePage();
-              }
-            },
-          ),
+      ConstrainedBox(
+        constraints: BoxConstraints.expand(),
+        child: Image.asset("images/splash.jpg", fit: BoxFit.cover),
+      ),
+      Positioned(
+        child: SkipDownTimeProgress(
+          color: Colors.red,
+          radius: 22.0,
+          duration: Duration(seconds: 5),
+          size: Size(25.0, 25.0),
+          skipText: "跳过",
+          onTap: () => goToHomePage(),
+          onFinishCallBack: (bool value) {
+            if (value) goToHomePage();
+          },
         ),
-        margin: EdgeInsets.all(40),
-      )
+        top: 30,
+        right: 30,
+      ),
     ]);
   }
 
