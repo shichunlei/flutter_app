@@ -16,7 +16,7 @@ A new Flutter application.
 
 - 各种基本控件使用（Text、TextField、Icon、Image、Listview、Gridview、Picker、Stepper、Dialog、Slider、Row、Appbar、Sizebox、BottomSheet、Chip、Dismissible、FlutterLogo、Check、Switch、TabBar、BottomNavigationBar、Sliver等）
 - 自定义控件及使用
-- 各种UI （豆瓣电影、好奇心日报、每日一文、和天气、百姓生活、随机诗词、联系人、句子迷、朋友圈、高德地图应用demo等）
+- 各种UI （豆瓣电影、好奇心日报、每日一文、和天气、百姓生活、随机诗词、联系人、句子迷、朋友圈、有道精品课、高德地图应用demo等）
 
 
 ## 运行环境
@@ -195,6 +195,15 @@ A new Flutter application.
 |菜单1|菜单2|栏目列表|栏目详情|
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-05-30-09-22-34-621.jpg)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-05-31-16-59-16-833.jpg)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-05-31-17-32-53-185.jpg)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-05-30-09-22-12-550.jpg)|
 |分类列表（设计）|新闻详情1|新闻详情2|评论|
+
+
+### [有道精品课](https://ke.youdao.com/)
+
+
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/961566204857_.pic.jpg)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/971566204858_.pic.jpg)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/981566204860_.pic.jpg)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/991566204861_.pic.jpg)|
+| :--: | :--: | :--: | :--: |
+|首页（广告）|首页（分类）|分类|详情（WebView）|
+
 
 
 ### [Flutter i18n 实现国际化](https://github.com/shichunlei/flutter_app/wiki/Flutter-i18n-%E5%AE%9E%E7%8E%B0%E5%9B%BD%E9%99%85%E5%8C%96)

@@ -128,6 +128,8 @@ export 'movie/page/movie_home_page.dart';
 
 export 'xianyu/home.dart';
 
+export 'youdao/page/home.dart';
+
 export 'res/colors.dart';
 export 'res/dimens.dart';
 export 'res/styles.dart';

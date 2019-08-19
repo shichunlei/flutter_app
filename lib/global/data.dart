@@ -304,6 +304,7 @@ class ExpandStateBean {
           SubExpandBean('登录页面', PasswordLoginPage()),
           SubExpandBean('登录页面', LogonPage()),
           SubExpandBean('视频背景登录页面', LoginVideoPage()),
+          SubExpandBean('有道精品课', YouDaoHomePage()),
           SubExpandBean('元素周期表', ElementsPage()),
         ]),
   ];

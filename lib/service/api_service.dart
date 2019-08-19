@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_app/bean/baixing.dart';
+import 'package:flutter_app/bean/youdao.dart';
 import 'package:flutter_app/bean/contact.dart';
 import 'package:flutter_app/qdaily/index.dart';
 
@@ -1541,5 +1542,52 @@ class ApiService {
     print(bookDetail.toString());
 
     return bookDetail;
+  }
+
+  /// 有道精品课首页上面部分数据
+  static Future<YouDaoData> getYouDaoHomeHead(int t) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.YOUDAO_BASE_URL)
+        .request(ApiUrl.YOUDAO_HOME_URL, data: {"t": t});
+    if (response.statusCode != 200) {
+      return null;
+    }
+    YoudaoResult result = YoudaoResult.fromMap(json.decode(response.data));
+    return result.data;
+  }
+
+  /// 有道精品课所有分类及部分课程列表数据
+  static Future<YouDaoData> getYouDaoHomeTags(List tags, int t) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.YOUDAO_BASE_URL)
+        .request(ApiUrl.YOUDAO_HOME_LIST_URL,
+            data: {"tagIds": tags.toString(), "t": t});
+    if (response.statusCode != 200) {
+      return null;
+    }
+    YoudaoResult result = YoudaoResult.fromMap(json.decode(response.data));
+    return result.data;
+  }
+
+  /// 有道精品分组详情
+  static Future<YouDaoData> getYouDaoGroupDetails(int tag) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.YOUDAO_BASE_URL)
+        .request(ApiUrl.YOUDAO_GROUP_DETAILS_URL, data: {"tag": tag});
+    if (response.statusCode != 200) {
+      return null;
+    }
+    YoudaoResult result = YoudaoResult.fromMap(json.decode(response.data));
+    return result.data;
+  }
+
+  /// 有道精品分组所有课程列表
+  static Future<List<CoursesBean>> getYouDaoGroupCourseList(
+      int tag, int rank, int time) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.YOUDAO_BASE_URL)
+        .request(ApiUrl.YOUDAO_GROUP_ALL_COURSE_URL,
+            data: {"tag": tag, "rank": rank, "time": time});
+    if (response.statusCode != 200) {
+      return null;
+    }
+    YoudaoResult result = YoudaoResult.fromMap(json.decode(response.data));
+    return result.data.course;
   }
 }

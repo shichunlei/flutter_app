@@ -102,4 +102,16 @@ class ApiUrl {
 
   static final String QDAILY_CATEGORYS_DATA = "app3/homes/left_sidebar.json";
 
+  /// 有道精品课
+  static final String YOUDAO_BASE_URL = "https://ke.youdao.com/";
+
+  static final String YOUDAO_HOME_URL = "course3/api/webhome";
+
+  static final String YOUDAO_HOME_LIST_URL =
+      "course3/api/webhome/recommendCourse";
+
+  static final String YOUDAO_GROUP_DETAILS_URL = 'course3/api/vertical2';
+
+  static final String YOUDAO_GROUP_ALL_COURSE_URL =
+      "course3/api/content/course";
 }
