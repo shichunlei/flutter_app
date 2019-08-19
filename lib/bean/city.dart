@@ -37,7 +37,7 @@ class City extends ISuspensionBean {
     city.lon = map['lon'];
     city.cnty = map['cnty'];
     city.tz = map['tz'];
-    String tag = PinyinHelper.getPinyinE(map['parent_city'])[0].toUpperCase();
+    String tag = PinyinHelper.getPinyinE(map['location'])[0].toUpperCase();
     if (RegExp("[A-Z]").hasMatch(tag)) {
       city.firstLetter = tag;
     } else {

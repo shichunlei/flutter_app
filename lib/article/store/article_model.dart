@@ -5,6 +5,10 @@ import '../index.dart';
 class ArticleModel with ChangeNotifier {
   ArticleProvider provider;
 
+  LoaderState _status = LoaderState.Loading;
+
+  get status => _status;
+
   ArticleModel() {
     provider = ArticleProvider();
   }
@@ -63,4 +67,12 @@ class ArticleModel with ChangeNotifier {
   String _date = '';
 
   String get date => _date;
+
+  bool _isShowLoading = false;
+
+  bool get isShowLoading => _isShowLoading;
+
+  setShowLoading(bool value) {
+    _isShowLoading = value;
+  }
 }

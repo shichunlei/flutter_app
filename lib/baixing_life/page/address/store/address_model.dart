@@ -26,7 +26,7 @@ class AddressModel extends ChangeNotifier {
     } else {
       _status = LoaderState.NoData;
     }
-
+    debugPrint('===========================getAddresses');
     notifyListeners();
   }
 

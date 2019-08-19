@@ -60,15 +60,15 @@ class CityPageState extends State<CityPage> {
 
   void getCityListData() async {
     _hotCityList
-        .add(City(parentCity: "${widget.currentCity}", firstLetter: "定位"));
+        .add(City(location: "${widget.currentCity}", firstLetter: "定位"));
     _hotCityList
-        .add(City(parentCity: "${widget.currentCity}", firstLetter: "常用"));
-    _hotCityList.add(City(parentCity: "北京", firstLetter: "常用"));
-    _hotCityList.add(City(parentCity: "广州", firstLetter: "热门"));
-    _hotCityList.add(City(parentCity: "成都", firstLetter: "热门"));
-    _hotCityList.add(City(parentCity: "深圳", firstLetter: "热门"));
-    _hotCityList.add(City(parentCity: "杭州", firstLetter: "热门"));
-    _hotCityList.add(City(parentCity: "上海", firstLetter: "热门"));
+        .add(City(location: "${widget.currentCity}", firstLetter: "常用"));
+    _hotCityList.add(City(location: "北京", firstLetter: "常用"));
+    _hotCityList.add(City(location: "广州", firstLetter: "热门"));
+    _hotCityList.add(City(location: "成都", firstLetter: "热门"));
+    _hotCityList.add(City(location: "深圳", firstLetter: "热门"));
+    _hotCityList.add(City(location: "杭州", firstLetter: "热门"));
+    _hotCityList.add(City(location: "上海", firstLetter: "热门"));
 
     _cityList = await ApiService.getHotCities();
 
@@ -93,10 +93,10 @@ class CityPageState extends State<CityPage> {
       SizedBox(
           height: _itemHeight.toDouble(),
           child: ListTile(
-              title: Text(model.parentCity),
+              title: Text(model.location),
               leading:
-                  RoundedLetter.withRandomColors(model.parentCity[0], 40, 20),
-              onTap: () => pushNewPage(context, WeatherPage(model.parentCity))))
+                  RoundedLetter.withRandomColors(model.location[0], 40, 20),
+              onTap: () => pushNewPage(context, WeatherPage(model.location))))
     ]);
   }
 }

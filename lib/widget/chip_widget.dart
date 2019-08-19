@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/toast.dart';
-import 'package:flutter_app/global/data.dart';
-import 'package:flutter_app/utils/utils.dart';
+
+import '../page_index.dart';
 
 class ChipWidget extends StatefulWidget {
   @override
-  _ChipWidgetState createState() => _ChipWidgetState();
+  createState() => _ChipWidgetState();
 }
 
 class _ChipWidgetState extends State<ChipWidget> {
@@ -75,16 +74,14 @@ class _ChipWidgetState extends State<ChipWidget> {
               spacing: 10.0,
               children: languages
                   .map((language) => InputChip(
-                        label: Text(language.toString(),
-                            style: TextStyle(color: Colors.white)),
-                        avatar: CircleAvatar(
-                          backgroundColor: Utils.strToColor(language),
-                          backgroundImage: NetworkImage(
-                            "http://i1.umei.cc/uploads/tu/201901/9999/rn71dec568c9.jpg",
-                          ),
-                        ),
-                        onPressed: () {},
-                      ))
+                      label: Text(language.toString(),
+                          style: TextStyle(color: Colors.white)),
+                      avatar: ImageLoadView(
+                          'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1408166520,3304498136&fm=26&gp=0.jpg',
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
+                      onPressed: () {},
+                      backgroundColor: Utils.strToColor(language)))
                   .toList(),
             ),
             Text('FilterChip'),

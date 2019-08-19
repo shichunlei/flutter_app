@@ -7,14 +7,9 @@ import 'generated/i18n.dart';
 import 'store/index.dart';
 import 'page_index.dart';
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   MyApp({Key key}) : super(key: key);
 
-  @override
-  createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final _data = Store.value<ConfigModel>(context);

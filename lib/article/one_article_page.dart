@@ -15,9 +15,6 @@ class OneArticlePage extends StatefulWidget {
 
 class _OneArticlePageState extends State<OneArticlePage>
     with SingleTickerProviderStateMixin {
-  bool isShowLoading = false;
-  bool isFirst = true;
-
   Article article;
 
   TabController _tabController;
@@ -39,20 +36,18 @@ class _OneArticlePageState extends State<OneArticlePage>
 
   @override
   Widget build(BuildContext context) {
-    return Store.connect<ArticleModel>(
-        builder: (_, ArticleModel articleModel, __) {
-      return Scaffold(
-          appBar: AppBar(
-              backgroundColor: themeColors[articleModel.getThemeColorIndex()],
-              centerTitle: true,
-              title: Text('每日一文'),
-              actions: <Widget>[
-                IconButton(
-                    icon: Icon(Icons.menu),
-                    onPressed: () => _showModalBottomSheet(articleModel))
-              ]),
-          body: _buildBodyView(articleModel));
-    });
+    return Scaffold(
+        appBar: AppBar(
+            backgroundColor: themeColors[
+                Store.value<ArticleModel>(context).getThemeColorIndex()],
+            centerTitle: true,
+            title: Text('每日一文'),
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.menu),
+                  onPressed: () => _showModalBottomSheet())
+            ]),
+        body: _buildBodyView());
   }
 
   void getArticle(String type, {String date}) async {
@@ -67,73 +62,77 @@ class _OneArticlePageState extends State<OneArticlePage>
     Store.value<ArticleModel>(context).setDate(_date);
     debugPrint(
         '$today--------------------------------------${_date.toString()}');
-    if (_date != today && isFirst) {
+    if (_date != today && type == 'today') {
       today = _date;
     }
-    isFirst = false;
 
-    if (isShowLoading) {
+    if (Store.value<ArticleModel>(context).isShowLoading) {
       Navigator.of(context).pop();
-      isShowLoading = false;
+      Store.value<ArticleModel>(context).setShowLoading(false);
     }
     setState(() {});
   }
 
-  Widget _buildBodyView(ArticleModel articleModel) {
-    if (article == null && isFirst) {
+  Widget _buildBodyView() {
+    if (article == null) {
       return getLoadingWidget();
     }
 
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       child: Container(
-          alignment: Alignment.topCenter,
-          child: Column(children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Text(
-                article.title,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: articleModel.getTextSize() + 1),
-              ),
-            ),
-            Label(
-              triangleHeight: 10.0,
-              edge: Edge.RIGHT,
-              child: Container(
-                padding: const EdgeInsets.only(
-                    left: 8.0, right: 18.0, top: 8.0, bottom: 8.0),
-                color: themeColors[articleModel.getThemeColorIndex()],
+        alignment: Alignment.topCenter,
+        child: Store.connect<ArticleModel>(
+          builder: (_, ArticleModel articleModel, __) {
+            return Column(children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Text(
-                  article.author,
+                  article?.title ?? '',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: articleModel.getTextSize() - 1),
+                      fontWeight: FontWeight.w600,
+                      fontSize: articleModel.getTextSize() + 1),
                 ),
               ),
-            ),
-            Html(
-                data: article.content,
-                defaultTextStyle:
-                    TextStyle(fontSize: articleModel.getTextSize()),
-                padding: EdgeInsets.all(8.0),
-                blockSpacing: 2.0,
-                useRichText: true,
-                linkStyle: const TextStyle(
-                  color: Colors.redAccent,
-                  decorationColor: Colors.redAccent,
-                  decoration: TextDecoration.underline,
+              Label(
+                triangleHeight: 10.0,
+                edge: Edge.RIGHT,
+                child: Container(
+                  padding: const EdgeInsets.only(
+                      left: 8.0, right: 18.0, top: 8.0, bottom: 8.0),
+                  color: themeColors[articleModel.getThemeColorIndex()],
+                  child: Text(
+                    article?.author ?? '',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: articleModel.getTextSize() - 1),
+                  ),
                 ),
-                onLinkTap: (url) {
-                  debugPrint("Opening $url...");
-                })
-          ])),
+              ),
+              Html(
+                  data: article?.content ?? '',
+                  defaultTextStyle:
+                      TextStyle(fontSize: articleModel.getTextSize()),
+                  padding: EdgeInsets.all(8.0),
+                  blockSpacing: 2.0,
+                  useRichText: true,
+                  linkStyle: const TextStyle(
+                    color: Colors.redAccent,
+                    decorationColor: Colors.redAccent,
+                    decoration: TextDecoration.underline,
+                  ),
+                  onLinkTap: (url) {
+                    debugPrint("Opening $url...");
+                  })
+            ]);
+          },
+        ),
+      ),
     );
   }
 
-  void _showModalBottomSheet(ArticleModel articleModel) {
+  void _showModalBottomSheet() {
     showModalBottomSheet(
         context: context,
         builder: (builder) {
@@ -141,7 +140,7 @@ class _OneArticlePageState extends State<OneArticlePage>
               padding: EdgeInsets.all(10.0),
               child: Column(children: <Widget>[
                 _buildFontSizeSelector(),
-                _buildThemeSelector(articleModel),
+                _buildThemeSelector(),
                 _buildArticleChange(),
                 _buildCollect()
               ], mainAxisAlignment: MainAxisAlignment.spaceEvenly));
@@ -171,34 +170,37 @@ class _OneArticlePageState extends State<OneArticlePage>
     ]);
   }
 
-  Widget _buildThemeSelector(ArticleModel articleModel) {
-    if (_tabController == null) {
-      _tabController = TabController(
-          length: themeColors.length,
-          vsync: this,
-          initialIndex: articleModel.getThemeColorIndex());
-    }
+  Widget _buildThemeSelector() {
+    return Store.connect<ArticleModel>(
+        builder: (_, ArticleModel articleModel, __) {
+      if (_tabController == null) {
+        _tabController = TabController(
+            length: themeColors.length,
+            vsync: this,
+            initialIndex: articleModel.getThemeColorIndex());
+      }
 
-    List<Tab> tabs = List();
-    for (Color color in themeColors) {
-      tabs.add(Tab(icon: Icon(Icons.markunread_mailbox, color: color)));
-    }
+      List<Tab> tabs = List();
+      for (Color color in themeColors) {
+        tabs.add(Tab(icon: Icon(Icons.markunread_mailbox, color: color)));
+      }
 
-    return Row(children: <Widget>[
-      Text('主题'),
-      Gaps.hGap5,
-      Expanded(
-          child: TabBar(
-              tabs: tabs,
-              isScrollable: true,
-              controller: _tabController,
-              indicatorPadding: const EdgeInsets.only(left: 5, right: 5),
-              onTap: (int index) {
-                SpUtil.setInt('themeIndex', index);
-                articleModel.setThemeColorIndex(index);
-              },
-              indicatorColor: themeColors[articleModel.getThemeColorIndex()]))
-    ]);
+      return Row(children: <Widget>[
+        Text('主题'),
+        Gaps.hGap5,
+        Expanded(
+            child: TabBar(
+                tabs: tabs,
+                isScrollable: true,
+                controller: _tabController,
+                indicatorPadding: const EdgeInsets.only(left: 5, right: 5),
+                onTap: (int index) {
+                  SpUtil.setInt('themeIndex', index);
+                  articleModel.setThemeColorIndex(index);
+                },
+                indicatorColor: themeColors[articleModel.getThemeColorIndex()]))
+      ]);
+    });
   }
 
   Widget _buildArticleChange() {
@@ -211,7 +213,7 @@ class _OneArticlePageState extends State<OneArticlePage>
                 onPressed: () {
                   Navigator.pop(context);
                   showLoadingDialog(context, "正在加载...");
-                  isShowLoading = true;
+                  articleModel.setShowLoading(true);
                   getArticle('day', date: article.date.prev);
                 },
                 child: Text('前一天', style: TextStyle(color: Colors.white)),
@@ -223,7 +225,7 @@ class _OneArticlePageState extends State<OneArticlePage>
                 onPressed: () {
                   Navigator.pop(context);
                   showLoadingDialog(context, "正在加载...");
-                  isShowLoading = true;
+                  articleModel.setShowLoading(true);
                   getArticle('random');
                 },
                 child: Text('随机', style: TextStyle(color: Colors.white)),
@@ -236,7 +238,7 @@ class _OneArticlePageState extends State<OneArticlePage>
                     ? () {
                         Navigator.pop(context);
                         showLoadingDialog(context, "正在加载...");
-                        isShowLoading = true;
+                        articleModel.setShowLoading(true);
                         getArticle('day', date: article.date.next);
                       }
                     : null,
@@ -249,7 +251,7 @@ class _OneArticlePageState extends State<OneArticlePage>
                 onPressed: () {
                   Navigator.pop(context);
                   showLoadingDialog(context, "正在加载...");
-                  isShowLoading = true;
+                  articleModel.setShowLoading(true);
                   getArticle('today');
                 },
                 shape: const StadiumBorder(),
@@ -264,9 +266,7 @@ class _OneArticlePageState extends State<OneArticlePage>
       return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: <
           Widget>[
         MaterialButton(
-            onPressed: () {
-              articleModel.setStarStatus(article: article);
-            },
+            onPressed: () => articleModel.setStarStatus(article: article),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
