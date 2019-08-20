@@ -35,10 +35,10 @@
   "success": " Success",
   "fail": " Fail",
   "choose": "Please Choose",
-  "contacts": "Please Choose",
-  "share": "share",
+  "contacts": "Contacts",
+  "share": "Share",
   "call_history": "Call History",
-  "collect": "collect",
-  "cancel_collect": "cancel collect",
-  "save": "save"
+  "collect": "Collect",
+  "cancel_collect": "Cancel Collect",
+  "save": "Save"
 }

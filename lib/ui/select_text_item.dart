@@ -22,7 +22,7 @@ class SelectTextItem extends StatelessWidget {
   final String content;
   final TextAlign textAlign;
   final TextStyle style;
-  final IconData leading;
+  final Widget leading;
   final IconData trailing;
   final String subTitle;
   final double height;
@@ -40,7 +40,7 @@ class SelectTextItem extends StatelessWidget {
               Offstage(
                   offstage: leading == null,
                   child: Row(children: <Widget>[
-                    Icon(leading, size: 26.0),
+                    leading == null ? SizedBox() : leading,
                     Gaps.hGap8
                   ])),
               Column(

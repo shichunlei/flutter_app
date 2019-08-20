@@ -102,7 +102,7 @@ class _MinePageState extends State<MinePage> {
                       ])),
                   Divider(),
                   SelectTextItem(
-                      leading: Icons.email,
+                      leading: Icon(Icons.email, size: 26),
                       title: '邮箱',
                       content: '${userModel.getEmail()}',
                       margin: EdgeInsets.only(left: 16.0, right: 8),
