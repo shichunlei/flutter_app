@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/login/login_video_page.dart';
-import 'package:flutter_app/page/login/login_page.dart';
 
-import 'package:flutter_app/page_index.dart';
+import '../page_index.dart';
 
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter_app/xianyu/home.dart';
