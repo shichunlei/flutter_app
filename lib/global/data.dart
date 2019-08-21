@@ -239,12 +239,13 @@ class ExpandStateBean {
         children: [
           SubExpandBean('TabBar', TabBarHomePage()),
           SubExpandBean('BottomNavigationBar', BottomNavigationBarHomePage()),
-          SubExpandBean('BottomNavigation', BottomNavigationWidget()),
+          SubExpandBean('NavigationBarShifting', NavigationBarShifting()),
+          SubExpandBean('NavigationBarFixed', NavigationBarFixed()),
           SubExpandBean('BubbleBottomBar', BubbleBottomBarPage()),
-          SubExpandBean('NavigationKeepAlive', NavigationKeepAlive()),
           SubExpandBean('不规则底部导航栏', BottomAppbarSample()),
           SubExpandBean('FancyBottomNavigationBar', FancyBottomNavigationBar()),
           SubExpandBean('CurvedNavigationBar', CurvedNavigationBarSample()),
+          SubExpandBean('CupertinoTabBar', CupertinoTabBarSample()),
         ]),
     ExpandStateBean(
         leading: Icons.filter_4,

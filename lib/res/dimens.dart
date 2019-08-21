@@ -24,4 +24,6 @@ class Dimens {
   static const double line_dp2 = 2;
   static const double line_dp1 = 1;
   static const double line_dp_half = 0.5;
+
+  static const double homeImageSize = 27.0;
 }

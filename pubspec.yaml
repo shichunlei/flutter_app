@@ -185,6 +185,8 @@ flutter:
     - images/
     - images/weather_backgrounds/
     - images/qdaily/
+    - images/reader/
+    - images/reader/tabs/
     - assets/data/
 
   # An image asset can refer to one or more resolution-specific "variants", see

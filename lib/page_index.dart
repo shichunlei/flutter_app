@@ -68,13 +68,14 @@ export 'city_pickers/page/fullpage_pickers_page.dart';
 export 'city_pickers/page/ios_city_pickers_page.dart';
 
 export 'bars_demo/bottom_navigation_bar.dart';
-export 'bars_demo/bottom_navigation_widget.dart';
-export 'bars_demo/navigation_keep_alive.dart';
+export 'bars_demo/navigationbar_shifting.dart';
+export 'bars_demo/navigationbar_fixed.dart';
 export 'bars_demo/tabbar_home_page.dart';
 export 'bars_demo/curved_navigation_bar_sample.dart';
 export 'bars_demo/fancy_bottom_navigation.dart';
 export 'bars_demo/bottom_appbar.dart';
 export 'bars_demo/bubble_bottom_bar.dart';
+export 'bars_demo/cupertino_tabbar.dart';
 
 export 'utils/utils.dart';
 export 'utils/http_utils.dart';
