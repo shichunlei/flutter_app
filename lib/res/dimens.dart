@@ -26,4 +26,12 @@ class Dimens {
   static const double line_dp_half = 0.5;
 
   static const double homeImageSize = 27.0;
+
+  static const double maxFontSize = 30.0;
+  static const double minFontSize = 10.0;
+
+  static const double minSpace = 1.0;
+  static const double maxSpace = 3.0;
+
+  static const double chapterItemHeight = 50.0;
 }

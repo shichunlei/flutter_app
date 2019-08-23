@@ -4,3 +4,4 @@ gradlew
 .packages
 .flutter-plugins
 .idea/
+*.log

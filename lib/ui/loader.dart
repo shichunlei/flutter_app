@@ -12,6 +12,9 @@ class LoaderContainer extends StatefulWidget {
   final Widget emptyView;
   final Widget contentView;
   final Function onReload;
+  final String reloadText;
+  final String errorTip;
+  final String emptyTip;
 
   LoaderContainer(
       {Key key,
@@ -20,7 +23,10 @@ class LoaderContainer extends StatefulWidget {
       this.errorView,
       @required this.loaderState,
       this.loadingView,
-      this.onReload})
+      this.onReload,
+      this.reloadText,
+      this.errorTip,
+      this.emptyTip})
       : super(key: key);
 
   @override
@@ -37,10 +43,14 @@ class _LoaderContainerState extends State<LoaderContainer> {
         break;
       case LoaderState.Failed:
         currentWidget = widget.errorView ??
-            _ClassicalErrorView(onReload: () => widget.onReload());
+            _ClassicalErrorView(
+                onReload: () => widget.onReload(),
+                reloadText: widget.reloadText,
+                errorTip: widget.errorTip);
         break;
       case LoaderState.NoData:
-        currentWidget = widget.emptyView ?? _ClassicalNoDataView();
+        currentWidget =
+            widget.emptyView ?? _ClassicalNoDataView(emptyTip: widget.emptyTip);
         break;
       case LoaderState.Succeed:
       case LoaderState.NoAction:
@@ -66,9 +76,12 @@ class _ClassicalLoadingView extends StatelessWidget {
 }
 
 class _ClassicalErrorView extends StatelessWidget {
-  _ClassicalErrorView({@required this.onReload}) : super();
+  _ClassicalErrorView({@required this.onReload, this.reloadText, this.errorTip})
+      : super();
 
   final Function onReload;
+  final String reloadText;
+  final String errorTip;
 
   @override
   Widget build(BuildContext context) => Center(
@@ -79,11 +92,11 @@ class _ClassicalErrorView extends StatelessWidget {
             Icon(Icons.portable_wifi_off, size: 70, color: Colors.grey[500]),
             Padding(
                 padding: EdgeInsets.only(top: 10),
-                child: Text('亲的网络有点问题~',
+                child: Text(errorTip ?? '亲的网络有点问题~',
                     style: TextStyle(fontSize: 12.0, color: Colors.grey[400]))),
             Padding(padding: EdgeInsets.only(bottom: 10)),
             Button(
-                text: "重新加载",
+                text: reloadText ?? "重新加载",
                 onPressed: onReload,
                 height: 30,
                 width: 80,
@@ -93,6 +106,10 @@ class _ClassicalErrorView extends StatelessWidget {
 }
 
 class _ClassicalNoDataView extends StatelessWidget {
+  final String emptyTip;
+
+  _ClassicalNoDataView({this.emptyTip}) : super();
+
   @override
   Widget build(BuildContext context) => Center(
           child: Column(
@@ -103,7 +120,7 @@ class _ClassicalNoDataView extends StatelessWidget {
                 size: 70, color: Colors.grey[300]),
             Padding(
                 padding: EdgeInsets.only(top: 10),
-                child: Text('暂无数据',
+                child: Text(emptyTip ?? '暂无数据',
                     style: TextStyle(fontSize: 12.0, color: Colors.grey[400])))
           ]));
 }

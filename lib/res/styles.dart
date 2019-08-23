@@ -71,6 +71,8 @@ class TextStyles {
       TextStyle(fontSize: Dimens.font_sp14, color: Colors.white);
   static const TextStyle textRed14 =
       TextStyle(fontSize: Dimens.font_sp14, color: Colors.red);
+  static const TextStyle textReader14 =
+      TextStyle(fontSize: Dimens.font_sp14, color: readerMainColor);
   static const TextStyle textBlue14 =
       TextStyle(fontSize: Dimens.font_sp14, color: Colors.blueAccent);
   static const TextStyle textGrayC14 =
@@ -84,6 +86,8 @@ class TextStyles {
   static const TextStyle textBoldWhile14 = TextStyle(
       fontSize: 14.0, color: Colors.white, fontWeight: FontWeight.bold);
 
+  static const TextStyle textReader16 =
+      TextStyle(fontSize: Dimens.font_sp16, color: readerMainColor);
   static const TextStyle textRed16 =
       TextStyle(fontSize: Dimens.font_sp16, color: Colors.red);
   static const TextStyle textBlue16 =
@@ -110,3 +114,5 @@ class TextStyles {
   static const TextStyle textBoldWhile40 = TextStyle(
       fontSize: 40.0, color: Colors.white, fontWeight: FontWeight.w400);
 }
+
+const IconThemeData lightIconTheme = IconThemeData(color: Colors.black54);
