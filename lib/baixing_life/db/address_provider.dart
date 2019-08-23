@@ -29,7 +29,7 @@ class AddressProvider extends BaseDBProvider {
        $COLUMN_TAG TEXT not null,
        $COLUMN_COUNTY TEXT not null,
        $COLUMN_CITY TEXT not null,
-        $COLUMN_PROVINCE TEXT not null)
+       $COLUMN_PROVINCE TEXT not null)
       ''';
 
   @override

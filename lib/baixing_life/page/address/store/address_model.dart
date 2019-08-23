@@ -13,13 +13,15 @@ class AddressModel extends ChangeNotifier {
 
   AddressModel() {
     provider = AddressProvider();
+
+    getAddresses();
   }
 
   get status => _status;
 
   List<Address> get addresses => _addresses;
 
-  Future<void> getAddresses() async {
+  getAddresses() async {
     _addresses = await provider.getAddressList();
     if (_addresses.length > 0) {
       _status = LoaderState.Succeed;
@@ -39,6 +41,7 @@ class AddressModel extends ChangeNotifier {
     if (success > 0) {
       Toast.show(context, '$title${S.of(context).success}！');
 
+      getAddresses();
       Navigator.of(context).pop();
     } else {
       Toast.show(context, '$title${S.of(context).fail}！');
@@ -52,7 +55,7 @@ class AddressModel extends ChangeNotifier {
 
     if (success) {
       Toast.show(context, '设置成功');
-      notifyListeners();
+      getAddresses();
     } else {
       Toast.show(context, '设置失败');
     }
@@ -66,7 +69,7 @@ class AddressModel extends ChangeNotifier {
     if (success == 1) {
       Toast.show(context, '删除成功');
 
-      notifyListeners();
+      getAddresses();
     } else {
       Toast.show(context, '删除失败');
     }
