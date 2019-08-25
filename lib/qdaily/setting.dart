@@ -2,8 +2,6 @@ import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/delegates/search_bar_delegate.dart';
 
-import '../baixing_life/ui/IconText.dart';
-
 import '../page_index.dart';
 
 import 'index.dart';
@@ -132,16 +130,18 @@ class _SettingPageState extends State<SettingMenuPage>
     return Row(children: <Widget>[
       Expanded(
           child: IconText(
-              text: '设置', icon: FeatherIcons.settings, onPressed: () {})),
-      Expanded(
-          child:
-              IconText(text: '主题', icon: FeatherIcons.sun, onPressed: () {})),
+              text: '设置', icon: Icon(FeatherIcons.settings), onPressed: () {})),
       Expanded(
           child: IconText(
-              text: '离线', icon: FeatherIcons.downloadCloud, onPressed: () {})),
+              text: '主题', icon: Icon(FeatherIcons.sun), onPressed: () {})),
       Expanded(
-          child:
-              IconText(text: '推荐', icon: FeatherIcons.gift, onPressed: () {}))
+          child: IconText(
+              text: '离线',
+              icon: Icon(FeatherIcons.downloadCloud),
+              onPressed: () {})),
+      Expanded(
+          child: IconText(
+              text: '推荐', icon: Icon(FeatherIcons.gift), onPressed: () {}))
     ]);
   }
 

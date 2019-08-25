@@ -109,6 +109,7 @@ export 'ui/selected_text.dart';
 export 'ui/section_view.dart';
 export 'ui/web_view.dart';
 export 'ui/input_text_view.dart';
+export 'ui/icon_text.dart';
 
 export 'qdaily/splash.dart';
 

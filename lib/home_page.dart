@@ -173,7 +173,9 @@ class HomeStatePage extends State<HomePage> {
         location = value;
         debugPrint("location==========${location.city}");
         city = location.district;
-        getWeatherData(city);
+        if (city != null || city.isNotEmpty) {
+          getWeatherData(city);
+        }
       });
     } else {
       Scaffold.of(context).showSnackBar(SnackBar(content: Text('权限不足')));

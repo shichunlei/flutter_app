@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils/date_format.dart';
 import '../../page_index.dart';
 import '../index.dart';
 
 class ArticleModel with ChangeNotifier {
+  String _today = formatDate(DateTime.now(), [yyyy, mm, dd]);
+
   ArticleProvider provider;
 
   LoaderState _status = LoaderState.Loading;
@@ -11,6 +14,13 @@ class ArticleModel with ChangeNotifier {
 
   ArticleModel() {
     provider = ArticleProvider();
+
+    getArticle('today');
+  }
+
+  setPageStatus(LoaderState status) {
+    _status = status;
+    notifyListeners();
   }
 
   double getTextSize() {
@@ -33,20 +43,10 @@ class ArticleModel with ChangeNotifier {
     notifyListeners();
   }
 
-  setDate(String date) {
-    debugPrint('$date======================================');
-
-    _date = date;
-
-    getStarStatus(date);
-  }
-
   bool _starStatus = false;
 
-  getStarStatus(String date) async {
-    _starStatus = await provider.isCollection(date);
-
-    notifyListeners();
+  getStarStatus() async {
+    _starStatus = await provider.isCollection(_date);
   }
 
   bool get starStatus => _starStatus;
@@ -68,11 +68,30 @@ class ArticleModel with ChangeNotifier {
 
   String get date => _date;
 
-  bool _isShowLoading = false;
+  Article _article;
 
-  bool get isShowLoading => _isShowLoading;
+  Article get article => _article;
 
-  setShowLoading(bool value) {
-    _isShowLoading = value;
+  getArticle(String type, {String date}) async {
+    if (type == 'today') {
+      _article = await ApiService.getTodayArticle();
+    } else if (type == 'random') {
+      _article = await ApiService.getRandomArticle();
+    } else if (type == 'day') {
+      _article = await ApiService.getDayArticle(date);
+    }
+    _date = article.date.curr;
+    debugPrint(
+        '$_today--------------------------------------${_date.toString()}');
+    if (_date != _today && type == 'today') {
+      _today = _date;
+    }
+
+    getStarStatus();
+
+    _status = LoaderState.Succeed;
+    notifyListeners();
   }
+
+  String get today => _today;
 }

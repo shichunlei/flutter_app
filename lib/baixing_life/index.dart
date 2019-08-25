@@ -12,7 +12,6 @@ export 'ui/left_menu.dart';
 export 'ui/right_listview.dart';
 export 'ui/item_floor_goods.dart';
 export 'ui/item_goods_grid.dart';
-export 'ui/IconText.dart';
 export 'ui/empty_shop_cart.dart';
 export 'ui/item_cart_goods.dart';
 export 'ui/cart_amount_view.dart';

@@ -1,7 +1,6 @@
 import 'package:clippy_flutter/label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/store/index.dart';
-import 'package:flutter_app/utils/date_format.dart';
 
 import 'package:flutter_html/flutter_html.dart';
 
@@ -15,17 +14,11 @@ class OneArticlePage extends StatefulWidget {
 
 class _OneArticlePageState extends State<OneArticlePage>
     with SingleTickerProviderStateMixin {
-  Article article;
-
   TabController _tabController;
-
-  String today = formatDate(DateTime.now(), [yyyy, mm, dd]);
 
   @override
   void initState() {
     super.initState();
-
-    getArticle('today');
   }
 
   @override
@@ -50,86 +43,52 @@ class _OneArticlePageState extends State<OneArticlePage>
         body: _buildBodyView());
   }
 
-  void getArticle(String type, {String date}) async {
-    if (type == 'today') {
-      article = await ApiService.getTodayArticle();
-    } else if (type == 'random') {
-      article = await ApiService.getRandomArticle();
-    } else if (type == 'day') {
-      article = await ApiService.getDayArticle(date);
-    }
-    String _date = article.date.curr;
-    Store.value<ArticleModel>(context).setDate(_date);
-    debugPrint(
-        '$today--------------------------------------${_date.toString()}');
-    if (_date != today && type == 'today') {
-      today = _date;
-    }
-
-    if (Store.value<ArticleModel>(context).isShowLoading) {
-      Navigator.of(context).pop();
-      Store.value<ArticleModel>(context).setShowLoading(false);
-    }
-    setState(() {});
-  }
-
   Widget _buildBodyView() {
-    if (article == null) {
-      return getLoadingWidget();
-    }
-
-    return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
-      child: Container(
-        alignment: Alignment.topCenter,
-        child: Store.connect<ArticleModel>(
-          builder: (_, ArticleModel articleModel, __) {
-            return Column(children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-                child: Text(
-                  article?.title ?? '',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: articleModel.getTextSize() + 1),
-                ),
-              ),
-              Label(
-                triangleHeight: 10.0,
-                edge: Edge.RIGHT,
-                child: Container(
-                  padding: const EdgeInsets.only(
-                      left: 8.0, right: 18.0, top: 8.0, bottom: 8.0),
-                  color: themeColors[articleModel.getThemeColorIndex()],
-                  child: Text(
-                    article?.author ?? '',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: articleModel.getTextSize() - 1),
-                  ),
-                ),
-              ),
-              Html(
-                  data: article?.content ?? '',
-                  defaultTextStyle:
-                      TextStyle(fontSize: articleModel.getTextSize()),
-                  padding: EdgeInsets.all(8.0),
-                  blockSpacing: 2.0,
-                  useRichText: true,
-                  linkStyle: const TextStyle(
-                    color: Colors.redAccent,
-                    decorationColor: Colors.redAccent,
-                    decoration: TextDecoration.underline,
-                  ),
-                  onLinkTap: (url) {
-                    debugPrint("Opening $url...");
-                  })
-            ]);
-          },
-        ),
-      ),
-    );
+    return Store.connect<ArticleModel>(
+        builder: (_, ArticleModel articleModel, __) {
+      return LoaderContainer(
+          contentView: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Container(
+                  alignment: Alignment.topCenter,
+                  child: Column(children: <Widget>[
+                    Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20.0),
+                        child: Text(articleModel.article?.title ?? '',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: articleModel.getTextSize() + 1))),
+                    Label(
+                        triangleHeight: 10.0,
+                        edge: Edge.RIGHT,
+                        child: Container(
+                            padding: const EdgeInsets.only(
+                                left: 8.0, right: 18.0, top: 8.0, bottom: 8.0),
+                            color:
+                                themeColors[articleModel.getThemeColorIndex()],
+                            child: Text(articleModel.article?.author ?? '',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize:
+                                        articleModel.getTextSize() - 1)))),
+                    Html(
+                        data: articleModel.article?.content ?? '',
+                        defaultTextStyle:
+                            TextStyle(fontSize: articleModel.getTextSize()),
+                        padding: EdgeInsets.all(8.0),
+                        blockSpacing: 2.0,
+                        useRichText: true,
+                        linkStyle: const TextStyle(
+                            color: Colors.redAccent,
+                            decorationColor: Colors.redAccent,
+                            decoration: TextDecoration.underline),
+                        onLinkTap: (url) {
+                          debugPrint("Opening $url...");
+                        })
+                  ]))),
+          loaderState: articleModel.status);
+    });
   }
 
   void _showModalBottomSheet() {
@@ -150,23 +109,21 @@ class _OneArticlePageState extends State<OneArticlePage>
   Widget _buildFontSizeSelector() {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
       Text('字号'),
-      Expanded(
-        child: Store.connect<ArticleModel>(
-            builder: (_, ArticleModel articleModel, __) {
-          return Slider(
-              onChanged: (double value) {
-                double valueRound = value.roundToDouble();
-                SpUtil.setDouble('article_font_size', valueRound);
-                articleModel.setTextSize(valueRound);
-              },
-              divisions: 16,
-              label: "${articleModel.getTextSize().round()}",
-              value: articleModel.getTextSize(),
-              activeColor: themeColors[articleModel.getThemeColorIndex()],
-              min: 10,
-              max: 26);
-        }),
-      )
+      Expanded(child: Store.connect<ArticleModel>(
+          builder: (_, ArticleModel articleModel, __) {
+        return Slider(
+            onChanged: (double value) {
+              double valueRound = value.roundToDouble();
+              SpUtil.setDouble('article_font_size', valueRound);
+              articleModel.setTextSize(valueRound);
+            },
+            divisions: 16,
+            label: "${articleModel.getTextSize().round()}",
+            value: articleModel.getTextSize(),
+            activeColor: themeColors[articleModel.getThemeColorIndex()],
+            min: 10,
+            max: 26);
+      }))
     ]);
   }
 
@@ -212,9 +169,9 @@ class _OneArticlePageState extends State<OneArticlePage>
                 color: themeColors[articleModel.getThemeColorIndex()],
                 onPressed: () {
                   Navigator.pop(context);
-                  showLoadingDialog(context, "正在加载...");
-                  articleModel.setShowLoading(true);
-                  getArticle('day', date: article.date.prev);
+                  articleModel.setPageStatus(LoaderState.Loading);
+                  articleModel.getArticle('day',
+                      date: articleModel.article.date.prev);
                 },
                 child: Text('前一天', style: TextStyle(color: Colors.white)),
                 shape: const StadiumBorder())),
@@ -224,9 +181,8 @@ class _OneArticlePageState extends State<OneArticlePage>
                 color: themeColors[articleModel.getThemeColorIndex()],
                 onPressed: () {
                   Navigator.pop(context);
-                  showLoadingDialog(context, "正在加载...");
-                  articleModel.setShowLoading(true);
-                  getArticle('random');
+                  articleModel.setPageStatus(LoaderState.Loading);
+                  articleModel.getArticle('random');
                 },
                 child: Text('随机', style: TextStyle(color: Colors.white)),
                 shape: const StadiumBorder())),
@@ -234,12 +190,12 @@ class _OneArticlePageState extends State<OneArticlePage>
         Expanded(
             child: RaisedButton(
                 color: themeColors[articleModel.getThemeColorIndex()],
-                onPressed: articleModel.date != today
+                onPressed: articleModel.date != articleModel.today
                     ? () {
                         Navigator.pop(context);
-                        showLoadingDialog(context, "正在加载...");
-                        articleModel.setShowLoading(true);
-                        getArticle('day', date: article.date.next);
+                        articleModel.setPageStatus(LoaderState.Loading);
+                        articleModel.getArticle('day',
+                            date: articleModel.article.date.next);
                       }
                     : null,
                 child: Text('后一天', style: TextStyle(color: Colors.white)),
@@ -250,9 +206,8 @@ class _OneArticlePageState extends State<OneArticlePage>
                 color: themeColors[articleModel.getThemeColorIndex()],
                 onPressed: () {
                   Navigator.pop(context);
-                  showLoadingDialog(context, "正在加载...");
-                  articleModel.setShowLoading(true);
-                  getArticle('today');
+                  articleModel.setPageStatus(LoaderState.Loading);
+                  articleModel.getArticle('today');
                 },
                 shape: const StadiumBorder(),
                 child: Text('今天', style: TextStyle(color: Colors.white))))
@@ -266,16 +221,16 @@ class _OneArticlePageState extends State<OneArticlePage>
       return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: <
           Widget>[
         MaterialButton(
-            onPressed: () => articleModel.setStarStatus(article: article),
+            onPressed: () =>
+                articleModel.setStarStatus(article: articleModel.article),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Icon(articleModel.starStatus ? Icons.star : Icons.star_border,
-                    color: Colors.white),
-                Text(articleModel.starStatus ? '已收藏' : '收藏',
-                    style: TextStyle(color: Colors.white))
-              ],
-            ),
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Icon(articleModel.starStatus ? Icons.star : Icons.star_border,
+                      color: Colors.white),
+                  Text(articleModel.starStatus ? '已收藏' : '收藏',
+                      style: TextStyle(color: Colors.white))
+                ]),
             color: themeColors[articleModel.getThemeColorIndex()],
             shape: const StadiumBorder()),
         MaterialButton(
@@ -284,23 +239,23 @@ class _OneArticlePageState extends State<OneArticlePage>
               pushNewPage(
                   context, CollectArticle(Theme.of(context).primaryColor),
                   callBack: (value) {
+                articleModel.setPageStatus(LoaderState.Loading);
                 if (value != null) {
                   debugPrint('-----------------------------$value');
-                  getArticle('day', date: value);
+                  articleModel.getArticle('day', date: value);
                 } else {
                   debugPrint('-----------------------------');
-                  getArticle('day',
+                  articleModel.getArticle('day',
                       date: Store.value<ArticleModel>(context).date);
                 }
               });
             },
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Icon(Icons.list, color: Colors.white),
-                Text('收藏列表', style: TextStyle(color: Colors.white))
-              ],
-            ),
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.list, color: Colors.white),
+                  Text('收藏列表', style: TextStyle(color: Colors.white))
+                ]),
             color: themeColors[articleModel.getThemeColorIndex()],
             shape: const StadiumBorder())
       ]);

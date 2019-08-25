@@ -37,7 +37,7 @@ class ImageLoadView extends StatelessWidget {
     this.fit: BoxFit.fill,
     this.onPressed,
     this.borderRadius: const BorderRadius.all(Radius.circular(0.0)),
-    this.placeholder: "images/wallfy.png",
+    this.placeholder: "images/loading.png",
     this.imageType: ImageType.network,
   })  : assert(path != null),
         assert(fit != null),
