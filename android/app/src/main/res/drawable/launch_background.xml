@@ -8,11 +8,11 @@
     <!--</item>-->
 
     <!-- You can insert your own image assets here -->
-    <item
-        android:bottom="50dp"
-        android:gravity="bottom|center_horizontal"
-        android:height="90dp"
-        android:width="90dp">
-        <bitmap android:src="@mipmap/ic_launcher" />
-    </item>
+    <!--<item-->
+        <!--android:bottom="50dp"-->
+        <!--android:gravity="bottom|center_horizontal"-->
+        <!--android:height="90dp"-->
+        <!--android:width="90dp">-->
+        <!--<bitmap android:src="@mipmap/ic_launcher" />-->
+    <!--</item>-->
 </layer-list>

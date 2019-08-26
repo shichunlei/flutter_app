@@ -50,69 +50,136 @@ class AppTheme {
 }
 
 class TextStyles {
-  static const TextStyle textRed12 =
-      TextStyle(fontSize: Dimens.font_sp12, color: Colors.red);
-  static const TextStyle textBlue12 =
-      TextStyle(fontSize: Dimens.font_sp12, color: Colors.blueAccent);
-  static const TextStyle textWhite12 =
-      TextStyle(fontSize: Dimens.font_sp12, color: Colors.white);
-  static const TextStyle textGrayC12 =
-      TextStyle(fontSize: Dimens.font_sp12, color: Color(0xFFcccccc));
-  static const TextStyle textGray12 =
-      TextStyle(fontSize: Dimens.font_sp12, color: Colors.grey);
-  static const TextStyle textDark12 =
-      TextStyle(fontSize: Dimens.font_sp12, color: Color(0xFF333333));
+  static const TextStyle textRed12 = TextStyle(
+      fontSize: Dimens.font_sp12,
+      color: Colors.red,
+      decoration: TextDecoration.none);
+  static const TextStyle textBlue12 = TextStyle(
+      fontSize: Dimens.font_sp12,
+      color: Colors.blueAccent,
+      decoration: TextDecoration.none);
+  static const TextStyle textWhite12 = TextStyle(
+      fontSize: Dimens.font_sp12,
+      color: Colors.white,
+      decoration: TextDecoration.none);
+  static const TextStyle textGrayC12 = TextStyle(
+      fontSize: Dimens.font_sp12,
+      color: Color(0xFFcccccc),
+      decoration: TextDecoration.none);
+  static const TextStyle textGray12 = TextStyle(
+      fontSize: Dimens.font_sp12,
+      color: Colors.grey,
+      decoration: TextDecoration.none);
+  static const TextStyle textDark12 = TextStyle(
+      fontSize: Dimens.font_sp12,
+      color: Color(0xFF333333),
+      decoration: TextDecoration.none);
   static const TextStyle textBoldDark12 = TextStyle(
-      fontSize: 14.0, color: Colors.black, fontWeight: FontWeight.bold);
+      fontSize: 14.0,
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
+      decoration: TextDecoration.none);
   static const TextStyle textBoldWhile12 = TextStyle(
-      fontSize: 12.0, color: Colors.white, fontWeight: FontWeight.bold);
+      fontSize: 12.0,
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+      decoration: TextDecoration.none);
 
-  static const TextStyle textWhite14 =
-      TextStyle(fontSize: Dimens.font_sp14, color: Colors.white);
-  static const TextStyle textRed14 =
-      TextStyle(fontSize: Dimens.font_sp14, color: Colors.red);
-  static const TextStyle textReader14 =
-      TextStyle(fontSize: Dimens.font_sp14, color: readerMainColor);
-  static const TextStyle textBlue14 =
-      TextStyle(fontSize: Dimens.font_sp14, color: Colors.blueAccent);
-  static const TextStyle textGrayC14 =
-      TextStyle(fontSize: Dimens.font_sp14, color: Color(0xFFcccccc));
-  static const TextStyle textGray14 =
-      TextStyle(fontSize: Dimens.font_sp14, color: Colors.grey);
-  static const TextStyle textDark14 =
-      TextStyle(fontSize: Dimens.font_sp14, color: Color(0xFF333333));
+  static const TextStyle textWhite14 = TextStyle(
+      fontSize: Dimens.font_sp14,
+      color: Colors.white,
+      decoration: TextDecoration.none);
+  static const TextStyle textRed14 = TextStyle(
+      fontSize: Dimens.font_sp14,
+      color: Colors.red,
+      decoration: TextDecoration.none);
+  static const TextStyle textReader14 = TextStyle(
+      fontSize: Dimens.font_sp14,
+      color: readerMainColor,
+      decoration: TextDecoration.none);
+  static const TextStyle textBlue14 = TextStyle(
+      fontSize: Dimens.font_sp14,
+      color: Colors.blueAccent,
+      decoration: TextDecoration.none);
+  static const TextStyle textGrayC14 = TextStyle(
+      fontSize: Dimens.font_sp14,
+      color: Color(0xFFcccccc),
+      decoration: TextDecoration.none);
+  static const TextStyle textGray14 = TextStyle(
+      fontSize: Dimens.font_sp14,
+      color: Colors.grey,
+      decoration: TextDecoration.none);
+  static const TextStyle textDark14 = TextStyle(
+      fontSize: Dimens.font_sp14,
+      color: Color(0xFF333333),
+      decoration: TextDecoration.none);
   static const TextStyle textBoldDark14 = TextStyle(
-      fontSize: 14.0, color: Colors.black, fontWeight: FontWeight.bold);
+      fontSize: 14.0,
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
+      decoration: TextDecoration.none);
   static const TextStyle textBoldWhile14 = TextStyle(
-      fontSize: 14.0, color: Colors.white, fontWeight: FontWeight.bold);
+      fontSize: 14.0,
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+      decoration: TextDecoration.none);
 
-  static const TextStyle textReader16 =
-      TextStyle(fontSize: Dimens.font_sp16, color: readerMainColor);
-  static const TextStyle textRed16 =
-      TextStyle(fontSize: Dimens.font_sp16, color: Colors.red);
-  static const TextStyle textBlue16 =
-      TextStyle(fontSize: Dimens.font_sp16, color: Colors.blueAccent);
-  static const TextStyle textWhite16 =
-      TextStyle(fontSize: Dimens.font_sp16, color: Colors.white);
-  static const TextStyle textGrayC16 =
-      TextStyle(fontSize: Dimens.font_sp16, color: Color(0xFFcccccc));
-  static const TextStyle textGray16 =
-      TextStyle(fontSize: Dimens.font_sp16, color: Colors.grey);
-  static const TextStyle textDark16 =
-      TextStyle(fontSize: Dimens.font_sp16, color: Color(0xFF333333));
+  static const TextStyle textReader16 = TextStyle(
+      fontSize: Dimens.font_sp16,
+      color: readerMainColor,
+      decoration: TextDecoration.none);
+  static const TextStyle textRed16 = TextStyle(
+      fontSize: Dimens.font_sp16,
+      color: Colors.red,
+      decoration: TextDecoration.none);
+  static const TextStyle textBlue16 = TextStyle(
+      fontSize: Dimens.font_sp16,
+      color: Colors.blueAccent,
+      decoration: TextDecoration.none);
+  static const TextStyle textWhite16 = TextStyle(
+      fontSize: Dimens.font_sp16,
+      color: Colors.white,
+      decoration: TextDecoration.none);
+  static const TextStyle textGrayC16 = TextStyle(
+      fontSize: Dimens.font_sp16,
+      color: Color(0xFFcccccc),
+      decoration: TextDecoration.none);
+  static const TextStyle textGray16 = TextStyle(
+      fontSize: Dimens.font_sp16,
+      color: Colors.grey,
+      decoration: TextDecoration.none);
+  static const TextStyle textDark16 = TextStyle(
+      fontSize: Dimens.font_sp16,
+      color: Color(0xFF333333),
+      decoration: TextDecoration.none);
   static const TextStyle textBoldDark16 = TextStyle(
-      fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.bold);
+      fontSize: 16.0,
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
+      decoration: TextDecoration.none);
   static const TextStyle textBoldWhile16 = TextStyle(
-      fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.bold);
+      fontSize: 16.0,
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+      decoration: TextDecoration.none);
 
   static const TextStyle textBoldDark20 = TextStyle(
-      fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.bold);
+      fontSize: 20.0,
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
+      decoration: TextDecoration.none);
 
   static const TextStyle textBoldDark26 = TextStyle(
-      fontSize: 26.0, color: Colors.black, fontWeight: FontWeight.bold);
+      fontSize: 26.0,
+      color: Colors.black,
+      fontWeight: FontWeight.bold,
+      decoration: TextDecoration.none);
 
   static const TextStyle textBoldWhile40 = TextStyle(
-      fontSize: 40.0, color: Colors.white, fontWeight: FontWeight.w400);
+      fontSize: 40.0,
+      color: Colors.white,
+      fontWeight: FontWeight.w400,
+      decoration: TextDecoration.none);
 }
 
 const IconThemeData lightIconTheme = IconThemeData(color: Colors.black54);

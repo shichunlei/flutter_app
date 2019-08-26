@@ -38,7 +38,6 @@ class _AMapLocationDemoState extends State<AMapLocationDemo>
       color: Theme.of(context).primaryColor,
       child: Column(
         children: <Widget>[
-
           Expanded(
             child: ListView(
               children:
@@ -68,31 +67,31 @@ class _AMapLocationDemoState extends State<AMapLocationDemo>
                       text: '单次定位')),
               Expanded(
                   child: Button(
-                    text: '连续定位',
-                    onPressed: () async {
-                      final options = LocationClientOptions(
-                        isOnceLocation: false,
-                        locatingWithReGeocode: true,
-                      );
+                text: '连续定位',
+                onPressed: () async {
+                  final options = LocationClientOptions(
+                    isOnceLocation: false,
+                    locatingWithReGeocode: true,
+                  );
 
-                      if (await Permissions.requestMapPermission()) {
-                        _amapLocation
-                            .startLocate(options)
-                            .map(_result.add)
-                            .listen((_) => setState(() {}));
-                      } else {
-                        Scaffold.of(context)
-                            .showSnackBar(SnackBar(content: Text('权限不足')));
-                      }
-                    },
-                  )),
+                  if (await Permissions.requestMapPermission()) {
+                    _amapLocation
+                        .startLocate(options)
+                        .map(_result.add)
+                        .listen((_) => setState(() {}));
+                  } else {
+                    Scaffold.of(context)
+                        .showSnackBar(SnackBar(content: Text('权限不足')));
+                  }
+                },
+              )),
               Expanded(
                   child: Button(
-                    text: '停止定位',
-                    onPressed: () {
-                      _amapLocation.stopLocate();
-                    },
-                  ))
+                text: '停止定位',
+                onPressed: () {
+                  _amapLocation.stopLocate();
+                },
+              ))
             ],
           ),
         ],
@@ -117,9 +116,15 @@ class _ResultItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(DateTime.now().toIso8601String(),
-              style: TextStyle(color: Colors.grey, fontSize: 16)),
+              style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16,
+                  decoration: TextDecoration.none)),
           Text(jsonFormat(_data.toJson()),
-              style: TextStyle(color: Colors.white, fontSize: 14))
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  decoration: TextDecoration.none))
         ],
       ),
     );

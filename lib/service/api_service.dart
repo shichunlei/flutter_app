@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_app/bean/baixing.dart';
+import 'package:flutter_app/bean/hitokoto.dart';
 import 'package:flutter_app/bean/youdao.dart';
 import 'package:flutter_app/bean/contact.dart';
 import 'package:flutter_app/qdaily/index.dart';
@@ -1589,5 +1590,18 @@ class ApiService {
     }
     YoudaoResult result = YoudaoResult.fromMap(json.decode(response.data));
     return result.data.course;
+  }
+
+  /// 一言
+  ///
+  static Future<Hitokoto> hitpkoto() async {
+    Response response =
+        await HttpUtils(baseUrl: ApiUrl.HITOKOTO_URL).request('', data: null);
+    if (response.statusCode != 200) {
+      return null;
+    }
+
+    Hitokoto result = Hitokoto.fromMap(json.decode(response.data));
+    return result;
   }
 }

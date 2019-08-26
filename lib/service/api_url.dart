@@ -114,4 +114,7 @@ class ApiUrl {
 
   static final String YOUDAO_GROUP_ALL_COURSE_URL =
       "course3/api/content/course";
+
+  /// 一言
+  static final String HITOKOTO_URL = 'https://v1.hitokoto.cn/';
 }
