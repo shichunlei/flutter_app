@@ -22,53 +22,53 @@ class _SettingPageState extends State<SettingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(title: Text(S.of(context).setting)),
-        body: ListView(padding: EdgeInsets.all(10), children: <Widget>[
-          ListTile(
-              onTap: () => _openLanguageSelectMenu(),
-              leading: Icon(Icons.language),
-              title: Text(S.of(context).language),
-              trailing: Container(
-                child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                  Text(
-                      '${mapSupportLocale[SupportLocale.values[Store.value<ConfigModel>(context).getLocal()]]}'),
-                  Icon(Icons.navigate_next)
-                ]),
-              )),
-          Gaps.line,
-          ListTile(
-              onTap: () => _chooseColor(),
-              leading: Icon(Icons.color_lens),
-              title: Text(S.of(context).theme),
-              trailing: Container(
-                child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                  Container(
-                      color:
-                          Color(Store.value<ConfigModel>(context).getTheme()),
-                      height: 15,
-                      width: 15),
-                  Icon(Icons.navigate_next)
-                ]),
-              )),
-          Gaps.line,
-          ListTile(
-              onTap: () => _chooseAddress(),
-              leading: Icon(Icons.location_on),
-              title: Text(S.of(context).choice_address),
-              trailing: Container(
-                  width: 160.0,
+    return Store.connect<ConfigModel>(
+        builder: (BuildContext context, ConfigModel value, Widget child) {
+      return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(title: Text(S.of(context).setting)),
+          body: ListView(padding: EdgeInsets.all(10), children: <Widget>[
+            ListTile(
+                onTap: () => _openLanguageSelectMenu(),
+                leading: Icon(Icons.language),
+                title: Text(S.of(context).language),
+                trailing: Container(
                   child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                    Expanded(
-                        child: Text('${address ?? S.of(context).choose}',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            textAlign: TextAlign.right)),
+                    Text(
+                        '${mapSupportLocale[SupportLocale.values[value.localIndex]]}'),
                     Icon(Icons.navigate_next)
-                  ]))),
-          Gaps.line
-        ]));
+                  ]),
+                )),
+            Gaps.line,
+            ListTile(
+                onTap: () => _chooseColor(),
+                leading: Icon(Icons.color_lens),
+                title: Text(S.of(context).theme),
+                trailing: Container(
+                  child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                    Container(color: Color(value.theme), height: 15, width: 15),
+                    Icon(Icons.navigate_next)
+                  ]),
+                )),
+            Gaps.line,
+            ListTile(
+                onTap: () => _chooseAddress(),
+                leading: Icon(Icons.location_on),
+                title: Text(S.of(context).choice_address),
+                trailing: Container(
+                    width: 160.0,
+                    child:
+                        Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                      Expanded(
+                          child: Text('${address ?? S.of(context).choose}',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              textAlign: TextAlign.right)),
+                      Icon(Icons.navigate_next)
+                    ]))),
+            Gaps.line
+          ]));
+    });
   }
 
   /// 国际化
@@ -88,7 +88,7 @@ class _SettingPageState extends State<SettingPage> {
                 content: SingleChildScrollView(
                     child: ColorPicker(
                         pickerColor:
-                            Color(Store.value<ConfigModel>(context).getTheme()),
+                            Color(Store.value<ConfigModel>(context).theme),
                         onColorChanged: (color) =>
                             setState(() => _pickerColor = color),
                         enableLabel: true,
@@ -99,7 +99,7 @@ class _SettingPageState extends State<SettingPage> {
                       onPressed: () {
                         if (_pickerColor != null) {
                           Store.value<ConfigModel>(context)
-                              .$setTheme(_pickerColor.value);
+                              .setTheme(_pickerColor.value);
                         }
                         Navigator.of(context).pop();
                       })
@@ -127,10 +127,10 @@ class _SettingPageState extends State<SettingPage> {
       return ListTile(
           title: Text("${mapSupportLocale[local]}"),
           onTap: () {
-            Store.value<ConfigModel>(context).$setLocal(index);
+            Store.value<ConfigModel>(context).setLocal(index);
             Navigator.pop(context);
           },
-          selected: Store.value<ConfigModel>(context).getLocal() == index);
+          selected: Store.value<ConfigModel>(context).localIndex == index);
     }).toList();
   }
 }

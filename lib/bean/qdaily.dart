@@ -113,8 +113,9 @@ class PostBean {
     postBean.image = map['image'];
     postBean.description = map['description'];
     postBean.publishTime = (map['publish_time'] is int)
-        ? formatDateByMs(map['publish_time'] * 1000, [mm, '月', dd, '日'])
-        : formatDateByStr(map['publish_time'], [mm, '月', dd, '日']);
+        ? formatDateByMs(map['publish_time'] * 1000,
+            formats: [mm, '月', dd, '日'])
+        : formatDateByStr(map['publish_time'], formats: [mm, '月', dd, '日']);
     postBean.startTime = "${map['start_time']}";
     postBean.superTag = map['super_tag'];
     postBean.duration = map['duration'];

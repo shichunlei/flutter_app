@@ -4,7 +4,7 @@ import '../../page_index.dart';
 import '../index.dart';
 
 class ArticleModel with ChangeNotifier {
-  String _today = formatDate(DateTime.now(), [yyyy, mm, dd]);
+  String _today = formatDate(DateTime.now(), formats: [yyyy, mm, dd]);
 
   ArticleProvider provider;
 

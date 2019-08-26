@@ -31,16 +31,17 @@ class ItemComment extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) => Container(
-                          child: Column(children: <Widget>[
-                        _buildTopView(comment?.childComments[index]?.author,
-                            comment.childComments[index].publishTime),
-                        Container(
-                            padding:
-                                EdgeInsets.only(left: 48, top: 20, bottom: 20),
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                                '@${comment?.childComments[index]?.parentUser?.name}:${comment?.childComments[index]?.content}'))
-                      ])))
+                        child: Column(children: <Widget>[
+                          _buildTopView(comment?.childComments[index]?.author,
+                              comment.childComments[index].publishTime),
+                          Container(
+                              padding: EdgeInsets.only(
+                                  left: 48, top: 20, bottom: 20),
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                  '@${comment?.childComments[index]?.parentUser?.name}:${comment?.childComments[index]?.content}'))
+                        ]),
+                      ))
             ]));
   }
 
@@ -53,7 +54,8 @@ class ItemComment extends StatelessWidget {
       Gaps.hGap8,
       Text('${author?.name}'),
       Gaps.hGap8,
-      Text("${formatDateByMs(publishTime * 1000, [mm, '月', dd, '日'])}"),
+      Text(
+          "${formatDateByMs(publishTime * 1000, formats: [mm, '月', dd, '日'])}"),
       Spacer(),
       Icon(FeatherIcons.thumbsUp, size: 20)
     ]);

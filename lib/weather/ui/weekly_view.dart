@@ -30,7 +30,7 @@ class WeeklyView extends StatelessWidget {
                         child: Text(
                             isToday(daily.date)
                                 ? "今天"
-                                : formatDate(dt, [EE_ZH]),
+                                : formatDate(dt, formats: [EE_ZH]),
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.white))));
               }).toList()),

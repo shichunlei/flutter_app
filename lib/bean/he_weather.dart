@@ -293,7 +293,7 @@ class Hourly {
     ];
 
     String _time =
-        formatDate(DateTime.parse("${map['time']}:00"), [HH, ':', nn]);
+        formatDate(DateTime.parse("${map['time']}:00"), formats: [HH, ':', nn]);
 
     if ((map['cond_code'] == '100' ||
             map['cond_code'] == '103' ||

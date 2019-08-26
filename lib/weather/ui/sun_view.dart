@@ -78,7 +78,7 @@ class _SunViewState extends State<SunView>
     setState(() {
       sunriseSunset = weather.sunrise_sunset[0];
 
-      String nowTime = formatDate(DateTime.now(), [HH, ':', nn]);
+      String nowTime = formatDate(DateTime.now(), formats: [HH, ':', nn]);
 
       /// 当前时间
       int currentHour = int.parse('${nowTime.substring(0, 2)}');
