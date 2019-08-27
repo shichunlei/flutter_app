@@ -96,7 +96,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
               hintText: widget.hintText,
-              hintStyle: TextStyles.textGrayC14,
+              hintStyle: TextStyles.textGreyC14,
               counterText: "",
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.blueAccent, width: 0.8)),

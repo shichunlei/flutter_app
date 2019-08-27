@@ -26,3 +26,8 @@ const Color colorDarkGoldenrod3 = const Color(0xFFCD950C);
 const Color colorSnow = const Color(0xFFFFFAFA);
 
 const Color starColor = const Color(0xFFFACE41);
+
+const Color greyCColor = const Color(0xFFCCCCCC);
+const Color grey3Color = const Color(0xFF333333);
+const Color grey6Color = const Color(0xFF666666);
+const Color grey9Color = const Color(0xFF999999);

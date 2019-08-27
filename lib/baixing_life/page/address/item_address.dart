@@ -174,7 +174,7 @@ class _ItemAddressState extends State<ItemAddress>
                                 }
                               },
                               child:
-                                  Text('设为默认', style: TextStyles.textGray14)),
+                                  Text('设为默认', style: TextStyles.textGrey14)),
                           Gaps.hGap8
                         ])))));
   }

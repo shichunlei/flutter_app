@@ -149,10 +149,10 @@ class _MinePageState extends State<MinePage> {
         context: context,
         builder: (context) => CupertinoAlertDialog(actions: <Widget>[
               CupertinoDialogAction(
-                  child: const Text('拍摄', style: TextStyles.textBlue16),
+                  child: Text('拍摄', style: TextStyles.textBlue16),
                   onPressed: () => fromCamera()),
               CupertinoDialogAction(
-                  child: const Text('从相册选择', style: TextStyles.textBlue16),
+                  child: Text('从相册选择', style: TextStyles.textBlue16),
                   onPressed: () => fromGallery()),
               CupertinoDialogAction(
                   child: Text('${S.of(context).cancel}',

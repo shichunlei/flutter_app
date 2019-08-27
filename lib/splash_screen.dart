@@ -70,7 +70,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
                 alignment: Alignment.centerRight,
                 width: double.infinity,
                 child:
-                    Text('--${data?.from ?? ""}', style: TextStyles.textGray14))
+                    Text('--${data?.from ?? ""}', style: TextStyles.textGrey14))
           ]),
           left: 0,
           right: 0,

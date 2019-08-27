@@ -93,7 +93,7 @@ class _SearchBarState extends State<SearchBar> {
                                 child: Icon(Icons.search,
                                     color: Color(0xFFcccccc))),
                             hintText: "${widget.hintText}",
-                            hintStyle: TextStyles.textGrayC14,
+                            hintStyle: TextStyles.textGreyC14,
                             suffixIcon: !showClear
                                 ? SizedBox()
                                 : InkWell(

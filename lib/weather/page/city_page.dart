@@ -52,7 +52,7 @@ class CityPageState extends State<CityPage> {
                   onTouch: onTouch,
                   data: list,
                   touchDownColor: Colors.transparent,
-                  textStyle: TextStyles.textGray12),
+                  textStyle: TextStyles.textGrey12),
               onSusTagChanged: (value) =>
                   setState(() => _suspensionTag = value)),
         ));

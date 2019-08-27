@@ -141,7 +141,7 @@ class _LoginPageState extends State<PasswordLoginPage> {
                       child: Padding(
                           child: Text(
                               '${S.of(context).forgot_password}',
-                              style: TextStyles.textGray14),
+                              style: TextStyles.textGrey14),
                           padding: EdgeInsets.all(10)),
                       onTap: () => pushNewPage(context, ResetPasswordPage()))),
               Gaps.vGap6,

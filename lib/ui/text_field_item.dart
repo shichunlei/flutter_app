@@ -74,7 +74,7 @@ class TextFieldItem extends StatelessWidget {
                           hintText: hintText,
                           counterText: "",
                           border: InputBorder.none,
-                          hintStyle: TextStyles.textGrayC14)))
+                          hintStyle: TextStyles.textGreyC14)))
             ]));
   }
 }

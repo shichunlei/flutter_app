@@ -35,6 +35,14 @@ class Gaps {
   static Widget vGap40 = SizedBox(height: Dimens.gap_dp40);
   static Widget vGap60 = SizedBox(height: Dimens.gap_dp60);
 
+  static Widget hGap(double w) {
+    return SizedBox(width: w);
+  }
+
+  static Widget vGap(double h) {
+    return SizedBox(height: h);
+  }
+
   static Widget line = Container(height: 0.6, color: Color(0xFFEEEEEE));
 }
 
@@ -50,136 +58,79 @@ class AppTheme {
 }
 
 class TextStyles {
-  static const TextStyle textRed12 = TextStyle(
-      fontSize: Dimens.font_sp12,
-      color: Colors.red,
-      decoration: TextDecoration.none);
-  static const TextStyle textBlue12 = TextStyle(
-      fontSize: Dimens.font_sp12,
-      color: Colors.blueAccent,
-      decoration: TextDecoration.none);
-  static const TextStyle textWhite12 = TextStyle(
-      fontSize: Dimens.font_sp12,
-      color: Colors.white,
-      decoration: TextDecoration.none);
-  static const TextStyle textGrayC12 = TextStyle(
-      fontSize: Dimens.font_sp12,
-      color: Color(0xFFcccccc),
-      decoration: TextDecoration.none);
-  static const TextStyle textGray12 = TextStyle(
-      fontSize: Dimens.font_sp12,
-      color: Colors.grey,
-      decoration: TextDecoration.none);
-  static const TextStyle textDark12 = TextStyle(
-      fontSize: Dimens.font_sp12,
-      color: Color(0xFF333333),
-      decoration: TextDecoration.none);
-  static const TextStyle textBoldDark12 = TextStyle(
-      fontSize: 14.0,
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-      decoration: TextDecoration.none);
-  static const TextStyle textBoldWhile12 = TextStyle(
-      fontSize: 12.0,
-      color: Colors.white,
-      fontWeight: FontWeight.bold,
-      decoration: TextDecoration.none);
+  static TextStyle textStyle(
+      {double fontSize: Dimens.font_sp12,
+      Color color: Colors.white,
+      FontWeight fontWeight}) {
+    return TextStyle(
+        fontSize: fontSize,
+        color: color,
+        decoration: TextDecoration.none,
+        fontWeight: fontWeight);
+  }
 
-  static const TextStyle textWhite14 = TextStyle(
-      fontSize: Dimens.font_sp14,
-      color: Colors.white,
-      decoration: TextDecoration.none);
-  static const TextStyle textRed14 = TextStyle(
-      fontSize: Dimens.font_sp14,
-      color: Colors.red,
-      decoration: TextDecoration.none);
-  static const TextStyle textReader14 = TextStyle(
-      fontSize: Dimens.font_sp14,
-      color: readerMainColor,
-      decoration: TextDecoration.none);
-  static const TextStyle textBlue14 = TextStyle(
-      fontSize: Dimens.font_sp14,
-      color: Colors.blueAccent,
-      decoration: TextDecoration.none);
-  static const TextStyle textGrayC14 = TextStyle(
-      fontSize: Dimens.font_sp14,
-      color: Color(0xFFcccccc),
-      decoration: TextDecoration.none);
-  static const TextStyle textGray14 = TextStyle(
-      fontSize: Dimens.font_sp14,
-      color: Colors.grey,
-      decoration: TextDecoration.none);
-  static const TextStyle textDark14 = TextStyle(
-      fontSize: Dimens.font_sp14,
-      color: Color(0xFF333333),
-      decoration: TextDecoration.none);
-  static const TextStyle textBoldDark14 = TextStyle(
-      fontSize: 14.0,
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-      decoration: TextDecoration.none);
-  static const TextStyle textBoldWhile14 = TextStyle(
-      fontSize: 14.0,
-      color: Colors.white,
-      fontWeight: FontWeight.bold,
-      decoration: TextDecoration.none);
+  static TextStyle textRed12 = textStyle(color: Colors.red);
+  static TextStyle textBlue12 = textStyle(color: Colors.blueAccent);
+  static TextStyle textWhite12 = textStyle();
+  static TextStyle textGreyC12 = textStyle(color: greyCColor);
+  static TextStyle textGrey12 = textStyle(color: Colors.grey);
+  static TextStyle textDark12 = textStyle(color: grey3Color);
+  static TextStyle textBoldDark12 = textStyle(color: Colors.black);
+  static TextStyle textBoldWhile12 = textStyle(fontWeight: FontWeight.bold);
 
-  static const TextStyle textReader16 = TextStyle(
+  static TextStyle textWhite14 = textStyle(fontSize: Dimens.font_sp14);
+  static TextStyle textRed14 =
+      textStyle(fontSize: Dimens.font_sp14, color: Colors.red);
+  static TextStyle textReader14 =
+      textStyle(fontSize: Dimens.font_sp14, color: readerMainColor);
+  static TextStyle textBlue14 =
+      textStyle(fontSize: Dimens.font_sp14, color: Colors.blueAccent);
+  static TextStyle textGreyC14 =
+      textStyle(fontSize: Dimens.font_sp14, color: greyCColor);
+  static TextStyle textGrey14 =
+      textStyle(fontSize: Dimens.font_sp14, color: Colors.grey);
+  static TextStyle textDark14 =
+      textStyle(fontSize: Dimens.font_sp14, color: grey3Color);
+  static TextStyle textBoldDark14 = textStyle(
+      fontSize: Dimens.font_sp14,
+      color: Colors.black,
+      fontWeight: FontWeight.bold);
+  static TextStyle textBoldWhile14 =
+      textStyle(fontSize: Dimens.font_sp14, fontWeight: FontWeight.bold);
+
+  static TextStyle textReader16 =
+      textStyle(fontSize: Dimens.font_sp16, color: readerMainColor);
+  static TextStyle textRed16 =
+      textStyle(fontSize: Dimens.font_sp16, color: Colors.red);
+  static TextStyle textBlue16 =
+      textStyle(fontSize: Dimens.font_sp16, color: Colors.blueAccent);
+  static TextStyle textWhite16 = textStyle(fontSize: Dimens.font_sp16);
+  static TextStyle textGrayC16 =
+      textStyle(fontSize: Dimens.font_sp16, color: greyCColor);
+  static TextStyle textGray16 =
+      textStyle(fontSize: Dimens.font_sp16, color: Colors.grey);
+  static TextStyle textDark16 = textStyle(fontSize: Dimens.font_sp16);
+  static TextStyle textBoldDark16 = textStyle(
       fontSize: Dimens.font_sp16,
-      color: readerMainColor,
-      decoration: TextDecoration.none);
-  static const TextStyle textRed16 = TextStyle(
-      fontSize: Dimens.font_sp16,
-      color: Colors.red,
-      decoration: TextDecoration.none);
-  static const TextStyle textBlue16 = TextStyle(
-      fontSize: Dimens.font_sp16,
-      color: Colors.blueAccent,
-      decoration: TextDecoration.none);
-  static const TextStyle textWhite16 = TextStyle(
+      color: Colors.black,
+      fontWeight: FontWeight.bold);
+  static TextStyle textBoldWhile16 = textStyle(
       fontSize: Dimens.font_sp16,
       color: Colors.white,
-      decoration: TextDecoration.none);
-  static const TextStyle textGrayC16 = TextStyle(
-      fontSize: Dimens.font_sp16,
-      color: Color(0xFFcccccc),
-      decoration: TextDecoration.none);
-  static const TextStyle textGray16 = TextStyle(
-      fontSize: Dimens.font_sp16,
-      color: Colors.grey,
-      decoration: TextDecoration.none);
-  static const TextStyle textDark16 = TextStyle(
-      fontSize: Dimens.font_sp16,
-      color: Color(0xFF333333),
-      decoration: TextDecoration.none);
-  static const TextStyle textBoldDark16 = TextStyle(
-      fontSize: 16.0,
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-      decoration: TextDecoration.none);
-  static const TextStyle textBoldWhile16 = TextStyle(
-      fontSize: 16.0,
-      color: Colors.white,
-      fontWeight: FontWeight.bold,
-      decoration: TextDecoration.none);
+      fontWeight: FontWeight.bold);
 
-  static const TextStyle textBoldDark20 = TextStyle(
-      fontSize: 20.0,
+  static TextStyle textBoldDark20 = textStyle(
+      fontSize: Dimens.font_sp20,
       color: Colors.black,
-      fontWeight: FontWeight.bold,
-      decoration: TextDecoration.none);
+      fontWeight: FontWeight.bold);
 
-  static const TextStyle textBoldDark26 = TextStyle(
-      fontSize: 26.0,
+  static TextStyle textBoldDark26 = textStyle(
+      fontSize: Dimens.font_sp26,
       color: Colors.black,
-      fontWeight: FontWeight.bold,
-      decoration: TextDecoration.none);
+      fontWeight: FontWeight.bold);
 
-  static const TextStyle textBoldWhile40 = TextStyle(
-      fontSize: 40.0,
-      color: Colors.white,
-      fontWeight: FontWeight.w400,
-      decoration: TextDecoration.none);
+  static TextStyle textBoldWhile40 =
+      textStyle(fontSize: Dimens.font_sp40, fontWeight: FontWeight.w400);
 }
 
 const IconThemeData lightIconTheme = IconThemeData(color: Colors.black54);

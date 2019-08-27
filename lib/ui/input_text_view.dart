@@ -59,7 +59,7 @@ class _InputTextPageState extends State<InputTextPage> {
             decoration: InputDecoration(
                 hintText: widget.hintText,
                 border: InputBorder.none,
-                hintStyle: TextStyles.textGrayC14)),
+                hintStyle: TextStyles.textGreyC14)),
       ),
     );
   }

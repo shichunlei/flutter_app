@@ -182,7 +182,7 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
                   Navigator.pop(context, true);
                 },
                 child: Text('${S.of(context).cancel}',
-                    style: TextStyles.textGray14),
+                    style: TextStyles.textGrey14),
               ),
               FlatButton(
                 onPressed: () {

@@ -60,7 +60,7 @@ class SelectTextItem extends StatelessWidget {
                       Offstage(
                           offstage: subTitle.isEmpty,
                           child: Text(subTitle,
-                              style: TextStyles.textGray12,
+                              style: TextStyles.textGrey12,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis))
                     ]),

@@ -60,9 +60,9 @@ class _UpdateDialogState extends State<UpdateDialog> {
                               image: AssetImage('images/update_head.jpg'),
                               fit: BoxFit.cover),
                         )),
-                    const Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: const Text("新版本更新", style: TextStyles.textDark16),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Text("新版本更新", style: TextStyles.textDark16),
                     ),
                     Padding(
                         padding: const EdgeInsets.symmetric(

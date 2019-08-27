@@ -93,7 +93,7 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
                           child: RichText(
                               text: TextSpan(
                                   text: '${S.of(context).tip}',
-                                  style: TextStyles.textGray14,
+                                  style: TextStyles.textGrey14,
                                   children: <TextSpan>[
                                 TextSpan(
                                     text: '${S.of(context).register}',
@@ -112,7 +112,7 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
                       child: InkWell(
                           child: Padding(
                               child: Text('${S.of(context).forgot_password}',
-                                  style: TextStyles.textGray14),
+                                  style: TextStyles.textGrey14),
                               padding: EdgeInsets.all(10)),
                           onTap: () =>
                               pushNewPage(context, ResetPasswordPage())))

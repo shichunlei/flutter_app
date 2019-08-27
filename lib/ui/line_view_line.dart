@@ -10,7 +10,7 @@ class LineViewLine extends StatelessWidget {
 
   LineViewLine(
       {Key key,
-      this.child,
+      this.child: const SizedBox(),
       this.horizontalPadding = 0,
       this.verticalPadding = 0,
       this.leftFlex = 1,
@@ -23,7 +23,7 @@ class LineViewLine extends StatelessWidget {
     return Container(
         child: Row(children: <Widget>[
           Expanded(flex: leftFlex, child: Divider(color: lineColor)),
-          child == null ? SizedBox(height: 0, width: 0) : child,
+          child,
           Expanded(flex: rightFlex, child: Divider(color: lineColor))
         ]),
         padding: EdgeInsets.symmetric(

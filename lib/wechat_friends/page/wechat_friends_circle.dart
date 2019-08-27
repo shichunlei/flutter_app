@@ -160,14 +160,14 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
         context: context,
         builder: (context) => CupertinoAlertDialog(actions: <Widget>[
               CupertinoDialogAction(
-                child: const Text('拍摄', style: TextStyles.textBlue16),
+                child: Text('拍摄', style: TextStyles.textBlue16),
                 onPressed: () {
                   /// TODO
                   Navigator.pop(context);
                 },
               ),
               CupertinoDialogAction(
-                child: const Text('从相册选择', style: TextStyles.textBlue16),
+                child: Text('从相册选择', style: TextStyles.textBlue16),
                 onPressed: () {
                   loadAssets();
                   Navigator.pop(context);
