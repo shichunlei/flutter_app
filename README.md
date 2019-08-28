@@ -1,6 +1,6 @@
 ![](https://github.com/shichunlei/flutter_app/blob/master/FlutterApp.png)
 
-# Flutter Demos
+# FlutterApp
 
 A new Flutter application.
 
@@ -67,6 +67,7 @@ A new Flutter application.
 
 - 高德定位ios设备的apikey没有配置，使用ios设备的朋友们可以自己去高德地图申请apikey，ios具体配置见[高德地图flutter插件](https://github.com/OpenFlutter/amap_base_flutter)配置。
 - 音乐🎵播放器[Music Player](https://github.com/shichunlei/flutter_app/blob/master/lib/music_player/home_page.dart)暂不支持ios设备，详情请见插件[Flute-Music-Player](https://github.com/iampawan/Flute-Music-Player)。
+- Multi Image Picker 插件 ios 配置见[Multi Image Picker 使用](https://sh1d0w.github.io/multi_image_picker/#/gettingstarted)
 
 
 ## API接口
