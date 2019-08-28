@@ -1,4 +1,4 @@
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 
 class ViewOptionBottom extends StatelessWidget {
@@ -14,7 +14,7 @@ class ViewOptionBottom extends StatelessWidget {
       Text('$praiseCount赞',
           style: TextStyle(color: Colors.white, fontSize: 13)),
       Spacer(),
-      Icon(FeatherIcons.share, color: Colors.white, size: 20)
+      Icon(Feather.share, color: Colors.white, size: 20)
     ]);
   }
 }

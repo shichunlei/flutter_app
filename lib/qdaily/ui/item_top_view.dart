@@ -1,4 +1,4 @@
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 
 import '../../page_index.dart';
@@ -22,7 +22,7 @@ class ItemTopView extends StatelessWidget {
           Gaps.hGap8,
           Text('$title'),
           Spacer(),
-          IconButton(icon: Icon(FeatherIcons.share), onPressed: onPressed)
+          IconButton(icon: Icon(Feather.share), onPressed: onPressed)
         ]),
         padding: EdgeInsets.only(left: 15, right: 10));
   }

@@ -1,5 +1,6 @@
 import 'package:flute_music_player/flute_music_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:fluttery_seekbar/fluttery_seekbar.dart';
 
 import '../page_index.dart';
@@ -165,7 +166,7 @@ class _MusicHomePageState extends State<MusicHomePage> {
         backgroundColor: Colors.transparent,
         title: Text(''),
         leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
+            icon: Icon(SimpleLineIcons.arrow_left,size:20),
             color: Color(0xFFDDDDDD),
             onPressed: () {
               Navigator.pop(context);
@@ -173,7 +174,7 @@ class _MusicHomePageState extends State<MusicHomePage> {
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.menu),
+              icon: Icon(SimpleLineIcons.playlist,size: 20),
               color: Color(0xFFDDDDDD),
               onPressed: () => showModalBottomSheet(
                   context: context,

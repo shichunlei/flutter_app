@@ -6,7 +6,7 @@ import 'package:flutter_app/custom_widgets/animated_rotation_box.dart';
 import 'package:flutter_app/custom_widgets/gradient_circular_progress_indicator.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 List<Widget> widgets = [
   SpinKitThreeBounce(color: Utils.strToColor('ThreeBounce'), size: 30.0),
@@ -67,7 +67,7 @@ List<Widget> widgets = [
   AnimatedRotationBox(
       duration: Duration(milliseconds: 800),
       child: Icon(
-        FontAwesomeIcons.spinner,
+        FontAwesome.spinner,
         color: Colors.purpleAccent,
       )),
   AnimatedRotationBox(

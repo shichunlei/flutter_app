@@ -1,4 +1,4 @@
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/ui/gradual_change_view.dart';
 
@@ -110,7 +110,7 @@ class _AppBarWidgetState extends State<AppBarWidget>
                     onPressed: () {},
                   ),
                   IconButton(
-                    icon: Icon(FeatherIcons.settings, color: Colors.white),
+                    icon: Icon(Feather.settings, color: Colors.white),
                     onPressed: () {},
                   ),
                 ],
@@ -169,7 +169,7 @@ class _AppBarWidgetState extends State<AppBarWidget>
                   title: Text('AppBar leading'),
                   elevation: 0.0,
                   leading: IconButton(
-                      icon: Icon(FeatherIcons.chevronLeft),
+                      icon: Icon(Feather.chevron_left),
                       onPressed: () => Navigator.of(context).pop()))),
         ]));
   }

@@ -1,4 +1,4 @@
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/delegates/search_bar_delegate.dart';
 
@@ -114,7 +114,7 @@ class _SettingPageState extends State<SettingMenuPage>
         margin: EdgeInsets.only(top: Utils.topSafeHeight),
         child: InkWell(
             child: Row(children: <Widget>[
-              Icon(FeatherIcons.search),
+              Icon(Feather.search),
               SizedBox(width: 10),
               Text('搜索')
             ]),
@@ -130,18 +130,18 @@ class _SettingPageState extends State<SettingMenuPage>
     return Row(children: <Widget>[
       Expanded(
           child: IconText(
-              text: '设置', icon: Icon(FeatherIcons.settings), onPressed: () {})),
+              text: '设置', icon: Icon(Feather.settings), onPressed: () {})),
       Expanded(
           child: IconText(
-              text: '主题', icon: Icon(FeatherIcons.sun), onPressed: () {})),
+              text: '主题', icon: Icon(Feather.sun), onPressed: () {})),
       Expanded(
           child: IconText(
               text: '离线',
-              icon: Icon(FeatherIcons.downloadCloud),
+              icon: Icon(Feather.download_cloud),
               onPressed: () {})),
       Expanded(
           child: IconText(
-              text: '推荐', icon: Icon(FeatherIcons.gift), onPressed: () {}))
+              text: '推荐', icon: Icon(Feather.gift), onPressed: () {}))
     ]);
   }
 

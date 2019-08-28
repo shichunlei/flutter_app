@@ -1,14 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
 import 'forgot_password_page.dart';
 import '../ui/submit_button.dart';
 import '../ui/third_login_button.dart';
 import '../../store/index.dart';
-
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -94,13 +93,13 @@ class _SignInPageState extends State<SignInPage> {
                             onPressed: () {
                               Toast.show(context, "微信");
                             },
-                            icon: FontAwesomeIcons.weixin),
+                            icon: FontAwesome.weixin),
                         SizedBox(width: 40.0),
                         ThirdLoginButton(
                             onPressed: () {
                               Toast.show(context, "QQ");
                             },
-                            icon: FontAwesomeIcons.qq)
+                            icon: FontAwesome.qq)
                       ]))
             ]),
 

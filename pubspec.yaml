@@ -34,7 +34,7 @@ dependencies: # 应用或包依赖的其它包或插件
   barcode_scan: ^1.0.0
 
   # 图表
-  charts_flutter: ^0.6.0
+  charts_flutter: ^0.7.0
 
   chewie: ^0.9.7
 
@@ -60,9 +60,6 @@ dependencies: # 应用或包依赖的其它包或插件
   english_words: ^3.1.5
 
   fancy_bottom_navigation: ^0.3.2
-
-  # 图标库地址：https://feathericons.com/
-  feather_icons_flutter: ^4.7.4
 
   flute_music_player:
     git:
@@ -92,12 +89,21 @@ dependencies: # 应用或包依赖的其它包或插件
   # banner
   flutter_swiper: ^1.1.6
 
+  # 集成图标库
+  # FontAwesome 地址：http://www.fontawesome.com.cn/
+  # Feather 地址：https://feathericons.com/
+  # EvilIcons 地址：https://evil-icons.io/
+  # AntDesign 地址：https://ant.design/components/icon/
+  # Ionicons 地址：https://ionicons.com
+  # Fontisto 地址：https://fontisto.com/icons
+  # Foundation 地址：https://zurb:com/playground/foundation-icon-fonts-3
+  # Octicons 地址：https://octicons.github.com/
+  # SimpleLineIcons 地址：https://simplelineicons.github.io/
+  flutter_vector_icons: ^0.2.1
+
   flutter_webview_plugin: ^0.3.7
 
   fluttery_seekbar: ^0.0.1
-
-  # 图标库中文地址：http://www.fontawesome.com.cn/
-  font_awesome_flutter: ^8.5.0
 
   http: ^0.12.0+2
 

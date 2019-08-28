@@ -1,4 +1,4 @@
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/qdaily.dart';
 import 'package:flutter_app/utils/date_format.dart';
@@ -57,7 +57,7 @@ class ItemComment extends StatelessWidget {
       Text(
           "${formatDateByMs(publishTime * 1000, formats: [mm, '月', dd, '日'])}"),
       Spacer(),
-      Icon(FeatherIcons.thumbsUp, size: 20)
+      Icon(Feather.thumbs_up, size: 20)
     ]);
   }
 }

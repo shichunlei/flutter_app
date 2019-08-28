@@ -1,4 +1,4 @@
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -128,8 +128,8 @@ class _LabISayPageState extends State<LabISayPage> {
           ]),
         ),
         BottomAppbar(actions: <Widget>[
-          IconButton(icon: Icon(FeatherIcons.edit), onPressed: () {}),
-          IconButton(icon: Icon(FeatherIcons.share), onPressed: () {})
+          IconButton(icon: Icon(Feather.edit), onPressed: () {}),
+          IconButton(icon: Icon(Feather.share), onPressed: () {})
         ]),
       ]),
     );

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
 
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class InnerDrawerSample extends StatefulWidget {
   InnerDrawerSample({Key key}) : super(key: key);
@@ -134,7 +134,7 @@ class _InnerDrawerSampleState extends State<InnerDrawerSample> {
                     ),
                     ListTile(
                       title: Text("Open Facebook"),
-                      leading: Icon(FontAwesomeIcons.facebook, size: 18),
+                      leading: Icon(FontAwesome.facebook, size: 18),
                     ),
                   ],
                 ),

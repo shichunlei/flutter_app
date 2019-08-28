@@ -1,5 +1,5 @@
 import 'package:badges/badges.dart';
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 
 import '../../page_index.dart';
@@ -125,14 +125,14 @@ class _LabVotePageState extends State<LabVotePage> {
                   shape: BadgeShape.circle,
                   badgeContent: Text('${widget.post.commentCount}',
                       style: TextStyle(color: Colors.white, fontSize: 10)),
-                  child: Icon(FeatherIcons.messageSquare)),
+                  child: Icon(Feather.message_square)),
               onPressed: () => pushNewPage(
                   context,
                   CommentPage(
                       id: widget.id,
                       dataType: '${widget.post.dataType}',
                       commentCount: widget.post.commentCount))),
-          IconButton(icon: Icon(FeatherIcons.share), onPressed: () {})
+          IconButton(icon: Icon(Feather.share), onPressed: () {})
         ])
       ]),
     );

@@ -1,4 +1,4 @@
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 import '../index.dart';
 
@@ -75,7 +75,7 @@ class _SpecialPageState extends State<SpecialPage> {
                         actions: <Widget>[
                           IconButton(
                               icon:
-                                  Icon(FeatherIcons.share, color: Colors.white),
+                                  Icon(Feather.share, color: Colors.white),
                               onPressed: null)
                         ]))
               ]));

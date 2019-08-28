@@ -1,5 +1,5 @@
 import 'package:badges/badges.dart';
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -110,22 +110,21 @@ class _ArticleDetailState extends State<ArticleDetail> {
                     ]),
                   ),
                   BottomAppbar(actions: <Widget>[
-                    IconButton(
-                        icon: Icon(FeatherIcons.heart), onPressed: () {}),
+                    IconButton(icon: Icon(Feather.heart), onPressed: () {}),
                     IconButton(
                         icon: Badge(
                             shape: BadgeShape.circle,
                             badgeContent: Text('${post.commentCount}',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 10)),
-                            child: Icon(FeatherIcons.messageSquare)),
+                            child: Icon(Feather.message_square)),
                         onPressed: () => pushNewPage(
                             context,
                             CommentPage(
                                 id: post.id,
                                 dataType: '${post.dataType}',
                                 commentCount: post.commentCount))),
-                    IconButton(icon: Icon(FeatherIcons.share), onPressed: () {})
+                    IconButton(icon: Icon(Feather.share), onPressed: () {})
                   ]),
                 ],
               ),

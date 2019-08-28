@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.getThemeData(value.theme),
 
           /// 右上角显示一个debug的图标
-          debugShowCheckedModeBanner: false,
+          /// debugShowCheckedModeBanner: false,
 
           /// 主页
           home: Builder(

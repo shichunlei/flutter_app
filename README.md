@@ -212,7 +212,7 @@ A new Flutter application.
 ### [Flutter i18n 实现国际化](https://github.com/shichunlei/flutter_app/wiki/Flutter-i18n-%E5%AE%9E%E7%8E%B0%E5%9B%BD%E9%99%85%E5%8C%96)
 
 
-## 使用到的或推荐使用的一些第三方插件
+## 使用到的或推荐的一些优秀的第三方插件
 
 | Plugin | 地址 | 版本号 |
 | :--: | :--: | :--: |
@@ -221,7 +221,6 @@ A new Flutter application.
 | Shared Preferences |[shared_preferences](https://github.com/flutter/plugins/tree/master/packages/shared_preferences)|![](https://img.shields.io/pub/v/shared_preferences.svg)| 
 | 中国城市选择器 |[city_picker](https://github.com/CaiJingLong/flutter_city_picker)|![](https://img.shields.io/pub/v/city_picker.svg)|
 | 设备信息 |[device_info](https://github.com/flutter/plugins/tree/master/packages/device_info)|![](https://img.shields.io/pub/v/device_info.svg)|
-| 图片选择器 | [image_picker](https://github.com/flutter/plugins/tree/master/packages/image_picker) | ![](https://img.shields.io/pub/v/image_picker.svg) | 
 | url_launcher | [url_launcher](https://github.com/flutter/plugins/tree/master/packages/url_launcher) | ![](https://img.shields.io/pub/v/url_launcher.svg) | 
 | 视频播放器 | [video_player](https://github.com/flutter/plugins/tree/master/packages/video_player) | ![](https://img.shields.io/pub/v/video_player.svg) | 
 | Flutter WebView Plugin | [WebView](https://github.com/fluttercommunity/flutter_webview_plugin) | ![](https://img.shields.io/pub/v/flutter_webview_plugin.svg) | 
@@ -229,24 +228,27 @@ A new Flutter application.
 | 系统分享 | [share](https://github.com/flutter/plugins/tree/master/packages/share) | ![](https://img.shields.io/pub/v/share.svg) |
 | 引导页 | [intro-slider](https://github.com/duytq94/flutter-intro-slider) | ![](https://img.shields.io/pub/v/intro_slider.svg) |
 | 评分控件 | [smooth_star_rating](https://github.com/thangmam/smoothratingbar) | ![](https://img.shields.io/pub/v/smooth_star_rating.svg) | 
-| PhotoView | [photo_view](https://github.com/renancaraujo/photo_view) | ![](https://img.shields.io/pub/v/photo_view.svg) | 
-| 时间轴 | [Timeline](https://github.com/furkantektas/timeline_list) | ![](https://img.shields.io/pub/v/timeline_list.svg) | 
+| PhotoView | [PhotoView](https://github.com/renancaraujo/photo_view) | ![](https://img.shields.io/pub/v/photo_view.svg) | 
+| 时间轴 | [TimeLine](https://github.com/furkantektas/timeline_list) | ![](https://img.shields.io/pub/v/timeline_list.svg) | 
 | Rounded Letter | [rounded_letter](https://github.com/jhomlala/roundedletter) | ![](https://img.shields.io/pub/v/rounded_letter.svg) | 
 | 数据库 | [sqfLite](https://github.com/tekartik/sqflite) | ![](https://img.shields.io/pub/v/sqflite.svg) | 
-| Flutter Multi Image Picker | [Flutter Multi Image Picker](https://github.com/Sh1d0w/multi_image_picker) | ![](https://img.shields.io/pub/v/multi_image_picker.svg) | 
-| Flutter Range Slider | [range_slider](https://github.com/boeledi/RangeSlider) | ![](https://img.shields.io/pub/v/flutter_range_slider.svg) | 
+| 图片选择器 | [image_picker](https://github.com/flutter/plugins/tree/master/packages/image_picker) | ![](https://img.shields.io/pub/v/image_picker.svg) | 
+| 图片裁剪 | [image_crop](https://github.com/VolodymyrLykhonis/image_crop) |![](https://img.shields.io/pub/v/image_crop.svg)|
+| 图片裁剪 | [image_cropper](https://github.com/hnvn/flutter_image_cropper) |![](https://img.shields.io/pub/v/image_cropper.svg)|
+| Flutter Multi Image Picker | [Multi Image Picker](https://github.com/Sh1d0w/multi_image_picker) | ![](https://img.shields.io/pub/v/multi_image_picker.svg) | 
+| Range Slider | [range_slider](https://github.com/boeledi/RangeSlider) | ![](https://img.shields.io/pub/v/flutter_range_slider.svg) | 
 | 侧滑菜单 | [flutter_inner_drawer](https://github.com/Dn-a/flutter_inner_drawer) | ![](https://img.shields.io/pub/v/flutter_inner_drawer.svg) | 
 | 字母索引、悬停 | [AZListView](https://github.com/flutterchina/azlistview) | ![](https://img.shields.io/pub/v/azlistview.svg) |
 | 状态管理 | [provider](https://github.com/rrousselGit/provider) | ![](https://img.shields.io/pub/v/provider.svg) |
 | 图表 | [fl_chart](https://github.com/imaNNeoFighT/fl_chart) | ![](https://img.shields.io/pub/v/fl_chart.svg) |
-| Badges for Flutter | [badges](https://github.com/yadaniyil/flutter_badges) | ![](https://img.shields.io/pub/v/badges.svg) |
+| 官方图表插件 | [charts_flutter](https://github.com/google/charts) | ![](https://img.shields.io/pub/v/charts_flutter.svg) |
+| Badges | [badges](https://github.com/yadaniyil/flutter_badges) | ![](https://img.shields.io/pub/v/badges.svg) |
 | Palette Generator | [palette_generator](https://github.com/flutter/packages/tree/master/packages/palette_generator) | ![](https://img.shields.io/pub/v/palette_generator.svg) |
-| 仿京东地址选择器 | [flutter_jd_address_selector](https://github.com/shichunlei/flutter_jd_address_selector) | 0.0.1 |
-| 图片裁剪 | [image_crop](https://github.com/VolodymyrLykhonis/image_crop) |![](https://img.shields.io/pub/v/image_crop.svg)|
-| 图片裁剪 | [image_cropper](https://github.com/hnvn/flutter_image_cropper) |![](https://camo.githubusercontent.com/b8fbf5d5502729096a88fd9d29a25231fa980a12/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f696d6167655f63726f707065722e737667)|
 | path_provider | [path_provider](https://github.com/flutter/plugins/tree/master/packages/path_provider) | ![](https://img.shields.io/pub/v/path_provider.svg) |
 | 高德地图定位 | [AMapBaseLocation](https://github.com/OpenFlutter/amap_base_flutter) | ![](https://img.shields.io/pub/v/amap_base_location.svg) |
-| Flutter 字体动画 | [animated_text_kit](https://github.com/aagarwal1012/Animated-Text-Kit) | ![](https://camo.githubusercontent.com/d1d5eae95a6eeec94d60d086c00ca9f7e2d969e6/68747470733a2f2f696d672e736869656c64732e696f2f7075622f762f616e696d617465645f746578745f6b69742e737667) |
+| 动画字体 | [animated_text_kit](https://github.com/aagarwal1012/Animated-Text-Kit) | ![](https://img.shields.io/pub/v/animated_text_kit.svg) |
+| 集成图标库 |[flutter_vector_icons](https://github.com/pd4d10/flutter-vector-icons)| ![](https://img.shields.io/pub/v/flutter_vector_icons.svg) |
+| 仿京东地址选择器 | [flutter_jd_address_selector](https://github.com/shichunlei/flutter_jd_address_selector) | 0.0.1 |
 
 
 ## 赞赏

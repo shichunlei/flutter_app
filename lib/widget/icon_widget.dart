@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/global/custom_icon.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class IconWidget extends StatefulWidget {
   @override
@@ -48,8 +47,8 @@ class _IconWidgetState extends State<IconWidget> with TickerProviderStateMixin {
       AnimatedIcons.search_ellipsis,
       AnimatedIcons.view_list,
       Icons.adb,
-      FontAwesomeIcons.firefox,
-      FeatherIcons.activity,
+      FontAwesome.firefox,
+      Feather.activity,
       CustomIcon.man,
       CustomIcon.back,
       CupertinoIcons.home
@@ -71,18 +70,18 @@ class _IconWidgetState extends State<IconWidget> with TickerProviderStateMixin {
           mainAxisSpacing: 1.0,
         ),
         itemBuilder: (context, i) => Center(
-              child: IconButton(
-                icon: i > 13
-                    ? Icon(icons[i])
-                    : AnimatedIcon(
-                        size: 30.0,
-                        icon: icons[i],
-                        progress: animationController.view,
-                        semanticLabel: 'Show menu'),
-                onPressed: () =>
-                    animationController.fling(velocity: _status ? -2.0 : 2.0),
-              ),
-            ),
+          child: IconButton(
+            icon: i > 13
+                ? Icon(icons[i])
+                : AnimatedIcon(
+                    size: 30.0,
+                    icon: icons[i],
+                    progress: animationController.view,
+                    semanticLabel: 'Show menu'),
+            onPressed: () =>
+                animationController.fling(velocity: _status ? -2.0 : 2.0),
+          ),
+        ),
       ),
     );
   }

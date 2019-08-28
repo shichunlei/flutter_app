@@ -1,4 +1,4 @@
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/custom_widgets/sunrise_sunset_view.dart';
@@ -57,14 +57,14 @@ class _SunViewState extends State<SunView>
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Icon(FeatherIcons.sunrise, color: Colors.white),
+                      Icon(Feather.sunrise, color: Colors.white),
                       Text('日出${sunriseSunset?.sr}',
                           style: TextStyle(color: Colors.white))
                     ]),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Icon(FeatherIcons.sunset, color: Colors.white),
+                      Icon(Feather.sunset, color: Colors.white),
                       Text('日落${sunriseSunset?.ss}',
                           style: TextStyle(color: Colors.white))
                     ]),
