@@ -1594,7 +1594,7 @@ class ApiService {
 
   /// 一言
   ///
-  static Future<Hitokoto> hitpkoto() async {
+  static Future<Hitokoto> hitokoto() async {
     Response response =
         await HttpUtils(baseUrl: ApiUrl.HITOKOTO_URL).request('', data: null);
     if (response.statusCode != 200) {

@@ -8,6 +8,8 @@ import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
+import '../page_index.dart';
+
 List<Widget> widgets = [
   SpinKitThreeBounce(color: Utils.strToColor('ThreeBounce'), size: 30.0),
   SpinKitCircle(color: Utils.strToColor('Circle')),
@@ -136,6 +138,6 @@ Widget getLoadingWidget(
                         child: widgets[Random().nextInt(widgets.length - 1)]),
                     Padding(
                         padding: EdgeInsets.only(top: 20.0),
-                        child: Text(text, style: TextStyle(fontSize: 12.0)))
+                        child: Text(text, style: TextStyles.textGrey12))
                   ]))));
 }

@@ -93,8 +93,8 @@ class HttpUtils {
   /// String 返回 json data .
   request(
     String path, {
-    data,
-    method: GET,
+    Map<String, dynamic> data,
+    String method: GET,
     CancelToken cancelToken,
     Options options,
   }) async {

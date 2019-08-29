@@ -105,11 +105,12 @@ class TextStyles {
   static TextStyle textBlue16 =
       textStyle(fontSize: Dimens.font_sp16, color: Colors.blueAccent);
   static TextStyle textWhite16 = textStyle(fontSize: Dimens.font_sp16);
-  static TextStyle textGrayC16 =
+  static TextStyle textGreyC16 =
       textStyle(fontSize: Dimens.font_sp16, color: greyCColor);
-  static TextStyle textGray16 =
+  static TextStyle textGrey16 =
       textStyle(fontSize: Dimens.font_sp16, color: Colors.grey);
-  static TextStyle textDark16 = textStyle(fontSize: Dimens.font_sp16);
+  static TextStyle textDark16 =
+      textStyle(fontSize: Dimens.font_sp16, color: grey3Color);
   static TextStyle textBoldDark16 = textStyle(
       fontSize: Dimens.font_sp16,
       color: Colors.black,

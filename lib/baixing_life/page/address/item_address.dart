@@ -212,7 +212,7 @@ class _ItemAddressState extends State<ItemAddress>
                             child: FlatButton(
                                 textColor: Colors.grey,
                                 child: Text("${S.of(context).cancel}",
-                                    style: TextStyles.textGray16),
+                                    style: TextStyles.textGrey16),
                                 onPressed: () => Navigator.of(context).pop()))
                       ]))));
         });
