@@ -26,7 +26,7 @@ A new Flutter application.
 ```
 [✓] Flutter (Channel beta, v1.8.3, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
     • Flutter version 1.8.3 at /Users/14cells/Android/flutter
-    • Framework revision e4ebcdf6f4 (13 days ago), 2019-07-27 11:48:24 -0700
+    • Framework revision e4ebcdf6f4 (5 weeks ago), 2019-07-27 11:48:24 -0700
     • Engine revision 38ac5f30a7
     • Dart version 2.5.0 (build 2.5.0-dev.1.0 0ca1582afd)
 
@@ -35,7 +35,7 @@ A new Flutter application.
     • Android NDK location not configured (optional; useful for native profiling support)
     • Platform android-29, build-tools 29.0.2
     • Java binary at: /Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin/java
-    • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1343-b01)
+    • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
     • All Android licenses accepted.
 
 [✗] Xcode - develop for iOS and macOS
@@ -52,11 +52,11 @@ A new Flutter application.
         sudo gem install cocoapods
         pod setup
 
-[✓] Android Studio (version 3.4)
+[✓] Android Studio (version 3.5)
     • Android Studio at /Applications/Android Studio.app/Contents
-    • Flutter plugin version 38.2.1
-    • Dart plugin version 183.6270
-    • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1343-b01)
+    • Flutter plugin version 38.2.3
+    • Dart plugin version 191.8423
+    • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
 
 [✓] Connected device (1 available)
     • MI 5X • 1c7664100104 • android-arm64 • Android 8.1.0 (API 27)
