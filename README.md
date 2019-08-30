@@ -84,6 +84,8 @@ A new Flutter application.
 
 - [好奇心日报接口>>](https://github.com/Urwateryi/QDailyNews/blob/master/app/network/Api.js)
 
+- [追书神器接口>>](https://github.com/shichunlei/-Api/blob/master/%E8%BF%BD%E4%B9%A6%E7%A5%9E%E5%99%A8.md)
+
 
 ## 运行截图
 
@@ -133,6 +135,20 @@ A new Flutter application.
 |登录|注册|XXX|XXX|
 
 
+### [追书神器](http://m.zhuishushenqi.com/)
+
+
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-12-23-44-265.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-12-14-20-422.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-12-14-30-696.png)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-12-23-39-352.png)|
+| :--: | :--: | :--: | :--: |
+| 登录 | 选择性别 | 选择兴趣爱好 | 我的 |
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-12-02-20-410.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-12-02-41-880.jpg)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-11-35-08-371.jpg)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/)|
+| 书架（空） | 书架 | 书城 | 分类 |
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-11-35-39-277.jpg)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-11-36-04-409.jpg)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-11-44-50-515.jpg)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-12-01-53-767.jpg)|
+| 排行 | 书单 | 书单详情 | 漫画 |
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-11-45-32-615.jpg)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-12-00-42-510.jpg)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-12-01-09-236.png)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-12-01-30-229.png)|
+| 书籍详情1 | 书籍详情2 | 目录1 | 目录2 |
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-12-01-17-515.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-12-01-22-846.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-12-03-15-178.png)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-08-30-12-02-57-508.jpg)|
+| 阅读 | 阅读设置 | 搜索 | 搜索结果 |
 
 
 ### [豆瓣电影](https://github.com/Mayandev/morec)

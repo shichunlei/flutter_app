@@ -14,6 +14,8 @@ class Store {
         ChangeNotifierProvider(builder: (_) => ConfigModel()),
         ChangeNotifierProvider(builder: (_) => UserModel()),
         ChangeNotifierProvider(builder: (_) => ArticleModel()),
+        ChangeNotifierProvider(builder: (_) => ReaderSettingModel()),
+        ChangeNotifierProvider(builder: (_) => BookModel()),
       ],
       child: child,
     );

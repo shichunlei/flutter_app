@@ -289,6 +289,7 @@ class ExpandStateBean {
         title: 'Demo',
         index: 3,
         children: [
+          SubExpandBean('追书神器', BookReaderHomePage()),
           SubExpandBean('好奇心日报', QdailySplashPage()),
           SubExpandBean('豆瓣电影', MovieHomePage()),
           SubExpandBean('百姓生活+', IndexPage()),

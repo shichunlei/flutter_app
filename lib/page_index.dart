@@ -134,6 +134,8 @@ export 'xianyu/home.dart';
 
 export 'youdao/page/home.dart';
 
+export 'reader/home.dart';
+
 export 'res/colors.dart';
 export 'res/dimens.dart';
 export 'res/styles.dart';

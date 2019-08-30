@@ -115,6 +115,51 @@ class ApiUrl {
   static final String YOUDAO_GROUP_ALL_COURSE_URL =
       "course3/api/content/course";
 
+  /// 追书神器
+  static final String BOOK_URL = 'http://api.zhuishushenqi.com';
+
+  /// 首页小说列表
+  static final String BOOKS_BY_CATEGORY_URL = '/book/by-categories';
+
+  /// 获取小说详情
+  static final String BOOK_DETAILS_URL = '/book/:id';
+
+  /// 获取小说相关推荐
+  static final String BOOK_RECOMMEND_URL = '/book/:id/recommend';
+
+  /// 获取小说正版源
+  static final String BOOK_BTOC_URL = '/btoc';
+
+  /// 获取小说章节
+  static final String BOOK_ATOC_URL = '/atoc/:sourceId';
+
+  /// 关键字模糊搜索返回小说列表
+  static final String BOOK_SEARCH_URL = '/book/fuzzy-search';
+
+  /// 搜索热词
+  static final String BOOK_HOT_WORDS_URL = '/book/hot-word';
+
+  /// 书评列表
+  static final String BOOK_REVIEW_URL = '/post/review/by-book';
+
+  /// 短评列表
+  static final String BOOK_SHORT_REVIEW_URL = '/post/short-review';
+
+  /// 获取小说所有排行榜
+  static final String BOOK_RANKING_URL = '/ranking/gender';
+
+  /// 获取某具体排行榜
+  static final String BOOK_RANKING_INFO_URL = '/ranking/:rankingId';
+
+  /// 获取书单列表
+  static final String BOOK_LIST_URL = '/book-list';
+
+  /// 获取书单详情
+  static final String BOOK_LIST_INFO_URL = '/book-list/:booklistId';
+
+  /// 获取书单标签
+  static final String BOOK_LIST_TAGS_URL = '/book-list/tagType';
+
   /// 一言
   static final String HITOKOTO_URL = 'https://v1.hitokoto.cn/';
 }
