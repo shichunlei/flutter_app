@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 import 'dart:ui' as ui show window;
 
@@ -139,10 +139,7 @@ class _JDAddressDialogState extends State<JDAddressDialog>
 
   void _initData() async {
     ///
-    rootBundle
-        .loadString(
-            'packages/flutter_jd_address_selector/assets/chinese_cities.json')
-        .then((value) {
+    await rootBundle.loadString('packages/jd_address_selector/assets/chinese_cities.json').then((value) {
       provinces = json.decode(value);
       setState(() => mList = provinces);
     });

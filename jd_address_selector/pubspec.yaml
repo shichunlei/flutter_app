@@ -21,12 +21,9 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
 
-  assets:
-    - lib/src/chinese_cities.json
-
   # To add assets to your package, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
+  assets:
+    - assets/chinese_cities.json
   #  - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see

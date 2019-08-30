@@ -356,6 +356,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.2.3"
+  jd_address_selector:
+    dependency: "direct main"
+    description:
+      path: jd_address_selector
+      relative: true
+    source: path
+    version: "0.0.1"
   keyboard_actions:
     dependency: "direct main"
     description:

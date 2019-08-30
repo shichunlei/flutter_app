@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jd_address_selector/jd_address_selector.dart';
 
 import '../../../generated/i18n.dart';
 import '../../../store/index.dart';
 
-import 'package:flutter_app/custom_widgets/jd_address_picker.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 
 import '../../../page_index.dart';

@@ -114,8 +114,8 @@ dependencies: # 应用或包依赖的其它包或插件
   # 引导页
   intro_slider: ^1.2.0
 
-  #jd_address_selector:
-  #  path: jd_address_selector/
+  jd_address_selector:
+    path: jd_address_selector/
 
   # 处理键盘事件 https://github.com/diegoveloper/flutter_keyboard_actions
   keyboard_actions: ^2.1.2
