@@ -76,10 +76,6 @@ dependencies: # 应用或包依赖的其它包或插件
   # 侧滑菜单
   flutter_inner_drawer: ^0.3.0
 
-  flutter_jd_address_selector:
-    git:
-      url: https://github.com/shichunlei/flutter_jd_address_selector
-
   # 加载提示组件
   flutter_spinkit: ^2.1.0
 
@@ -117,6 +113,9 @@ dependencies: # 应用或包依赖的其它包或插件
 
   # 引导页
   intro_slider: ^1.2.0
+
+  jd_address_selector:
+    path: jd_address_selector/
 
   # 处理键盘事件 https://github.com/diegoveloper/flutter_keyboard_actions
   keyboard_actions: ^2.1.2

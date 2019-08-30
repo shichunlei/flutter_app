@@ -234,15 +234,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.3.0"
-  flutter_jd_address_selector:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "025dcbfaff6e89e97b32fd042e77073c7f93cb5f"
-      url: "https://github.com/shichunlei/flutter_jd_address_selector"
-    source: git
-    version: "0.0.1"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -365,6 +356,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.2.3"
+  jd_address_selector:
+    dependency: "direct main"
+    description:
+      path: jd_address_selector
+      relative: true
+    source: path
+    version: "0.0.1"
   keyboard_actions:
     dependency: "direct main"
     description:
