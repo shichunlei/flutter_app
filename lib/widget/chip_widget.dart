@@ -2,6 +2,23 @@ import 'package:flutter/material.dart';
 
 import '../page_index.dart';
 
+const List<String> languages = <String>[
+  'Flutter',
+  'Android',
+  'iOS',
+  'Java',
+  'Object-C',
+  'JavaScript',
+  'Ruby',
+  'PHP',
+  'C++',
+  'C#',
+  'C语言',
+  'Dart',
+  'Kotlin',
+  'Swift'
+];
+
 class ChipWidget extends StatefulWidget {
   @override
   createState() => _ChipWidgetState();

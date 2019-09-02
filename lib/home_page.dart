@@ -49,106 +49,75 @@ class HomeStatePage extends State<HomePage> {
      * 我们需要在它的onWillPop属性中返回一个新的组件（一般是一个Dialog）处理是否真的pop该页面。
      */
     return WillPopScope(
-      onWillPop: _onBackPressed,
-      child: Scaffold(
-        backgroundColor: Colors.grey[200],
-        key: _scaffoldKey,
-        appBar: AppBar(
-          // Title
-          title: GestureDetector(
-            onTap: () {
-              if (city != '正在定位...') {
-                pushNewPage(context, CityPage(currentCity: city));
-              }
-            },
-            child: Column(
-                children: <Widget>[
-                  Row(children: <Widget>[
-                    Text('$city', style: TextStyle(fontSize: 17.0)),
-                    Icon(Icons.keyboard_arrow_down)
-                  ], mainAxisSize: MainAxisSize.min),
-                  Text(
-                      '${weather?.now?.cond_txt ?? ''} ${weather?.now?.tmp ?? ''}',
-                      style: TextStyle(fontSize: 13.0))
-                ],
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center),
-          ),
-          elevation: 4.0,
-          leading: IconButton(
-              icon: Icon(Icons.menu),
-              onPressed: () => _scaffoldKey.currentState.openDrawer()),
-          actions: <Widget>[
-            IconButton(
-                icon: Icon(Icons.refresh, semanticLabel: "refresh"),
-                onPressed: () => getTestData(),
-                tooltip: "Tune")
-          ],
-        ),
-        body: ListView(physics: BouncingScrollPhysics(), children: <Widget>[
-          Container(
-              height: Utils.width * 72 / 108,
-              child: Swiper(
-                  itemBuilder: (context, index) =>
-                      ImageLoadView(bannerImages[index]),
-                  itemCount: bannerImages.length,
-                  pagination: SwiperPagination(
-                      builder: SwiperPagination.fraction,
-                      alignment: Alignment.bottomRight),
-                  autoplay: true)),
-          ExpansionTile(
-              title: Text('${ExpandStateBean.expandStateList[0].title}'),
-              backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
-              children: _buildListBody(ExpandStateBean.expandStateList[0]),
-              onExpansionChanged: (bool value) {},
-              leading: Icon(ExpandStateBean.expandStateList[0].leading)),
-          ExpansionTile(
-              title: Text('${ExpandStateBean.expandStateList[1].title}'),
-              backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
-              children: _buildListBody(ExpandStateBean.expandStateList[1]),
-              onExpansionChanged: (bool value) {},
-              leading: Icon(ExpandStateBean.expandStateList[1].leading)),
-          ExpansionTile(
-              title: Text('${ExpandStateBean.expandStateList[2].title}'),
-              backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
-              children: _buildListBody(ExpandStateBean.expandStateList[2]),
-              onExpansionChanged: (bool value) {},
-              leading: Icon(ExpandStateBean.expandStateList[2].leading)),
-          ExpansionTile(
-              title: Text('${ExpandStateBean.expandStateList[3].title}'),
-              backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
-              children: _buildListBody(ExpandStateBean.expandStateList[3]),
-              onExpansionChanged: (bool value) {},
-              leading: Icon(ExpandStateBean.expandStateList[3].leading)),
-          ExpansionTile(
-              title: Text('${ExpandStateBean.expandStateList[4].title}'),
-              backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
-              children: _buildListBody(ExpandStateBean.expandStateList[4]),
-              onExpansionChanged: (bool value) {},
-              leading: Icon(ExpandStateBean.expandStateList[4].leading)),
-          ExpansionTile(
-              title: Text('${ExpandStateBean.expandStateList[5].title}'),
-              backgroundColor: Theme.of(context).accentColor.withOpacity(0.025),
-              children: _buildListBody(ExpandStateBean.expandStateList[5]),
-              onExpansionChanged: (bool value) {},
-              leading: Icon(ExpandStateBean.expandStateList[5].leading))
-        ]),
-        drawer: Drawer(child: HomeDrawable()),
-      ),
-    );
+        onWillPop: _onBackPressed,
+        child: Scaffold(
+            backgroundColor: Colors.grey[200],
+            key: _scaffoldKey,
+            appBar: AppBar(
+                // Title
+                title: GestureDetector(
+                  onTap: () {
+                    if (city != '正在定位...') {
+                      pushNewPage(context, CityPage(currentCity: city));
+                    }
+                  },
+                  child: Column(
+                      children: <Widget>[
+                        Row(children: <Widget>[
+                          Text('$city', style: TextStyle(fontSize: 17.0)),
+                          Icon(Icons.keyboard_arrow_down)
+                        ], mainAxisSize: MainAxisSize.min),
+                        Text(
+                            '${weather?.now?.cond_txt ?? ''} ${weather?.now?.tmp ?? ''}',
+                            style: TextStyle(fontSize: 13.0))
+                      ],
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center),
+                ),
+                elevation: 4.0,
+                leading: IconButton(
+                    icon: Icon(Icons.menu),
+                    onPressed: () => _scaffoldKey.currentState.openDrawer()),
+                actions: <Widget>[
+                  IconButton(
+                      icon: Icon(Icons.refresh, semanticLabel: "refresh"),
+                      onPressed: () => getTestData(),
+                      tooltip: "Tune")
+                ]),
+            body: ListView(
+                physics: BouncingScrollPhysics(), children: _buildListBody()),
+            drawer: Drawer(child: HomeDrawable())));
   }
 
-  List<Widget> _buildListBody(ExpandStateBean bean) {
+  List<Widget> _buildListBody() {
     List<Widget> widgets = [];
-    for (int i = 0; i < bean.children.length; i++) {
-      widgets
-        ..add(ListTile(
-            contentPadding: EdgeInsets.only(left: 30, right: 20),
-            title: Text(bean.children[i].title),
-            onTap: () => pushNewPage(context, bean.children[i].page),
-            trailing: Icon(Icons.keyboard_arrow_right)))
-        ..add(Container(height: 0.5, color: Colors.grey[200]));
-    }
+
+    widgets
+      ..add(Container(
+          height: Utils.width * 72 / 108,
+          child: Swiper(
+              itemBuilder: (context, index) =>
+                  ImageLoadView(bannerImages[index]),
+              itemCount: bannerImages.length,
+              pagination: SwiperPagination(
+                  builder: SwiperPagination.fraction,
+                  alignment: Alignment.bottomRight),
+              autoplay: true)))
+      ..addAll(ExpandStateBean.expandStateList
+          .map((value) => ExpansionTile(
+              title: Text('${value.title}'),
+              backgroundColor:
+                  Theme.of(context).primaryColor.withOpacity(0.025),
+              children: value.children
+                  .map((child) => ListTile(
+                      contentPadding: EdgeInsets.only(left: 30, right: 20),
+                      title: Text(child.title),
+                      onTap: () => pushNewPage(context, child.page),
+                      trailing: Icon(Icons.keyboard_arrow_right)))
+                  .toList(),
+              onExpansionChanged: (bool value) {},
+              leading: Icon(value.leading)))
+          .toList());
     return widgets;
   }
 

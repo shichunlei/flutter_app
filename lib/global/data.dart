@@ -167,106 +167,65 @@ class Doodle {
   ];
 }
 
-const List<String> languages = <String>[
-  'Flutter',
-  'Android',
-  'iOS',
-  'Java',
-  'Object-C',
-  'JavaScript',
-  'Ruby',
-  'PHP',
-  'C++',
-  'C#',
-  'C语言',
-  'Dart',
-  'Kotlin',
-  'Swift'
-];
-
 class ExpandStateBean {
-  var isOpen;
   String title;
-  int index;
   IconData leading;
   List<SubExpandBean> children;
 
-  ExpandStateBean(
-      {this.isOpen, this.title, this.index, this.children, this.leading});
+  ExpandStateBean({this.title, this.children, this.leading});
 
   static List<ExpandStateBean> expandStateList = [
-    ExpandStateBean(
-        leading: Icons.filter_1,
-        isOpen: false,
-        title: 'Widgets',
-        index: 0,
-        children: [
-          SubExpandBean('Text', TextWidget()),
-          SubExpandBean('Button', ButtonWidget()),
-          SubExpandBean('Image', ImageWidget()),
-          SubExpandBean('Icon', IconWidget()),
-          SubExpandBean('TextField', TextFieldWidget()),
-          SubExpandBean('Slider', SliderWidget()),
-          SubExpandBean('Range Slider', RangeSliderPage()),
-          SubExpandBean('Chip', ChipWidget()),
-          SubExpandBean('CheckSwitch', CheckSwitchWidget()),
-          SubExpandBean('主题', ThemeSample()),
-        ]),
-    ExpandStateBean(
-        leading: Icons.filter_2,
-        isOpen: false,
-        title: 'Layouts',
-        index: 1,
-        children: [
-          SubExpandBean('AppBar', AppBarWidget()),
-          SubExpandBean('Dialog', DialogWidget()),
-          SubExpandBean('Sliver', SliverWidget()),
-          SubExpandBean('Data Table', TablePage()),
-          SubExpandBean('日期时间选择', DateTimePicker()),
-          SubExpandBean('BottomSheet', BottomSheetWidget()),
-          SubExpandBean('滑动删除', DismissibleWidget()),
-          SubExpandBean('毛玻璃', FrostingWidget()),
-          SubExpandBean('Stepper', StepperWidget()),
-          SubExpandBean('AspectRatio', AspectRatioSample()),
-        ]),
-    ExpandStateBean(
-        leading: Icons.filter_3,
-        isOpen: false,
-        title: 'Navigation',
-        index: 1,
-        children: [
-          SubExpandBean('TabBar', TabBarHomePage()),
-          SubExpandBean('BottomNavigationBar', BottomNavigationBarHomePage()),
-          SubExpandBean('NavigationBarShifting', NavigationBarShifting()),
-          SubExpandBean('NavigationBarFixed', NavigationBarFixed()),
-          SubExpandBean('BubbleBottomBar', BubbleBottomBarPage()),
-          SubExpandBean('不规则底部导航栏', BottomAppbarSample()),
-          SubExpandBean('FancyBottomNavigationBar', FancyBottomNavigationBar()),
-          SubExpandBean('CurvedNavigationBar', CurvedNavigationBarSample()),
-          SubExpandBean('CupertinoTabBar', CupertinoTabBarSample()),
-        ]),
-    ExpandStateBean(
-        leading: Icons.filter_4,
-        isOpen: false,
-        title: 'Animation',
-        index: 1,
-        children: [
-          SubExpandBean('CurvesDemo', CurvesDemo()),
-          SubExpandBean('AnimatedOpacity', AnimatedOpacityDemo()),
-          SubExpandBean('AnimatedSwitcher', AnimatedSwitcherSample()),
-          SubExpandBean('AnimatedCrossFade', AnimatedCrossFadeDemo()),
-          SubExpandBean('AnimatedBuilder', AnimatedBuilderDemo()),
-          SubExpandBean('AnimatedIcons', AnimatedIconsDemo()),
-          SubExpandBean('AnimatedPadding', AnimatedPaddingDemo()),
-          SubExpandBean('AnimatedSize', AnimatedSizeDemo()),
-          SubExpandBean('AnimatedAlign', AnimatedAlignDemo()),
-          SubExpandBean('AnimatedPositioned', AnimatedPositionedDemo()),
-        ]),
+    ExpandStateBean(leading: Icons.filter_1, title: 'Widgets', children: [
+      SubExpandBean('Text', TextWidget()),
+      SubExpandBean('Button', ButtonWidget()),
+      SubExpandBean('Image', ImageWidget()),
+      SubExpandBean('Icon', IconWidget()),
+      SubExpandBean('TextField', TextFieldWidget()),
+      SubExpandBean('Slider', SliderWidget()),
+      SubExpandBean('Range Slider', RangeSliderPage()),
+      SubExpandBean('Chip', ChipWidget()),
+      SubExpandBean('CheckSwitch', CheckSwitchWidget()),
+      SubExpandBean('主题', ThemeSample()),
+    ]),
+    ExpandStateBean(leading: Icons.filter_2, title: 'Layouts', children: [
+      SubExpandBean('AppBar', AppBarWidget()),
+      SubExpandBean('Dialog', DialogWidget()),
+      SubExpandBean('Sliver', SliverWidget()),
+      SubExpandBean('Table', TablePage()),
+      SubExpandBean('日期时间选择', DateTimePicker()),
+      SubExpandBean('BottomSheet', BottomSheetWidget()),
+      SubExpandBean('滑动删除', DismissibleWidget()),
+      SubExpandBean('毛玻璃', FrostingWidget()),
+      SubExpandBean('Stepper', StepperWidget()),
+      SubExpandBean('AspectRatio', AspectRatioSample()),
+    ]),
+    ExpandStateBean(leading: Icons.filter_3, title: 'Navigation', children: [
+      SubExpandBean('TabBar', TabBarHomePage()),
+      SubExpandBean('BottomNavigationBar', BottomNavigationBarHomePage()),
+      SubExpandBean('NavigationBarShifting', NavigationBarShifting()),
+      SubExpandBean('NavigationBarFixed', NavigationBarFixed()),
+      SubExpandBean('BubbleBottomBar', BubbleBottomBarPage()),
+      SubExpandBean('不规则底部导航栏', BottomAppbarSample()),
+      SubExpandBean('FancyBottomNavigationBar', FancyBottomNavigationBar()),
+      SubExpandBean('CurvedNavigationBar', CurvedNavigationBarSample()),
+      SubExpandBean('CupertinoTabBar', CupertinoTabBarSample()),
+    ]),
+    ExpandStateBean(leading: Icons.filter_4, title: 'Animation', children: [
+      SubExpandBean('Curves', CurvesDemo()),
+      SubExpandBean('AnimatedOpacity', AnimatedOpacityDemo()),
+      SubExpandBean('AnimatedSwitcher', AnimatedSwitcherSample()),
+      SubExpandBean('AnimatedCrossFade', AnimatedCrossFadeDemo()),
+      SubExpandBean('AnimatedBuilder', AnimatedBuilderDemo()),
+      SubExpandBean('AnimatedIcons', AnimatedIconsDemo()),
+      SubExpandBean('AnimatedPadding', AnimatedPaddingDemo()),
+      SubExpandBean('AnimatedSize', AnimatedSizeDemo()),
+      SubExpandBean('AnimatedAlign', AnimatedAlignDemo()),
+      SubExpandBean('AnimatedPositioned', AnimatedPositionedDemo()),
+      SubExpandBean('Tween', TweenDemo()),
+    ]),
     ExpandStateBean(
         leading: Icons.filter_5,
-        isOpen: false,
         title: 'Custom Widgets',
-        index: 2,
         children: [
           SubExpandBean('Wave Widget', WavePage()),
           SubExpandBean('Swiper', SwiperSample()),
@@ -297,30 +256,25 @@ class ExpandStateBean {
           SubExpandBean('CardFlip', CardFlipPage()),
           SubExpandBean('高德地图定位', AMapLocationDemo()),
         ]),
-    ExpandStateBean(
-        leading: Icons.filter_6,
-        isOpen: false,
-        title: 'Demo',
-        index: 3,
-        children: [
-          SubExpandBean('追书神器', BookReaderHomePage()),
-          SubExpandBean('好奇心日报', QdailySplashPage()),
-          SubExpandBean('豆瓣电影', MovieHomePage()),
-          SubExpandBean('百姓生活+', IndexPage()),
-          SubExpandBean('有道精品课', YouDaoHomePage()),
-          SubExpandBean('每日一文', OneArticlePage()),
-          SubExpandBean('元素周期表', ElementsPage()),
-          SubExpandBean('Question', QuizPage()),
-          SubExpandBean('我是个句子迷', SplashPage()),
-          SubExpandBean('登录页面', PasswordLoginPage()),
-          SubExpandBean('登录页面', LogonPage()),
-          SubExpandBean('视频背景登录页面', LoginVideoPage()),
-          SubExpandBean('仿朋友圈', WeChatFriendsCircle()),
-          SubExpandBean('仿抖音首页动画', TikTokPage()),
-          SubExpandBean('Music Player', MusicHomePage()),
-          SubExpandBean('仿闲鱼', XianyuHomePage()),
-          SubExpandBean('Flutter 第一个Demo', RandomWords()),
-        ]),
+    ExpandStateBean(leading: Icons.filter_6, title: 'Demo', children: [
+      SubExpandBean('追书神器', BookReaderHomePage()),
+      SubExpandBean('好奇心日报', QdailySplashPage()),
+      SubExpandBean('豆瓣电影', MovieHomePage()),
+      SubExpandBean('百姓生活+', IndexPage()),
+      SubExpandBean('有道精品课', YouDaoHomePage()),
+      SubExpandBean('每日一文', OneArticlePage()),
+      SubExpandBean('元素周期表', ElementsPage()),
+      SubExpandBean('Question', QuizPage()),
+      SubExpandBean('我是个句子迷', SplashPage()),
+      SubExpandBean('登录页面', PasswordLoginPage()),
+      SubExpandBean('登录页面', LogonPage()),
+      SubExpandBean('视频背景登录页面', LoginVideoPage()),
+      SubExpandBean('仿朋友圈', WeChatFriendsCircle()),
+      SubExpandBean('仿抖音首页动画', TikTokPage()),
+      SubExpandBean('Music Player', MusicHomePage()),
+      SubExpandBean('仿闲鱼', XianyuHomePage()),
+      SubExpandBean('Flutter 第一个Demo', RandomWords()),
+    ]),
   ];
 }
 
