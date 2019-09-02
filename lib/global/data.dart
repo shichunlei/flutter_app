@@ -256,6 +256,7 @@ class ExpandStateBean {
           SubExpandBean('AnimatedSwitcher', AnimatedSwitcherSample()),
           SubExpandBean('AnimatedCrossFade', AnimatedCrossFadeDemo()),
           SubExpandBean('AnimatedBuilder', AnimatedBuilderDemo()),
+          SubExpandBean('AnimatedIcons', AnimatedIconsDemo()),
         ]),
     ExpandStateBean(
         leading: Icons.filter_5,
