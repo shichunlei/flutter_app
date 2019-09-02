@@ -209,9 +209,7 @@ class ExpandStateBean {
           SubExpandBean('Slider', SliderWidget()),
           SubExpandBean('Range Slider', RangeSliderPage()),
           SubExpandBean('Chip', ChipWidget()),
-          SubExpandBean('FlutterLogo', FlutterLogoWidget()),
           SubExpandBean('CheckSwitch', CheckSwitchWidget()),
-          SubExpandBean('AnimatedSwitcher', AnimatedSwitcherSample()),
           SubExpandBean('主题', ThemeSample()),
         ]),
     ExpandStateBean(
@@ -250,6 +248,18 @@ class ExpandStateBean {
     ExpandStateBean(
         leading: Icons.filter_4,
         isOpen: false,
+        title: 'Animated',
+        index: 1,
+        children: [
+          SubExpandBean('CurvesDemo', CurvesDemo()),
+          SubExpandBean('FlutterLogo', FlutterLogoWidget()),
+          SubExpandBean('AnimatedSwitcher', AnimatedSwitcherSample()),
+          SubExpandBean('AnimatedCrossFade', AnimatedCrossFadeDemo()),
+          SubExpandBean('AnimatedBuilder', AnimatedBuilderDemo()),
+        ]),
+    ExpandStateBean(
+        leading: Icons.filter_5,
+        isOpen: false,
         title: 'Custom Widgets',
         index: 2,
         children: [
@@ -284,7 +294,7 @@ class ExpandStateBean {
           SubExpandBean('高德地图定位', AMapLocationDemo()),
         ]),
     ExpandStateBean(
-        leading: Icons.filter_5,
+        leading: Icons.filter_6,
         isOpen: false,
         title: 'Demo',
         index: 3,

@@ -12,7 +12,6 @@ export 'widget/contact_picker_widget.dart';
 export 'widget/date_time_picker.dart';
 export 'widget/dialog_widget.dart';
 export 'widget/dismissible_widget.dart';
-export 'widget/flutter_logo.dart';
 export 'widget/frosting_widget.dart';
 export 'widget/icon_widget.dart';
 export 'widget/image_widget.dart';
@@ -27,7 +26,6 @@ export 'widget/star_rating_widget.dart';
 export 'widget/stepper_widget.dart';
 export 'widget/text_widget.dart';
 export 'widget/textfield_widget.dart';
-export 'widget/animated_switcher.dart';
 export 'widget/aspect_ratio.dart';
 
 export 'page/charts_widget.dart';
@@ -63,6 +61,12 @@ export 'page/flip_view_custom.dart';
 export 'page/logon/index.dart';
 export 'page/login/login_page.dart';
 export 'page/login_video_page.dart';
+
+export 'animation/curves_demo.dart';
+export 'animation/flutter_logo.dart';
+export 'animation/animated_cross_fade.dart';
+export 'animation/animated_switcher.dart';
+export 'animation/animated_builder.dart';
 
 export 'city_pickers/page/fullpage_pickers_page.dart';
 export 'city_pickers/page/ios_city_pickers_page.dart';

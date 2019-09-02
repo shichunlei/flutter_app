@@ -14,25 +14,13 @@ class ScaleRotateRoute extends PageRouteBuilder {
                   Animation<double> secondaryAnimation,
                   Widget child) =>
               ScaleTransition(
-                  scale: Tween<double>(
-                    begin: 0.0,
-                    end: 1.0,
-                  ).animate(
-                    CurvedAnimation(
-                      parent: animation,
-                      curve: Curves.fastOutSlowIn,
-                    ),
-                  ),
+                  scale: Tween<double>(begin: 0.0, end: 1.0).animate(
+                      CurvedAnimation(
+                          parent: animation, curve: Curves.fastOutSlowIn)),
                   child: RotationTransition(
-                      turns: Tween<double>(
-                        begin: 0.0,
-                        end: 1.0,
-                      ).animate(
-                        CurvedAnimation(
-                          parent: animation,
-                          curve: Curves.linear,
-                        ),
-                      ),
+                      turns: Tween<double>(begin: 0.0, end: 1.0).animate(
+                          CurvedAnimation(
+                              parent: animation, curve: Curves.fastOutSlowIn)),
                       child: child)),
         );
 }

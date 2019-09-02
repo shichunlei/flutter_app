@@ -17,10 +17,7 @@ class _SignUpPageState extends State<SignUpPage> {
   FocusNode passwordFocusNode = FocusNode();
   FocusNode rePasswordFocusNode = FocusNode();
 
-  var _usernameController = TextEditingController();
-  var _emailController = TextEditingController();
-  var _passwordController = TextEditingController();
-  var _repasswordController = TextEditingController();
+  Map<String, dynamic> _userInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -84,18 +81,18 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: SubmitButton(
                       title: "注册",
                       onTap: () {
-                        if (_usernameController.text.isEmpty) {
+                        if (_userInfo['username'].isEmpty) {
                           Toast.show(context, "用户名不能为空");
-                        } else if (_emailController.text.isEmpty) {
+                        } else if (_userInfo['email'].isEmpty) {
                           Toast.show(context, "邮箱不能为空");
-                        } else if (!Utils.isEmail(_emailController.text)) {
+                        } else if (!Utils.isEmail(_userInfo['email'])) {
                           Toast.show(context, "邮箱格式不正确");
-                        } else if (_passwordController.text.isEmpty) {
+                        } else if (_userInfo['password'].isEmpty) {
                           Toast.show(context, "密码不能为空");
-                        } else if (_passwordController.text.length < 6) {
+                        } else if (_userInfo['password'].length < 6) {
                           Toast.show(context, "密码长度不能小于6位！");
-                        } else if (_repasswordController.text.toString() !=
-                            _passwordController.text.toString()) {
+                        } else if (_userInfo['repassword'].toString() !=
+                            _userInfo['password'].toString()) {
                           Toast.show(context, "两次密码不一致");
                         } else {
                           _regist();
@@ -114,7 +111,8 @@ class _SignUpPageState extends State<SignUpPage> {
     return Padding(
         padding: const EdgeInsets.only(left: 25.0, right: 25.0, top: 20.0),
         child: TextFormField(
-            controller: _usernameController,
+            controller: TextEditingController(text: _userInfo['username']),
+            onChanged: (value) => _userInfo['username'] = value,
             maxLines: 1,
             keyboardType: TextInputType.text,
             onEditingComplete: () =>
@@ -130,7 +128,8 @@ class _SignUpPageState extends State<SignUpPage> {
     return Padding(
         padding: const EdgeInsets.only(left: 25.0, right: 25.0, top: 20.0),
         child: TextFormField(
-            controller: _emailController,
+            controller: TextEditingController(text: _userInfo['email']),
+            onChanged: (value) => _userInfo['email'] = value,
             focusNode: emailFocusNode,
             maxLines: 1,
             keyboardType: TextInputType.emailAddress,
@@ -147,7 +146,8 @@ class _SignUpPageState extends State<SignUpPage> {
     return Padding(
         padding: const EdgeInsets.only(left: 25, right: 25, top: 20),
         child: TextFormField(
-            controller: _passwordController,
+            controller: TextEditingController(text: _userInfo['password']),
+            onChanged: (value) => _userInfo['password'] = value,
             keyboardType: TextInputType.text,
             focusNode: passwordFocusNode,
             decoration: InputDecoration(
@@ -173,7 +173,8 @@ class _SignUpPageState extends State<SignUpPage> {
     return Padding(
         padding: const EdgeInsets.only(left: 25, right: 25, top: 20),
         child: TextFormField(
-            controller: _repasswordController,
+            controller: TextEditingController(text: _userInfo['repassword']),
+            onChanged: (value) => _userInfo['repassword'] = value,
             keyboardType: TextInputType.text,
             focusNode: rePasswordFocusNode,
             decoration: InputDecoration(
