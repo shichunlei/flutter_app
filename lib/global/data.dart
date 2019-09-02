@@ -248,15 +248,19 @@ class ExpandStateBean {
     ExpandStateBean(
         leading: Icons.filter_4,
         isOpen: false,
-        title: 'Animated',
+        title: 'Animation',
         index: 1,
         children: [
           SubExpandBean('CurvesDemo', CurvesDemo()),
-          SubExpandBean('FlutterLogo', FlutterLogoWidget()),
+          SubExpandBean('AnimatedOpacity', AnimatedOpacityDemo()),
           SubExpandBean('AnimatedSwitcher', AnimatedSwitcherSample()),
           SubExpandBean('AnimatedCrossFade', AnimatedCrossFadeDemo()),
           SubExpandBean('AnimatedBuilder', AnimatedBuilderDemo()),
           SubExpandBean('AnimatedIcons', AnimatedIconsDemo()),
+          SubExpandBean('AnimatedPadding', AnimatedPaddingDemo()),
+          SubExpandBean('AnimatedSize', AnimatedSizeDemo()),
+          SubExpandBean('AnimatedAlign', AnimatedAlignDemo()),
+          SubExpandBean('AnimatedPositioned', AnimatedPositionedDemo()),
         ]),
     ExpandStateBean(
         leading: Icons.filter_5,

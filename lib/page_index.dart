@@ -61,11 +61,15 @@ export 'page/login/login_page.dart';
 export 'page/login_video_page.dart';
 
 export 'animation/curves_demo.dart';
-export 'animation/flutter_logo.dart';
+export 'animation/animated_opacity.dart';
 export 'animation/animated_cross_fade.dart';
 export 'animation/animated_switcher.dart';
 export 'animation/animated_builder.dart';
 export 'animation/animated_icons.dart';
+export 'animation/animated_padding.dart';
+export 'animation/animated_size.dart';
+export 'animation/animated_align.dart';
+export 'animation/animated_positioned.dart';
 
 export 'city_pickers/page/fullpage_pickers_page.dart';
 export 'city_pickers/page/ios_city_pickers_page.dart';
