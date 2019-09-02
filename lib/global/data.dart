@@ -265,7 +265,6 @@ class ExpandStateBean {
         children: [
           SubExpandBean('Wave Widget', WavePage()),
           SubExpandBean('Swiper', SwiperSample()),
-          SubExpandBean('DragLike', DragLikePage()),
           SubExpandBean('LikeButton', LikeButtonPage()),
           SubExpandBean('时间流', TimeLinePage()),
           SubExpandBean('LoadImage', LoadImageWidget()),
