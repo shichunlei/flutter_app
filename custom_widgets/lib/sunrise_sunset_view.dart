@@ -2,7 +2,8 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/utils.dart';
+
+import 'utils.dart';
 
 class SunriseSunsetView extends StatefulWidget {
   final double progress; // 进度 0～1

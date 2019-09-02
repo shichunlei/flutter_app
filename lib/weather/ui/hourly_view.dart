@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/he_weather.dart';
 
-import 'package:flutter_app/custom_widgets/sparkline.dart';
+import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter_app/ui/line.dart';
 
 class HourlyView extends StatelessWidget {

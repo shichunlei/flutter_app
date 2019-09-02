@@ -7,7 +7,7 @@ import '../../bean/movie.dart';
 
 import '../../page_index.dart';
 
-import '../../custom_widgets/bottom_drag_widget.dart';
+import 'package:custom_widgets/custom_widgets.dart';
 
 import 'movie_photo.dart';
 import 'movie_video.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/flutter_flip_view.dart';
+import 'package:custom_widgets/custom_widgets.dart';
 
 import '../../page_index.dart';
 

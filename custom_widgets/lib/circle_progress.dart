@@ -1,9 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/utils.dart';
 
-import '../page_index.dart';
+import 'utils.dart';
 
 class CircleProgressWidget extends StatefulWidget {
   final double progress; // 进度 0～1
@@ -98,7 +97,7 @@ class _CircleProgressWidgetState extends State<CircleProgressWidget>
                         style: TextStyle(
                             color: widget.topLableColor ?? Colors.white,
                             fontSize: 14.0)),
-                    Gaps.vGap20
+                    SizedBox(height: 20)
                   ],
                 ),
               ),
@@ -114,7 +113,7 @@ class _CircleProgressWidgetState extends State<CircleProgressWidget>
                     Offstage(
                       offstage: widget.lable != null,
                       child: Column(children: <Widget>[
-                        Gaps.hGap5,
+                        SizedBox(width: 5),
                         Text(
                           '%',
                           style: TextStyle(
@@ -129,7 +128,7 @@ class _CircleProgressWidgetState extends State<CircleProgressWidget>
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Gaps.vGap10,
+                    SizedBox(height: 10),
                     Text('${widget.bottomLable ?? '1'}',
                         style: TextStyle(
                             color: widget.bottomLableColor ?? Colors.white,

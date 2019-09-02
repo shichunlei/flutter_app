@@ -1,11 +1,11 @@
 import 'dart:async';
 
+import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/hitokoto.dart';
 import 'package:flutter_app/login/page/login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'custom_widgets/skip_down_time_progress.dart';
 import 'store/index.dart';
 import 'page_index.dart';
 

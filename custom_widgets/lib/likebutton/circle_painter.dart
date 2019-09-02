@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/utils.dart';
+
+import '../utils.dart';
 
 class CirclePainter extends CustomPainter {
   Paint circlePaint = Paint();

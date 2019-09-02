@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/avatar_glow.dart';
+import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 

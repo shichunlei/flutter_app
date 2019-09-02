@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app/custom_widgets/bubble_bottom_bar.dart';
+import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter_app/global/custom_icon.dart';
 
 import 'index.dart';

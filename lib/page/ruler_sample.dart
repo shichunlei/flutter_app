@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/ruler.dart';
+import 'package:custom_widgets/custom_widgets.dart';
 
 class RulerSample extends StatefulWidget {
   RulerSample({Key key}) : super(key: key);

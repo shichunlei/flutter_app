@@ -50,6 +50,9 @@ dependencies: # 应用或包依赖的其它包或插件
 
   crypto: ^2.1.2
 
+  custom_widgets:
+    path: custom_widgets/
+
   # 设备信息
   device_info: ^0.4.0+2
 

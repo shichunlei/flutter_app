@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/movie/page/movie_detail.dart';
-import 'package:flutter_app/custom_widgets/smooth_star_rating.dart';
+import 'package:custom_widgets/custom_widgets.dart';
 
 import '../../page_index.dart';
 

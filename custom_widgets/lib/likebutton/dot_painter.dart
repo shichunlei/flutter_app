@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import 'package:flutter_app/custom_widgets/utils.dart';
+import '../utils.dart';
+
 
 class DotPainter extends CustomPainter {
   final int dotCount;

@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class Wave extends StatefulWidget {
-  final Config config;
+  final CConfig config;
   final Size size;
   final double waveAmplitude;
   final double wavePhase;
@@ -270,10 +270,10 @@ enum ColorMode {
   custom,
 }
 
-abstract class Config {
+abstract class CConfig {
   final ColorMode colorMode;
 
-  Config({this.colorMode});
+  CConfig({this.colorMode});
 
   void throwNullError(String colorModeStr, String configStr) {
     throw FlutterError(
@@ -281,7 +281,7 @@ abstract class Config {
   }
 }
 
-class CustomConfig extends Config {
+class CustomConfig extends CConfig {
   final List<Color> colors;
   final List<List<Color>> gradients;
   final Alignment gradientBegin;
@@ -340,11 +340,11 @@ class CustomConfig extends Config {
 }
 
 /// todo
-class RandomConfig extends Config {
+class RandomConfig extends CConfig {
   RandomConfig() : super(colorMode: ColorMode.random);
 }
 
 /// todo
-class SingleConfig extends Config {
+class SingleConfig extends CConfig {
   SingleConfig() : super(colorMode: ColorMode.single);
 }

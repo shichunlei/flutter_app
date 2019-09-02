@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/he_weather.dart';
-import 'package:flutter_app/custom_widgets/circle_progress.dart';
+import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/ui/line.dart';
 

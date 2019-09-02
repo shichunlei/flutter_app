@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/preview.dart';
+import 'package:custom_widgets/custom_widgets.dart';
 
 class PreviewSample extends StatelessWidget {
   @override

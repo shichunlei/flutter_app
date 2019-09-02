@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/dots_indicator.dart';
+import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../page_index.dart';

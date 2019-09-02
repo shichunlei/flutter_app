@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/smooth_star_rating.dart';
+import 'package:custom_widgets/custom_widgets.dart';
 
 class StarRatingWidget extends StatefulWidget {
   @override

@@ -164,6 +164,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.2"
+  custom_widgets:
+    dependency: "direct main"
+    description:
+      path: custom_widgets
+      relative: true
+    source: path
+    version: "0.0.1"
   device_info:
     dependency: "direct main"
     description:

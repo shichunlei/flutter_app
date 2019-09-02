@@ -1,7 +1,5 @@
+import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/dropdown_menu/dropdown_header.dart';
-import 'package:flutter_app/custom_widgets/dropdown_menu/dropdown_menu.dart';
-import 'package:flutter_app/custom_widgets/dropdown_menu/dropdown_menu_controller.dart';
 
 class DropDownSample extends StatefulWidget {
   DropDownSample({Key key}) : super(key: key);

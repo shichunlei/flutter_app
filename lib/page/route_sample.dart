@@ -1,11 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/routes/enter_exit_route.dart';
-import 'package:flutter_app/custom_widgets/routes/rotation_route.dart';
-import 'package:flutter_app/custom_widgets/routes/scale_rotate_route.dart';
-import 'package:flutter_app/custom_widgets/routes/scale_route.dart';
-import 'package:flutter_app/custom_widgets/routes/size_route.dart';
-import 'package:flutter_app/custom_widgets/routes/slide_route.dart';
+
+import '../page_index.dart';
 
 class RouteSample extends StatelessWidget {
   RouteSample({Key key}) : super(key: key);

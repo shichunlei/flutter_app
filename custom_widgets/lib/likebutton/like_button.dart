@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/likebutton/model.dart';
-import 'package:flutter_app/custom_widgets/likebutton/dot_painter.dart';
-import 'package:flutter_app/custom_widgets/likebutton/circle_painter.dart';
+
+import 'circle_painter.dart';
+import 'dot_painter.dart';
+import 'model.dart';
 
 typedef LikeCallback = void Function(bool isLike);
 

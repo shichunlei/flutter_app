@@ -48,9 +48,9 @@ class DragContainer extends StatefulWidget {
 
   DragContainer(
       {Key key,
-      @required this.drawer,
-      @required this.defaultShowHeight,
-      @required this.height})
+        @required this.drawer,
+        @required this.defaultShowHeight,
+        @required this.height})
       : assert(drawer != null),
         assert(defaultShowHeight != null),
         assert(height != null),
@@ -98,13 +98,13 @@ class _DragContainerState extends State<DragContainer>
   }
 
   GestureRecognizerFactoryWithHandlers<MyVerticalDragGestureRecognizer>
-      getRecognizer() {
+  getRecognizer() {
     return GestureRecognizerFactoryWithHandlers<
         MyVerticalDragGestureRecognizer>(
-      () => MyVerticalDragGestureRecognizer(flingListener: (bool isFling) {
-            _isFling = isFling;
-          }), //constructor
-      (MyVerticalDragGestureRecognizer instance) {
+          () => MyVerticalDragGestureRecognizer(flingListener: (bool isFling) {
+        _isFling = isFling;
+      }), //constructor
+          (MyVerticalDragGestureRecognizer instance) {
         //initializer
         instance
           ..onStart = _handleDragStart
@@ -187,7 +187,7 @@ class _DragContainerState extends State<DragContainer>
 
     ///easeOut 先快后慢
     final CurvedAnimation curve =
-        new CurvedAnimation(parent: animalController, curve: Curves.easeOut);
+    new CurvedAnimation(parent: animalController, curve: Curves.easeOut);
     animation = Tween(begin: start, end: end).animate(curve)
       ..addListener(() {
         if (!onResetControllerValue) {

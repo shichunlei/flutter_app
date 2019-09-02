@@ -1,6 +1,5 @@
+import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/likebutton/like_button.dart';
-import 'package:flutter_app/custom_widgets/likebutton/model.dart';
 
 class LikeButtonPage extends StatelessWidget {
   @override

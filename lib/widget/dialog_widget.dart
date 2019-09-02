@@ -1,10 +1,8 @@
 import 'dart:async';
 
+import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/dialog/asset_giffy_dialog.dart';
-import 'package:flutter_app/custom_widgets/dialog/network_giffy_dialog.dart';
-import 'package:flutter_app/custom_widgets/dialog/rich_alert_dialog.dart';
 import 'package:package_info/package_info.dart';
 
 import '../page_index.dart';
