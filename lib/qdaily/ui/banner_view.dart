@@ -11,9 +11,8 @@ class BannerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = Utils.width;
-
-    return Container(
+    return AspectRatio(
+        aspectRatio: 32 / 19,
         child: Swiper(
             itemBuilder: (BuildContext context, int index) =>
                 Stack(alignment: Alignment.bottomLeft, children: <Widget>[
@@ -26,7 +25,6 @@ class BannerView extends StatelessWidget {
                       padding: EdgeInsets.only(left: 20, bottom: 30))
                 ]),
             itemCount: banners.length,
-            pagination: SwiperPagination()),
-        height: width * 19 / 32);
+            pagination: SwiperPagination()));
   }
 }

@@ -222,6 +222,7 @@ class ExpandStateBean {
       SubExpandBean('AnimatedAlign', AnimatedAlignDemo()),
       SubExpandBean('AnimatedPositioned', AnimatedPositionedDemo()),
       SubExpandBean('Tween', TweenDemo()),
+      SubExpandBean('AnimatedArrow', AnimatedArrowDemo()),
     ]),
     ExpandStateBean(
         leading: Icons.filter_5,
@@ -693,3 +694,5 @@ List<String> guideList = [
   "images/qdaily/bg_whatsnew_bg_2.jpg",
   "images/qdaily/bg_whatsnew_bg_3.jpg"
 ];
+
+enum Direction { LEFT, RIGHT, UP, DOWN }

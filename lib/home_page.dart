@@ -93,8 +93,8 @@ class HomeStatePage extends State<HomePage> {
     List<Widget> widgets = [];
 
     widgets
-      ..add(Container(
-          height: Utils.width * 72 / 108,
+      ..add(AspectRatio(
+          aspectRatio: 108 / 72,
           child: Swiper(
               itemBuilder: (context, index) =>
                   ImageLoadView(bannerImages[index]),

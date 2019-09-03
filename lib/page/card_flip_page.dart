@@ -2,6 +2,8 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
+import '../page_index.dart';
+
 class CardFlipPage extends StatefulWidget {
   CardFlipPage({Key key}) : super(key: key);
 
@@ -40,8 +42,6 @@ class CardFlipper extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _CardFlipper();
 }
-
-enum Direction { LEFT, RIGHT }
 
 class _CardFlipper extends State<CardFlipper> with TickerProviderStateMixin {
   double scrollPercent = 0.0;
