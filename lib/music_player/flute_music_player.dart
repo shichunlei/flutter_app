@@ -7,14 +7,12 @@ import '../page_index.dart';
 
 enum PlayerState { stopped, playing, paused }
 
-class MusicHomePage extends StatefulWidget {
-  MusicHomePage({Key key}) : super(key: key);
-
+class FluteMusicPlayerPage extends StatefulWidget {
   @override
-  createState() => _MusicHomePageState();
+  createState() => _FluteMusicPlayerPageState();
 }
 
-class _MusicHomePageState extends State<MusicHomePage>
+class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
@@ -202,24 +200,23 @@ class _MusicHomePageState extends State<MusicHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          title: Text(''),
-          leading: IconButton(
-              icon: Icon(SimpleLineIcons.arrow_left, size: 20),
-              color: Color(0xFFDDDDDD),
-              onPressed: () => Navigator.pop(context)),
-          elevation: 0.0,
-          actions: <Widget>[
-            IconButton(
-                icon: Icon(SimpleLineIcons.playlist, size: 20),
+        appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            title: Text(''),
+            leading: IconButton(
+                icon: Icon(SimpleLineIcons.arrow_left, size: 20),
                 color: Color(0xFFDDDDDD),
-                onPressed: () => showModalBottomSheet(
-                    context: context,
-                    builder: (builder) => _bottomSheetItem(context)))
-          ]),
-      body: Column(
-        children: <Widget>[
+                onPressed: () => Navigator.pop(context)),
+            elevation: 0.0,
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(SimpleLineIcons.playlist, size: 20),
+                  color: Color(0xFFDDDDDD),
+                  onPressed: () => showModalBottomSheet(
+                      context: context,
+                      builder: (builder) => _bottomSheetItem(context)))
+            ]),
+        body: Column(children: <Widget>[
           // Seek bar
           Expanded(
               child: Center(
@@ -271,88 +268,66 @@ class _MusicHomePageState extends State<MusicHomePage>
                       )))),
 
           // Lyric
-          Container(
-            height: 125.0,
-            width: double.infinity,
-          ),
+          Container(height: 125.0, width: double.infinity),
 
           // Song title, artist name, and controls
-          _buildBottomControls(),
-        ],
-      ),
-    );
+          _buildBottomControls()
+        ]));
   }
 
   Widget _buildBottomControls() {
     return Container(
-      width: double.infinity,
-      child: Material(
-        color: accentColor,
-        shadowColor: const Color(0x44000000),
-        child: Padding(
-          padding: EdgeInsets.only(top: 40, bottom: 50),
-          child: Column(
-            children: <Widget>[
-              RichText(
-                text: TextSpan(text: '', children: [
-                  TextSpan(
-                    text: '$songTitle\n',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 4.0,
-                        height: 1.5),
-                  ),
-                  TextSpan(
-                    text: position != null
-                        ? "${positionText ?? ''} / ${durationText ?? ''}"
-                        : duration != null ? durationText : '',
-                    style: TextStyle(
-                        color: Colors.white.withOpacity(0.75),
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 3.0,
-                        height: 1.5),
-                  )
-                ]),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 40),
-                child: Row(
-                  children: <Widget>[
-                    Spacer(),
-                    _buildPreviousButton(),
-                    Spacer(),
-                    _buildPlayPausedButton(),
-                    Spacer(),
-                    _buildNextButton(),
-                    Spacer()
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+        width: double.infinity,
+        child: Material(
+            color: accentColor,
+            shadowColor: const Color(0x44000000),
+            child: Padding(
+                padding: EdgeInsets.only(top: 40, bottom: 50),
+                child: Column(children: <Widget>[
+                  RichText(
+                      text: TextSpan(text: '', children: [
+                    TextSpan(
+                        text: '$songTitle\n',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 4.0,
+                            height: 1.5)),
+                    TextSpan(
+                        text: position != null
+                            ? "${positionText ?? ''} / ${durationText ?? ''}"
+                            : duration != null ? durationText : '',
+                        style: TextStyle(
+                            color: Colors.white.withOpacity(0.75),
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 3.0,
+                            height: 1.5))
+                  ])),
+                  Padding(
+                      padding: EdgeInsets.only(top: 40),
+                      child: Row(children: <Widget>[
+                        Spacer(),
+                        _buildPreviousButton(),
+                        Spacer(),
+                        _buildPlayPausedButton(),
+                        Spacer(),
+                        _buildNextButton(),
+                        Spacer()
+                      ]))
+                ]))));
   }
 
   Widget _buildNextButton() {
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
-        icon: Icon(
-          Icons.skip_next,
-          color: Colors.white,
-          size: 35,
-        ),
+        icon: Icon(Icons.skip_next, color: Colors.white, size: 35),
         onPressed: (_index + 1) >= totalSongs
             ? null
             : () {
-                if (isPlaying || isPaused) {
-                  _stop();
-                }
+                if (isPlaying || isPaused) _stop();
                 _index++;
                 _play();
               });
@@ -362,17 +337,11 @@ class _MusicHomePageState extends State<MusicHomePage>
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
-        icon: Icon(
-          Icons.skip_previous,
-          color: Colors.white,
-          size: 35,
-        ),
+        icon: Icon(Icons.skip_previous, color: Colors.white, size: 35),
         onPressed: _index <= 0
             ? null
             : () {
-                if (isPlaying || isPaused) {
-                  _stop();
-                }
+                if (isPlaying || isPaused) _stop();
                 _index--;
                 _play();
               });
@@ -380,36 +349,30 @@ class _MusicHomePageState extends State<MusicHomePage>
 
   Widget _buildPlayPausedButton() {
     return RawMaterialButton(
-      onPressed: () {
-        if (isPlaying) {
-          _pause();
-        } else {
-          _play();
-        }
-      },
-      shape: CircleBorder(),
-      fillColor: Colors.white,
-      splashColor: lightAccentColor,
-      highlightColor: lightAccentColor.withOpacity(0.5),
-      elevation: 10.0,
-      highlightElevation: 5,
-      child: Padding(
-        padding: EdgeInsets.all(8),
-        child: Icon(
-          _icon,
-          color: darkAccentColor,
-          size: 35,
-        ),
-      ),
-    );
+        onPressed: () {
+          if (isPlaying) {
+            _pause();
+          } else {
+            _play();
+          }
+        },
+        shape: CircleBorder(),
+        fillColor: Colors.white,
+        splashColor: lightAccentColor,
+        highlightColor: lightAccentColor.withOpacity(0.5),
+        elevation: 10.0,
+        highlightElevation: 5,
+        child: Padding(
+            padding: EdgeInsets.all(8),
+            child: Icon(_icon, color: darkAccentColor, size: 35)));
   }
 
   Widget _bottomSheetItem(BuildContext context) {
     return ListView(
-      // 生成一个列表选择器
-      children: _songs.map((song) {
-        int index = _songs.indexOf(song);
-        return ListTile(
+        // 生成一个列表选择器
+        children: _songs.map((song) {
+      int index = _songs.indexOf(song);
+      return ListTile(
           leading: CircleAvatar(
             backgroundColor: Colors.blue,
             child: Text('${song?.title[0]}'),
@@ -417,23 +380,20 @@ class _MusicHomePageState extends State<MusicHomePage>
           title: Text('${song?.title}'),
           onTap: () {
             if (isPlaying || isPaused) {
-              if (_index != index) {
+              if (_index != index)
                 setState(() {
                   _stop().then((_) {
                     _index = index;
                     _play();
                   });
                 });
-              }
             } else {
               _index = index;
               _play();
             }
             Navigator.pop(context);
           },
-          selected: _index == index,
-        );
-      }).toList(),
-    );
+          selected: _index == index);
+    }).toList());
   }
 }

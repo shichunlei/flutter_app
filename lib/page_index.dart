@@ -124,7 +124,7 @@ export 'qdaily/splash.dart';
 
 export 'wechat_friends/page/wechat_friends_circle.dart';
 
-export 'music_player/home_page.dart';
+export 'music_player/flute_music_player.dart';
 
 export 'weather/page/city_page.dart';
 export 'weather/page/weather_page.dart';

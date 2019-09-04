@@ -272,7 +272,7 @@ class ExpandStateBean {
       SubExpandBean('视频背景登录页面', LoginVideoPage()),
       SubExpandBean('仿朋友圈', WeChatFriendsCircle()),
       SubExpandBean('仿抖音首页动画', TikTokPage()),
-      SubExpandBean('Music Player', MusicHomePage()),
+      SubExpandBean('Music Player', FluteMusicPlayerPage()),
       SubExpandBean('仿闲鱼', XianyuHomePage()),
       SubExpandBean('Flutter 第一个Demo', RandomWords()),
     ]),
