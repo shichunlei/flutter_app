@@ -1,9 +1,9 @@
 import 'package:flute_music_player/flute_music_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:fluttery_seekbar/fluttery_seekbar.dart';
 
 import '../page_index.dart';
+import 'widgets/radial_seek_bar.dart';
 
 class FluteMusicPlayerPage extends StatefulWidget {
   @override
@@ -197,17 +197,17 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            brightness: Brightness.light,
+            iconTheme: lightIconTheme,
             backgroundColor: Colors.transparent,
             title: Text(''),
             leading: IconButton(
                 icon: Icon(SimpleLineIcons.arrow_left, size: 20),
-                color: Color(0xFFDDDDDD),
                 onPressed: () => Navigator.pop(context)),
             elevation: 0.0,
             actions: <Widget>[
               IconButton(
                   icon: Icon(SimpleLineIcons.playlist, size: 20),
-                  color: Color(0xFFDDDDDD),
                   onPressed: () => showModalBottomSheet(
                       context: context,
                       builder: (builder) => _bottomSheetItem(context)))
@@ -215,53 +215,26 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
         body: Column(children: <Widget>[
           // Seek bar
           Expanded(
-              child: Center(
-                  child: Container(
-                      width: 200,
-                      height: 200,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: <Widget>[
-                          Container(
-                              decoration: BoxDecoration(
-                                  color: accentColor, shape: BoxShape.circle),
-                              child: RadialSeekBar(
-                                  trackColor: Colors.red.withOpacity(.5),
-                                  trackWidth: 2.0,
-                                  progressColor: Color(0xFFFE1483),
-                                  progressWidth: 5.0,
-                                  thumbPercent: _thumbPercent,
-                                  thumb: CircleThumb(
-                                      color: Color(0xFFFE1483), diameter: 15.0),
-                                  margin: 12.0,
-                                  progress: _thumbPercent,
-                                  onDragStart: (double percent) {},
-                                  onDragUpdate: (double percent) {
-                                    setState(() {
-                                      _thumbPercent = percent;
-                                      if (isPlaying) _pause();
+              child: RadialSeekBarUI(
+                  controller: _controller,
+                  thumbPercent: _thumbPercent,
+                  onDragEnd: (double percent) {
+                    if (percent < 1.0) _play();
+                  },
+                  onDragUpdate: (double percent) {
+                    setState(() {
+                      _thumbPercent = percent;
+                      if (isPlaying) _pause();
 
-                                      position = Duration(
-                                          milliseconds: (_thumbPercent *
-                                                  duration.inMilliseconds)
-                                              .round());
-                                      _seek(_thumbPercent *
-                                          duration.inMilliseconds);
-                                    });
-                                  },
-                                  onDragEnd: (double percent) {
-                                    if (percent < 1.0) _play();
-                                  })),
-                          RotationTransition(
-                              child: ImageLoadView(
-                                  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564830238704&di=11798dafaaad4d5f727bac5113ed9ba5&imgtype=0&src=http%3A%2F%2Fpic41.nipic.com%2F20140507%2F7160980_232207178322_2.jpg',
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(75.0)),
-                                  width: 150,
-                                  height: 150),
-                              turns: _controller)
-                        ],
-                      )))),
+                      if (duration != null) {
+                        position = Duration(
+                            milliseconds:
+                                (_thumbPercent * duration.inMilliseconds)
+                                    .round());
+                        _seek(_thumbPercent * duration.inMilliseconds);
+                      }
+                    });
+                  })),
 
           // Lyric
           Container(height: 125.0, width: double.infinity),

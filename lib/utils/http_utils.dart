@@ -188,22 +188,22 @@ class HttpUtils {
   void formatError(DioError e) {
     if (e.type == DioErrorType.CONNECT_TIMEOUT) {
       // It occurs when url is opened timeout.
-      debugPrint("连接超时");
+      debugPrint("连接超时 Ծ‸ Ծ");
     } else if (e.type == DioErrorType.SEND_TIMEOUT) {
       // It occurs when url is sent timeout.
-      debugPrint("请求超时");
+      debugPrint("请求超时 Ծ‸ Ծ");
     } else if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
       //It occurs when receiving timeout
-      debugPrint("响应超时");
+      debugPrint("响应超时 Ծ‸ Ծ");
     } else if (e.type == DioErrorType.RESPONSE) {
       // When the server response, but with a incorrect status, such as 404, 503...
-      debugPrint("出现异常");
+      debugPrint("出现异常 Ծ‸ Ծ");
     } else if (e.type == DioErrorType.CANCEL) {
       // When the request is cancelled, dio will throw a error with this type.
-      debugPrint("请求取消");
+      debugPrint("请求取消 Ծ‸ Ծ");
     } else {
       //DEFAULT Default error type, Some other Error. In this case, you can read the DioError.error if it is not null.
-      debugPrint("未知错误");
+      debugPrint("未知错误 Ծ‸ Ծ");
     }
   }
 

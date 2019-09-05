@@ -1,17 +1,16 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:custom_widgets/wave.dart';
 import 'package:flutter/material.dart';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:fluttery_seekbar/fluttery_seekbar.dart';
 import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
 
-const kUrl1 = 'https://luan.xyz/files/audio/ambient_c_motion.mp3';
-const kUrl2 = 'https://luan.xyz/files/audio/nasa_on_a_mission.mp3';
+import 'widgets/radial_seek_bar.dart';
 
 class AudioPlayersPage extends StatefulWidget {
   @override
@@ -29,8 +28,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   /// 总时长
   Duration duration;
   Duration position;
-
-  List<String> _songs = [kUrl1, kUrl2];
 
   AudioPlayer audioPlayer;
   AudioPlayerState _audioPlayerState;
@@ -83,9 +80,10 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   }
 
   void initPlayer() async {
-    totalSongs = _songs.length;
+    totalSongs = musicBase.length;
     _index = 0;
-    songTitle = _songs[_index];
+    songTitle =
+        "${musicBase[_index]['name']} - ${musicBase[_index]['artists']}";
 
     audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
     audioPlayer.setReleaseMode(ReleaseMode.RELEASE);
@@ -151,13 +149,15 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   Future<int> _play({isLocal: true}) async {
     _controller.forward();
 
-    final result = await audioPlayer.play(_songs[_index], isLocal: isLocal);
+    final result =
+        await audioPlayer.play(musicBase[_index]['url'], isLocal: isLocal);
     if (result == 1) {
       debugPrint('=============${audioPlayer.playerId}');
       setState(() {
         playerState = PlayerState.playing;
         _icon = Icons.pause;
-        songTitle = _songs[_index];
+        songTitle =
+            "${musicBase[_index]['name']} - ${musicBase[_index]['artists']}";
       });
     }
     return result;
@@ -170,7 +170,8 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
       setState(() {
         playerState = PlayerState.paused;
         _icon = Icons.play_arrow;
-        songTitle = _songs[_index];
+        songTitle =
+            "${musicBase[_index]['name']} - ${musicBase[_index]['artists']}";
       });
     return result;
   }
@@ -224,17 +225,17 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            brightness: Brightness.light,
             backgroundColor: Colors.transparent,
             title: Text(''),
+            iconTheme: lightIconTheme,
             leading: IconButton(
                 icon: Icon(SimpleLineIcons.arrow_left, size: 20),
-                color: Color(0xFFDDDDDD),
                 onPressed: () => Navigator.pop(context)),
             elevation: 0.0,
             actions: <Widget>[
               IconButton(
                   icon: Icon(SimpleLineIcons.playlist, size: 20),
-                  color: Color(0xFFDDDDDD),
                   onPressed: () => showModalBottomSheet(
                       context: context,
                       builder: (builder) => _bottomSheetItem(context)))
@@ -242,60 +243,75 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
         body: Column(children: <Widget>[
           // Seek bar
           Expanded(
-              child: Center(
-                  child: Container(
-                      width: 200,
-                      height: 200,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: <Widget>[
-                          Container(
-                              decoration: BoxDecoration(
-                                  color: accentColor, shape: BoxShape.circle),
-                              child: RadialSeekBar(
-                                  trackColor: Colors.red.withOpacity(.5),
-                                  trackWidth: 2.0,
-                                  progressColor: Color(0xFFFE1483),
-                                  progressWidth: 5.0,
-                                  thumbPercent: _thumbPercent,
-                                  thumb: CircleThumb(
-                                      color: Color(0xFFFE1483), diameter: 15.0),
-                                  margin: 12.0,
-                                  progress: _thumbPercent,
-                                  onDragStart: (double percent) {},
-                                  onDragUpdate: (double percent) {
-                                    setState(() {
-                                      _thumbPercent = percent;
-                                      if (isPlaying) _pause();
+              child: RadialSeekBarUI(
+                  imageUrl: musicBase[_index]['img1v1Url'],
+                  controller: _controller,
+                  thumbPercent: _thumbPercent,
+                  onDragEnd: (double percent) {
+                    if (percent < 1.0) _play();
+                  },
+                  onDragUpdate: (double percent) {
+                    setState(() {
+                      _thumbPercent = percent;
+                      if (isPlaying) _pause();
 
-                                      if (duration != null) {
-                                        position = Duration(
-                                            milliseconds: (_thumbPercent *
-                                                    duration.inMilliseconds)
-                                                .round());
-                                        _seek(position);
-                                      }
-                                    });
-                                  },
-                                  onDragEnd: (double percent) {
-                                    if (percent < 1.0) _play();
-                                  })),
-                          RotationTransition(
-                              child: ImageLoadView(
-                                  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564830238704&di=11798dafaaad4d5f727bac5113ed9ba5&imgtype=0&src=http%3A%2F%2Fpic41.nipic.com%2F20140507%2F7160980_232207178322_2.jpg',
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(75.0)),
-                                  width: 150,
-                                  height: 150),
-                              turns: _controller)
-                        ],
-                      )))),
+                      if (duration != null) {
+                        position = Duration(
+                            milliseconds:
+                                (_thumbPercent * duration.inMilliseconds)
+                                    .round());
+                        _seek(position);
+                      }
+                    });
+                  })),
 
           // Lyric
-          Container(height: 125.0, width: double.infinity),
+          /// Container(height: 125.0, width: double.infinity),
+          Container(
+              height: 320.0,
+              child: Stack(children: <Widget>[
+                Wave(
+                    config: CustomConfig(
+                        gradients: [
+                          [
+                            Color.fromRGBO(233, 136, 124, 1),
+                            Color.fromRGBO(204, 171, 218, 1)
+                          ],
+                          [
+                            Color.fromRGBO(208, 230, 165, 1),
+                            Color.fromRGBO(245, 221, 149, 1)
+                          ],
+                          [
+                            Color.fromRGBO(245, 221, 149, 1),
+                            Color.fromRGBO(233, 136, 124, 1)
+                          ],
+                          [
+                            Color.fromRGBO(134, 227, 206, 1),
+                            Color.fromRGBO(208, 230, 165, 1)
+                          ]
+                        ],
+                        durations: [
+                          35000,
+                          19440,
+                          10800,
+                          6000
+                        ],
+                        heightPercentages: [
+                          0.20,
+                          0.23,
+                          0.25,
+                          0.30
+                        ],
+                        gradientBegin: Alignment.bottomLeft,
+                        gradientEnd: Alignment.topRight),
+                    wavePhase: 1.0,
+                    waveAmplitude: 0,
+                    size: Size(double.infinity, double.infinity)),
 
-          // Song title, artist name, and controls
-          _buildBottomControls()
+                // Song title, artist name, and controls
+                Positioned(
+                    child: _buildBottomControls(), left: 0, right: 0, bottom: 0)
+              ])),
         ]));
   }
 
@@ -303,10 +319,9 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     return Container(
         width: double.infinity,
         child: Material(
-            color: accentColor,
-            shadowColor: const Color(0x44000000),
+            type: MaterialType.transparency,
             child: Padding(
-                padding: EdgeInsets.only(top: 40, bottom: 50),
+                padding: EdgeInsets.only(bottom: 50),
                 child: Column(children: <Widget>[
                   RichText(
                       text: TextSpan(text: '', children: [
@@ -330,7 +345,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
                             height: 1.5))
                   ])),
                   Padding(
-                      padding: EdgeInsets.only(top: 40),
+                      padding: EdgeInsets.only(top: 20),
                       child: Row(children: <Widget>[
                         Spacer(),
                         _buildPreviousButton(),
@@ -394,12 +409,15 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   Widget _bottomSheetItem(BuildContext context) {
     return ListView(
         // 生成一个列表选择器
-        children: _songs.map((song) {
-      int index = _songs.indexOf(song);
+        children: musicBase.map((song) {
+      int index = musicBase.indexOf(song);
       return ListTile(
-          leading:
-              CircleAvatar(backgroundColor: Colors.blue, child: Text('$song')),
-          title: Text('$song'),
+          leading: ImageLoadView('${song['img1v1Url']}',
+              width: 40,
+              height: 40,
+              fit: BoxFit.cover,
+              borderRadius: BorderRadius.all(Radius.circular(20.0))),
+          title: Text('${song['name']}'),
           onTap: () {
             if (isPlaying || isPaused) {
               if (_index != index)

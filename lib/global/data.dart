@@ -696,4 +696,29 @@ List<String> guideList = [
   "images/qdaily/bg_whatsnew_bg_3.jpg"
 ];
 
-enum Direction { LEFT, RIGHT, UP, DOWN }
+List<Map<String, dynamic>> musicBase = [
+  {
+    'name': '无归',
+    'artists': '叶里',
+    'url': 'https://music.163.com/song/media/outer/url?id=404465743.mp3',
+    "img1v1Url":
+        "https://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+    'like': false
+  },
+  {
+    'name': '扉をあけて',
+    'artists': 'ANZA',
+    'url': 'https://music.163.com/song/media/outer/url?id=555959.mp3',
+    "img1v1Url":
+        "https://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+    'like': false
+  },
+  {
+    'name': 'Past The Stargazing Season',
+    'artists': 'Mili',
+    'url': 'https://music.163.com/song/media/outer/url?id=29401202.mp3',
+    "img1v1Url":
+        "https://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+    'like': false
+  }
+];
