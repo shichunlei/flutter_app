@@ -1,8 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-
-enum ImageType { network, assets, localFile }
+import 'package:flutter_app/enum/enum.dart';
 
 class ImageLoadView extends StatelessWidget {
   /// 图片URL

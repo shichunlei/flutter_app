@@ -1,8 +1,7 @@
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app/ui/image_load_view.dart';
-
+import '../../page_index.dart';
 import '../index.dart';
 
 class ContactPage extends StatefulWidget {

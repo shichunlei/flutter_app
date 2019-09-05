@@ -4,6 +4,7 @@
 
 #import "GeneratedPluginRegistrant.h"
 #import <amap_base_location/AMapBaseLocationPlugin.h>
+#import <audioplayers/AudioplayersPlugin.h>
 #import <barcode_scan/BarcodeScanPlugin.h>
 #import <city_pickers/CityPickersPlugin.h>
 #import <contact_picker/ContactPickerPlugin.h>
@@ -30,6 +31,7 @@
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
   [AMapBaseLocationPlugin registerWithRegistrar:[registry registrarForPlugin:@"AMapBaseLocationPlugin"]];
+  [AudioplayersPlugin registerWithRegistrar:[registry registrarForPlugin:@"AudioplayersPlugin"]];
   [BarcodeScanPlugin registerWithRegistrar:[registry registrarForPlugin:@"BarcodeScanPlugin"]];
   [CityPickersPlugin registerWithRegistrar:[registry registrarForPlugin:@"CityPickersPlugin"]];
   [ContactPickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"ContactPickerPlugin"]];

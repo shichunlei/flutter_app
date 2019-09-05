@@ -25,7 +25,7 @@ class FlipView extends StatefulWidget {
         super(key: key);
 
   @override
-  FlipViewState createState() => FlipViewState();
+  createState() => FlipViewState();
 }
 
 class FlipViewState extends State<FlipView>
@@ -42,22 +42,14 @@ class FlipViewState extends State<FlipView>
       if (_lastStatus == status) return;
       _lastStatus = status;
 
-      if (this.mounted) {
-        if (status == AnimationStatus.completed ||
-            status == AnimationStatus.reverse) {
-          setState(
-            () {
-              _animation = _calculateTweenSequence(widget.goFrontDirection);
-            },
-          );
-        } else if (status == AnimationStatus.dismissed ||
-            status == AnimationStatus.forward) {
-          setState(
-            () {
-              _animation = _calculateTweenSequence(widget.goBackDirection);
-            },
-          );
-        }
+      if (!this.mounted) return;
+
+      if (status == AnimationStatus.completed ||
+          status == AnimationStatus.reverse) {
+        _animation = _calculateTweenSequence(widget.goFrontDirection);
+      } else if (status == AnimationStatus.dismissed ||
+          status == AnimationStatus.forward) {
+        _animation = _calculateTweenSequence(widget.goBackDirection);
       }
     });
   }

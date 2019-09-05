@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../page_index.dart';
+
 class LineWidget extends StatelessWidget {
   final double height;
   final double width;
@@ -51,5 +53,3 @@ class LineWidget extends StatelessWidget {
     );
   }
 }
-
-enum LineType { vertical, horizontal }

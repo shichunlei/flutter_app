@@ -1,17 +1,27 @@
-import 'package:flute_music_player/flute_music_player.dart';
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter_app/page_index.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:fluttery_seekbar/fluttery_seekbar.dart';
+import 'package:http/http.dart';
+import 'package:path_provider/path_provider.dart';
 
-import '../page_index.dart';
+const kUrl1 = 'https://luan.xyz/files/audio/ambient_c_motion.mp3';
+const kUrl2 = 'https://luan.xyz/files/audio/nasa_on_a_mission.mp3';
 
-class FluteMusicPlayerPage extends StatefulWidget {
+class AudioPlayersPage extends StatefulWidget {
   @override
-  createState() => _FluteMusicPlayerPageState();
+  createState() => _AudioPlayersPageState();
 }
 
-class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
+class _AudioPlayersPageState extends State<AudioPlayersPage>
     with SingleTickerProviderStateMixin {
+  String localFilePath;
+
   AnimationController _controller;
 
   double _thumbPercent = 0.0;
@@ -20,9 +30,16 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
   Duration duration;
   Duration position;
 
-  List<Song> _songs = [];
+  List<String> _songs = [kUrl1, kUrl2];
 
-  MusicFinder audioPlayer;
+  AudioPlayer audioPlayer;
+  AudioPlayerState _audioPlayerState;
+
+  StreamSubscription _durationSubscription;
+  StreamSubscription _positionSubscription;
+  StreamSubscription _playerCompleteSubscription;
+  StreamSubscription _playerErrorSubscription;
+  StreamSubscription _playerStateSubscription;
 
   /// 当前音乐下标
   int _index = -1;
@@ -45,8 +62,6 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
   @override
   void initState() {
     super.initState();
-    audioPlayer = MusicFinder();
-
     _controller =
         AnimationController(vsync: this, duration: Duration(seconds: 5));
 
@@ -54,23 +69,13 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         /// 动画从 controller.forward() 正向执行 结束时会回调此方法
-        print("status is completed");
+        debugPrint("status is completed");
 
         /// 重置起点
         _controller.reset();
 
         /// 开启
         _controller.forward();
-      } else if (status == AnimationStatus.dismissed) {
-        /// 动画从 controller.reverse() 反向执行 结束时会回调此方法
-        print("status is dismissed");
-      } else if (status == AnimationStatus.forward) {
-        print("status is forward");
-
-        /// 执行 controller.forward() 会回调此状态
-      } else if (status == AnimationStatus.reverse) {
-        /// 执行 controller.reverse() 会回调此状态
-        print("status is reverse");
       }
     });
 
@@ -78,56 +83,59 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
   }
 
   void initPlayer() async {
-    try {
-      List<Song> songs = await MusicFinder.allSongs();
+    totalSongs = _songs.length;
+    _index = 0;
+    songTitle = _songs[_index];
 
-      songs = List.from(songs);
+    audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
+    audioPlayer.setReleaseMode(ReleaseMode.RELEASE);
 
-      debugPrint('${songs.toString()}=======${songs[0].uri}==');
+    _durationSubscription = audioPlayer.onDurationChanged.listen((Duration d) {
+      debugPrint('onDurationChanged===============Max duration: $d');
+      setState(() => duration = d);
+    });
 
-      if (songs.length > 0) {
-        setState(() {
-          _songs = songs;
-          totalSongs = _songs.length;
-          _index = 0;
-          songTitle = _songs[_index].title;
-        });
-      }
-    } catch (e) {
-      debugPrint(e.toString());
-    }
+    _positionSubscription =
+        audioPlayer.onAudioPositionChanged.listen((Duration p) {
+      debugPrint('onAudioPositionChanged===============position: $p');
+      setState(() {
+        position = p;
 
-    audioPlayer.setDurationHandler((d) => setState(() {
-          duration = d;
-          debugPrint('setDurationHandler========$duration');
-        }));
+        _thumbPercent = position != null && position.inMilliseconds > 0
+            ? (position?.inMilliseconds?.toDouble() ?? 0.0) /
+                (duration?.inMilliseconds?.toDouble() ?? 0.0)
+            : 0.0;
+      });
+    });
 
-    audioPlayer.setPositionHandler((p) => setState(() {
-          position = p;
-          debugPrint('setPositionHandler========$position');
-          _thumbPercent = position != null && position.inMilliseconds > 0
-              ? (position?.inMilliseconds?.toDouble() ?? 0.0) /
-                  (duration?.inMilliseconds?.toDouble() ?? 0.0)
-              : 0.0;
-        }));
-
-    audioPlayer.setCompletionHandler(() {
+    _playerCompleteSubscription =
+        audioPlayer.onPlayerCompletion.listen((event) {
       _onComplete();
       setState(() {
         position = duration;
 
-        debugPrint('setCompletionHandler========$position');
+        debugPrint('onPlayerCompletion========$position');
       });
     });
 
-    audioPlayer.setErrorHandler((msg) {
+    _playerErrorSubscription = audioPlayer.onPlayerError.listen((msg) {
+      debugPrint('audioPlayer error : $msg');
       setState(() {
         playerState = PlayerState.stopped;
         duration = Duration(seconds: 0);
         position = Duration(seconds: 0);
 
-        debugPrint('setErrorHandler========$position============$duration');
+        debugPrint('onPlayerError========$position============$duration');
       });
+    });
+
+    audioPlayer.onPlayerStateChanged.listen((AudioPlayerState state) {
+      if (!mounted) return;
+      setState(() {
+        _audioPlayerState = state;
+      });
+
+      debugPrint('${_audioPlayerState.toString()}');
     });
   }
 
@@ -140,33 +148,31 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
     });
   }
 
-  Future _play({isLocal: true}) async {
+  Future<int> _play({isLocal: true}) async {
     _controller.forward();
 
-    final result =
-        await audioPlayer.play(_songs[_index]?.uri, isLocal: isLocal);
-
+    final result = await audioPlayer.play(_songs[_index], isLocal: isLocal);
     if (result == 1) {
+      debugPrint('=============${audioPlayer.playerId}');
       setState(() {
         playerState = PlayerState.playing;
         _icon = Icons.pause;
-        songTitle = _songs[_index].title;
-
-        debugPrint('$songTitle 时长为： ${_songs[_index].duration}');
+        songTitle = _songs[_index];
       });
     }
+    return result;
   }
 
-  Future _pause() async {
+  Future<int> _pause() async {
     _controller.reset();
-
     final result = await audioPlayer.pause();
     if (result == 1)
       setState(() {
         playerState = PlayerState.paused;
         _icon = Icons.play_arrow;
-        songTitle = _songs[_index].title;
+        songTitle = _songs[_index];
       });
+    return result;
   }
 
   Future _stop() async {
@@ -177,17 +183,38 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
       setState(() {
         playerState = PlayerState.stopped;
         _icon = Icons.stop;
+        position = Duration();
       });
   }
 
-  Future _seek(double seconds) async {
-    await audioPlayer.seek((seconds / 1000).roundToDouble());
+  Future<int> _seek(Duration duration) async {
+    setState(() {
+      playerState = PlayerState.paused;
+    });
+    int result = await audioPlayer.seek(duration);
+
+    if (result == 1) {
+      setState(() {
+        playerState = PlayerState.playing;
+        position = duration;
+      });
+    }
+
+    return result;
+  }
+
+  void _setVolume(double volume) {
+    audioPlayer.setVolume(volume);
   }
 
   @override
   void dispose() {
     audioPlayer.stop();
-    audioPlayer = null;
+    _durationSubscription?.cancel();
+    _positionSubscription?.cancel();
+    _playerCompleteSubscription?.cancel();
+    _playerErrorSubscription?.cancel();
+    _playerStateSubscription?.cancel();
 
     _controller?.dispose();
     super.dispose();
@@ -241,12 +268,13 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
                                       _thumbPercent = percent;
                                       if (isPlaying) _pause();
 
-                                      position = Duration(
-                                          milliseconds: (_thumbPercent *
-                                                  duration.inMilliseconds)
-                                              .round());
-                                      _seek(_thumbPercent *
-                                          duration.inMilliseconds);
+                                      if (duration != null) {
+                                        position = Duration(
+                                            milliseconds: (_thumbPercent *
+                                                    duration.inMilliseconds)
+                                                .round());
+                                        _seek(position);
+                                      }
                                     });
                                   },
                                   onDragEnd: (double percent) {
@@ -369,11 +397,9 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
         children: _songs.map((song) {
       int index = _songs.indexOf(song);
       return ListTile(
-          leading: CircleAvatar(
-            backgroundColor: Colors.blue,
-            child: Text('${song?.title[0]}'),
-          ),
-          title: Text('${song?.title}'),
+          leading:
+              CircleAvatar(backgroundColor: Colors.blue, child: Text('$song')),
+          title: Text('$song'),
           onTap: () {
             if (isPlaying || isPaused) {
               if (_index != index)
@@ -391,5 +417,18 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
           },
           selected: _index == index);
     }).toList());
+  }
+
+  Future _loadFile(String url, String name) async {
+    final bytes = await readBytes(url);
+    final dir = await getApplicationDocumentsDirectory();
+    final file = File('${dir.path}/$name.mp3');
+
+    await file.writeAsBytes(bytes);
+    if (await file.exists()) {
+      setState(() {
+        localFilePath = file.path;
+      });
+    }
   }
 }

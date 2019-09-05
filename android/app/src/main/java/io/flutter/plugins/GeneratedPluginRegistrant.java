@@ -2,6 +2,7 @@ package io.flutter.plugins;
 
 import io.flutter.plugin.common.PluginRegistry;
 import me.yohom.amapbaselocation.AMapBaseLocationPlugin;
+import xyz.luan.audioplayers.AudioplayersPlugin;
 import com.apptreesoftware.barcodescan.BarcodeScanPlugin;
 import com.example.citypickers.CityPickersPlugin;
 import net.goderbauer.flutter.contactpicker.ContactPickerPlugin;
@@ -33,6 +34,7 @@ public final class GeneratedPluginRegistrant {
       return;
     }
     AMapBaseLocationPlugin.registerWith(registry.registrarFor("me.yohom.amapbaselocation.AMapBaseLocationPlugin"));
+    AudioplayersPlugin.registerWith(registry.registrarFor("xyz.luan.audioplayers.AudioplayersPlugin"));
     BarcodeScanPlugin.registerWith(registry.registrarFor("com.apptreesoftware.barcodescan.BarcodeScanPlugin"));
     CityPickersPlugin.registerWith(registry.registrarFor("com.example.citypickers.CityPickersPlugin"));
     ContactPickerPlugin.registerWith(registry.registrarFor("net.goderbauer.flutter.contactpicker.ContactPickerPlugin"));

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../page_index.dart';
+
 /// 渐变色
 class GradualChangeView extends StatelessWidget {
   final List<Color> colors;
@@ -80,5 +82,3 @@ class GradualChangeView extends StatelessWidget {
     );
   }
 }
-
-enum Rotation { LR, RL, TB, BT, TL2BR, BL2TR, TR2BL, BR2TL }

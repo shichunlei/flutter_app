@@ -99,8 +99,6 @@ class Config {
   ];
 }
 
-enum RefreshType { DEFAULT, LOAD_MORE, REFRESH }
-
 /// 所有主题色列表
 final List<Color> themeColors = [
   Colors.blue,

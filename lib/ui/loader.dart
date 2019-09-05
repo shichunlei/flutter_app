@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../page_index.dart';
 
-enum LoaderState { NoAction, Loading, Succeed, Failed, NoData }
-
 /// https://github.com/H-YKING/BeeUi/blob/master/lib/src/loader.dart
 class LoaderContainer extends StatefulWidget {
   final LoaderState loaderState;

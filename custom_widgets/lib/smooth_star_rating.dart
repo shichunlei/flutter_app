@@ -29,19 +29,19 @@ class SmoothStarRating extends StatelessWidget {
   Widget buildStar(BuildContext context, int index) {
     Icon icon;
     if (index >= rating) {
-      icon = new Icon(Icons.star_border,
+      icon = Icon(Icons.star_border,
           color: borderColor ?? Theme.of(context).primaryColor,
           size: size ?? 25.0);
     } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) &&
         index < rating) {
-      icon = new Icon(Icons.star_half,
+      icon = Icon(Icons.star_half,
           color: color ?? Theme.of(context).primaryColor, size: size ?? 25.0);
     } else {
-      icon = new Icon(Icons.star,
+      icon = Icon(Icons.star,
           color: color ?? Theme.of(context).primaryColor, size: size ?? 25.0);
     }
 
-    return new GestureDetector(
+    return GestureDetector(
         onTap: () {
           if (this.onRatingChanged != null) onRatingChanged(index + 1.0);
         },
@@ -63,12 +63,12 @@ class SmoothStarRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Material(
+    return Material(
         color: Colors.transparent,
-        child: new Wrap(
+        child: Wrap(
             alignment: WrapAlignment.start,
             spacing: spacing,
-            children: new List.generate(
+            children: List.generate(
                 starCount, (index) => buildStar(context, index))));
   }
 }

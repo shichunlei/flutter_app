@@ -51,11 +51,11 @@ class _ProgressButtonState extends State<ProgressButton>
   void initState() {
     super.initState();
 
-    _errorAnimationController = new AnimationController(
-        vsync: this, duration: Duration(milliseconds: 400));
+    _errorAnimationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 400));
 
-    _progressAnimationController = new AnimationController(
-        vsync: this, duration: Duration(milliseconds: 200));
+    _progressAnimationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
 
     // Define errorAnimation sequence
     _errorAnimation = TweenSequence<Offset>([

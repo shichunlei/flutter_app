@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/reviews.dart';
-import 'package:flutter_app/utils/toast.dart';
-import 'package:flutter_app/global/config.dart';
-import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/movie/ui/item_comment.dart';
-import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+import '../../page_index.dart';
 
 class MovieCommentPage extends StatefulWidget {
   final String id;

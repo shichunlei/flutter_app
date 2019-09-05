@@ -27,7 +27,7 @@ class BubbleBottomBar extends StatefulWidget {
         assert(
             items.every((BubbleBottomBarItem item) => item.title != null) ==
                 true,
-            'Every item must have a non-null title',),
+            'Every item must have a non-null title'),
         assert(0 <= currentIndex && currentIndex < items.length),
         assert(iconSize != null),
         super(key: key);
@@ -49,16 +49,13 @@ class BubbleBottomBar extends StatefulWidget {
 
 class _BottomNavigationTile extends StatelessWidget {
   const _BottomNavigationTile(
-    this.item,
-    this.opacity,
-    this.animation,
-    this.iconSize, {
-    this.onTap,
-    this.colorTween,
-    this.flex,
-    this.selected = false,
-    this.indexLabel,
-  }) : assert(selected != null);
+      this.item, this.opacity, this.animation, this.iconSize,
+      {this.onTap,
+      this.colorTween,
+      this.flex,
+      this.selected = false,
+      this.indexLabel})
+      : assert(selected != null);
 
   final BubbleBottomBarItem item;
   final Animation<double> animation;
@@ -75,71 +72,56 @@ class _BottomNavigationTile extends StatelessWidget {
     int size;
     Widget label;
     size = (flex * 1000.0).round();
-    label = _Label(
-      animation: animation,
-      item: item,
-      color: item.backgroundColor,
-    );
+    label =
+        _Label(animation: animation, item: item, color: item.backgroundColor);
 
     return Expanded(
-      flex: size,
-      child: Semantics(
-        container: true,
-        header: true,
-        selected: selected,
-        child: Stack(
-          children: <Widget>[
-            InkResponse(
-              onTap: onTap,
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              child: Container(
-                height: 48,
-                decoration: BoxDecoration(
-                    color: selected
-                        ? item.backgroundColor.withOpacity(opacity)
-                        : Colors.transparent,
-                    borderRadius: BorderRadius.horizontal(
-                      right: Radius.circular(50),
-                      left: Radius.circular(50),
-                    )),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: selected
-                      ? MainAxisAlignment.spaceEvenly
-                      : MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    _TileIcon(
-                      colorTween: colorTween,
-                      animation: animation,
-                      iconSize: iconSize,
-                      selected: selected,
-                      item: item,
-                    ),
-                    AnimatedCrossFade(
-                      alignment: Alignment(0, 0),
-                      firstChild: label,
-                      secondChild: Container(),
-                      duration: Duration(milliseconds: 200),
-                      sizeCurve: Curves.fastOutSlowIn,
-                      firstCurve: Curves.fastOutSlowIn,
-                      secondCurve: Curves.fastOutSlowIn.flipped,
-                      crossFadeState: selected
-                          ? CrossFadeState.showFirst
-                          : CrossFadeState.showSecond,
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Semantics(
-              label: indexLabel,
-            )
-          ],
-        ),
-      ),
-    );
+        flex: size,
+        child: Semantics(
+            container: true,
+            header: true,
+            selected: selected,
+            child: Stack(children: <Widget>[
+              InkResponse(
+                  onTap: onTap,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  child: Container(
+                      height: 48,
+                      decoration: BoxDecoration(
+                          color: selected
+                              ? item.backgroundColor.withOpacity(opacity)
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.horizontal(
+                              right: Radius.circular(50),
+                              left: Radius.circular(50))),
+                      child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: selected
+                              ? MainAxisAlignment.spaceEvenly
+                              : MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            _TileIcon(
+                                colorTween: colorTween,
+                                animation: animation,
+                                iconSize: iconSize,
+                                selected: selected,
+                                item: item),
+                            AnimatedCrossFade(
+                                alignment: Alignment(0, 0),
+                                firstChild: label,
+                                secondChild: Container(),
+                                duration: Duration(milliseconds: 200),
+                                sizeCurve: Curves.fastOutSlowIn,
+                                firstCurve: Curves.fastOutSlowIn,
+                                secondCurve: Curves.fastOutSlowIn.flipped,
+                                crossFadeState: selected
+                                    ? CrossFadeState.showFirst
+                                    : CrossFadeState.showSecond)
+                          ]))),
+              Semantics(label: indexLabel)
+            ])));
   }
 }
 
@@ -164,18 +146,15 @@ class _TileIcon extends StatelessWidget {
     Color iconColor;
     iconColor = Colors.white;
     return Align(
-      alignment: Alignment.topCenter,
-      heightFactor: 1.0,
-      child: Container(
-        child: IconTheme(
-          data: IconThemeData(
-            color: selected ? item.backgroundColor : iconColor,
-            size: iconSize,
-          ),
-          child: selected ? item.activeIcon : item.icon,
-        ),
-      ),
-    );
+        alignment: Alignment.topCenter,
+        heightFactor: 1.0,
+        child: Container(
+            child: IconTheme(
+                data: IconThemeData(
+                  color: selected ? item.backgroundColor : iconColor,
+                  size: iconSize,
+                ),
+                child: selected ? item.activeIcon : item.icon)));
   }
 }
 
@@ -194,23 +173,18 @@ class _Label extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.center,
-      heightFactor: 1.0,
-      child: Container(
-        child: FadeTransition(
-          alwaysIncludeSemantics: true,
-          opacity: animation,
-          child: DefaultTextStyle.merge(
-            style: TextStyle(
-              fontSize: _kActiveFontSize,
-              fontWeight: FontWeight.w600,
-              color: color,
-            ),
-            child: item.title,
-          ),
-        ),
-      ),
-    );
+        alignment: Alignment.center,
+        heightFactor: 1.0,
+        child: Container(
+            child: FadeTransition(
+                alwaysIncludeSemantics: true,
+                opacity: animation,
+                child: DefaultTextStyle.merge(
+                    style: TextStyle(
+                        fontSize: _kActiveFontSize,
+                        fontWeight: FontWeight.w600,
+                        color: color),
+                    child: item.title))));
   }
 }
 
@@ -307,68 +281,51 @@ class _BottomNavigationBarState extends State<BubbleBottomBar>
     assert(localizations != null);
     final List<Widget> children = <Widget>[];
     for (int i = 0; i < widget.items.length; i += 1) {
-      children.add(
-        _BottomNavigationTile(
-          widget.items[i],
-          widget.opacity,
-          _animations[i],
-          widget.iconSize,
+      children.add(_BottomNavigationTile(
+          widget.items[i], widget.opacity, _animations[i], widget.iconSize,
           onTap: () {
-            if (widget.onTap != null) widget.onTap(i);
-          },
+        if (widget.onTap != null) widget.onTap(i);
+      },
           flex: _evaluateFlex(_animations[i]),
           selected: i == widget.currentIndex,
           indexLabel: localizations.tabLabel(
-              tabIndex: i + 1, tabCount: widget.items.length),
-        ),
-      );
+              tabIndex: i + 1, tabCount: widget.items.length)));
     }
-    if (widget.fabLocation == BubbleBottomBarFabLocation.center) {
-      children.insert(
-          1,
-          Spacer(
-            flex: 1500,
-          ));
-    }
+    if (widget.fabLocation == BubbleBottomBarFabLocation.center)
+      children.insert(1, Spacer(flex: 1500));
+
     return children;
   }
 
   Widget _createContainer(List<Widget> tiles) {
     return DefaultTextStyle.merge(
-      overflow: TextOverflow.ellipsis,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: tiles,
-      ),
-    );
+        overflow: TextOverflow.ellipsis,
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: tiles));
   }
 
   Widget _inner(double additionalBottomPadding) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 10,
-      ),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-            minHeight: kBottomNavigationBarHeight + additionalBottomPadding),
-        child: Material(
-          type: MaterialType.transparency,
-          child: Padding(
-            padding: EdgeInsets.only(
-                bottom: additionalBottomPadding,
-                right: widget.fabLocation == BubbleBottomBarFabLocation.end
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: ConstrainedBox(
+            constraints: BoxConstraints(
+                minHeight:
+                    kBottomNavigationBarHeight + additionalBottomPadding),
+            child: Material(
+                type: MaterialType.transparency,
+                child: Padding(
+                    padding: EdgeInsets.only(
+                        bottom: additionalBottomPadding,
+                        right:
+                            widget.fabLocation == BubbleBottomBarFabLocation.end
 //                    MediaQuery.of(context).size.width * 2 / 3 < _fabCenter
-                    ? 72
-                    : 0),
-            child: MediaQuery.removePadding(
-              context: context,
-              removeBottom: true,
-              child: _createContainer(_createTiles()),
-            ),
-          ),
-        ),
-      ),
-    );
+                                ? 72
+                                : 0),
+                    child: MediaQuery.removePadding(
+                        context: context,
+                        removeBottom: true,
+                        child: _createContainer(_createTiles()))))));
   }
 
   @override
@@ -386,12 +343,10 @@ class _BottomNavigationBarState extends State<BubbleBottomBar>
                     ? widget.backgroundColor
                     : Colors.white,
                 clipper: _BubbleBottomBarClipper(
-                  shape: CircularNotchedRectangle(),
-                  geometry: geometryListenable,
-                  notchMargin: 8,
-                ),
-                child: _inner(additionalBottomPadding),
-              )
+                    shape: CircularNotchedRectangle(),
+                    geometry: geometryListenable,
+                    notchMargin: 8),
+                child: _inner(additionalBottomPadding))
             : Material(
                 elevation: widget.elevation != null ? widget.elevation : 8.0,
                 color: widget.backgroundColor != null
@@ -400,18 +355,17 @@ class _BottomNavigationBarState extends State<BubbleBottomBar>
                 child: _inner(additionalBottomPadding),
                 borderRadius: widget.borderRadius != null
                     ? widget.borderRadius
-                    : BorderRadius.zero,
-              ));
+                    : BorderRadius.zero));
   }
 }
 
 class BubbleBottomBarItem {
-  const BubbleBottomBarItem({
-    @required this.icon,
-    this.title,
-    Widget activeIcon,
-    this.backgroundColor,
-  })  : activeIcon = activeIcon ?? icon,
+  const BubbleBottomBarItem(
+      {@required this.icon,
+      this.title,
+      Widget activeIcon,
+      this.backgroundColor})
+      : activeIcon = activeIcon ?? icon,
         assert(icon != null);
   final Widget icon;
   final Widget activeIcon;
@@ -435,10 +389,8 @@ class _BubbleBottomBarClipper extends CustomClipper<Path> {
 
   @override
   Path getClip(Size size) {
-    final Rect button = geometry.value.floatingActionButtonArea?.translate(
-      0.0,
-      geometry.value.bottomNavigationBarTop * -1.0,
-    );
+    final Rect button = geometry.value.floatingActionButtonArea
+        ?.translate(0.0, geometry.value.bottomNavigationBarTop * -1.0);
 
     return shape.getOuterPath(Offset.zero & size, button?.inflate(notchMargin));
   }

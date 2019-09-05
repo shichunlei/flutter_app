@@ -3,15 +3,6 @@ import 'package:custom_widgets/custom_widgets.dart';
 
 import '../../page_index.dart';
 
-///页面的模式
-enum LoginMode {
-  ///登录账户
-  LOGIN,
-
-  ///注册账户
-  REGIST,
-}
-
 class LogonPage extends StatefulWidget {
   LogonPage({Key key}) : super(key: key);
 

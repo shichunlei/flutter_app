@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../page_index.dart';
+
 void pushAndRemovePage(BuildContext context, Widget routePage) {
   Navigator.of(context).pushAndRemoveUntil(
     MaterialPageRoute(builder: (context) => routePage),
@@ -235,5 +237,3 @@ class SlideRoute<T> extends PageRouteBuilder<T> {
               );
             });
 }
-
-enum SlideDirection { top, left, bottom, right }

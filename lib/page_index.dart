@@ -125,6 +125,7 @@ export 'qdaily/splash.dart';
 export 'wechat_friends/page/wechat_friends_circle.dart';
 
 export 'music_player/flute_music_player.dart';
+export 'music_player/audioplayers.dart';
 
 export 'weather/page/city_page.dart';
 export 'weather/page/weather_page.dart';
@@ -159,3 +160,5 @@ export 'delegates/custom_sliver_appbar_delegate.dart';
 
 export 'service/api_service.dart';
 export 'service/api_url.dart';
+
+export 'enum/enum.dart';

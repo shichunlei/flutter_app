@@ -75,7 +75,9 @@ class _SearchPageState extends State<SearchPage> {
                                       hintMaxLines: 1),
                                   style: TextStyle(
                                       color: Color(0xFF6A6C7A),
-                                      fontSize: 16)))),
+                                      fontSize: 16,
+                                      textBaseline:
+                                          TextBaseline.ideographic)))),
                       IconButton(
                           onPressed: () {
                             if (_controller.text.isEmpty) {

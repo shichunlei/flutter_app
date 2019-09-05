@@ -131,4 +131,8 @@ class Utils {
         RegExp("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*\$");
     return exp.hasMatch(email);
   }
+
+  static String duration2String(Duration duration) {
+    return duration?.toString()?.split('.')?.first ?? '';
+  }
 }
