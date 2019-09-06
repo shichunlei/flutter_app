@@ -164,7 +164,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   }
 
   Future<int> _pause() async {
-    _controller.reset();
+    _controller.stop();
     final result = await audioPlayer.pause();
     if (result == 1)
       setState(() {

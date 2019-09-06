@@ -274,6 +274,7 @@ class ExpandStateBean {
       SubExpandBean('仿抖音首页动画', TikTokPage()),
       SubExpandBean('Music Player', FluteMusicPlayerPage()),
       SubExpandBean('Audio Player', AudioPlayersPage()),
+      SubExpandBean('Flutter Sound', FlutterSoundPage()),
       SubExpandBean('仿闲鱼', XianyuHomePage()),
       SubExpandBean('Flutter 第一个Demo', RandomWords()),
     ]),

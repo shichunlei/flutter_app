@@ -158,7 +158,7 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
   }
 
   Future _pause() async {
-    _controller.reset();
+    _controller.stop();
 
     final result = await audioPlayer.pause();
     if (result == 1)
