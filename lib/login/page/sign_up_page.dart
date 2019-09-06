@@ -158,8 +158,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     color: Theme.of(context).primaryColor,
                     icon: Icon(
                         isShowPassWord
-                            ? CustomIcon.show_password
-                            : CustomIcon.hidden_password,
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                         color: Colors.black),
                     onPressed: () => showPassword())),
             onEditingComplete: () =>
