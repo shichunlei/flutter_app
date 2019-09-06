@@ -52,21 +52,20 @@ class _LabYouGuessPageState extends State<LabYouGuessPage>
                     backgroundColor: Colors.yellow,
                     child: Text('${currentPage + 1} / ${list.length}')))),
         Expanded(
-            child: PageView(
+            child: PageView.builder(
                 controller: _controller,
-                children: list
-                    .map((question) => ItemLabPageView(
-                        question: question,
-                        onTap: () {
-                          if (currentPage == list.length - 1) {
-                            Navigator.pop(context);
-                          } else {
-                            _controller.animateToPage(currentPage + 1,
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.decelerate);
-                          }
-                        }))
-                    .toList(),
+                itemBuilder: (_, index) => ItemLabPageView(
+                    question: list[index],
+                    onTap: () {
+                      if (currentPage == list.length - 1) {
+                        Navigator.pop(context);
+                      } else {
+                        _controller.animateToPage(currentPage + 1,
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.decelerate);
+                      }
+                    }),
+                itemCount: list.length,
                 onPageChanged: (index) => setState(() => currentPage = index))),
         BottomAppbar(actions: <Widget>[
           IconButton(
