@@ -81,6 +81,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # 侧滑菜单
   flutter_inner_drawer: ^0.3.0
 
+  # https://github.com/dooboolab/flutter_sound
   flutter_sound: ^1.4.3
 
   # 加载提示组件

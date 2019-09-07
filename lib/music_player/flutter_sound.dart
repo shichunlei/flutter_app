@@ -1,12 +1,13 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:intl/intl.dart';
 
 import '../page_index.dart';
+import 'widgets/cd_view.dart';
 
 class FlutterSoundPage extends StatefulWidget {
   FlutterSoundPage({Key key}) : super(key: key);
@@ -37,6 +38,12 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
   double maxDuration = 1.0; //时长
   bool _isPlaying = false;
 
+  String get currentPositionTxt => DateFormat('mm:ss', 'en_US')
+      .format(DateTime.fromMillisecondsSinceEpoch(_value.toInt()));
+
+  String get maxDurationTxt => DateFormat('mm:ss', 'en_US')
+      .format(DateTime.fromMillisecondsSinceEpoch(maxDuration.toInt()));
+
   @override
   void initState() {
     super.initState();
@@ -48,7 +55,9 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
   @override
   void dispose() {
     _controller?.dispose();
-    stopPlayer();
+    flutterSound.stopPlayer();
+    _playerSubscription?.cancel();
+    _playerSubscription = null;
     super.dispose();
   }
 
@@ -62,46 +71,10 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
           Container(
               height: 300.0,
               child: Swiper(
-                  itemBuilder: (BuildContext context, int index) => Container(
-                      alignment: Alignment.center,
-                      child: AnimatedBuilder(
+                  itemBuilder: (BuildContext context, int index) =>
+                      AnimatedCDView(
                           animation: _controller,
-                          builder: (BuildContext context, Widget child) =>
-                              Transform.rotate(
-                                  angle: _controller.value * 2 * pi,
-                                  child: child),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(200.0),
-                                  border: Border.all(
-                                      color:
-                                          Color.fromRGBO(192, 193, 193, 0.2)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color:
-                                            Color.fromRGBO(192, 193, 193, 0.35),
-                                        blurRadius: 15.0,
-                                        spreadRadius: 4.0,
-                                        offset: Offset(0.0, 0.0))
-                                  ]),
-                              child: CircleAvatar(
-                                  backgroundColor: Colors.white,
-                                  radius: 100.0,
-                                  child: Stack(children: <Widget>[
-                                    ImageLoadView(musicBase[index]['img1v1Url'],
-                                        height: 190,
-                                        width: 190,
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(150.0)),
-                                        fit: BoxFit.cover),
-                                    CircleAvatar(
-                                        backgroundColor: Colors.white,
-                                        radius: 27.5,
-                                        child: CircleAvatar(
-                                            backgroundColor: Color.fromRGBO(
-                                                192, 193, 193, 0.35),
-                                            radius: 23.0))
-                                  ], alignment: Alignment.center))))),
+                          imageUrl: musicBase[index]['img1v1Url']),
                   onIndexChanged: (i) => setState(() {
                         onTop = i;
                         _name = musicBase[i]['name'];
@@ -189,7 +162,9 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
               },
               value: _value,
               min: 0.0,
-              max: maxDuration)
+              max: maxDuration),
+
+          Text('$currentPositionTxt / $maxDurationTxt')
         ]));
   }
 
