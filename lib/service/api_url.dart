@@ -139,11 +139,20 @@ class ApiUrl {
   /// 搜索热词
   static final String BOOK_HOT_WORDS_URL = '/book/hot-word';
 
+  /// 带书籍数量的父分类
+  static final String BOOK_STATISTICS_URL = '/cats/lv2/statistics';
+
+  /// 获取二级分类
+  static final String BOOK_CATEGORY_URL = '/cats/lv2';
+
   /// 书评列表
   static final String BOOK_REVIEW_URL = '/post/review/by-book';
 
   /// 短评列表
   static final String BOOK_SHORT_REVIEW_URL = '/post/short-review';
+
+  /// 讨论列表
+  static final String BOOK_TALK_URL = '/post/by-book';
 
   /// 获取小说所有排行榜
   static final String BOOK_RANKING_URL = '/ranking/gender';

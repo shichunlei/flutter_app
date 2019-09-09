@@ -40,36 +40,34 @@ class _SearchResultPageState extends State<SearchResultPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.grey[200],
-        appBar: AppBar(
-            brightness: Brightness.light,
-            title: Text('跟“${widget.keyword}“有关的书籍',
-                style: TextStyle(color: Colors.black54)),
-            backgroundColor: Colors.white,
-            elevation: 0.0,
-            iconTheme: lightIconTheme),
-        body: LoaderContainer(
-            contentView: EasyRefresh(
-                refreshFooter: BallPulseFooter(
-                    key: _footerKey,
-                    color: readerMainColor,
-                    backgroundColor: Colors.white),
-                loadMore:
-                    isLoadComplete ? null : () async => search(widget.keyword),
-                child: ListView.separated(
-                    padding: EdgeInsets.only(top: 3),
-                    itemBuilder: (_, index) => ItemBook(
-                        book: _books[index],
-                        onPressed: () => pushNewPage(
-                            context,
-                            BookDetailsPage(
-                                id: _books[index].id,
-                                imageUrl: _books[index].cover))),
-                    itemCount: _books.length,
-                    separatorBuilder: (BuildContext context, int index) =>
-                        Gaps.vGap3)),
-            loaderState: _status));
+    return LightTheme(
+      child: Scaffold(
+          appBar: AppBar(
+              title: Text('跟“${widget.keyword}“有关的书籍',
+                  style: TextStyle(color: Colors.black54))),
+          body: LoaderContainer(
+              contentView: EasyRefresh(
+                  refreshFooter: BallPulseFooter(
+                      key: _footerKey,
+                      color: readerMainColor,
+                      backgroundColor: Colors.white),
+                  loadMore: isLoadComplete
+                      ? null
+                      : () async => search(widget.keyword),
+                  child: ListView.separated(
+                      padding: EdgeInsets.only(top: 3),
+                      itemBuilder: (_, index) => ItemBook(
+                          book: _books[index],
+                          onPressed: () => pushNewPage(
+                              context,
+                              BookDetailsPage(
+                                  id: _books[index].id,
+                                  imageUrl: _books[index].cover))),
+                      itemCount: _books.length,
+                      separatorBuilder: (BuildContext context, int index) =>
+                          Gaps.vGap3)),
+              loaderState: _status)),
+    );
   }
 
   void search(String query) async {

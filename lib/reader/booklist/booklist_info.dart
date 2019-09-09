@@ -37,81 +37,80 @@ class _BookListInfoPageState extends State<BookListInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.grey[200],
-        appBar: AppBar(
-            brightness: Brightness.light,
-            elevation: 0.0,
-            iconTheme: lightIconTheme,
-            title: Text('书单详情', style: TextStyle(color: Colors.black54)),
-            backgroundColor: Colors.white),
-        body: LoaderContainer(
-            contentView: SingleChildScrollView(
-              child: Column(children: <Widget>[
-                /// 书单信息
-                Container(
-                    color: Colors.white,
-                    padding: EdgeInsets.all(15),
-                    child: Column(children: <Widget>[
-                      Text('${booklist?.title}', style: TextStyles.textDark16),
-                      Wrap(
-                          spacing: 5,
-                          children: booklist != null
-                              ? booklist.tags
-                                  .map((tag) => Chip(label: Text('$tag')))
-                                  .toList()
-                              : []),
-                      Gaps.vGap5,
-                      Text('${booklist?.desc}', style: TextStyles.textGrey14),
-                      Gaps.vGap5,
-                      Row(children: <Widget>[
-                        ImageLoadView('${booklist?.author?.avatar}',
-                            width: 35,
-                            height: 35,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0))),
-                        Gaps.hGap5,
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(children: <Widget>[
-                                Text('${booklist?.author?.nickname}',
-                                    style: TextStyles.textGrey12),
-                                Gaps.hGap5,
-                                TagView(tag: 'lv.${booklist?.author?.lv}')
-                              ]),
-                              Text('创建于${booklist?.created}',
-                                  style: TextStyles.textGreyC12)
-                            ])
-                      ]),
-                    ], crossAxisAlignment: CrossAxisAlignment.start)),
-                Gaps.vGap8,
+    return LightTheme(
+      child: Scaffold(
+          appBar: AppBar(
+              title: Text('书单详情', style: TextStyle(color: Colors.black54))),
+          body: LoaderContainer(
+              contentView: SingleChildScrollView(
+                child: Column(children: <Widget>[
+                  /// 书单信息
+                  Container(
+                      color: Colors.white,
+                      padding: EdgeInsets.all(15),
+                      child: Column(children: <Widget>[
+                        Text('${booklist?.title}',
+                            style: TextStyles.textDark16),
+                        Wrap(
+                            spacing: 5,
+                            children: booklist != null
+                                ? booklist.tags
+                                    .map((tag) => Chip(label: Text('$tag')))
+                                    .toList()
+                                : []),
+                        Gaps.vGap5,
+                        Text('${booklist?.desc}', style: TextStyles.textGrey14),
+                        Gaps.vGap5,
+                        Row(children: <Widget>[
+                          ImageLoadView('${booklist?.author?.avatar}',
+                              width: 35,
+                              height: 35,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0))),
+                          Gaps.hGap5,
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Row(children: <Widget>[
+                                  Text('${booklist?.author?.nickname}',
+                                      style: TextStyles.textGrey12),
+                                  Gaps.hGap5,
+                                  TagView(tag: 'lv.${booklist?.author?.lv}')
+                                ]),
+                                Text('创建于${booklist?.created}',
+                                    style: TextStyles.textGreyC12)
+                              ])
+                        ]),
+                      ], crossAxisAlignment: CrossAxisAlignment.start)),
+                  Gaps.vGap8,
 
-                /// 书单书籍
-                Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    color: Colors.white,
-                    width: double.infinity,
-                    child: Wrap(children: _buildTab(), spacing: 5)),
-                Gaps.vGap8,
+                  /// 书单书籍
+                  Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      color: Colors.white,
+                      width: double.infinity,
+                      child: Wrap(children: _buildTab(), spacing: 5)),
+                  Gaps.vGap8,
 
-                ListView.separated(
-                    itemBuilder: (_, index) => ItemBookListBook(
-                        book: _books[index],
-                        onPressed: () => pushNewPage(
-                            context,
-                            BookDetailsPage(
-                                id: _books[index].book.id,
-                                imageUrl: _books[index].book.cover))),
-                    itemCount: _books.length,
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    primary: false,
-                    separatorBuilder: (context, index) => Gaps.vGap3)
-              ], crossAxisAlignment: CrossAxisAlignment.start),
-            ),
-            loaderState: _status));
+                  ListView.separated(
+                      itemBuilder: (_, index) => ItemBookListBook(
+                          book: _books[index],
+                          onPressed: () => pushNewPage(
+                              context,
+                              BookDetailsPage(
+                                  id: _books[index].book.id,
+                                  imageUrl: _books[index].book.cover))),
+                      itemCount: _books.length,
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      primary: false,
+                      separatorBuilder: (context, index) => Gaps.vGap3)
+                ], crossAxisAlignment: CrossAxisAlignment.start),
+              ),
+              loaderState: _status)),
+    );
   }
 
   void getBookListInfo(String booklistId) async {

@@ -80,39 +80,38 @@ class _BookStorePageState extends State<BookStorePage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-          brightness: Brightness.light,
-          backgroundColor: Colors.white,
-          elevation: 0.0,
-          automaticallyImplyLeading: false,
-          title: TabBar(
-              tabs: tabs,
-              controller: _controller,
-              indicatorColor: readerMainColor,
-              labelColor: readerMainColor,
-              unselectedLabelColor: Colors.grey,
-              indicatorSize: TabBarIndicatorSize.label,
-              labelStyle: TextStyle(fontSize: 16))),
-      body: Column(
-        children: <Widget>[
-          buildSearchBar(context),
-          Expanded(
-            child: TabBarView(controller: _controller, children: [
-              StoreBooksPage(
-                  gender: 'male',
-                  major: '仙侠',
-                  hiddenHeader: false,
-                  banners: banners),
-              StoreBooksPage(gender: 'male', major: '玄幻', banners: maleBanners),
-              StoreBooksPage(
-                  gender: 'female', major: '现代言情', banners: femaleBanners),
-              StoreBooksPage(
-                  gender: 'press', major: '出版小说', banners: pressBanners)
-            ]),
-          )
-        ],
+    return LightTheme(
+      child: Scaffold(
+        appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: TabBar(
+                tabs: tabs,
+                controller: _controller,
+                indicatorColor: readerMainColor,
+                labelColor: readerMainColor,
+                unselectedLabelColor: Colors.grey,
+                indicatorSize: TabBarIndicatorSize.label,
+                labelStyle: TextStyle(fontSize: 16))),
+        body: Column(
+          children: <Widget>[
+            buildSearchBar(context),
+            Expanded(
+              child: TabBarView(controller: _controller, children: [
+                StoreBooksPage(
+                    gender: 'male',
+                    major: '仙侠',
+                    hiddenHeader: false,
+                    banners: banners),
+                StoreBooksPage(
+                    gender: 'male', major: '玄幻', banners: maleBanners),
+                StoreBooksPage(
+                    gender: 'female', major: '现代言情', banners: femaleBanners),
+                StoreBooksPage(
+                    gender: 'press', major: '出版小说', banners: pressBanners)
+              ]),
+            )
+          ],
+        ),
       ),
     );
   }

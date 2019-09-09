@@ -30,27 +30,24 @@ class _BookListPageState extends State<BookListPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-          brightness: Brightness.light,
-          elevation: 0.0,
-          iconTheme: lightIconTheme,
-          title: Text('书单', style: TextStyle(color: Colors.black54)),
-          backgroundColor: Colors.white,
-          bottom: TabBar(
-              tabs: tabs,
-              controller: _controller,
-              indicatorColor: readerMainColor,
-              labelColor: readerMainColor,
-              unselectedLabelColor: Colors.grey,
-              indicatorSize: TabBarIndicatorSize.label,
-              labelStyle: TextStyle(fontSize: 16))),
-      body: TabBarView(controller: _controller, children: [
-        BookListsPage(gender: 'male'),
-        BookListsPage(gender: 'female'),
-        BookListsPage(gender: 'press')
-      ]),
+    return LightTheme(
+      child: Scaffold(
+        appBar: AppBar(
+            title: Text('书单', style: TextStyle(color: Colors.black54)),
+            bottom: TabBar(
+                tabs: tabs,
+                controller: _controller,
+                indicatorColor: readerMainColor,
+                labelColor: readerMainColor,
+                unselectedLabelColor: Colors.grey,
+                indicatorSize: TabBarIndicatorSize.label,
+                labelStyle: TextStyle(fontSize: 16))),
+        body: TabBarView(controller: _controller, children: [
+          BookListsPage(gender: 'male'),
+          BookListsPage(gender: 'female'),
+          BookListsPage(gender: 'press')
+        ]),
+      ),
     );
   }
 }

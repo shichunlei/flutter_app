@@ -37,28 +37,26 @@ class _PicturePageState extends State<PicturePage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-          brightness: Brightness.light,
-          backgroundColor: Colors.white,
-          elevation: 0.0,
-          iconTheme: lightIconTheme,
-          title: Text('漫画', style: TextStyle(color: Colors.black54)),
-          bottom: TabBar(
-              tabs: tabs,
-              isScrollable: true,
-              controller: _controller,
-              indicatorColor: readerMainColor,
-              labelColor: readerMainColor,
-              unselectedLabelColor: Colors.grey,
-              indicatorSize: TabBarIndicatorSize.label,
-              labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              unselectedLabelStyle: TextStyle(fontSize: 16))),
-      body: TabBarView(
-          children:
-              titles.map((title) => PictureBookPage(major: title)).toList(),
-          controller: _controller),
+    return LightTheme(
+      child: Scaffold(
+        appBar: AppBar(
+            title: Text('漫画', style: TextStyle(color: Colors.black54)),
+            bottom: TabBar(
+                tabs: tabs,
+                isScrollable: true,
+                controller: _controller,
+                indicatorColor: readerMainColor,
+                labelColor: readerMainColor,
+                unselectedLabelColor: Colors.grey,
+                indicatorSize: TabBarIndicatorSize.label,
+                labelStyle:
+                    TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                unselectedLabelStyle: TextStyle(fontSize: 16))),
+        body: TabBarView(
+            children:
+                titles.map((title) => PictureBookPage(major: title)).toList(),
+            controller: _controller),
+      ),
     );
   }
 }

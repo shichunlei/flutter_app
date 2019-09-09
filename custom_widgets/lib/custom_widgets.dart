@@ -2,6 +2,7 @@ library custom_widgets;
 
 export 'animated_rotation_box.dart';
 export 'avatar_glow.dart';
+export 'bottom_bar_view.dart';
 export 'bottom_drag_widget.dart';
 export 'bubble_bottom_bar.dart';
 export 'circle_progress.dart';

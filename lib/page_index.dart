@@ -85,6 +85,7 @@ export 'bars_demo/fancy_bottom_navigation.dart';
 export 'bars_demo/bottom_appbar.dart';
 export 'bars_demo/bubble_bottom_bar.dart';
 export 'bars_demo/cupertino_tabbar.dart';
+export 'bars_demo/bottom_barview.dart';
 
 export 'utils/utils.dart';
 export 'utils/http_utils.dart';
@@ -119,6 +120,7 @@ export 'ui/section_view.dart';
 export 'ui/web_view.dart';
 export 'ui/input_text_view.dart';
 export 'ui/icon_text.dart';
+export 'ui/light_theme.dart';
 
 export 'qdaily/splash.dart';
 

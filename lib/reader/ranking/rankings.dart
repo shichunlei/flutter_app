@@ -47,30 +47,29 @@ class _RankingsPageState extends State<RankingsPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          brightness: Brightness.light,
-          elevation: 0.0,
-          iconTheme: lightIconTheme,
-          title: Text('排行', style: TextStyle(color: Colors.black54)),
-          backgroundColor: Colors.white,
-          bottom: TabBar(
-              tabs: tabs,
-              controller: _controller,
-              indicatorColor: readerMainColor,
-              labelColor: readerMainColor,
-              unselectedLabelColor: Colors.grey,
-              indicatorSize: TabBarIndicatorSize.label,
-              labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              unselectedLabelStyle: TextStyle(fontSize: 16))),
-      body: LoaderContainer(
-          contentView: TabBarView(controller: _controller, children: [
-            RankingPage(ranking: female),
-            RankingPage(ranking: male),
-            RankingPage(ranking: picture),
-            RankingPage(ranking: epub)
-          ]),
-          loaderState: _status),
+    return LightTheme(
+      child: Scaffold(
+        appBar: AppBar(
+            title: Text('排行', style: TextStyle(color: Colors.black54)),
+            bottom: TabBar(
+                tabs: tabs,
+                controller: _controller,
+                indicatorColor: readerMainColor,
+                labelColor: readerMainColor,
+                unselectedLabelColor: Colors.grey,
+                indicatorSize: TabBarIndicatorSize.label,
+                labelStyle:
+                    TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                unselectedLabelStyle: TextStyle(fontSize: 16))),
+        body: LoaderContainer(
+            contentView: TabBarView(controller: _controller, children: [
+              RankingPage(ranking: female),
+              RankingPage(ranking: male),
+              RankingPage(ranking: picture),
+              RankingPage(ranking: epub)
+            ]),
+            loaderState: _status),
+      ),
     );
   }
 

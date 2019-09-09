@@ -1691,6 +1691,32 @@ class ApiService {
     }
   }
 
+  /// 小说讨论列表
+  static Future<List<Post>> getBookTalks(String id,
+      {String sort: 'updated',
+      int start: 1,
+      int limit: 20,
+      String type: 'normal'}) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
+        .request(ApiUrl.BOOK_TALK_URL, data: {
+      "book": id,
+      "sort": sort,
+      "start": start,
+      "limit": limit,
+      "type": type
+    });
+    if (response.statusCode != 200) {
+      return [];
+    }
+
+    BookResult result = BookResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result.posts;
+    } else {
+      return [];
+    }
+  }
+
   /// 获取小说正版源
   static Future<BtocResult> getBookBtocSource(String bookId) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL).request(
@@ -1770,6 +1796,39 @@ class ApiService {
     RankingResult result = RankingResult.fromMap(json.decode(response.data));
     if (result.ok) {
       return result.ranking;
+    } else {
+      return null;
+    }
+  }
+
+  /// 获取分类
+  static Future<StatisticsResult> getBookStatistics() async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
+        .request(ApiUrl.BOOK_STATISTICS_URL, data: null);
+    if (response.statusCode != 200) {
+      return null;
+    }
+
+    StatisticsResult result =
+        StatisticsResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result;
+    } else {
+      return null;
+    }
+  }
+
+  /// 获取二级分类
+  static Future<CategoryResult> getBookCategory() async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
+        .request(ApiUrl.BOOK_CATEGORY_URL, data: null);
+    if (response.statusCode != 200) {
+      return null;
+    }
+
+    CategoryResult result = CategoryResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result;
     } else {
       return null;
     }
