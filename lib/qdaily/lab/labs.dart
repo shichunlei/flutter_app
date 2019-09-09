@@ -23,8 +23,6 @@ class _LabsPageState extends State<LabsPage>
 
   List<FeedsBean> feeds = [];
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   bool isLoadComplete = false;
 
   ResponseBean responseBean;
@@ -44,9 +42,8 @@ class _LabsPageState extends State<LabsPage>
 
   Widget _buildBodyView() {
     return EasyRefresh(
-        refreshFooter: BallPulseFooter(
-            key: _footerKey, color: Colors.red, backgroundColor: Colors.white),
-        loadMore: isLoadComplete ? null : () async => getLabsData(lastKey),
+        footer: BallPulseFooter(),
+        onLoad: isLoadComplete ? null : () async => getLabsData(lastKey),
         child: ListView.separated(
             separatorBuilder: (BuildContext context, int index) =>
                 Container(height: 5, color: Colors.grey[200]),

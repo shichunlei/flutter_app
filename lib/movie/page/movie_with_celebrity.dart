@@ -24,8 +24,6 @@ class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
   int page = 1;
   int pageSize = 30;
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   bool isFirst = true;
 
   List<Movie> movies = [];
@@ -76,13 +74,8 @@ class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
       return getLoadingWidget();
     }
     return EasyRefresh(
-      autoControl: true,
-      refreshFooter: BallPulseFooter(
-        key: _footerKey,
-        color: Colors.indigo,
-        backgroundColor: Colors.white,
-      ),
-      loadMore: isLoadComplete
+      footer: BallPulseFooter(),
+      onLoad: isLoadComplete
           ? null
           : () async {
               page++;

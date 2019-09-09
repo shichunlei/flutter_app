@@ -29,6 +29,8 @@ class S implements WidgetsLocalizations {
   String get choose => "Please Choose";
   String get close => "close";
   String get collect => "Collect";
+  String get completeLoad => "Load done";
+  String get completeRefresh => "Refresh done";
   String get contact => "Contact";
   String get contacts => "Contacts";
   String get create_address => "Create Address";
@@ -45,13 +47,28 @@ class S implements WidgetsLocalizations {
   String get input_phone => "Please enter your account";
   String get input_v_code => "Please enter your identifying code";
   String get language => "Choose Language";
+  String get loadFailed => "Load failed";
+  String get loadFinish => "Load completed";
+  String get loadMore => "LoadMore";
+  String get loaded => "Load completed";
+  String get loading => "Loading...";
   String get login => "Login";
   String get menu => "menu";
+  String get noMore => "No more";
   String get password_login => "Password Login";
   String get pick_a_color => "Pick a color!";
   String get poetry => "Poetry";
+  String get pullToRefresh => "Pull to refresh";
+  String get pushToLoad => "Pull to load";
   String get quickly_login => "Quickly Login";
+  String get refresh => "Refresh";
+  String get refreshFailed => "Refresh failed";
+  String get refreshFinish => "Refresh completed";
+  String get refreshed => "Refresh completed";
+  String get refreshing => "Refreshing...";
   String get register => "Register";
+  String get releaseToLoad => "Release to load";
+  String get releaseToRefresh => "Release to refresh";
   String get reset_password => "Reset Password";
   String get save => "Save";
   String get setting => "Setting";
@@ -62,6 +79,7 @@ class S implements WidgetsLocalizations {
   String get theme => "Choose Theme";
   String get tip => "Tip : The account is not registered? please ";
   String get update => "Update";
+  String get updateAt => "Update at %T";
   String get zh => "Chinese";
 }
 
@@ -74,65 +92,47 @@ class $zh_HK extends S {
   @override
   String get cancel => "取消";
   @override
-  String get submit => "提交";
-  @override
   String get go_register => "還沒賬號？快去註冊";
   @override
-  String get input_password => "請輸入密碼";
-  @override
-  String get save => "保存";
-  @override
-  String get update => "檢查更新";
+  String get updateAt => "更新于于 %T";
   @override
   String get language => "選擇語言";
   @override
-  String get choose => "請選擇";
-  @override
-  String get login => "登錄";
-  @override
-  String get quickly_login => "快速登錄";
-  @override
-  String get delete => "刪除";
+  String get releaseToLoad => "釋放加载";
   @override
   String get setting => "設置";
   @override
-  String get eidt_address => "修改地址";
+  String get loaded => "加載完成";
   @override
-  String get cancel_collect => "取消收藏";
+  String get refreshFailed => "刷新失敗";
   @override
-  String get get_v_code => "獲取驗證碼";
+  String get pushToLoad => "拉動加載";
   @override
   String get contact => "聯繫人";
   @override
-  String get theme => "選擇主題";
-  @override
   String get tip => "提示：位註冊賬號的手機號，請先";
-  @override
-  String get share => "分享";
-  @override
-  String get close => "關閉";
-  @override
-  String get poetry => "詩詞";
   @override
   String get sure => "確定";
   @override
-  String get address => "收貨地址";
-  @override
   String get edit => "編輯";
+  @override
+  String get loadMore => "加載";
+  @override
+  String get loadFailed => "加載失败";
   @override
   String get en => "英文";
   @override
-  String get menu => "菜單";
-  @override
-  String get input_v_code => "請輸入驗證碼";
+  String get loading => "正在加載...";
   @override
   String get zh => "中文";
   @override
+  String get refreshFinish => "刷新完成";
+  @override
   String get exit => "退出賬號";
   @override
-  String get pick_a_color => "選擇一種顏色!";
-  @override
   String get fail => "失敗";
+  @override
+  String get completeLoad => "完成加载";
   @override
   String get success => "成功";
   @override
@@ -146,9 +146,63 @@ class $zh_HK extends S {
   @override
   String get password_login => "密碼登錄";
   @override
-  String get create_address => "新增地址";
-  @override
   String get collect => "收藏";
+  @override
+  String get noMore => "沒有更多數據";
+  @override
+  String get submit => "提交";
+  @override
+  String get input_password => "請輸入密碼";
+  @override
+  String get save => "保存";
+  @override
+  String get update => "檢查更新";
+  @override
+  String get choose => "請選擇";
+  @override
+  String get login => "登錄";
+  @override
+  String get quickly_login => "快速登錄";
+  @override
+  String get delete => "刪除";
+  @override
+  String get loadFinish => "加載完成";
+  @override
+  String get eidt_address => "修改地址";
+  @override
+  String get cancel_collect => "取消收藏";
+  @override
+  String get get_v_code => "獲取驗證碼";
+  @override
+  String get releaseToRefresh => "釋放刷新";
+  @override
+  String get theme => "選擇主題";
+  @override
+  String get share => "分享";
+  @override
+  String get close => "關閉";
+  @override
+  String get completeRefresh => "完成刷新";
+  @override
+  String get poetry => "詩詞";
+  @override
+  String get address => "收貨地址";
+  @override
+  String get refreshed => "刷新完成";
+  @override
+  String get pullToRefresh => "拉動刷新";
+  @override
+  String get refresh => "刷新";
+  @override
+  String get menu => "菜單";
+  @override
+  String get input_v_code => "請輸入驗證碼";
+  @override
+  String get pick_a_color => "選擇一種顏色!";
+  @override
+  String get refreshing => "正在刷新...";
+  @override
+  String get create_address => "新增地址";
   @override
   String get contacts => "通訊錄";
   @override
@@ -166,65 +220,47 @@ class $zh_TW extends S {
   @override
   String get cancel => "取消";
   @override
-  String get submit => "提交";
-  @override
   String get go_register => "還沒賬號？快去註冊";
   @override
-  String get input_password => "請輸入密碼";
-  @override
-  String get save => "保存";
-  @override
-  String get update => "檢查更新";
+  String get updateAt => "更新于于 %T";
   @override
   String get language => "選擇語言";
   @override
-  String get choose => "請選擇";
-  @override
-  String get login => "登錄";
-  @override
-  String get quickly_login => "快速登錄";
-  @override
-  String get delete => "刪除";
+  String get releaseToLoad => "釋放加载";
   @override
   String get setting => "設置";
   @override
-  String get eidt_address => "修改地址";
+  String get loaded => "加載完成";
   @override
-  String get cancel_collect => "取消收藏";
+  String get refreshFailed => "刷新失敗";
   @override
-  String get get_v_code => "獲取驗證碼";
+  String get pushToLoad => "拉動加載";
   @override
   String get contact => "聯繫人";
   @override
-  String get theme => "選擇主題";
-  @override
   String get tip => "提示：位註冊賬號的手機號，請先";
-  @override
-  String get share => "分享";
-  @override
-  String get close => "關閉";
-  @override
-  String get poetry => "詩詞";
   @override
   String get sure => "確定";
   @override
-  String get address => "收貨地址";
-  @override
   String get edit => "編輯";
+  @override
+  String get loadMore => "加載";
+  @override
+  String get loadFailed => "加載失败";
   @override
   String get en => "英文";
   @override
-  String get menu => "菜單";
-  @override
-  String get input_v_code => "請輸入驗證碼";
+  String get loading => "正在加載...";
   @override
   String get zh => "中文";
   @override
+  String get refreshFinish => "刷新完成";
+  @override
   String get exit => "退出賬號";
   @override
-  String get pick_a_color => "選擇一種顏色!";
-  @override
   String get fail => "失敗";
+  @override
+  String get completeLoad => "完成加载";
   @override
   String get success => "成功";
   @override
@@ -238,9 +274,63 @@ class $zh_TW extends S {
   @override
   String get password_login => "密碼登錄";
   @override
-  String get create_address => "新增地址";
-  @override
   String get collect => "收藏";
+  @override
+  String get noMore => "沒有更多數據";
+  @override
+  String get submit => "提交";
+  @override
+  String get input_password => "請輸入密碼";
+  @override
+  String get save => "保存";
+  @override
+  String get update => "檢查更新";
+  @override
+  String get choose => "請選擇";
+  @override
+  String get login => "登錄";
+  @override
+  String get quickly_login => "快速登錄";
+  @override
+  String get delete => "刪除";
+  @override
+  String get loadFinish => "加載完成";
+  @override
+  String get eidt_address => "修改地址";
+  @override
+  String get cancel_collect => "取消收藏";
+  @override
+  String get get_v_code => "獲取驗證碼";
+  @override
+  String get releaseToRefresh => "釋放刷新";
+  @override
+  String get theme => "選擇主題";
+  @override
+  String get share => "分享";
+  @override
+  String get close => "關閉";
+  @override
+  String get completeRefresh => "完成刷新";
+  @override
+  String get poetry => "詩詞";
+  @override
+  String get address => "收貨地址";
+  @override
+  String get refreshed => "刷新完成";
+  @override
+  String get pullToRefresh => "拉動刷新";
+  @override
+  String get refresh => "刷新";
+  @override
+  String get menu => "菜單";
+  @override
+  String get input_v_code => "請輸入驗證碼";
+  @override
+  String get pick_a_color => "選擇一種顏色!";
+  @override
+  String get refreshing => "正在刷新...";
+  @override
+  String get create_address => "新增地址";
   @override
   String get contacts => "通訊錄";
   @override
@@ -262,65 +352,47 @@ class $zh_CN extends S {
   @override
   String get cancel => "取消";
   @override
-  String get submit => "提交";
-  @override
   String get go_register => "还没账号？快去注册";
   @override
-  String get input_password => "请输入密码";
-  @override
-  String get save => "保存";
-  @override
-  String get update => "检查更新";
+  String get updateAt => "更新于 %T";
   @override
   String get language => "选择语言";
   @override
-  String get choose => "请选择";
-  @override
-  String get login => "登录";
-  @override
-  String get quickly_login => "快速登录";
-  @override
-  String get delete => "删除";
+  String get releaseToLoad => "释放加载";
   @override
   String get setting => "设置";
   @override
-  String get eidt_address => "修改地址";
+  String get loaded => "加载完成";
   @override
-  String get cancel_collect => "取消收藏";
+  String get refreshFailed => "刷新失败";
   @override
-  String get get_v_code => "获取验证码";
+  String get pushToLoad => "拉动加载";
   @override
   String get contact => "联系人";
   @override
-  String get theme => "选择主题";
-  @override
   String get tip => "提示：未注册账号的手机号，请先";
-  @override
-  String get share => "分享";
-  @override
-  String get close => "关闭";
-  @override
-  String get poetry => "诗词";
   @override
   String get sure => "确定";
   @override
-  String get address => "收货地址";
-  @override
   String get edit => "编辑";
+  @override
+  String get loadMore => "加载";
+  @override
+  String get loadFailed => "加载失败";
   @override
   String get en => "英文";
   @override
-  String get menu => "菜单";
-  @override
-  String get input_v_code => "请输入验证码";
+  String get loading => "正在加载...";
   @override
   String get zh => "中文";
   @override
+  String get refreshFinish => "刷新完成";
+  @override
   String get exit => "退出账号";
   @override
-  String get pick_a_color => "选择一种颜色!";
-  @override
   String get fail => "失败";
+  @override
+  String get completeLoad => "完成加载";
   @override
   String get success => "成功";
   @override
@@ -334,9 +406,63 @@ class $zh_CN extends S {
   @override
   String get password_login => "密码登录";
   @override
-  String get create_address => "新增地址";
-  @override
   String get collect => "收藏";
+  @override
+  String get noMore => "没有更多数据";
+  @override
+  String get submit => "提交";
+  @override
+  String get input_password => "请输入密码";
+  @override
+  String get save => "保存";
+  @override
+  String get update => "检查更新";
+  @override
+  String get choose => "请选择";
+  @override
+  String get login => "登录";
+  @override
+  String get quickly_login => "快速登录";
+  @override
+  String get delete => "删除";
+  @override
+  String get loadFinish => "加载完成";
+  @override
+  String get eidt_address => "修改地址";
+  @override
+  String get cancel_collect => "取消收藏";
+  @override
+  String get get_v_code => "获取验证码";
+  @override
+  String get releaseToRefresh => "释放刷新";
+  @override
+  String get theme => "选择主题";
+  @override
+  String get share => "分享";
+  @override
+  String get close => "关闭";
+  @override
+  String get completeRefresh => "完成刷新";
+  @override
+  String get poetry => "诗词";
+  @override
+  String get address => "收货地址";
+  @override
+  String get refreshed => "刷新完成";
+  @override
+  String get pullToRefresh => "拉动刷新";
+  @override
+  String get refresh => "刷新";
+  @override
+  String get menu => "菜单";
+  @override
+  String get input_v_code => "请输入验证码";
+  @override
+  String get pick_a_color => "选择一种颜色!";
+  @override
+  String get refreshing => "正在刷新...";
+  @override
+  String get create_address => "新增地址";
   @override
   String get contacts => "通讯录";
   @override

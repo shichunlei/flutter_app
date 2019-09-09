@@ -100,49 +100,50 @@ class _MemberPageState extends State<MemberPage>
                 Material(
                   color: Colors.white,
                   child: Container(
-                      child: Column(children: <Widget>[
-                    ListTile(
-                      title: Text('优惠券'),
-                      onTap: () {
-                        Toast.show(context, '优惠券');
+                    child: Column(children: <Widget>[
+                      ListTile(
+                          title: Text('优惠券'),
+                          onTap: () {
+                            Toast.show(context, '优惠券');
 
-                        /// TODO
-                      },
-                      leading: Icon(CustomIcon.coupon),
-                      trailing: Icon(Icons.keyboard_arrow_right),
-                    ),
-                    Container(height: 0.5, color: Colors.grey[200]),
-                    ListTile(
-                        title: Text('收货地址'),
-                        onTap: () => pushNewPage(context, AddressPage()),
-                        leading: Icon(CustomIcon.address),
-                        trailing: Icon(Icons.keyboard_arrow_right))
-                  ])),
+                            /// TODO
+                          },
+                          leading: Icon(CustomIcon.coupon),
+                          trailing: Icon(Icons.keyboard_arrow_right)),
+                      Container(height: 0.5, color: Colors.grey[200]),
+                      ListTile(
+                          title: Text('收货地址'),
+                          onTap: () => pushNewPage(context, AddressPage()),
+                          leading: Icon(CustomIcon.address),
+                          trailing: Icon(Icons.keyboard_arrow_right))
+                    ]),
+                  ),
                 ),
                 Gaps.vGap10,
                 Material(
                   color: Colors.white,
                   child: Container(
-                      child: Column(children: <Widget>[
-                    ListTile(
-                        title: Text('客服电话'),
-                        onTap: () => Utils.launchURL('tel:$_phone'),
-                        leading: Icon(CustomIcon.custom_service),
-                        trailing: Row(children: <Widget>[
-                          Text(_phone),
-                          SizedBox(width: 10.0),
-                          Icon(Icons.keyboard_arrow_right)
-                        ], mainAxisSize: MainAxisSize.min)),
-                    Container(height: 0.5, color: Colors.grey[200]),
-                    ListTile(
-                        title: Text('关于商城'),
-                        onTap: () {
-                          /// TODO
-                          Toast.show(context, '关于商城');
-                        },
-                        leading: Icon(CustomIcon.about),
-                        trailing: Icon(Icons.keyboard_arrow_right))
-                  ])),
+                    child: Column(children: <Widget>[
+                      ListTile(
+                          title: Text('客服电话'),
+                          onTap: () => Utils.launchURL('tel:$_phone'),
+                          leading: Icon(CustomIcon.custom_service),
+                          trailing: Row(children: <Widget>[
+                            Text(_phone),
+                            SizedBox(width: 10.0),
+                            Icon(Icons.keyboard_arrow_right)
+                          ], mainAxisSize: MainAxisSize.min)),
+                      Container(height: 0.5, color: Colors.grey[200]),
+                      ListTile(
+                          title: Text('关于商城'),
+                          onTap: () {
+                            /// TODO
+                            Toast.show(context, '关于商城');
+                          },
+                          leading: Icon(CustomIcon.about),
+                          trailing: Icon(Icons.keyboard_arrow_right))
+                    ]),
+                  ),
                 )
               ])),
           ChangeAppBar(

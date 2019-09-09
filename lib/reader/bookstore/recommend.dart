@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import '../../page_index.dart';
@@ -18,8 +17,6 @@ class RecommendPage extends StatefulWidget {
 class _RecommendPageState extends State<RecommendPage> {
   List<Books> _books = [];
   LoaderState _status = LoaderState.Loading;
-
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
 
   bool isLoadComplete = false;
 
@@ -42,11 +39,7 @@ class _RecommendPageState extends State<RecommendPage> {
   Widget build(BuildContext context) {
     return LoaderContainer(
         contentView: EasyRefresh(
-            refreshFooter: BallPulseFooter(
-                key: _footerKey,
-                color: readerMainColor,
-                backgroundColor: Colors.white),
-            loadMore: isLoadComplete ? null : () async => getBooksData(),
+            onLoad: isLoadComplete ? null : () async => getBooksData(),
             child: ListView.separated(
                 itemBuilder: (_, int position) => ItemBook(
                     book: _books[position],

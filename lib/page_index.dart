@@ -59,6 +59,7 @@ export 'page/flip_view_custom.dart';
 export 'page/logon/index.dart';
 export 'page/login/login_page.dart';
 export 'page/login_video_page.dart';
+export 'page/second_floor.dart';
 
 export 'animation/curves_demo.dart';
 export 'animation/animated_opacity.dart';

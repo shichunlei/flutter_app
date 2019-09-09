@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:custom_widgets/custom_widgets.dart';
-import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -31,8 +30,6 @@ class _StoreBooksPageState extends State<StoreBooksPage>
   @override
   bool get wantKeepAlive => true;
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   bool isLoadComplete = false;
 
   int page = 0;
@@ -50,11 +47,7 @@ class _StoreBooksPageState extends State<StoreBooksPage>
     return LoaderContainer(
         loaderState: _status,
         contentView: EasyRefresh(
-            refreshFooter: BallPulseFooter(
-                key: _footerKey,
-                color: readerMainColor,
-                backgroundColor: Colors.white),
-            loadMore: isLoadComplete ? null : () async => getBooksData(),
+            onLoad: isLoadComplete ? null : () async => getBooksData(),
             child: SingleChildScrollView(
               child: Column(children: <Widget>[
                 Offstage(

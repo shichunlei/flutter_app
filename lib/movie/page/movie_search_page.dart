@@ -22,9 +22,6 @@ class _MovieSearchPageState extends State<MovieSearchPage> {
   int page = 1;
   int pagesize = 20;
 
-  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   bool isFirst = true;
   bool isLoadComplete = false;
 
@@ -97,14 +94,8 @@ class _MovieSearchPageState extends State<MovieSearchPage> {
       return getLoadingWidget();
     }
     return EasyRefresh(
-      key: _easyRefreshKey,
-      autoControl: true,
-      refreshFooter: BallPulseFooter(
-        key: _footerKey,
-        color: Colors.indigo,
-        backgroundColor: Colors.white,
-      ),
-      loadMore: isLoadComplete
+      footer: BallPulseFooter(),
+      onLoad: isLoadComplete
           ? null
           : () async {
               page++;

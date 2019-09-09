@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import '../../page_index.dart';
@@ -23,8 +22,6 @@ class _PictureBookPageState extends State<PictureBookPage>
   @override
   bool get wantKeepAlive => true;
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   bool isLoadComplete = false;
 
   int page = 0;
@@ -42,11 +39,7 @@ class _PictureBookPageState extends State<PictureBookPage>
     return LoaderContainer(
         loaderState: _status,
         contentView: EasyRefresh(
-            refreshFooter: BallPulseFooter(
-                key: _footerKey,
-                color: readerMainColor,
-                backgroundColor: Colors.white),
-            loadMore: isLoadComplete ? null : () async => getBooksData(),
+            onLoad: isLoadComplete ? null : () async => getBooksData(),
             child: GridView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

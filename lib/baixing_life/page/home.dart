@@ -32,8 +32,6 @@ class _HomePageState extends State<HomePage>
 
   int page;
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   @override
   void initState() {
     super.initState();
@@ -67,77 +65,65 @@ class _HomePageState extends State<HomePage>
 
   @override
   void dispose() {
-    scrollController.dispose();
+    scrollController?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return _buildBodyView();
+    if (data == null) {
+      return Scaffold(
+          backgroundColor: Colors.grey[200],
+          body: Column(children: <Widget>[
+            ToolBar(
+                title: '${widget.title}', backgroundColor: Colors.transparent),
+            Expanded(child: Container(child: getLoadingWidget()))
+          ]));
+    }
+
+    return Scaffold(
+        backgroundColor: Colors.grey[200],
+        body: Stack(children: <Widget>[
+          EasyRefresh.custom(
+              scrollController: scrollController,
+              footer: BallPulseFooter(),
+              onLoad: () async {
+                page++;
+                getHotGoods(page);
+              },
+              slivers: <Widget>[
+                /// 头部banner
+                _buildSliverAppBar(data.slides),
+
+                /// 分类
+                _buildSliverGridCategory(data.category),
+
+                /// 广告
+                _buildSliverToBoxAdapterAds(
+                    data.advertesPicture, data.shopInfo, data.ads),
+
+                /// 商品推荐
+                _buildSliverToBoxAdapter('商品推荐'),
+                _buildSliverGridRecommend(data.recommend),
+
+                /// floor
+                _buildFloorView(data.floors),
+
+                /// 火爆专区
+                _buildHotGoodsTitle(),
+                _buildHotGoods()
+              ]),
+          ChangeAppBar(
+              title: widget.title,
+              backgroundColor: Colors.red,
+              navAlpha: navAlpha)
+        ]));
   }
 
   void getHomeData() async {
     data = await ApiService.getBaixingHomeData('115.02932', '35.76189');
 
     setState(() {});
-  }
-
-  Widget _buildBodyView() {
-    if (data == null) {
-      return Scaffold(
-        backgroundColor: Colors.grey[200],
-        body: Column(children: <Widget>[
-          ToolBar(
-              title: '${widget.title}', backgroundColor: Colors.transparent),
-          Expanded(child: Container(child: getLoadingWidget()))
-        ]),
-      );
-    }
-
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      body: Stack(
-        children: <Widget>[
-          EasyRefresh(
-              refreshFooter: BallPulseFooter(
-                  key: _footerKey,
-                  color: Colors.indigo,
-                  backgroundColor: Colors.white),
-              loadMore: () async {
-                page++;
-                getHotGoods(page);
-              },
-              child: CustomScrollView(
-                  controller: scrollController,
-                  slivers: <Widget>[
-                    /// 头部banner
-                    _buildSliverAppBar(data.slides),
-
-                    /// 分类
-                    _buildSliverGridCategory(data.category),
-
-                    /// 广告
-                    _buildSliverToBoxAdapterAds(
-                        data.advertesPicture, data.shopInfo, data.ads),
-
-                    /// 商品推荐
-                    _buildSliverToBoxAdapter('商品推荐'),
-                    _buildSliverGridRecommend(data.recommend),
-
-                    /// floor
-                    _buildFloorView(data.floors),
-
-                    /// 火爆专区
-                    _buildHotGoodsTitle(),
-                    _buildHotGoods()
-                  ])),
-          ChangeAppBar(
-              title: widget.title,
-              backgroundColor: Colors.red,
-              navAlpha: navAlpha)
-        ],
-      ),
-    );
   }
 
   Widget _buildSliverAppBar(List<Goods> slides) {

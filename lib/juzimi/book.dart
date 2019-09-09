@@ -4,7 +4,7 @@ import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_app/utils/loading_util.dart';
 import 'package:flutter_app/utils/utils.dart';
-import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
+import 'package:flutter_easyrefresh/phoenix_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class BookListPage extends StatefulWidget {
@@ -29,9 +29,6 @@ class _BookListPageState extends State<BookListPage>
   @override
   bool get wantKeepAlive => true;
 
-  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   @override
   void initState() {
     super.initState();
@@ -42,12 +39,8 @@ class _BookListPageState extends State<BookListPage>
   Widget build(BuildContext context) {
     if (data.isNotEmpty) {
       return EasyRefresh(
-          key: _easyRefreshKey,
-          refreshFooter: BallPulseFooter(
-              key: _footerKey,
-              color: Colors.indigo,
-              backgroundColor: Colors.white),
-          loadMore: isLoadComplete
+          footer: PhoenixFooter(),
+          onLoad: isLoadComplete
               ? null
               : () async {
                   page++;

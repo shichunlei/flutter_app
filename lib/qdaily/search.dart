@@ -21,8 +21,6 @@ class _SearchPageState extends State<SearchPage> {
   DataBean data;
   List<FeedsBean> feeds = [];
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   bool isLoadComplete = false;
 
   @override
@@ -56,9 +54,8 @@ class _SearchPageState extends State<SearchPage> {
 
   Widget _buildBodyView() {
     return EasyRefresh(
-        refreshFooter: BallPulseFooter(
-            key: _footerKey, color: Colors.red, backgroundColor: Colors.white),
-        loadMore: isLoadComplete
+        footer: BallPulseFooter(),
+        onLoad: isLoadComplete
             ? null
             : () async => getSearchData(keywords, lastKey),
         child: ListView.separated(

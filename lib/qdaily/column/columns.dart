@@ -16,8 +16,6 @@ class ColumnsPage extends StatefulWidget {
 class _ColumnsPageState extends State<ColumnsPage> {
   String lastKey = '0';
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   bool isLoadComplete = false;
 
   DataBean dataBean;
@@ -55,9 +53,8 @@ class _ColumnsPageState extends State<ColumnsPage> {
 
   Widget _buildBodyView() {
     return EasyRefresh(
-        refreshFooter: BallPulseFooter(
-            key: _footerKey, color: Colors.red, backgroundColor: Colors.white),
-        loadMore: isLoadComplete ? null : () async => getColumnsData(lastKey),
+        footer: BallPulseFooter(),
+        onLoad: isLoadComplete ? null : () async => getColumnsData(lastKey),
         child: ListView.builder(
             itemBuilder: (context, index) => ItemColumn(
                 column: columns[index],

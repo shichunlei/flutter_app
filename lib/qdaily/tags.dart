@@ -22,8 +22,6 @@ class _TagsPageState extends State<TagsPage> {
 
   List<FeedsBean> feeds = [];
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   bool isLoadComplete = false;
 
   ResponseBean dataBean;
@@ -45,9 +43,8 @@ class _TagsPageState extends State<TagsPage> {
 
   Widget _buildBodyView() {
     return EasyRefresh(
-        refreshFooter: BallPulseFooter(
-            key: _footerKey, color: Colors.red, backgroundColor: Colors.white),
-        loadMore: isLoadComplete
+        footer: BallPulseFooter(),
+        onLoad: isLoadComplete
             ? null
             : () async => getTagNews(widget.id, lastKey: lastKey),
         child: ListView.separated(

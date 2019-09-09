@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
@@ -30,8 +29,6 @@ class RightListViewState extends State<RightListView>
   int page = 1;
 
   bool isLoadComplete = false;
-
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
 
   int currentIndex;
   Category subCategory;
@@ -72,11 +69,9 @@ class RightListViewState extends State<RightListView>
   Widget _buildGoodsListView() {
     return Expanded(
         child: EasyRefresh(
-            refreshFooter: BallPulseFooter(
-                key: _footerKey,
-                color: Colors.indigo,
-                backgroundColor: Colors.white),
-            loadMore: isLoadComplete
+            footer: BallPulseFooter(),
+            emptyWidget: goods.length > 0 ? null : EmptyPage(),
+            onLoad: isLoadComplete
                 ? null
                 : () async {
                     page++;

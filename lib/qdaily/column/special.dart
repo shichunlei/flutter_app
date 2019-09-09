@@ -30,8 +30,6 @@ class _SpecialPageState extends State<SpecialPage> {
 
   List<FeedsBean> feeds = [];
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   bool isLoadComplete = false;
 
   double width;
@@ -53,11 +51,8 @@ class _SpecialPageState extends State<SpecialPage> {
             ? getLoadingWidget()
             : Stack(children: <Widget>[
                 EasyRefresh(
-                    refreshFooter: BallPulseFooter(
-                        color: Colors.red,
-                        backgroundColor: Colors.white,
-                        key: _footerKey),
-                    loadMore: isLoadComplete
+                    footer: BallPulseFooter(),
+                    onLoad: isLoadComplete
                         ? null
                         : () async => getColumnIndex(lastKey, widget.columnId),
                     child: ListView(

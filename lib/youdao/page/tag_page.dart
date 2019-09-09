@@ -31,8 +31,6 @@ class _TagPageState extends State<TagPage> {
 
   bool isLoadComplete = false;
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   @override
   void initState() {
     super.initState();
@@ -52,9 +50,8 @@ class _TagPageState extends State<TagPage> {
     return LoaderContainer(
       loaderState: _status,
       contentView: EasyRefresh(
-        refreshFooter: BallPulseFooter(
-            key: _footerKey, color: Colors.red, backgroundColor: Colors.white),
-        loadMore: isLoadComplete ? null : () async => loadMore(),
+        footer: BallPulseFooter(),
+        onLoad: isLoadComplete ? null : () async => loadMore(),
         child: ListView(
           physics: const BouncingScrollPhysics(),
           children: <Widget>[

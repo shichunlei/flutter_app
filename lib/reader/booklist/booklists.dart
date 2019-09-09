@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import '../../page_index.dart';
@@ -23,8 +22,6 @@ class _BookListsPageState extends State<BookListsPage>
 
   List<BookList> _booklist = [];
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   bool isLoadComplete = false;
 
   int page = 0;
@@ -36,12 +33,8 @@ class _BookListsPageState extends State<BookListsPage>
   void initState() {
     super.initState();
 
-    getBookList(widget.gender);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+    page = 0;
+    getBookList(widget.gender, page, RefreshType.DEFAULT);
   }
 
   @override
@@ -49,12 +42,16 @@ class _BookListsPageState extends State<BookListsPage>
     return LoaderContainer(
         loaderState: _status,
         contentView: EasyRefresh(
-            refreshFooter: BallPulseFooter(
-                key: _footerKey,
-                color: readerMainColor,
-                backgroundColor: Colors.white),
-            loadMore:
-                isLoadComplete ? null : () async => getBookList(widget.gender),
+            onRefresh: () async {
+              page = 0;
+              getBookList(widget.gender, page, RefreshType.REFRESH);
+            },
+            onLoad: isLoadComplete
+                ? null
+                : () async {
+                    page = page + 1;
+                    getBookList(widget.gender, page, RefreshType.LOAD_MORE);
+                  },
             child: ListView.separated(
                 itemCount: _booklist.length,
                 itemBuilder: (_, int position) => ItemBookList(
@@ -65,19 +62,27 @@ class _BookListsPageState extends State<BookListsPage>
                     Gaps.vGap3)));
   }
 
-  void getBookList(String gender) async {
-    List<BookList> _list = await ApiService.getBookLists(gender);
+  void getBookList(String gender, int page, RefreshType type) async {
+    if (type == RefreshType.DEFAULT || type == RefreshType.REFRESH) {
+      _booklist.clear();
+      isLoadComplete = false;
+    }
+
+    List<BookList> _list = await ApiService.getBookLists(gender,
+        start: page * limit, limit: limit);
+
+    if (page == 0 && _list.length == 0) {
+      _status = LoaderState.NoData;
+    } else {
+      _status = LoaderState.Succeed;
+    }
 
     if (_list.length < limit) {
       isLoadComplete = true;
-    } else {
-      page++;
     }
 
     _booklist.addAll(_list);
 
-    setState(() {
-      _status = LoaderState.Succeed;
-    });
+    setState(() {});
   }
 }

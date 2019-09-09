@@ -18,8 +18,6 @@ class _MovieSoonPageState extends State<MovieSoonPage> {
   int page = 1;
   int pagesize = 20;
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   bool isFirst = true;
   bool isLoadComplete = false;
 
@@ -68,19 +66,14 @@ class _MovieSoonPageState extends State<MovieSoonPage> {
       return getLoadingWidget();
     }
     return EasyRefresh(
-      autoControl: true,
-      refreshFooter: BallPulseFooter(
-        key: _footerKey,
-        color: Colors.indigo,
-        backgroundColor: Colors.white,
-      ),
-      loadMore: isLoadComplete
+      footer: BallPulseFooter(),
+      onLoad: isLoadComplete
           ? null
           : () async {
               page++;
               getMovieList(page, pagesize, RefreshType.LOAD_MORE);
             },
-      emptyWidget: Center(child: Text('暂无数据')),
+      emptyWidget: movies.length > 0 ? null : Center(child: Text('暂无数据')),
       child: ListView.builder(
         itemBuilder: (context, index) {
           return ItemSoonView(

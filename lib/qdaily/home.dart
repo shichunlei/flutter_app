@@ -25,8 +25,6 @@ class _HomePageState extends State<QHomePage>
   List<BannersBean> banners = [];
   List<ColumnBean> columns = [];
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   bool isLoadComplete = false;
 
   List<Widget> list = [];
@@ -147,9 +145,8 @@ class _HomePageState extends State<QHomePage>
 
   Widget _buildBodyView() {
     return EasyRefresh(
-        refreshFooter: BallPulseFooter(
-            key: _footerKey, color: Colors.red, backgroundColor: Colors.white),
-        loadMore: isLoadComplete ? null : () async => getHomeData(lastKey),
+        footer: BallPulseFooter(),
+        onLoad: isLoadComplete ? null : () async => getHomeData(lastKey),
         child: ListView.separated(
             physics: const AlwaysScrollableScrollPhysics(),
             separatorBuilder: (BuildContext context, int index) =>

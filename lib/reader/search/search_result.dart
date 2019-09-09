@@ -17,8 +17,6 @@ class SearchResultPage extends StatefulWidget {
 class _SearchResultPageState extends State<SearchResultPage> {
   LoaderState _status = LoaderState.NoAction;
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   List<Books> _books = [];
 
   int page = 0;
@@ -47,11 +45,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
                   style: TextStyle(color: Colors.black54))),
           body: LoaderContainer(
               contentView: EasyRefresh(
-                  refreshFooter: BallPulseFooter(
-                      key: _footerKey,
-                      color: readerMainColor,
-                      backgroundColor: Colors.white),
-                  loadMore: isLoadComplete
+                  onLoad: isLoadComplete
                       ? null
                       : () async => search(widget.keyword),
                   child: ListView.separated(

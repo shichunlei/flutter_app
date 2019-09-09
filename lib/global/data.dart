@@ -257,6 +257,7 @@ class ExpandStateBean {
           SubExpandBean('Preview', PreviewSample()),
           SubExpandBean('CardFlip', CardFlipPage()),
           SubExpandBean('高德地图定位', AMapLocationDemo()),
+          SubExpandBean('SecondFloor', SecondFloorDemo()),
         ]),
     ExpandStateBean(leading: Icons.filter_6, title: 'Demo', children: [
       SubExpandBean('追书神器', BookReaderHomePage()),

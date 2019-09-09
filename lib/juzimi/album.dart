@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/juzimi.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_easyrefresh/material_footer.dart';
 
 class AlbumListPage extends StatefulWidget {
   final String category;
@@ -25,9 +25,6 @@ class _AlbumListPageState extends State<AlbumListPage>
   @override
   bool get wantKeepAlive => true;
 
-  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   @override
   void initState() {
     super.initState();
@@ -44,12 +41,8 @@ class _AlbumListPageState extends State<AlbumListPage>
   Widget build(BuildContext context) {
     if (data.isNotEmpty) {
       return EasyRefresh(
-          key: _easyRefreshKey,
-          refreshFooter: BallPulseFooter(
-              key: _footerKey,
-              color: Colors.indigo,
-              backgroundColor: Colors.white),
-          loadMore: isLoadComplete
+          footer: MaterialFooter(),
+          onLoad: isLoadComplete
               ? null
               : () async {
                   page++;

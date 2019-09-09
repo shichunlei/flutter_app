@@ -27,9 +27,6 @@ class _CelebrityListPageState extends State<CelebrityListPage>
   @override
   bool get wantKeepAlive => true;
 
-  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   @override
   void initState() {
     super.initState();
@@ -41,12 +38,8 @@ class _CelebrityListPageState extends State<CelebrityListPage>
   Widget build(BuildContext context) {
     return data.isNotEmpty
         ? EasyRefresh(
-            key: _easyRefreshKey,
-            refreshFooter: BallPulseFooter(
-                key: _footerKey,
-                color: Colors.indigo,
-                backgroundColor: Colors.white),
-            loadMore: isLoadComplete
+            footer: BallPulseFooter(),
+            onLoad: isLoadComplete
                 ? null
                 : () async {
                     page++;

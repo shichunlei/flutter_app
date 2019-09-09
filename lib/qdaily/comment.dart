@@ -28,8 +28,6 @@ class _CommentPageState extends State<CommentPage> {
 
   bool isLoadComplete = false;
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   @override
   void initState() {
     super.initState();
@@ -68,9 +66,8 @@ class _CommentPageState extends State<CommentPage> {
 
   Widget _buildBodyView() {
     return EasyRefresh(
-        refreshFooter: BallPulseFooter(
-            key: _footerKey, color: Colors.red, backgroundColor: Colors.white),
-        loadMore: isLoadComplete
+        footer: BallPulseFooter(),
+        onLoad: isLoadComplete
             ? null
             : () async => getCommentData(widget.id, lastKey),
         child: ListView.builder(
