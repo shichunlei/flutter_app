@@ -178,6 +178,7 @@ class ExpandStateBean {
     ExpandStateBean(leading: Icons.filter_1, title: 'Widgets', children: [
       SubExpandBean('Text', TextWidget()),
       SubExpandBean('Button', ButtonWidget()),
+      SubExpandBean('ToggleButtons', ToggleButtonsWidget()),
       SubExpandBean('Image', ImageWidget()),
       SubExpandBean('Icon', IconWidget()),
       SubExpandBean('TextField', TextFieldWidget()),
@@ -186,6 +187,7 @@ class ExpandStateBean {
       SubExpandBean('Chip', ChipWidget()),
       SubExpandBean('CheckSwitch', CheckSwitchWidget()),
       SubExpandBean('主题', ThemeSample()),
+      SubExpandBean('ColorFiltered', ColorFilteredWidget()),
     ]),
     ExpandStateBean(leading: Icons.filter_2, title: 'Layouts', children: [
       SubExpandBean('AppBar', AppBarWidget()),
@@ -198,6 +200,7 @@ class ExpandStateBean {
       SubExpandBean('毛玻璃', FrostingWidget()),
       SubExpandBean('Stepper', StepperWidget()),
       SubExpandBean('AspectRatio', AspectRatioSample()),
+      SubExpandBean('ButtonBar', ButtonBarDemo()),
     ]),
     ExpandStateBean(leading: Icons.filter_3, title: 'Navigation', children: [
       SubExpandBean('TabBar', TabBarHomePage()),
@@ -213,6 +216,7 @@ class ExpandStateBean {
     ]),
     ExpandStateBean(leading: Icons.filter_4, title: 'Animation', children: [
       SubExpandBean('Curves', CurvesDemo()),
+      SubExpandBean('AnimatedContainer', AnimatedContainerDemo()),
       SubExpandBean('AnimatedOpacity', AnimatedOpacityDemo()),
       SubExpandBean('AnimatedSwitcher', AnimatedSwitcherSample()),
       SubExpandBean('AnimatedCrossFade', AnimatedCrossFadeDemo()),
@@ -229,7 +233,7 @@ class ExpandStateBean {
         leading: Icons.filter_5,
         title: 'Custom Widgets',
         children: [
-          SubExpandBean('Wave Widget', WavePage()),
+          SubExpandBean('Wave', WavePage()),
           SubExpandBean('Swiper', SwiperSample()),
           SubExpandBean('LikeButton', LikeButtonPage()),
           SubExpandBean('时间流', TimeLinePage()),

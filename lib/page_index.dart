@@ -27,6 +27,9 @@ export 'widget/stepper_widget.dart';
 export 'widget/text_widget.dart';
 export 'widget/textfield_widget.dart';
 export 'widget/aspect_ratio.dart';
+export 'widget/buttonbar.dart';
+export 'widget/color_filtered.dart';
+export 'widget/toggle_buttons.dart';
 
 export 'page/charts_widget.dart';
 export 'page/city_picker_page.dart';
@@ -73,6 +76,7 @@ export 'animation/animated_align.dart';
 export 'animation/animated_positioned.dart';
 export 'animation/tween.dart';
 export 'animation/animated_arrow.dart';
+export 'animation/animated_container.dart';
 
 export 'city_pickers/page/fullpage_pickers_page.dart';
 export 'city_pickers/page/ios_city_pickers_page.dart';

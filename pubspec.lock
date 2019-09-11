@@ -200,9 +200,11 @@ packages:
   flute_music_player:
     dependency: "direct main"
     description:
-      name: flute_music_player
-      url: "https://pub.flutter-io.cn"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "1195ba57f144ab7ad23cc8b054f8153096b5ee60"
+      url: "https://github.com/iampawan/Flute-Music-Player"
+    source: git
     version: "0.0.6"
   flutter:
     dependency: "direct main"
