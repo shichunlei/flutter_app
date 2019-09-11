@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:flutter_app/bean/photos.dart';
 
+import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:share/share.dart';
 
@@ -168,7 +169,7 @@ class _MoviePhotoPageState extends State<MoviePhotoPage>
             pageOptions: widget.photos
                 .map((photo) => PhotoViewGalleryPageOptions(
                     imageProvider: NetworkImage(photo.cover),
-                    heroTag: photo.id))
+                    heroAttributes: PhotoViewHeroAttributes(tag: photo.id)))
                 .toList(),
             backgroundDecoration: BoxDecoration(color: Colors.black),
             onPageChanged: (index) {

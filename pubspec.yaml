@@ -139,7 +139,7 @@ dependencies: # 应用或包依赖的其它包或插件
   path_provider: ^1.2.0
 
   # PhotoView
-  photo_view: ^0.4.2
+  photo_view: ^0.5.0
 
   # 数据管理层
   provider: ^3.1.0
