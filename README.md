@@ -24,11 +24,11 @@ A new Flutter application.
 ## 运行环境
 
 ```
-[✓] Flutter (Channel beta, v1.8.3, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
-    • Flutter version 1.8.3 at /Users/14cells/Android/flutter
-    • Framework revision e4ebcdf6f4 (5 weeks ago), 2019-07-27 11:48:24 -0700
-    • Engine revision 38ac5f30a7
-    • Dart version 2.5.0 (build 2.5.0-dev.1.0 0ca1582afd)
+[✓] Flutter (Channel beta, v1.9.1+hotfix.2, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
+    • Flutter version 1.9.1+hotfix.2 at /Users/14cells/Android/flutter
+    • Framework revision 2d2a1ffec9 (4 days ago), 2019-09-06 18:39:49 -0700
+    • Engine revision b863200c37
+    • Dart version 2.5.0
 
 [✓] Android toolchain - develop for Android devices (Android SDK version 29.0.2)
     • Android SDK at /Users/14cells/Android/SDK

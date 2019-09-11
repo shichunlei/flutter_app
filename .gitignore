@@ -5,3 +5,4 @@ gradlew
 .flutter-plugins
 .idea/
 *.log
+flutter_export_environment.sh

@@ -200,11 +200,9 @@ packages:
   flute_music_player:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "1195ba57f144ab7ad23cc8b054f8153096b5ee60"
-      url: "https://github.com/iampawan/Flute-Music-Player"
-    source: git
+      name: flute_music_player
+      url: "https://pub.flutter-io.cn"
+    source: hosted
     version: "0.0.6"
   flutter:
     dependency: "direct main"
@@ -444,7 +442,7 @@ packages:
       name: path
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.6.2"
+    version: "1.6.4"
   path_provider:
     dependency: "direct main"
     description:
@@ -507,7 +505,7 @@ packages:
       name: quiver
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.5"
   rounded_letter:
     dependency: "direct main"
     description:
@@ -582,7 +580,7 @@ packages:
       name: string_scanner
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   synchronized:
     dependency: transitive
     description:

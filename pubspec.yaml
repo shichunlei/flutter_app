@@ -64,9 +64,7 @@ dependencies: # 应用或包依赖的其它包或插件
 
   fancy_bottom_navigation: ^0.3.2
 
-  flute_music_player:
-    git:
-      url: https://github.com/iampawan/Flute-Music-Player
+  flute_music_player: ^0.0.6
 
   # 颜色选择器
   flutter_colorpicker: ^0.2.6
