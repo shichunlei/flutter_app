@@ -500,7 +500,7 @@ packages:
       name: qr_flutter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.0+55"
+    version: "3.0.1"
   quiver:
     dependency: transitive
     description:

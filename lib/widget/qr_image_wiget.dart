@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 
 class QrImageWidget extends StatefulWidget {
   @override
-  QrImageWidgetState createState() => QrImageWidgetState();
+  createState() => QrImageWidgetState();
 }
 
 class QrImageWidgetState extends State<QrImageWidget> {
@@ -16,11 +16,8 @@ class QrImageWidgetState extends State<QrImageWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('生成二维码'),
-      ),
-      body: Column(
-        children: <Widget>[
+        appBar: AppBar(title: Text('生成二维码')),
+        body: Column(children: <Widget>[
           Padding(
               padding: const EdgeInsets.all(25.0),
               child: QrImage(
@@ -28,19 +25,17 @@ class QrImageWidgetState extends State<QrImageWidget> {
                   data: result,
                   gapless: false,
                   foregroundColor: const Color(0xFF001111),
-                  onError: (dynamic ex) => setState(() =>
-                      result = 'Error! Maybe your input value is too long?'))),
+                  embeddedImage: AssetImage('images/flutter_logo.png'),
+                  embeddedImageStyle:
+                      QrEmbeddedImageStyle(size: Size(80, 80)))),
           Text(result,
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))
-        ],
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        icon: Icon(Icons.camera_alt),
-        label: Text("Scan"),
-        onPressed: _scanQR,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-    );
+        ]),
+        floatingActionButton: FloatingActionButton.extended(
+            icon: Icon(Icons.camera_alt),
+            label: Text("Scan"),
+            onPressed: _scanQR),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
   }
 
   Future _scanQR() async {
