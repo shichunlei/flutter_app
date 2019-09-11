@@ -42,7 +42,7 @@ packages:
       name: audioplayers
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.13.1"
+    version: "0.13.2"
   azlistview:
     dependency: "direct main"
     description:
@@ -116,11 +116,9 @@ packages:
   clippy_flutter:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: f11f90538befc8e3f488e1154263975d0d1d51cc
-      url: "https://github.com/figengungor/clippy_flutter"
-    source: git
+      name: clippy_flutter
+      url: "https://pub.flutter-io.cn"
+    source: hosted
     version: "1.1.0"
   collection:
     dependency: transitive
@@ -156,7 +154,7 @@ packages:
       name: crypto
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.2"
+    version: "2.1.3"
   csslib:
     dependency: transitive
     description:
@@ -376,7 +374,7 @@ packages:
       name: intro_slider
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.2.3"
+    version: "2.2.8"
   jd_address_selector:
     dependency: "direct main"
     description:
@@ -633,7 +631,7 @@ packages:
       name: transparent_image
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.0"
+    version: "1.0.0"
   typed_data:
     dependency: transitive
     description:

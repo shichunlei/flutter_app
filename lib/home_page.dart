@@ -170,7 +170,7 @@ class HomeStatePage extends State<HomePage> {
       locatingWithReGeocode: true,
     );
 
-    if (await Permissions.requestMapPermission()) {
+    if (await PermissionsUtil.requestMapPermission()) {
       _aMapLocation.getLocation(options).then((value) {
         location = value;
         debugPrint("location==========${location.city}");

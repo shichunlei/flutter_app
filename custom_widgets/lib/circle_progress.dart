@@ -66,7 +66,7 @@ class _CircleProgressWidgetState extends State<CircleProgressWidget>
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 

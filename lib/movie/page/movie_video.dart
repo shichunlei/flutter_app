@@ -8,7 +8,7 @@ class MovieVideoPage extends StatefulWidget {
   MovieVideoPage(this.url);
 
   @override
-  _MovieVideoPageState createState() => _MovieVideoPageState();
+  createState() => _MovieVideoPageState();
 }
 
 class _MovieVideoPageState extends State<MovieVideoPage> {
@@ -22,21 +22,18 @@ class _MovieVideoPageState extends State<MovieVideoPage> {
     videoPlayerController = VideoPlayerController.network(this.widget.url);
     chewieController = ChewieController(
       videoPlayerController: videoPlayerController,
-      aspectRatio: 3 / 2,
+      aspectRatio: 16 / 9,
       autoPlay: true,
       looping: true,
 
       /// Try playing around with some of these other options:
 //      showControls: false,
       materialProgressColors: ChewieProgressColors(
-        playedColor: Colors.red,
-        handleColor: Colors.blue,
-        backgroundColor: Colors.grey,
-        bufferedColor: Colors.lightGreen,
-      ),
-      placeholder: Container(
-        color: Colors.black,
-      ),
+          playedColor: Colors.red,
+          handleColor: Colors.blue,
+          backgroundColor: Colors.grey,
+          bufferedColor: Colors.lightGreen),
+      placeholder: Container(color: Colors.black),
 //      autoInitialize: true,
     );
   }
@@ -51,12 +48,7 @@ class _MovieVideoPageState extends State<MovieVideoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          decoration: BoxDecoration(color: Colors.black),
-          constraints: BoxConstraints.expand(
-            height: MediaQuery.of(context).size.height,
-          ),
-          child: Chewie(controller: chewieController)),
-    );
+        backgroundColor: Colors.black,
+        body: Container(child: Chewie(controller: chewieController)));
   }
 }

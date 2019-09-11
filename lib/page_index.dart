@@ -97,6 +97,7 @@ export 'utils/database.dart';
 export 'utils/md5_util.dart';
 export 'utils/sp_util.dart';
 export 'utils/file_util.dart';
+export 'utils/permissions_util.dart';
 
 export 'ui/change_appbar.dart';
 export 'ui/empty.dart';
