@@ -128,7 +128,7 @@ A new Flutter application.
 ### [登录注册](https://github.com/LXD312569496/flutter-learing/tree/master/login_demo)
 
 
-|![1](https://upload-images.jianshu.io/upload_images/2774805-9b6c8ce1ba399665?imageMogr2/auto-orient/strip|imageView2/2/w/828/format/webp)|![2](https://upload-images.jianshu.io/upload_images/2774805-d577152c80806d50?imageMogr2/auto-orient/strip|imageView2/2/w/828/format/webp)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/1031566790595_.pic.jpg)|![4](https://raw.githubusercontent.com/Tecode/flutter_widget/master/picture/login_video_demo.gif)|
+|![1](https://upload-images.jianshu.io/upload_images/2774805-9b6c8ce1ba399665)|![2](https://upload-images.jianshu.io/upload_images/2774805-d577152c80806d50)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/1031566790595_.pic.jpg)|![4](https://raw.githubusercontent.com/Tecode/flutter_widget/master/picture/login_video_demo.gif)|
 | :--: | :--: | :--: | :--: |
 |登录|注册|找回密码|视频背景登录|
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-06-15-08-33-15-313.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-06-15-08-33-27-977.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-06-15-08-33-40-821.png)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-06-15-08-33-35-147.png)|
