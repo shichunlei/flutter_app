@@ -276,6 +276,12 @@ A new Flutter application.
 | cupertino_range_slider | [cupertino_range_slider](https://github.com/mahmed8003/cupertino_range_slider) | ![](https://img.shields.io/pub/v/cupertino_range_slider.svg) |
 | flutter_circular_slider | [flutter_jd_address_selector](https://github.com/davidanaya/flutter-circular-slider) | ![](https://img.shields.io/pub/v/flutter_circular_slider.svg) |
 | Range Slider | [range_slider](https://github.com/boeledi/RangeSlider) | ![](https://img.shields.io/pub/v/flutter_range_slider.svg) | 
+| 径向菜单 | [UnicornDialer](https://github.com/tiagojencmartins/unicornspeeddial) | ![](https://img.shields.io/pub/v/unicorndial.svg) | 
+| 音频播放 | [AudioPlayers](https://github.com/luanpotter/audioplayers) | ![](https://img.shields.io/pub/v/audioplayers.svg) | 
+| 音频播放与录制 | [FlutterSound](https://github.com/dooboolab/flutter_sound) | ![](https://img.shields.io/pub/v/flutter_sound.svg) | 
+| 音频播放（仅支持android） | [FluteMusicPlayer](https://github.com/iampawan/Flute-Music-Player) | ![](https://img.shields.io/pub/v/flute_music_player.svg) | 
+| 音频录制并将其存储在本地 | [Audio Recorder](https://github.com/ZaraclaJ/audio_recorder) | ![](https://img.shields.io/pub/v/audio_recorder.svg) | 
+| 音频播放 | [Stereo](https://github.com/2find/stereo) | ![](https://img.shields.io/pub/v/stereo.svg) | 
 
 
 ## 赞赏
