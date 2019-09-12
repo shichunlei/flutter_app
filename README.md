@@ -239,7 +239,6 @@ A new Flutter application.
 
 ## 使用到的或推荐的一些优秀的第三方插件
 
-| :--: | :--: | :--: |
 | Plugin | 地址 | 版本号 |
 | :-- | :-- | :-- |
 | 网络请求 | [dio](https://pub.dartlang.org/packages/dio) | ![](https://img.shields.io/pub/v/dio.svg) |
