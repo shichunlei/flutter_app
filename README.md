@@ -95,16 +95,18 @@ A new Flutter application.
 |![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/1021566790377_.pic.jpg)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-13-18-13-58-429.jpg)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-11-913.jpg)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-17-05-27-313.jpg)|
 | :--: | :--: | :--: | :--: |
 |启动页|[首页](https://github.com/shichunlei/flutter_app/blob/master/lib/home_page.dart)|侧边栏|版本信息|
-|![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-11-44-611.jpg)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-12-01-953.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-16-52-55-186.png)|![3](https://github.com/TheProtoss/wave/raw/master/example/assets/demo.gif)|
-|[音乐播放器](https://github.com/shichunlei/flutter_app/blob/master/lib/music_player/home_page.dart)|[二维码（生成/扫描）](https://github.com/shichunlei/flutter_app/blob/master/lib/widget/qr_image_wiget.dart)|[设备信息](https://github.com/shichunlei/flutter_app/blob/master/lib/page/device_info_page.dart)|Wave|
+|![0](https://github.com/csells/flutter_toggle_buttons/raw/master/readme/demo.gif)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-12-01-953.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-16-52-55-186.png)|![3](https://github.com/TheProtoss/wave/raw/master/example/assets/demo.gif)|
+|toggle_buttons|[二维码（生成/扫描）](https://github.com/shichunlei/flutter_app/blob/master/lib/widget/qr_image_wiget.dart)|[设备信息](https://github.com/shichunlei/flutter_app/blob/master/lib/page/device_info_page.dart)|Wave|
 |![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-28-09-39-35-311.jpg)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-28-09-39-48-539.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-28-09-40-04-052.png)|![3](https://github.com/divyanshub024/Flutter-page-route-transition/raw/master/art/route_transition.gif)|
-|[瀑布流](https://github.com/shichunlei/flutter_app/blob/master/lib/widget/staggered_view_page.dart)|[评分效果](https://github.com/shichunlei/flutter_app/blob/master/lib/widget/star_rating_widget.dart)|[多边形控件](https://github.com/shichunlei/flutter_app/blob/master/lib/widget/rounded_letter_widget.dart)|路由过度动画|
+|[瀑布流](https://github.com/shichunlei/flutter_app/blob/master/lib/widget/staggered_view_page.dart)|[评分控件](https://github.com/shichunlei/flutter_app/blob/master/lib/widget/star_rating_widget.dart)|[多边形控件](https://github.com/shichunlei/flutter_app/blob/master/lib/widget/rounded_letter_widget.dart)|路由过度动画|
 |![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-12-28-563.png)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-12-47-846.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-13-11-31-58-569.png)|![3](https://github.com/GanZhiXiong/gzx_dropdown_menu/raw/master/preview_images/美团.gif)|
 |[LikeButton](https://github.com/shichunlei/flutter_app/blob/master/lib/page/like_button_page.dart)|[Chip](https://github.com/shichunlei/flutter_app/blob/master/lib/widget/chip_widget.dart)|[侧滑删除](https://github.com/shichunlei/flutter_app/blob/master/lib/page/swiper_sample.dart)|DropDownMenu|
 |![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-37-42-680.png)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-38-36-857.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-37-13-394.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/1041566790911_.pic_hd.jpg)|
 |Icon|Stepper|AppBar|RangeSlider|
-|![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-02-13-11-31-19-566.jpg)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-27-08-09-22-689.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-27-08-08-59-855.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/1051566790912_.pic.jpg)|
-|仿探探|BottomSheet|TextField|Check Switch Radio|
+|![0](https://img-blog.csdn.net/20180507225129281?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQyMDUyNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-27-08-09-22-689.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-04-27-08-08-59-855.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/1051566790912_.pic.jpg)|
+|AspectRatio|BottomSheet|TextField|Check Switch Radio|
+|![0](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-09-11-18-32-05-782.jpg)|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-09-11-18-32-17-902.png)|![2](https://img-blog.csdnimg.cn/20181219204545587.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21lbmdrczE5ODc=,size_16,color_FFFFFF,t_70)|![3](https://img-blog.csdnimg.cn/20181219204559874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21lbmdrczE5ODc=,size_16,color_FFFFFF,t_70)|
+|Image|Slider|日期时间选择器|日期时间选择器|
 
 
 |![0](https://github.com/rafalbednarczuk/curved_navigation_bar/blob/master/example.gif)|![1](https://github.com/tunitowen/fancy_bottom_navigation/blob/master/fancy_gif.gif)|![2](https://camo.githubusercontent.com/6bdfb12848c7fcac62da5fa8c65c8c24f536d824/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f744b394c6866484a357154373164376c59612f67697068792e676966)|
@@ -126,7 +128,7 @@ A new Flutter application.
 ### [登录注册](https://github.com/LXD312569496/flutter-learing/tree/master/login_demo)
 
 
-|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-15-38-136.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-01-30-15-15-42-485.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/1031566790595_.pic.jpg)|![4](https://raw.githubusercontent.com/Tecode/flutter_widget/master/picture/login_video_demo.gif)|
+|![1](https://upload-images.jianshu.io/upload_images/2774805-9b6c8ce1ba399665?imageMogr2/auto-orient/strip|imageView2/2/w/828/format/webp)|![2](https://upload-images.jianshu.io/upload_images/2774805-d577152c80806d50?imageMogr2/auto-orient/strip|imageView2/2/w/828/format/webp)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/1031566790595_.pic.jpg)|![4](https://raw.githubusercontent.com/Tecode/flutter_widget/master/picture/login_video_demo.gif)|
 | :--: | :--: | :--: | :--: |
 |登录|注册|找回密码|视频背景登录|
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-06-15-08-33-15-313.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-06-15-08-33-27-977.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-06-15-08-33-40-821.png)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-06-15-08-33-35-147.png)|
@@ -259,7 +261,6 @@ A new Flutter application.
 | 图片裁剪 | [image_crop](https://github.com/VolodymyrLykhonis/image_crop) |![](https://img.shields.io/pub/v/image_crop.svg)|
 | 图片裁剪 | [image_cropper](https://github.com/hnvn/flutter_image_cropper) |![](https://img.shields.io/pub/v/image_cropper.svg)|
 | Flutter Multi Image Picker | [Multi Image Picker](https://github.com/Sh1d0w/multi_image_picker) | ![](https://img.shields.io/pub/v/multi_image_picker.svg) | 
-| Range Slider | [range_slider](https://github.com/boeledi/RangeSlider) | ![](https://img.shields.io/pub/v/flutter_range_slider.svg) | 
 | 侧滑菜单 | [flutter_inner_drawer](https://github.com/Dn-a/flutter_inner_drawer) | ![](https://img.shields.io/pub/v/flutter_inner_drawer.svg) | 
 | 字母索引、悬停 | [AZListView](https://github.com/flutterchina/azlistview) | ![](https://img.shields.io/pub/v/azlistview.svg) |
 | 状态管理 | [provider](https://github.com/rrousselGit/provider) | ![](https://img.shields.io/pub/v/provider.svg) |
@@ -272,6 +273,9 @@ A new Flutter application.
 | 动画字体 | [animated_text_kit](https://github.com/aagarwal1012/Animated-Text-Kit) | ![](https://img.shields.io/pub/v/animated_text_kit.svg) |
 | 集成图标库 |[flutter_vector_icons](https://github.com/pd4d10/flutter-vector-icons)| ![](https://img.shields.io/pub/v/flutter_vector_icons.svg) |
 | 仿京东地址选择器 | [flutter_jd_address_selector](https://github.com/shichunlei/flutter_jd_address_selector) | 0.0.1 |
+| cupertino_range_slider | [cupertino_range_slider](https://github.com/mahmed8003/cupertino_range_slider) | ![](https://img.shields.io/pub/v/cupertino_range_slider.svg) |
+| flutter_circular_slider | [flutter_jd_address_selector](https://github.com/davidanaya/flutter-circular-slider) | ![](https://img.shields.io/pub/v/flutter_circular_slider.svg) |
+| Range Slider | [range_slider](https://github.com/boeledi/RangeSlider) | ![](https://img.shields.io/pub/v/flutter_range_slider.svg) | 
 
 
 ## 赞赏

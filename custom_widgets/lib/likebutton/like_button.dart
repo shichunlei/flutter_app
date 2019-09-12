@@ -4,6 +4,10 @@ import 'circle_painter.dart';
 import 'dot_painter.dart';
 import 'model.dart';
 
+export 'circle_painter.dart';
+export 'dot_painter.dart';
+export 'model.dart';
+
 typedef LikeCallback = void Function(bool isLike);
 
 class LikeButton extends StatefulWidget {

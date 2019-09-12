@@ -202,7 +202,7 @@ class ExpandStateBean {
       SubExpandBean('AspectRatio', AspectRatioSample()),
       SubExpandBean('ButtonBar', ButtonBarDemo()),
     ]),
-    ExpandStateBean(leading: Icons.filter_3, title: 'Navigation', children: [
+    ExpandStateBean(leading: Icons.filter_3, title: 'NavigationBar', children: [
       SubExpandBean('TabBar', TabBarHomePage()),
       SubExpandBean('BottomNavigationBar', BottomNavigationBarHomePage()),
       SubExpandBean('NavigationBarShifting', NavigationBarShifting()),

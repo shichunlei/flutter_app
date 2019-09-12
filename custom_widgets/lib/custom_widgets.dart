@@ -26,11 +26,6 @@ export 'dialog/asset_giffy_dialog.dart';
 export 'dialog/network_giffy_dialog.dart';
 export 'dialog/rich_alert_dialog.dart';
 
-export 'dropdown_menu/dropdown_header.dart';
 export 'dropdown_menu/dropdown_menu.dart';
-export 'dropdown_menu/dropdown_menu_controller.dart';
 
-export 'likebutton/circle_painter.dart';
-export 'likebutton/dot_painter.dart';
 export 'likebutton/like_button.dart';
-export 'likebutton/model.dart';

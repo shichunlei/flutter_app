@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'dropdown_menu_controller.dart';
 
+export 'dropdown_menu_controller.dart';
+export 'dropdown_header.dart';
+
 class DropdownMenuBuilder {
   final Widget dropDownWidget;
   final double dropDownHeight;
@@ -48,7 +51,8 @@ class _DropDownMenuState extends State<DropDownMenu>
   }
 
   _onController() {
-    debugPrint('_DropDownMenuState._onController ${widget.controller.menuIndex}');
+    debugPrint(
+        '_DropDownMenuState._onController ${widget.controller.menuIndex}');
 
     _showDropDownItemWidget();
   }
