@@ -24,7 +24,6 @@ export 'wave.dart';
 
 export 'dialog/asset_giffy_dialog.dart';
 export 'dialog/network_giffy_dialog.dart';
-export 'dialog/rich_alert_dialog.dart';
 
 export 'dropdown_menu/dropdown_menu.dart';
 

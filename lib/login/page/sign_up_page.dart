@@ -20,6 +20,13 @@ class _SignUpPageState extends State<SignUpPage> {
   Map<String, dynamic> _userInfo;
 
   @override
+  void initState() {
+    super.initState();
+
+    _userInfo = Map();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.only(top: 23),

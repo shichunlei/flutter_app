@@ -13,10 +13,7 @@ class ItemFeedTypeTwo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _width = width;
-    if (_width == null || _width == 0) {
-      _width = Utils.width;
-    }
+    double _width = width ?? Utils.width;
 
     return InkWell(
         child: Container(
@@ -35,7 +32,9 @@ class ItemFeedTypeTwo extends StatelessWidget {
                         style: TextStyle(fontWeight: FontWeight.bold)),
                     SizedBox(height: 5),
                     Text('${feedsBean?.post?.description}',
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
+                        style: TextStyle(color: Colors.grey, fontSize: 12),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis),
                     SizedBox(height: 5),
                     ItemBottomView(post: feedsBean?.post)
                   ]),

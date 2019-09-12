@@ -49,8 +49,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     /// 上面图片
                     Hero(
                         tag: 'login_logo',
-                        child: Image.asset('images/login_logo.png',
-                            width: 157, height: 120)),
+                        child: Image.network(
+                            'https://github.com/huextrat/TheGorgeousLogin/blob/master/assets/img/login_logo.png?raw=true',
+                            width: 157,
+                            height: 120)),
                     Padding(
                         padding: const EdgeInsets.only(top: 53),
                         child: Container(

@@ -59,8 +59,10 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                           /// 上面图片
                           Hero(
                               tag: 'login_logo',
-                              child: Image.asset('images/login_logo.png',
-                                  width: 157, height: 120)),
+                              child: Image.network(
+                                  'https://github.com/huextrat/TheGorgeousLogin/blob/master/assets/img/login_logo.png?raw=true',
+                                  width: 157,
+                                  height: 120)),
 
                           /// 指示器
                           _buildIndicator(),

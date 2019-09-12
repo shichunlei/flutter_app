@@ -19,8 +19,8 @@ class ContactListHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ClipOval(
-              child: Image.asset(
-                'images/login_logo.png',
+              child: Image.network(
+                'https://github.com/huextrat/TheGorgeousLogin/blob/master/assets/img/login_logo.png?raw=true',
                 width: 80.0,
               ),
             ),

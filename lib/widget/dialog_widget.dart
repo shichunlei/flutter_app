@@ -35,16 +35,6 @@ class DialogWidgetState extends State<DialogWidget> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(title: Text("Dialog Widget")),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () => showDialog(
-              context: context,
-              builder: (context) => RichAlertDialog(
-                  title: richTitle("Alert title"),
-                  subtitle: richSubtitle("Subtitle"),
-                  type: RichAlertType.ERROR,
-                  actions: <Widget>[Text("hello"), Text("its me")])),
-          backgroundColor: Colors.redAccent,
-          child: const Icon(Icons.add, semanticLabel: 'Add')),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 22.0),
         children: <Widget>[

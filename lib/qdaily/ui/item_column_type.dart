@@ -51,13 +51,13 @@ class _ItemColumnTypeViewState extends State<ItemColumnTypeView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 310,
+      height: 305,
       child: Column(children: <Widget>[
         ItemTopView(icon: widget.icon, title: widget.title, onPressed: () {}),
         Flexible(
             child: ListView.separated(
                 controller: _scrollController,
-                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                padding: EdgeInsets.zero,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => widget.showType == 1
                     ? ItemFeedTypeTwo(
@@ -71,7 +71,7 @@ class _ItemColumnTypeViewState extends State<ItemColumnTypeView> {
                             BookDetailPage(id: feeds[index]?.post?.id)),
                         width: (Utils.width - 15) / 2),
                 separatorBuilder: (context, index) =>
-                    Container(width: 8, color: Colors.grey[200]),
+                    Container(width: 5, color: Colors.grey[200]),
                 itemCount: feeds.length))
       ]),
     );
