@@ -128,6 +128,7 @@ export 'ui/web_view.dart';
 export 'ui/input_text_view.dart';
 export 'ui/icon_text.dart';
 export 'ui/light_theme.dart';
+export 'ui/tagview.dart';
 
 export 'qdaily/splash.dart';
 

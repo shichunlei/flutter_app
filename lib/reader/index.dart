@@ -35,7 +35,6 @@ export '../bean/books.dart';
 export 'widgets/item_book.dart';
 export 'widgets/item_ranking_book.dart';
 export 'widgets/book_detail_header.dart';
-export 'widgets/tagview.dart';
 export 'widgets/item_review.dart';
 export 'widgets/details_appbar_view.dart';
 export 'widgets/details_bottom_view.dart';

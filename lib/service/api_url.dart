@@ -65,7 +65,11 @@ class ApiUrl {
 
   static final String RANDOMUSER_URL = 'https://randomuser.me/api/';
 
-  static final String JUZIMI_URL = 'https://www.juzimi.com/';
+  static final String JUZIMI_URL = 'http://data.chingsoft.com/api/v1/';
+
+  static final String JUZIMI_LIST_URL = 'juzimi/list';
+  static final String JUZIMI_TAG_LIST_URL = 'juzimi/tag_list';
+  static final String JUZIMI_DETAILS_URL = 'juzimi/details';
 
   static final String MEIZITU_URL = 'https://m.image.so.com/';
 

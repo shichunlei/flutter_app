@@ -208,7 +208,13 @@ A new Flutter application.
 |头部|九宫格|选择照片|发表编辑|
 
 
-### [句子迷](https://www.juzimi.com/)
+### [句子迷](http://www.cnjxn.com)
+
+
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-09-14-12-04-59-955.jpg)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-09-14-12-04-52-007.jpg)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-09-14-12-04-23-471.jpg)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-09-14-12-04-38-116.png)|
+| :--: | :--: | :--: | :--: |
+|启动页|列表页|详情（内容）|详情（推荐）|
+
 
 
 ### [好奇心日报](http://www.qdaily.com/)
@@ -239,7 +245,8 @@ A new Flutter application.
 
 ## 使用到的或推荐的一些优秀的第三方插件
 
-| Plugin | 地址 | 版本号 |
+
+| 名称 | GitHub地址 | 版本号 |
 | :-- | :-- | :-- |
 | 网络请求 | [dio](https://pub.dartlang.org/packages/dio) | ![](https://img.shields.io/pub/v/dio.svg) |
 | 下拉刷新，上拉加载 |[FlutterEasyRefresh](https://github.com/xuelongqy/flutter_easyrefresh)|![](https://img.shields.io/pub/v/flutter_easyrefresh.svg)|
