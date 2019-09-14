@@ -64,6 +64,7 @@ export 'page/login/login_page.dart';
 export 'page/login_video_page.dart';
 export 'page/second_floor.dart';
 export 'page/parallax_image.dart';
+export 'page/shimmer.dart';
 
 export 'animation/curves_demo.dart';
 export 'animation/animated_opacity.dart';

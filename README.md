@@ -291,6 +291,7 @@ A new Flutter application.
 | 音频播放 | [Stereo](https://github.com/2find/stereo) | ![](https://img.shields.io/pub/v/stereo.svg) | 
 | 视频播放器 | [video_player](https://github.com/flutter/plugins/tree/master/packages/video_player) | ![](https://img.shields.io/pub/v/video_player.svg) | 
 | 瀑布流布局 | [flutter_staggered_grid_view](https://github.com/letsar/flutter_staggered_grid_view) | ![](https://img.shields.io/pub/v/flutter_staggered_grid_view.svg) | 
+| 骨架屏 | [Shimmer](https://github.com/hnvn/flutter_shimmer) | ![](https://img.shields.io/pub/v/shimmer.svg) | 
 
 
 ## 赞赏
