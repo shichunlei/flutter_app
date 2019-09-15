@@ -38,4 +38,3 @@ export 'lab/labs.dart';
 
 export '../bean/qdaily.dart';
 export '../bean/qdaily_app.dart';
-export '../bean/qdaily_web.dart';

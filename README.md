@@ -292,6 +292,8 @@ A new Flutter application.
 | 视频播放器 | [video_player](https://github.com/flutter/plugins/tree/master/packages/video_player) | ![](https://img.shields.io/pub/v/video_player.svg) | 
 | 瀑布流布局 | [flutter_staggered_grid_view](https://github.com/letsar/flutter_staggered_grid_view) | ![](https://img.shields.io/pub/v/flutter_staggered_grid_view.svg) | 
 | 骨架屏 | [Shimmer](https://github.com/hnvn/flutter_shimmer) | ![](https://img.shields.io/pub/v/shimmer.svg) | 
+| 类iOS侧滑 | [flutter_slidable](https://github.com/letsar/flutter_slidable) | ![](https://img.shields.io/pub/v/flutter_slidable.svg) | 
+| 权限访问 | [permission_handler](https://github.com/BaseflowIT/flutter-permission-handler) | ![](https://img.shields.io/pub/v/permission_handler.svg) | 
 
 
 ## 赞赏

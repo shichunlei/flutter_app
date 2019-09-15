@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/juzimi.dart';
+import 'package:parallax_image/parallax_image.dart';
 
 import '../page_index.dart';
 import 'tag_list.dart';
@@ -20,38 +21,31 @@ class ItemList extends StatelessWidget {
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                AspectRatio(
-                  aspectRatio: 275 / 177,
-                  child: Stack(
-                    children: <Widget>[
-                      ImageLoadView(
-                        '${item?.image}',
-                        width: double.infinity,
-                        height: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                      Positioned(
-                        bottom: 5,
-                        left: 5,
-                        child: Wrap(
-                          spacing: 5,
-                          children: item.tags
-                              .map((tag) => TagView(
-                                    tag: '${tag.tag}',
-                                    padding: EdgeInsets.all(5),
-                                    bgColor: Utils.strToColor(tag.tag),
-                                    textColor: Colors.white,
-                                    onPressed: () => pushNewPage(
-                                        context,
-                                        JuZiMiTagListPage(
-                                          id: tag.id,
-                                        )),
-                                    borderRadius: 30,
-                                  ))
-                              .toList(),
-                        ),
-                      )
-                    ],
+                ParallaxImage(
+                  extent: 180.0,
+                  image: NetworkImage(
+                    '${item?.image}',
+                  ),
+                  child: Container(
+                    child: Wrap(
+                      spacing: 5,
+                      children: item.tags
+                          .map((tag) => TagView(
+                                tag: '${tag.tag}',
+                                padding: EdgeInsets.all(5),
+                                bgColor: Utils.strToColor(tag.tag),
+                                textColor: Colors.white,
+                                onPressed: () => pushNewPage(
+                                    context,
+                                    JuZiMiTagListPage(
+                                      id: tag.id,
+                                    )),
+                                borderRadius: 30,
+                              ))
+                          .toList(),
+                    ),
+                    alignment: Alignment.bottomLeft,
+                    padding: EdgeInsets.all(5),
                   ),
                 ),
                 Container(

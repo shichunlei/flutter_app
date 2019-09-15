@@ -1,4 +1,3 @@
-import 'package:flutter_app/bean/article.dart';
 import 'package:flutter_app/bean/celebrity.dart';
 import 'package:flutter_app/bean/contact.dart';
 import 'package:flutter_app/bean/he_weather.dart';
@@ -15,9 +14,6 @@ class Result {
   int total;
   List<Movie> subjects;
   Movie subject;
-
-  /// 每日一文
-  Article article;
 
   /// 相册
   List<Photos> photos;
@@ -61,7 +57,6 @@ class Result {
         map['celebrity'] == null ? null : Celebrity.fromMap(map['celebrity']);
     result.subject =
         map['subject'] == null ? null : Movie.fromMap(map['subject']);
-    result.article = map['data'] == null ? null : Article.fromMap(map['data']);
 
     result.heWeather = List()
       ..addAll(

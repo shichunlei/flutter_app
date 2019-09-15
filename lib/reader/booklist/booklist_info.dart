@@ -51,11 +51,18 @@ class _BookListInfoPageState extends State<BookListInfoPage> {
                       child: Column(children: <Widget>[
                         Text('${booklist?.title}',
                             style: TextStyles.textDark16),
+                        Gaps.vGap5,
                         Wrap(
                             spacing: 5,
                             children: booklist != null
                                 ? booklist.tags
-                                    .map((tag) => Chip(label: Text('$tag')))
+                                    .map((tag) => TagView(
+                                          tag: '$tag',
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 4, horizontal: 8),
+                                          bgColor: Utils.strToColor(tag),
+                                          textColor: Colors.white,
+                                        ))
                                     .toList()
                                 : []),
                         Gaps.vGap5,

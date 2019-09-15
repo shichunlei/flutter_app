@@ -8,6 +8,7 @@ class TagView extends StatelessWidget {
   final Color bgColor;
   final VoidCallback onPressed;
   final double borderRadius;
+  final double fontSize;
 
   TagView(
       {Key key,
@@ -17,7 +18,8 @@ class TagView extends StatelessWidget {
       this.padding,
       this.bgColor,
       this.onPressed,
-      this.borderRadius: 3.0})
+      this.borderRadius: 3.0,
+      this.fontSize = 11.5})
       : super(key: key);
 
   @override
@@ -27,16 +29,21 @@ class TagView extends StatelessWidget {
       child: InkWell(
         onTap: onPressed,
         child: Container(
-            padding: padding ?? EdgeInsets.symmetric(horizontal: 5),
-            alignment: Alignment.center,
-            child: Text(tag,
-                style: TextStyle(
-                    color: textColor ?? Color(0xFF9A9AA7), fontSize: 11.5)),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
-                border: Border.all(
-                    width: 0.5, color: borderColor ?? Color(0xFF9A9AA7)),
-                color: bgColor ?? Colors.transparent)),
+          padding: padding ?? EdgeInsets.symmetric(horizontal: 5),
+          child: Text(
+            tag,
+            style: TextStyle(
+              color: textColor ?? Color(0xFF9A9AA7),
+              fontSize: fontSize,
+            ),
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
+            border:
+                Border.all(width: 0.5, color: borderColor ?? Color(0xFF9A9AA7)),
+            color: bgColor ?? Colors.transparent,
+          ),
+        ),
       ),
     );
   }

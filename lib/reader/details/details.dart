@@ -20,6 +20,11 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
   Color pageTopColorStart = readerMainColor;
   Color pageTopColorEnd = Color(0xff35374c);
 
+  ScrollController _controller = ScrollController();
+
+  /// 透明度 取值范围[0,1]
+  double navAlpha = 0;
+
   Books book;
 
   /// 书评
@@ -47,6 +52,25 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
     bdHelper = BookShelfDBHelper();
 
     initPageTopColor();
+
+    _controller.addListener(() {
+      var offset = _controller.offset;
+      if (offset < 0) {
+        if (navAlpha != 0) {
+          setState(() {
+            navAlpha = 0;
+          });
+        }
+      } else if (offset < 280) {
+        setState(() {
+          navAlpha = 1 - (280 - offset) / 280;
+        });
+      } else if (navAlpha != 1) {
+        setState(() {
+          navAlpha = 1;
+        });
+      }
+    });
 
     getBookDetails(widget.id);
   }
@@ -97,7 +121,9 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
               contentView: Column(children: <Widget>[
                 Expanded(
                   child: SingleChildScrollView(
-                    padding: EdgeInsets.all(0),
+                    physics: BouncingScrollPhysics(),
+                    controller: _controller,
+                    padding: EdgeInsets.zero,
                     child: Column(children: <Widget>[
                       /// 头部
                       BookDetailsHeaderView(
@@ -116,7 +142,11 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                             Gaps.vGap5,
 
                             /// 标签
-                            Wrap(children: tags(), spacing: 5),
+                            Wrap(
+                              children: tags(),
+                              spacing: 5,
+                              runSpacing: 3,
+                            ),
                             Gaps.vGap5,
                             Text('${book?.longIntro}',
                                 style: TextStyles.textGrey14),
@@ -187,9 +217,17 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
               loaderState: _status),
           Container(
               child: AppBar(
-                  elevation: 0.0,
-                  backgroundColor: Colors.transparent,
-                  title: Text('${book?.title}')),
+                elevation: 0.0,
+                backgroundColor: Color.fromARGB(
+                  (navAlpha * 255).toInt(),
+                  pageTopColorStart.red,
+                  pageTopColorStart.green,
+                  pageTopColorStart.blue,
+                ),
+                title: Text(
+                  '${book?.title}',
+                ),
+              ),
               height: Utils.navigationBarHeight)
         ]));
   }
@@ -309,8 +347,16 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
   List<Widget> tags() {
     List<Widget> widgets = [];
     if (book != null)
-      book.tags.forEach((tag) => widgets
-          .add(Chip(label: Text(tag), backgroundColor: Utils.strToColor(tag))));
+      book.tags.forEach(
+        (tag) => widgets.add(
+          TagView(
+            tag: tag,
+            bgColor: Utils.strToColor(tag),
+            padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+            textColor: Colors.white,
+          ),
+        ),
+      );
 
     return widgets;
   }

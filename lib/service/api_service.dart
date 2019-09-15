@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_app/bean/baixing.dart';
+import 'package:flutter_app/bean/base_result.dart';
 import 'package:flutter_app/bean/books.dart';
 import 'package:flutter_app/bean/hitokoto.dart';
 import 'package:flutter_app/bean/youdao.dart';
@@ -350,8 +351,8 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.article;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    return Article.fromMap(result.data);
   }
 
   /// 特定日期文章
@@ -361,8 +362,8 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.article;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    return Article.fromMap(result.data);
   }
 
   /// 随机文章
@@ -372,8 +373,8 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.article;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    return Article.fromMap(result.data);
   }
 
   /// 得到实况天气
@@ -679,10 +680,10 @@ class ApiService {
       return null;
     }
 
-    JuzimiResult result = JuzimiResult.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == 0) {
-      return result.data;
+      return JuZiMi.fromMap(result.data);
     } else {
       return null;
     }
@@ -697,10 +698,11 @@ class ApiService {
       return [];
     }
 
-    JuzimiResult result = JuzimiResult.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == 0) {
-      return result.list;
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => JuZiMi.fromMap(o)));
     } else {
       return [];
     }
@@ -716,10 +718,11 @@ class ApiService {
       return [];
     }
 
-    JuzimiResult result = JuzimiResult.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == 0) {
-      return result.list;
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => JuZiMi.fromMap(o)));
     } else {
       return [];
     }
@@ -785,14 +788,19 @@ class ApiService {
   }
 
   /// 栏目列表
-  static Future<DataBean> getQdailyColumnList(String lastKey) async {
+  static Future<QdailyWebBean> getQdailyColumnList(String lastKey) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_WEB_URL)
         .request("${ApiUrl.QDAILY_COLUMN_LIST_DATA}$lastKey.json", data: null);
     if (response.statusCode != 200) {
       return null;
     }
-    QdailyResult result = QdailyResult.fromMap(json.decode(response.data));
-    return result.data;
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.status) {
+      return QdailyWebBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 栏目信息
@@ -859,7 +867,7 @@ class ApiService {
   }
 
   /// 搜索
-  static Future<DataBean> getQDailySearchData(
+  static Future<QdailyWebBean> getQDailySearchData(
       String keywords, String last_key) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_WEB_URL).request(
         ApiUrl.QDAILY_SEARCH_WEB_DATA,
@@ -867,8 +875,13 @@ class ApiService {
     if (response.statusCode != 200) {
       return null;
     }
-    QdailyResult result = QdailyResult.fromMap(json.decode(response.data));
-    return result.data;
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.status) {
+      return QdailyWebBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 获取文章/新闻详情

@@ -257,7 +257,7 @@ packages:
       name: flutter_sound
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.4.3"
+    version: "1.4.4"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -297,7 +297,7 @@ packages:
       name: flutter_webview_plugin
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.7"
+    version: "0.3.8"
   fluttery:
     dependency: transitive
     description:
@@ -416,7 +416,7 @@ packages:
       name: multi_image_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.5.3"
+    version: "4.5.4"
   open_iconic_flutter:
     dependency: transitive
     description:
@@ -652,7 +652,7 @@ packages:
       name: url_launcher
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "5.1.2"
+    version: "5.1.3"
   uuid:
     dependency: transitive
     description:

@@ -22,7 +22,7 @@ class _JuZiMiListPageState extends State<JuZiMiListPage>
 
   LoaderState _status = LoaderState.Loading;
 
-  int page = 0;
+  int page = 1;
 
   bool isLoadComplete = false;
 
@@ -31,7 +31,7 @@ class _JuZiMiListPageState extends State<JuZiMiListPage>
   @override
   void initState() {
     super.initState();
-
+    page = 1;
     getJuZiMiDate(widget.type, page, RefreshType.DEFAULT);
   }
 
@@ -40,7 +40,7 @@ class _JuZiMiListPageState extends State<JuZiMiListPage>
     return LoaderContainer(
       contentView: EasyRefresh(
           onRefresh: () async {
-            page = 0;
+            page = 1;
             getJuZiMiDate(widget.type, page, RefreshType.REFRESH);
           },
           onLoad: isLoadComplete
