@@ -19,6 +19,7 @@ export 'skip_down_time_progress.dart';
 export 'smooth_star_rating.dart';
 export 'sparkline.dart';
 export 'sunrise_sunset_view.dart';
+export 'titled_navigation_bar.dart';
 export 'utils.dart';
 export 'wave.dart';
 

@@ -93,6 +93,7 @@ export 'bars_demo/bottom_appbar.dart';
 export 'bars_demo/bubble_bottom_bar.dart';
 export 'bars_demo/cupertino_tabbar.dart';
 export 'bars_demo/bottom_barview.dart';
+export 'bars_demo/titled_navigation_bar.dart';
 
 export 'utils/utils.dart';
 export 'utils/http_utils.dart';

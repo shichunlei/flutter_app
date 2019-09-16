@@ -214,6 +214,7 @@ class ExpandStateBean {
       SubExpandBean('CurvedNavigationBar', CurvedNavigationBarSample()),
       SubExpandBean('CupertinoTabBar', CupertinoTabBarSample()),
       SubExpandBean('BottomBarView', BottomBarViewDemo()),
+      SubExpandBean('Titled Bottom Bar', TitledNavigationBarDemo()),
     ]),
     ExpandStateBean(leading: Icons.filter_4, title: 'Animation', children: [
       SubExpandBean('Curves', CurvesDemo()),
