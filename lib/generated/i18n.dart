@@ -52,7 +52,7 @@ class S implements WidgetsLocalizations {
   String get loadMore => "LoadMore";
   String get loaded => "Load completed";
   String get loading => "Loading...";
-  String get login => "Login";
+  String get login => "login";
   String get menu => "menu";
   String get noMore => "No more";
   String get password_login => "Password Login";
@@ -66,7 +66,7 @@ class S implements WidgetsLocalizations {
   String get refreshFinish => "Refresh completed";
   String get refreshed => "Refresh completed";
   String get refreshing => "Refreshing...";
-  String get register => "Register";
+  String get register => "sign up";
   String get releaseToLoad => "Release to load";
   String get releaseToRefresh => "Release to refresh";
   String get reset_password => "Reset Password";

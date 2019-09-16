@@ -62,6 +62,7 @@ export 'page/flip_view_custom.dart';
 export 'page/logon/index.dart';
 export 'page/login/login_page.dart';
 export 'page/login_video_page.dart';
+export 'page/sliding_login/login.dart';
 export 'page/second_floor.dart';
 export 'page/parallax_image.dart';
 export 'page/shimmer.dart';
