@@ -77,7 +77,6 @@ class _SlidingLoginPageState extends State<SlidingLoginPage>
             Offstage(
               offstage: !isLogin,
               child: Container(
-                color: Colors.red,
                 alignment: Alignment.center,
                 height: Utils.height - Utils.width / 2 - _defaultMargin,
                 child: GestureDetector(
