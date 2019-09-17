@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/animation/utils/animations.dart';
 
 import '../page_index.dart';
 
@@ -52,10 +53,18 @@ class SplashPage extends StatelessWidget {
                     margin: EdgeInsets.only(top: 100))
               ]),
               Container(
-                child: FlatButton(
+                child: BounceInAnimation(
+                  delay: const Duration(milliseconds: 400),
+                  child: Button(
                     onPressed: () => pushReplacement(context, JuZiMiHomePage()),
-                    child: Text('进入',
-                        style: TextStyle(fontSize: 30.0, color: Colors.grey))),
+                    text: '进入',
+                    textSize: 20,
+                    textColor: Colors.white,
+                    borderRadius: 20,
+                    width: Utils.width / 3,
+                    height: 40,
+                  ),
+                ),
                 margin: EdgeInsets.only(bottom: 50.0),
               ),
             ],

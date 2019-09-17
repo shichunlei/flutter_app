@@ -55,7 +55,7 @@ class _TweenDemoState extends State<TweenDemo>
 
     //animation第二种创建方式：
     offsetAnimation = controller.drive(
-        Tween<Offset>(begin: Offset(0.0, 0.0), end: Offset(400.0, 200.0)));
+        Tween<Offset>(begin: Offset.zero, end: Offset(400.0, 200.0)));
 
     colorAnimation =
         ColorTween(begin: Colors.yellow, end: Colors.red).animate(controller);

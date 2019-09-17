@@ -34,18 +34,17 @@ class _QdailySplashPageState extends State<QdailySplashPage>
     isFirst = SpUtil.getBool('qdaily_isFirst', defValue: true);
     debugPrint('===================$isFirst');
 
-    _controller = AnimationController(
-        vsync: this, duration: Duration(seconds: 3, milliseconds: 500));
-    _animation = Tween(begin: 0.0, end: 1.0)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          showTimer = true;
+          setState(() {});
+        }
+      });
 
     _controller.forward();
-    _animation.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        showTimer = true;
-        setState(() {});
-      }
-    });
 
     _initBannerData();
   }

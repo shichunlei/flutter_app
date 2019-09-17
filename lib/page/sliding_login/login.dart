@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/page_index.dart';
 
+import 'text_field.dart';
+
 /// 参考：https://github.com/pedromassango/my_flutter_challenges/blob/master/lib/sliding_login.dart
 class SlidingLoginPage extends StatefulWidget {
   SlidingLoginPage({Key key}) : super(key: key);
@@ -20,7 +22,7 @@ class _SlidingLoginPageState extends State<SlidingLoginPage>
 
   Animation<Offset> _slideAnimation;
 
-  Animation<double> _opacityAnimation, _opacityAnimation2;
+  Animation<double> _opacityAnimation;
 
   double _defaultMargin = Utils.height / 2.5;
 
@@ -42,8 +44,6 @@ class _SlidingLoginPageState extends State<SlidingLoginPage>
         .animate(animation);
 
     _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(animation);
-
-    _opacityAnimation2 = Tween<double>(begin: 1, end: 0).animate(animation);
   }
 
   @override
@@ -151,40 +151,20 @@ class _SlidingLoginPageState extends State<SlidingLoginPage>
             height: _defaultMargin,
             child: Column(
               children: <Widget>[
-                TextField(
-                  style: TextStyle(color: Colors.white, height: 0.5),
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.email,
-                      color: Colors.white,
-                    ),
-                    hintText: 'Email',
-                    hintStyle: TextStyle(color: Colors.white),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32),
-                      ),
-                    ),
-                  ),
+                TextFieldView(
+                  margin: EdgeInsets.zero,
+                  icon: Icons.email,
+                  hintText: 'Email',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  border: Border.all(color: Color(0xffffffff), width: 0.5),
                 ),
-                Gaps.vGap16,
-                TextField(
-                  style: TextStyle(color: Colors.white, height: 0.5),
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.vpn_key,
-                      color: Colors.white,
-                    ),
-                    hintText: 'Password',
-                    hintStyle: TextStyle(color: Colors.white),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32),
-                      ),
-                    ),
-                  ),
+                TextFieldView(
+                  margin: EdgeInsets.symmetric(vertical: 16),
+                  icon: Icons.vpn_key,
+                  hintText: 'Password',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  border: Border.all(color: Color(0xffffffff), width: 0.5),
                 ),
-                Gaps.vGap16,
                 Button(
                   onPressed: () {
                     Toast.show(context, S.of(context).login);
@@ -217,45 +197,25 @@ class _SlidingLoginPageState extends State<SlidingLoginPage>
             ),
           ),
           Gaps.vGap40,
-          TextField(
-            style: TextStyle(color: Colors.black, height: 0.5),
-            decoration: InputDecoration(
-              prefixIcon: Icon(
-                Icons.email,
-              ),
-              hintText: 'Email',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(32),
-                ),
-              ),
-            ),
+          TextFieldView(
+            style: TextStyle(color: Colors.black),
+            icon: Icons.email,
+            hintText: 'Email',
+            margin: EdgeInsets.zero,
           ),
           Gaps.vGap16,
-          TextField(
-            style: TextStyle(color: Colors.black, height: 0.5),
-            decoration: InputDecoration(
-              prefixIcon: Icon(Icons.vpn_key),
-              hintText: 'Password',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(32),
-                ),
-              ),
-            ),
+          TextFieldView(
+            style: TextStyle(color: Colors.black),
+            icon: Icons.vpn_key,
+            hintText: 'Password',
+            margin: EdgeInsets.zero,
           ),
           Gaps.vGap16,
-          TextField(
-            style: TextStyle(color: Colors.black, height: 0.5),
-            decoration: InputDecoration(
-              prefixIcon: Icon(Icons.vpn_key),
-              hintText: 'Confirm Password',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(32),
-                ),
-              ),
-            ),
+          TextFieldView(
+            margin: EdgeInsets.zero,
+            style: TextStyle(color: Colors.black),
+            hintText: '确认密码',
+            icon: Icons.vpn_key,
           ),
           Gaps.vGap16,
           Button(
