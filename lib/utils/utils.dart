@@ -41,11 +41,13 @@ class Utils {
     return mediaQuery.size.height;
   }
 
+  /// 标题栏高度（包括状态栏）
   static double get navigationBarHeight {
     MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     return mediaQuery.padding.top + kToolbarHeight;
   }
 
+  /// 状态栏高度
   static double get topSafeHeight {
     MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     return mediaQuery.padding.top;
@@ -93,7 +95,7 @@ class Utils {
     PaletteGenerator paletteGenerator =
         await PaletteGenerator.fromImageProvider(type == "network"
             ? NetworkImage(imagePath)
-            : Image.asset(imagePath));
+            : AssetImage(imagePath));
 
     return paletteGenerator.lightVibrantColor?.color ?? defaultColor;
   }
@@ -113,7 +115,7 @@ class Utils {
     PaletteGenerator paletteGenerator =
         await PaletteGenerator.fromImageProvider(type == "network"
             ? NetworkImage(imagePath)
-            : Image.asset(imagePath));
+            : AssetImage(imagePath));
 
     return paletteGenerator.darkMutedColor?.color ?? defaultColor;
   }

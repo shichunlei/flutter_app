@@ -78,8 +78,8 @@ export 'animation/animated_size.dart';
 export 'animation/animated_align.dart';
 export 'animation/animated_positioned.dart';
 export 'animation/tween.dart';
-export 'animation/animated_arrow.dart';
 export 'animation/animated_container.dart';
+export 'animation/custom_animation.dart';
 
 export 'city_pickers/page/fullpage_pickers_page.dart';
 export 'city_pickers/page/ios_city_pickers_page.dart';

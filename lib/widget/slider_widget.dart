@@ -3,6 +3,19 @@ import 'package:flutter/material.dart';
 
 import '../page_index.dart';
 
+/// Slider 属性释义
+///
+/// activeColor → Color - 激活时的颜色。
+/// divisions → int - 离散部分的数量。
+/// inactiveColor → Color - 滑块轨道的非活动部分的颜色。
+/// label → String 滑块处于活动状态时显示在滑块上方的标签。
+/// max → double - 用户可以选择的最大值。
+/// min → double - 用户可以选择的最小值。
+/// onChanged → ValueChanged - 改变时触发。
+/// onChangeEnd → ValueChanged - 改变后触发。
+/// onChangeStart → ValueChanged - 改变前触发。
+/// value → double - 滑块的值。
+
 class SliderWidget extends StatefulWidget {
   @override
   _SliderWidgetState createState() => _SliderWidgetState();

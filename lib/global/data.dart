@@ -229,7 +229,7 @@ class ExpandStateBean {
       SubExpandBean('AnimatedAlign', AnimatedAlignDemo()),
       SubExpandBean('AnimatedPositioned', AnimatedPositionedDemo()),
       SubExpandBean('Tween', TweenDemo()),
-      SubExpandBean('AnimatedArrow', AnimatedArrowDemo()),
+      SubExpandBean('自定义动画', CustomAnimationDemo()),
     ]),
     ExpandStateBean(
         leading: Icons.filter_5,
