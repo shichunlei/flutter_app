@@ -125,11 +125,15 @@ class _ContactListPageState extends State<ContactListPage> {
                 )),
             Expanded(
               child: ListTile(
-                  leading: model?.picture?.medium == ""
-                      ? CircleAvatar(child: Text(model?.fullName[0]))
-                      : CircleAvatar(
-                          backgroundImage: NetworkImage(model?.picture?.medium),
-                        ),
+                  leading: Hero(
+                    tag: '${model.fullName}',
+                    child: model?.picture?.medium == ""
+                        ? CircleAvatar(child: Text(model?.fullName[0]))
+                        : CircleAvatar(
+                            backgroundImage:
+                                NetworkImage(model?.picture?.medium),
+                          ),
+                  ),
                   title: Text(model.fullName),
                   subtitle: Text(model.email),
                   onTap: () => pushNewPage(
@@ -138,6 +142,11 @@ class _ContactListPageState extends State<ContactListPage> {
                         name: model.fullName,
                         phone: model.phone,
                         avatar: model?.picture?.large,
+                        email: model?.email,
+                        cell: model?.cell,
+                        address: model?.location?.street,
+                        area:
+                            "${model?.location?.city}, ${model?.location?.state}",
                       ))),
             )
           ],

@@ -18,7 +18,7 @@ import '../page_index.dart';
 
 class SliderWidget extends StatefulWidget {
   @override
-  _SliderWidgetState createState() => _SliderWidgetState();
+  createState() => _SliderWidgetState();
 }
 
 class _SliderWidgetState extends State<SliderWidget> {

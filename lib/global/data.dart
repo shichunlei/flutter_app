@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../page_index.dart';
 
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:flutter_app/xianyu/home.dart';
+import 'package:flutter_app/widget/sliver.dart';
 
 class Girl {
   final String description;
@@ -199,7 +199,7 @@ class ExpandStateBean {
           SubExpandBean('AppBar', AppBarWidget()),
           SubExpandBean('Dialog', DialogWidget()),
           SubExpandBean('Sliver1', SliverWidget()),
-          SubExpandBean('Sliver2', XianyuHomePage()),
+          SubExpandBean('Sliver2', SliverPage()),
           SubExpandBean('Table', TablePage()),
           SubExpandBean('日期时间选择', DateTimePicker()),
           SubExpandBean('BottomSheet', BottomSheetWidget()),

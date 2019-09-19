@@ -1,39 +1,42 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_app/delegates/custom_sliver_appbar_delegate.dart';
+import 'package:flutter_app/page_index.dart';
+
+enum AppBarBehavior { normal, pinned, floating, snapping }
 
 class SliverWidget extends StatefulWidget {
   SliverWidget({Key key}) : super(key: key);
 
   @override
-  _SliverWidgetState createState() => _SliverWidgetState();
+  createState() => _SliverWidgetState();
 }
 
 class _SliverWidgetState extends State<SliverWidget> {
-  ScrollController _controller;
+  AppBarBehavior _appBarBehavior;
 
   @override
   void initState() {
     super.initState();
-    _controller = ScrollController();
+
+    _appBarBehavior = AppBarBehavior.pinned;
   }
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
-        controller: _controller,
         slivers: <Widget>[
           _buildSliverAppBar(),
           _buildSliverToBoxAdapter(),
           _buildSliverPersistentHeader(),
           _buildSliverList(context),
+          _buildSliverPersistentHeader(),
+          _buildSliverList2(context),
           _buildSliverPersistentHeader(),
           _buildSliverGrid(context),
           _buildSliverPersistentHeader(),
@@ -46,6 +49,7 @@ class _SliverWidgetState extends State<SliverWidget> {
   }
 
   Widget _buildSliverAppBar() {
+    /// SliverAppBar 是一个可伸缩的头部，可以实现上拉收起，下拉展开效果
     return SliverAppBar(
       /// 背景色
       backgroundColor: Colors.white,
@@ -53,17 +57,61 @@ class _SliverWidgetState extends State<SliverWidget> {
       /// 展开高度
       expandedHeight: 200.0,
 
-      /// 是否随着滑动隐藏标题
-      floating: false,
-
-      /// 与floating结合使用
-      snap: false,
-
-      /// 是否固定在顶部
-      pinned: false,
-
       /// 是否预留高度
       primary: true,
+
+      /// 是否固定在顶部
+      pinned: _appBarBehavior == AppBarBehavior.pinned,
+
+      /// 是否随着滑动隐藏标题
+      floating: _appBarBehavior == AppBarBehavior.floating ||
+          _appBarBehavior == AppBarBehavior.snapping,
+
+      /// 与floating结合使用
+      snap: _appBarBehavior == AppBarBehavior.snapping,
+
+      actions: <Widget>[
+        PopupMenuButton<AppBarBehavior>(
+          onSelected: (AppBarBehavior value) {
+            setState(() {
+              _appBarBehavior = value;
+            });
+          },
+          itemBuilder: (BuildContext context) =>
+              <PopupMenuItem<AppBarBehavior>>[
+            PopupMenuItem<AppBarBehavior>(
+                value: AppBarBehavior.normal,
+                child: Text(
+                  'App bar scrolls away',
+                  style: TextStyle(
+                      color: _appBarBehavior == AppBarBehavior.normal
+                          ? Colors.red
+                          : Colors.black54),
+                )),
+            PopupMenuItem<AppBarBehavior>(
+                value: AppBarBehavior.pinned,
+                child: Text('App bar stays put',
+                    style: TextStyle(
+                        color: _appBarBehavior == AppBarBehavior.pinned
+                            ? Colors.red
+                            : Colors.black54))),
+            PopupMenuItem<AppBarBehavior>(
+                value: AppBarBehavior.floating,
+                child: Text('App bar floats',
+                    style: TextStyle(
+                        color: _appBarBehavior == AppBarBehavior.floating
+                            ? Colors.red
+                            : Colors.black54))),
+            PopupMenuItem<AppBarBehavior>(
+                value: AppBarBehavior.snapping,
+                child: Text('App bar snaps',
+                    style: TextStyle(
+                        color: _appBarBehavior == AppBarBehavior.snapping
+                            ? Colors.red
+                            : Colors.black54))),
+          ],
+        ),
+      ],
 
       /// 标题是否居中
       centerTitle: true,
@@ -71,8 +119,11 @@ class _SliverWidgetState extends State<SliverWidget> {
       /// 可以展开区域，通常是一个FlexibleSpaceBar
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: false,
-        title: Text('Sliver Widget'),
-        background: Image.network(
+        title: Text(
+          'Sliver Widget',
+          style: TextStyle(color: Colors.grey),
+        ),
+        background: ImageLoadView(
           'https://www.snapphotography.co.nz/wp-content/uploads/New-Zealand-Landscape-Photography-prints-12.jpg',
           fit: BoxFit.cover,
         ),
@@ -93,6 +144,7 @@ class _SliverWidgetState extends State<SliverWidget> {
   }
 
   Widget _buildSliverToBoxAdapter() {
+    /// SliverToBoxAdapter的child属性可以加载普通widget组件
     return SliverToBoxAdapter(
       child: Container(
         alignment: Alignment.center,
@@ -107,12 +159,13 @@ class _SliverWidgetState extends State<SliverWidget> {
   }
 
   Widget _buildSliverPersistentHeader() {
+    /// SliverPersistentHeader有点类似SliverAppBar，同样可以收起和展开，可以放置到slivers任何一个位置
     return SliverPersistentHeader(
       delegate: CustomSliverAppBarDelegate(
           minHeight: 60.0,
           maxHeight: 180.0,
           child: Container(
-            child: Image.network(
+            child: ImageLoadView(
               'https://www.snapphotography.co.nz/wp-content/uploads/New-Zealand-Landscape-Photography-prints-12.jpg',
               fit: BoxFit.cover,
             ),
@@ -123,6 +176,7 @@ class _SliverWidgetState extends State<SliverWidget> {
   }
 
   Widget _buildSliverList(BuildContext context) {
+    /// SliverList类似ListView，他有两种表现形式：SliverChildBuilderDelegate和SliverChildListDelegate，两者区别在于SliverChildBuilderDelegate可以加载不确定数量的列表，而SliverChildListDelegate只能加载固定已知数量。
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
@@ -138,7 +192,46 @@ class _SliverWidgetState extends State<SliverWidget> {
     );
   }
 
+  Widget _buildSliverList2(BuildContext context) {
+    /// SliverList类似ListView，他有两种表现形式：SliverChildBuilderDelegate和SliverChildListDelegate，两者区别在于SliverChildBuilderDelegate可以加载不确定数量的列表，而SliverChildListDelegate只能加载固定已知数量。
+    return SliverList(
+      delegate: SliverChildListDelegate([
+        Container(
+          height: 40.0,
+          child: Text('Sliver List Item 0'),
+          alignment: Alignment.center,
+          color: Colors.red[100 * (0 % 10)],
+        ),
+        Container(
+          height: 40.0,
+          child: Text('Sliver List Item 1'),
+          alignment: Alignment.center,
+          color: Colors.red[100 * (1 % 10)],
+        ),
+        Container(
+          height: 40.0,
+          child: Text('Sliver List Item 2'),
+          alignment: Alignment.center,
+          color: Colors.red[100 * (2 % 10)],
+        ),
+        Container(
+          height: 40.0,
+          child: Text('Sliver List Item 3'),
+          alignment: Alignment.center,
+          color: Colors.red[100 * (3 % 10)],
+        ),
+        Container(
+          height: 40.0,
+          child: Text('Sliver List Item 4'),
+          alignment: Alignment.center,
+          color: Colors.red[100 * (4 % 10)],
+        )
+      ]),
+    );
+  }
+
   Widget _buildSliverGrid(BuildContext context) {
+    /// SliverGrid 可以设置固定一行显示几个SliverGridDelegateWithFixedCrossAxisCount，也可以SliverGridDelegateWithMaxCrossAxisExtent设置子元素最大宽度，让flutter决定一行几个。count和extent就是封装方法。
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
@@ -160,6 +253,7 @@ class _SliverWidgetState extends State<SliverWidget> {
   }
 
   Widget _buildSliverFixedExtentList(BuildContext context) {
+    /// SliverFixedExtentList与SliverList类似，唯一区别是SliverFixedExtentList可以设置固定高度。
     return SliverFixedExtentList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
