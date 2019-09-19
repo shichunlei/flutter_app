@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/celebrity.dart';
 import 'package:flutter_app/bean/movie.dart';
 import '../page/movie_photo.dart';
 import '../page/movie_photos.dart';
@@ -70,9 +69,9 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
       String desc = celebrity.summary;
       desc +=
           '\n\n星座：${celebrity.constellation.isEmpty ? '未知' : celebrity.constellation}';
-      desc += '\n${celebrity.birthday}生于${celebrity.born_place}';
+      desc += '\n${celebrity.birthday}生于${celebrity.bornPlace}';
 
-      celebrity.aka_en.map((aka) {
+      celebrity.akaEn.map((aka) {
         desc += '\n$aka';
       }).toList();
 
@@ -92,9 +91,7 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
           SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
-                SectionView("简介",
-                    hiddenMore: true,
-                    textColor: Colors.white),
+                SectionView("简介", hiddenMore: true, textColor: Colors.white),
                 Padding(
                   padding:
                       const EdgeInsets.only(top: 10.0, left: 10, right: 10),

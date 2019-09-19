@@ -43,6 +43,7 @@ class PreviewSample extends StatelessWidget {
                 PreViewButton(
                   text: "dsfsf",
                   primary: true,
+                  onPressed: () {},
                 )
               ],
             ),

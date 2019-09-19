@@ -257,7 +257,7 @@ packages:
       name: flutter_sound
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.4.4"
+    version: "1.4.5"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -416,7 +416,7 @@ packages:
       name: multi_image_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.5.4"
+    version: "4.5.5"
   open_iconic_flutter:
     dependency: transitive
     description:
@@ -556,7 +556,7 @@ packages:
       name: shimmer
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   sky_engine:
     dependency: transitive
     description: flutter

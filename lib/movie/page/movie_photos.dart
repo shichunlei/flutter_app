@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/photos.dart';
+import 'package:flutter_app/bean/movie.dart';
 
 import '../page/movie_photo.dart';
 import '../ui/item_photo.dart';

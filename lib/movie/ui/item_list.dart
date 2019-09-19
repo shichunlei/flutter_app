@@ -82,7 +82,7 @@ class ItemList extends StatelessWidget {
           Row(
             children: <Widget>[
               Text(
-                movie.collect_count.toString(),
+                movie.collectCount.toString(),
                 style: TextStyle(fontSize: 14.0, color: Colors.orange),
               ),
               Text("人看过"),

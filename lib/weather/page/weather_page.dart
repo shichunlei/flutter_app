@@ -106,7 +106,7 @@ class WeatherPageState extends State<WeatherPage> {
                 centerTitle: true,
                 title: Text('${widget.cityName}'),
                 elevation: 0.0,
-                backgroundColor: Color.fromARGB((navAlpha * 255).toInt(),
+                backgroundColor: Color.fromARGB((navAlpha * 255 * 0.8).toInt(),
                     barColor.red, barColor.green, barColor.blue),
                 actions: <Widget>[
                   IconButton(
@@ -128,6 +128,7 @@ class WeatherPageState extends State<WeatherPage> {
     }
     return RefreshIndicator(
         child: SingleChildScrollView(
+            padding: EdgeInsets.zero,
             controller: scrollController,
             child: Column(children: <Widget>[
               NowView(now, dailyForecast: dailyForecast[0], air: airNowCity),

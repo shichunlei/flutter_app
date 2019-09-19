@@ -177,7 +177,7 @@ class Books {
   List<StarRatings> starRatings;
 
   /// 评分信息
-  Rating rating;
+  RatingBean rating;
 
   bool isMakeMoneyLimit;
   int contentLevel;
@@ -378,7 +378,7 @@ class Books {
     booksBean.originalAuthor = map['originalAuthor'];
     booksBean.anchors = map['anchors'];
     booksBean.authorDesc = map['authorDesc'];
-    booksBean.rating = Rating.fromMap(map['rating']);
+    booksBean.rating = RatingBean.fromMap(map['rating']);
     booksBean.hasCopyright = map['hasCopyright'];
     booksBean.buyType = map['buytype'];
     booksBean.sizeType = map['sizetype'];
@@ -548,15 +548,15 @@ class Highlight {
 /// tip : "61358人参与评分"
 /// isEffect : true
 
-class Rating {
+class RatingBean {
   int count;
   double score;
   String tip;
   bool isEffect;
 
-  static Rating fromMap(Map<String, dynamic> map) {
+  static RatingBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-    Rating ratingBean = Rating();
+    RatingBean ratingBean = RatingBean();
     ratingBean.count = map['count'];
     ratingBean.score = dynamicToDouble(map['score']);
     ratingBean.tip = map['tip'];
@@ -867,7 +867,7 @@ class DocsBean {
   String id;
   int rating;
   String type;
-  AuthorBean author;
+  BookAuthorBean author;
   Books book;
   int likeCount;
   double priority;
@@ -885,7 +885,7 @@ class DocsBean {
     docsBean.id = map['_id'];
     docsBean.rating = map['rating'];
     docsBean.type = map['type'];
-    docsBean.author = AuthorBean.fromMap(map['author']);
+    docsBean.author = BookAuthorBean.fromMap(map['author']);
     docsBean.book = Books.fromMap(map['book']);
     docsBean.likeCount = map['likeCount'];
     docsBean.priority = dynamicToDouble(map['priority']);
@@ -933,7 +933,7 @@ class DocsBean {
 class Post {
   String id;
   Books book;
-  AuthorBean author;
+  BookAuthorBean author;
   String type;
   int likeCount;
   String block;
@@ -951,7 +951,7 @@ class Post {
     Post post = Post();
     post.id = map['_id'];
     post.book = Books.fromMap(map['book']);
-    post.author = AuthorBean.fromMap(map['author']);
+    post.author = BookAuthorBean.fromMap(map['author']);
     post.type = map['type'];
     post.likeCount = map['likeCount'];
     post.block = map['block'];
@@ -999,7 +999,7 @@ class Post {
 class BookReviews {
   String id;
   int rating;
-  AuthorBean author;
+  BookAuthorBean author;
   HelpfulBean helpful;
   int likeCount;
   String state;
@@ -1015,7 +1015,7 @@ class BookReviews {
     BookReviews reviewsBean = BookReviews();
     reviewsBean.id = map['_id'];
     reviewsBean.rating = map['rating'];
-    reviewsBean.author = AuthorBean.fromMap(map['author']);
+    reviewsBean.author = BookAuthorBean.fromMap(map['author']);
     reviewsBean.helpful = HelpfulBean.fromMap(map['helpful']);
     reviewsBean.likeCount = map['likeCount'];
     reviewsBean.state = map['state'];
@@ -1076,7 +1076,7 @@ class HelpfulBean {
 /// lv : 7
 /// gender : "male"
 
-class AuthorBean {
+class BookAuthorBean {
   String id;
   String avatar;
   String nickname;
@@ -1085,9 +1085,9 @@ class AuthorBean {
   int lv;
   String gender;
 
-  static AuthorBean fromMap(Map<String, dynamic> map) {
+  static BookAuthorBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-    AuthorBean authorBean = AuthorBean();
+    BookAuthorBean authorBean = BookAuthorBean();
     authorBean.id = map['_id'];
     authorBean.avatar = '${Config.READER_IMAGE_URL}${map['avatar']}';
     authorBean.nickname = map['nickname'];
@@ -1338,7 +1338,7 @@ class ChapterInfo {
 class BookList {
   String bookListId;
   String id;
-  AuthorBean author;
+  BookAuthorBean author;
   String authorStr;
   String title;
   String desc;
@@ -1366,7 +1366,7 @@ class BookList {
     bookListBean.id = map['_id'];
     bookListBean.authorStr = map['author'] is String ? map['author'] : "";
     bookListBean.author =
-        map['author'] is String ? null : AuthorBean.fromMap(map['author']);
+        map['author'] is String ? null : BookAuthorBean.fromMap(map['author']);
     bookListBean.title = map['title'];
     bookListBean.desc = map['desc'];
     bookListBean.gender = map['gender'];

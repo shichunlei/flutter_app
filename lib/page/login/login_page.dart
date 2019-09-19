@@ -84,25 +84,22 @@ class _LoginPageState extends State<PasswordLoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-            iconTheme: IconThemeData(color: Colors.black),
-            backgroundColor: Colors.white,
-            elevation: 0,
-            leading: CloseButton(),
-            actions: <Widget>[
-              InkWell(
-                  child: Container(
-                      child: Text('${S.of(context).quickly_login}',
-                          style: TextStyles.textDark14),
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.only(left: 10, right: 10)),
-                  onTap: () => pushReplacement(context, QuicklyLoginPage()))
-            ]),
-        body: Utils.isIOS
-            ? FormKeyboardActions(child: _buildBodyView())
-            : SingleChildScrollView(child: _buildBodyView()));
+    return LightTheme(
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(leading: CloseButton(), actions: <Widget>[
+            InkWell(
+                child: Container(
+                    child: Text('${S.of(context).quickly_login}',
+                        style: TextStyles.textDark14),
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.only(left: 10, right: 10)),
+                onTap: () => pushReplacement(context, QuicklyLoginPage()))
+          ]),
+          body: Utils.isIOS
+              ? FormKeyboardActions(child: _buildBodyView())
+              : SingleChildScrollView(child: _buildBodyView())),
+    );
   }
 
   Widget _buildBodyView() {
@@ -139,8 +136,7 @@ class _LoginPageState extends State<PasswordLoginPage> {
                   alignment: Alignment.centerRight,
                   child: InkWell(
                       child: Padding(
-                          child: Text(
-                              '${S.of(context).forgot_password}',
+                          child: Text('${S.of(context).forgot_password}',
                               style: TextStyles.textGrey14),
                           padding: EdgeInsets.all(10)),
                       onTap: () => pushNewPage(context, ResetPasswordPage()))),

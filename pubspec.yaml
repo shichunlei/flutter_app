@@ -80,7 +80,7 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_inner_drawer: ^0.4.0
 
   # https://github.com/dooboolab/flutter_sound
-  flutter_sound: ^1.4.4
+  flutter_sound: ^1.4.5
 
   # 加载提示组件
   flutter_spinkit: ^4.0.0
@@ -130,7 +130,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.7
 
-  multi_image_picker: ^4.5.4
+  multi_image_picker: ^4.5.5
 
   package_info: ^0.4.0+6
 
@@ -162,7 +162,7 @@ dependencies: # 应用或包依赖的其它包或插件
   shared_preferences: ^0.5.3+4
 
   # 骨架屏
-  shimmer: ^1.0.0
+  shimmer: ^1.0.1
 
   # 数据库
   sqflite: ^1.1.6+4

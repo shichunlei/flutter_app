@@ -44,7 +44,7 @@ class YouDaoData {
   String img;
   String subject;
   List<dynamic> serialCourse;
-  List<ColumnBean> column;
+  List<ColumnsBean> column;
   List<BannerBean> banner;
   String name;
   String tagType;
@@ -87,7 +87,7 @@ class YouDaoData {
     data.subject = map['subject'];
     data.serialCourse = map['serialCourse'];
     data.column = List()
-      ..addAll((map['column'] as List ?? []).map((o) => ColumnBean.fromMap(o)));
+      ..addAll((map['column'] as List ?? []).map((o) => ColumnsBean.fromMap(o)));
     data.banner = List()
       ..addAll((map['banner'] as List ?? []).map((o) => BannerBean.fromMap(o)));
     data.name = map['name'];
@@ -542,15 +542,15 @@ class BannerBean {
 /// img : "https://oimageb1.ydstatic.com/image?id=-6394951733100471189&product=xue"
 /// title : "精选名师好课，限时抢听！"
 
-class ColumnBean {
+class ColumnsBean {
   List<CoursesBean> courseCards;
   int id;
   String img;
   String title;
 
-  static ColumnBean fromMap(Map<String, dynamic> map) {
+  static ColumnsBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-    ColumnBean columnBean = ColumnBean();
+    ColumnsBean columnBean = ColumnsBean();
     columnBean.courseCards = List()
       ..addAll((map['courseCards'] as List ?? [])
           .map((o) => CoursesBean.fromMap(o)));

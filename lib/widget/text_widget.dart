@@ -1,11 +1,13 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/page_index.dart';
 
 class TextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("Text Widget")),
-        body: Column(children: builderTextWidget()));
+        body: Column(children: builderTextWidget(context)));
   }
 
   /// 其中Text的相关属性：
@@ -34,7 +36,7 @@ class TextWidget extends StatelessWidget {
   /// shadows 阴影
   /// background 背景
   /// foreground 前置背景
-  List<Widget> builderTextWidget() {
+  List<Widget> builderTextWidget(BuildContext context) {
     return <Widget>[
       Text(
           '默认 Flutter allows you to build beautiful native apps on iOS and Android from a single codebase.'),
@@ -143,7 +145,14 @@ class TextWidget extends StatelessWidget {
                 text: ' from a single codebase.',
                 style: TextStyle(shadows: [
                   Shadow(color: Colors.black38, offset: Offset(3, 3))
-                ]))
+                ])),
+            TextSpan(
+                text: '点击试试',
+                style: TextStyle(color: Colors.blue),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    Toast.show(context, '你点击了“点击试试”');
+                  }),
           ])),
       Wrap(children: <Widget>[
         Baseline(

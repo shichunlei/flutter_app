@@ -70,50 +70,49 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-            iconTheme: IconThemeData(color: Colors.black),
-            elevation: 0,
-            leading: BackButton(),
-            backgroundColor: Colors.white),
-        body: SingleChildScrollView(
-            padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 20.0),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("${S.of(context).reset_password}",
-                      style: TextStyles.textBoldDark26),
-                  Gaps.vGap16,
-                  CustomTextField(
-                      focusNode: _nodePhone,
-                      nextFocusNode: _nodeVCode,
-                      controller: _phoneController,
-                      maxLength: 11,
-                      keyboardType: TextInputType.phone,
-                      hintText: "${S.of(context).input_phone}"),
-                  Gaps.vGap10,
-                  CustomTextField(
-                      focusNode: _nodeVCode,
-                      nextFocusNode: _nodePassword,
-                      controller: _vCodeController,
-                      keyboardType: TextInputType.number,
-                      getVCode: () {},
-                      maxLength: 6,
-                      hintText: "${S.of(context).input_v_code}"),
-                  Gaps.vGap10,
-                  CustomTextField(
-                      focusNode: _nodePassword,
-                      isInputPwd: true,
-                      controller: _passwordController,
-                      maxLength: 16,
-                      hintText: "${S.of(context).input_password}"),
-                  Gaps.vGap25,
-                  Button(
-                      borderRadius: 0,
-                      onPressed: _isClick ? _reset : null,
-                      text: "${S.of(context).submit}")
-                ])));
+    return LightTheme(
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(leading: BackButton()),
+          body: SingleChildScrollView(
+              padding:
+                  const EdgeInsets.only(left: 16.0, right: 16.0, top: 20.0),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("${S.of(context).reset_password}",
+                        style: TextStyles.textBoldDark26),
+                    Gaps.vGap16,
+                    CustomTextField(
+                        focusNode: _nodePhone,
+                        nextFocusNode: _nodeVCode,
+                        controller: _phoneController,
+                        maxLength: 11,
+                        keyboardType: TextInputType.phone,
+                        hintText: "${S.of(context).input_phone}"),
+                    Gaps.vGap10,
+                    CustomTextField(
+                        focusNode: _nodeVCode,
+                        nextFocusNode: _nodePassword,
+                        controller: _vCodeController,
+                        keyboardType: TextInputType.number,
+                        getVCode: () {},
+                        maxLength: 6,
+                        hintText: "${S.of(context).input_v_code}"),
+                    Gaps.vGap10,
+                    CustomTextField(
+                        focusNode: _nodePassword,
+                        isInputPwd: true,
+                        controller: _passwordController,
+                        maxLength: 16,
+                        hintText: "${S.of(context).input_password}"),
+                    Gaps.vGap25,
+                    Button(
+                        borderRadius: 0,
+                        onPressed: _isClick ? _reset : null,
+                        text: "${S.of(context).submit}")
+                  ]))),
+    );
   }
 
   void _reset() {}

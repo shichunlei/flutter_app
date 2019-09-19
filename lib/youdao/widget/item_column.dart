@@ -4,7 +4,7 @@ import '../../page_index.dart';
 import '../index.dart';
 
 class ItemColumn extends StatelessWidget {
-  final ColumnBean columnBean;
+  final ColumnsBean columnBean;
 
   ItemColumn({Key key, this.columnBean}) : super(key: key);
 

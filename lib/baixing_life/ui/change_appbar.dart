@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/ui/toolbar.dart';
+import 'toolbar.dart';
 import 'package:flutter_app/utils/utils.dart';
 
 class ChangeAppBar extends StatelessWidget {

@@ -97,7 +97,7 @@ class _ItemSoonViewState extends State<ItemSoonView>
                       /// 中国大陆上映日期
                       Container(
                           child: Text(
-                              '${widget.movie.mainland_pubdate.split('-')[1]}月${widget.movie.mainland_pubdate.split('-')[2]}日上映',
+                              '${widget.movie.mainlandPubDate.split('-')[1]}月${widget.movie.mainlandPubDate.split('-')[2]}日上映',
                               style: TextStyle(
                                   color: Colors.white, fontSize: 22.0))),
 

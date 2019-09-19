@@ -1,15 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_app/bean/baixing.dart';
-import 'package:flutter_app/bean/base_result.dart';
-import 'package:flutter_app/bean/books.dart';
-import 'package:flutter_app/bean/hitokoto.dart';
-import 'package:flutter_app/bean/youdao.dart';
-import 'package:flutter_app/bean/contact.dart';
-import 'package:flutter_app/qdaily/index.dart';
 
-import '../bean/bean_index.dart';
+import '../bean/index.dart';
 
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' show parse;
@@ -868,10 +861,10 @@ class ApiService {
 
   /// 搜索
   static Future<QdailyWebBean> getQDailySearchData(
-      String keywords, String last_key) async {
+      String keywords, String lastKey) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_WEB_URL).request(
         ApiUrl.QDAILY_SEARCH_WEB_DATA,
-        data: {"last_key": last_key, "key": keywords});
+        data: {"last_key": lastKey, "key": keywords});
     if (response.statusCode != 200) {
       return null;
     }

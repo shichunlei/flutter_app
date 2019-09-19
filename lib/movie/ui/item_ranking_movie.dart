@@ -60,7 +60,7 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
       desc += ' ';
     }).toList();
 
-    widget.movie.pubdates.map((date) {
+    widget.movie.pubDates.map((date) {
       desc += '\n';
       desc += '$date上映';
     }).toList();

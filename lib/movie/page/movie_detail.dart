@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../../bean/casts.dart';
 import '../../bean/movie.dart';
 
 import '../../page_index.dart';
@@ -192,7 +191,7 @@ class _MovieDetailState extends State<MovieDetail> {
                         onTop: () => pushNewPage(
                             context,
                             MovieVideoPage(
-                                movie.bloopers[index].resource_url))))),
+                                movie.bloopers[index].resourceUrl))))),
             CoverSectionView('片段',
                 hiddenMore: true,
                 backgroundColor: pageColor,
@@ -205,9 +204,9 @@ class _MovieDetailState extends State<MovieDetail> {
                         movie.clips[index].medium,
                         offstage: false,
                         onTop: () => pushNewPage(context,
-                            MovieVideoPage(movie.clips[index].resource_url))))),
+                            MovieVideoPage(movie.clips[index].resourceUrl))))),
             SectionView("热评",
-                hiddenMore: movie.popular_comments.length < 4,
+                hiddenMore: movie.popularComments.length < 4,
                 onPressed: () => pushNewPage(context,
                     MovieCommentPage(movie.id, itemBackgroundColor: cardColor)),
                 textColor: Colors.white),
@@ -215,7 +214,7 @@ class _MovieDetailState extends State<MovieDetail> {
                 padding: const EdgeInsets.only(
                     bottom: 10.0, left: 10.0, right: 10.0),
                 child: Column(
-                    children: movie.popular_comments
+                    children: movie.popularComments
                         .map((comment) => ItemComment(
                             comment: comment, background: cardColor))
                         .toList()))

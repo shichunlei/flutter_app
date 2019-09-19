@@ -1,11 +1,7 @@
-import 'package:flutter_app/bean/celebrity.dart';
 import 'package:flutter_app/bean/contact.dart';
 import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/bean/image.dart';
 import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/bean/photos.dart';
-import 'package:flutter_app/bean/reviews.dart';
-import 'package:flutter_app/bean/works.dart';
 
 class Result {
   String title;

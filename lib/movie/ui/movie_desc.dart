@@ -57,7 +57,7 @@ class _MovieDescState extends State<MovieDesc> {
     desc += '/ ';
 
     desc +=
-        widget.movie.pubdates.isNotEmpty ? '${widget.movie.pubdates[0]}上映' : '';
+        widget.movie.pubDates.isNotEmpty ? '${widget.movie.pubDates[0]}上映' : '';
 
     desc +=
         '${widget.movie.durations.isNotEmpty ? "/ 片长${widget.movie.durations[0]}" : ""}';
@@ -99,7 +99,7 @@ class _MovieDescState extends State<MovieDesc> {
 
                               /// 原名
                               Text(
-                                  '${widget.movie.original_title}(${widget.movie.year})',
+                                  '${widget.movie.originalTitle}(${widget.movie.year})',
                                   style: TextStyle(
                                       color: Colors.grey, fontSize: 15.0)),
 
@@ -192,7 +192,7 @@ class _MovieDescState extends State<MovieDesc> {
                                                 : widget.movie.rating.details
                                                         .star1 /
                                                     totalRating),
-                                        Text('${widget.movie.reviews_count}人评论',
+                                        Text('${widget.movie.reviewsCount}人评论',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 12.0))
@@ -206,7 +206,7 @@ class _MovieDescState extends State<MovieDesc> {
                             Align(
                                 alignment: Alignment.centerRight,
                                 child: Text(
-                                    '${widget.movie.collect_count > 1000 ? "${(widget.movie.collect_count / 1000).toStringAsFixed(1)}k" : widget.movie.collect_count}人看过 ${widget.movie.wish_count > 1000 ? "${(widget.movie.wish_count / 1000).toStringAsFixed(1)}k" : widget.movie.wish_count}人想看',
+                                    '${widget.movie.collectCount > 1000 ? "${(widget.movie.collectCount / 1000).toStringAsFixed(1)}k" : widget.movie.collectCount}人看过 ${widget.movie.wishCount > 1000 ? "${(widget.movie.wishCount / 1000).toStringAsFixed(1)}k" : widget.movie.wishCount}人想看',
                                     style: TextStyle(color: Colors.white)))
                           ]))),
 

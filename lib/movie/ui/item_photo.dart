@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/photos.dart';
+import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 
 class ItemPhoto extends StatelessWidget {

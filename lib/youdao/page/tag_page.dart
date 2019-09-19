@@ -19,7 +19,7 @@ class TagPage extends StatefulWidget {
 class _TagPageState extends State<TagPage> {
   LoaderState _status = LoaderState.Loading;
 
-  List<ColumnBean> columns = [];
+  List<ColumnsBean> columns = [];
 
   List<BannerBean> banners = [];
 
