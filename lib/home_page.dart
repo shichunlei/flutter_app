@@ -81,8 +81,7 @@ class HomeStatePage extends State<HomePage> {
             backgroundColor: Colors.grey[200],
             key: _scaffoldKey,
             appBar: AppBar(
-                // Title
-                title: GestureDetector(
+                title: InkWell(
                   onTap: () {
                     if (city != '正在定位...') {
                       pushNewPage(context, CityPage(currentCity: city));
@@ -174,7 +173,9 @@ class HomeStatePage extends State<HomePage> {
       _aMapLocation.getLocation(options).then((value) {
         location = value;
         debugPrint("location==========${location.city}");
-        city = location.district;
+        setState(() {
+          city = location.district;
+        });
         if (city != null || city.isNotEmpty) {
           getWeatherData(city);
         }

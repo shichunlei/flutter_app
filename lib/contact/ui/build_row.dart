@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import '../../page_index.dart';
 import '../index.dart';
@@ -5,43 +7,29 @@ import 'package:flutter_app/generated/i18n.dart';
 
 class BuildRowView extends StatefulWidget {
   @override
-  _BuildRowViewState createState() => _BuildRowViewState();
+  createState() => _BuildRowViewState();
 }
 
 class _BuildRowViewState extends State<BuildRowView> {
+  bool isFavorite = false;
+
+  StreamController<bool> _streamController;
+
   @override
   void initState() {
     super.initState();
+    _streamController = StreamController<bool>.broadcast();
+    _streamController.sink.add(isFavorite);
   }
 
   @override
   void dispose() {
+    _streamController.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    bool isFavorite = false;
-    IconData favoriteIcon = Icons.favorite_border;
-    Color favoriteColor = Colors.grey;
-    String favoriteText = "${S.of(context).collect}";
-
-    void _toggleFavorite() {
-      setState(() {
-        if (isFavorite) {
-          isFavorite = false;
-          favoriteIcon = Icons.favorite_border;
-          favoriteColor = Colors.grey;
-          favoriteText = "${S.of(context).collect}";
-        } else {
-          isFavorite = true;
-          favoriteIcon = Icons.favorite;
-          favoriteColor = Colors.redAccent;
-          favoriteText = "${S.of(context).cancel_collect}";
-        }
-      });
-    }
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,15 +60,26 @@ class _BuildRowViewState extends State<BuildRowView> {
           width: 1.0,
           lineType: LineType.vertical,
         ),
-        ContactImageText(
-          icon: Icon(
-            favoriteIcon,
-            color: favoriteColor,
-          ),
-          text: Text(favoriteText),
-          onPressed: () => _toggleFavorite(),
-        ),
+        StreamBuilder<bool>(
+            stream: _streamController.stream, //数据流
+            initialData: false, //初始值
+            builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+              isFavorite = snapshot.data;
+              return ContactImageText(
+                icon: Icon(
+                    snapshot.data ? Icons.favorite : Icons.favorite_border,
+                    color: snapshot.data ? Colors.redAccent : Colors.grey),
+                text: Text(snapshot.data
+                    ? "${S.of(context).cancel_collect}"
+                    : "${S.of(context).collect}"),
+                onPressed: () => _toggleFavorite(),
+              );
+            }),
       ],
     );
+  }
+
+  void _toggleFavorite() async {
+    _streamController.sink.add(!isFavorite);
   }
 }

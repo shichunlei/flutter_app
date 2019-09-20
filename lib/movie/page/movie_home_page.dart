@@ -16,7 +16,7 @@ import '../../page_index.dart';
 
 class MovieHomePage extends StatefulWidget {
   @override
-  _MovieHomePageState createState() => _MovieHomePageState();
+  createState() => _MovieHomePageState();
 }
 
 class _MovieHomePageState extends State<MovieHomePage> {
