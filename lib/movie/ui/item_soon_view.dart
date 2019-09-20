@@ -10,7 +10,7 @@ class ItemSoonView extends StatefulWidget {
   ItemSoonView(this.movie, {Key key, this.onTap}) : super(key: key);
 
   @override
-  _ItemSoonViewState createState() => _ItemSoonViewState();
+  createState() => _ItemSoonViewState();
 }
 
 class _ItemSoonViewState extends State<ItemSoonView>
@@ -42,7 +42,7 @@ class _ItemSoonViewState extends State<ItemSoonView>
       desc += ' ';
     }).toList();
 
-    return GestureDetector(
+    return ScaleTapView(
       child: Card(
         color: cardBackgroundColor,
         child: Container(
@@ -121,7 +121,7 @@ class _ItemSoonViewState extends State<ItemSoonView>
           ),
         ),
       ),
-      onTap: widget.onTap,
+      onPressed: widget.onTap,
     );
   }
 }

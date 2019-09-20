@@ -48,11 +48,6 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     String desc = '${widget.movie.year}\n';
     widget.movie.genres.map((genre) {
@@ -68,7 +63,7 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
     desc +=
         '\n${widget.movie.durations.isNotEmpty ? "${widget.movie.durations[0]}" : ""}';
 
-    return GestureDetector(
+    return ScaleTapView(
         child: Card(
           color: cardBackgroundColor,
           child: Container(
@@ -182,6 +177,6 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
             ]),
           ),
         ),
-        onTap: widget.onTap);
+        onPressed: widget.onTap);
   }
 }

@@ -31,11 +31,6 @@ class _MovieSoonPageState extends State<MovieSoonPage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('即将上映影片')),

@@ -33,9 +33,9 @@ class ItemGridView extends StatelessWidget {
 
       /// 其值为一个函数：Widget Function(BuildContext context, int index)，实现该函数用于创建每个网格对应的Widget。
       itemBuilder: (context, index) {
-        return GestureDetector(
+        return ScaleTapView(
           //点击事件
-          onTap: () => pushNewPage(context, MovieDetail(movies[index].id)),
+          onPressed: () => pushNewPage(context, MovieDetail(movies[index].id)),
           child: ImageLoadView(movies[index].images.medium.toString()),
         );
       },

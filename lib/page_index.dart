@@ -119,6 +119,7 @@ export 'ui/line.dart';
 export 'ui/line_view_line.dart';
 export 'ui/suspension_tag.dart';
 export 'ui/countdown_widget.dart';
+export 'ui/scale_tap_view.dart';
 export 'ui/search_bar.dart';
 export 'ui/button.dart';
 export 'ui/custom_text_field.dart';

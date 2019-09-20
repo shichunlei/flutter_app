@@ -11,7 +11,7 @@ class ClassifySection extends StatefulWidget {
   ClassifySection(this.title);
 
   @override
-  _ClassifySectionState createState() => _ClassifySectionState();
+  createState() => _ClassifySectionState();
 }
 
 class _ClassifySectionState extends State<ClassifySection>
@@ -25,12 +25,7 @@ class _ClassifySectionState extends State<ClassifySection>
   void initState() {
     super.initState();
 
-    searchMovie(widget.title);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+    /// searchMovie(widget.title);
   }
 
   @override

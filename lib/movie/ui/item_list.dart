@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:custom_widgets/custom_widgets.dart';
+
+import '../../page_index.dart';
 
 class ItemList extends StatelessWidget {
   final VoidCallback onTap;
@@ -92,9 +93,9 @@ class ItemList extends StatelessWidget {
       ),
     );
 
-    return GestureDetector(
+    return ScaleTapView(
       //点击事件
-      onTap: onTap,
+      onPressed: onTap,
 
       child: Card(
         child: Row(
