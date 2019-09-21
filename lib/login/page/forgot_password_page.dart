@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/login/ui/identity_code_view.dart';
 import 'package:flutter_app/login/ui/submit_button.dart';
 
@@ -8,7 +9,7 @@ class ForgotPasswordPage extends StatefulWidget {
   ForgotPasswordPage({Key key}) : super(key: key);
 
   @override
-  _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
+  createState() => _ForgotPasswordPageState();
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
@@ -16,11 +17,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   var _codeController = TextEditingController();
 
   FocusNode codeFocusNode = FocusNode();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -63,8 +59,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               /// 登录按钮
                               Padding(
                                   padding: const EdgeInsets.only(top: 48.0),
-                                  child:
-                                      SubmitButton(title: "提交", onTap: () {}))
+                                  child: SubmitButton(
+                                      title: "${S.of(context).submit}",
+                                      onTap: () {}))
                             ],
                           ),
                         ))

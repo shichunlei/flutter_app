@@ -31,12 +31,14 @@ class S implements WidgetsLocalizations {
   String get collect => "Collect";
   String get completeLoad => "Load done";
   String get completeRefresh => "Refresh done";
+  String get confirmPassword => "Confirm Password";
   String get contact => "Contact";
   String get contacts => "Contacts";
   String get create_address => "Create Address";
   String get delete => "Delete";
   String get edit => "Edit";
   String get eidt_address => "Update Address";
+  String get email => "Email";
   String get en => "English";
   String get exit => "Exit";
   String get fail => " Fail";
@@ -55,6 +57,7 @@ class S implements WidgetsLocalizations {
   String get login => "login";
   String get menu => "menu";
   String get noMore => "No more";
+  String get password => "Password";
   String get password_login => "Password Login";
   String get pick_a_color => "Pick a color!";
   String get poetry => "Poetry";
@@ -80,6 +83,7 @@ class S implements WidgetsLocalizations {
   String get tip => "Tip : The account is not registered? please ";
   String get update => "Update";
   String get updateAt => "Update at %T";
+  String get username => "User Name";
   String get zh => "Chinese";
 }
 
@@ -104,6 +108,8 @@ class $zh_HK extends S {
   @override
   String get loaded => "加載完成";
   @override
+  String get password => "密码";
+  @override
   String get refreshFailed => "刷新失敗";
   @override
   String get pushToLoad => "拉動加載";
@@ -176,6 +182,8 @@ class $zh_HK extends S {
   @override
   String get releaseToRefresh => "釋放刷新";
   @override
+  String get confirmPassword => "确认密码";
+  @override
   String get theme => "選擇主題";
   @override
   String get share => "分享";
@@ -183,6 +191,8 @@ class $zh_HK extends S {
   String get close => "關閉";
   @override
   String get completeRefresh => "完成刷新";
+  @override
+  String get email => "邮箱";
   @override
   String get poetry => "詩詞";
   @override
@@ -209,6 +219,8 @@ class $zh_HK extends S {
   String get register => "註冊";
   @override
   String get forgot_password => "忘記密碼";
+  @override
+  String get username => "用户名";
 }
 
 class $zh_TW extends S {
@@ -232,6 +244,8 @@ class $zh_TW extends S {
   @override
   String get loaded => "加載完成";
   @override
+  String get password => "密码";
+  @override
   String get refreshFailed => "刷新失敗";
   @override
   String get pushToLoad => "拉動加載";
@@ -304,6 +318,8 @@ class $zh_TW extends S {
   @override
   String get releaseToRefresh => "釋放刷新";
   @override
+  String get confirmPassword => "确认密码";
+  @override
   String get theme => "選擇主題";
   @override
   String get share => "分享";
@@ -311,6 +327,8 @@ class $zh_TW extends S {
   String get close => "關閉";
   @override
   String get completeRefresh => "完成刷新";
+  @override
+  String get email => "邮箱";
   @override
   String get poetry => "詩詞";
   @override
@@ -337,6 +355,8 @@ class $zh_TW extends S {
   String get register => "註冊";
   @override
   String get forgot_password => "忘記密碼";
+  @override
+  String get username => "用户名";
 }
 
 class $en extends S {
@@ -363,6 +383,8 @@ class $zh_CN extends S {
   String get setting => "设置";
   @override
   String get loaded => "加载完成";
+  @override
+  String get password => "密码";
   @override
   String get refreshFailed => "刷新失败";
   @override
@@ -436,6 +458,8 @@ class $zh_CN extends S {
   @override
   String get releaseToRefresh => "释放刷新";
   @override
+  String get confirmPassword => "确认密码";
+  @override
   String get theme => "选择主题";
   @override
   String get share => "分享";
@@ -443,6 +467,8 @@ class $zh_CN extends S {
   String get close => "关闭";
   @override
   String get completeRefresh => "完成刷新";
+  @override
+  String get email => "邮箱";
   @override
   String get poetry => "诗词";
   @override
@@ -469,6 +495,8 @@ class $zh_CN extends S {
   String get register => "注册";
   @override
   String get forgot_password => "忘记密码";
+  @override
+  String get username => "用户名";
 }
 
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {

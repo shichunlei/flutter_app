@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/login/page/sign_in_page.dart';
 import 'package:flutter_app/login/page/sign_up_page.dart';
 import 'package:flutter_app/ui/gradual_change_view.dart';
@@ -6,10 +7,11 @@ import 'package:flutter_app/login/ui/custom_button.dart';
 
 class LoginPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
+class _LoginPageState extends State<LoginPage>
+    with SingleTickerProviderStateMixin {
   PageController _controller;
   PageView _pageView;
 
@@ -96,7 +98,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                 onPressed: () => _controller.animateToPage(0,
                     duration: Duration(milliseconds: 300),
                     curve: Curves.decelerate),
-                title: "登录",
+                title: "${S.of(context).login}",
                 status: _currentPage == 0,
               ),
             ),
@@ -105,7 +107,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                 onPressed: () => _controller.animateToPage(1,
                     duration: Duration(milliseconds: 300),
                     curve: Curves.decelerate),
-                title: "注册",
+                title: "${S.of(context).register}",
                 status: _currentPage == 1,
               ),
             ),

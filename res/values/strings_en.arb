@@ -58,5 +58,9 @@
   "completeRefresh": "Refresh done",
   "completeLoad": "Load done",
   "noMore": "No more",
-  "updateAt": "Update at %T"
+  "updateAt": "Update at %T",
+  "username": "User Name",
+  "password": "Password",
+  "email": "Email",
+  "confirmPassword": "Confirm Password"
 }

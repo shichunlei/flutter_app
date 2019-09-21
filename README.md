@@ -135,6 +135,8 @@ A new Flutter application.
 |密码登录|快速登录|注册|找回密码|
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/911565856636_.pic.jpg)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/921565856637_.pic.jpg)|![3](https://github.com/pedromassango/my_flutter_challenges/raw/master/screenshots/slidl.gif)|![4]()|
 |登录|注册|登录/注册|XXX|
+|![1](https://github.com/s4nk37/Signup-Minimal-Flutter/raw/master/login.png)|![2](https://github.com/s4nk37/Signup-Minimal-Flutter/raw/master/signup.png)|![3]()|![4]()|
+|登录|注册|XXX|XXX|
 
 
 ### [追书神器](http://m.zhuishushenqi.com/)

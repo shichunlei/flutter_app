@@ -58,5 +58,9 @@
   "noMore": "没有更多数据",
   "completeRefresh": "完成刷新",
   "completeLoad": "完成加载",
-  "updateAt": "更新于 %T"
+  "updateAt": "更新于 %T",
+  "username": "用户名",
+  "password": "密码",
+  "email": "邮箱",
+  "confirmPassword": "确认密码"
 }

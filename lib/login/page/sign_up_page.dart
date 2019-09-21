@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/login/ui/submit_button.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
@@ -6,7 +7,7 @@ import '../../page_index.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
@@ -86,7 +87,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Padding(
                   padding: const EdgeInsets.only(top: 285.0),
                   child: SubmitButton(
-                      title: "注册",
+                      title: "${S.of(context).register}",
                       onTap: () {
                         if (_userInfo['username'].isEmpty) {
                           Toast.show(context, "用户名不能为空");
@@ -126,7 +127,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 FocusScope.of(context).requestFocus(emailFocusNode),
             decoration: InputDecoration(
                 icon: Icon(FontAwesome.user, color: Colors.black),
-                hintText: "请输入用户名",
+                hintText: "${S.of(context).username}",
                 border: InputBorder.none),
             style: TextStyle(fontSize: 16, color: Colors.black)));
   }
@@ -144,7 +145,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 FocusScope.of(context).requestFocus(passwordFocusNode),
             decoration: InputDecoration(
                 icon: Icon(Icons.email, color: Colors.black),
-                hintText: "请输入邮箱",
+                hintText: "${S.of(context).email}",
                 border: InputBorder.none),
             style: TextStyle(fontSize: 16, color: Colors.black)));
   }
@@ -159,7 +160,7 @@ class _SignUpPageState extends State<SignUpPage> {
             focusNode: passwordFocusNode,
             decoration: InputDecoration(
                 icon: Icon(Icons.lock, color: Colors.black),
-                hintText: "请输入密码",
+                hintText: "${S.of(context).password}",
                 border: InputBorder.none,
                 suffixIcon: IconButton(
                     color: Theme.of(context).primaryColor,
@@ -186,7 +187,7 @@ class _SignUpPageState extends State<SignUpPage> {
             focusNode: rePasswordFocusNode,
             decoration: InputDecoration(
                 icon: Icon(Icons.lock, color: Colors.black),
-                hintText: "请确认输入密码",
+                hintText: "${S.of(context).confirmPassword}",
                 border: InputBorder.none,
                 suffixIcon: IconButton(
                     color: Theme.of(context).primaryColor,
@@ -203,6 +204,6 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void _regist() async {
-    Toast.show(context, "注册");
+    Toast.show(context, "${S.of(context).register}");
   }
 }

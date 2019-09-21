@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
@@ -11,7 +12,7 @@ import '../../store/index.dart';
 
 class SignInPage extends StatefulWidget {
   @override
-  _SignInPageState createState() => _SignInPageState();
+  createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> {
@@ -107,7 +108,7 @@ class _SignInPageState extends State<SignInPage> {
             Padding(
                 padding: const EdgeInsets.only(top: 148.0),
                 child: SubmitButton(
-                    title: "登录",
+                    title: "${S.of(context).login}",
                     onTap: () {
                       if (_emailController.text.isEmpty) {
                         Toast.show(context, "邮箱不能为空");
@@ -191,7 +192,7 @@ class _SignInPageState extends State<SignInPage> {
             FocusScope.of(context).requestFocus(passwordFocusNode),
         decoration: InputDecoration(
           icon: Icon(Icons.email, color: Colors.black),
-          hintText: "请输入邮箱",
+          hintText: "${S.of(context).email}",
           border: InputBorder.none,
         ),
 
@@ -214,7 +215,7 @@ class _SignInPageState extends State<SignInPage> {
         /// 装饰器
         decoration: InputDecoration(
           icon: Icon(Icons.lock, color: Colors.black),
-          hintText: "请输入密码",
+          hintText: "${S.of(context).password}",
           border: InputBorder.none,
           suffixIcon: IconButton(
             color: Theme.of(context).primaryColor,

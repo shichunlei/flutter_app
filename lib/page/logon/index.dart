@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:custom_widgets/custom_widgets.dart';
+import 'package:flutter_app/generated/i18n.dart';
 
 import '../../page_index.dart';
 
@@ -111,7 +112,7 @@ class _LogonPageState extends State<LogonPage>
             onPressed: () {
               _flip(true);
             },
-            text: '登录',
+            text: '${S.of(context).login}',
             textColor: Colors.lightBlue,
             color: Colors.white,
           ),
@@ -155,7 +156,7 @@ class _LogonPageState extends State<LogonPage>
               _flip(false);
             },
             hasBorder: true,
-            text: '注册',
+            text: '${S.of(context).register}',
             textColor: Colors.white,
           ),
         ],
@@ -186,7 +187,7 @@ class _LogonPageState extends State<LogonPage>
                     fontWeight: FontWeight.w300,
                     color: Colors.white),
                 decoration: InputDecoration(
-                  hintText: '请输入用户名',
+                  hintText: '${S.of(context).username}',
                   hintStyle: TextStyle(fontSize: 16, color: Colors.white54),
                   contentPadding: EdgeInsets.only(top: 10, bottom: 4),
                 ),
@@ -220,7 +221,7 @@ class _LogonPageState extends State<LogonPage>
                     fontWeight: FontWeight.w300,
                     color: Colors.white),
                 decoration: InputDecoration(
-                  hintText: '请输入密码',
+                  hintText: '${S.of(context).password}',
                   hintStyle: TextStyle(fontSize: 16, color: Colors.white54),
                   contentPadding: EdgeInsets.only(top: 10, bottom: 4),
                 ),
@@ -249,7 +250,7 @@ class _LogonPageState extends State<LogonPage>
                         fontWeight: FontWeight.w300,
                         color: Colors.white),
                     decoration: InputDecoration(
-                      hintText: '再次输入密码',
+                      hintText: '${S.of(context).confirmPassword}',
                       hintStyle: TextStyle(fontSize: 16, color: Colors.white54),
                       contentPadding: EdgeInsets.only(top: 10, bottom: 4),
                     ),
