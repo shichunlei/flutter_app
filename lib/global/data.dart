@@ -288,6 +288,7 @@ class ExpandStateBean {
       SubExpandBean('Flutter Sound', FlutterSoundPage()),
       SubExpandBean('CardFlip', CardFlipPage()),
       SubExpandBean('仿抖音首页动画', TikTokPage()),
+      SubExpandBean('BackDrop', BackDropPage()),
     ]),
     ExpandStateBean(
         leading: Icons.filter_7,
