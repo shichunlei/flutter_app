@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
-import '../page/movie_photo.dart';
 import '../page/movie_photos.dart';
 import '../page/movie_with_celebrity.dart';
 import 'package:flutter_app/service/api_service.dart';
@@ -142,20 +141,34 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                     scrollDirection: Axis.horizontal,
                     itemCount: celebrity.photos.length,
                     itemBuilder: (context, index) {
-                      return Padding(
+                      List<String> images = [];
+                      celebrity.photos.forEach((f) {
+                        images.add(f.image);
+                      });
+
+                      return Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6.0)),
                         padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                        child: Hero(
-                            tag: celebrity.photos[index].id,
-                            child: ImageLoadView(celebrity.photos[index].cover,
-                                borderRadius: BorderRadius.circular(6.0),
+                        child: GestureDetector(
+                          onTap: () => pushNewPage(
+                              context,
+                              PhotoView(
+                                title: widget.name,
+                                photos: images,
+                                index: index,
+                                heroTag: celebrity.photos[index].id,
+                              )),
+                          child: Hero(
+                              tag: celebrity.photos[index].id,
+                              child: Image.network(
+                                celebrity.photos[index].cover,
+                                // borderRadius: BorderRadius.circular(6.0),
                                 fit: BoxFit.cover,
                                 height: height,
                                 width: height,
-                                onPressed: () => pushNewPage(
-                                    context,
-                                    MoviePhotoPage(widget.name,
-                                        photos: celebrity.photos,
-                                        index: index)))),
+                              )),
+                        ),
                       );
                     },
                   ),

@@ -62,5 +62,6 @@
   "username": "用户名",
   "password": "密码",
   "email": "邮箱",
-  "confirmPassword": "确认密码"
+  "confirmPassword": "确认密码",
+  "enterValidEmail": "请输入正确的邮箱"
 }

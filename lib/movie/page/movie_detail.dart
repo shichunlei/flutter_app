@@ -8,7 +8,6 @@ import '../../page_index.dart';
 
 import 'package:custom_widgets/custom_widgets.dart';
 
-import 'movie_photo.dart';
 import 'movie_video.dart';
 import 'movie_comment.dart';
 import 'movie_photos.dart';
@@ -157,23 +156,49 @@ class _MovieDetailState extends State<MovieDetail> {
                           scrollDirection: Axis.horizontal,
                           itemCount: movie.photos.length,
                           itemBuilder: (context, index) {
+                            List<String> images = [];
+                            movie.photos.forEach((f) {
+                              images.add(f.image);
+                            });
+
                             return Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 3.0),
-                                child: Hero(
-                                    tag: movie.photos[index].id,
-                                    child: ImageLoadView(
+                                child: GestureDetector(
+                                  onTap: () => pushNewPage(
+                                      context,
+                                      PhotoView(
+                                        title: '《${movie.title}》剧照',
+                                        photos: images,
+                                        index: index,
+                                        heroTag: movie.photos[index].id,
+                                      )),
+                                  child: Hero(
+                                      tag: movie.photos[index].id,
+                                      child: Image.network(
                                         movie.photos[index].cover,
+                                        // borderRadius: BorderRadius.circular(6.0),
                                         fit: BoxFit.cover,
-                                        height: width,
-                                        width: width,
-                                        borderRadius:
-                                            BorderRadius.circular(6.0),
-                                        onPressed: () => pushNewPage(
-                                            context,
-                                            MoviePhotoPage('《${movie.title}》剧照',
-                                                photos: movie.photos,
-                                                index: index)))));
+                                        height: height,
+                                        width: height,
+                                      )),
+                                )
+
+//                                Hero(
+//                                    tag: movie.photos[index].id,
+//                                    child: ImageLoadView(
+//                                        movie.photos[index].cover,
+//                                        fit: BoxFit.cover,
+//                                        height: width,
+//                                        width: width,
+//                                        borderRadius:
+//                                            BorderRadius.circular(6.0),
+//                                        onPressed: () => pushNewPage(
+//                                            context,
+//                                            MoviePhotoPage('《${movie.title}》剧照',
+//                                                photos: movie.photos,
+//                                                index: index))))
+                                );
                           }))
                 ])),
             MovieDesc(movie),

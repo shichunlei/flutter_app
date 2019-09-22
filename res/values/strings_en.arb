@@ -62,5 +62,6 @@
   "username": "User Name",
   "password": "Password",
   "email": "Email",
-  "confirmPassword": "Confirm Password"
+  "confirmPassword": "Confirm Password",
+  "enterValidEmail": "Enter Valid Email"
 }

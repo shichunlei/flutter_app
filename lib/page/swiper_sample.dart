@@ -17,7 +17,7 @@ class SwiperSample extends StatelessWidget {
             child: Swiper(
                 itemBuilder: (BuildContext context, int index) =>
                     ImageLoadView(bannerImages[index], fit: BoxFit.cover),
-                itemCount: bannerImages.length,
+                itemCount: 4,
                 pagination: SwiperPagination(
                     builder: SwiperPagination.fraction,
                     alignment: Alignment.bottomRight)),
@@ -32,13 +32,13 @@ class SwiperSample extends StatelessWidget {
                 bannerImages[index],
                 fit: BoxFit.cover,
               ),
-              itemCount: bannerImages.length,
+              itemCount: 4,
               pagination: SwiperCustomPagination(
                 builder: (BuildContext context, SwiperPluginConfig config) {
                   return Container(
                     alignment: Alignment.bottomRight,
                     child: DotsIndicator(
-                      dotsCount: bannerImages.length,
+                      dotsCount: 4,
                       position: config.activeIndex,
                       reversed: false,
                       decorator: DotsDecorator(
@@ -60,13 +60,13 @@ class SwiperSample extends StatelessWidget {
                 bannerImages[index],
                 fit: BoxFit.cover,
               ),
-              itemCount: bannerImages.length,
+              itemCount: 4,
               pagination: SwiperCustomPagination(
                 builder: (BuildContext context, SwiperPluginConfig config) {
                   return Container(
                     alignment: Alignment.bottomCenter,
                     child: DotsIndicator(
-                      dotsCount: bannerImages.length,
+                      dotsCount: 4,
                       position: config.activeIndex,
                       reversed: false,
                       decorator: DotsDecorator(
@@ -91,7 +91,7 @@ class SwiperSample extends StatelessWidget {
                       ImageLoadView(bannerImages[index],
                           borderRadius: BorderRadius.circular(10.0),
                           fit: BoxFit.cover),
-                  itemCount: bannerImages.length,
+                  itemCount: 4,
                   viewportFraction: 0.8,
                   scale: 0.9,
                   pagination: SwiperPagination())),
@@ -102,10 +102,10 @@ class SwiperSample extends StatelessWidget {
               padding: EdgeInsets.all(16.0),
               child: Swiper(
                   itemWidth: 300,
-                  itemCount: Girl.girls.length,
+                  itemCount: 15,
                   layout: SwiperLayout.STACK,
                   itemBuilder: (BuildContext context, int index) =>
-                      ImageLoadView(Girl.girls[index].image,
+                      ImageLoadView(bannerImages[index + 11],
                           borderRadius: BorderRadius.circular(10.0),
                           fit: BoxFit.cover))),
           Gaps.vGap20,
@@ -116,10 +116,10 @@ class SwiperSample extends StatelessWidget {
               child: Swiper(
                   itemWidth: 300,
                   itemHeight: 400,
-                  itemCount: Girl.girls.length,
+                  itemCount: 5,
                   layout: SwiperLayout.TINDER,
                   itemBuilder: (BuildContext context, int index) =>
-                      ImageLoadView(Girl.girls[index].image,
+                      ImageLoadView(bannerImages[index + 4],
                           borderRadius: BorderRadius.circular(10.0),
                           fit: BoxFit.cover))),
           Gaps.vGap20,
@@ -155,7 +155,7 @@ class SwiperSample extends StatelessWidget {
                   ],
                 );
               },
-              itemCount: bannerImages.length,
+              itemCount: 4,
               scale: 0.9,
               pagination: SwiperPagination(),
             ),

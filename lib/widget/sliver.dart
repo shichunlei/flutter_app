@@ -109,7 +109,7 @@ class _SliverPageState extends State<SliverPage>
                                     bannerImages[index],
                                     fit: BoxFit.cover,
                                   ),
-                              itemCount: bannerImages.length,
+                              itemCount: 4,
                               pagination: SwiperPagination(
                                   builder: SwiperPagination.fraction,
                                   alignment: Alignment.bottomRight),

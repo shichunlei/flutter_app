@@ -18,11 +18,16 @@ class ItemPhoto extends StatelessWidget {
           children: <Widget>[
             Hero(
                 tag: photo.id,
-                child: ImageLoadView(photo.cover,
-                    fit: BoxFit.cover,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(5.0),
-                        topRight: Radius.circular(5.0)))),
+                child: Container(
+                  child: Image.network(
+                    photo.image,
+                    fit: BoxFit.fill,
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5.0),
+                          topRight: Radius.circular(5.0))),
+                )),
             Row(
               children: <Widget>[
                 Padding(

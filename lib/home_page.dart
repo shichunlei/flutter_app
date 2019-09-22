@@ -124,7 +124,7 @@ class HomeStatePage extends State<HomePage> {
           child: Swiper(
               itemBuilder: (context, index) =>
                   ImageLoadView(bannerImages[index]),
-              itemCount: bannerImages.length,
+              itemCount: 4,
               pagination: SwiperPagination(
                   builder: SwiperPagination.fraction,
                   alignment: Alignment.bottomRight),

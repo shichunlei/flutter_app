@@ -5,28 +5,6 @@ import '../page_index.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter_app/widget/sliver.dart';
 
-class Girl {
-  final String description;
-  final String image;
-
-  Girl(this.description, this.image);
-
-  static final List<Girl> girls = [
-    Girl('Sliding to the left means dislike',
-        'https://img.gsdlcn.com/uploads/allimg/190429/1-1Z42Z11017.jpg'),
-    Girl('slipping to the right means expressing love',
-        'https://img.gsdlcn.com/uploads/190426/1-1Z426220112340.jpg'),
-    Girl('Hope you like',
-        'https://img.gsdlcn.com/uploads/190423/1-1Z42303163Ma.jpg'),
-    Girl('Hope you like',
-        'https://img.gsdlcn.com/uploads/190428/1-1Z42P25206293.jpg'),
-    Girl('Hope you like',
-        'https://img.gsdlcn.com/uploads/190426/1-1Z4261KF4335.jpg'),
-    Girl(
-        'Hope you like', 'https://www.7160.com/templets/new7160/hotpic/2/s.jpg')
-  ];
-}
-
 class Doodle {
   final String name;
   final String time;
@@ -50,7 +28,7 @@ class Doodle {
         content:
             "One of Al-Sufi's greatest works involved fact-checking the Greek astronomer Ptolemy's measurements of the brightness and size of stars. In the year 964 AD, Al-Sufi published his findings in a book titled Kitab al-Kawatib al-Thabita al-Musawwar, or The Book of Fixed Stars. In many cases, he confirmed Ptolemy’s discoveries, but he also improved upon his work by illustrating the constellations and correcting some of Ptolemy’s observations about the brightness of stars.",
         doodle:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554291011582&di=46e3a7501556d6addd41493a2f27dfe5&imgtype=0&src=http%3A%2F%2Fpic.nipic.com%2F2008-06-13%2F2008613104551168_2.jpg",
+            "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4016383514,3614601022&fm=26&gp=0.jpg",
         icon: Icon(Icons.star, color: Colors.white),
         iconBackground: Colors.cyan),
     Doodle(
@@ -59,7 +37,7 @@ class Doodle {
         content:
             " Abu al-Wafa' is an innovator whose contributions to science include one of the first known introductions to negative numbers, and the development of the first quadrant, a tool used by astronomers to examine the sky. His pioneering work in spherical trigonometry was hugely influential for both mathematics and astronomy.",
         doodle:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554291011582&di=aabb186698e018f5a85cfe42b819ca4e&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F8326cffc1e178a8208b90d86fc03738da977e80b.jpg",
+            "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3789620214,3216522198&fm=26&gp=0.jpg",
         icon: Icon(
           Icons.exposure,
           color: Colors.white,
@@ -71,7 +49,7 @@ class Doodle {
         content:
             "Ibn al-Haytham was the first to explain through experimentation that vision occurs when light bounces on an object and then is directed to one's eyes. He was also an early proponent of the concept that a hypothesis must be proved by experiments based on confirmable procedures or mathematical evidence—hence understanding the scientific method five centuries before Renaissance scientists.",
         doodle:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554291011582&di=caec32456ab2919deb4c7eb0610e50db&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201111%2F05%2F20111105204204_KYTVF.thumb.700_0.jpg",
+            "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2536545892,2258796484&fm=26&gp=0.jpg",
         icon: Icon(
           Icons.visibility,
           color: Colors.black87,
@@ -84,7 +62,7 @@ class Doodle {
         content:
             "Biruni is regarded as one of the greatest scholars of the Golden Age of Muslim civilisation and was well versed in physics, mathematics, astronomy, and natural sciences, and also distinguished himself as a historian, chronologist and linguist. He studied almost all fields of science and was compensated for his research and strenuous work. Royalty and powerful members of society sought out Al-Biruni to conduct research and study to uncover certain findings.",
         doodle:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554291011583&di=c14837284251907e50f57503c9215c91&imgtype=0&src=http%3A%2F%2Fpic31.nipic.com%2F20130630%2F7447430_165944650000_2.jpg",
+            "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2942458885,2161231393&fm=26&gp=0.jpg",
         icon: Icon(
           Icons.account_balance,
           color: Colors.black87,
@@ -96,7 +74,7 @@ class Doodle {
         content:
             "Avicenna (Ibn Sīnā) was a Persian polymath who is regarded as one of the most significant physicians, astronomers, thinkers and writers of the Islamic Golden Age. He has been described as the father of early modern medicine. Of the 450 works he is known to have written, around 240 have survived, including 150 on philosophy and 40 on medicine.\nHis most famous works are The Book of Healing, a philosophical and scientific encyclopedia, and The Canon of Medicine, a medical encyclopedia which became a standard medical text at many medieval universities and remained in use as late as 1650. In 1973, Avicenna's Canon Of Medicine was reprinted in  York.\nBesides philosophy and medicine, Avicenna's corpus includes writings on astronomy, alchemy, geography and geology, psychology, Islamic theology, logic, mathematics, physics and works of poetry.",
         doodle:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554291011584&di=f99d4eb110b637ecb81fb66d2aab0b33&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd1160924ab18972b83474beeedcd7b899e510a90.jpg",
+            "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2844749082,2312759693&fm=26&gp=0.jpg",
         icon: Icon(
           Icons.healing,
           color: Colors.white,
@@ -108,7 +86,7 @@ class Doodle {
         content:
             "Averroes was an Andalusian philosopher and thinker who wrote about many subjects, including philosophy, theology, medicine, astronomy, physics, Islamic jurisprudence and law, and linguistics. His philosophical works include numerous commentaries on Aristotle, for which he was known in the West as The Commentator. He also served as a judge and a court physician for the Almohad Caliphate.",
         doodle:
-            "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3552381637,416449646&fm=26&gp=0.jpg",
+            "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3213237648,2312067813&fm=26&gp=0.jpg",
         icon: Icon(
           Icons.blur_circular,
           color: Colors.white,
@@ -120,7 +98,7 @@ class Doodle {
         content:
             "Tusi was a Persian polymath, architect, philosopher, physician, scientist, and theologian. He is often considered the creator of trigonometry as a mathematical discipline in its own right. Ibn Khaldun (1332–1406) considered Al-Tusi to be the greatest of the later Persian scholars.",
         doodle:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554291011585&di=aaa8dfdfb6309f312016b6e8778f47ad&imgtype=0&src=http%3A%2F%2Fscimg.jb51.net%2Fallimg%2F170109%2F106-1F109120J9646.jpg",
+            "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1817632637,3443052285&fm=26&gp=0.jpg",
         icon: Icon(
           Icons.category,
           color: Colors.white,
@@ -132,7 +110,7 @@ class Doodle {
         content:
             "Over a period of thirty years, Ibn Battuta visited most of the Islamic world and many non-Muslim lands, including North Africa, the Horn of Africa, West Africa, the Middle East, Central Asia, Southeast Asia, South Asia and China. Near the end of his life, he dictated an account of his journeys, titled A Gift to Those Who Contemplate the Wonders of Cities and the Marvels of Travelling (Tuḥfat an-Nuẓẓār fī Gharāʾib al-Amṣār wa ʿAjāʾib al-Asfār), usually simply referred to as The Travels (Rihla). This account of his journeys provides a picture of a medieval civilisation that is still widely consulted today.",
         doodle:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554291011585&di=2a33c3141a4dc261e15ea7f8146831a0&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2Fd62a6059252dd42aec1eb08d093b5bb5c9eab885.jpg",
+            "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=357307289,3261904920&fm=26&gp=0.jpg",
         icon: Icon(
           Icons.navigation,
           color: Colors.white,
@@ -145,7 +123,7 @@ class Doodle {
         content:
             "He is widely considered as a forerunner of the modern disciplines of historiography, sociology, economics, and demography.\nHe is best known for his book, the Muqaddimah or Prolegomena ('Introduction'). The book influenced 17th-century Ottoman historians like Kâtip Çelebi, Ahmed Cevdet Pasha and Mustafa Naima, who used the theories in the book to analyse the growth and decline of the Ottoman Empire. Also, 19th-century European scholars acknowledged the significance of the book and considered Ibn Khaldun to be one of the greatest philosophers of the Middle Ages.",
         doodle:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554291011586&di=1a9e4879faca48108e0713e791e23179&imgtype=0&src=http%3A%2F%2Fpic5.nipic.com%2F20100104%2F1454779_182623233873_2.jpg",
+            "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4196133035,4167956900&fm=26&gp=0.jpg",
         icon: Icon(
           Icons.supervised_user_circle,
           color: Colors.white,
@@ -157,7 +135,7 @@ class Doodle {
         content:
             "He is primarily known today for his maps and charts collected in his Kitab-ı Bahriye (Book of Navigation), a book that contains detailed information on navigation, as well as very accurate charts (for their time) describing the important ports and cities of the Mediterranean Sea. He gained fame as a cartographer when a small part of his first world map (prepared in 1513) was discovered in 1929 at the Topkapı Palace in Istanbul. His world map is the oldest known Turkish atlas showing the  World, and one of the oldest maps of America still in existence anywhere (the oldest known map of America that is still in existence is the map drawn by Juan de la Cosa in 1500). Piri Reis' map is centered on the Sahara at the latitude of the Tropic of Cancer.",
         doodle:
-            "https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1554280920&di=f596f493385c55a20fe45440e5cb14a6&src=http://pic18.nipic.com/20120205/3145425_101322096000_2.jpg",
+            "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1843767238,1936795003&fm=26&gp=0.jpg",
         icon: Icon(
           Icons.map,
           color: Colors.white,
@@ -318,10 +296,42 @@ class SubExpandBean {
 }
 
 List<String> bannerImages = [
-  "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550062506230&di=c1fe7acf0d730d3eec5e259b83c5dbb1&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F9358d109b3de9c82036507ac6681800a19d84395.jpg",
-  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550062506230&di=5a7d0ce4bf6bc3ea16631b3b6656705d&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F4e4a20a4462309f76874a128790e0cf3d7cad6f5.jpg',
-  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550062506229&di=d809dd657a9e0df1b5ccdc7aa2b5ed6e&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F0e2442a7d933c89527374758db1373f08202004c.jpg',
-  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550062506227&di=4dbf7aff166eedb67f17d9cb445b7b3f&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F8d5494eef01f3a29dda37ce99325bc315c607caa.jpg'
+  "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2918882617,1624283714&fm=26&gp=0.jpg",
+  'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1694196096,1956817301&fm=26&gp=0.jpg',
+  'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3473128871,1574804327&fm=26&gp=0.jpg',
+  'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=422401622,3669771322&fm=26&gp=0.jpg',
+  'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2832342280,1019704477&fm=26&gp=0.jpg',
+  'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1759214474,1595279735&fm=26&gp=0.jpg',
+  'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4024827225,1981202973&fm=26&gp=0.jpg',
+  'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2029082490,2363810538&fm=26&gp=0.jpg',
+  'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2785384588,322545246&fm=26&gp=0.jpg',
+  'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2078043979,184815851&fm=26&gp=0.jpg',
+  "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2078043979,184815851&fm=26&gp=0.jpg",
+  "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4074334908,1434307869&fm=26&gp=0.jpg",
+  "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2662785624,2609285852&fm=26&gp=0.jpg",
+  "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4024827225,1981202973&fm=26&gp=0.jpg",
+  "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2925061987,411404233&fm=26&gp=0.jpg",
+  "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4176017085,1014898947&fm=26&gp=0.jpg",
+  "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1151904050,4162194237&fm=26&gp=0.jpg",
+  "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=379622373,74041926&fm=26&gp=0.jpg",
+  "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3312451982,3816676872&fm=26&gp=0.jpg",
+  "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2313290898,4177083589&fm=26&gp=0.jpg",
+  "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1114909265,4252356893&fm=26&gp=0.jpg",
+  "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3496053885,3190325716&fm=26&gp=0.jpg",
+  "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=322974403,2804872580&fm=26&gp=0.jpg",
+  "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2623563115,731719555&fm=26&gp=0.jpg",
+  "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1720211335,232769932&fm=26&gp=0.jpg",
+  "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3596808855,380159611&fm=26&gp=0.jpg",
+  "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3624286312,3700724023&fm=26&gp=0.jpg",
+  "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1459903101,4085466206&fm=26&gp=0.jpg",
+  "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1147935470,1225963007&fm=26&gp=0.jpg",
+  "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2306794792,159490749&fm=26&gp=0.jpg",
+  "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1623879114,795577895&fm=26&gp=0.jpg",
+  "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3509350334,2584391832&fm=26&gp=0.jpg",
+  "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3335334756,3364879534&fm=26&gp=0.jpg",
+  "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3649689340,3293497883&fm=26&gp=0.jpg",
+  "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4174052176,1211122446&fm=26&gp=0.jpg",
+  "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3351677703,1391797338&fm=26&gp=0.jpg",
 ];
 
 /// Sample ordinal data type.
@@ -595,7 +605,7 @@ class ChartFlutterBean {
 }
 
 var backgroundImage =
-    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566123324419&di=df1015dd0fcf9fd90a2127190f5c1e39&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fbcaca7ee3601c6e24762946e9b9d313be5cd4369b0f1-CKjm9d_fw658';
+    'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3944043863,1320375700&fm=26&gp=0.jpg';
 
 String weatherBg(String condCode) {
   String bgImage = '';

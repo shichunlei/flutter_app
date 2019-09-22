@@ -40,6 +40,7 @@ class S implements WidgetsLocalizations {
   String get eidt_address => "Update Address";
   String get email => "Email";
   String get en => "English";
+  String get enterValidEmail => "Enter Valid Email";
   String get exit => "Exit";
   String get fail => " Fail";
   String get forgot_password => "Forgot Password";
@@ -129,6 +130,8 @@ class $zh_HK extends S {
   String get en => "英文";
   @override
   String get loading => "正在加載...";
+  @override
+  String get enterValidEmail => "请输入正确的邮箱";
   @override
   String get zh => "中文";
   @override
@@ -265,6 +268,8 @@ class $zh_TW extends S {
   String get en => "英文";
   @override
   String get loading => "正在加載...";
+  @override
+  String get enterValidEmail => "请输入正确的邮箱";
   @override
   String get zh => "中文";
   @override
@@ -405,6 +410,8 @@ class $zh_CN extends S {
   String get en => "英文";
   @override
   String get loading => "正在加载...";
+  @override
+  String get enterValidEmail => "请输入正确的邮箱";
   @override
   String get zh => "中文";
   @override

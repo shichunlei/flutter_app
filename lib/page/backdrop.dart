@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../page_index.dart';
+
 class BackDropPage extends StatefulWidget {
   BackDropPage({Key key}) : super(key: key);
 
@@ -84,16 +86,41 @@ class _BackDropPageState extends State<BackDropPage>
                           height: header_height,
                           child: Center(
                             child: Text(
-                              "Shop Here",
+                              "美女",
                               style: Theme.of(context).textTheme.button,
                             ),
                           ),
                         ),
                         Expanded(
-                          child: Center(
-                            child: Text("Front Panel",
-                                style: TextStyle(
-                                    fontSize: 24.0, color: Colors.black)),
+                          child: SafeArea(
+                            top: false,
+                            bottom: false,
+                            child: GridView.count(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 4.0,
+                              crossAxisSpacing: 4.0,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10.0, horizontal: 10.0),
+                              childAspectRatio: 1.5,
+                              children: bannerImages.map((f) {
+                                return GestureDetector(
+                                  onTap: () => pushNewPage(
+                                      context,
+                                      PhotoView(
+                                        heroTag: '$f',
+                                        photos: bannerImages,
+                                        index: bannerImages.indexOf(f),
+                                        title: "美女",
+                                      )),
+                                  child: Hero(
+                                      tag: '$f',
+                                      child: Image.network(
+                                        f,
+                                        fit: BoxFit.cover,
+                                      )),
+                                );
+                              }).toList(),
+                            ),
                           ),
                         )
                       ],

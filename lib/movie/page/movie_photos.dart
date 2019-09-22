@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
 
-import '../page/movie_photo.dart';
 import '../ui/item_photo.dart';
 
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
@@ -19,11 +18,12 @@ class MoviePhotosPage extends StatefulWidget {
   MoviePhotosPage(this.title, this.url, this.id);
 
   @override
-  _MoviePhotosPageState createState() => _MoviePhotosPageState();
+  createState() => _MoviePhotosPageState();
 }
 
 class _MoviePhotosPageState extends State<MoviePhotosPage> {
   List<Photos> photos = [];
+  List<String> images = [];
 
   int page = 1;
   int pageSize = 20;
@@ -67,6 +67,10 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
     }
 
     photos.addAll(_photos);
+    _photos.forEach((f) {
+      images.add(f.image);
+    });
+
     if (isFirst) {
       isFirst = false;
     }
@@ -93,8 +97,12 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
             itemBuilder: (context, index) => ItemPhoto(photos[index],
                 onTap: () => pushNewPage(
                     context,
-                    MoviePhotoPage(widget.title,
-                        photos: photos, index: index))),
+                    PhotoView(
+                      title: widget.title,
+                      photos: images,
+                      index: index,
+                      heroTag: photos[index].id,
+                    ))),
             staggeredTileBuilder: (index) => StaggeredTile.fit(2)),
         emptyWidget: photos.isEmpty ? Center(child: Text('没有数据！')) : null);
   }
