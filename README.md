@@ -125,7 +125,7 @@ A new Flutter application.
 | :--: | :--: | :--: |
 
 
-### [登录注册](https://github.com/LXD312569496/flutter-learing/tree/master/login_demo)
+### [登录注册]()
 
 
 |![1](https://upload-images.jianshu.io/upload_images/2774805-9b6c8ce1ba399665)|![2](https://upload-images.jianshu.io/upload_images/2774805-d577152c80806d50)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/1031566790595_.pic.jpg)|![4](https://raw.githubusercontent.com/Tecode/flutter_widget/master/picture/login_video_demo.gif)|
@@ -133,10 +133,10 @@ A new Flutter application.
 |登录|注册|找回密码|视频背景登录|
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-06-15-08-33-15-313.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-06-15-08-33-27-977.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-06-15-08-33-40-821.png)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-06-15-08-33-35-147.png)|
 |密码登录|快速登录|注册|找回密码|
-|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/911565856636_.pic.jpg)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/921565856637_.pic.jpg)|![3](https://github.com/pedromassango/my_flutter_challenges/raw/master/screenshots/slidl.gif)|![4]()|
-|登录|注册|登录/注册|XXX|
-|![1](https://github.com/s4nk37/Signup-Minimal-Flutter/raw/master/login.png)|![2](https://github.com/s4nk37/Signup-Minimal-Flutter/raw/master/signup.png)|![3]()|![4]()|
-|登录|注册|XXX|XXX|
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/911565856636_.pic.jpg)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/921565856637_.pic.jpg)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-09-23-14-13-43-501.png)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-09-23-14-13-37-978.png)|
+|登录|注册|登录|注册|
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-09-23-14-21-40-361.png)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-09-23-14-21-52-446.png)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-09-23-14-21-45-940.png)|![4](https://github.com/pedromassango/my_flutter_challenges/raw/master/screenshots/slidl.gif)|
+|---|注册|登录|登录/注册|
 
 
 ### [追书神器](http://m.zhuishushenqi.com/)

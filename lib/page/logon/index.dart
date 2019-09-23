@@ -68,8 +68,7 @@ class _LogonPageState extends State<LogonPage>
                 colors: [Color(0xFFfbab66), Color(0xFFf7418c)],
                 child: Image.asset('images/flutter_logo.png',
                     width: 60, height: 60),
-                alignment: Alignment.topCenter,
-                padding: EdgeInsets.only(top: 70))),
+                alignment: Alignment.center)),
         Center(
             child: Padding(
                 padding: EdgeInsets.all(15),

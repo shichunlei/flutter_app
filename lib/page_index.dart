@@ -61,6 +61,7 @@ export 'page/theme_sample.dart';
 export 'page/flutter_flip_view_sample.dart';
 export 'page/flip_view_custom.dart';
 export 'page/logon/index.dart';
+export 'page/login4/index.dart';
 export 'page/login2/signup.dart';
 export 'page/login/login_page.dart';
 export 'page/login_video_page.dart';
@@ -135,6 +136,7 @@ export 'ui/icon_text.dart';
 export 'ui/light_theme.dart';
 export 'ui/tagview.dart';
 export 'ui/photo_view.dart';
+export 'ui/bottom_sheet.dart';
 
 export 'qdaily/splash.dart';
 

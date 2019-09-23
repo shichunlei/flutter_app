@@ -261,6 +261,7 @@ class ExpandStateBean {
       SubExpandBean('登录页面2', LogonPage()),
       SubExpandBean('登录页面3', SlidingLoginPage()),
       SubExpandBean('登录页面4', SignUpPage()),
+      SubExpandBean('登录页面5', BottomSheetLoginPage()),
       SubExpandBean('视频背景登录页面', LoginVideoPage()),
       SubExpandBean('Music Player', FluteMusicPlayerPage()),
       SubExpandBean('Audio Player', AudioPlayersPage()),
