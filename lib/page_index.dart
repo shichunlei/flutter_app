@@ -63,6 +63,7 @@ export 'page/flip_view_custom.dart';
 export 'page/logon/index.dart';
 export 'page/login4/index.dart';
 export 'page/login2/signup.dart';
+export 'page/login3/index.dart';
 export 'page/login/login_page.dart';
 export 'page/login_video_page.dart';
 export 'page/sliding_login/login.dart';

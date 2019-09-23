@@ -11,10 +11,13 @@ class ItemGoodsGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.center,
-        color: Colors.white,
-        child: GestureDetector(
+    return Material(
+      color: Colors.white,
+      child: InkWell(
+        onTap: () => pushNewPage(
+            context, DetailsPage(goods.goodsId, provider: provider)),
+        child: Container(
+            alignment: Alignment.center,
             child: Column(children: <Widget>[
               Hero(tag: goods.goodsId, child: ImageLoadView('${goods.comPic}')),
               Container(
@@ -34,8 +37,8 @@ class ItemGoodsGrid extends StatelessWidget {
                             fontSize: 12.0,
                             decoration: TextDecoration.lineThrough))
                   ], mainAxisAlignment: MainAxisAlignment.spaceBetween))
-            ]),
-            onTap: () => pushNewPage(
-                context, DetailsPage(goods.goodsId, provider: provider))));
+            ])),
+      ),
+    );
   }
 }

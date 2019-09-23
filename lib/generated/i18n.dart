@@ -21,6 +21,8 @@ class S implements WidgetsLocalizations {
   @override
   TextDirection get textDirection => TextDirection.ltr;
 
+  String get EMAIL_AUTH_VALIDATION_EMPTY => "Your email can't be empty!";
+  String get EMAIL_AUTH_VALIDATION_INVALID => "This email is invalid!";
   String get address => "Address List";
   String get call_history => "Call History";
   String get cancel => "cancel";
@@ -177,6 +179,8 @@ class $zh_HK extends S {
   @override
   String get loadFinish => "加載完成";
   @override
+  String get EMAIL_AUTH_VALIDATION_EMPTY => "邮箱不能为空!";
+  @override
   String get eidt_address => "修改地址";
   @override
   String get cancel_collect => "取消收藏";
@@ -206,6 +210,8 @@ class $zh_HK extends S {
   String get pullToRefresh => "拉動刷新";
   @override
   String get refresh => "刷新";
+  @override
+  String get EMAIL_AUTH_VALIDATION_INVALID => "邮箱不合法!";
   @override
   String get menu => "菜單";
   @override
@@ -315,6 +321,8 @@ class $zh_TW extends S {
   @override
   String get loadFinish => "加載完成";
   @override
+  String get EMAIL_AUTH_VALIDATION_EMPTY => "邮箱不能为空!";
+  @override
   String get eidt_address => "修改地址";
   @override
   String get cancel_collect => "取消收藏";
@@ -344,6 +352,8 @@ class $zh_TW extends S {
   String get pullToRefresh => "拉動刷新";
   @override
   String get refresh => "刷新";
+  @override
+  String get EMAIL_AUTH_VALIDATION_INVALID => "邮箱不合法!";
   @override
   String get menu => "菜單";
   @override
@@ -457,6 +467,8 @@ class $zh_CN extends S {
   @override
   String get loadFinish => "加载完成";
   @override
+  String get EMAIL_AUTH_VALIDATION_EMPTY => "邮箱不能为空!";
+  @override
   String get eidt_address => "修改地址";
   @override
   String get cancel_collect => "取消收藏";
@@ -486,6 +498,8 @@ class $zh_CN extends S {
   String get pullToRefresh => "拉动刷新";
   @override
   String get refresh => "刷新";
+  @override
+  String get EMAIL_AUTH_VALIDATION_INVALID => "邮箱不合法!";
   @override
   String get menu => "菜单";
   @override

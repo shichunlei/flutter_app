@@ -20,7 +20,7 @@ class ItemFloorGoods extends StatelessWidget {
         width: width,
         height: height,
         child: GestureDetector(
-            child: Hero(tag: goodsId, child: ImageLoadView('$goodsImage')),
+            child: ImageLoadView('$goodsImage'),
             onTap: () => pushNewPage(
                 context, DetailsPage(goodsId, provider: provider))));
   }

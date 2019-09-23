@@ -134,9 +134,8 @@ class _HomePageState extends State<HomePage>
             child: Swiper(
                 autoplay: true,
                 itemCount: slides.length,
-                itemBuilder: (BuildContext context, int index) => Hero(
-                    tag: slides[index].goodsId,
-                    child: ImageLoadView('${slides[index].comPic}')),
+                itemBuilder: (BuildContext context, int index) =>
+                    ImageLoadView('${slides[index].comPic}'),
                 onTap: (int index) => pushNewPage(
                     context,
                     DetailsPage(slides[index].goodsId,
@@ -147,20 +146,22 @@ class _HomePageState extends State<HomePage>
     return SliverGrid(
         delegate: SliverChildBuilderDelegate(
           (BuildContext context, int index) {
-            return GestureDetector(
-              onTap: () => pushReplacement(context,
-                  IndexPage(index: 1, category: index, subCategory: 0)),
-              child: Container(
-                color: Colors.white,
-                padding: EdgeInsets.all(5.0),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      ImageLoadView('${category[index].image}',
-                          height: 40, width: 40),
-                      Gaps.vGap5,
-                      Text('${category[index].mallCategoryName}')
-                    ]),
+            return Material(
+              color: Colors.white,
+              child: InkWell(
+                onTap: () => pushReplacement(context,
+                    IndexPage(index: 1, category: index, subCategory: 0)),
+                child: Container(
+                  padding: EdgeInsets.all(5.0),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        ImageLoadView('${category[index].image}',
+                            height: 40, width: 40),
+                        Gaps.vGap5,
+                        Text('${category[index].mallCategoryName}')
+                      ]),
+                ),
               ),
             );
           },
@@ -184,7 +185,7 @@ class _HomePageState extends State<HomePage>
                     onTap: () {
                       /// TODO
                     }),
-                SizedBox(height: 10),
+                Gaps.vGap10,
                 GestureDetector(
                     child: ImageLoadView(shopInfo.leaderImage),
                     onTap: () {
@@ -219,17 +220,14 @@ class _HomePageState extends State<HomePage>
 
   Widget _buildSliverToBoxAdapter(title) {
     return SliverToBoxAdapter(
-      child: Column(children: <Widget>[
-        Container(
-            color: Colors.white,
-            margin: EdgeInsets.only(top: 5.0, bottom: 1.0),
-            padding: EdgeInsets.only(left: 10.0),
-            alignment: Alignment.centerLeft,
-            child: Text(title,
-                style: TextStyle(color: Colors.green, fontSize: 20.0)),
-            height: 40.0),
-        Container(color: Colors.white, height: 5.0)
-      ]),
+      child: Container(
+        color: Colors.white,
+        margin: EdgeInsets.only(top: 5.0, bottom: 1.0),
+        padding: EdgeInsets.only(left: 10.0, bottom: 5, top: 5),
+        alignment: Alignment.centerLeft,
+        child:
+            Text(title, style: TextStyle(color: Colors.green, fontSize: 20.0)),
+      ),
     );
   }
 
@@ -265,7 +263,11 @@ class _HomePageState extends State<HomePage>
             onTap: () {
               /// TODO 跳转商品列表页？
             },
-            child: ImageLoadView('${floor.floorPic.pictureAddress}')));
+            child: ImageLoadView(
+              '${floor.floorPic.pictureAddress}',
+              width: Utils.width - 20,
+              height: (Utils.width - 20) * 9 / 35,
+            )));
   }
 
   Widget _buildFloorGoods(FloorBean floor) {

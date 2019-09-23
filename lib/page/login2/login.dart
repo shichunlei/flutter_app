@@ -157,16 +157,16 @@ class _LoginPageState extends State<LoginPage> {
               elevation: 0.0,
               actions: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 15, 20, 0),
+                  padding: EdgeInsets.fromLTRB(0, 10, 10, 10),
                   child: FlatButton(
                     child: Text(
                       "${S.of(context).register}",
-                      style: TextStyle(color: Colors.grey, fontSize: 17),
+                      style: TextStyle(color: Colors.black, fontSize: 17),
                     ),
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    highlightColor: Colors.black,
+                    highlightColor: Colors.black26,
                     shape: StadiumBorder(),
                   ),
                 ),

@@ -63,5 +63,7 @@
   "password": "Password",
   "email": "Email",
   "confirmPassword": "Confirm Password",
-  "enterValidEmail": "Enter Valid Email"
+  "enterValidEmail": "Enter Valid Email",
+  "EMAIL_AUTH_VALIDATION_EMPTY": "Your email can't be empty!",
+  "EMAIL_AUTH_VALIDATION_INVALID": "This email is invalid!"
 }

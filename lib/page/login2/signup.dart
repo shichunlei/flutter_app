@@ -194,14 +194,14 @@ class _SignUpPageState extends State<SignUpPage> {
               elevation: 0.0,
               actions: <Widget>[
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 15, 20, 0),
+                  padding: EdgeInsets.fromLTRB(0, 10, 10, 10),
                   child: FlatButton(
                     child: Text(
                       "${S.of(context).login}".toUpperCase(),
-                      style: TextStyle(color: Colors.grey, fontSize: 17),
+                      style: TextStyle(color: Colors.black, fontSize: 17),
                     ),
                     onPressed: () => pushNewPage(context, LoginPage()),
-                    highlightColor: Colors.black,
+                    highlightColor: Colors.black26,
                     shape: StadiumBorder(),
                   ),
                 )

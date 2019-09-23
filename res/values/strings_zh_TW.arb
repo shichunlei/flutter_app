@@ -63,5 +63,7 @@
   "password": "密码",
   "email": "邮箱",
   "confirmPassword": "确认密码",
-  "enterValidEmail": "请输入正确的邮箱"
+  "enterValidEmail": "请输入正确的邮箱",
+  "EMAIL_AUTH_VALIDATION_EMPTY": "邮箱不能为空!",
+  "EMAIL_AUTH_VALIDATION_INVALID": "邮箱不合法!"
 }

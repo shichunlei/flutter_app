@@ -88,13 +88,18 @@ class _LoginPageState extends State<PasswordLoginPage> {
       child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(leading: CloseButton(), actions: <Widget>[
-            InkWell(
-                child: Container(
-                    child: Text('${S.of(context).quickly_login}',
-                        style: TextStyles.textDark14),
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.only(left: 10, right: 10)),
-                onTap: () => pushReplacement(context, QuicklyLoginPage()))
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 10, 10, 10),
+              child: FlatButton(
+                child: Text(
+                  "${S.of(context).quickly_login}",
+                  style: TextStyles.textDark14,
+                ),
+                onPressed: () => pushReplacement(context, QuicklyLoginPage()),
+                highlightColor: Colors.black26,
+                shape: StadiumBorder(),
+              ),
+            )
           ]),
           body: Utils.isIOS
               ? FormKeyboardActions(child: _buildBodyView())
