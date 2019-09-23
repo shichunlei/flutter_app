@@ -34,7 +34,7 @@ class Contact extends ISuspensionBean {
   String firstLetter;
 
   static Contact fromMap(Map<String, dynamic> map) {
-    Contact contact = new Contact();
+    Contact contact = Contact();
     contact.gender = map['gender'];
     contact.email = map['email'];
     contact.phone = map['phone'];
@@ -61,7 +61,7 @@ class Contact extends ISuspensionBean {
   }
 
   static List<Contact> fromMapList(dynamic mapList) {
-    List<Contact> list = new List(mapList.length);
+    List<Contact> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -82,14 +82,14 @@ class DobBean {
   int age;
 
   static DobBean fromMap(Map<String, dynamic> map) {
-    DobBean dobBean = new DobBean();
+    DobBean dobBean = DobBean();
     dobBean.date = map['date'];
     dobBean.age = map['age'];
     return dobBean;
   }
 
   static List<DobBean> fromMapList(dynamic mapList) {
-    List<DobBean> list = new List(mapList.length);
+    List<DobBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -107,14 +107,14 @@ class IdBean {
   String value;
 
   static IdBean fromMap(Map<String, dynamic> map) {
-    IdBean idBean = new IdBean();
+    IdBean idBean = IdBean();
     idBean.name = map['name'];
     idBean.value = map['value'];
     return idBean;
   }
 
   static List<IdBean> fromMapList(dynamic mapList) {
-    List<IdBean> list = new List(mapList.length);
+    List<IdBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -140,7 +140,7 @@ class LocationBean {
   TimezoneBean timezone;
 
   static LocationBean fromMap(Map<String, dynamic> map) {
-    LocationBean locationBean = new LocationBean();
+    LocationBean locationBean = LocationBean();
     locationBean.street = map['street'];
     locationBean.city = map['city'];
     locationBean.state = map['state'];
@@ -151,7 +151,7 @@ class LocationBean {
   }
 
   static List<LocationBean> fromMapList(dynamic mapList) {
-    List<LocationBean> list = new List(mapList.length);
+    List<LocationBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -179,7 +179,7 @@ class LoginBean {
   String sha256;
 
   static LoginBean fromMap(Map<String, dynamic> map) {
-    LoginBean loginBean = new LoginBean();
+    LoginBean loginBean = LoginBean();
     loginBean.uuid = map['uuid'];
     loginBean.username = map['username'];
     loginBean.password = map['password'];
@@ -191,7 +191,7 @@ class LoginBean {
   }
 
   static List<LoginBean> fromMapList(dynamic mapList) {
-    List<LoginBean> list = new List(mapList.length);
+    List<LoginBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -211,7 +211,7 @@ class NameBean {
   String last;
 
   static NameBean fromMap(Map<String, dynamic> map) {
-    NameBean nameBean = new NameBean();
+    NameBean nameBean = NameBean();
     nameBean.title = map['title'];
     nameBean.first = map['first'];
     nameBean.last = map['last'];
@@ -219,7 +219,7 @@ class NameBean {
   }
 
   static List<NameBean> fromMapList(dynamic mapList) {
-    List<NameBean> list = new List(mapList.length);
+    List<NameBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -239,7 +239,7 @@ class PictureBean {
   String thumbnail;
 
   static PictureBean fromMap(Map<String, dynamic> map) {
-    PictureBean pictureBean = new PictureBean();
+    PictureBean pictureBean = PictureBean();
     pictureBean.large = map['large'];
     pictureBean.medium = map['medium'];
     pictureBean.thumbnail = map['thumbnail'];
@@ -247,7 +247,7 @@ class PictureBean {
   }
 
   static List<PictureBean> fromMapList(dynamic mapList) {
-    List<PictureBean> list = new List(mapList.length);
+    List<PictureBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -265,14 +265,14 @@ class RegisteredBean {
   int age;
 
   static RegisteredBean fromMap(Map<String, dynamic> map) {
-    RegisteredBean registeredBean = new RegisteredBean();
+    RegisteredBean registeredBean = RegisteredBean();
     registeredBean.date = map['date'];
     registeredBean.age = map['age'];
     return registeredBean;
   }
 
   static List<RegisteredBean> fromMapList(dynamic mapList) {
-    List<RegisteredBean> list = new List(mapList.length);
+    List<RegisteredBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -290,14 +290,14 @@ class CoordinatesBean {
   String longitude;
 
   static CoordinatesBean fromMap(Map<String, dynamic> map) {
-    CoordinatesBean coordinatesBean = new CoordinatesBean();
+    CoordinatesBean coordinatesBean = CoordinatesBean();
     coordinatesBean.latitude = map['latitude'];
     coordinatesBean.longitude = map['longitude'];
     return coordinatesBean;
   }
 
   static List<CoordinatesBean> fromMapList(dynamic mapList) {
-    List<CoordinatesBean> list = new List(mapList.length);
+    List<CoordinatesBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -315,14 +315,14 @@ class TimezoneBean {
   String description;
 
   static TimezoneBean fromMap(Map<String, dynamic> map) {
-    TimezoneBean timezoneBean = new TimezoneBean();
+    TimezoneBean timezoneBean = TimezoneBean();
     timezoneBean.offset = map['offset'];
     timezoneBean.description = map['description'];
     return timezoneBean;
   }
 
   static List<TimezoneBean> fromMapList(dynamic mapList) {
-    List<TimezoneBean> list = new List(mapList.length);
+    List<TimezoneBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }

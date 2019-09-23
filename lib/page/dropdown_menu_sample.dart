@@ -16,7 +16,7 @@ class _DropDownSampleState extends State<DropDownSample> {
   SortCondition _selectDistanceSortCondition;
   DropdownMenuController _dropdownMenuController = DropdownMenuController();
 
-  var _scaffoldKey = new GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
   GlobalKey _stackKey = GlobalKey();
 
   @override
@@ -65,7 +65,10 @@ class _DropDownSampleState extends State<DropDownSample> {
       backgroundColor: Colors.white,
       endDrawer: Container(
           margin: EdgeInsets.only(
-              left: MediaQuery.of(context).size.width / 4, top: 0),
+              left: MediaQuery
+                  .of(context)
+                  .size
+                  .width / 4, top: 0),
           color: Colors.white),
       body: Stack(key: _stackKey, children: <Widget>[
         Column(children: <Widget>[
@@ -107,7 +110,9 @@ class _DropDownSampleState extends State<DropDownSample> {
             // 下拉时文字样式
             dropDownStyle: TextStyle(
               fontSize: 13,
-              color: Theme.of(context).primaryColor,
+              color: Theme
+                  .of(context)
+                  .primaryColor,
             ),
             // 图标大小
             //iconSize: 20,
@@ -128,7 +133,7 @@ class _DropDownSampleState extends State<DropDownSample> {
         ]),
         // 下拉菜单
         DropDownMenu(
-            // controller用于控制menu的显示或隐藏
+          // controller用于控制menu的显示或隐藏
             controller: _dropdownMenuController,
             // 下拉菜单显示或隐藏动画时长
             animationMilliseconds: 500,
@@ -144,12 +149,12 @@ class _DropDownSampleState extends State<DropDownSample> {
               DropdownMenuBuilder(
                   dropDownHeight: 40 * 8.0,
                   dropDownWidget:
-                      _buildConditionListWidget(_brandSortConditions, (value) {
+                  _buildConditionListWidget(_brandSortConditions, (value) {
                     _selectBrandSortCondition = value;
                     _dropDownHeaderItemStrings[1] =
-                        _selectBrandSortCondition.name == '全部'
-                            ? '品牌'
-                            : _selectBrandSortCondition.name;
+                    _selectBrandSortCondition.name == '全部'
+                        ? '品牌'
+                        : _selectBrandSortCondition.name;
                     _dropdownMenuController.hide();
                     setState(() {});
                   })),
@@ -174,15 +179,15 @@ class _DropDownSampleState extends State<DropDownSample> {
   int _selectSecondLevelIndex = -1;
 
   _buildQuanChengWidget(void itemOnTap(String selectValue)) {
-//    List firstLevels = new List<int>.filled(15, 0);
-    List firstLevels = new List<String>.generate(15, (int index) {
+//    List firstLevels = List<int>.filled(15, 0);
+    List firstLevels = List<String>.generate(15, (int index) {
       if (index == 0) {
         return '全部';
       }
       return '$index区';
     });
 
-    List secondtLevels = new List<String>.generate(15, (int index) {
+    List secondtLevels = List<String>.generate(15, (int index) {
       if (index == 0) {
         return '全部';
       }
@@ -212,11 +217,13 @@ class _DropDownSampleState extends State<DropDownSample> {
                   alignment: Alignment.center,
                   child: _selectTempFirstLevelIndex == index
                       ? Text(
-                          '$item',
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        )
+                    '$item',
+                    style: TextStyle(
+                      color: Theme
+                          .of(context)
+                          .primaryColor,
+                    ),
+                  )
                       : Text('$item')),
             );
           }).toList(),
@@ -228,39 +235,41 @@ class _DropDownSampleState extends State<DropDownSample> {
           child: _selectTempFirstLevelIndex == 0
               ? Container()
               : ListView(
-                  children: secondtLevels.map((item) {
-                    int index = secondtLevels.indexOf(item);
-                    return GestureDetector(
-                        onTap: () {
-                          _selectSecondLevelIndex = index;
-                          _selectFirstLevelIndex = _selectTempFirstLevelIndex;
-                          if (_selectSecondLevelIndex == 0) {
-                            itemOnTap(firstLevels[_selectFirstLevelIndex]);
-                          } else {
-                            itemOnTap(item);
-                          }
-                        },
-                        child: Container(
-                          height: 60,
-                          padding: EdgeInsets.only(left: 20),
-                          alignment: Alignment.centerLeft,
-                          child: _selectFirstLevelIndex ==
-                                      _selectTempFirstLevelIndex &&
-                                  _selectSecondLevelIndex == index
-                              ? Text('$item',
-                                  style: TextStyle(
-                                      color: Theme.of(context).primaryColor))
-                              : Text('$item'),
-                        ));
-                  }).toList(),
-                ),
+            children: secondtLevels.map((item) {
+              int index = secondtLevels.indexOf(item);
+              return GestureDetector(
+                  onTap: () {
+                    _selectSecondLevelIndex = index;
+                    _selectFirstLevelIndex = _selectTempFirstLevelIndex;
+                    if (_selectSecondLevelIndex == 0) {
+                      itemOnTap(firstLevels[_selectFirstLevelIndex]);
+                    } else {
+                      itemOnTap(item);
+                    }
+                  },
+                  child: Container(
+                    height: 60,
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.centerLeft,
+                    child: _selectFirstLevelIndex ==
+                        _selectTempFirstLevelIndex &&
+                        _selectSecondLevelIndex == index
+                        ? Text('$item',
+                        style: TextStyle(
+                            color: Theme
+                                .of(context)
+                                .primaryColor))
+                        : Text('$item'),
+                  ));
+            }).toList(),
+          ),
         ),
       )
     ]);
   }
 
-  _buildConditionListWidget(
-      items, void itemOnTap(SortCondition goodsSortCondition)) {
+  _buildConditionListWidget(items,
+      void itemOnTap(SortCondition goodsSortCondition)) {
     return ListView.separated(
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
@@ -289,13 +298,17 @@ class _DropDownSampleState extends State<DropDownSample> {
                   goodsSortCondition.name,
                   style: TextStyle(
                       color: goodsSortCondition.isSelected
-                          ? Theme.of(context).primaryColor
+                          ? Theme
+                          .of(context)
+                          .primaryColor
                           : Colors.black),
                 ),
               ),
               goodsSortCondition.isSelected
                   ? Icon(Icons.check,
-                      color: Theme.of(context).primaryColor, size: 16)
+                  color: Theme
+                      .of(context)
+                      .primaryColor, size: 16)
                   : SizedBox(),
             ]),
           ),
