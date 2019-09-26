@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily_app.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/utils.dart';
 
-class ItemLabPageView extends StatefulWidget {
+import '../../page_index.dart';
+import '../index.dart';
+
+class LabWhoItemView extends StatefulWidget {
   final Question question;
-  final VoidCallback onTap;
+  final int index;
+  final Function(bool, int) callBack;
 
-  ItemLabPageView({Key key, @required this.question, this.onTap})
-      : super(key: key);
+  LabWhoItemView({
+    Key key,
+    this.question,
+    this.index,
+    this.callBack,
+  }) : super(key: key);
 
   @override
-  createState() => _ItemLabPageViewState();
+  createState() => _LabWhoItemViewState();
 }
 
-class _ItemLabPageViewState extends State<ItemLabPageView> {
+class _LabWhoItemViewState extends State<LabWhoItemView> {
   @override
   void initState() {
     super.initState();
@@ -30,10 +35,10 @@ class _ItemLabPageViewState extends State<ItemLabPageView> {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10),
       child: Column(children: <Widget>[
-        Text('${widget.question.title}',
+        Text('${widget.question?.content}',
             style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
         SizedBox(height: 10),
-        ImageLoadView('${widget.question.image}',
+        ImageLoadView('${widget.question?.image}',
             width: Utils.width - 20, height: (Utils.width - 20) * 412 / 700),
         GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -41,16 +46,23 @@ class _ItemLabPageViewState extends State<ItemLabPageView> {
                 crossAxisCount: 2,
                 mainAxisSpacing: 5,
                 crossAxisSpacing: 5),
-            itemBuilder: (context, index) {
-              return InkWell(
-                  child: Container(
+            itemBuilder: (_, index) {
+              return Material(
+                color: Colors.white,
+                child: InkWell(
+                    child: Container(
                       padding: EdgeInsets.all(10),
-                      child: Text('${widget.question.options[index].content}'),
+                      child: Text('${widget.question?.options[index]?.title}'),
                       alignment: Alignment.center,
-                      color: Colors.white),
-                  onTap: widget.onTap);
+                    ),
+                    onTap: () {
+                      setState(() {
+                        widget.callBack(true, widget.index);
+                      });
+                    }),
+              );
             },
-            itemCount: widget.question.options.length,
+            itemCount: widget.question?.options?.length ?? 0,
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             primary: false)

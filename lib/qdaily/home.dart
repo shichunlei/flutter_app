@@ -85,35 +85,37 @@ class _HomePageState extends State<QHomePage>
             view = ItemFeedTypeZero(
                 feedsBean: feed,
                 onTap: () {
-                  if (feed?.post?.category?.id == 2 // 我说
-                          ||
-                          feed?.post?.category?.id == 3 // 焦点小组
-                      ) {
+                  String tag =
+                      'labs-${feed?.post?.id}-${feed?.post?.category?.id}';
+
+                  if (feed?.post?.category?.id == 1) {
+                    // 投票
                     pushNewPage(
-                        context,
-                        LabISayPage(
-                            id: feed?.post?.id,
-                            tag:
-                                'labs-${feed?.post?.id}-${feed?.post?.category?.id}',
-                            post: feed?.post));
-                  } else if (feed?.post?.category?.id == 1) // 投票
-                  {
+                        context, LabVotePage(tag: tag, post: feed?.post));
+                  }
+                  if (feed?.post?.category?.id == 2) {
+                    // 我说
                     pushNewPage(
-                        context,
-                        LabVotePage(
-                            id: feed?.post?.id,
-                            tag:
-                                'labs-${feed?.post?.id}-${feed?.post?.category?.id}',
-                            post: feed?.post));
-                  } else if (feed?.post?.category?.id == 6 // 你谁啊
-                          ||
-                          feed?.post?.category?.id == 5 // 你猜
-                      ) //
-                  {
-                    pushNewPage(context, LabYouGuessPage(post: feed?.post));
-                  } else if (feed?.post?.category?.id == 4) // 42%
-                  {
-                    pushNewPage(context, LabRatioPage(id: feed?.post?.id));
+                        context, LabISayPage(tag: tag, post: feed?.post));
+                  }
+                  if (feed?.post?.category?.id == 3) {
+                    // 焦点小组
+                    // pushNewPage(context, LabISayPage(tag: tag, post: feed?.post));
+                  }
+                  if (feed?.post?.category?.id == 4) {
+                    // 42%
+                    pushNewPage(
+                        context, LabRatioPage(post: feed?.post, tag: tag));
+                  }
+                  if (feed?.post?.category?.id == 5) {
+                    //你猜
+                    pushNewPage(
+                        context, LabYouGuessPage(post: feed?.post, tag: tag));
+                  }
+                  if (feed?.post?.category?.id == 6) {
+                    // 你谁啊
+                    pushNewPage(
+                        context, LabWhoPage(post: feed?.post, tag: tag));
                   }
                 },
                 tag: 'labs-${feed?.post?.id}');
@@ -149,8 +151,7 @@ class _HomePageState extends State<QHomePage>
         onLoad: isLoadComplete ? null : () async => getHomeData(lastKey),
         child: ListView.separated(
             physics: const AlwaysScrollableScrollPhysics(),
-            separatorBuilder: (BuildContext context, int index) =>
-                Container(height: 5, color: Colors.grey[200]),
+            separatorBuilder: (BuildContext context, int index) => Gaps.vGap5,
             itemBuilder: (BuildContext context, int index) => list[index],
             itemCount: list.length));
   }

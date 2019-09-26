@@ -87,12 +87,22 @@ class ApiUrl {
 
   static final String QDAILY_ARTICLE_URL =
       "http://m.qdaily.com/mobile/articles/";
+  static final String QDAILY_ARTICLE_DETAIL_URL =
+      "app3/articles/detail/:articleId.json";
   static final String QDAILY_ARTICLE_INFO_URL =
       "app3/articles/info/:articleId.json";
 
   static final String QDAILY_LAB_INDEX_DATA = "app3/papers/index/:lastKey.json";
   static final String QDAILY_LAB_DETAIL_DATA = "app3/papers/detail/:labId.json";
 
+  static final String QDAILY_VOTE_URL = "qdaily/vote_info";
+  static final String QDAILY_VOTE_RESULT = "qdaily/vote_result";
+
+  static final String QDAILY_TOTS_URL = "qdaily/tots";
+
+  static final String QDAILY_WHO_URL = "qdaily/whos";
+
+  static final String QDAILY_CHOICE_URL = "qdaily/choices";
 
   static final String QDAILY_COLUMN_LIST_DATA =
       "app3/columns/all_columns_index/:lastKey.json";

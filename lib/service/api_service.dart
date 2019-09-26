@@ -848,6 +848,90 @@ class ApiService {
     return result.response;
   }
 
+  /// 投票详情
+  static Future<ResponseBean> getQDailyVote(int id) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_VOTE_URL, data: {'paper_id': id});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 投票结果
+  static Future<ResponseBean> getQDailyVoteResult(int id) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_VOTE_RESULT, data: {'paper_id': id});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 42%详情
+  static Future<ResponseBean> getQDailyTots(int id) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.QDAILY_TOTS_URL, data: {'id': id});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 你谁啊
+  static Future<ResponseBean> getQDailyWho(int id) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.QDAILY_WHO_URL, data: {'id': id});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 你猜
+  static Future<ResponseBean> getQDailyChoices(int id) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.QDAILY_CHOICE_URL, data: {'id': id});
+
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
   /// 获取文章/新闻简介
   static Future<ResponseBean> getQDailyArticleInfoData(int articleId) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).request(

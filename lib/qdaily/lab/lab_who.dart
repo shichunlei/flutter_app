@@ -1,25 +1,27 @@
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
 import '../index.dart';
 
-/// 你猜
-class LabYouGuessPage extends StatefulWidget {
+/// 你谁啊
+class LabWhoPage extends StatefulWidget {
   final String tag;
   final PostBean post;
 
-  LabYouGuessPage({Key key, @required this.post, this.tag}) : super(key: key);
+  LabWhoPage({Key key, @required this.tag, @required this.post})
+      : super(key: key);
 
   @override
-  createState() => _LabYouGuessPageState();
+  createState() => _LabWhoPageState();
 }
 
-class _LabYouGuessPageState extends State<LabYouGuessPage>
+class _LabWhoPageState extends State<LabWhoPage>
     with SingleTickerProviderStateMixin {
-  List<Question> list = [];
   ResponseBean data;
+  PostBean post;
+  List<Question> questions = [];
 
   int currentPage = 0;
 
@@ -33,13 +35,13 @@ class _LabYouGuessPageState extends State<LabYouGuessPage>
 
     _controller = PageController(initialPage: currentPage);
 
-    loadQuestions();
+    getWhoData(widget.post.id);
   }
 
   @override
   void dispose() {
-    super.dispose();
     _controller?.dispose();
+    super.dispose();
   }
 
   @override
@@ -47,30 +49,33 @@ class _LabYouGuessPageState extends State<LabYouGuessPage>
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: LoaderContainer(
-        onReload: () => loadQuestions(),
+        onReload: () => getWhoData(widget.post.id),
         contentView: Column(children: <Widget>[
           ChoiceNoView(
             index: currentPage + 1,
-            total: list.length,
+            total: questions.length,
           ),
           Expanded(
               child: PageView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   controller: _controller,
-                  itemBuilder: (_, index) => ItemLabPageView(
-                      question: list[index],
-                      onTap: (bool) {
-                        if (bool) {
-                          if (index == list.length - 1) {
-                            Navigator.pop(context);
-                          } else {
-                            _controller.animateToPage(index + 1,
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.decelerate);
+                  itemBuilder: (_, index) => LabWhoItemView(
+                        question: questions[index],
+                        index: index,
+                        callBack: (bool, _index) {
+                          if (bool) {
+                            print('===============$_index');
+                            if (_index + 1 < questions.length) {
+                              _controller.animateToPage(_index + 1,
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.decelerate);
+                            } else {
+                              Toast.show(context, '最后一个问题了');
+                            }
                           }
-                        }
-                      }),
-                  itemCount: list.length,
+                        },
+                      ),
+                  itemCount: questions.length,
                   onPageChanged: (index) =>
                       setState(() => currentPage = index))),
           BottomAppbar(actions: <Widget>[
@@ -94,13 +99,14 @@ class _LabYouGuessPageState extends State<LabYouGuessPage>
     );
   }
 
-  void loadQuestions() async {
-    data = await ApiService.getQDailyChoices(widget.post.id);
-    if (data == null) {
-      _status = LoaderState.Failed;
-    } else {
-      list = data.questions;
+  void getWhoData(int id) async {
+    data = await ApiService.getQDailyWho(id);
+
+    if (data != null) {
+      questions = data.questions;
       _status = LoaderState.Succeed;
+    } else {
+      _status = LoaderState.Failed;
     }
     setState(() {});
   }
