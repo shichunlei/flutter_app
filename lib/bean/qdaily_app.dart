@@ -43,27 +43,56 @@ class MetaBean {
 class ResponseBean {
   bool hasMore;
   String lastKey;
-  int commentCount;
+
+  String image;
+  int type;
+
+  // 赞数量
+  int praiseCount;
+
   List<FeedsBean> feeds;
   List<BannersBean> banners;
   List<ColumnBean> columns;
+
+  // 栏目板块
   ColumnBean column;
   List<AuthorBean> authors;
   List<SubscriberBean> subscribers;
+
   ShareBean share;
+
   List<Option> options;
-  List<Question> questions;
-  List<CommentBean> comments;
+
   PostBean post;
+  List<Question> questions;
+
+  Question question;
+
+  // 42% 第一个问题
+  Question genderQuestion;
+
+  // 42% 区间问题
+  Question slideQuestion;
+
+  // 投票结果各个选项占比
+  List<EveryoneAttitude> everyoneAttitude;
+  bool isRecord;
+
+  // 评论
+  List<CommentBean> comments;
+  int commentCount;
+
   AuthorBean author;
-  String image;
-  int type;
+
+  // LABS 中的topic
+  List<Topic> topics;
 
   static ResponseBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     ResponseBean responseBean = ResponseBean();
     responseBean.hasMore = map['has_more'];
     responseBean.commentCount = map['comment_count'];
+    responseBean.praiseCount = map['praise_count'];
     responseBean.lastKey = '${map['last_key']}';
     responseBean.feeds = List()
       ..addAll((map['feeds'] as List ?? []).map((o) => FeedsBean.fromMap(o)));
@@ -94,13 +123,31 @@ class ResponseBean {
     responseBean.options = List()
       ..addAll((map['options'] as List ?? []).map((o) => Option.fromMap(o)));
 
+    responseBean.question =
+        map['question'] == null ? null : Question.fromMap(map['question']);
+
     responseBean.questions = List()
       ..addAll(
           (map['questions'] as List ?? []).map((o) => Question.fromMap(o)));
+    responseBean.genderQuestion = map['gender_question'] == null
+        ? null
+        : Question.fromMap(map['gender_question']);
+    responseBean.slideQuestion = map['slide_question'] == null
+        ? null
+        : Question.fromMap(map['slide_question']);
 
     responseBean.comments = List()
       ..addAll(
           (map['comments'] as List ?? []).map((o) => CommentBean.fromMap(o)));
+
+    responseBean.topics = List()
+      ..addAll(
+          (map['paper_topics'] as List ?? []).map((o) => Topic.fromMap(o)));
+
+    responseBean.isRecord = map['is_record'];
+    responseBean.everyoneAttitude = List()
+      ..addAll((map['everyones_attitude'] as List ?? [])
+          .map((o) => EveryoneAttitude.fromMap(o)));
 
     responseBean.image = map['image'];
     responseBean.type = map['type'];
@@ -109,7 +156,7 @@ class ResponseBean {
 
   @override
   String toString() {
-    return 'ResponseBean{hasMore: $hasMore, lastKey: $lastKey, commentCount: $commentCount, feeds: $feeds, banners: $banners, columns: $columns, column: $column, authors: $authors, subscribers: $subscribers, share: $share, options: $options, questions: $questions, comments: $comments, post: $post, author: $author, image: $image, type: $type}';
+    return '{hasMore: $hasMore, lastKey: $lastKey, image: $image, type: $type, feeds: $feeds, banners: $banners, columns: $columns, column: $column, authors: $authors, subscribers: $subscribers, share: $share, options: $options, post: $post, questions: $questions, genderQuestion: $genderQuestion, slideQuestion: $slideQuestion, everyoneAttitude: $everyoneAttitude, isRecord: $isRecord, comments: $comments, commentCount: $commentCount, author: $author, topics: $topics}';
   }
 }
 
@@ -172,6 +219,11 @@ class Question {
   List<Option> options;
   String image;
 
+  int position;
+  String backgroundPicUrl;
+
+  double maxScore;
+
   Question(
       {this.id,
       this.title,
@@ -188,6 +240,9 @@ class Question {
     questionBean.title = map['title'];
     questionBean.content = map['content'];
     questionBean.genre = map['genre'];
+    questionBean.position = map['position'];
+    questionBean.backgroundPicUrl = map['background_pic_url'];
+    questionBean.maxScore = map['max_score'];
     questionBean.options = List()
       ..addAll((map['options'] as List ?? []).map((o) => Option.fromMap(o)));
     return questionBean;
@@ -200,6 +255,9 @@ class Question {
 /// praise_count : 51
 /// perfect : 0
 /// author : {"id":813793,"description":"我爱Qdaily","avatar":"http://img.qdaily.com/user/face/20180302023052OKAnwdGuLEhPCpt0.jpg?imageMogr2/auto-orient/thumbnail/!160x160r/gravity/Center/crop/160x160/quality/85/format/jpg/ignore-error/1","name":"Prcshaw","background_image":"http://app3.qdaily.com/default_images/missing_loading.jpg"}
+/// title : "隐身术"
+/// option_pic_url : "http://img.qdaily.com/option/option/20190911190901J5mxcuRgYKzBFayo.gif"
+/// score : 0.0
 
 class Option {
   int id;
@@ -208,6 +266,12 @@ class Option {
   int praiseCount;
   int perfect;
   AuthorBean author;
+
+  String title;
+  String optionPicUrl;
+  double score;
+
+  int percent;
 
   Option(
       {this.id,
@@ -227,6 +291,99 @@ class Option {
     optionBean.perfect = map['perfect'];
     optionBean.author =
         map['author'] == null ? null : AuthorBean.fromMap(map['author']);
+    optionBean.title = map['title'];
+    optionBean.optionPicUrl = map['option_pic_url'];
+    optionBean.score = map['score'];
+    optionBean.percent = map['percent'];
     return optionBean;
   }
+}
+
+/// id : 1
+/// insert_location : 2
+/// insert_content : [{"id":8,"icon":"http://img.qdaily.com/topic/icon/20170320181911ZQLuT6niG52RK39q.jpg?imageMogr2/auto-orient/thumbnail/108x110/gravity/Center/crop/108x110/quality/85/format/jpg/ignore-error/1","title":"Top 10","description":"每月参与量最高的话题精选","image":"http://img.qdaily.com/topic/topic/20170320182050SxngXpaRVOKl6F0A.jpg?imageMogr2/auto-orient/thumbnail/!960x528r/gravity/Center/crop/960x528/quality/85/format/jpg/ignore-error/1"},{"id":5,"icon":"http://img.qdaily.com/topic/icon/20170221181520YhEPO7jsqB4cHnyK.png?imageMogr2/auto-orient/thumbnail/108x110/gravity/Center/crop/108x110/quality/85/format/jpg/ignore-error/1","title":"你得不到我的钱","description":"消费中的吐槽和真相","image":"http://img.qdaily.com/topic/topic/20170221164301BE5r7Ws4ykzGCIFx.png?imageMogr2/auto-orient/thumbnail/!960x528r/gravity/Center/crop/960x528/quality/85/format/jpg/ignore-error/1"},{"id":6,"icon":"http://img.qdaily.com/topic/icon/20170221181839TkL0fawdj3h5697Y.png?imageMogr2/auto-orient/thumbnail/108x110/gravity/Center/crop/108x110/quality/85/format/jpg/ignore-error/1","title":"你是你自己吗","description":"一些“你可能不认识你自己”的测试","image":"http://img.qdaily.com/topic/topic/201702211644215Dgt4BFQuk7InOLf.png?imageMogr2/auto-orient/thumbnail/!960x528r/gravity/Center/crop/960x528/quality/85/format/jpg/ignore-error/1"},{"id":4,"icon":"","title":"你才是中产阶级","description":"有关中产阶级的调侃和指南","image":"http://img.qdaily.com/topic/topic/20170221164047YDTr5qKGw9eOkUAy.png?imageMogr2/auto-orient/thumbnail/!960x528r/gravity/Center/crop/960x528/quality/85/format/jpg/ignore-error/1"},{"id":3,"icon":"http://img.qdaily.com/topic/icon/20170221180931X2TJaV1qIMG9Zou5.png?imageMogr2/auto-orient/thumbnail/108x110/gravity/Center/crop/108x110/quality/85/format/jpg/ignore-error/1","title":"我有特殊体质","description":"“我就是我，不一样的烟火”专场","image":"http://img.qdaily.com/topic/topic/2017022116400142k8AfKQGFIrLzeZ.png?imageMogr2/auto-orient/thumbnail/!960x528r/gravity/Center/crop/960x528/quality/85/format/jpg/ignore-error/1"}]
+
+class Topic {
+  int id;
+  int insertLocation;
+  List<InsertContent> insertContent;
+
+  static Topic fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    Topic testBean = Topic();
+    testBean.id = map['id'];
+    testBean.insertLocation = map['insert_location'];
+    testBean.insertContent = List()
+      ..addAll((map['insert_content'] as List ?? [])
+          .map((o) => InsertContent.fromMap(o)));
+    return testBean;
+  }
+
+  Map toJson() => {
+        "id": id,
+        "insert_location": insertLocation,
+        "insert_content": insertContent,
+      };
+}
+
+/// id : 8
+/// icon : "http://img.qdaily.com/topic/icon/20170320181911ZQLuT6niG52RK39q.jpg?imageMogr2/auto-orient/thumbnail/108x110/gravity/Center/crop/108x110/quality/85/format/jpg/ignore-error/1"
+/// title : "Top 10"
+/// description : "每月参与量最高的话题精选"
+/// image : "http://img.qdaily.com/topic/topic/20170320182050SxngXpaRVOKl6F0A.jpg?imageMogr2/auto-orient/thumbnail/!960x528r/gravity/Center/crop/960x528/quality/85/format/jpg/ignore-error/1"
+
+class InsertContent {
+  int id;
+  String icon;
+  String title;
+  String description;
+  String image;
+
+  static InsertContent fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    InsertContent content = InsertContent();
+    content.id = map['id'];
+    content.icon = map['icon'];
+    content.title = map['title'];
+    content.description = map['description'];
+    content.image = map['image'];
+    return content;
+  }
+
+  Map toJson() => {
+        "id": id,
+        "icon": icon,
+        "title": title,
+        "description": description,
+        "image": image,
+      };
+}
+
+/// id : 347086
+/// content : "Chatmate，就像树洞一样互相听对方唠家常"
+/// percent : 19
+/// selected : false
+
+class EveryoneAttitude {
+  int id;
+  String content;
+  int percent;
+  bool selected;
+
+  static EveryoneAttitude fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    EveryoneAttitude bean = EveryoneAttitude();
+    bean.id = map['id'];
+    bean.content = map['content'];
+    bean.percent = map['percent'];
+    bean.selected = map['selected'];
+    return bean;
+  }
+
+  Map toJson() => {
+        "id": id,
+        "content": content,
+        "percent": percent,
+        "selected": selected,
+      };
 }

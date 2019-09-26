@@ -1,4 +1,6 @@
 class ApiUrl {
+  static const String BASE_URL = 'http://data.chingsoft.com/api/v1/';
+
   /// 豆瓣电影
   static const String DOUBAN_WEB_URL = 'https://movie.douban.com/';
 
@@ -65,8 +67,6 @@ class ApiUrl {
 
   static final String RANDOMUSER_URL = 'https://randomuser.me/api/';
 
-  static final String JUZIMI_URL = 'http://data.chingsoft.com/api/v1/';
-
   static final String JUZIMI_LIST_URL = 'juzimi/list';
   static final String JUZIMI_TAG_LIST_URL = 'juzimi/tag_list';
   static final String JUZIMI_DETAILS_URL = 'juzimi/details';
@@ -93,7 +93,9 @@ class ApiUrl {
   static final String QDAILY_LAB_INDEX_DATA = "app3/papers/index/:lastKey.json";
   static final String QDAILY_LAB_DETAIL_DATA = "app3/papers/detail/:labId.json";
 
-  static final String QDAILY_COLUMN_LIST_DATA = "special_columns/column_more/";
+
+  static final String QDAILY_COLUMN_LIST_DATA =
+      "app3/columns/all_columns_index/:lastKey.json";
   static final String QDAILY_COLUMN_INFO_DATA =
       "app3/columns/info/:columnId.json";
   static final String QDAILY_COLUMN_INDEX_DATA =

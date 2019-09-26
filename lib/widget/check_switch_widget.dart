@@ -90,6 +90,18 @@ class _CheckSwitchWidgetState extends State<CheckSwitchWidget> {
             setState(() => _isTitleChecked = checked);
           },
         ),
+        CheckboxListTile(
+          // 描述选项
+          title: Text(
+              'Make this item checked description description description description'),
+
+          // 和 checkbox 对立边的部件，例如 checkbox 在头部，则 secondary 在尾部
+          secondary: Image.asset('images/timg.gif', width: 90.0, height: 90.0),
+          value: _isTitleChecked,
+          onChanged: (checked) {
+            setState(() => _isTitleChecked = checked);
+          },
+        ),
         SwitchListTile(
             title: Text('Turn On this item'),
             subtitle: Text(

@@ -142,15 +142,15 @@ class PostBean {
   }
 }
 
-class CategoryBean {
-  /// title : "商业"
-  /// css_name : "shangye"
-  /// normal : "http://img.qdaily.com/category/icon_white/20160606004538qz8vwMJLy2pAWKUi.png?imageMogr2/auto-orient/thumbnail/!128x128r/gravity/Center/crop/128x128/ignore-error/1"
-  /// image_lab : ""
-  /// image_experiment : ""
-  /// id : 18
-  /// normal_hl : "http://img.qdaily.com/category/icon_yellow_app/20160606004533uFozK3xI4CHZjfSM.png?imageMogr2/auto-orient/thumbnail/!160x160r/gravity/Center/crop/160x160/quality/85/ignore-error/1"
+/// title : "商业"
+/// css_name : "shangye"
+/// normal : "http://img.qdaily.com/category/icon_white/20160606004538qz8vwMJLy2pAWKUi.png?imageMogr2/auto-orient/thumbnail/!128x128r/gravity/Center/crop/128x128/ignore-error/1"
+/// image_lab : ""
+/// image_experiment : ""
+/// id : 18
+/// normal_hl : "http://img.qdaily.com/category/icon_yellow_app/20160606004533uFozK3xI4CHZjfSM.png?imageMogr2/auto-orient/thumbnail/!160x160r/gravity/Center/crop/160x160/quality/85/ignore-error/1"
 
+class CategoryBean {
   String title;
   String cssName;
   String normal;
@@ -159,7 +159,8 @@ class CategoryBean {
   int id;
   String normalHl;
 
-  String type;
+  String whiteIcon;
+  String blackIcon;
 
   CategoryBean(
       {this.title,
@@ -167,8 +168,7 @@ class CategoryBean {
       this.normal,
       this.imageLab,
       this.imageExperiment,
-      this.id,
-      this.type});
+      this.id});
 
   static CategoryBean fromMap(Map<String, dynamic> map) {
     CategoryBean categoryBean = new CategoryBean();
@@ -179,8 +179,18 @@ class CategoryBean {
     categoryBean.imageExperiment = map['image_experiment'];
     categoryBean.id = map['id'];
     categoryBean.normalHl = map['normalHl'];
+    categoryBean.whiteIcon = map['white_icon'];
+    categoryBean.blackIcon = map['black_icon'];
     return categoryBean;
   }
+
+  Map toJson() => {
+        "id": id,
+        "title": title,
+        "normal": normal,
+        "white_icon": whiteIcon,
+        "black_icon": blackIcon,
+      };
 
   static List<CategoryBean> getCategory() {
     List<CategoryBean> list = [];
@@ -281,6 +291,25 @@ class ColumnBean {
   int location;
   ShareBean share;
 
+  Map toJson() => {
+        "id": id,
+        "name": name,
+        "description": description,
+        "subscribe_status": subscribeStatus,
+        "icon": icon,
+        "image": image,
+        "image_large": imageLarge,
+        "content_provider": contentProvider,
+        "show_type": showType,
+        "genre": genre,
+        "subscriber_num": subscriberNum,
+        "post_count": postCount,
+        "sort_time": sortTime,
+        "column_tag": columnTag,
+        "location": location,
+        "share": share,
+      };
+
   static ColumnBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     ColumnBean column = ColumnBean();
@@ -336,10 +365,10 @@ class AuthorBean {
   }
 }
 
-/// url : "http://m.qdaily.com/mobile/special_columns/38.html"
-/// title : "这个设计了不起_好奇心日报"
-/// text : "总能找到好看的东西"
-/// image : "http://img.qdaily.com/special_column/column/20160703183440in6zCrSyDRGvwWPp.jpg?imageMogr2/auto-orient/thumbnail/!320x320r/gravity/Center/crop/320x320/quality/85/format/jpg/ignore-error/1"
+/// url : "http://m.qdaily.com/mobile/choices/2998.html"
+/// title : "你对国产动画作品了解多少，来场入门测试_好奇心日报"
+/// text : "在”国漫“被反复提到的今天，回顾下那些值得一提的作品。（题图来自：iStock ©️ CSA-Printstock）"
+/// image : "http://img.qdaily.com/paper/paper_show/20190911184009BeiSsgKMmcPhzlL5.jpg?imageMogr2/auto-orient/thumbnail/!1030x430r/gravity/Center/crop/1030x430/quality/85/format/jpg/ignore-error/1"
 
 class ShareBean {
   String url;
@@ -356,6 +385,13 @@ class ShareBean {
     shareBean.image = map['image'];
     return shareBean;
   }
+
+  Map toJson() => {
+        "url": url,
+        "title": title,
+        "text": text,
+        "image": image,
+      };
 }
 
 /// id : 982612
@@ -405,6 +441,35 @@ class CommentBean {
           .map((o) => CommentBean.fromMap(o)));
     return commentBeanBean;
   }
+}
+
+/// id : 347086
+/// content : "Chatmate，就像树洞一样互相听对方唠家常"
+/// percent : 18
+/// selected : false
+
+class VoteResult {
+  int id;
+  String content;
+  int percent;
+  bool selected;
+
+  static VoteResult fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    VoteResult vote = VoteResult();
+    vote.id = map['id'];
+    vote.content = map['content'];
+    vote.percent = map['percent'];
+    vote.selected = map['selected'];
+    return vote;
+  }
+
+  Map toJson() => {
+        "id": id,
+        "content": content,
+        "percent": percent,
+        "selected": selected,
+      };
 }
 
 class DetailBean {

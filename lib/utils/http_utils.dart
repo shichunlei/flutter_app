@@ -24,7 +24,7 @@ class HttpUtils {
   static const CONTENT_TYPE_JSON = "application/json";
   static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 
-  HttpUtils({String baseUrl: ApiUrl.MOVIE_BASE_URL}) {
+  HttpUtils({String baseUrl: ApiUrl.BASE_URL}) {
     debugPrint('dio赋值=====$baseUrl');
 
     /// 或者通过传递一个 `options`来创建dio实例
