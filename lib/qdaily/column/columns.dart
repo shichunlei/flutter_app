@@ -18,7 +18,7 @@ class _ColumnsPageState extends State<ColumnsPage> {
 
   bool isLoadComplete = false;
 
-  QdailyWebBean dataBean;
+  ResponseBean dataBean;
   List<ColumnBean> columns = [];
 
   @override
