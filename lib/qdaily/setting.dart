@@ -225,8 +225,7 @@ class _SettingPageState extends State<SettingMenuPage>
                     context,
                     TagsPage(
                         title: category[index].title,
-                        id: category[index].id,
-                        type: category[index].type)))),
+                        id: category[index].id)))),
         position: Tween<Offset>(begin: Offset(1.0, 0.0), end: Offset.zero)
             .animate(_lrAnimation));
   }

@@ -9,9 +9,8 @@ import 'index.dart';
 class TagsPage extends StatefulWidget {
   final String title;
   final int id;
-  final String type;
 
-  TagsPage({Key key, this.id, this.title, this.type}) : super(key: key);
+  TagsPage({Key key, this.id, this.title}) : super(key: key);
 
   @override
   createState() => _TagsPageState();

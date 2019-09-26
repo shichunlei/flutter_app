@@ -58,7 +58,7 @@ class ItemFeedTypeZero extends StatelessWidget {
                               child: Text(
                                 '${feedsBean?.post?.recordCount}',
                                 style: TextStyle(
-                                    color: Color(0xFFFFD003),
+                                    color: qdailyMajorColor,
                                     fontWeight: FontWeight.bold),
                               ),
                               margin: EdgeInsets.only(top: 3))

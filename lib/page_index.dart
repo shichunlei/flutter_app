@@ -18,6 +18,7 @@ export 'widget/dismissible_widget.dart';
 export 'widget/frosting_widget.dart';
 export 'widget/icon_widget.dart';
 export 'widget/image_widget.dart';
+export 'widget/inherited_widget.dart';
 export 'widget/load_image_widget.dart';
 export 'widget/qr_image_wiget.dart';
 export 'widget/range_slider_demo.dart';

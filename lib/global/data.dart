@@ -186,6 +186,7 @@ class ExpandStateBean {
           SubExpandBean('Stepper', StepperWidget()),
           SubExpandBean('AspectRatio', AspectRatioSample()),
           SubExpandBean('ButtonBar', ButtonBarDemo()),
+          SubExpandBean('InheritedWidget', InheritedWidgetTestContainer()),
         ]),
     ExpandStateBean(
         leading: Icons.filter_3,

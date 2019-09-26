@@ -27,7 +27,7 @@ class _QDailyIndexPageState extends State<QDailyIndexPage> {
                   labelStyle: TextStyle(fontSize: 18.0),
                   indicatorSize: TabBarIndicatorSize.label,
                   indicatorWeight: 1.0,
-                  indicatorColor: Color(0xFFFFD003))),
+                  indicatorColor: qdailyMajorColor)),
           body: Stack(alignment: Alignment.bottomLeft, children: <Widget>[
             TabBarView(children: <Widget>[QHomePage(), LabsPage()]),
             Padding(
@@ -37,7 +37,7 @@ class _QDailyIndexPageState extends State<QDailyIndexPage> {
                     mini: true,
                     onPressed: () => pushNewPage(context, SettingMenuPage()),
                     child: Icon(CustomIcon.qdaily_logo,
-                        color: Color(0xFFFFD003), size: 28)))
+                        color: qdailyMajorColor, size: 28)))
           ]),
         ));
   }

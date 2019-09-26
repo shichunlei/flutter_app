@@ -26,8 +26,6 @@ class _ItemOptionCheckboxState extends State<ItemOptionCheckbox> {
           Expanded(child: Text('${widget.option?.content}')),
           Checkbox(
               value: _isChecked,
-              activeColor:Color(0xFFFFD003),
-              checkColor: Colors.red,
               onChanged: (checked) {
                 setState(() {
                   _isChecked = checked;

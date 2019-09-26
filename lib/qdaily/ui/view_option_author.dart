@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
+
+import '../../page_index.dart';
 
 class ViewOptionAuthor extends StatelessWidget {
   final String avatar;
@@ -14,7 +15,7 @@ class ViewOptionAuthor extends StatelessWidget {
           width: 20,
           height: 20,
           borderRadius: BorderRadius.all(Radius.circular(10))),
-      SizedBox(width: 10),
+      Gaps.hGap8,
       Expanded(
           child: Text('$name',
               maxLines: 1,

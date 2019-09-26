@@ -75,7 +75,7 @@ class _LabVotePageState extends State<LabVotePage> {
                                     child: Text(
                                       '${widget.post?.recordCount}',
                                       style: TextStyle(
-                                          color: Color(0xFFFFD003),
+                                          color: qdailyMajorColor,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     margin: EdgeInsets.only(top: 3))
@@ -110,13 +110,18 @@ class _LabVotePageState extends State<LabVotePage> {
                   return ItemOptionCheckbox(option: options[index]);
                 },
                 itemCount: options.length),
-            RaisedButton(
-                elevation: 0.0,
-                onPressed: null,
-                child: Text('投票'),
-                color: Color(0xFFFFD003),
-                shape: StadiumBorder()),
-            SizedBox(height: 30)
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Button(
+                onPressed: () {},
+                text: '投票',
+                textColor: Colors.black54,
+                borderRadius: 30,
+                color: qdailyMajorColor,
+                disabledColor: qdailyMinorColor,
+              ),
+            ),
+            Gaps.vGap20
           ]),
         ),
         BottomAppbar(actions: <Widget>[
