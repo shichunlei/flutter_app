@@ -24,7 +24,7 @@ class FriendsDynamic {
   List<ImagesListBean> images;
 
   static FriendsDynamic fromMap(Map<String, dynamic> map) {
-    FriendsDynamic friends_dynamic = new FriendsDynamic();
+    FriendsDynamic friends_dynamic = FriendsDynamic();
     friends_dynamic.username = map['username'];
     friends_dynamic.userAvatar = map['userAvatar'];
     friends_dynamic.desc = map['desc'];
@@ -40,7 +40,7 @@ class FriendsDynamic {
   }
 
   static List<FriendsDynamic> fromMapList(dynamic mapList) {
-    List<FriendsDynamic> list = new List(mapList.length);
+    List<FriendsDynamic> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -60,7 +60,7 @@ class VideoBean {
   int id;
 
   static VideoBean fromMap(Map<String, dynamic> map) {
-    VideoBean videoBean = new VideoBean();
+    VideoBean videoBean = VideoBean();
     videoBean.url = map['url'];
     videoBean.image = map['image'];
     videoBean.id = map['id'];
@@ -68,7 +68,7 @@ class VideoBean {
   }
 
   static List<VideoBean> fromMapList(dynamic mapList) {
-    List<VideoBean> list = new List(mapList.length);
+    List<VideoBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -86,14 +86,14 @@ class ImagesListBean {
   int id;
 
   static ImagesListBean fromMap(Map<String, dynamic> map) {
-    ImagesListBean imagesListBean = new ImagesListBean();
+    ImagesListBean imagesListBean = ImagesListBean();
     imagesListBean.image = map['image'];
     imagesListBean.id = map['id'];
     return imagesListBean;
   }
 
   static List<ImagesListBean> fromMapList(dynamic mapList) {
-    List<ImagesListBean> list = new List(mapList.length);
+    List<ImagesListBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }

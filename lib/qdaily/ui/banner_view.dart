@@ -12,19 +12,27 @@ class BannerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-        aspectRatio: 32 / 19,
-        child: Swiper(
-            itemBuilder: (BuildContext context, int index) =>
-                Stack(alignment: Alignment.bottomLeft, children: <Widget>[
-                  ImageLoadView(banners[index]?.image),
-                  Container(
-                      width: double.infinity,
-                      color: Color(0x2b000000),
-                      child: Text('${banners[index]?.post?.title}',
-                          style: TextStyle(color: Colors.white, fontSize: 22)),
-                      padding: EdgeInsets.only(left: 20, bottom: 30))
-                ]),
-            itemCount: banners.length,
-            pagination: SwiperPagination()));
+      aspectRatio: 32 / 19,
+      child: Swiper(
+          itemBuilder: (BuildContext context, int index) => InkWell(
+                onTap: () => pushNewPage(
+                    context, ArticleDetail(id: banners[index]?.post?.id)),
+                child: Stack(
+                  alignment: Alignment.bottomLeft,
+                  children: <Widget>[
+                    ImageLoadView(banners[index]?.image),
+                    Container(
+                        width: double.infinity,
+                        color: Color(0x2b000000),
+                        child: Text('${banners[index]?.post?.title}',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 22)),
+                        padding: EdgeInsets.only(left: 20, bottom: 30))
+                  ],
+                ),
+              ),
+          itemCount: banners.length,
+          pagination: SwiperPagination()),
+    );
   }
 }

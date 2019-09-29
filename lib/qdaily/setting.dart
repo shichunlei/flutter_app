@@ -167,7 +167,11 @@ class _SettingPageState extends State<SettingMenuPage>
               leading: Image.asset('images/qdaily/icon_menu_about_day.png',
                   height: 35, width: 35),
               title: Text('关于我们'),
-              onTap: () {}),
+              onTap: () => pushNewPage(
+                  context,
+                  WebViewPage(
+                      url: 'http://m.qdaily.com/mobile/aboutus.html',
+                      title: '关于我们'))),
           ListTile(
               leading: Image.asset('images/qdaily/icon_menu_category_day.png',
                   height: 35, width: 35),

@@ -8,8 +8,8 @@ class TrapezoidDownCut extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new ClipPath(
-      clipper: new DiagonalClipper(),
+    return ClipPath(
+      clipper: DiagonalClipper(),
       child: child,
     );
   }
@@ -18,7 +18,7 @@ class TrapezoidDownCut extends StatelessWidget {
 class DiagonalClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    var path = new Path();
+    var path = Path();
     path.lineTo(0.0, size.height * 0.7);
     path.quadraticBezierTo(
         0.0, size.height * 0.7 + 14, 15, size.height * 0.7 + 20);

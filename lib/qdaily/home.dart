@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/enum/enum.dart';
 
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -21,13 +22,13 @@ class _HomePageState extends State<QHomePage>
   String lastKey = '0';
 
   ResponseBean responseBean;
-  List<FeedsBean> feeds = [];
   List<BannersBean> banners = [];
-  List<ColumnBean> columns = [];
 
   bool isLoadComplete = false;
 
   List<Widget> list = [];
+
+  LoaderState state = LoaderState.Loading;
 
   @override
   void initState() {
@@ -39,28 +40,39 @@ class _HomePageState extends State<QHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: feeds.length == 0 ? getLoadingWidget() : _buildBodyView());
+        backgroundColor: Colors.grey[200],
+        body: LoaderContainer(
+          loaderState: state,
+          contentView: EasyRefresh(
+              footer: BallPulseFooter(),
+              onLoad: isLoadComplete ? null : () async => getHomeData(lastKey),
+              child: ListView.separated(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  separatorBuilder: (BuildContext context, int index) =>
+                      Gaps.vGap5,
+                  itemBuilder: (BuildContext context, int index) => list[index],
+                  itemCount: list.length)),
+        ));
   }
 
   void getHomeData(String lastKey) async {
-    responseBean = await ApiService.getQdailyHomeData(lastKey);
+    responseBean = await ApiService.getQDailyHomeData(lastKey);
 
     if (responseBean == null) {
       // 请求失败
+      state = LoaderState.Failed;
     } else {
       List<Widget> _list = [];
 
       this.lastKey = responseBean?.lastKey;
       isLoadComplete = !responseBean.hasMore;
 
-      banners.addAll(responseBean.banners);
+      banners.addAll(responseBean?.banners);
       if (responseBean.banners.isNotEmpty)
         _list..add(BannerView(banners: banners));
 
       if (responseBean.feeds.isNotEmpty) {
-        feeds.addAll(responseBean?.feeds);
-
-        responseBean.feeds.forEach((feed) {
+        responseBean?.feeds?.forEach((feed) {
           Widget view;
           if (feed.type == 1) {
             if (feed.newsList.isNotEmpty) {
@@ -84,6 +96,7 @@ class _HomePageState extends State<QHomePage>
           if (feed.type == 0) {
             view = ItemFeedTypeZero(
                 feedsBean: feed,
+                showTop: true,
                 onTap: () {
                   String tag =
                       'labs-${feed?.post?.id}-${feed?.post?.category?.id}';
@@ -125,8 +138,6 @@ class _HomePageState extends State<QHomePage>
       }
 
       if (responseBean.columns.isNotEmpty) {
-        columns.addAll(responseBean.columns);
-
         responseBean.columns.forEach((column) {
           Widget view = ItemColumnTypeView(
               id: column.id,
@@ -141,18 +152,9 @@ class _HomePageState extends State<QHomePage>
       list.addAll(_list);
       debugPrint(
           '${this.lastKey}=============$isLoadComplete===============${list.length}');
-      setState(() {});
-    }
-  }
 
-  Widget _buildBodyView() {
-    return EasyRefresh(
-        footer: BallPulseFooter(),
-        onLoad: isLoadComplete ? null : () async => getHomeData(lastKey),
-        child: ListView.separated(
-            physics: const AlwaysScrollableScrollPhysics(),
-            separatorBuilder: (BuildContext context, int index) => Gaps.vGap5,
-            itemBuilder: (BuildContext context, int index) => list[index],
-            itemCount: list.length));
+      state = LoaderState.Succeed;
+    }
+    setState(() {});
   }
 }

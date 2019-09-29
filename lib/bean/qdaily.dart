@@ -79,12 +79,20 @@ class PostBean {
   String image;
 
   bool commentStatus;
+
+  /// 文章详情页页面样式：0 普通；1 全屏；
   int pageStyle;
+
   int postId;
   String appView;
   String filmLength;
   String dataType;
   ColumnBean column;
+
+  String body;
+  List<String> js;
+  List<String> css;
+  List<String> infoImage;
 
   PostBean(
       {this.title,
@@ -108,7 +116,7 @@ class PostBean {
       this.dataType});
 
   static PostBean fromMap(Map<String, dynamic> map) {
-    PostBean postBean = new PostBean();
+    PostBean postBean = PostBean();
     postBean.title = map['title'];
     postBean.image = map['image'];
     postBean.description = map['description'];
@@ -137,6 +145,14 @@ class PostBean {
     postBean.dataType = map['datatype'];
     postBean.column =
         map['column'] == null ? null : ColumnBean.fromMap(map['column']);
+
+    postBean.body = map['body'];
+    postBean.js = List()
+      ..addAll((map['js'] as List ?? []).map((o) => o.toString()));
+    postBean.css = List()
+      ..addAll((map['css'] as List ?? []).map((o) => o.toString()));
+    postBean.infoImage = List()
+      ..addAll((map['info_image'] as List ?? []).map((o) => o.toString()));
 
     return postBean;
   }
@@ -291,6 +307,9 @@ class ColumnBean {
   int location;
   ShareBean share;
 
+  List<AuthorBean> authors;
+  List<SubscriberBean> subscribers;
+
   Map toJson() => {
         "id": id,
         "name": name,
@@ -330,6 +349,12 @@ class ColumnBean {
     column.location = map['location'];
     column.share =
         map['share'] == null ? null : ShareBean.fromMap(map['share']);
+    column.authors = List()
+      ..addAll(
+          (map['authors'] as List ?? []).map((o) => AuthorBean.fromMap(o)));
+    column.subscribers = List()
+      ..addAll((map['subscribers'] as List ?? [])
+          .map((o) => SubscriberBean.fromMap(o)));
     return column;
   }
 }
@@ -362,6 +387,31 @@ class AuthorBean {
     authorBean.name = map['name'];
     authorBean.id = map['id'];
     return authorBean;
+  }
+}
+
+/// id : 1655594
+/// description : null
+/// avatar : "http://img.qdaily.com/user/face/20190523132638vD2KCAHeanXBwy0F.jpg?imageMogr2/auto-orient/thumbnail/!160x160r/gravity/Center/crop/160x160/quality/85/format/jpg/ignore-error/1"
+/// name : "阿爿"
+/// background_image : "http://app3.qdaily.com/default_images/missing_loading.jpg"
+
+class SubscriberBean {
+  int id;
+  String description;
+  String avatar;
+  String name;
+  String backgroundImage;
+
+  static SubscriberBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    SubscriberBean subscriberBeanBean = SubscriberBean();
+    subscriberBeanBean.id = map['id'];
+    subscriberBeanBean.description = map['description'];
+    subscriberBeanBean.avatar = map['avatar'];
+    subscriberBeanBean.name = map['name'];
+    subscriberBeanBean.backgroundImage = map['background_image'];
+    return subscriberBeanBean;
   }
 }
 

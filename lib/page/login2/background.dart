@@ -24,12 +24,12 @@ class Background extends CustomPainter {
     pathBottom.lineTo(0, height);
     pathBottom.lineTo(width, height);
 
-    var p1 = new Offset(width / 4, height);
-    var p2 = new Offset(0 * width / 4, 3.5 * height / 4);
+    var p1 = Offset(width / 4, height);
+    var p2 = Offset(0 * width / 4, 3.5 * height / 4);
     pathBottom.quadraticBezierTo(p1.dx, p1.dy, p2.dx, p2.dy);
 
-    var p3 = new Offset(2 * width / 4, 3.5 * height / 4);
-    var p4 = new Offset(0 * width / 4, 3.5 * height / 4);
+    var p3 = Offset(2 * width / 4, 3.5 * height / 4);
+    var p4 = Offset(0 * width / 4, 3.5 * height / 4);
     pathBottom.quadraticBezierTo(p3.dx, p3.dy, p4.dx, p4.dy);
 
     var pathTop = Path();
@@ -37,8 +37,8 @@ class Background extends CustomPainter {
     pathTop.lineTo(width, 0.0);
     pathTop.lineTo(0.0, 0.0);
 
-    var p21 = new Offset(0.5 * width / 4, 1 * height / 4);
-    var p22 = new Offset(5 * width / 4, 0 * height / 4);
+    var p21 = Offset(0.5 * width / 4, 1 * height / 4);
+    var p22 = Offset(5 * width / 4, 0 * height / 4);
     pathTop.quadraticBezierTo(p21.dx, p21.dy, p22.dx, p22.dy);
 
     canvas.drawPath(pathTop, paint);

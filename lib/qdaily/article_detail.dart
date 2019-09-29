@@ -110,7 +110,14 @@ class _ArticleDetailState extends State<ArticleDetail> {
                     ]),
                   ),
                   BottomAppbar(actions: <Widget>[
-                    IconButton(icon: Icon(Feather.heart), onPressed: () {}),
+                    IconButton(
+                        icon: Badge(
+                            shape: BadgeShape.circle,
+                            badgeContent: Text('${post.praiseCount}',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 10)),
+                            child: Icon(Feather.heart)),
+                        onPressed: () {}),
                     IconButton(
                         icon: Badge(
                             shape: BadgeShape.circle,

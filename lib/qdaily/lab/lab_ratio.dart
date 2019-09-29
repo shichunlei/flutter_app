@@ -30,9 +30,6 @@ class _LabRatioPageState extends State<LabRatioPage>
 
   LoaderState _status = LoaderState.Loading;
 
-  String choice = "";
-  double sliderValue = 0.0;
-
   int currentPaper = 0;
 
   int currentPage = 1;
@@ -63,23 +60,17 @@ class _LabRatioPageState extends State<LabRatioPage>
                       LabInfoHeaderView(tag: widget.tag, post: widget.post),
                       Gaps.vGap8,
                       IndexedStack(index: currentPaper, children: <Widget>[
-                        buildGenderSliderView(),
-                        Column(
-                          children: <Widget>[
-                            ChoiceNoView(
-                              index: currentPage,
-                              total: questions.length,
-                            ),
-                            LabRatioPageView(
-                              questions: questions,
-                              callBack: (int value) {
-                                setState(() {
-                                  currentPage = value;
-                                });
-                              },
-                            ),
-                          ],
-                        )
+                        LabRadioFirstView(
+                          genderQuestion: genderQuestion,
+                          slideQuestion: slideQuestion,
+                          callBack: (bool, choice, slider) {
+                            if (bool) setState(() => currentPaper = 1);
+                          },
+                        ),
+                        LabRatioPageView(
+                            questions: questions,
+                            callBack: (int value) =>
+                                setState(() => currentPage = value))
                       ])
                     ]),
                   ),
@@ -106,145 +97,6 @@ class _LabRatioPageState extends State<LabRatioPage>
           ),
         ),
         onWillPop: _onBackPressed);
-  }
-
-  Widget buildGenderSliderView() {
-    return Container(
-      color: Colors.white,
-      padding: EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(top: 8, bottom: 15),
-            child: Text(
-              '${genderQuestion?.content}',
-              style: TextStyles.textDark16,
-            ),
-          ),
-          Container(
-            color: Colors.grey[400],
-            padding: EdgeInsets.all(15),
-            child: Row(
-              children: <Widget>[
-                ChoiceChip(
-                  label: Text(
-                    '${genderQuestion != null ? genderQuestion?.options[0]?.title : ""}',
-                    style: TextStyles.textDark16,
-                  ),
-                  selected: choice == "0",
-                  backgroundColor: qdailyMinorColor,
-                  selectedColor: qdailyMajorColor,
-                  onSelected: (value) {
-                    setState(() {
-                      choice = value ? "0" : "";
-                    });
-                  },
-                ),
-                ChoiceChip(
-                  label: Text(
-                    '${genderQuestion != null ? genderQuestion?.options[1]?.title : ""}',
-                    style: TextStyles.textDark16,
-                  ),
-                  selected: choice == "1",
-                  backgroundColor: qdailyMinorColor,
-                  selectedColor: qdailyMajorColor,
-                  onSelected: (value) {
-                    setState(() {
-                      choice = value ? "1" : "";
-                    });
-                  },
-                )
-              ],
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 15, bottom: 15),
-            child: Text(
-              '${slideQuestion?.content}',
-              style: TextStyles.textDark16,
-            ),
-          ),
-          Slider(
-            value: sliderValue,
-            onChanged: (double value) {
-              setState(() {
-                sliderValue = value;
-              });
-            },
-            max: slideQuestion?.maxScore ?? 10,
-            min: 0,
-            divisions: 100,
-          ),
-          Row(
-            children: <Widget>[
-              Text(
-                '${slideQuestion != null ? slideQuestion?.options[0]?.title : ""}',
-                style: TextStyles.textBoldDark16,
-              ),
-              Text(
-                '${slideQuestion != null ? slideQuestion?.options[1]?.title : ""}',
-                style: TextStyles.textBoldDark16,
-              )
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          ),
-          Gaps.vGap5,
-          Row(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  '${slideQuestion != null ? slideQuestion?.options[0]?.content : ""}',
-                  style: TextStyles.textGrey14,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(30),
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  '${slideQuestion != null ? slideQuestion?.options[1]?.content : ""}',
-                  style: TextStyles.textGrey14,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                ),
-              )
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          ),
-          Gaps.vGap20,
-          Button(
-            onPressed: choice != "" && choice.length > 0 && sliderValue > 0
-                ? () {
-                    setState(() {
-                      currentPaper = 1;
-                    });
-                  }
-                : null,
-            text: '下一步',
-            textColor: Colors.black54,
-            borderRadius: 30,
-            color: qdailyMajorColor,
-            disabledColor: qdailyMinorColor,
-          ),
-          Gaps.vGap40
-        ],
-      ),
-    );
   }
 
   void getRatioData(int id) async {

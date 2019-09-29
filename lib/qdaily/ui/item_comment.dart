@@ -12,44 +12,78 @@ class ItemComment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.only(top: 5),
-        color: Colors.white,
-        padding: EdgeInsets.all(10),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              _buildTopView(comment.author, comment.publishTime),
-              Container(
-                  padding: EdgeInsets.only(left: 48, top: 20, bottom: 20),
-                  alignment: Alignment.centerLeft,
-                  child: Text('${comment?.content}')),
-              ListView.builder(
-                  itemCount: comment.childComments.length,
-                  padding: EdgeInsets.only(left: 48, top: 0),
-                  primary: false,
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => Container(
-                        child: Column(children: <Widget>[
-                          _buildTopView(comment?.childComments[index]?.author,
-                              comment.childComments[index].publishTime),
-                          Container(
-                              padding: EdgeInsets.only(
-                                  left: 48, top: 20, bottom: 20),
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                  '@${comment?.childComments[index]?.parentUser?.name}:${comment?.childComments[index]?.content}'))
-                        ]),
-                      ))
-            ]));
+    return Material(
+      color: Colors.white,
+      child: Container(
+          padding: EdgeInsets.all(10),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    Toast.show(context, '@${comment?.author?.name}');
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      _buildTopView(comment?.author, comment?.publishTime),
+                      Container(
+                          padding: EdgeInsets.only(left: 28, top: 8, bottom: 8),
+                          alignment: Alignment.centerLeft,
+                          child: Text('${comment?.content}'))
+                    ],
+                  ),
+                ),
+                ListView.builder(
+                    itemCount: comment.childComments.length,
+                    padding: EdgeInsets.only(left: 28, top: 0),
+                    primary: false,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) => GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            Toast.show(context,
+                                '@${comment?.childComments[index]?.author?.name}');
+                          },
+                          child: Container(
+                            child: Column(children: <Widget>[
+                              _buildTopView(
+                                  comment?.childComments[index]?.author,
+                                  comment?.childComments[index]?.publishTime),
+                              Container(
+                                padding: EdgeInsets.only(
+                                    left: 28, top: 8, bottom: 8),
+                                alignment: Alignment.centerLeft,
+                                child: RichText(
+                                  text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                            text: ':',
+                                            style: TextStyles.textDark14),
+                                        TextSpan(
+                                            text:
+                                                '${comment?.childComments[index]?.content}',
+                                            style: TextStyles.textDark14),
+                                      ],
+                                      text:
+                                          '@${comment?.childComments[index]?.parentUser?.name}',
+                                      style: TextStyles.textBlue14),
+                                ),
+                              )
+                            ]),
+                          ),
+                        ))
+              ])),
+    );
   }
 
   Widget _buildTopView(AuthorBean author, int publishTime) {
     return Row(children: <Widget>[
       ImageLoadView('${author?.avatar}',
-          width: 40,
-          height: 40,
+          width: 25,
+          height: 25,
           borderRadius: BorderRadius.all(Radius.circular(20))),
       Gaps.hGap8,
       Text('${author?.name}'),

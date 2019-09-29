@@ -34,7 +34,7 @@ class Baixing {
   List<AdvertesPicture> ads;
 
   static Baixing fromMap(Map<String, dynamic> map) {
-    Baixing baixing = new Baixing();
+    Baixing baixing = Baixing();
     baixing.reservationGoods = Goods.fromMapList(map['reservationGoods']);
     baixing.advertesPicture = AdvertesPicture.fromMap(map['advertesPicture']);
     baixing.shopInfo = ShopInfo.fromMap(map['shopInfo']);
@@ -43,21 +43,21 @@ class Baixing {
     baixing.recommend = Goods.fromMapList(map['recommend']);
     baixing.slides = Goods.fromMapList(map['slides']);
 
-    FloorBean floorBean1 = new FloorBean();
+    FloorBean floorBean1 = FloorBean();
     floorBean1.floorName = map['floorName']['floor1'];
     floorBean1.floorPic = AdvertesPicture.fromMap(map['floor1Pic']);
     floorBean1.floor = Goods.fromMapList(map['floor1']);
 
     print(floorBean1.toString());
 
-    FloorBean floorBean2 = new FloorBean();
+    FloorBean floorBean2 = FloorBean();
     floorBean2.floorName = map['floorName']['floor2'];
     floorBean2.floorPic = AdvertesPicture.fromMap(map['floor2Pic']);
     floorBean2.floor = Goods.fromMapList(map['floor2']);
 
     print(floorBean2.toString());
 
-    FloorBean floorBean3 = new FloorBean();
+    FloorBean floorBean3 = FloorBean();
     floorBean3.floorName = map['floorName']['floor3'];
     floorBean3.floorPic = AdvertesPicture.fromMap(map['floor3Pic']);
     floorBean3.floor = Goods.fromMapList(map['floor3']);
@@ -77,7 +77,7 @@ class Baixing {
   }
 
   static List<Baixing> fromMapList(dynamic mapList) {
-    List<Baixing> list = new List(mapList.length);
+    List<Baixing> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -111,14 +111,14 @@ class ShopInfo {
   String leaderPhone;
 
   static ShopInfo fromMap(Map<String, dynamic> map) {
-    ShopInfo shopInfoBean = new ShopInfo();
+    ShopInfo shopInfoBean = ShopInfo();
     shopInfoBean.leaderImage = map['leaderImage'];
     shopInfoBean.leaderPhone = map['leaderPhone'];
     return shopInfoBean;
   }
 
   static List<ShopInfo> fromMapList(dynamic mapList) {
-    List<ShopInfo> list = new List(mapList.length);
+    List<ShopInfo> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }

@@ -746,94 +746,119 @@ class ApiService {
   }
 
   /// 获取全部新闻(首页)
-  static Future<ResponseBean> getQdailyHomeData(String lastKey) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .request("${ApiUrl.QDAILY_HOME_DATA}$lastKey.json", data: null);
+  static Future<ResponseBean> getQDailyHomeData(String lastKey) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_HOME_DATA, data: {"last_key": lastKey});
     if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 获取某分类下的新闻
-  static Future<ResponseBean> getQdailyNewsDataByCategory(
+  static Future<ResponseBean> getQDailyNewsDataByCategory(
       int tagId, String lastKey) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).request(
-        ApiUrl.QDAILY_CATEGORY_DATA + "$tagId/$lastKey.json",
-        data: null);
+    Response response = await HttpUtils().request(ApiUrl.QDAILY_CATEGORY_DATA,
+        data: {"last_key": lastKey, "tag_id": tagId});
     if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 获取文章/新闻评论
-  static Future<ResponseBean> getQdailyCommentData(int id,
+  static Future<ResponseBean> getQDailyCommentData(int id,
       {String dataType = 'article', String lastKey = '0'}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).request(
-        "${ApiUrl.QDAILY_COMMENT_DATA}$dataType/$id/$lastKey.json",
-        data: null);
+    Response response = await HttpUtils().request(ApiUrl.QDAILY_COMMENT_DATA,
+        data: {"last_key": lastKey, "datatype": dataType, "id": id});
     if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 栏目列表
-  static Future<ResponseBean> getQdailyColumnList(String lastKey) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .request(ApiUrl.QDAILY_COLUMN_LIST_DATA, data: {"lastKey": lastKey});
+  static Future<ResponseBean> getQDailyColumnList(String lastKey) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_COLUMN_LIST, data: {"last_key": lastKey});
     if (response == null || response?.statusCode != 200) {
       return null;
     }
 
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 栏目信息
-  static Future<ResponseBean> getQdailyColumnInfo(int columnId) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .request(ApiUrl.QDAILY_COLUMN_INFO_DATA, data: {'columnId': columnId});
+  static Future<ResponseBean> getQDailyColumnInfo(int columnId) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_COLUMN_INFO, data: {'column_id': columnId});
     if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 栏目新闻
-  static Future<ResponseBean> getQdailyColumnIndex(
+  static Future<ResponseBean> getQDailyColumnIndex(
       int columnId, String lastKey) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).request(
-        ApiUrl.QDAILY_COLUMN_INDEX_DATA,
-        data: {'lastKey': lastKey, 'columnId': columnId});
+    Response response = await HttpUtils().request(ApiUrl.QDAILY_COLUMN_NEWS,
+        data: {'last_key': lastKey, 'column_id': columnId});
     if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 好奇心研究所
-  static Future<ResponseBean> getQdailyLabsData(String lastKey) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .request(ApiUrl.QDAILY_LAB_INDEX_DATA, data: {'lastKey': lastKey});
+  static Future<ResponseBean> getQDailyLabsData(String lastKey) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_LABS_URL, data: {'last_key': lastKey});
     if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 好奇心研究所详情
@@ -846,6 +871,22 @@ class ApiService {
     QdailyAppResult result =
         QdailyAppResult.fromMap(json.decode(response.data));
     return result.response;
+  }
+
+  /// 我说
+  static Future<ResponseBean> getQDailyISay(int id, String lastKey) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_ISAY_URL, data: {'id': id, "last_key": lastKey});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 投票详情
@@ -932,17 +973,20 @@ class ApiService {
     }
   }
 
-  /// 获取文章/新闻简介
+  /// 获取文章/新闻详情
   static Future<ResponseBean> getQDailyArticleInfoData(int articleId) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).request(
-        ApiUrl.QDAILY_ARTICLE_INFO_URL,
-        data: {'articleId': articleId});
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_ARTICLE_DETAIL, data: {'id': articleId});
     if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 搜索

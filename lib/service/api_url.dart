@@ -79,20 +79,17 @@ class ApiUrl {
   /// 好奇心日报Web接口
   static final String QDAILY_WEB_URL = "http://www.qdaily.com/";
 
-  static final String QDAILY_HOME_DATA = "app3/homes/index_v2/";
+  static final String QDAILY_HOME_DATA = "qdaily/home_data";
 
-  static final String QDAILY_CATEGORY_DATA = "app3/categories/index/";
+  static final String QDAILY_CATEGORY_DATA = "qdaily/news_by_category";
 
-  static final String QDAILY_COMMENT_DATA = "app3/comments/index/";
+  static final String QDAILY_COMMENT_DATA = "qdaily/comments";
 
   static final String QDAILY_ARTICLE_URL =
       "http://m.qdaily.com/mobile/articles/";
-  static final String QDAILY_ARTICLE_DETAIL_URL =
-      "app3/articles/detail/:articleId.json";
-  static final String QDAILY_ARTICLE_INFO_URL =
-      "app3/articles/info/:articleId.json";
+  static final String QDAILY_ARTICLE_DETAIL = "qdaily/articles_details";
 
-  static final String QDAILY_LAB_INDEX_DATA = "app3/papers/index/:lastKey.json";
+  static final String QDAILY_LABS_URL = "qdaily/papers";
   static final String QDAILY_LAB_DETAIL_DATA = "app3/papers/detail/:labId.json";
 
   static final String QDAILY_VOTE_URL = "qdaily/vote_info";
@@ -100,16 +97,15 @@ class ApiUrl {
 
   static final String QDAILY_TOTS_URL = "qdaily/tots";
 
+  static final String QDAILY_ISAY_URL = "qdaily/i_say";
+
   static final String QDAILY_WHO_URL = "qdaily/whos";
 
   static final String QDAILY_CHOICE_URL = "qdaily/choices";
 
-  static final String QDAILY_COLUMN_LIST_DATA =
-      "app3/columns/all_columns_index/:lastKey.json";
-  static final String QDAILY_COLUMN_INFO_DATA =
-      "app3/columns/info/:columnId.json";
-  static final String QDAILY_COLUMN_INDEX_DATA =
-      "app3/columns/index/:columnId/:lastKey.json";
+  static final String QDAILY_COLUMN_LIST = "qdaily/columns";
+  static final String QDAILY_COLUMN_INFO = "qdaily/column_info";
+  static final String QDAILY_COLUMN_NEWS = "qdaily/column_news";
 
   static final String QDAILY_SEARCH_HIGHLIGHTING_DATA =
       "app3/searches/post_highlighting_list.json?last_key={last_key}&search={content}";
@@ -130,6 +126,63 @@ class ApiUrl {
 
   static final String YOUDAO_GROUP_ALL_COURSE_URL =
       "course3/api/content/course";
+
+  /// 玩Android
+  static final String WAN_ANDROID_URL = 'https://www.wanandroid.com';
+
+  /// 登录
+  static final String LOGIN = '/user/login';
+
+  /// 注册
+  static final String REGISTER = '/user/register';
+
+  /// 退出
+  static final String LOGOUT = '/user/logout/json';
+
+  /// 首页文章列表
+  static final String HOME_LIST = '/article/list/:page/json';
+
+  /// 首页banner
+  static final String BANNER = '/banner/json';
+
+  /// 常用网站
+  static final String FRIEND = '/friend/json';
+
+  /// 置顶文章
+  static final String ARTICLE_TOP = '/article/top/json';
+
+  /// 体系数据
+  static final String TREE = '/tree/json';
+
+  /// 知识体系下的文章
+  static final String TREE_ARTICLE_LIST = '/article/list/:page/json?cid=294';
+
+  /// 导航数据
+  static final String NAVI = '/navi/json';
+
+  /// 项目分类
+  static final String PROJECT_TREE = '/project/tree/json';
+
+  /// 项目列表数据
+  static final String PROJECT_LIST = '/project/list/:page/json?cid=294';
+
+  /// 搜索热词
+  static const String HOT_KEY = "hotkey/json";
+
+  /// 搜索
+  static const String QUERY = "article/query/0/json";
+
+  /// 收藏文章列表
+  static const String COLLECT_LIST = "lg/collect/list/";
+
+  /// 收藏站内文章
+  static const String COLLECT = "lg/collect/";
+
+  /// 取消收藏-文章列表
+  static const String UN_COLLECT_ORIGIN_ID = "lg/uncollect_originId/";
+
+  /// 取消收藏-收藏页面
+  static const String UN_COLLECT = "lg/uncollect/";
 
   /// 追书神器
   static final String BOOK_URL = 'http://api.zhuishushenqi.com';

@@ -45,7 +45,7 @@ class _DropDownMenuState extends State<DropDownMenu>
     super.initState();
 
     widget.controller.addListener(_onController);
-    _controller = new AnimationController(
+    _controller = AnimationController(
         duration: Duration(milliseconds: widget.animationMilliseconds),
         vsync: this);
   }

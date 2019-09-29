@@ -1,3 +1,4 @@
+import 'package:flutter_easyrefresh/material_header.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 import '../index.dart';
@@ -23,8 +24,6 @@ class _SpecialPageState extends State<SpecialPage> {
   String lastKey = '0';
 
   ColumnBean column;
-  List<AuthorBean> authors = [];
-  List<SubscriberBean> subscribers = [];
 
   ResponseBean responseBean;
 
@@ -33,6 +32,8 @@ class _SpecialPageState extends State<SpecialPage> {
   bool isLoadComplete = false;
 
   double width;
+
+  LoaderState status = LoaderState.Loading;
 
   @override
   void initState() {
@@ -47,33 +48,35 @@ class _SpecialPageState extends State<SpecialPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: feeds.isEmpty || column == null
-            ? getLoadingWidget()
-            : Stack(children: <Widget>[
-                EasyRefresh(
-                    footer: BallPulseFooter(),
-                    onLoad: isLoadComplete
-                        ? null
-                        : () async => getColumnIndex(lastKey, widget.columnId),
-                    child: ListView(
-                        padding: EdgeInsets.only(top: 0),
-                        children: <Widget>[
-                          _buildHeaderView(),
-                          _buildSubscriber(),
-                          _buildDataView()
-                        ])),
-                Container(
-                    height: Utils.navigationBarHeight,
-                    child: AppBar(
-                        backgroundColor: Colors.transparent,
-                        elevation: 0.0,
-                        actions: <Widget>[
-                          IconButton(
-                              icon:
-                                  Icon(Feather.share, color: Colors.white),
-                              onPressed: null)
-                        ]))
-              ]));
+        body: Stack(children: <Widget>[
+          LoaderContainer(
+            loaderState: status,
+            contentView: EasyRefresh(
+                footer: BallPulseFooter(),
+                header: MaterialHeader(),
+                onLoad: isLoadComplete
+                    ? null
+                    : () async => getColumnIndex(lastKey, widget.columnId),
+                onRefresh: () async => getColumnInfo(widget.columnId),
+                child: ListView(
+                    padding: EdgeInsets.only(top: 0),
+                    children: <Widget>[
+                      _buildHeaderView(),
+                      _buildSubscriber(),
+                      _buildDataView()
+                    ])),
+          ),
+          Container(
+              height: Utils.navigationBarHeight,
+              child: AppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0.0,
+                  actions: <Widget>[
+                    IconButton(
+                        icon: Icon(Feather.share, color: Colors.white),
+                        onPressed: null)
+                  ]))
+        ]));
   }
 
   Widget _buildHeaderView() {
@@ -96,8 +99,8 @@ class _SpecialPageState extends State<SpecialPage> {
                     height: 55, width: 55),
                 radius: 30,
                 backgroundColor: Colors.white),
-            authors.length > 0
-                ? ColumnAuthorView(author: authors[0])
+            column != null && column.authors.length > 0
+                ? ColumnAuthorView(author: column?.authors[0])
                 : Gaps.vGap20
           ]))
     ]);
@@ -116,13 +119,15 @@ class _SpecialPageState extends State<SpecialPage> {
           Wrap(
               spacing: 8,
               runSpacing: 10,
-              children: subscribers.map((subscriber) {
-                return ImageLoadView('${subscriber.avatar}',
-                    width: avatarSize,
-                    height: avatarSize,
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(avatarSize / 2)));
-              }).toList())
+              children: column != null
+                  ? column.subscribers.map((subscriber) {
+                      return ImageLoadView('${subscriber.avatar}',
+                          width: avatarSize,
+                          height: avatarSize,
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(avatarSize / 2)));
+                    }).toList()
+                  : [])
         ]));
   }
 
@@ -161,24 +166,26 @@ class _SpecialPageState extends State<SpecialPage> {
   }
 
   void getColumnInfo(int columnId) async {
-    responseBean = await ApiService.getQdailyColumnInfo(columnId);
+    responseBean = await ApiService.getQDailyColumnInfo(columnId);
+    feeds.clear();
 
     if (responseBean == null) {
       // 请求失败
       debugPrint('网络请求失败');
+      status = LoaderState.Failed;
     } else {
       column = responseBean.column;
-      authors.addAll(responseBean.authors);
-      subscribers.addAll(responseBean.subscribers);
-      setState(() {});
+      this.lastKey = responseBean.lastKey;
+      feeds.addAll(responseBean.feeds);
+      isLoadComplete = !responseBean.hasMore;
+      status = LoaderState.Succeed;
     }
-
-    getColumnIndex(lastKey, columnId);
+    setState(() {});
   }
 
   void getColumnIndex(String lastKey, int columnId) async {
     ResponseBean responseBean =
-        await ApiService.getQdailyColumnIndex(columnId, lastKey);
+        await ApiService.getQDailyColumnIndex(columnId, lastKey);
 
     if (responseBean == null) {
       // 请求失败

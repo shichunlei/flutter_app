@@ -28,6 +28,8 @@ class _LabVotePageState extends State<LabVotePage> {
 
   List<bool> choices = [];
 
+  bool isClick = false;
+
   @override
   void initState() {
     super.initState();
@@ -61,6 +63,9 @@ class _LabVotePageState extends State<LabVotePage> {
                           choices
                             ..insert(index, value)
                             ..removeAt(index + 1);
+
+                          isClick = choices.contains(true);
+
                           setState(() {});
                         }),
                     itemCount: options.length,
@@ -69,9 +74,10 @@ class _LabVotePageState extends State<LabVotePage> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Button(
-                      onPressed: () {
-                        print('${choices.toList().toString()}');
-                      },
+                      onPressed: isClick
+                          ? () => pushNewPage(
+                              context, LabVoteResultPage(id: widget.post.id))
+                          : null,
                       text: '投票',
                       textColor: Colors.black54,
                       borderRadius: 30,

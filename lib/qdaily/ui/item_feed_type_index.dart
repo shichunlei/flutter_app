@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 
+import '../../page_index.dart';
 import '../index.dart';
 
 class ItemFeedTypeIndex extends StatelessWidget {
@@ -23,10 +24,10 @@ class ItemFeedTypeIndex extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       width: 30,
                       height: 30),
-                  SizedBox(width: 8),
+                  Gaps.hGap8,
                   Text('${feedsBean?.post?.column?.name}')
                 ]),
-                SizedBox(height: 8),
+                Gaps.vGap8,
                 Row(children: <Widget>[
                   Container(
                       child: Image.asset('images/qdaily/yellowDot.png',
@@ -34,7 +35,7 @@ class ItemFeedTypeIndex extends StatelessWidget {
                   Expanded(child: Text('${feedsBean.post.title}', maxLines: 3)),
                   ImageLoadView('${feedsBean.image}', width: 96, height: 57)
                 ]),
-                SizedBox(height: 8),
+                Gaps.vGap8,
                 Row(children: <Widget>[
                   Container(
                       child: Image.asset('images/qdaily/yellowDot.png',
@@ -48,7 +49,7 @@ class ItemFeedTypeIndex extends StatelessWidget {
                           fit: BoxFit.fitWidth, width: 30, height: 30)),
                   Expanded(child: Text('${feedsBean.newsList[1].description}')),
                 ]),
-                SizedBox(height: 8),
+                Gaps.vGap8,
                 ItemBottomView(post: feedsBean?.post)
               ],
             )));

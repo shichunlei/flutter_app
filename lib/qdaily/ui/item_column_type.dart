@@ -25,7 +25,7 @@ class ItemColumnTypeView extends StatefulWidget {
 }
 
 class _ItemColumnTypeViewState extends State<ItemColumnTypeView> {
-  final ScrollController _scrollController = new ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   ResponseBean responseBean;
 
@@ -79,7 +79,7 @@ class _ItemColumnTypeViewState extends State<ItemColumnTypeView> {
 
   void getColumnItems(int id) async {
     ResponseBean responseBean =
-        await ApiService.getQdailyColumnIndex(id, lastKey);
+        await ApiService.getQDailyColumnIndex(id, lastKey);
 
     if (responseBean == null) {
       // 请求失败

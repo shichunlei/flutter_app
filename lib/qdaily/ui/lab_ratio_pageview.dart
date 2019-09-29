@@ -44,67 +44,77 @@ class _LabRatioPageViewState extends State<LabRatioPageView>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 325,
-      child: PageView.builder(
-        onPageChanged: (index) => setState(() => widget.callBack(index + 1)),
-        physics: NeverScrollableScrollPhysics(),
-        controller: _controller,
-        itemBuilder: (_, index) {
-          animation1 = IntTween(
-                  begin: 0, end: widget.questions[index]?.options[0]?.percent)
-              .animate(animationController);
-          animation2 = animationController.drive(IntTween(
-              begin: 0, end: widget.questions[index]?.options[1]?.percent));
+    return Column(
+      children: <Widget>[
+        ChoiceNoView(
+            index: currentPage,
+            total: widget.questions.length,
+            padding: EdgeInsets.symmetric(vertical: 15)),
+        Container(
+          height: 325,
+          child: PageView.builder(
+            onPageChanged: (index) =>
+                setState(() => widget.callBack(index + 1)),
+            physics: NeverScrollableScrollPhysics(),
+            controller: _controller,
+            itemBuilder: (_, index) {
+              animation1 = IntTween(
+                      begin: 0,
+                      end: widget.questions[index]?.options[0]?.percent)
+                  .animate(animationController);
+              animation2 = animationController.drive(IntTween(
+                  begin: 0, end: widget.questions[index]?.options[1]?.percent));
 
-          animationController.addListener(() => setState(() {}));
+              animationController.addListener(() => setState(() {}));
 
-          return Column(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(15),
-                child: Text(
-                  '${widget.questions[index]?.content}',
-                  style: TextStyles.textBoldDark16,
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: <Widget>[
-                            ImageLoadView(
-                              '${widget.questions[index]?.options[0]?.optionPicUrl}',
-                            ),
-                            buildClipRect(index, animation1.value),
-                          ],
-                        ),
-                      ),
-                      Gaps.hGap8,
-                      Expanded(
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: <Widget>[
-                            ImageLoadView(
-                              '${widget.questions[index]?.options[1]?.optionPicUrl}',
-                            ),
-                            buildClipRect(index, animation2.value)
-                          ],
-                        ),
-                      )
-                    ],
+              return Column(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(15),
+                    child: Text(
+                      '${widget.questions[index]?.content}',
+                      style: TextStyles.textBoldDark16,
+                    ),
                   ),
-                ),
-              )
-            ],
-          );
-        },
-        itemCount: widget.questions.length,
-      ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Stack(
+                              fit: StackFit.expand,
+                              children: <Widget>[
+                                ImageLoadView(
+                                  '${widget.questions[index]?.options[0]?.optionPicUrl}',
+                                ),
+                                buildClipRect(index, animation1.value),
+                              ],
+                            ),
+                          ),
+                          Gaps.hGap8,
+                          Expanded(
+                            child: Stack(
+                              fit: StackFit.expand,
+                              children: <Widget>[
+                                ImageLoadView(
+                                  '${widget.questions[index]?.options[1]?.optionPicUrl}',
+                                ),
+                                buildClipRect(index, animation2.value)
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              );
+            },
+            itemCount: widget.questions.length,
+          ),
+        ),
+      ],
     );
   }
 

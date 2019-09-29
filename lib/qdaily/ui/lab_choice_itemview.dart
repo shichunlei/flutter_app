@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/qdaily_app.dart';
 import 'package:flutter_app/page_index.dart';
 
-class ItemLabPageView extends StatefulWidget {
+class LabChoiceItemView extends StatefulWidget {
   final Question question;
   final Function onTap;
 
-  ItemLabPageView({Key key, @required this.question, this.onTap})
+  LabChoiceItemView({Key key, @required this.question, this.onTap})
       : super(key: key);
 
   @override
-  createState() => _ItemLabPageViewState();
+  createState() => _LabChoiceItemViewState();
 }
 
-class _ItemLabPageViewState extends State<ItemLabPageView>
+class _LabChoiceItemViewState extends State<LabChoiceItemView>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
@@ -33,39 +33,57 @@ class _ItemLabPageViewState extends State<ItemLabPageView>
             padding: EdgeInsets.only(left: 10, right: 10),
             child: Text('${widget.question?.content}',
                 style: TextStyle(fontSize: 18), textAlign: TextAlign.center)),
+        Visibility(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: ImageLoadView('${widget.question?.image}',
+                width: Utils.width - 20,
+                height: (Utils.width - 20) * 412 / 700),
+          ),
+          visible: widget.question.image != "",
+        ),
         Expanded(
           child: GridView.builder(
               padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 0.9,
+                  childAspectRatio: widget.question.image != "" ? 2.0 : 0.9,
                   crossAxisCount: 2,
                   mainAxisSpacing: 5,
                   crossAxisSpacing: 5),
               itemBuilder: (context, index) {
                 return Material(
-//                  color: Colors.white,
+                  color: Colors.white,
                   child: InkWell(
-                      child: Column(
+                      child: Stack(
+                        fit: StackFit.expand,
                         children: <Widget>[
-                          Expanded(
-                            child: ImageLoadView(
-                              '${widget.question?.options[index]?.optionPicUrl}',
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(8),
-                            child: Text(
-                                '${widget.question?.options[index]?.title}'),
-                            alignment: Alignment.center,
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Visibility(
+                                child: Expanded(
+                                  child: ImageLoadView(
+                                    '${widget.question?.options[index]?.optionPicUrl}',
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                  ),
+                                ),
+                                visible: widget.question.image == "",
+                              ),
+                              Center(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
+                                  child: Text(
+                                      '${widget.question?.options[index]?.title}'),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                       onTap: () {
-                        setState(() {
-                          widget.onTap(true);
-                        });
+                        setState(() => widget.onTap(true));
                       }),
                 );
               },

@@ -18,7 +18,6 @@ class _QDailyIndexPageState extends State<QDailyIndexPage> {
     return DefaultTabController(
         length: titleTabs.length,
         child: Scaffold(
-          backgroundColor: Colors.white,
           appBar: AppBar(
               automaticallyImplyLeading: false,
               elevation: 0.0,

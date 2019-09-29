@@ -8,8 +8,8 @@ class ThemeSample extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('主题')),
       body: Center(
-        child: new ListView(
-          padding: new EdgeInsets.all(8.0),
+        child: ListView(
+          padding: EdgeInsets.all(8.0),
           children: <Widget>[
             _colorDisplayBox(
                 "突出颜色", "highlightColor", Theme.of(context).highlightColor),

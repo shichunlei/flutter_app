@@ -56,8 +56,6 @@ class ResponseBean {
 
   // 栏目板块
   ColumnBean column;
-  List<AuthorBean> authors;
-  List<SubscriberBean> subscribers;
 
   ShareBean share;
 
@@ -75,7 +73,7 @@ class ResponseBean {
   Question slideQuestion;
 
   // 投票结果各个选项占比
-  List<EveryoneAttitude> everyoneAttitude;
+  List<Option> everyoneAttitude;
   bool isRecord;
 
   // 评论
@@ -112,14 +110,6 @@ class ResponseBean {
     responseBean.author =
         map['author'] == null ? null : AuthorBean.fromMap(map['author']);
 
-    responseBean.authors = List()
-      ..addAll(
-          (map['authors'] as List ?? []).map((o) => AuthorBean.fromMap(o)));
-
-    responseBean.subscribers = List()
-      ..addAll((map['subscribers'] as List ?? [])
-          .map((o) => SubscriberBean.fromMap(o)));
-
     responseBean.options = List()
       ..addAll((map['options'] as List ?? []).map((o) => Option.fromMap(o)));
 
@@ -147,7 +137,7 @@ class ResponseBean {
     responseBean.isRecord = map['is_record'];
     responseBean.everyoneAttitude = List()
       ..addAll((map['everyones_attitude'] as List ?? [])
-          .map((o) => EveryoneAttitude.fromMap(o)));
+          .map((o) => Option.fromMap(o)));
 
     responseBean.image = map['image'];
     responseBean.type = map['type'];
@@ -156,7 +146,7 @@ class ResponseBean {
 
   @override
   String toString() {
-    return '{hasMore: $hasMore, lastKey: $lastKey, image: $image, type: $type, feeds: $feeds, banners: $banners, columns: $columns, column: $column, authors: $authors, subscribers: $subscribers, share: $share, options: $options, post: $post, questions: $questions, genderQuestion: $genderQuestion, slideQuestion: $slideQuestion, everyoneAttitude: $everyoneAttitude, isRecord: $isRecord, comments: $comments, commentCount: $commentCount, author: $author, topics: $topics}';
+    return '{hasMore: $hasMore, lastKey: $lastKey, image: $image, type: $type, feeds: $feeds, banners: $banners, columns: $columns, column: $column, share: $share, options: $options, post: $post, questions: $questions, genderQuestion: $genderQuestion, slideQuestion: $slideQuestion, everyoneAttitude: $everyoneAttitude, isRecord: $isRecord, comments: $comments, commentCount: $commentCount, author: $author, topics: $topics}';
   }
 }
 
@@ -177,31 +167,6 @@ class BannersBean {
     bannersBean.post =
         map['post'] == null ? null : PostBean.fromMap(map['post']);
     return bannersBean;
-  }
-}
-
-/// id : 1655594
-/// description : null
-/// avatar : "http://img.qdaily.com/user/face/20190523132638vD2KCAHeanXBwy0F.jpg?imageMogr2/auto-orient/thumbnail/!160x160r/gravity/Center/crop/160x160/quality/85/format/jpg/ignore-error/1"
-/// name : "阿爿"
-/// background_image : "http://app3.qdaily.com/default_images/missing_loading.jpg"
-
-class SubscriberBean {
-  int id;
-  String description;
-  String avatar;
-  String name;
-  String backgroundImage;
-
-  static SubscriberBean fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-    SubscriberBean subscriberBeanBean = SubscriberBean();
-    subscriberBeanBean.id = map['id'];
-    subscriberBeanBean.description = map['description'];
-    subscriberBeanBean.avatar = map['avatar'];
-    subscriberBeanBean.name = map['name'];
-    subscriberBeanBean.backgroundImage = map['background_image'];
-    return subscriberBeanBean;
   }
 }
 
@@ -273,6 +238,8 @@ class Option {
 
   int percent;
 
+  bool selected;
+
   Option(
       {this.id,
       this.content,
@@ -295,6 +262,7 @@ class Option {
     optionBean.optionPicUrl = map['option_pic_url'];
     optionBean.score = map['score'];
     optionBean.percent = map['percent'];
+    optionBean.selected = map['selected'];
     return optionBean;
   }
 }
@@ -356,34 +324,5 @@ class InsertContent {
         "title": title,
         "description": description,
         "image": image,
-      };
-}
-
-/// id : 347086
-/// content : "Chatmate，就像树洞一样互相听对方唠家常"
-/// percent : 19
-/// selected : false
-
-class EveryoneAttitude {
-  int id;
-  String content;
-  int percent;
-  bool selected;
-
-  static EveryoneAttitude fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-    EveryoneAttitude bean = EveryoneAttitude();
-    bean.id = map['id'];
-    bean.content = map['content'];
-    bean.percent = map['percent'];
-    bean.selected = map['selected'];
-    return bean;
-  }
-
-  Map toJson() => {
-        "id": id,
-        "content": content,
-        "percent": percent,
-        "selected": selected,
       };
 }

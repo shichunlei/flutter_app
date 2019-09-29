@@ -26,7 +26,7 @@ class _QdailySplashPageState extends State<QdailySplashPage>
   bool showGuidePages = false;
   bool isFirst = true;
 
-  List<Widget> _bannerList = new List();
+  List<Widget> _bannerList = [];
 
   @override
   void initState() {

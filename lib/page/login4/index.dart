@@ -16,11 +16,11 @@ class BottomSheetLoginPage extends StatefulWidget {
 }
 
 class _BottomSheetLoginPagePageState extends State<BottomSheetLoginPage> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  TextEditingController _emailController = new TextEditingController();
-  TextEditingController _passwordController = new TextEditingController();
-  TextEditingController _nameController = new TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
 
   String _email;
   String _password;

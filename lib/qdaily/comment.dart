@@ -50,7 +50,7 @@ class _CommentPageState extends State<CommentPage> {
   }
 
   void getCommentData(int id, String lastKey) async {
-    response = await ApiService.getQdailyCommentData(id,
+    response = await ApiService.getQDailyCommentData(id,
         lastKey: lastKey, dataType: widget.dataType);
     if (response == null) {
       // 请求失败
@@ -70,9 +70,10 @@ class _CommentPageState extends State<CommentPage> {
         onLoad: isLoadComplete
             ? null
             : () async => getCommentData(widget.id, lastKey),
-        child: ListView.builder(
+        child: ListView.separated(
             itemBuilder: (context, index) =>
                 ItemComment(comment: comments[index]),
-            itemCount: comments.length));
+            itemCount: comments.length,
+            separatorBuilder: (BuildContext context, int index) => Gaps.vGap5));
   }
 }

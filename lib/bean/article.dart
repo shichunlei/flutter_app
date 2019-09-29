@@ -18,7 +18,7 @@ class Article {
   String curr;
 
   static Article fromMap(Map<String, dynamic> map) {
-    Article article = new Article();
+    Article article = Article();
     article.author = map['author'];
     article.title = map['title'];
     article.digest = map['digest'];
@@ -31,7 +31,7 @@ class Article {
   }
 
   static Article fromJson(Map<String, dynamic> map) {
-    Article article = new Article();
+    Article article = Article();
     article.id = map['_id'];
     article.author = map['author'];
     article.title = map['title'];
@@ -48,7 +48,7 @@ class Article {
       };
 
   static List<Article> fromMapList(dynamic mapList) {
-    List<Article> list = new List(mapList.length);
+    List<Article> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }
@@ -67,7 +67,7 @@ class DateBean {
   String next;
 
   static DateBean fromMap(Map<String, dynamic> map) {
-    DateBean date = new DateBean();
+    DateBean date = DateBean();
     date.curr = map['curr'];
     date.prev = map['prev'];
     date.next = map['next'];
@@ -75,7 +75,7 @@ class DateBean {
   }
 
   static List<DateBean> fromMapList(dynamic mapList) {
-    List<DateBean> list = new List(mapList.length);
+    List<DateBean> list = List(mapList.length);
     for (int i = 0; i < mapList.length; i++) {
       list[i] = fromMap(mapList[i]);
     }

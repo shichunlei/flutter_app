@@ -20,7 +20,7 @@ class Background extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     /// 整体背景。从右上角到左下角颜色渐变为[Colors.yellow[800], Colors.red],
-    canvas.drawRect(new Rect.fromLTWH(0, 0, size.width, size.height), paint);
+    canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
 
     paint
       ..shader = LinearGradient(

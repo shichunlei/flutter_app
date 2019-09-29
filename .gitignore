@@ -6,3 +6,4 @@ gradlew
 .idea/
 *.log
 flutter_export_environment.sh
+test.dart

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
@@ -57,19 +59,9 @@ class _LabYouGuessPageState extends State<LabYouGuessPage>
               child: PageView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   controller: _controller,
-                  itemBuilder: (_, index) => ItemLabPageView(
+                  itemBuilder: (_, index) => LabChoiceItemView(
                       question: list[index],
-                      onTap: (bool) {
-                        if (bool) {
-                          if (index == list.length - 1) {
-                            Navigator.pop(context);
-                          } else {
-                            _controller.animateToPage(index + 1,
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.decelerate);
-                          }
-                        }
-                      }),
+                      onTap: (bool value) => next(index, value)),
                   itemCount: list.length,
                   onPageChanged: (index) =>
                       setState(() => currentPage = index))),
@@ -103,5 +95,19 @@ class _LabYouGuessPageState extends State<LabYouGuessPage>
       _status = LoaderState.Succeed;
     }
     setState(() {});
+  }
+
+  void next(int index, bool value) async {
+    if (value) {
+      Timer(Duration(milliseconds: 1500), () {
+        if (index == list.length - 1) {
+          debugPrint("最后一个问题");
+          Navigator.pop(context);
+        } else {
+          _controller.animateToPage(index + 1,
+              duration: Duration(milliseconds: 500), curve: Curves.decelerate);
+        }
+      });
+    }
   }
 }
