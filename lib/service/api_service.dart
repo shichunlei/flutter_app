@@ -989,6 +989,22 @@ class ApiService {
     }
   }
 
+  /// Topics新闻/文章
+  static Future<ResponseBean> getQDailyTopicNews(int id, String lastKey) async {
+    Response response = await HttpUtils().request(ApiUrl.QDAILY_TOPIC_NEWS_URL,
+        data: {'topic_id': id, 'last_key': lastKey});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
   /// 搜索
   static Future<QdailyWebBean> getQDailySearchData(
       String keywords, String lastKey) async {

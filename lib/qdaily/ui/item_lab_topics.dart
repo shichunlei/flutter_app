@@ -37,7 +37,12 @@ class ItemLabTopicsView extends StatelessWidget {
                     Material(
                       type: MaterialType.transparency,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () => pushNewPage(
+                            context,
+                            TopicLabsPage(
+                              id: insertContent[index].id,
+                              title: insertContent[index].title,
+                            )),
                       ),
                     )
                   ],
