@@ -73,9 +73,6 @@ class ApiUrl {
 
   static final String MEIZITU_URL = 'https://m.image.so.com/';
 
-  /// 好奇心日报APP接口
-  static final String QDAILY_APP_URL = "http://app3.qdaily.com/";
-
   /// 好奇心日报Web接口
   static final String QDAILY_WEB_URL = "http://www.qdaily.com/";
 
@@ -91,7 +88,7 @@ class ApiUrl {
 
   static final String QDAILY_LABS_URL = "qdaily/papers";
   static final String QDAILY_TOPIC_NEWS_URL = "qdaily/paper_topics";
-  static final String QDAILY_LAB_DETAIL_DATA = "app3/papers/detail/:labId.json";
+  static final String QDAILY_LAB_DETAIL = "qdaily/paper_info";
 
   static final String QDAILY_VOTE_URL = "qdaily/vote_info";
   static final String QDAILY_VOTE_RESULT = "qdaily/vote_result";

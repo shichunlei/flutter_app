@@ -862,15 +862,19 @@ class ApiService {
   }
 
   /// 好奇心研究所详情
-  static Future<ResponseBean> getQdailyLabsDetailData(int labId) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .request(ApiUrl.QDAILY_LAB_DETAIL_DATA, data: {'labId': labId});
+  static Future<ResponseBean> getQDailyLabsDetailData(int id) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_LAB_DETAIL, data: {'paper_id': id});
     if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 我说

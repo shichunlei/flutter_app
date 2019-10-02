@@ -47,14 +47,16 @@ class _LabRatioPageViewState extends State<LabRatioPageView>
     return Column(
       children: <Widget>[
         ChoiceNoView(
-            index: currentPage,
+            index: currentPage + 1,
             total: widget.questions.length,
             padding: EdgeInsets.symmetric(vertical: 15)),
         Container(
           height: 325,
           child: PageView.builder(
-            onPageChanged: (index) =>
-                setState(() => widget.callBack(index + 1)),
+            onPageChanged: (index) => setState(() {
+              currentPage = index;
+              widget.callBack(index + 1);
+            }),
             physics: NeverScrollableScrollPhysics(),
             controller: _controller,
             itemBuilder: (_, index) {
@@ -120,31 +122,18 @@ class _LabRatioPageViewState extends State<LabRatioPageView>
 
   Widget buildClipRect(int index, int value) {
     return Material(
-      type: MaterialType.transparency,
-      child: InkWell(
-        onTap: () {
-          next(index);
-        },
-        child: ClipRect(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 5.0,
-              sigmaY: 6.0,
-            ),
-            child: Opacity(
-              opacity: animationController.value * 0.8,
-              child: Container(
-                alignment: Alignment.center,
-                child: Text(
-                  '$value%',
-                  style: TextStyle(fontSize: 40),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
+        type: MaterialType.transparency,
+        child: InkWell(
+            onTap: () => next(index),
+            child: ClipRect(
+                child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 6.0),
+                    child: Opacity(
+                        opacity: animationController.value * 0.8,
+                        child: Container(
+                            alignment: Alignment.center,
+                            child: Text('$value%',
+                                style: TextStyle(fontSize: 40))))))));
   }
 
   void next(int index) async {

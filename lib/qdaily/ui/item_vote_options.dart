@@ -11,34 +11,29 @@ class ItemVoteOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Row(
-        children: <Widget>[
-          Padding(
+      color: Colors.white,
+      child: Row(children: <Widget>[
+        Padding(
             padding: const EdgeInsets.all(8.0),
             child: CustomPaint(
-              painter:
-                  ArcPainter(isCheck: true, rate: option.percent.toDouble()),
-              size: Size(70, 70),
-            ),
-          ),
-          Expanded(
+                painter: ArcPainter(
+                    isCheck: option.selected, rate: option.percent.toDouble()),
+                size: Size(50, 50))),
+        Expanded(
             child: Column(
-              children: <Widget>[
-                Text(
-                  '${option.percent}%',
-                  style: TextStyles.textDark16,
-                ),
-                Text(
-                  '${option.content}',
-                  style: TextStyles.textGrey14,
-                )
-              ],
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            ),
-          )
-        ],
-      ),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+              Text(
+                '${option.percent}%',
+                style: TextStyles.textDark16,
+              ),
+              Text(
+                '${option.content}',
+                style: TextStyles.textGrey14,
+              )
+            ]))
+      ]),
     );
   }
 }

@@ -246,7 +246,12 @@ class Option {
       this.image,
       this.praiseCount,
       this.perfect,
-      this.author});
+      this.author,
+      this.title,
+      this.optionPicUrl,
+      this.score,
+      this.percent,
+      this.selected});
 
   static Option fromMap(Map<String, dynamic> map) {
     if (map == null) return null;

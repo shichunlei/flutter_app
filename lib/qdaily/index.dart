@@ -41,7 +41,6 @@ export 'ui/vote_arc_view.dart';
 export 'lab/lab_i_say.dart';
 export 'lab/lab_ratio.dart';
 export 'lab/lab_vote.dart';
-export 'lab/lab_vote_result.dart';
 export 'lab/lab_you_guess.dart';
 export 'lab/labs.dart';
 export 'lab/lab_who.dart';

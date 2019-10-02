@@ -36,6 +36,6 @@ class _ItemOptionCheckboxState extends State<ItemOptionCheckbox> {
             ),
           ),
         ),
-        color: Color(0xFFF2F2F2));
+        color: Colors.white);
   }
 }

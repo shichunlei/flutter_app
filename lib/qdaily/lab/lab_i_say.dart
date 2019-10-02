@@ -20,8 +20,7 @@ class LabISayPage extends StatefulWidget {
     @required this.tag,
     this.isNew = false,
     this.post,
-  })
-      : assert(tag != null),
+  })  : assert(tag != null),
         super(key: key);
 
   @override
@@ -48,18 +47,18 @@ class _LabISayPageState extends State<LabISayPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      body: LoaderContainer(
-        onReload: () => getData(widget.post.id, RefreshType.REFRESH),
-        contentView: Column(
-          children: <Widget>[
-            Expanded(
-              child: EasyRefresh(
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: LoaderContainer(
+              onReload: () => getData(widget.post.id, RefreshType.REFRESH),
+              contentView: EasyRefresh(
                 footer: BallPulseFooter(),
                 header: MaterialHeader(),
                 onLoad: isLoadComplete
                     ? null
                     : () async =>
-                    getData(widget.post.id, RefreshType.LOAD_MORE),
+                        getData(widget.post.id, RefreshType.LOAD_MORE),
                 onRefresh: () async =>
                     getData(widget.post.id, RefreshType.REFRESH),
                 child: ListView(
@@ -98,14 +97,14 @@ class _LabISayPageState extends State<LabISayPage> {
                   ],
                 ),
               ),
+              loaderState: _status,
             ),
-            BottomAppbar(actions: <Widget>[
-              IconButton(icon: Icon(Feather.edit), onPressed: () {}),
-              IconButton(icon: Icon(Feather.share), onPressed: () {})
-            ]),
-          ],
-        ),
-        loaderState: _status,
+          ),
+          BottomAppbar(actions: <Widget>[
+            IconButton(icon: Icon(Feather.edit), onPressed: () {}),
+            IconButton(icon: Icon(Feather.share), onPressed: () {})
+          ]),
+        ],
       ),
     );
   }
