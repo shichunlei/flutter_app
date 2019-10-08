@@ -19,9 +19,6 @@ class ImageLoadView extends StatelessWidget {
   /// 加载中图片
   final String placeholder;
 
-  /// 点击事件
-  final VoidCallback onPressed;
-
   /// 圆角
   final BorderRadius borderRadius;
 
@@ -34,7 +31,6 @@ class ImageLoadView extends StatelessWidget {
     this.width,
     this.height,
     this.fit: BoxFit.fill,
-    this.onPressed,
     this.borderRadius: const BorderRadius.all(Radius.circular(0.0)),
     this.placeholder: "images/loading.png",
     this.imageType: ImageType.network,
@@ -77,8 +73,7 @@ class ImageLoadView extends StatelessWidget {
         break;
     }
 
-    return InkWell(
-        onTap: onPressed,
+    return Container(
         child: ClipRRect(borderRadius: borderRadius, child: imageWidget));
   }
 }

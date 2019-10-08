@@ -286,6 +286,7 @@ class ExpandStateBean {
           SubExpandBean('元素周期表', ElementsPage()),
           SubExpandBean('Question', QuizPage()),
           SubExpandBean('仿朋友圈', WeChatFriendsCircle()),
+          SubExpandBean('MVP Demo', MvpHomePage()),
           SubExpandBean('Flutter 第一个Demo', RandomWords()),
         ]),
   ];

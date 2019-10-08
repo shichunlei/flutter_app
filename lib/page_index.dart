@@ -163,6 +163,8 @@ export 'movie/page/movie_home_page.dart';
 
 export 'youdao/page/home.dart';
 
+export 'mvp/home_page.dart';
+
 export 'reader/home.dart';
 
 export 'res/colors.dart';
