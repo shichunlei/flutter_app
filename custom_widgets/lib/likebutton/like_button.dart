@@ -11,17 +11,19 @@ export 'model.dart';
 typedef LikeCallback = void Function(bool isLike);
 
 class LikeButton extends StatefulWidget {
-  final double width;
+  final double size;
   final LikeIcon icon;
   final Duration duration;
   final DotColor dotColor;
   final Color circleStartColor;
   final Color circleEndColor;
-  final LikeCallback onIconClicked;
+  final LikeCallback onClicked;
+  final bool isLiked;
+  final Color normalColor;
 
   const LikeButton({
     Key key,
-    @required this.width,
+    @required this.size,
     this.icon = const LikeIcon(
       Icons.favorite,
       iconColor: Colors.pinkAccent,
@@ -35,11 +37,13 @@ class LikeButton extends StatefulWidget {
     ),
     this.circleStartColor = const Color(0xFFFF5722),
     this.circleEndColor = const Color(0xFFFFC107),
-    this.onIconClicked,
+    this.onClicked,
+    this.isLiked: false,
+    this.normalColor: Colors.grey,
   }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _LikeButtonState();
+  createState() => _LikeButtonState();
 }
 
 class _LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
@@ -49,16 +53,18 @@ class _LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
   Animation<double> scale;
   Animation<double> dots;
 
-  bool isLiked = false;
+  bool _isLiked;
 
   @override
   void initState() {
     super.initState();
+    _isLiked = widget.isLiked;
+
     _controller = AnimationController(duration: widget.duration, vsync: this)
       ..addListener(() {
         setState(() {});
       });
-    _initAllAmimations();
+    _initAllAnimations();
   }
 
   @override
@@ -67,7 +73,7 @@ class _LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
       alignment: Alignment.center,
       children: <Widget>[
         CustomPaint(
-          size: Size(widget.width, widget.width),
+          size: Size(widget.size, widget.size),
           painter: DotPainter(
             currentProgress: dots.value,
             color1: widget.dotColor.dotPrimaryColor,
@@ -77,7 +83,7 @@ class _LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
           ),
         ),
         CustomPaint(
-          size: Size(widget.width * 0.35, widget.width * 0.35),
+          size: Size(widget.size * 0.35, widget.size * 0.35),
           painter: CirclePainter(
               innerCircleRadiusProgress: innerCircle.value,
               outerCircleRadiusProgress: outerCircle.value,
@@ -85,18 +91,18 @@ class _LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
               endColor: widget.circleEndColor),
         ),
         Container(
-          width: widget.width,
-          height: widget.width,
+          width: widget.size,
+          height: widget.size,
           alignment: Alignment.center,
           child: Transform.scale(
-            scale: isLiked ? scale.value : 1.0,
-            child: GestureDetector(
-              child: Icon(
+            scale: _isLiked ? scale.value : 1.0,
+            child: IconButton(
+              icon: Icon(
                 widget.icon.icon,
-                color: isLiked ? widget.icon.color : Colors.grey,
-                size: widget.width * 0.4,
+                color: _isLiked ? widget.icon.color : widget.normalColor,
+                size: widget.size * 0.4,
               ),
-              onTap: _onTap,
+              onPressed: _onTap,
             ),
           ),
         ),
@@ -106,17 +112,17 @@ class _LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
 
   void _onTap() {
     if (_controller.isAnimating) return;
-    isLiked = !isLiked;
-    if (isLiked) {
+    _isLiked = !_isLiked;
+    if (_isLiked) {
       _controller.reset();
       _controller.forward();
     } else {
       setState(() {});
     }
-    if (widget.onIconClicked != null) widget.onIconClicked(isLiked);
+    if (widget.onClicked != null) widget.onClicked(_isLiked);
   }
 
-  void _initAllAmimations() {
+  void _initAllAnimations() {
     outerCircle = Tween<double>(
       begin: 0.1,
       end: 1.0,

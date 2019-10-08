@@ -1,3 +1,4 @@
+import 'package:custom_widgets/likebutton/like_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/he_weather.dart';
 
@@ -21,9 +22,9 @@ class WeatherPage extends StatefulWidget {
 
 class WeatherPageState extends State<WeatherPage> {
   HeWeather weather;
-  HeWeather air;
+  HeWeather airData;
 
-  AirNowCity airNowCity;
+  Air air;
   NowBean now;
   List<DailyForecast> dailyForecast = [];
   List<Lifestyle> lifestyle = [];
@@ -39,11 +40,14 @@ class WeatherPageState extends State<WeatherPage> {
 
   bool favorite = false;
 
-  IconData _favoriteIcon = Icons.favorite_border;
+  String title;
 
   @override
   void initState() {
     super.initState();
+
+    title = widget.cityName;
+
     scrollController.addListener(() {
       var offset = scrollController.offset;
       if (offset < 0) {
@@ -63,7 +67,7 @@ class WeatherPageState extends State<WeatherPage> {
       }
     });
 
-    _getWeather(widget.cityName);
+    _getWeather(title);
   }
 
   @override
@@ -74,7 +78,7 @@ class WeatherPageState extends State<WeatherPage> {
 
   /// 根据城市名查询该城市天气预报
   _getWeather(String cityName) async {
-    air = await ApiService.getAir(cityName);
+    airData = await ApiService.getAir(cityName);
     weather = await ApiService.getHeWeather(cityName);
 
     if (weather != null) {
@@ -87,8 +91,8 @@ class WeatherPageState extends State<WeatherPage> {
       lifestyle = weather.lifestyle;
       hourly = weather.hourly;
     }
-    if (air != null) {
-      airNowCity = air.air_now_city;
+    if (airData != null) {
+      air = airData.air_now_city;
     }
 
     setState(() {});
@@ -104,26 +108,45 @@ class WeatherPageState extends State<WeatherPage> {
             height: Utils.navigationBarHeight,
             child: AppBar(
                 centerTitle: true,
-                title: Text('${widget.cityName}'),
+                title: GestureDetector(
+                  child: Row(children: <Widget>[
+                    Text('$title', style: TextStyle(fontSize: 17.0)),
+                    Icon(Icons.keyboard_arrow_down)
+                  ], mainAxisSize: MainAxisSize.min),
+                  onTap: () => pushNewPage(
+                    context,
+                    CityPage(),
+                    callBack: (value) {
+                      if (value != null && title != value) {
+                        weather = null;
+                        airData = null;
+
+                        setState(() {
+                          title = value;
+                        });
+                        _getWeather(title);
+                      }
+                    },
+                  ),
+                ),
                 elevation: 0.0,
                 backgroundColor: Color.fromARGB((navAlpha * 255 * 0.8).toInt(),
                     barColor.red, barColor.green, barColor.blue),
                 actions: <Widget>[
-                  IconButton(
-                      icon: Icon(_favoriteIcon, color: Colors.white),
-                      onPressed: () {
-                        _toggleFavorite();
-
-                        ///
-                        /// pushNewPage(context, CityPage());
-                      })
+                  LikeButton(
+                    size: 65,
+                    normalColor: Colors.white,
+                    onClicked: (bool isLiked) {
+                      favorite = isLiked;
+                    },
+                  )
                 ]))
       ]),
     );
   }
 
   Widget _buildContentView() {
-    if (null == weather || air == null) {
+    if (null == weather || airData == null) {
       return getLoadingWidget();
     }
     return RefreshIndicator(
@@ -131,25 +154,13 @@ class WeatherPageState extends State<WeatherPage> {
             padding: EdgeInsets.zero,
             controller: scrollController,
             child: Column(children: <Widget>[
-              NowView(now, dailyForecast: dailyForecast[0], air: airNowCity),
-              airNowCity == null ? Container() : AirView(airNowCity),
+              NowView(now, dailyForecast: dailyForecast[0], air: air),
+              air == null ? Container() : AirView(air),
               HourlyView(hourly),
               WeeklyView(dailyForecast),
-              LifestyleView(lifestyle),
+              lifestyle.length == 0 ? Container() : LifestyleView(lifestyle),
               SunView(this.widget.cityName)
             ])),
         onRefresh: () => _getWeather(widget.cityName));
-  }
-
-  void _toggleFavorite() {
-    setState(() {
-      if (favorite) {
-        favorite = false;
-        _favoriteIcon = Icons.favorite_border;
-      } else {
-        favorite = true;
-        _favoriteIcon = Icons.favorite;
-      }
-    });
   }
 }

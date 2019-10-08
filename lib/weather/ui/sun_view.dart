@@ -1,10 +1,11 @@
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/he_weather.dart';
-import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_app/ui/line.dart';
 import 'package:flutter_app/utils/date_format.dart';
+
+import 'sunrise_sunset_painter.dart';
 
 class SunView extends StatefulWidget {
   final String cityName;

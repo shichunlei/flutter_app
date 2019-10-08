@@ -6,7 +6,7 @@ import 'package:flutter_app/ui/line.dart';
 class NowView extends StatelessWidget {
   final NowBean now;
   final DailyForecast dailyForecast;
-  final AirNowCity air;
+  final Air air;
 
   NowView(this.now, {this.dailyForecast, this.air, Key key}) : super(key: key);
 
@@ -17,9 +17,9 @@ class NowView extends StatelessWidget {
       padding:
           EdgeInsets.only(top: 100.0, bottom: 10.0, left: 10.0, right: 10.0),
       child: Column(children: <Widget>[
-        Text(now.tmp, style: TextStyle(color: Colors.white, fontSize: 80.0)),
+        Text(now?.tmp, style: TextStyle(color: Colors.white, fontSize: 80.0)),
         SizedBox(height: 10.0),
-        Text(now.cond_txt,
+        Text(now?.cond_txt,
             style: TextStyle(color: Colors.white, fontSize: 17.0)),
         air == null
             ? Container()
@@ -51,7 +51,7 @@ class NowView extends StatelessWidget {
                 children: <Widget>[
                   Icon(CustomIcon.wind, color: Colors.white, size: 20.0),
                   SizedBox(width: 5.0),
-                  Text('${now.wind_dir}${now.wind_sc}级',
+                  Text('${now?.wind_dir}${now?.wind_sc}级',
                       style: TextStyle(color: Colors.white))
                 ]),
           ),
@@ -61,7 +61,7 @@ class NowView extends StatelessWidget {
                 children: <Widget>[
                   Icon(CustomIcon.hum, color: Colors.white, size: 20.0),
                   SizedBox(width: 5.0),
-                  Text(now.hum, style: TextStyle(color: Colors.white))
+                  Text(now?.hum, style: TextStyle(color: Colors.white))
                 ]),
           )
         ]),
@@ -71,7 +71,7 @@ class NowView extends StatelessWidget {
             child: Row(children: <Widget>[
               Icon(CustomIcon.pcpn, color: Colors.white, size: 20.0),
               SizedBox(width: 5.0),
-              Text('  降雨量：${now.pcpn} mm',
+              Text('  降雨量：${now?.pcpn} mm',
                   style: TextStyle(color: Colors.white))
             ]),
           ),
@@ -79,7 +79,7 @@ class NowView extends StatelessWidget {
             child: Row(children: <Widget>[
               Icon(CustomIcon.press, color: Colors.white, size: 20.0),
               SizedBox(width: 5.0),
-              Text(' 大气压：${now.pres} hPa',
+              Text(' 大气压：${now?.pres} hPa',
                   style: TextStyle(color: Colors.white))
             ]),
           )
@@ -90,14 +90,16 @@ class NowView extends StatelessWidget {
             child: Row(children: <Widget>[
               Icon(CustomIcon.vis, color: Colors.white, size: 20.0),
               SizedBox(width: 5.0),
-              Text('  能见度：${now.vis} km', style: TextStyle(color: Colors.white))
+              Text('  能见度：${now?.vis} km',
+                  style: TextStyle(color: Colors.white))
             ]),
           ),
           Expanded(
             child: Row(children: <Widget>[
               Icon(CustomIcon.cloud, color: Colors.white, size: 20.0),
               SizedBox(width: 5.0),
-              Text('  云  量：${now.cloud}', style: TextStyle(color: Colors.white))
+              Text('  云  量：${now?.cloud}',
+                  style: TextStyle(color: Colors.white))
             ]),
           )
         ])

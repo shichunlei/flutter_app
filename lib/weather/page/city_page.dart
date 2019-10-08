@@ -8,10 +8,6 @@ import 'package:rounded_letter/rounded_letter.dart';
 import '../../page_index.dart';
 
 class CityPage extends StatefulWidget {
-  final String currentCity;
-
-  CityPage({Key key, this.currentCity}) : super(key: key);
-
   @override
   createState() => CityPageState();
 }
@@ -26,9 +22,12 @@ class CityPageState extends State<CityPage> {
 
   LoaderState _status = LoaderState.Loading;
 
+  String currentCity;
+
   @override
   void initState() {
     super.initState();
+    currentCity = SpUtil.getString('current_city');
     getCityListData();
   }
 
@@ -59,10 +58,8 @@ class CityPageState extends State<CityPage> {
   }
 
   void getCityListData() async {
-    _hotCityList
-        .add(City(location: "${widget.currentCity}", firstLetter: "定位"));
-    _hotCityList
-        .add(City(location: "${widget.currentCity}", firstLetter: "常用"));
+    _hotCityList.add(City(location: "$currentCity", firstLetter: "定位"));
+    _hotCityList.add(City(location: "$currentCity", firstLetter: "常用"));
     _hotCityList.add(City(location: "北京", firstLetter: "常用"));
     _hotCityList.add(City(location: "广州", firstLetter: "热门"));
     _hotCityList.add(City(location: "成都", firstLetter: "热门"));
@@ -96,7 +93,7 @@ class CityPageState extends State<CityPage> {
               title: Text(model.location),
               leading:
                   RoundedLetter.withRandomColors(model.location[0], 40, 20),
-              onTap: () => pushNewPage(context, WeatherPage(model.location))))
+              onTap: () => Navigator.of(context).pop(model.location)))
     ]);
   }
 }

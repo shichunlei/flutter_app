@@ -14,10 +14,11 @@ class LikeButtonPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             LikeButton(
-              width: 80.0,
+              size: 80.0,
             ),
             LikeButton(
-              width: 80.0,
+              normalColor: Colors.white,
+              size: 80.0,
               circleStartColor: Color(0xff00ddff),
               circleEndColor: Color(0xff0099cc),
               dotColor: DotColor(
@@ -30,7 +31,7 @@ class LikeButtonPage extends StatelessWidget {
               ),
             ),
             LikeButton(
-              width: 80.0,
+              size: 80.0,
               duration: Duration(milliseconds: 500),
               circleStartColor: Color(0xff669900),
               circleEndColor: Color(0xff669900),

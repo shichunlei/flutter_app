@@ -57,7 +57,7 @@ dependencies: # 应用或包依赖的其它包或插件
   device_info: ^0.4.0+2
 
   # 网络请求库
-  dio: ^2.1.16
+  dio: 2.1.16
 
   # 英文单词库
   english_words: ^3.1.5
@@ -138,6 +138,8 @@ dependencies: # 应用或包依赖的其它包或插件
 
   # 滑动视差效果图片 https://github.com/pulyaevskiy/parallax-image
   parallax_image: ^0.3.1
+
+  path_drawing: ^0.4.1
 
   path_provider: ^1.2.0
 

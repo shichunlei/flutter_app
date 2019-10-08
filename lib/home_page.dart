@@ -84,7 +84,8 @@ class HomeStatePage extends State<HomePage> {
                 title: InkWell(
                   onTap: () {
                     if (city != '正在定位...') {
-                      pushNewPage(context, CityPage(currentCity: city));
+                      SpUtil.setString("current_city", city);
+                      pushNewPage(context, WeatherPage(city));
                     }
                   },
                   child: Column(

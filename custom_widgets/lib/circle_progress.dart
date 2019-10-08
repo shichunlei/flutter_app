@@ -11,13 +11,13 @@ class CircleProgressWidget extends StatefulWidget {
   final double strokeWidth; // 进度条宽度
   final List<Color> colors;
   final int duration; // 动画时长
-  final String lable;
-  final Color lableColor; // 进度文字颜色
-  final double lableFontSize;
-  final String topLable; // 进度下面的文字
-  final Color topLableColor; // 进度上面的文字颜色
-  final String bottomLable; // 进度下面的文字
-  final Color bottomLableColor; // 进度下面的文字颜色
+  final String label;
+  final Color labelColor; // 进度文字颜色
+  final double labelFontSize;
+  final String topLabel; // 进度下面的文字
+  final Color topLabelColor; // 进度上面的文字颜色
+  final String bottomLabel; // 进度下面的文字
+  final Color bottomLabelColor; // 进度下面的文字颜色
   final Color backgroundColor; // 圆背景色
   final int totalDegree; // 圆弧总的度数
   final bool strokeCapRound; // 两端是否为圆角
@@ -30,13 +30,13 @@ class CircleProgressWidget extends StatefulWidget {
       this.colors,
       this.duration: 1000,
       this.strokeWidth: 10.0,
-      this.topLable,
-      this.bottomLable,
-      this.lable: '',
-      this.lableFontSize = 30.0,
-      this.lableColor,
-      this.topLableColor,
-      this.bottomLableColor,
+      this.topLabel,
+      this.bottomLabel,
+      this.label: '',
+      this.labelFontSize = 30.0,
+      this.labelColor,
+      this.topLabelColor,
+      this.bottomLabelColor,
       this.backgroundColor,
       this.totalDegree: 360,
       this.strokeCapRound: true})
@@ -75,6 +75,7 @@ class _CircleProgressWidgetState extends State<CircleProgressWidget>
     return Transform.rotate(
       angle: -degToRad(widget.totalDegree / 2 + 90),
       child: CustomPaint(
+        size: Size(double.infinity, double.infinity),
         painter: _CircleProgressPainter(
             _controller.value,
             widget.progressColor ?? Colors.redAccent,
@@ -89,13 +90,13 @@ class _CircleProgressWidgetState extends State<CircleProgressWidget>
           child: Center(
             child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
               Offstage(
-                offstage: widget.topLable == null,
+                offstage: widget.topLabel == null,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Text('${widget.topLable ?? '2'}',
+                    Text('${widget.topLabel ?? '2'}',
                         style: TextStyle(
-                            color: widget.topLableColor ?? Colors.white,
+                            color: widget.topLabelColor ?? Colors.white,
                             fontSize: 14.0)),
                     SizedBox(height: 20)
                   ],
@@ -106,32 +107,32 @@ class _CircleProgressWidgetState extends State<CircleProgressWidget>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                        '${widget.lable ?? (_controller.value * 100).toStringAsFixed(0)}',
+                        '${widget.label ?? (_controller.value * 100).toStringAsFixed(0)}',
                         style: TextStyle(
-                            color: widget.lableColor ?? Colors.white,
-                            fontSize: widget.lableFontSize)),
+                            color: widget.labelColor ?? Colors.white,
+                            fontSize: widget.labelFontSize)),
                     Offstage(
-                      offstage: widget.lable != null,
+                      offstage: widget.label != null,
                       child: Column(children: <Widget>[
                         SizedBox(width: 5),
                         Text(
                           '%',
                           style: TextStyle(
-                              color: widget.lableColor ?? Colors.white,
+                              color: widget.labelColor ?? Colors.white,
                               fontSize: 18.0),
                         )
                       ]),
                     ),
                   ]),
               Offstage(
-                offstage: widget.bottomLable == null,
+                offstage: widget.bottomLabel == null,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     SizedBox(height: 10),
-                    Text('${widget.bottomLable ?? '1'}',
+                    Text('${widget.bottomLabel ?? '1'}',
                         style: TextStyle(
-                            color: widget.bottomLableColor ?? Colors.white,
+                            color: widget.bottomLabelColor ?? Colors.white,
                             fontSize: 14.0))
                   ],
                 ),

@@ -3,7 +3,6 @@ import 'dart:math' as math;
 
 import '../utils.dart';
 
-
 class DotPainter extends CustomPainter {
   final int dotCount;
   double outerDotsPositionAngle = 51.42;
@@ -154,7 +153,5 @@ class DotPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
-  }
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }

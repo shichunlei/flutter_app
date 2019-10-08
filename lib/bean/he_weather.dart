@@ -24,10 +24,10 @@ class HeWeather {
   List<Hourly> hourly;
 
   /// AQI城市实况
-  AirNowCity air_now_city;
+  Air air_now_city;
 
   /// AQI站点实况
-  List<AirNowStation> air_now_station;
+  List<Air> air_now_station;
 
   /// 日出日落
   List<SunriseSunset> sunrise_sunset;
@@ -40,9 +40,8 @@ class HeWeather {
         ? null
         : Basic.fromMap(map['basic']);
 
-    he_weather.air_now_city = map['air_now_city'] == null
-        ? null
-        : AirNowCity.fromMap(map['air_now_city']);
+    he_weather.air_now_city =
+        map['air_now_city'] == null ? null : Air.fromMap(map['air_now_city']);
     he_weather.now = map['now'] == null ? null : NowBean.fromMap(map['now']);
     he_weather.update =
         map['update'] == null ? null : UpdateBean.fromMap(map['update']);
@@ -59,8 +58,8 @@ class HeWeather {
       ..addAll((map['hourly'] as List ?? []).map((o) => Hourly.fromMap(o)));
 
     he_weather.air_now_station = List()
-      ..addAll((map['air_now_station'] as List ?? [])
-          .map((o) => AirNowStation.fromMap(o)));
+      ..addAll(
+          (map['air_now_station'] as List ?? []).map((o) => Air.fromMap(o)));
 
     he_weather.sunrise_sunset = List()
       ..addAll((map['sunrise_sunset'] as List ?? [])
@@ -458,7 +457,7 @@ class DailyForecast {
   }
 }
 
-class AirNowStation {
+class Air {
   /**
    * air_sta : "万寿西宫"
    * aqi : "82"
@@ -491,65 +490,24 @@ class AirNowStation {
   String qlty;
   String so2;
 
-  static AirNowStation fromMap(Map<String, dynamic> map) {
-    AirNowStation air_now_station = AirNowStation();
-    air_now_station.air_sta = map['air_sta'];
-    air_now_station.aqi = map['aqi'];
-    air_now_station.asid = map['asid'];
-    air_now_station.co = map['co'];
-    air_now_station.lat = map['lat'];
-    air_now_station.lon = map['lon'];
-    air_now_station.main = map['main'];
-    air_now_station.no2 = map['no2'];
-    air_now_station.o3 = map['o3'];
-    air_now_station.pm10 = map['pm10'];
-    air_now_station.pm25 = map['pm25'];
-    air_now_station.pub_time = map['pub_time'];
-    air_now_station.qlty = map['qlty'];
-    air_now_station.so2 = map['so2'];
-    return air_now_station;
-  }
-}
-
-class AirNowCity {
-  /**
-   * aqi : "75"
-   * qlty : "良"
-   * main : "PM2.5"
-   * pm25 : "55"
-   * pm10 : "46"
-   * no2 : "26"
-   * so2 : "5"
-   * co : "0.7"
-   * o3 : "82"
-   * pub_time : "2019-03-04 12:00"
-   */
-
-  String aqi;
-  String qlty;
-  String main;
-  String pm25;
-  String pm10;
-  String no2;
-  String so2;
-  String co;
-  String o3;
-  String pub_time;
-
   Color aqiColor;
 
-  static AirNowCity fromMap(Map<String, dynamic> map) {
-    AirNowCity air_now_city = AirNowCity();
-    air_now_city.aqi = map['aqi'];
-    air_now_city.qlty = map['qlty'];
-    air_now_city.main = map['main'];
-    air_now_city.pm25 = map['pm25'];
-    air_now_city.pm10 = map['pm10'];
-    air_now_city.no2 = map['no2'];
-    air_now_city.so2 = map['so2'];
-    air_now_city.co = map['co'];
-    air_now_city.o3 = map['o3'];
-    air_now_city.pub_time = map['pub_time'];
+  static Air fromMap(Map<String, dynamic> map) {
+    Air air = Air();
+    air.air_sta = map['air_sta'];
+    air.aqi = map['aqi'];
+    air.asid = map['asid'];
+    air.co = map['co'];
+    air.lat = map['lat'];
+    air.lon = map['lon'];
+    air.main = map['main'];
+    air.no2 = map['no2'];
+    air.o3 = map['o3'];
+    air.pm10 = map['pm10'];
+    air.pm25 = map['pm25'];
+    air.pub_time = map['pub_time'];
+    air.qlty = map['qlty'];
+    air.so2 = map['so2'];
 
     Color _aqiColor;
     switch (map['qlty']) {
@@ -575,9 +533,9 @@ class AirNowCity {
         _aqiColor = Colors.grey;
         break;
     }
-    air_now_city.aqiColor = _aqiColor;
+    air.aqiColor = _aqiColor;
 
-    return air_now_city;
+    return air;
   }
 }
 
