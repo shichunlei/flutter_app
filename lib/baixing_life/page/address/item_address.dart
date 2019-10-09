@@ -7,10 +7,8 @@ import '../../index.dart';
 
 class ItemAddress extends StatefulWidget {
   final Address address;
-  final AddressProvider addressProvider;
 
-  ItemAddress({Key key, @required this.address, this.addressProvider})
-      : super(key: key);
+  ItemAddress({Key key, @required this.address}) : super(key: key);
 
   @override
   createState() => _ItemAddressState();
@@ -145,9 +143,7 @@ class _ItemAddressState extends State<ItemAddress>
                                     context,
                                     CreateEditAddressPage(
                                         title: '${S.of(context).eidt_address}',
-                                        id: widget.address.id,
-                                        addressProvider:
-                                            widget.addressProvider));
+                                        id: widget.address.id));
                               },
                               child: Text('${S.of(context).edit}',
                                   style: TextStyles.textBlue14)),

@@ -28,7 +28,7 @@ class _MinePageState extends State<MinePage> {
   Widget build(BuildContext context) {
     return Store.connect<UserModel>(builder: (_, UserModel userModel, __) {
       return Scaffold(
-          backgroundColor: Colors.grey[200],
+          backgroundColor: Colors.white,
           body: Stack(
             children: <Widget>[
               SingleChildScrollView(
@@ -120,7 +120,6 @@ class _MinePageState extends State<MinePage> {
                           : null,
                       textAlign: TextAlign.right),
                   Divider(),
-                  Container(height: 1000)
                 ]),
               ),
               Container(

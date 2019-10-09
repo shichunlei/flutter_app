@@ -37,6 +37,7 @@ class _InputTextPageState extends State<InputTextPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Text(widget.title),
         actions: <Widget>[
@@ -51,15 +52,17 @@ class _InputTextPageState extends State<InputTextPage> {
         padding: const EdgeInsets.only(
             top: 21.0, left: 16.0, right: 16.0, bottom: 16.0),
         child: TextField(
-            maxLength: widget.maxLength,
-            maxLines: widget.maxLines,
-            autofocus: true,
-            controller: _controller,
-            keyboardType: widget.keyboardType,
-            decoration: InputDecoration(
-                hintText: widget.hintText,
-                border: InputBorder.none,
-                hintStyle: TextStyles.textGreyC14)),
+          maxLength: widget.maxLength,
+          maxLines: widget.maxLines,
+          autofocus: true,
+          controller: _controller,
+          keyboardType: widget.keyboardType,
+          decoration: InputDecoration(
+              hintText: widget.hintText,
+              border: InputBorder.none,
+              hintStyle: TextStyles.textGreyC14),
+          style: TextStyle(color: Colors.grey, fontSize: 14),
+        ),
       ),
     );
   }

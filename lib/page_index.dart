@@ -20,6 +20,7 @@ export 'widget/icon_widget.dart';
 export 'widget/image_widget.dart';
 export 'widget/inherited_widget.dart';
 export 'widget/load_image_widget.dart';
+export 'widget/notification_listener.dart';
 export 'widget/qr_image_wiget.dart';
 export 'widget/range_slider_demo.dart';
 export 'widget/rounded_letter_widget.dart';

@@ -5,22 +5,8 @@ import 'package:flutter_app/generated/i18n.dart';
 import '../../../page_index.dart';
 import '../../index.dart';
 
-class AddressPage extends StatefulWidget {
+class AddressPage extends StatelessWidget {
   AddressPage({Key key}) : super(key: key);
-
-  @override
-  createState() => _AddressPageState();
-}
-
-class _AddressPageState extends State<AddressPage> {
-  AddressProvider provider;
-
-  @override
-  void initState() {
-    super.initState();
-
-    provider = AddressProvider();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,22 +21,40 @@ class _AddressPageState extends State<AddressPage> {
                   onPressed: () => pushNewPage(
                       context,
                       CreateEditAddressPage(
-                          title: '${S.of(context).create_address}',
-                          addressProvider: provider)))
+                          title: '${S.of(context).create_address}')))
             ]),
-        body: Store.connect<AddressModel>(builder:
-            (BuildContext context, AddressModel snapshot, Widget child) {
-          return LoaderContainer(
-              loaderState: snapshot.status,
-              contentView: ListView.separated(
-                  physics: BouncingScrollPhysics(),
-                  padding: EdgeInsets.only(top: 8, bottom: 8),
-                  itemBuilder: (context, index) => ItemAddress(
-                      address: snapshot.addresses[index],
-                      addressProvider: provider),
-                  separatorBuilder: (_, int index) =>
-                      Container(height: 5, color: Colors.grey[200]),
-                  itemCount: snapshot.addresses.length));
-        }));
+        body: FutureBuilder(
+          future: Store.value<AddressModel>(context).getAddresses(),
+          builder: (_, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                return Text('Press button to start.');
+              case ConnectionState.active:
+              case ConnectionState.waiting:
+                return Center(child: getLoadingWidget());
+              case ConnectionState.done:
+                if (snapshot.hasError) {
+                  debugPrint(snapshot.error);
+                  return ErrorPage();
+                }
+
+                List<Address> items = snapshot.data;
+
+                if (items == null || items.length == 0) {
+                  return EmptyPage();
+                }
+
+                return ListView.separated(
+                    physics: BouncingScrollPhysics(),
+                    padding: EdgeInsets.only(top: 8, bottom: 8),
+                    itemBuilder: (context, index) =>
+                        ItemAddress(address: items[index]),
+                    separatorBuilder: (_, int index) =>
+                        Container(height: 5, color: Colors.grey[200]),
+                    itemCount: items.length);
+            }
+            return null;
+          },
+        ));
   }
 }

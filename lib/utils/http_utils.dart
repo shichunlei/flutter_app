@@ -79,7 +79,13 @@ class HttpUtils {
         }))
 
         /// 添加 LogInterceptor 拦截器来自动打印请求、响应日志
-        ..add(LogInterceptor());
+        ..add(LogInterceptor(
+          error: true,
+          request: false,
+          responseBody: true,
+          responseHeader: false,
+          requestHeader: false,
+        ));
     }
   }
 

@@ -169,6 +169,7 @@ class ExpandStateBean {
           SubExpandBean('CheckSwitch', CheckSwitchWidget()),
           SubExpandBean('主题', ThemeSample()),
           SubExpandBean('ColorFiltered', ColorFilteredWidget()),
+          SubExpandBean('ScrollNotification', ScrollNotificationDemo()),
         ]),
     ExpandStateBean(
         leading: Icons.filter_2,

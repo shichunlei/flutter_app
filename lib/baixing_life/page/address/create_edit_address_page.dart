@@ -12,10 +12,8 @@ import '../../index.dart';
 class CreateEditAddressPage extends StatefulWidget {
   final String title;
   final int id;
-  final AddressProvider addressProvider;
 
-  CreateEditAddressPage(
-      {Key key, @required this.title, this.id, @required this.addressProvider})
+  CreateEditAddressPage({Key key, @required this.title, this.id: -1})
       : super(key: key);
 
   @override
@@ -53,9 +51,13 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
 
   LoaderState _status = LoaderState.NoAction;
 
+  AddressProvider addressProvider;
+
   @override
   void initState() {
     super.initState();
+
+    addressProvider = AddressProvider();
 
     _nameController.addListener(_verify);
     _phoneController.addListener(_verify);
@@ -107,7 +109,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
   }
 
   getAddressData(int id) async {
-    await widget.addressProvider.getAddress(id).then((address) {
+    await addressProvider.getAddress(id).then((address) {
       _tag = address?.tag;
       _isDefault = address?.isDefault;
 
@@ -118,7 +120,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
       _addressController.text = address?.address;
       _nameController.text = address?.name;
       _phoneController.text = address?.phone;
-      _zipCodeController.text = address?.zipcode;
+      _zipCodeController.text = address?.zipCode;
 
       _verify();
 
@@ -259,7 +261,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
         id: widget.id,
         name: _nameController.text,
         phone: _phoneController.text,
-        zipcode: _zipCodeController.text ?? '',
+        zipCode: _zipCodeController.text ?? '',
         address: _addressController.text,
         tag: _tag,
         isDefault: _isDefault,

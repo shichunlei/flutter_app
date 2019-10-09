@@ -7,34 +7,24 @@ import '../../../index.dart';
 class AddressModel extends ChangeNotifier {
   List<Address> _addresses = [];
 
-  LoaderState _status = LoaderState.Loading;
-
   AddressProvider provider;
 
   AddressModel() {
     provider = AddressProvider();
-
-    getAddresses();
   }
-
-  get status => _status;
 
   List<Address> get addresses => _addresses;
 
-  getAddresses() async {
+  /// 获取地址
+  Future<List<Address>> getAddresses() async {
     _addresses = await provider.getAddressList();
-    if (_addresses.length > 0) {
-      _status = LoaderState.Succeed;
-    } else {
-      _status = LoaderState.NoData;
-    }
     debugPrint('===========================getAddresses');
-    notifyListeners();
+    return _addresses;
   }
 
   /// 新建或修改地址
   ///
-  insertOrReplaceAddress(
+  Future<void> insertOrReplaceAddress(
       BuildContext context, Address address, String title) async {
     int success = await provider.insertOrReplaceToDB(address);
 
@@ -42,6 +32,7 @@ class AddressModel extends ChangeNotifier {
       Toast.show(context, '$title${S.of(context).success}！');
 
       getAddresses();
+      refresh();
       Navigator.of(context).pop();
     } else {
       Toast.show(context, '$title${S.of(context).fail}！');
@@ -50,12 +41,14 @@ class AddressModel extends ChangeNotifier {
 
   /// 设置默认地址
   ///
-  updateAddressDefault(BuildContext context, int id, bool isDefault) async {
+  Future<void> updateAddressDefault(
+      BuildContext context, int id, bool isDefault) async {
     bool success = await provider.updateAddressDefault(id, isDefault);
 
     if (success) {
       Toast.show(context, '设置成功');
       getAddresses();
+      refresh();
     } else {
       Toast.show(context, '设置失败');
     }
@@ -63,17 +56,22 @@ class AddressModel extends ChangeNotifier {
 
   /// 删除地址
   ///
-  deleteAddress(BuildContext context, int id) async {
+  Future<void> deleteAddress(BuildContext context, int id) async {
     int success = await provider.deleteAddress(id);
 
     if (success == 1) {
       Toast.show(context, '删除成功');
 
       getAddresses();
+      refresh();
     } else {
       Toast.show(context, '删除失败');
     }
 
     Navigator.of(context).pop();
+  }
+
+  void refresh() {
+    notifyListeners();
   }
 }

@@ -4,37 +4,22 @@ import '../../page_index.dart';
 import '../index.dart';
 
 class BookModel extends ChangeNotifier {
-  LoaderState _status = LoaderState.Loading;
-
   BookShelfDBHelper dbHelper;
 
   BookModel() {
     dbHelper = BookShelfDBHelper();
-
-    getBooks();
   }
 
-  LoaderState get status => _status;
-
-  List<Books> _books = [];
-
-  List<Books> get books => _books;
-
   /// 得到书架上所有的书籍
-  getBooks() async {
-    _books = await dbHelper.getAllBooks();
-    if (_books.length > 0) {
-      _status = LoaderState.Succeed;
-    } else {
-      _status = LoaderState.NoData;
-    }
+  Future<List<Books>> getBooks() async {
+    List<Books> books = await dbHelper.getAllBooks();
 
-    notifyListeners();
+    return books;
   }
 
   /// 删除书架上ID为[bookId]的书籍
   ///
-  deleteBook(BuildContext context, String bookId) async {
+  Future deleteBook(BuildContext context, String bookId) async {
     if (await dbHelper.deleteBook(bookId)) {
       getBook(bookId);
 
@@ -48,9 +33,10 @@ class BookModel extends ChangeNotifier {
 
   /// 删除书架上的全部书籍
   ///
-  deleteAllBook(BuildContext context) async {
+  Future deleteAllBook(BuildContext context) async {
     if (await dbHelper.deleteAllBook()) {
       getBooks();
+      refresh();
       Toast.show(context, '删除成功');
     } else {
       Toast.show(context, '删除失败');
@@ -61,7 +47,7 @@ class BookModel extends ChangeNotifier {
 
   /// 得到书籍ID为[bookId]的书籍信息
   ///
-  getBook(String bookId) async {
+  Future getBook(String bookId) async {
     _book = await dbHelper.getBook(bookId);
 
     if (null != _book) {
@@ -72,11 +58,12 @@ class BookModel extends ChangeNotifier {
         'getBook($bookId)============================${_book == null ? "不存在" : _book.toMap()}');
 
     getBooks();
+    refresh();
   }
 
   /// 加入书架
   ///
-  insertOrReplaceToDB(BuildContext context, Books book) async {
+  Future insertOrReplaceToDB(BuildContext context, Books book) async {
     int _id = await dbHelper.insertOrReplaceToDB(book);
 
     if (_id > 0) {
@@ -97,7 +84,7 @@ class BookModel extends ChangeNotifier {
 
   /// 更新书籍ID为[id]的书籍
   ///
-  updateBook(String id,
+  Future updateBook(String id,
       {double progress,
       int chapterIndex,
       String link,
@@ -143,7 +130,7 @@ class BookModel extends ChangeNotifier {
   List<Chapters> get chapters => _chapters;
 
   /// 得到当前书籍的所有章节
-  getChapters(String bookId) async {
+  Future getChapters(String bookId) async {
     BtocResult result = await ApiService.getBookBtocSource(bookId);
     if (result != null) {
       _chapters = await ApiService.getBookChapters(result.id);
@@ -159,7 +146,7 @@ class BookModel extends ChangeNotifier {
 
   bool get isExist => _isExist;
 
-  updateIsExist(String bookId) async {
+  Future updateIsExist(String bookId) async {
     _isExist = await dbHelper.isExist(bookId);
     debugPrint('getIsExist($bookId)=========$_isExist');
 
@@ -170,7 +157,7 @@ class BookModel extends ChangeNotifier {
       _chapterIndex = 0;
     }
 
-    notifyListeners();
+    refresh();
   }
 
   /// 当前书籍
@@ -180,6 +167,10 @@ class BookModel extends ChangeNotifier {
 
   setBook(Books book) {
     _currentBook = book;
+    refresh();
+  }
+
+  void refresh() {
     notifyListeners();
   }
 }
