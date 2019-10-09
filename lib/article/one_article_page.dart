@@ -17,11 +17,6 @@ class _OneArticlePageState extends State<OneArticlePage>
   TabController _tabController;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void dispose() {
     _tabController?.dispose();
     super.dispose();
@@ -40,55 +35,53 @@ class _OneArticlePageState extends State<OneArticlePage>
                   icon: Icon(Icons.menu),
                   onPressed: () => _showModalBottomSheet())
             ]),
-        body: _buildBodyView());
+        body: Store.connect<ArticleModel>(
+            builder: (_, ArticleModel articleModel, __) {
+          return LoaderContainer(
+              contentView: bodyView(articleModel),
+              loaderState: articleModel.status);
+        }));
   }
 
-  Widget _buildBodyView() {
-    return Store.connect<ArticleModel>(
-        builder: (_, ArticleModel articleModel, __) {
-      return LoaderContainer(
-          contentView: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              child: Container(
-                  alignment: Alignment.topCenter,
-                  child: Column(children: <Widget>[
-                    Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20.0),
-                        child: Text(articleModel.article?.title ?? '',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: articleModel.getTextSize() + 1))),
-                    Label(
-                        triangleHeight: 10.0,
-                        edge: Edge.RIGHT,
-                        child: Container(
-                            padding: const EdgeInsets.only(
-                                left: 8.0, right: 18.0, top: 8.0, bottom: 8.0),
-                            color:
-                                themeColors[articleModel.getThemeColorIndex()],
-                            child: Text(articleModel.article?.author ?? '',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize:
-                                        articleModel.getTextSize() - 1)))),
-                    Html(
-                        data: articleModel.article?.content ?? '',
-                        defaultTextStyle:
-                            TextStyle(fontSize: articleModel.getTextSize()),
-                        padding: EdgeInsets.all(8.0),
-                        blockSpacing: 2.0,
-                        useRichText: true,
-                        linkStyle: const TextStyle(
-                            color: Colors.redAccent,
-                            decorationColor: Colors.redAccent,
-                            decoration: TextDecoration.underline),
-                        onLinkTap: (url) {
-                          debugPrint("Opening $url...");
-                        })
-                  ]))),
-          loaderState: articleModel.status);
-    });
+  Widget bodyView(ArticleModel articleModel) {
+    return SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Container(
+            alignment: Alignment.topCenter,
+            child: Column(children: <Widget>[
+              Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20.0),
+                  child: Text(articleModel.article?.title ?? '',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: articleModel.getTextSize() + 1))),
+              Label(
+                  triangleHeight: 10.0,
+                  edge: Edge.RIGHT,
+                  child: Container(
+                      padding: const EdgeInsets.only(
+                          left: 8.0, right: 18.0, top: 8.0, bottom: 8.0),
+                      color: themeColors[articleModel.getThemeColorIndex()],
+                      child: Text(articleModel.article?.author ?? '',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: articleModel.getTextSize() - 1)))),
+              Html(
+                  data: articleModel.article?.content ?? '',
+                  defaultTextStyle:
+                      TextStyle(fontSize: articleModel.getTextSize()),
+                  padding: EdgeInsets.all(8.0),
+                  blockSpacing: 2.0,
+                  useRichText: true,
+                  linkStyle: const TextStyle(
+                      color: Colors.redAccent,
+                      decorationColor: Colors.redAccent,
+                      decoration: TextDecoration.underline),
+                  onLinkTap: (url) {
+                    debugPrint("Opening $url...");
+                  })
+            ])));
   }
 
   void _showModalBottomSheet() {

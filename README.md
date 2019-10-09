@@ -282,8 +282,9 @@ A new Flutter application.
 | 动画字体 | [animated_text_kit](https://github.com/aagarwal1012/Animated-Text-Kit) | ![](https://img.shields.io/pub/v/animated_text_kit.svg) |
 | 集成icons库 |[flutter_vector_icons](https://github.com/pd4d10/flutter-vector-icons)| ![](https://img.shields.io/pub/v/flutter_vector_icons.svg) |
 | 仿京东地址选择器 | [flutter_jd_address_selector](https://github.com/shichunlei/flutter_jd_address_selector) | 0.0.1 |
-| cupertino_range_slider | [cupertino_range_slider](https://github.com/mahmed8003/cupertino_range_slider) | ![](https://img.shields.io/pub/v/cupertino_range_slider.svg) |
-| flutter_circular_slider | [flutter_jd_address_selector](https://github.com/davidanaya/flutter-circular-slider) | ![](https://img.shields.io/pub/v/flutter_circular_slider.svg) |
+| SleekCircularSlider | [sleek_circular_slider](https://github.com/matthewfx/sleek_circular_slider) | ![](https://img.shields.io/pub/v/sleek_circular_slider.svg) |
+| CupertinoRangeSlider | [cupertino_range_slider](https://github.com/mahmed8003/cupertino_range_slider) | ![](https://img.shields.io/pub/v/cupertino_range_slider.svg) |
+| FlutterCircularSlider | [flutter_circular_slider](https://github.com/davidanaya/flutter-circular-slider) | ![](https://img.shields.io/pub/v/flutter_circular_slider.svg) |
 | Range Slider | [range_slider](https://github.com/boeledi/RangeSlider) | ![](https://img.shields.io/pub/v/flutter_range_slider.svg) | 
 | 径向菜单 | [UnicornDialer](https://github.com/tiagojencmartins/unicornspeeddial) | ![](https://img.shields.io/pub/v/unicorndial.svg) | 
 | 下拉菜单 | [DropDownMenu](https://github.com/best-flutter/flutter_dropdown_menu) | ![](https://img.shields.io/pub/v/dropdown_menu.svg) | 

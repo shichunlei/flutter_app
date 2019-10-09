@@ -8,7 +8,7 @@ class CircleProgressWidget extends StatefulWidget {
   final double progress; // 进度 0～1
   final Color progressColor; // 进度条主色
   final Color ringColor; // 圆环颜色
-  final double strokeWidth; // 进度条宽度
+  final double strokeWidth; // 圆环宽度
   final List<Color> colors;
   final int duration; // 动画时长
   final String label;
@@ -41,6 +41,7 @@ class CircleProgressWidget extends StatefulWidget {
       this.totalDegree: 360,
       this.strokeCapRound: true})
       : assert(progress >= 0 && progress <= 1),
+        assert(strokeWidth >= 8),
         super(key: key);
 
   @override
@@ -72,74 +73,68 @@ class _CircleProgressWidgetState extends State<CircleProgressWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Transform.rotate(
-      angle: -degToRad(widget.totalDegree / 2 + 90),
-      child: CustomPaint(
-        size: Size(double.infinity, double.infinity),
-        painter: _CircleProgressPainter(
-            _controller.value,
-            widget.progressColor ?? Colors.redAccent,
-            widget.ringColor ?? Colors.white54,
-            widget.strokeWidth,
-            widget.colors,
-            widget.backgroundColor ?? Colors.transparent,
-            widget.totalDegree,
-            widget.strokeCapRound),
-        child: Transform.rotate(
-          angle: degToRad(widget.totalDegree / 2 + 90),
-          child: Center(
-            child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              Offstage(
-                offstage: widget.topLabel == null,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Text('${widget.topLabel ?? '2'}',
-                        style: TextStyle(
-                            color: widget.topLabelColor ?? Colors.white,
-                            fontSize: 14.0)),
-                    SizedBox(height: 20)
-                  ],
-                ),
-              ),
-              Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                        '${widget.label ?? (_controller.value * 100).toStringAsFixed(0)}',
-                        style: TextStyle(
-                            color: widget.labelColor ?? Colors.white,
-                            fontSize: widget.labelFontSize)),
-                    Offstage(
-                      offstage: widget.label != null,
-                      child: Column(children: <Widget>[
-                        SizedBox(width: 5),
-                        Text(
-                          '%',
-                          style: TextStyle(
-                              color: widget.labelColor ?? Colors.white,
-                              fontSize: 18.0),
-                        )
-                      ]),
-                    ),
-                  ]),
-              Offstage(
-                offstage: widget.bottomLabel == null,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    SizedBox(height: 10),
-                    Text('${widget.bottomLabel ?? '1'}',
-                        style: TextStyle(
-                            color: widget.bottomLabelColor ?? Colors.white,
-                            fontSize: 14.0))
-                  ],
-                ),
-              ),
-            ]),
+    return CustomPaint(
+      size: Size(double.infinity, double.infinity),
+      painter: _CircleProgressPainter(
+          _controller.value,
+          widget.progressColor ?? Colors.redAccent,
+          widget.ringColor ?? Colors.white54,
+          widget.strokeWidth,
+          widget.colors,
+          widget.backgroundColor ?? Colors.transparent,
+          widget.totalDegree,
+          widget.strokeCapRound),
+      child: Center(
+        child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+          Offstage(
+            offstage: widget.topLabel == null,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text('${widget.topLabel ?? '2'}',
+                    style: TextStyle(
+                        color: widget.topLabelColor ?? Colors.white,
+                        fontSize: 14.0)),
+                SizedBox(height: 20)
+              ],
+            ),
           ),
-        ),
+          Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                    '${widget.label ?? (_controller.value * 100).toStringAsFixed(0)}',
+                    style: TextStyle(
+                        color: widget.labelColor ?? Colors.white,
+                        fontSize: widget.labelFontSize)),
+                Offstage(
+                  offstage: widget.label != null,
+                  child: Column(children: <Widget>[
+                    SizedBox(width: 5),
+                    Text(
+                      '%',
+                      style: TextStyle(
+                          color: widget.labelColor ?? Colors.white,
+                          fontSize: 18.0),
+                    )
+                  ]),
+                ),
+              ]),
+          Offstage(
+            offstage: widget.bottomLabel == null,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                SizedBox(height: 10),
+                Text('${widget.bottomLabel ?? '1'}',
+                    style: TextStyle(
+                        color: widget.bottomLabelColor ?? Colors.white,
+                        fontSize: 14.0))
+              ],
+            ),
+          ),
+        ]),
       ),
     );
   }
@@ -179,7 +174,7 @@ class _CircleProgressPainter extends CustomPainter {
           ..strokeCap = strokeCapRound ? StrokeCap.round : StrokeCap.butt,
         progressPaint = Paint()
           ..style = PaintingStyle.stroke
-          ..strokeWidth = strokeWidth
+          ..strokeWidth = strokeWidth - 4
           ..isAntiAlias = true
           ..strokeCap = strokeCapRound ? StrokeCap.round : StrokeCap.butt;
 
@@ -187,19 +182,13 @@ class _CircleProgressPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
 //    size = Size.fromRadius(radius);
     // 画布大小（取画布宽、高中小的那个值）
-    final canvasWidth = size.width > size.height ? size.height : size.width;
+    final canvasWidth = min(size.width, size.height);
     // 圆心坐标
     final center = Offset(size.width / 2, size.height / 2);
     // 外圆半径
     final centerRadius = canvasWidth / 2;
-    // 进度条宽度
-    final progressStrokeWidth = strokeWidth;
-    // 圆环宽度
-    final ringStrokeWidth = strokeWidth;
     // 圆环半径
-    final radius = canvasWidth / 2 - ringStrokeWidth / 2;
-    // 进度条弧度
-    final double radians = degToRad(totalDegree * progress);
+    final radius = canvasWidth / 2 - strokeWidth / 2;
 
     ///////////////////////////////// 绘制实体外圆 ////////////////////////////////
     // 定义一个外圆画笔
@@ -211,13 +200,11 @@ class _CircleProgressPainter extends CustomPainter {
     canvas.drawCircle(center, centerRadius, backgroundPaint);
 
     ///////////////////////////////// 绘制圆环 ////////////////////////////////////
-    double startAngle =
-        strokeCapRound ? asin(progressStrokeWidth * 0.5 / radius) : 0.0;
-    double sweepAngle = radians - startAngle;
+    double startAngle = strokeCapRound ? -degToRad(totalDegree / 2 + 90) : 0.0;
+    double sweepAngle = degToRad(totalDegree * progress);
 
     // 绘制背景圆环
-    canvas.drawArc(
-        rect, startAngle, degToRad(totalDegree) - startAngle, false, ringPaint);
+    canvas.drawArc(rect, startAngle, degToRad(totalDegree), false, ringPaint);
     /////////////////////////////// 绘制进度条 ////////////////////////////////////
     var _colors = colors;
     if (_colors == null) {
@@ -225,9 +212,12 @@ class _CircleProgressPainter extends CustomPainter {
     }
 
     // 扫描渐变 https://upload-images.jianshu.io/upload_images/4044518-25477bb0490755a3?imageMogr2/auto-orient/strip%7CimageView2/2/w/706/format/webp
-    Gradient gradient = SweepGradient(endAngle: radians, colors: _colors);
-    progressPaint.shader =
-        gradient.createShader(rect); // 着色器，一般用来绘制渐变效果或ImageShader
+    Gradient gradient = SweepGradient(
+      endAngle: degToRad(totalDegree),
+      colors: _colors,
+    );
+    progressPaint
+      ..shader = gradient.createShader(rect); // 着色器，一般用来绘制渐变效果或ImageShader
 
     // 绘制进度条圆弧
     canvas.drawArc(rect, startAngle, sweepAngle, false, progressPaint);
