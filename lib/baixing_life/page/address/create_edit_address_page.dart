@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jd_address_selector/jd_address_selector.dart';
+import 'package:flutter_jd_address_selector/flutter_jd_address_selector.dart';
 
 import '../../../generated/i18n.dart';
 import '../../../store/index.dart';

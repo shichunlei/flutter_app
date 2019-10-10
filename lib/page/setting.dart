@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jd_address_selector/flutter_jd_address_selector.dart';
 
 import '../generated/i18n.dart';
 import '../store/index.dart';
 
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:jd_address_selector/jd_address_selector.dart';
 
 import '../page_index.dart';
 
