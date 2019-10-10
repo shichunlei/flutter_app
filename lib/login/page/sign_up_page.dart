@@ -65,7 +65,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             padding: const EdgeInsets.only(top: 10.0)),
 
                         /// 密码
-                        _buildPassswordInput(),
+                        _buildPasswordInput(),
                         Container(
                             width: 250.0,
                             height: 1.0,
@@ -150,7 +150,7 @@ class _SignUpPageState extends State<SignUpPage> {
             style: TextStyle(fontSize: 16, color: Colors.black)));
   }
 
-  Widget _buildPassswordInput() {
+  Widget _buildPasswordInput() {
     return Padding(
         padding: const EdgeInsets.only(left: 25, right: 25, top: 20),
         child: TextFormField(

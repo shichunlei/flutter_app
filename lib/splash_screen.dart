@@ -1,27 +1,19 @@
-import 'dart:async';
-
 import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/hitokoto.dart';
 import 'package:flutter_app/login/page/login_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'store/index.dart';
 import 'page_index.dart';
 
 class SplashScreenPage extends StatefulWidget {
   @override
-  _SplashScreenPageState createState() => _SplashScreenPageState();
+  createState() => _SplashScreenPageState();
 }
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
   /// 是否第一次打开APP
-  bool firstOpen = true;
-
-  /// 是否登录
-  bool isLogin = false;
-
-  SharedPreferences _prefs;
+  bool firstOpen;
 
   Hitokoto data;
 
@@ -30,8 +22,6 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     super.initState();
 
     getHitokotoData();
-
-    checkFirstSeen(context);
   }
 
   @override
@@ -78,12 +68,10 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     ]);
   }
 
-  Future checkFirstSeen(context) async {
-    _prefs = await SharedPreferences.getInstance();
-    firstOpen = _prefs.getBool("first_open") ?? true;
-  }
+  void goToHomePage() async {
+    firstOpen = SpUtil.getBool('first_open', defValue: true);
 
-  void goToHomePage() {
+    print(firstOpen);
     if (!firstOpen) {
       if (Store.value<UserModel>(context).isLogin()) {
         pushAndRemovePage(context, HomePage());
@@ -91,7 +79,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         pushAndRemovePage(context, LoginPage());
       }
     } else {
-      _prefs.setBool("first_open", false);
+      SpUtil.setBool("first_open", false);
       pushAndRemovePage(context, IntroSlidePage());
     }
   }

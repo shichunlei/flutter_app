@@ -278,7 +278,7 @@ class ExpandStateBean {
         title: 'Projects Example',
         children: [
           SubExpandBean('仿追书神器', BookReaderHomePage()),
-          SubExpandBean('仿好奇心日报', QdailySplashPage()),
+          SubExpandBean('仿好奇心日报', QDailySplashPage()),
           SubExpandBean('豆瓣电影', MovieHomePage()),
           SubExpandBean('百姓生活+', IndexPage()),
           SubExpandBean('我是个句子迷', SplashPage()),

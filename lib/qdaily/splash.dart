@@ -4,14 +4,14 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import '../page_index.dart';
 import 'index.dart';
 
-class QdailySplashPage extends StatefulWidget {
-  QdailySplashPage({Key key}) : super(key: key);
+class QDailySplashPage extends StatefulWidget {
+  QDailySplashPage({Key key}) : super(key: key);
 
   @override
-  createState() => _QdailySplashPageState();
+  createState() => _QDailySplashPageState();
 }
 
-class _QdailySplashPageState extends State<QdailySplashPage>
+class _QDailySplashPageState extends State<QDailySplashPage>
     with SingleTickerProviderStateMixin {
   String logoUrl =
       'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1830402097,3777822172&fm=58&s=21D47F829AD9C49A91BDA5D2010010B3&bpow=121&bpoh=75';
@@ -31,8 +31,6 @@ class _QdailySplashPageState extends State<QdailySplashPage>
   @override
   void initState() {
     super.initState();
-    isFirst = SpUtil.getBool('qdaily_isFirst', defValue: true);
-    debugPrint('===================$isFirst');
 
     _controller =
         AnimationController(vsync: this, duration: Duration(seconds: 2));
@@ -45,6 +43,18 @@ class _QdailySplashPageState extends State<QdailySplashPage>
       });
 
     _controller.forward();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      isFirst = SpUtil.getBool('qdaily_isFirst', defValue: true);
+      debugPrint('===================$isFirst');
+
+      if (isFirst) {
+        /// 预先缓存图片，避免直接使用时因为首次加载造成闪动
+        guideList.forEach((image) {
+          precacheImage(AssetImage(image), context);
+        });
+      }
+    });
 
     _initBannerData();
   }
