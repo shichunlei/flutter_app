@@ -38,8 +38,8 @@ class Result {
     result.count = map['count'];
     result.start = map['start'];
     result.total = map['total'];
-    result.contacts =
-        map['results'] == null ? [] : Contact.fromMapList(map['results']);
+    result.contacts = List()
+      ..addAll((map['results'] as List ?? []).map((o) => Contact.fromMap(o)));
     result.reviews =
         map['reviews'] == null ? [] : Reviews.fromMapList(map['reviews']);
     result.comments =

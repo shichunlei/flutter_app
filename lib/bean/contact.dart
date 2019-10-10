@@ -1,52 +1,52 @@
 import 'package:azlistview/azlistview.dart';
 import 'package:lpinyin/lpinyin.dart';
 
-class Contact extends ISuspensionBean {
-  /**
-   * gender : "female"
-   * email : "hilla.neva@example.com"
-   * phone : "05-622-536"
-   * cell : "041-016-99-64"
-   * nat : "FI"
-   * dob : {"date":"1968-06-28T00:18:58Z","age":50}
-   * id : {"name":"HETU","value":"NaNNA286undefined"}
-   * location : {"street":"171 tahmelantie","city":"rusko","state":"northern ostrobothnia","postcode":89511,"coordinates":{"latitude":"-5.5011","longitude":"15.8111"},"timezone":{"offset":"-10:00","description":"Hawaii"}}
-   * login : {"uuid":"59a10dc6-e3f4-44a7-992d-3b7e77a4486a","username":"ticklishelephant738","password":"broker","salt":"l8rqNCvI","md5":"5bf0605099eb21f962ec75157eb0d651","sha1":"746917365b2cb2237994f064026a3e4c057d84f5","sha256":"99f0af9c99050e489775b27c9b67e2a5f7efcbe90f297a3cf2896efbc2f804d6"}
-   * name : {"title":"mrs","first":"hilla","last":"neva"}
-   * picture : {"large":"https://randomuser.me/api/portraits/women/48.jpg","medium":"https://randomuser.me/api/portraits/med/women/48.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/48.jpg"}
-   * registered : {"date":"2016-09-02T07:17:46Z","age":2}
-   */
+/// gender : "male"
+/// name : {"title":"Mr","first":"Edwin","last":"Scott"}
+/// location : {"street":{"number":9301,"name":"Stevens Creek Blvd"},"city":"Albany","state":"Florida","country":"United States","postcode":40616,"coordinates":{"latitude":"82.5484","longitude":"-37.4545"},"timezone":{"offset":"-1:00","description":"Azores, Cape Verde Islands"}}
+/// email : "Edwin.Scott@example.com"
+/// login : {"uuid":"4d6ec025-cfa9-4344-9c45-53b5544cdb52","username":"browngoose418","password":"sandman","salt":"W8PKopq1","md5":"2fd9d288ac85305de4ad9f4b8f9d6f26","sha1":"5f167aa3e1ce93344eb74cc6c5ef02324d258349","sha256":"ebee0d0a142b2f3f47f16ea734a07d110fb1b17f57da7f9fdb6e63d6ab1513ce"}
+/// dob : {"date":"1957-05-18T19:11:18.246Z","age":62}
+/// registered : {"date":"2014-09-14T04:05:45.332Z","age":5}
+/// phone : "(323)-787-3148"
+/// cell : "(886)-854-5497"
+/// id : {"name":"SSN","value":"347-03-9383"}
+/// picture : {"large":"https://randomuser.me/api/portraits/men/36.jpg","medium":"https://randomuser.me/api/portraits/med/men/36.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/36.jpg"}
+/// nat : "US"
 
+class Contact extends ISuspensionBean {
   String gender;
+  NameBean name;
+  LocationBean location;
   String email;
+  LoginBean login;
+  DobBean dob;
+  RegisteredBean registered;
   String phone;
   String cell;
-  String nat;
-  DobBean dob;
   IdBean id;
-  LocationBean location;
-  LoginBean login;
-  NameBean name;
   PictureBean picture;
-  RegisteredBean registered;
+  String nat;
 
   String fullName;
   String firstLetter;
 
   static Contact fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
     Contact contact = Contact();
     contact.gender = map['gender'];
+    contact.name = NameBean.fromMap(map['name']);
+    contact.location = LocationBean.fromMap(map['location']);
     contact.email = map['email'];
+    contact.login = LoginBean.fromMap(map['login']);
+    contact.dob = DobBean.fromMap(map['dob']);
+    contact.registered = RegisteredBean.fromMap(map['registered']);
     contact.phone = map['phone'];
     contact.cell = map['cell'];
-    contact.nat = map['nat'];
-    contact.dob = DobBean.fromMap(map['dob']);
     contact.id = IdBean.fromMap(map['id']);
-    contact.location = LocationBean.fromMap(map['location']);
-    contact.login = LoginBean.fromMap(map['login']);
-    contact.name = NameBean.fromMap(map['name']);
     contact.picture = PictureBean.fromMap(map['picture']);
-    contact.registered = RegisteredBean.fromMap(map['registered']);
+    contact.nat = map['nat'];
+
     contact.fullName =
         '${NameBean.fromMap(map['name']).first} ${NameBean.fromMap(map['name']).last}';
 
@@ -57,119 +57,126 @@ class Contact extends ISuspensionBean {
     } else {
       contact.firstLetter = "#";
     }
+
     return contact;
   }
 
-  static List<Contact> fromMapList(dynamic mapList) {
-    List<Contact> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
-  }
+  Map toJson() => {
+        "gender": gender,
+        "name": name,
+        "location": location,
+        "email": email,
+        "login": login,
+        "dob": dob,
+        "registered": registered,
+        "phone": phone,
+        "cell": cell,
+        "id": id,
+        "picture": picture,
+        "nat": nat,
+      };
 
   @override
   String getSuspensionTag() => firstLetter;
 }
 
-class DobBean {
-  /**
-   * date : "1968-06-28T00:18:58Z"
-   * age : 50
-   */
+/// large : "https://randomuser.me/api/portraits/men/36.jpg"
+/// medium : "https://randomuser.me/api/portraits/med/men/36.jpg"
+/// thumbnail : "https://randomuser.me/api/portraits/thumb/men/36.jpg"
 
-  String date;
-  int age;
+class PictureBean {
+  String large;
+  String medium;
+  String thumbnail;
 
-  static DobBean fromMap(Map<String, dynamic> map) {
-    DobBean dobBean = DobBean();
-    dobBean.date = map['date'];
-    dobBean.age = map['age'];
-    return dobBean;
+  static PictureBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    PictureBean pictureBean = PictureBean();
+    pictureBean.large = map['large'];
+    pictureBean.medium = map['medium'];
+    pictureBean.thumbnail = map['thumbnail'];
+    return pictureBean;
   }
 
-  static List<DobBean> fromMapList(dynamic mapList) {
-    List<DobBean> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
-  }
+  Map toJson() => {
+        "large": large,
+        "medium": medium,
+        "thumbnail": thumbnail,
+      };
 }
 
-class IdBean {
-  /**
-   * name : "HETU"
-   * value : "NaNNA286undefined"
-   */
+/// name : "SSN"
+/// value : "347-03-9383"
 
+class IdBean {
   String name;
   String value;
 
   static IdBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
     IdBean idBean = IdBean();
     idBean.name = map['name'];
     idBean.value = map['value'];
     return idBean;
   }
 
-  static List<IdBean> fromMapList(dynamic mapList) {
-    List<IdBean> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
-  }
+  Map toJson() => {
+        "name": name,
+        "value": value,
+      };
 }
 
-class LocationBean {
-  /**
-   * street : "171 tahmelantie"
-   * city : "rusko"
-   * state : "northern ostrobothnia"
-   * postcode : 89511
-   * coordinates : {"latitude":"-5.5011","longitude":"15.8111"}
-   * timezone : {"offset":"-10:00","description":"Hawaii"}
-   */
+/// date : "2014-09-14T04:05:45.332Z"
+/// age : 5
 
-  String street;
-  String city;
-  String state;
-  var postcode;
-  CoordinatesBean coordinates;
-  TimezoneBean timezone;
+class RegisteredBean {
+  String date;
+  int age;
 
-  static LocationBean fromMap(Map<String, dynamic> map) {
-    LocationBean locationBean = LocationBean();
-    locationBean.street = map['street'];
-    locationBean.city = map['city'];
-    locationBean.state = map['state'];
-    locationBean.postcode = map['postcode'];
-    locationBean.coordinates = CoordinatesBean.fromMap(map['coordinates']);
-    locationBean.timezone = TimezoneBean.fromMap(map['timezone']);
-    return locationBean;
+  static RegisteredBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    RegisteredBean registeredBean = RegisteredBean();
+    registeredBean.date = map['date'];
+    registeredBean.age = map['age'];
+    return registeredBean;
   }
 
-  static List<LocationBean> fromMapList(dynamic mapList) {
-    List<LocationBean> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
-  }
+  Map toJson() => {
+        "date": date,
+        "age": age,
+      };
 }
+
+/// date : "1957-05-18T19:11:18.246Z"
+/// age : 62
+
+class DobBean {
+  String date;
+  int age;
+
+  static DobBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    DobBean dobBean = DobBean();
+    dobBean.date = map['date'];
+    dobBean.age = map['age'];
+    return dobBean;
+  }
+
+  Map toJson() => {
+        "date": date,
+        "age": age,
+      };
+}
+
+/// uuid : "4d6ec025-cfa9-4344-9c45-53b5544cdb52"
+/// username : "browngoose418"
+/// password : "sandman"
+/// salt : "W8PKopq1"
+/// md5 : "2fd9d288ac85305de4ad9f4b8f9d6f26"
+/// sha1 : "5f167aa3e1ce93344eb74cc6c5ef02324d258349"
+/// sha256 : "ebee0d0a142b2f3f47f16ea734a07d110fb1b17f57da7f9fdb6e63d6ab1513ce"
 
 class LoginBean {
-  /**
-   * uuid : "59a10dc6-e3f4-44a7-992d-3b7e77a4486a"
-   * username : "ticklishelephant738"
-   * password : "broker"
-   * salt : "l8rqNCvI"
-   * md5 : "5bf0605099eb21f962ec75157eb0d651"
-   * sha1 : "746917365b2cb2237994f064026a3e4c057d84f5"
-   * sha256 : "99f0af9c99050e489775b27c9b67e2a5f7efcbe90f297a3cf2896efbc2f804d6"
-   */
-
   String uuid;
   String username;
   String password;
@@ -179,6 +186,7 @@ class LoginBean {
   String sha256;
 
   static LoginBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
     LoginBean loginBean = LoginBean();
     loginBean.uuid = map['uuid'];
     loginBean.username = map['username'];
@@ -190,27 +198,132 @@ class LoginBean {
     return loginBean;
   }
 
-  static List<LoginBean> fromMapList(dynamic mapList) {
-    List<LoginBean> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
-  }
+  Map toJson() => {
+        "uuid": uuid,
+        "username": username,
+        "password": password,
+        "salt": salt,
+        "md5": md5,
+        "sha1": sha1,
+        "sha256": sha256,
+      };
 }
 
-class NameBean {
-  /**
-   * title : "mrs"
-   * first : "hilla"
-   * last : "neva"
-   */
+/// street : {"number":9301,"name":"Stevens Creek Blvd"}
+/// city : "Albany"
+/// state : "Florida"
+/// country : "United States"
+/// postcode : 40616
+/// coordinates : {"latitude":"82.5484","longitude":"-37.4545"}
+/// timezone : {"offset":"-1:00","description":"Azores, Cape Verde Islands"}
 
+class LocationBean {
+  StreetBean street;
+  String city;
+  String state;
+  String country;
+  String postcode;
+  CoordinatesBean coordinates;
+  TimezoneBean timezone;
+
+  static LocationBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    LocationBean locationBean = LocationBean();
+    locationBean.street = StreetBean.fromMap(map['street']);
+    locationBean.city = map['city'];
+    locationBean.state = map['state'];
+    locationBean.country = map['country'];
+    locationBean.postcode = "${map['postcode']}";
+    locationBean.coordinates = CoordinatesBean.fromMap(map['coordinates']);
+    locationBean.timezone = TimezoneBean.fromMap(map['timezone']);
+    return locationBean;
+  }
+
+  Map toJson() => {
+        "street": street,
+        "city": city,
+        "state": state,
+        "country": country,
+        "postcode": postcode,
+        "coordinates": coordinates,
+        "timezone": timezone,
+      };
+}
+
+/// offset : "-1:00"
+/// description : "Azores, Cape Verde Islands"
+
+class TimezoneBean {
+  String offset;
+  String description;
+
+  static TimezoneBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    TimezoneBean timezoneBean = TimezoneBean();
+    timezoneBean.offset = map['offset'];
+    timezoneBean.description = map['description'];
+    return timezoneBean;
+  }
+
+  Map toJson() => {
+        "offset": offset,
+        "description": description,
+      };
+}
+
+/// latitude : "82.5484"
+/// longitude : "-37.4545"
+
+class CoordinatesBean {
+  String latitude;
+  String longitude;
+
+  static CoordinatesBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    CoordinatesBean coordinatesBean = CoordinatesBean();
+    coordinatesBean.latitude = map['latitude'];
+    coordinatesBean.longitude = map['longitude'];
+    return coordinatesBean;
+  }
+
+  Map toJson() => {
+        "latitude": latitude,
+        "longitude": longitude,
+      };
+}
+
+/// number : 9301
+/// name : "Stevens Creek Blvd"
+
+class StreetBean {
+  String number;
+  String name;
+
+  static StreetBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    StreetBean streetBean = StreetBean();
+    streetBean.number = "${map['number']}";
+    streetBean.name = map['name'];
+    return streetBean;
+  }
+
+  Map toJson() => {
+        "number": number,
+        "name": name,
+      };
+}
+
+/// title : "Mr"
+/// first : "Edwin"
+/// last : "Scott"
+
+class NameBean {
   String title;
   String first;
   String last;
 
   static NameBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
     NameBean nameBean = NameBean();
     nameBean.title = map['title'];
     nameBean.first = map['first'];
@@ -218,114 +331,9 @@ class NameBean {
     return nameBean;
   }
 
-  static List<NameBean> fromMapList(dynamic mapList) {
-    List<NameBean> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
-  }
-}
-
-class PictureBean {
-  /**
-   * large : "https://randomuser.me/api/portraits/women/48.jpg"
-   * medium : "https://randomuser.me/api/portraits/med/women/48.jpg"
-   * thumbnail : "https://randomuser.me/api/portraits/thumb/women/48.jpg"
-   */
-
-  String large;
-  String medium;
-  String thumbnail;
-
-  static PictureBean fromMap(Map<String, dynamic> map) {
-    PictureBean pictureBean = PictureBean();
-    pictureBean.large = map['large'];
-    pictureBean.medium = map['medium'];
-    pictureBean.thumbnail = map['thumbnail'];
-    return pictureBean;
-  }
-
-  static List<PictureBean> fromMapList(dynamic mapList) {
-    List<PictureBean> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
-  }
-}
-
-class RegisteredBean {
-  /**
-   * date : "2016-09-02T07:17:46Z"
-   * age : 2
-   */
-
-  String date;
-  int age;
-
-  static RegisteredBean fromMap(Map<String, dynamic> map) {
-    RegisteredBean registeredBean = RegisteredBean();
-    registeredBean.date = map['date'];
-    registeredBean.age = map['age'];
-    return registeredBean;
-  }
-
-  static List<RegisteredBean> fromMapList(dynamic mapList) {
-    List<RegisteredBean> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
-  }
-}
-
-class CoordinatesBean {
-  /**
-   * latitude : "-5.5011"
-   * longitude : "15.8111"
-   */
-
-  String latitude;
-  String longitude;
-
-  static CoordinatesBean fromMap(Map<String, dynamic> map) {
-    CoordinatesBean coordinatesBean = CoordinatesBean();
-    coordinatesBean.latitude = map['latitude'];
-    coordinatesBean.longitude = map['longitude'];
-    return coordinatesBean;
-  }
-
-  static List<CoordinatesBean> fromMapList(dynamic mapList) {
-    List<CoordinatesBean> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
-  }
-}
-
-class TimezoneBean {
-  /**
-   * offset : "-10:00"
-   * description : "Hawaii"
-   */
-
-  String offset;
-  String description;
-
-  static TimezoneBean fromMap(Map<String, dynamic> map) {
-    TimezoneBean timezoneBean = TimezoneBean();
-    timezoneBean.offset = map['offset'];
-    timezoneBean.description = map['description'];
-    return timezoneBean;
-  }
-
-  static List<TimezoneBean> fromMapList(dynamic mapList) {
-    List<TimezoneBean> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
-  }
+  Map toJson() => {
+        "title": title,
+        "first": first,
+        "last": last,
+      };
 }

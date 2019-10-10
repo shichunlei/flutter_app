@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import '../index.dart';
 
 class BuildOtherView extends StatelessWidget {
+  final String birthday;
+
+  BuildOtherView({this.birthday});
+
   @override
   Widget build(BuildContext context) {
     return ContactCategory(
       icon: Icons.today,
       children: <Widget>[
         ContactItem(
-          lines: const <String>[
+          lines: <String>[
             'Birthday',
-            'January 9th, 1989',
+            '$birthday',
           ],
         ),
         ContactItem(

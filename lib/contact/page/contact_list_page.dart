@@ -44,7 +44,7 @@ class _ContactListPageState extends State<ContactListPage> {
                     debugPrint(snapshot.error.toString());
                     return ErrorPage(text: '网络请求错误');
                   } else {
-                    debugPrint('${snapshot.data.length}');
+                    ///debugPrint('${snapshot.data.length}');
                     if (snapshot.data.length > 0) {
                       return AzListView(
                           data: snapshot.data,
@@ -139,15 +139,16 @@ class _ContactListPageState extends State<ContactListPage> {
                   onTap: () => pushNewPage(
                       context,
                       ContactPage(
-                        name: model.fullName,
-                        phone: model.phone,
-                        avatar: model?.picture?.large,
-                        email: model?.email,
-                        cell: model?.cell,
-                        address: model?.location?.street,
-                        area:
-                            "${model?.location?.city}, ${model?.location?.state}",
-                      ))),
+                          name: model.fullName,
+                          phone: model.phone,
+                          avatar: model?.picture?.large,
+                          email: model?.email,
+                          cell: model?.cell,
+                          address:
+                              "${model?.location?.street?.number} ${model?.location?.street?.name}",
+                          area:
+                              "${model?.location?.city}, ${model?.location?.state}",
+                          birthday: model?.dob?.date))),
             )
           ],
         ),

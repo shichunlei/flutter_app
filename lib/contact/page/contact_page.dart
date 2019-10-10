@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils/date_format.dart';
 
 import '../../page_index.dart';
 import '../index.dart';
@@ -11,6 +12,7 @@ class ContactPage extends StatefulWidget {
   final String cell;
   final String address;
   final String area;
+  final String birthday;
 
   ContactPage({
     Key key,
@@ -21,6 +23,7 @@ class ContactPage extends StatefulWidget {
     this.cell,
     this.address,
     this.area,
+    this.birthday,
   }) : super(key: key);
 
   @override
@@ -76,7 +79,15 @@ class _ContactPageState extends State<ContactPage> {
                   address: widget.address,
                   area: widget.area,
                 ),
-                BuildOtherView(),
+                BuildOtherView(
+                  birthday: "${formatDateByStr(widget.birthday, formats: [
+                    yyyy,
+                    '-',
+                    mm,
+                    '-',
+                    dd
+                  ])}",
+                ),
                 FutureBuilder<Null>(future: _launched, builder: _launchStatus),
               ],
             ),
