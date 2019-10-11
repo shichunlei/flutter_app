@@ -47,4 +47,3 @@ export 'lab/lab_who.dart';
 export 'lab/lab_topics.dart';
 
 export '../bean/qdaily.dart';
-export '../bean/qdaily_app.dart';

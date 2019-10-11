@@ -14,7 +14,6 @@ export 'juzimi.dart';
 export 'movie.dart';
 export 'news.dart';
 export 'qdaily.dart';
-export 'qdaily_app.dart';
 export 'result.dart';
 export 'user.dart';
 export 'youdao.dart';

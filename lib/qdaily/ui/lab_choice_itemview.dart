@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily_app.dart';
 import 'package:flutter_app/page_index.dart';
+
+import '../index.dart';
 
 class LabChoiceItemView extends StatefulWidget {
   final Question question;

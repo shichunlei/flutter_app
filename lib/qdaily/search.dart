@@ -18,7 +18,7 @@ class _SearchPageState extends State<SearchPage> {
   var keywords;
   String lastKey = '0';
 
-  QdailyWebBean data;
+  ResponseBean data;
   List<FeedsBean> feeds = [];
 
   bool isLoadComplete = false;

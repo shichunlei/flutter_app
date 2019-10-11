@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily_app.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
+
+import '../index.dart';
 
 class ItemOptionCheckbox extends StatefulWidget {
   final Option option;

@@ -1010,18 +1010,18 @@ class ApiService {
   }
 
   /// 搜索
-  static Future<QdailyWebBean> getQDailySearchData(
+  static Future<ResponseBean> getQDailySearchData(
       String keywords, String lastKey) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_WEB_URL).request(
-        ApiUrl.QDAILY_SEARCH_WEB_DATA,
-        data: {"last_key": lastKey, "key": keywords});
+    Response response = await HttpUtils().request(ApiUrl.QDAILY_SEARCH_WEB,
+        data: {"last_key": lastKey, "keyword": keywords});
     if (response == null || response?.statusCode != 200) {
       return null;
     }
 
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
-    if (result.status) {
-      return QdailyWebBean.fromMap(result.data);
+
+    if (result.code == 0) {
+      return ResponseBean.fromMap(result.data);
     } else {
       return null;
     }

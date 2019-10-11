@@ -73,9 +73,6 @@ class ApiUrl {
 
   static final String MEIZITU_URL = 'https://m.image.so.com/';
 
-  /// 好奇心日报Web接口
-  static final String QDAILY_WEB_URL = "http://www.qdaily.com/";
-
   static final String QDAILY_HOME_DATA = "qdaily/home_data";
 
   static final String QDAILY_CATEGORY_DATA = "qdaily/news_by_category";
@@ -105,12 +102,11 @@ class ApiUrl {
   static final String QDAILY_COLUMN_INFO = "qdaily/column_info";
   static final String QDAILY_COLUMN_NEWS = "qdaily/column_news";
 
-  static final String QDAILY_SEARCH_HIGHLIGHTING_DATA =
-      "app3/searches/post_highlighting_list.json?last_key={last_key}&search={content}";
-  static final String QDAILY_SEARCH_DATA = "app3/searches/post_list.json";
-  static final String QDAILY_SEARCH_WEB_DATA = "searches/more_search.json";
+  static final String QDAILY_SEARCH_HIGHLIGHTING = "qdaily/search_highlighting";
+  static final String QDAILY_SEARCH = "qdaily/search";
+  static final String QDAILY_SEARCH_WEB = "qdaily/search_web";
 
-  static final String QDAILY_CATEGORYS_DATA = "app3/homes/left_sidebar.json";
+  static final String QDAILY_CATEGORYS = "qdaily/categories";
 
   /// 有道精品课
   static final String YOUDAO_BASE_URL = "https://ke.youdao.com/";
