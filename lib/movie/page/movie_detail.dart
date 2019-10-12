@@ -34,8 +34,6 @@ class _MovieDetailState extends State<MovieDetail> {
   double width = (Utils.width - 5 * 4) / 2;
   double height;
 
-  var data;
-
   @override
   void initState() {
     super.initState();
@@ -142,8 +140,8 @@ class _MovieDetailState extends State<MovieDetail> {
             Offstage(
                 offstage: movie.photos.isEmpty,
                 child: Column(children: <Widget>[
-                  SectionView("剧照",
-                      hiddenMore: movie.photos.length < 10,
+                  SectionView("剧照（${movie.photosCount}）",
+                      hiddenMore: movie.photos.length >= movie.photosCount,
                       textColor: Colors.white,
                       onPressed: () => pushNewPage(
                           context,
@@ -180,25 +178,8 @@ class _MovieDetailState extends State<MovieDetail> {
                                         // borderRadius: BorderRadius.circular(6.0),
                                         fit: BoxFit.cover,
                                         height: height,
-                                        width: height,
                                       )),
-                                )
-
-//                                Hero(
-//                                    tag: movie.photos[index].id,
-//                                    child: ImageLoadView(
-//                                        movie.photos[index].cover,
-//                                        fit: BoxFit.cover,
-//                                        height: width,
-//                                        width: width,
-//                                        borderRadius:
-//                                            BorderRadius.circular(6.0),
-//                                        onPressed: () => pushNewPage(
-//                                            context,
-//                                            MoviePhotoPage('《${movie.title}》剧照',
-//                                                photos: movie.photos,
-//                                                index: index))))
-                                );
+                                ));
                           }))
                 ])),
             MovieDesc(movie),
@@ -232,8 +213,8 @@ class _MovieDetailState extends State<MovieDetail> {
                             MovieVideoPage(movie.clips[index].resourceUrl))))),
             SectionView("热评",
                 hiddenMore: movie.popularComments.length < 4,
-                onPressed: () => pushNewPage(context,
-                    MovieCommentPage(movie.id, itemBackgroundColor: cardColor)),
+                onPressed: () =>
+                    pushNewPage(context, MovieCommentPage(movie.id)),
                 textColor: Colors.white),
             Padding(
                 padding: const EdgeInsets.only(

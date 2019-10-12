@@ -6,6 +6,8 @@ class ApiUrl {
 
   static const String MOVIE_BASE_URL = "https://api.douban.com/v2/movie";
 
+  static final String MOVIE_HOME_URL = "movies/home_data";
+
   static final String MOVIE_LIST_URL = "/in_theaters";
   static final String MOVIE_DETAIL_URL = '/subject/:movieId';
   static final String MOVIE_PHOTO_URL = '/subject/:movieId/photos';

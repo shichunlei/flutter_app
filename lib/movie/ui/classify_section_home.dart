@@ -7,8 +7,9 @@ import '../../page_index.dart';
 
 class ClassifySection extends StatefulWidget {
   final String title;
+  final List<Movie> movies;
 
-  ClassifySection(this.title);
+  ClassifySection(this.title, this.movies);
 
   @override
   createState() => _ClassifySectionState();
@@ -20,13 +21,6 @@ class _ClassifySectionState extends State<ClassifySection>
   bool get wantKeepAlive => true;
 
   List<Movie> tagMovies = [];
-
-  @override
-  void initState() {
-    super.initState();
-
-    /// searchMovie(widget.title);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,18 +37,11 @@ class _ClassifySectionState extends State<ClassifySection>
         child: Wrap(
           spacing: 5,
           runSpacing: 5,
-          children: tagMovies.length == 0
+          children: widget.movies.length == 0
               ? <Widget>[]
-              : tagMovies.map((movie) => MovieGridView(movie)).toList(),
+              : widget.movies.map((movie) => MovieGridView(movie)).toList(),
         ),
       )
     ]);
-  }
-
-  void searchMovie(String title) async {
-    tagMovies = await ApiService.getSearchListByTag(
-        tag: widget.title, start: 0, count: 3);
-
-    setState(() {});
   }
 }

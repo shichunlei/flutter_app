@@ -11,30 +11,20 @@ import 'package:http/http.dart' as http;
 import '../page_index.dart';
 
 class ApiService {
-  /// 获取豆瓣电影首页热门新闻文章
-  static Future<List<News>> getNewsList() async {
-    List<News> news = [];
+  /// 豆瓣电影首页数据
+  static Future<MovieHomeData> getMovieHomeData({String city}) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_HOME_URL, data: {'city': city});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    await http.get(ApiUrl.DOUBAN_WEB_URL).then((http.Response response) {
-      var document = parse(response.body.toString());
-      List<dom.Element> items =
-          document.getElementsByClassName('gallery-frame');
-      items.forEach((item) {
-        String cover =
-            item.getElementsByTagName('img')[0].attributes['src'].toString();
-        String link =
-            item.getElementsByTagName('a')[0].attributes['href'].toString();
-        String title =
-            item.getElementsByTagName('h3')[0].text.toString().trim();
-        String summary =
-            item.getElementsByTagName('p')[0].text.toString().trim();
-        news.add(News(title, cover, summary, link));
-      });
-    });
-
-    print(news.toString());
-
-    return news;
+    if (result.code == 0) {
+      return MovieHomeData.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 获取正在热映电影

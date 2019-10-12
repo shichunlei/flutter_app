@@ -31,21 +31,18 @@ class SectionView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text("$title",
-                            style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                                color: textColor)),
-                        Gaps.vGap5,
-                        Container(
-                            width: title.length * 20.0,
-                            height: 2,
-                            color: textColor)
-                      ]),
-                  height: 36.0),
+                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(
+                    "$title",
+                    style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                        color: textColor,
+                        height: 1.5),
+                  ),
+                  decoration: UnderlineTabIndicator(
+                      borderSide: BorderSide(width: 2.0, color: Colors.white),
+                      insets: EdgeInsets.fromLTRB(0, 10, 0, 0))),
               Offstage(
                   child: InkWell(
                       child: Container(
