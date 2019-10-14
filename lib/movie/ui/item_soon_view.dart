@@ -29,7 +29,7 @@ class _ItemSoonViewState extends State<ItemSoonView>
 
   void getBackgroundColor() async {
     cardBackgroundColor =
-        await Utils.getImageDominantColor(widget.movie.images.small);
+        await Utils.getImageDominantColor(widget.movie?.images?.small);
 
     setState(() {});
   }
@@ -51,9 +51,9 @@ class _ItemSoonViewState extends State<ItemSoonView>
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: <
                 Widget>[
               /// 电影主图
-              ImageLoadView(widget.movie.images.medium.toString(),
+              ImageLoadView(widget.movie?.images?.medium,
                   height: 180, width: 120),
-              SizedBox(width: 8),
+              Gaps.hGap8,
 
               /// 右侧部分
               Expanded(
@@ -67,37 +67,41 @@ class _ItemSoonViewState extends State<ItemSoonView>
                     children: <Widget>[
                       /// 中文名
                       Text(
-                        widget.movie.title,
+                        widget.movie?.title,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 22.0,
                         ),
                       ),
-                      SizedBox(height: 8.0),
+                      Gaps.vGap8,
 
                       /// 上映信息
                       Text(
                         desc,
                         style: TextStyle(color: Colors.white, fontSize: 12.0),
                       ),
-                      SizedBox(height: 8.0),
+                      Gaps.vGap8,
 
                       /// 演员
                       Wrap(
                           spacing: 5.0,
                           children: widget.movie.casts.map((cast) {
-                            return CircleAvatar(
-                                backgroundImage:
-                                    NetworkImage(cast.avatars.small),
-                                radius: 22.0);
+                            return ImageLoadView(
+                              cast?.avatars?.small ?? douBanDefaultImage,
+                              width: 44.0,
+                              height: 44.0,
+                              fit: BoxFit.cover,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(22.0)),
+                            );
                           }).toList()),
-                      SizedBox(height: 8.0),
+                      Gaps.vGap8,
 
                       /// 中国大陆上映日期
                       Container(
                           child: Text(
-                              '${widget.movie.mainlandPubDate.split('-')[1]}月${widget.movie.mainlandPubDate.split('-')[2]}日上映',
+                              '${widget.movie?.mainlandPubDate?.split('-')[1]}月${widget.movie?.mainlandPubDate?.split('-')[2]}日上映',
                               style: TextStyle(
                                   color: Colors.white, fontSize: 22.0))),
 
@@ -111,7 +115,7 @@ class _ItemSoonViewState extends State<ItemSoonView>
                             children: <Widget>[
                               Icon(Icons.favorite,
                                   color: Colors.white, size: 18),
-                              SizedBox(width: 4),
+                              Gaps.hGap4,
                               Text('想看', style: TextStyle(color: Colors.white))
                             ]),
                       )

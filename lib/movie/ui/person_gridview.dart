@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
 
+import '../../page_index.dart';
+
 class PersonGridView extends StatelessWidget {
   final Casts casts;
   final Color textColor;
@@ -20,7 +22,8 @@ class PersonGridView extends StatelessWidget {
               //点击事件
               onTap: onTap,
               child: CircleAvatar(
-                  backgroundImage: NetworkImage(casts.avatars.small.toString()),
+                  backgroundImage:
+                      NetworkImage(casts?.avatars?.small ?? douBanDefaultImage),
                   radius: 40.0)),
           Text(casts.name,
               maxLines: 1,

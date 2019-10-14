@@ -31,9 +31,12 @@ class PersonScroller extends StatelessWidget {
                 itemBuilder: (context, index) => PersonGridView(
                     casts: casts[index],
                     textColor: Colors.white,
-                    onTap: () => pushNewPage(
-                        context,
-                        MovieCelebrityPage(
-                            id: casts[index].id, name: casts[index].name))))));
+                    onTap: () {
+                      if (casts[index].id != null)
+                        pushNewPage(
+                            context,
+                            MovieCelebrityPage(
+                                id: casts[index].id, name: casts[index].name));
+                    }))));
   }
 }

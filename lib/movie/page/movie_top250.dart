@@ -9,7 +9,7 @@ import '../../page_index.dart';
 
 class MovieTop250 extends StatefulWidget {
   @override
-  _MovieTop250State createState() => _MovieTop250State();
+  createState() => _MovieTop250State();
 }
 
 class _MovieTop250State extends State<MovieTop250> {
@@ -70,25 +70,26 @@ class _MovieTop250State extends State<MovieTop250> {
         onLoad: isLoadComplete
             ? null
             : () async {
-                page++;
-                getMovieTop250List(page, pageSize, RefreshType.LOAD_MORE);
-              },
+          page++;
+          getMovieTop250List(page, pageSize, RefreshType.LOAD_MORE);
+        },
         emptyWidget: movies.length > 0 ? null : Center(child: Text(text)),
 
         /// 子部件 内容视图
         child: ListView.builder(
-            itemBuilder: (context, index) => ItemRankingMovie(movies[index],
-                index: index,
-                onTap: () =>
-                    pushNewPage(context, MovieDetail(movies[index].id))),
+            itemBuilder: (context, index) =>
+                ItemRankingMovie(movies[index],
+                    index: index,
+                    onTap: () =>
+                        pushNewPage(context, MovieDetail(movies[index].id))),
             itemCount: movies.length,
             physics: const BouncingScrollPhysics(),
             padding: EdgeInsets.all(5.0)));
   }
 
   void getMovieTop250List(int page, int pageSize, RefreshType type) async {
-    List<Movie> list = await ApiService.getTop250List(
-        start: (page - 1) * pageSize, count: pageSize);
+    List<Movie> list =
+    await ApiService.getTop250List(page: page, limit: pageSize);
     if (type == RefreshType.DEFAULT) {
       movies.addAll(list);
       if (isFirst && movies.isEmpty) {

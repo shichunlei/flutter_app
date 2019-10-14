@@ -6,11 +6,10 @@ import '../bean/index.dart';
 
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' show parse;
-import 'package:http/http.dart' as http;
 
 import '../page_index.dart';
 
-class ApiService {
+class ApiService<T> {
   /// 豆瓣电影首页数据
   static Future<MovieHomeData> getMovieHomeData({String city}) async {
     Response response =
@@ -29,170 +28,101 @@ class ApiService {
 
   /// 获取正在热映电影
   static Future<List<Movie>> getNowPlayingList(
-      {String city, int start = 0, int count = 20}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL)
-        .request(ApiUrl.MOVIE_LIST_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'city': city,
-      'start': start,
-      'count': count,
-    });
+      {String city, int page = 1, int limit = 20}) async {
+    Response response = await HttpUtils().request(ApiUrl.MOVIE_LIST_URL,
+        data: {'city': city, 'page': page, 'limit': limit});
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    return result.subjects;
+    if (result.code == 0) {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 获取即将上映电影
   static Future<List<Movie>> getComingList(
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL)
-        .request(ApiUrl.MOVIE_SOON_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      "start": start,
-      'count': count,
-    });
+      {int page = 1, int limit = 20}) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.MOVIE_SOON_URL, data: {"page": page, 'limit': limit});
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    return result.subjects;
+    if (result.code == 0) {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 获取排行榜电影
   static Future<List<Movie>> getRankingList(String url,
       {int start = 0, int count = 20}) async {
-    Response response =
-        await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL).request(url, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'start': start,
-      'count': count,
-    });
+    Response response = await HttpUtils().request(url, data: null);
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    return result.subjects;
-  }
-
-  /// 获取本周口碑榜电影
-  static Future<List<Movie>> getWeeklyList() async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL).request(
-        ApiUrl.WEEKLY_MOVIES_URL,
-        data: {'apikey': Config.DOUBAN_MOVIE_KEY});
-    if (response.statusCode != 200) {
+    if (result.code == 0) {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
+    } else {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
-
-    List<Movie> movies = [];
-    result.subjects.map((m) {
-      movies.add(m.subject);
-    }).toList();
-
-    return movies;
-  }
-
-  /// 获取新片榜电影
-  static Future<List<Movie>> getNewMoviesList() async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL).request(
-        ApiUrl.NEW_MOVIES_URL,
-        data: {'apikey': Config.DOUBAN_MOVIE_KEY});
-    if (response.statusCode != 200) {
-      return [];
-    }
-    Result result = Result.fromMap(json.decode(response.data));
-
-    return result.subjects;
-  }
-
-  /// 获取北美票房榜电影
-  static Future<List<Movie>> getUsBoxList() async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL).request(
-        ApiUrl.US_MOVIES_URL,
-        data: {'apikey': Config.DOUBAN_MOVIE_KEY});
-    if (response.statusCode != 200) {
-      return [];
-    }
-    Result result = Result.fromMap(json.decode(response.data));
-
-    List<Movie> movies = [];
-    result.subjects.map((m) {
-      movies.add(m.subject);
-    }).toList();
-
-    return movies;
   }
 
   /// 获取 top250 榜单
   static Future<List<Movie>> getTop250List(
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL)
-        .request(ApiUrl.MOVIE_TOP250_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'start': start,
-      'count': count
-    });
+      {int page = 1, int limit = 20}) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.MOVIE_TOP250_URL, data: {'page': page, 'limit': limit});
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    return result.subjects;
+    if (result.code == 0) {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 根据标签搜索
-  static Future<List<Movie>> getSearchListByTag(
-      {String tag, int start = 0, int count = 20}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL)
-        .request(ApiUrl.MOVIE_SEARCH_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'tag': tag,
-      'start': start,
-      'count': count
-    });
-    if (response.statusCode != 200) {
+  static Future<List<Movie>> getSearchListByTag(String tag,
+      {int page = 1, int limit = 20, String type = "movie"}) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL).request(
+        ApiUrl.MOVIE_SEARCH_BY_TAG_URL,
+        data: {'tag': tag, 'page': page, 'limit': limit, 'type': type});
+    if (response == null || response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    return result.subjects;
-  }
-
-  /// 根据关键字搜索
-  static Future<List<Movie>> getSearchListByKey(
-      {String key, int start = 0, int count = 20}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL)
-        .request(ApiUrl.MOVIE_SEARCH_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'q': key,
-      'start': start,
-      'count': count
-    });
-    if (response.statusCode != 200) {
+    if (result.code == 0) {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
+    } else {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
-
-    return result.subjects;
   }
 
   /// 搜索电影
   static Future<List<Movie>> getSearchList(
       {String key, String tag, int start = 0, int count = 20}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL)
-        .request(ApiUrl.MOVIE_SEARCH_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'q': key,
-      'tag': tag,
-      'start': start,
-      'count': count
-    });
-    if (response.statusCode != 200) {
+    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL).request(
+        ApiUrl.MOVIE_SEARCH_URL,
+        data: {'q': key, 'tag': tag, 'start': start, 'count': count});
+    if (response == null || response.statusCode != 200) {
       return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
@@ -201,136 +131,106 @@ class ApiService {
   }
 
   /// 获取电影详情
-  static Future<Movie> getMovieDetail(String movieId) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL)
-        .request(ApiUrl.MOVIE_DETAIL_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'movieId': movieId,
-    });
-    if (response.statusCode != 200) {
+  static Future<Movie> getMovieDetail(String id) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_DETAIL_URL, data: {'id': id});
+    if (response == null || response.statusCode != 200) {
       return null;
     }
-    return Movie.fromMap(json.decode(response.data));
-  }
-
-  /// 影片剧照
-  static Future<List<Photos>> getMovieAlbum(String movieId,
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL)
-        .request(ApiUrl.MOVIE_PHOTO_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'start': start,
-      'count': count,
-      'movieId': movieId
-    });
-    if (response.statusCode != 200) {
-      return [];
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.code == 0) {
+      return Movie.fromMap(result.data);
+    } else {
+      return null;
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.photos;
   }
 
   /// 影人详细信息
   static Future<Celebrity> getActorDetail(String actorId) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL)
-        .request(ApiUrl.MOVIE_CELEBRITY_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'actorId': actorId,
-    });
+    Response response = await HttpUtils()
+        .request(ApiUrl.MOVIE_CELEBRITY_URL, data: {'id': actorId});
     if (response.statusCode != 200) {
       return null;
     }
-    return Celebrity.fromMap(json.decode(response.data));
-  }
-
-  /// 影人相片
-  static Future<List<Photos>> getActorPhotos(String actorId,
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL)
-        .request(ApiUrl.MOVIE_CELEBRITY_PHOTOS_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'start': start,
-      'count': count,
-      'actorId': actorId,
-    });
-    if (response.statusCode != 200) {
-      return [];
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.code == 0) {
+      return Celebrity.fromMap(result.data);
+    } else {
+      return null;
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.photos;
   }
 
   /// 剧照
-  static Future<List<Photos>> getPhotos(String url, String id,
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL)
-        .request(ApiUrl.MOVIE_PHOTOS_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'start': start,
-      'count': count,
-      'url': url,
-      'id': id
-    });
+  static Future<List<Photos>> getPhotos(String type, String id,
+      {int page = 1, int limit = 20}) async {
+    Response response = await HttpUtils().request(ApiUrl.MOVIE_PHOTOS_URL,
+        data: {'page': page, 'limit': limit, 'type': type, 'id': id});
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.photos;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Photos.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 影人作品
   static Future<List<Movie>> getActorMovies(String actorId,
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL)
-        .request(ApiUrl.MOVIE_CELEBRITY_WORKS_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'start': start,
-      'count': count,
-      'actorId': actorId
-    });
+      {int start = 1, int count = 20}) async {
+    Response response = await HttpUtils().request(
+        ApiUrl.MOVIE_CELEBRITY_WORKS_URL,
+        data: {'page': start, 'limit': count, 'id': actorId});
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    List<Movie> movies = [];
-    result.works.map((work) {
-      movies.add(work.subject);
-    }).toList();
-    return movies;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 短评
-  static Future<List<Reviews>> getComments(String movieId,
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL)
-        .request(ApiUrl.MOVIE_COMMENTS_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'start': start,
-      'count': count,
-      'movieId': movieId
-    });
+  static Future<List<Reviews>> getComments(String id,
+      {int page = 1, int limit = 20}) async {
+    Response response = await HttpUtils().request(ApiUrl.MOVIE_COMMENTS_URL,
+        data: {'page': page, 'limit': limit, 'id': id});
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.comments;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Reviews.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 影评
-  static Future<List<Reviews>> getReviews(String movieId,
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL)
-        .request(ApiUrl.MOVIE_REVIEWS_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'start': start,
-      'count': count,
-      'movieId': movieId
-    });
+  static Future<List<Reviews>> getReviews(String id,
+      {int page = 1, int limit = 20}) async {
+    Response response = await HttpUtils().request(ApiUrl.MOVIE_REVIEWS_URL,
+        data: {'page': page, 'limit': limit, 'id': id});
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.reviews;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Reviews.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 每日一文
@@ -653,7 +553,7 @@ class ApiService {
       "format": format,
       "nat": nat,
     });
-    if (response.statusCode != 200) {
+    if (response == null || response.statusCode != 200) {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
@@ -665,7 +565,7 @@ class ApiService {
   static Future<JuZiMi> getJuZiMiDetails(int id, String type) async {
     Response response = await HttpUtils()
         .request(ApiUrl.JUZIMI_DETAILS_URL, data: {"id": id, "type": type});
-    if (response.statusCode != 200) {
+    if (response == null || response.statusCode != 200) {
       return null;
     }
 
@@ -683,7 +583,7 @@ class ApiService {
   static Future<List<JuZiMi>> getJuZiMiListByType(String type, int page) async {
     Response response = await HttpUtils()
         .request(ApiUrl.JUZIMI_LIST_URL, data: {"type": type, "page": page});
-    if (response.statusCode != 200) {
+    if (response == null || response.statusCode != 200) {
       return [];
     }
 
@@ -702,7 +602,7 @@ class ApiService {
   static Future<List<JuZiMi>> getJuZiMiListByTag(int id, int page) async {
     Response response = await HttpUtils().request(ApiUrl.JUZIMI_TAG_LIST_URL,
         data: {"page": page, "tag_id": id});
-    if (response.statusCode != 200) {
+    if (response == null || response.statusCode != 200) {
       return [];
     }
 

@@ -9,20 +9,9 @@ class Result {
   int start;
   int total;
   List<Movie> subjects;
-  Movie subject;
 
   /// 相册
   List<Photos> photos;
-  List<Works> works;
-
-  /// 影人
-  Celebrity celebrity;
-
-  /// 影评
-  List<Reviews> reviews;
-
-  /// 短评
-  List<Reviews> comments;
 
   /// 天气
   List<HeWeather> heWeather;
@@ -40,19 +29,10 @@ class Result {
     result.total = map['total'];
     result.contacts = List()
       ..addAll((map['results'] as List ?? []).map((o) => Contact.fromMap(o)));
-    result.reviews =
-        map['reviews'] == null ? [] : Reviews.fromMapList(map['reviews']);
-    result.comments =
-        map['comments'] == null ? [] : Reviews.fromMapList(map['comments']);
     result.subjects =
         map['subjects'] == null ? [] : Movie.fromMapList(map['subjects']);
     result.photos =
         map['photos'] == null ? [] : Photos.fromMapList(map['photos']);
-    result.works = map['works'] == null ? [] : Works.fromMapList(map['works']);
-    result.celebrity =
-        map['celebrity'] == null ? null : Celebrity.fromMap(map['celebrity']);
-    result.subject =
-        map['subject'] == null ? null : Movie.fromMap(map['subject']);
 
     result.heWeather = List()
       ..addAll(

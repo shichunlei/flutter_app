@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
 import '../page/movie_photos.dart';
 import '../page/movie_with_celebrity.dart';
-import 'package:flutter_app/service/api_service.dart';
 import '../ui/cover_section_view.dart';
 import '../ui/expandable_text.dart';
 import '../ui/movie_celebrity_header.dart';
@@ -56,11 +55,7 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
         body: getLoadingWidget(),
       );
     } else {
-      List<Movie> movies = [];
-
-      celebrity.works.map((work) {
-        movies.add(work.subject);
-      }).toList();
+      List<Movie> movies = celebrity.subjects;
 
       double width = (Utils.width - 6 * 2 - 5 * 2) / 3;
       double height = width * 383 / 270 + 50;
@@ -188,7 +183,8 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
     if (celebrity.photos.isNotEmpty) {
       pageColor = await Utils.getImageDominantColor(celebrity.photos[0].cover);
     } else {
-      pageColor = await Utils.getImageDominantColor(celebrity.avatars.small);
+      pageColor = await Utils.getImageDominantColor(
+          celebrity?.avatars?.small ?? douBanDefaultImage);
     }
 
     setState(() {});

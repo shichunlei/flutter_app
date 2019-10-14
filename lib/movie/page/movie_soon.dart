@@ -11,12 +11,12 @@ import '../../page_index.dart';
 
 class MovieSoonPage extends StatefulWidget {
   @override
-  _MovieSoonPageState createState() => _MovieSoonPageState();
+  createState() => _MovieSoonPageState();
 }
 
 class _MovieSoonPageState extends State<MovieSoonPage> {
   int page = 1;
-  int pagesize = 20;
+  int pageSize = 20;
 
   bool isFirst = true;
   bool isLoadComplete = false;
@@ -27,7 +27,7 @@ class _MovieSoonPageState extends State<MovieSoonPage> {
   void initState() {
     super.initState();
 
-    getMovieList(page, pagesize, RefreshType.DEFAULT);
+    getMovieList(page, RefreshType.DEFAULT);
   }
 
   @override
@@ -38,9 +38,9 @@ class _MovieSoonPageState extends State<MovieSoonPage> {
     );
   }
 
-  void getMovieList(int page, int pagesize, RefreshType type) async {
-    List<Movie> list = await ApiService.getComingList(
-        start: (page - 1) * pagesize, count: pagesize);
+  void getMovieList(int page, RefreshType type) async {
+    List<Movie> list =
+        await ApiService.getComingList(page: page, limit: pageSize);
     if (type == RefreshType.DEFAULT) {
       movies.addAll(list);
       isFirst = false;
@@ -66,16 +66,14 @@ class _MovieSoonPageState extends State<MovieSoonPage> {
           ? null
           : () async {
               page++;
-              getMovieList(page, pagesize, RefreshType.LOAD_MORE);
+              getMovieList(page, RefreshType.LOAD_MORE);
             },
       emptyWidget: movies.length > 0 ? null : Center(child: Text('暂无数据')),
       child: ListView.builder(
         itemBuilder: (context, index) {
           return ItemSoonView(
             movies[index],
-            onTap: () {
-              pushNewPage(context, MovieDetail(movies[index].id));
-            },
+            onTap: () => pushNewPage(context, MovieDetail(movies[index].id)),
           );
         },
         itemCount: movies.length,

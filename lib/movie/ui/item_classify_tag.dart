@@ -18,7 +18,7 @@ class _ItemClassifyTagState extends State<ItemClassifyTag> {
   void initState() {
     super.initState();
 
-    /// searchMovieByTag(widget.tag);
+    searchMovieByTag(widget.tag);
   }
 
   @override
@@ -56,7 +56,7 @@ class _ItemClassifyTagState extends State<ItemClassifyTag> {
 
   void searchMovieByTag(String tag) async {
     List<Movie> movies =
-        await ApiService.getSearchListByTag(tag: tag, start: 0, count: 1);
+        await ApiService.getSearchListByTag(tag, page: 0, limit: 1);
 
     if (movies != null && movies.isNotEmpty) {
       setState(() {

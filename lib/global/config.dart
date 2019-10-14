@@ -9,9 +9,6 @@ class Config {
       // '2d2a76fac8324146a1b17b68bda42c76';
       "d6cfdce8193445ba894d889e7ab2de5b";
 
-  /// 豆瓣电影appkey
-  static final String DOUBAN_MOVIE_KEY = "0b2bdeda43b5688921839c8ecb20399b";
-
   static final String READER_IMAGE_URL = 'http://statics.zhuishushenqi.com';
   static final String READER_CHAPTER_URL =
       'http://chapterup.zhuishushenqi.com/chapter/';

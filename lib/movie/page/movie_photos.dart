@@ -12,10 +12,10 @@ import '../../page_index.dart';
 
 class MoviePhotosPage extends StatefulWidget {
   final String title;
-  final String url;
+  final String type;
   final String id;
 
-  MoviePhotosPage(this.title, this.url, this.id);
+  MoviePhotosPage(this.title, this.type, this.id);
 
   @override
   createState() => _MoviePhotosPageState();
@@ -36,13 +36,7 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
   void initState() {
     super.initState();
 
-    getPhotosList(widget.url, widget.id, (page - 1) * pageSize, page * pageSize,
-        RefreshType.DEFAULT);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+    getPhotosList(widget.type, widget.id, page, RefreshType.DEFAULT);
   }
 
   @override
@@ -56,10 +50,10 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
     );
   }
 
-  void getPhotosList(String url, String id, int start, int count,
-      RefreshType loadDataType) async {
+  void getPhotosList(
+      String url, String id, int page, RefreshType loadDataType) async {
     List<Photos> _photos =
-        await ApiService.getPhotos(url, id, start: start, count: count);
+        await ApiService.getPhotos(url, id, page: page, limit: pageSize);
 
     if (_photos.length < pageSize) {
       Toast.show(context, '数据加载完成...');
@@ -87,12 +81,12 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
             ? null
             : () async {
                 page++;
-                getPhotosList(widget.url, widget.id, (page - 1) * pageSize,
-                    page * pageSize, RefreshType.LOAD_MORE);
+                getPhotosList(
+                    widget.type, widget.id, page, RefreshType.LOAD_MORE);
               },
         child: StaggeredGridView.countBuilder(
             crossAxisCount: 4,
-            itemCount: photos.length,
+            itemCount: photos?.length,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) => ItemPhoto(photos[index],
                 onTap: () => pushNewPage(
@@ -101,9 +95,9 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
                       title: widget.title,
                       photos: images,
                       index: index,
-                      heroTag: photos[index].id,
+                      heroTag: photos[index]?.id,
                     ))),
             staggeredTileBuilder: (index) => StaggeredTile.fit(2)),
-        emptyWidget: photos.isEmpty ? Center(child: Text('没有数据！')) : null);
+        emptyWidget: photos.isEmpty ? EmptyPage(text: "没有数据！") : null);
   }
 }

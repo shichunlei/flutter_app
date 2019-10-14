@@ -127,9 +127,6 @@ class Movie {
   /// 排名改变量,正数为排名上升，负数为排名下降，0位排名不变（一周口碑榜接口字段）
   int delta;
 
-  /// 影片
-  Movie subject;
-
   /// 票房（美元）（北美票房榜接口字段）
   num box;
 
@@ -195,6 +192,9 @@ class Movie {
 
   /// 标签
   List<String> tags;
+
+  /// 影人角色
+  List<String> roles;
 
   /// 预告片
   List<Clips> trailers;
@@ -276,8 +276,6 @@ class Movie {
     movie.box = map['box'];
     movie.rank = map['rank'];
     movie.delta = map['delta'];
-    movie.subject =
-        map['subject'] == null ? null : Movie.fromMap(map['subject']);
 
     movie.images = map['images'] == null ? null : Images.fromMap(map['images']);
     movie.rating = map['rating'] == null ? null : Rating.fromMap(map['rating']);
@@ -331,13 +329,17 @@ class Movie {
     movie.languages = List();
     movie.languages.addAll(languages.map((o) => o.toString()));
 
-    List<dynamic> pubdates = map['pubdates'] == null ? [] : map['pubdates'];
+    List<dynamic> pubDates = map['pubdates'] == null ? [] : map['pubdates'];
     movie.pubDates = List();
-    movie.pubDates.addAll(pubdates.map((o) => o.toString()));
+    movie.pubDates.addAll(pubDates.map((o) => o.toString()));
 
     List<dynamic> tagList = map['tags'] == null ? [] : map['tags'];
     movie.tags = List();
     movie.tags.addAll(tagList.map((o) => o.toString()));
+
+    List<dynamic> roleList = map['roles'] == null ? [] : map['roles'];
+    movie.roles = List();
+    movie.roles.addAll(roleList.map((o) => o.toString()));
 
     List<dynamic> trailerUrlList =
         map['trailer_urls'] == null ? [] : map['trailer_urls'];
@@ -373,7 +375,7 @@ class Celebrity {
   List<String> akaEn;
   List<String> professions;
   List<Photos> photos;
-  List<Works> works;
+  List<Movie> subjects;
 
   static Celebrity fromMap(Map<String, dynamic> map) {
     Celebrity celebrity = Celebrity();
@@ -392,8 +394,8 @@ class Celebrity {
         map['avatars'] == null ? null : Avatars.fromMap(map['avatars']);
     celebrity.photos =
         map['photos'] == null ? [] : Photos.fromMapList(map['photos']);
-    celebrity.works =
-        map['works'] == null ? [] : Works.fromMapList(map['works']);
+    celebrity.subjects =
+        map['subjects'] == null ? [] : Movie.fromMapList(map['subjects']);
 
     List<dynamic> aka = map['aka'] == null ? [] : map['aka'];
     celebrity.aka = List();
@@ -421,7 +423,7 @@ class Celebrity {
 
   @override
   String toString() {
-    return '{website: $website, mobile_url: $mobileUrl, name: $name, name_en: $nameEn, gender: $gender, summary: $summary, birthday: $birthday, alt: $alt, born_place: $bornPlace, constellation: $constellation, id: $id, avatars: $avatars, aka: $aka, aka_en: $akaEn, professions: $professions, photos: $photos, works: $works}';
+    return '{website: $website, mobile_url: $mobileUrl, name: $name, name_en: $nameEn, gender: $gender, summary: $summary, birthday: $birthday, alt: $alt, born_place: $bornPlace, constellation: $constellation, id: $id, avatars: $avatars, aka: $aka, aka_en: $akaEn, professions: $professions, photos: $photos}';
   }
 }
 
@@ -518,35 +520,35 @@ class Photos {
 }
 
 class Reviews {
-  String created_at;
+  String createdAt;
   String title;
-  String updated_at;
-  String share_url;
+  String updatedAt;
+  String shareUrl;
   String summary;
   String content;
   String alt;
   String id;
-  String subject_id;
-  int useful_count;
-  int useless_count;
-  int comments_count;
+  String subjectId;
+  int usefulCount;
+  int uselessCount;
+  int commentsCount;
   Author author;
   Rating rating;
 
   static Reviews fromMap(Map<String, dynamic> map) {
     Reviews reviews = new Reviews();
-    reviews.created_at = map['created_at'];
+    reviews.createdAt = map['created_at'];
     reviews.title = map['title'];
-    reviews.updated_at = map['updated_at'];
-    reviews.share_url = map['share_url'];
+    reviews.updatedAt = map['updated_at'];
+    reviews.shareUrl = map['share_url'];
     reviews.summary = map['summary'];
     reviews.content = map['content'];
     reviews.alt = map['alt'];
     reviews.id = map['id'];
-    reviews.subject_id = map['subject_id'];
-    reviews.useful_count = map['useful_count'];
-    reviews.useless_count = map['useless_count'];
-    reviews.comments_count = map['comments_count'];
+    reviews.subjectId = map['subject_id'];
+    reviews.usefulCount = map['useful_count'];
+    reviews.uselessCount = map['useless_count'];
+    reviews.commentsCount = map['comments_count'];
     reviews.author =
         map['author'] == null ? null : Author.fromMap(map['author']);
     reviews.rating =
@@ -671,30 +673,6 @@ class Source {
   @override
   String toString() {
     return 'SourceBean{literal: $literal, pic: $pic, name: $name}';
-  }
-}
-
-class Works {
-  Movie subject;
-  List<String> roles;
-
-  static Works fromMap(Map<String, dynamic> map) {
-    Works works = Works();
-    works.subject = Movie.fromMap(map['subject']);
-
-    List<dynamic> roles = map['roles'] == null ? [] : map['roles'];
-    works.roles = List();
-    works.roles.addAll(roles.map((o) => o.toString()));
-
-    return works;
-  }
-
-  static List<Works> fromMapList(dynamic mapList) {
-    List<Works> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
   }
 }
 

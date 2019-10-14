@@ -54,7 +54,7 @@ class ItemComment extends StatelessWidget {
                       ),
                       Gaps.hGap10,
                       Text(
-                        comment.created_at,
+                        comment.createdAt,
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
@@ -82,7 +82,7 @@ class ItemComment extends StatelessWidget {
               ),
               Gaps.hGap5,
               Text(
-                '${comment.useful_count}',
+                '${comment.usefulCount}',
                 style: TextStyle(
                   fontSize: 12,
                   color: Colors.white,

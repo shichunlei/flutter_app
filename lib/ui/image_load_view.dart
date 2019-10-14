@@ -35,8 +35,6 @@ class ImageLoadView extends StatelessWidget {
     this.placeholder: "images/loading.png",
     this.imageType: ImageType.network,
   })  : assert(path != null),
-        assert(fit != null),
-        assert(borderRadius != null),
         super(key: key);
 
   @override

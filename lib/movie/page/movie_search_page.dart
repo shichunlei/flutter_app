@@ -34,7 +34,7 @@ class _MovieSearchPageState extends State<MovieSearchPage> {
   void initState() {
     super.initState();
 
-    searchMovies(page, pagesize, widget.q, widget.tag, RefreshType.DEFAULT);
+    // searchMovies(page, pagesize, widget.q, widget.tag, RefreshType.DEFAULT);
 
     // 对 scrollController 进行监听
     _scrollController.addListener(() {
