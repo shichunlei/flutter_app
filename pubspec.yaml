@@ -109,8 +109,6 @@ dependencies: # 应用或包依赖的其它包或插件
 
   flutter_webview_plugin: ^0.3.8
 
-  fluttery_seekbar: ^0.0.1
-
   http: ^0.12.0+2
 
   # 图片裁剪

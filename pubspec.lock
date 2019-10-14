@@ -307,20 +307,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.3.8"
-  fluttery:
-    dependency: transitive
-    description:
-      name: fluttery
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.0.8"
-  fluttery_seekbar:
-    dependency: "direct main"
-    description:
-      name: fluttery_seekbar
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.0.1"
   html:
     dependency: transitive
     description:

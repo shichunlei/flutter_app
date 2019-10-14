@@ -1,5 +1,5 @@
+import 'package:custom_widgets/fluttery/seekbars.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttery_seekbar/fluttery_seekbar.dart';
 
 import '../../page_index.dart';
 
