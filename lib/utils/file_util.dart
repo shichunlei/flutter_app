@@ -15,6 +15,12 @@ class FileUtil {
 
   FileUtil._internal();
 
+  Future<String> getTempPath() async {
+    Directory tempDir = await getTemporaryDirectory();
+    String path = tempDir.path;
+    return path;
+  }
+
   Future<String> getFolderPath(String folderPath) async {
     Directory tempDir = await getApplicationDocumentsDirectory();
     String path = tempDir.path + folderPath;

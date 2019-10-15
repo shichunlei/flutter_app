@@ -9,7 +9,7 @@ import 'package:html/parser.dart' show parse;
 
 import '../page_index.dart';
 
-class ApiService<T> {
+class ApiService {
   /// 豆瓣电影首页数据
   static Future<MovieHomeData> getMovieHomeData({String city}) async {
     Response response =

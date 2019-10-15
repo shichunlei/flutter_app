@@ -36,13 +36,13 @@ dependencies: # 应用或包依赖的其它包或插件
   barcode_scan: ^1.0.0
 
   # 图表
-  charts_flutter: ^0.8.0
+  charts_flutter: ^0.8.1
 
-  chewie: ^0.9.7
+  chewie: ^0.9.8+1
 
   city_picker: ^0.1.4
 
-  city_pickers: ^0.1.25
+  city_pickers: ^0.1.27
 
   clippy_flutter: ^1.1.0
 
@@ -54,7 +54,7 @@ dependencies: # 应用或包依赖的其它包或插件
     path: custom_widgets/
 
   # 设备信息
-  device_info: ^0.4.0+2
+  device_info: ^0.4.0+3
 
   # 网络请求库
   dio: 2.1.16
@@ -84,7 +84,7 @@ dependencies: # 应用或包依赖的其它包或插件
       url: https://github.com/shichunlei/flutter_jd_address_selector
 
   # https://github.com/dooboolab/flutter_sound
-  flutter_sound: ^1.4.5
+  flutter_sound: ^1.4.8
 
   # 加载提示组件
   flutter_spinkit: ^4.0.0
@@ -112,10 +112,10 @@ dependencies: # 应用或包依赖的其它包或插件
   http: ^0.12.0+2
 
   # 图片裁剪
-  image_cropper: ^1.0.2
+  image_cropper: ^1.1.0
 
   # 图片选择器
-  image_picker: ^0.6.1+4
+  image_picker: ^0.6.1+7
 
   # 保存图片
   image_picker_saver: ^0.3.0
@@ -129,7 +129,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.7
 
-  multi_image_picker: ^4.5.5
+  multi_image_picker: ^4.5.8
 
   package_info: ^0.4.0+6
 
@@ -155,9 +155,9 @@ dependencies: # 应用或包依赖的其它包或插件
   rounded_letter: ^0.0.6
 
   # https://github.com/ReactiveX/rxdart
-  rxdart: ^0.22.2
+  rxdart: ^0.22.3
 
-  share: ^0.6.2+1
+  share: ^0.6.2+3
 
   # SP
   shared_preferences: ^0.5.3+4
@@ -166,7 +166,7 @@ dependencies: # 应用或包依赖的其它包或插件
   shimmer: ^1.0.1
 
   # 数据库
-  sqflite: ^1.1.6+4
+  sqflite: ^1.1.7+1
 
   # 时间线 https://github.com/furkantektas/timeline_list
   timeline_list: ^0.0.5
@@ -174,10 +174,10 @@ dependencies: # 应用或包依赖的其它包或插件
   # 透明占位图片
   transparent_image: ^1.0.0
 
-  url_launcher: ^5.1.3
+  url_launcher: ^5.1.6
 
   # 视频播放器器
-  video_player: ^0.10.2+1
+  video_player: ^0.10.2+3
 
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:

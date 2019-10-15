@@ -196,11 +196,37 @@ class _MinePageState extends State<MinePage> {
   Future<Null> _cropImage(File imageFile) async {
     assert(imageFile != null);
     File croppedFile = await ImageCropper.cropImage(
+      /// 图像文件的绝对路径。
       sourcePath: imageFile.path,
-      ratioX: 1.0,
-      ratioY: 1.0,
-      maxWidth: 512,
-      maxHeight: 512,
+
+      /// 最大裁剪的图像宽度
+      maxWidth: 256,
+
+      /// 最大裁剪的图像高度
+      maxHeight: 256,
+
+      /// 控制裁剪菜单视图中纵横比的列表。在Android中，您可以通过设置的值来设置启动裁切器时的初始化纵横比AndroidUiSettings.initAspectRatio
+      aspectRatioPresets: [CropAspectRatioPreset.square],
+
+      /// 控制裁剪边界的样式，可以是矩形或圆形样式
+      cropStyle: CropStyle.circle,
+
+      /// 结果图像的格式，png或jpg
+      compressFormat: ImageCompressFormat.jpg,
+
+      /// 用于控制图像压缩的质量，取值范围[1-100]
+      compressQuality: 100,
+      androidUiSettings: AndroidUiSettings(
+        toolbarTitle: "裁剪",
+        toolbarColor: Theme.of(context).accentColor,
+        statusBarColor: Theme.of(context).accentColor,
+        toolbarWidgetColor: Colors.white,
+      ),
+      iosUiSettings: IOSUiSettings(
+        minimumAspectRatio: 1.0,
+        doneButtonTitle: S.of(context).sure,
+        cancelButtonTitle: S.of(context).cancel,
+      ),
     );
 
     debugPrint('cropImage=============${croppedFile.path}');

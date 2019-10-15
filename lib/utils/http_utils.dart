@@ -1,28 +1,22 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/config.dart';
-import 'package:flutter_app/service/api_url.dart';
+
+import '../page_index.dart';
 
 class HttpUtils {
   /// http request methods
   static const String GET = 'get';
   static const String POST = 'post';
-  static const String PUT = 'put';
-  static const String PATCH = 'patch';
-  static const String DELETE = 'delete';
 
   Dio _dio;
-  BaseOptions options;
 
   CancelToken cancelToken = CancelToken();
 
   Dio get dio => _dio;
-
-  static const CONTENT_TYPE_JSON = "application/json";
-  static const CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 
   HttpUtils({String baseUrl: ApiUrl.BASE_URL}) {
     debugPrint('dio赋值=====$baseUrl');
@@ -42,8 +36,9 @@ class HttpUtils {
       responseType: ResponseType.plain,
 
       /// 请求的Content-Type，默认值是[ContentType.json]. 也可以用ContentType.parse("application/x-www-form-urlencoded")
-      contentType:
-          ContentType('application', CONTENT_TYPE_FORM, charset: 'utf-8'),
+      contentType: ContentType(
+          'application', 'application/x-www-form-urlencoded',
+          charset: 'utf-8'),
 
       /// Http请求头.
       headers: {
@@ -218,5 +213,128 @@ class HttpUtils {
   /// 同一个cancel token 可以用于多个请求，当一个cancel token取消时，所有使用该cancel token的请求都会被取消。所以参数可选
   void cancelRequests(CancelToken token) {
     token.cancel("cancelled");
+  }
+
+  get(
+    String path,
+    Function successCallBack, {
+    Map<String, dynamic> params,
+    CancelToken cancelToken,
+    Options options,
+    Function errorCallBack,
+  }) async {
+    _requestHttp(path, successCallBack,
+        method: GET,
+        params: params,
+        errorCallBack: errorCallBack,
+        options: options,
+        cancelToken: cancelToken);
+  }
+
+  post(
+    String path,
+    Function successCallBack, {
+    Map<String, dynamic> params,
+    CancelToken cancelToken,
+    Options options,
+    Function errorCallBack,
+  }) async {
+    _requestHttp(path, successCallBack,
+        method: POST,
+        params: params,
+        errorCallBack: errorCallBack,
+        options: options,
+        cancelToken: cancelToken);
+  }
+
+  _requestHttp(
+    String path,
+    Function successCallBack, {
+    String method,
+    Map<String, dynamic> params,
+    Function errorCallBack,
+    CancelToken cancelToken,
+    Options options,
+  }) async {
+    Response response;
+    try {
+      if (method == GET) {
+        if (params != null && params.isNotEmpty) {
+          response = await dio.get(path,
+              queryParameters: params,
+              options: _checkOptions(method, options),
+              cancelToken: cancelToken);
+        } else {
+          response = await dio.get(path,
+              options: _checkOptions(method, options),
+              cancelToken: cancelToken);
+        }
+      } else if (method == POST) {
+        if (params != null && params.isNotEmpty) {
+          response = await dio
+              .post(path, data: params, options: _checkOptions(method, options),
+                  onReceiveProgress: (int count, int total) {
+            debugPrint(
+                'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
+          }, onSendProgress: (int count, int total) {
+            debugPrint(
+                'onSendProgress: ${(count / total * 100).toStringAsFixed(0)} %');
+          }, cancelToken: cancelToken);
+        } else {
+          response = await dio
+              .post(path, options: _checkOptions(method, options),
+                  onReceiveProgress: (int count, int total) {
+            debugPrint(
+                'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
+          }, onSendProgress: (int count, int total) {
+            debugPrint(
+                'onSendProgress: ${(count / total * 100).toStringAsFixed(0)} %');
+          }, cancelToken: cancelToken);
+        }
+      }
+
+      /// debug模式才打印
+      if (Config.DEBUG) {
+        /// 响应数据，可能已经被转换了类型, 详情请参考Options中的[ResponseType].
+        debugPrint('$method请求成功!response.data：${response.data}');
+
+        /// 响应头
+        debugPrint('$method请求成功!response.headers：${response.headers}');
+
+        /// 本次请求信息
+        debugPrint('$method请求成功!response.request：${response.request}');
+
+        /// Http status code.
+        debugPrint('$method请求成功!response.statusCode：${response.statusCode}');
+      }
+    } on DioError catch (error) {
+      // 请求错误处理
+      debugPrint(error.response.toString());
+      formatError(error);
+
+      // debug模式才打印
+      if (Config.DEBUG) {
+        debugPrint('请求异常: ' + error.toString());
+        debugPrint('请求异常url: ' + path);
+        debugPrint('请求头: ' + dio.options.headers.toString());
+        debugPrint('method: ' + dio.options.method);
+      }
+      _error(errorCallBack, error.message);
+      return '';
+    }
+    String dataStr = json.encode(response.data);
+    Map<String, dynamic> dataMap = json.decode(dataStr);
+    if (dataMap == null || dataMap['code'] == 0) {
+      _error(errorCallBack,
+          '错误码：' + dataMap['code'].toString() + dataMap['message'].toString());
+    } else if (successCallBack != null) {
+      successCallBack(dataMap);
+    }
+  }
+
+  _error(Function errorCallBack, String error) {
+    if (errorCallBack != null) {
+      errorCallBack(error);
+    }
   }
 }
