@@ -28,8 +28,9 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
   int onTop = 0;
 
   // 基本信息
-  String _name = musicBase[0]['name'];
-  String _artists = musicBase[0]['artists'];
+  String _name;
+
+  String _artists;
 
   FlutterSound flutterSound = FlutterSound(); //创建一个播放实例
 
@@ -47,6 +48,8 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
   @override
   void initState() {
     super.initState();
+    _name = songsData[0].title;
+    _artists = songsData[0].artists;
 
     _controller =
         AnimationController(duration: Duration(seconds: 15), vsync: this);
@@ -74,14 +77,14 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
                   itemBuilder: (BuildContext context, int index) =>
                       AnimatedCDView(
                           animation: _controller,
-                          imageUrl: musicBase[index]['img1v1Url']),
+                          imageUrl: songsData[index].albumArtUrl),
                   onIndexChanged: (i) => setState(() {
                         onTop = i;
-                        _name = musicBase[i]['name'];
-                        _artists = musicBase[i]['artists'];
+                        _name = songsData[0].title;
+                        _artists = songsData[i].artists;
                         startPlay();
                       }),
-                  itemCount: musicBase.length,
+                  itemCount: songsData.length,
                   viewportFraction: 0.70,
                   scale: 0.6)),
           // name
@@ -140,8 +143,7 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
                         child: Icon(isPlay ? Icons.pause : Icons.play_arrow))),
                 // like
                 RawMaterialButton(
-                    onPressed: () => setState(() =>
-                        musicBase[onTop]['like'] = !musicBase[onTop]['like']),
+                    onPressed: () {},
                     shape: CircleBorder(),
                     fillColor: Colors.white,
                     splashColor: lightAccentColor,
@@ -188,7 +190,7 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
       flutterSound.stopPlayer();
     }
 
-    await flutterSound.startPlayer(musicBase[onTop]['url']);
+    await flutterSound.startPlayer(songsData[onTop].audioPath);
 
     try {
       setState(() {

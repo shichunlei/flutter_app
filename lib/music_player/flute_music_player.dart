@@ -1,5 +1,6 @@
 import 'package:flute_music_player/flute_music_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/bean/music.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../page_index.dart';
@@ -20,7 +21,7 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
   Duration duration;
   Duration position;
 
-  List<Song> _songs = [];
+  List<Music> _songs = [];
 
   MusicFinder audioPlayer;
 
@@ -79,20 +80,28 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
 
   void initPlayer() async {
     try {
-      List<Song> songs = await MusicFinder.allSongs();
+//      List<Song> songs = await MusicFinder.allSongs();
+//
+//      songs = List.from(songs);
+//
+//      if (songs.length > 0) {
+//        debugPrint('${songs.toString()}=======${songs[0].uri}==');
+//        songs.forEach((item) {
+//          _songs.add(Music(
+//              title: item.title,
+//              audioPath: item.uri,
+//              albumArtUrl: item.albumArt,
+//              artists: item.artist));
+//        });
+//      } else {
+      _songs = songsData;
+//      }
 
-      songs = List.from(songs);
-
-      debugPrint('${songs.toString()}=======${songs[0].uri}==');
-
-      if (songs.length > 0) {
-        setState(() {
-          _songs = songs;
-          totalSongs = _songs.length;
-          _index = 0;
-          songTitle = _songs[_index].title;
-        });
-      }
+      setState(() {
+        totalSongs = _songs.length;
+        _index = 0;
+        songTitle = _songs[_index].title;
+      });
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -144,15 +153,13 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
     _controller.forward();
 
     final result =
-        await audioPlayer.play(_songs[_index]?.uri, isLocal: isLocal);
+        await audioPlayer.play(_songs[_index]?.audioPath, isLocal: isLocal);
 
     if (result == 1) {
       setState(() {
         playerState = PlayerState.playing;
         _icon = Icons.pause;
         songTitle = _songs[_index].title;
-
-        debugPrint('$songTitle 时长为： ${_songs[_index].duration}');
       });
     }
   }

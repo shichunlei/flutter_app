@@ -80,10 +80,9 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   }
 
   void initPlayer() async {
-    totalSongs = musicBase.length;
+    totalSongs = songsData.length;
     _index = 0;
-    songTitle =
-        "${musicBase[_index]['name']} - ${musicBase[_index]['artists']}";
+    songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
 
     audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
     audioPlayer.setReleaseMode(ReleaseMode.RELEASE);
@@ -150,14 +149,13 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     _controller.forward();
 
     final result =
-        await audioPlayer.play(musicBase[_index]['url'], isLocal: isLocal);
+        await audioPlayer.play(songsData[_index].audioPath, isLocal: isLocal);
     if (result == 1) {
       debugPrint('=============${audioPlayer.playerId}');
       setState(() {
         playerState = PlayerState.playing;
         _icon = Icons.pause;
-        songTitle =
-            "${musicBase[_index]['name']} - ${musicBase[_index]['artists']}";
+        songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
       });
     }
     return result;
@@ -170,8 +168,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
       setState(() {
         playerState = PlayerState.paused;
         _icon = Icons.play_arrow;
-        songTitle =
-            "${musicBase[_index]['name']} - ${musicBase[_index]['artists']}";
+        songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
       });
     return result;
   }
@@ -244,7 +241,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
           // Seek bar
           Expanded(
               child: RadialSeekBarUI(
-                  imageUrl: musicBase[_index]['img1v1Url'],
+                  imageUrl: songsData[_index].albumArtUrl,
                   controller: _controller,
                   thumbPercent: _thumbPercent,
                   onDragEnd: (double percent) {
@@ -409,15 +406,15 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   Widget _bottomSheetItem(BuildContext context) {
     return ListView(
         // 生成一个列表选择器
-        children: musicBase.map((song) {
-      int index = musicBase.indexOf(song);
+        children: songsData.map((song) {
+      int index = songsData.indexOf(song);
       return ListTile(
-          leading: ImageLoadView('${song['img1v1Url']}',
+          leading: ImageLoadView('${song.albumArtUrl}',
               width: 40,
               height: 40,
               fit: BoxFit.cover,
               borderRadius: BorderRadius.all(Radius.circular(20.0))),
-          title: Text('${song['name']}'),
+          title: Text('${song.title}'),
           onTap: () {
             if (isPlaying || isPaused) {
               if (_index != index)
