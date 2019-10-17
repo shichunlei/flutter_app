@@ -73,6 +73,7 @@ export 'page/second_floor.dart';
 export 'page/parallax_image.dart';
 export 'page/shimmer.dart';
 export 'page/backdrop.dart';
+export 'page/sound_demo.dart';
 
 export 'animation/curves_demo.dart';
 export 'animation/animated_opacity.dart';
@@ -140,6 +141,7 @@ export 'ui/light_theme.dart';
 export 'ui/tagview.dart';
 export 'ui/photo_view.dart';
 export 'ui/bottom_sheet.dart';
+export 'ui/circle_button.dart';
 
 export 'qdaily/splash.dart';
 

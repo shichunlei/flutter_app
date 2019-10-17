@@ -10,7 +10,6 @@ export 'item_list.dart';
 export 'item_cover.dart';
 export 'item_comment.dart';
 export 'item_photo.dart';
-export 'item_tag.dart';
 export 'item_ranking_movie.dart';
 export 'item_grid_view.dart';
 export 'movie_grid_view.dart';

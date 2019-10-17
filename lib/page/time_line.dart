@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/data.dart';
+import 'package:flutter_app/bean/doodle.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:timeline_list/timeline.dart';
 import 'package:timeline_list/timeline_model.dart';
@@ -52,11 +52,11 @@ class _TimeLinePageState extends State<TimeLinePage>
 
   timelineModel(TimelinePosition position) => Timeline.builder(
       itemBuilder: centerTimelineBuilder,
-      itemCount: Doodle.doodles.length,
+      itemCount: doodles.length,
       position: position);
 
   TimelineModel centerTimelineBuilder(BuildContext context, int i) {
-    final doodle = Doodle.doodles[i];
+    final doodle = doodles[i];
     final textTheme = Theme.of(context).textTheme;
     return TimelineModel(
         Card(
@@ -83,7 +83,7 @@ class _TimeLinePageState extends State<TimeLinePage>
         position:
             i % 2 == 0 ? TimelineItemPosition.right : TimelineItemPosition.left,
         isFirst: i == 0,
-        isLast: i == Doodle.doodles.length,
+        isLast: i == doodles.length,
         iconBackground: doodle.iconBackground,
         icon: doodle.icon);
   }

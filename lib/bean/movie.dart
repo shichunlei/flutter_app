@@ -689,7 +689,7 @@ class Rating {
     ratingBean.max = map['max'];
     ratingBean.value = map['value'] == null ? -1 : map['value'];
     ratingBean.min = map['min'];
-    ratingBean.stars = map['stars'] == null ? "" : map['stars'];
+    ratingBean.stars = map['stars'] == null ? "" : "${map['stars']}";
     ratingBean.average = map['average'] == null ? 0 : map['average'];
     ratingBean.details =
         map['details'] == null ? null : Details.fromMap(map['details']);

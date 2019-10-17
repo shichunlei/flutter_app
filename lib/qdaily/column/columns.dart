@@ -17,8 +17,6 @@ class ColumnsPage extends StatefulWidget {
 class _ColumnsPageState extends State<ColumnsPage> {
   String lastKey = '0';
 
-  bool isLoadComplete = false;
-
   ResponseBean dataBean;
   List<ColumnBean> columns = [];
 
@@ -51,7 +49,7 @@ class _ColumnsPageState extends State<ColumnsPage> {
       // 请求失败
       _status = LoaderState.Failed;
     } else {
-      this.lastKey = dataBean?.lastKey;
+      this.lastKey = dataBean.lastKey;
 
       print('${this.lastKey}=============');
 
@@ -81,9 +79,7 @@ class _ColumnsPageState extends State<ColumnsPage> {
           taskIndependence: true,
           header: PhoenixHeader(),
           footer: BallPulseFooter(),
-          onLoad: isLoadComplete
-              ? null
-              : () async => getColumnsData(lastKey, RefreshType.LOAD_MORE),
+          onLoad: () async => getColumnsData(lastKey, RefreshType.LOAD_MORE),
           onRefresh: () async => getColumnsData('0', RefreshType.REFRESH),
           child: ListView.separated(
               itemBuilder: (context, index) => ItemColumn(

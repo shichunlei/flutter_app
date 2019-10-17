@@ -15,5 +15,4 @@ export 'movie.dart';
 export 'news.dart';
 export 'qdaily.dart';
 export 'result.dart';
-export 'user.dart';
 export 'youdao.dart';

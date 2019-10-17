@@ -5,6 +5,7 @@ import 'package:custom_widgets/wave.dart';
 import 'package:flutter/material.dart';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter_app/bean/music.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:http/http.dart';
@@ -384,23 +385,24 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   }
 
   Widget _buildPlayPausedButton() {
-    return RawMaterialButton(
-        onPressed: () {
-          if (isPlaying) {
-            _pause();
-          } else {
-            _play();
-          }
-        },
-        shape: CircleBorder(),
-        fillColor: Colors.white,
-        splashColor: lightAccentColor,
-        highlightColor: lightAccentColor.withOpacity(0.5),
-        elevation: 10.0,
-        highlightElevation: 5,
-        child: Padding(
-            padding: EdgeInsets.all(8),
-            child: Icon(_icon, color: darkAccentColor, size: 35)));
+    return CircleButton(
+      onPressedAction: () {
+        if (isPlaying) {
+          _pause();
+        } else {
+          _play();
+        }
+      },
+      fillColor: Colors.white,
+      splashColor: lightAccentColor,
+      highlightColor: lightAccentColor.withOpacity(0.5),
+      elevation: 10.0,
+      highlightElevation: 5,
+      icon: _icon,
+      iconSize: 35,
+      size: 50,
+      iconColor: darkAccentColor,
+    );
   }
 
   Widget _bottomSheetItem(BuildContext context) {

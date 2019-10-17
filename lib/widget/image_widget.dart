@@ -8,7 +8,7 @@ class ImageWidget extends StatefulWidget {
   createState() => ImageWidgetState();
 }
 
-const List<String> countries = [
+const List<String> _countries = [
   'ad',
   'ae',
   'af',
@@ -410,12 +410,12 @@ class ImageWidgetState extends State<ImageWidget> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  index = Random().nextInt(countries.length - 1);
+                  index = Random().nextInt(_countries.length - 1);
                 });
               },
               child: Image(
                   image: NetworkImage(
-                      "https://github.com/hjnilsson/country-flags/blob/master/png1000px/${countries[index]}.png?raw=true")),
+                      "https://github.com/hjnilsson/country-flags/blob/master/png1000px/${_countries[index]}.png?raw=true")),
             ),
 
             Divider(),

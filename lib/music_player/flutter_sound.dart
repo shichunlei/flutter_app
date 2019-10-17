@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_app/bean/music.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:intl/intl.dart';
@@ -104,55 +105,57 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 // unlike
-                RawMaterialButton(
-                    onPressed: () {},
-                    shape: CircleBorder(),
-                    fillColor: Colors.white,
-                    splashColor: lightAccentColor,
-                    highlightColor: lightAccentColor.withOpacity(0.5),
-                    elevation: 5.0,
-                    highlightElevation: 5,
-                    child: Padding(
-                        padding: EdgeInsets.all(10), child: Icon(Icons.close))),
+                CircleButton(
+                  onPressedAction: () {},
+                  fillColor: Colors.white,
+                  splashColor: lightAccentColor,
+                  highlightColor: lightAccentColor.withOpacity(0.5),
+                  elevation: 5.0,
+                  highlightElevation: 5,
+                  icon: Icons.close,
+                  iconColor: Theme.of(context).primaryColor,
+                  iconSize: 20,
+                ),
                 // play && pause
-                RawMaterialButton(
-                    onPressed: () => setState(() {
-                          isPlay = !isPlay;
-                          if (isPlay) {
-                            _controller.repeat();
-                            if (_isPlaying) {
-                              flutterSound.resumePlayer();
-                            } else {
-                              startPlay();
-                            }
-                          } else {
-                            _controller.stop();
-                            if (_isPlaying) {
-                              flutterSound.pausePlayer();
-                            }
-                          }
-                        }),
-                    shape: CircleBorder(),
-                    fillColor: Colors.white,
-                    splashColor: lightAccentColor,
-                    highlightColor: lightAccentColor.withOpacity(0.5),
-                    elevation: 0.0,
-                    highlightElevation: 5,
-                    child: Padding(
-                        padding: EdgeInsets.all(22),
-                        child: Icon(isPlay ? Icons.pause : Icons.play_arrow))),
+                CircleButton(
+                  onPressedAction: () => setState(() {
+                    isPlay = !isPlay;
+                    if (isPlay) {
+                      _controller.repeat();
+                      if (_isPlaying) {
+                        flutterSound.resumePlayer();
+                      } else {
+                        startPlay();
+                      }
+                    } else {
+                      _controller.stop();
+                      if (_isPlaying) {
+                        flutterSound.pausePlayer();
+                      }
+                    }
+                  }),
+                  size: 80,
+                  fillColor: Colors.white,
+                  splashColor: lightAccentColor,
+                  highlightColor: lightAccentColor.withOpacity(0.5),
+                  elevation: 8.0,
+                  highlightElevation: 5,
+                  icon: isPlay ? Icons.pause : Icons.play_arrow,
+                  iconColor: Theme.of(context).primaryColor,
+                  iconSize: 50,
+                ),
                 // like
-                RawMaterialButton(
-                    onPressed: () {},
-                    shape: CircleBorder(),
-                    fillColor: Colors.white,
-                    splashColor: lightAccentColor,
-                    highlightColor: lightAccentColor.withOpacity(0.5),
-                    elevation: 5.0,
-                    highlightElevation: 5,
-                    child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Icon(Icons.favorite_border)))
+                CircleButton(
+                  onPressedAction: () {},
+                  fillColor: Colors.white,
+                  splashColor: lightAccentColor,
+                  highlightColor: lightAccentColor.withOpacity(0.5),
+                  elevation: 5.0,
+                  highlightElevation: 5,
+                  icon: Icons.favorite_border,
+                  iconColor: Theme.of(context).primaryColor,
+                  iconSize: 20,
+                )
               ]),
           // 进度条
           Slider(

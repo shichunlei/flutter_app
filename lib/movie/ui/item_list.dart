@@ -78,17 +78,6 @@ class ItemList extends StatelessWidget {
               ),
             ],
           ),
-
-          /// 看过人数
-          Row(
-            children: <Widget>[
-              Text(
-                movie.collectCount.toString(),
-                style: TextStyle(fontSize: 14.0, color: Colors.orange),
-              ),
-              Text("人看过"),
-            ],
-          ),
         ],
       ),
     );
