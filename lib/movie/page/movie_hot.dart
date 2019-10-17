@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
+import 'package:flutter_app/movie/ui/index.dart';
 import '../page/movie_detail.dart';
-import '../ui/movie_grid_view.dart';
-import '../ui/item_list.dart';
 
 import '../../page_index.dart';
 
@@ -29,7 +28,7 @@ class _MovieHotPageState extends State<MovieHotPage> {
     return Scaffold(
         appBar: AppBar(title: Text('影院热映'), actions: <Widget>[
           IconButton(
-              icon: Icon(isList ? Icons.menu : Icons.apps),
+              icon: Icon(!isList ? Icons.menu : Icons.apps),
               onPressed: () => setState(() => isList = !isList))
         ]),
         body: FutureBuilder<List<Movie>>(
@@ -69,15 +68,12 @@ class _MovieHotPageState extends State<MovieHotPage> {
     return isList
         ? ListView(
             /// 表示列表包含的widget集合，整个滚动视图中的内容设置。
-            children: movies.map((movie) {
-              return ItemList(
-                movie: movie,
-                onTap: () => pushNewPage(context, MovieDetail(movie.id)),
-              );
-            }).toList(),
-
-            /// 表示控件滚动的方向，主要有两个值可设置。Axis.vertical表示垂直滚动视图；Axis.horizontal表示水平滚动视图。
-            scrollDirection: Axis.vertical,
+            children: movies
+                .map((movie) => ItemList(
+                      movie: movie,
+                      onTap: () => pushNewPage(context, MovieDetail(movie.id)),
+                    ))
+                .toList(),
 
             /// 可设置值为true|false。true时表示内容不足够填充控件区间时也可以有滚动反馈；false表示只有内容超出控件大小时才可滚动。
             primary: true,
@@ -89,17 +85,15 @@ class _MovieHotPageState extends State<MovieHotPage> {
             physics: const BouncingScrollPhysics(),
 
             /// 表示控件的内边距。
-            padding: EdgeInsets.all(10.0),
+            padding: EdgeInsets.all(6.0),
           )
         : SingleChildScrollView(
+            padding: EdgeInsets.all(6.0),
             physics: const BouncingScrollPhysics(),
-            child: Container(
-              padding: EdgeInsets.all(6.0),
-              child: Wrap(
-                spacing: 5,
-                runSpacing: 5,
-                children: movies.map((movie) => MovieGridView(movie)).toList(),
-              ),
+            child: Wrap(
+              spacing: 5,
+              runSpacing: 5,
+              children: movies.map((movie) => MovieGridView(movie)).toList(),
             ),
           );
   }

@@ -7,13 +7,12 @@ class DropDownHeader extends StatefulWidget {
   final Color color;
   final double borderWidth;
   final Color borderColor;
-  TextStyle style;
-  TextStyle dropDownStyle;
+  final TextStyle style;
+  final TextStyle dropDownStyle;
   final double iconSize;
   final Color iconColor;
-  Color iconDropDownColor;
+  final Color iconDropDownColor;
 
-//  final List<String> menuStrings;
   final double height;
   final double dividerHeight;
   final Color dividerColor;
@@ -27,18 +26,18 @@ class DropDownHeader extends StatefulWidget {
     @required this.items,
     @required this.controller,
     @required this.stackKey,
-    this.style = const TextStyle(color: Color(0xFF666666), fontSize: 13),
+    this.style: const TextStyle(color: Color(0xFF666666), fontSize: 13),
     this.dropDownStyle,
-    this.height = 40,
-    this.iconColor = const Color(0xFFafada7),
+    this.height: 50,
+    this.iconColor: const Color(0xFFafada7),
     this.iconDropDownColor,
-    this.iconSize = 20,
-    this.borderWidth = 1,
-    this.borderColor = const Color(0xFFeeede6),
-    this.dividerHeight = 20,
-    this.dividerColor = const Color(0xFFeeede6),
+    this.iconSize: 20,
+    this.borderWidth: 1,
+    this.borderColor: const Color(0xFFeeede6),
+    this.dividerHeight: 20,
+    this.dividerColor: const Color(0xFFeeede6),
     this.onItemTap,
-    this.color = Colors.white,
+    this.color: Colors.white,
   }) : super(key: key);
 
   @override
@@ -48,10 +47,7 @@ class DropDownHeader extends StatefulWidget {
 class _DropDownHeaderState extends State<DropDownHeader>
     with SingleTickerProviderStateMixin {
   bool _isShowDropDownItemWidget = false;
-  double _screenWidth;
-  double _screenHeight;
-  int _menuCount;
-  GlobalKey _keyDropDownHearder = GlobalKey();
+  GlobalKey _keyDropDownHeader = GlobalKey();
 
   @override
   void initState() {
@@ -61,39 +57,23 @@ class _DropDownHeaderState extends State<DropDownHeader>
   }
 
   _onController() {
-    print(widget.controller.menuIndex);
+    debugPrint('${widget.controller.menuIndex}');
   }
 
   @override
   Widget build(BuildContext context) {
     debugPrint('_DropDownHeaderState.build');
 
-    widget.dropDownStyle ??=
-        TextStyle(color: Theme.of(context).primaryColor, fontSize: 13);
-    widget.iconDropDownColor ??= Theme.of(context).primaryColor;
-
-    MediaQueryData mediaQuery = MediaQuery.of(context);
-    _screenWidth = mediaQuery.size.width;
-    _screenHeight = mediaQuery.size.height;
-    _menuCount = widget.items.length;
-
-    var gridView = GridView.count(
-      crossAxisCount: _menuCount,
-      childAspectRatio: (_screenWidth / _menuCount) / widget.height,
-      children: widget.items.map<Widget>((item) {
-        return _menu(item);
-      }).toList(),
-    );
-
     return Container(
-      key: _keyDropDownHearder,
+      key: _keyDropDownHeader,
       height: widget.height,
-//      padding: EdgeInsets.only(top: 1, bottom: 1),
+      width: double.infinity,
       decoration: BoxDecoration(
         border:
             Border.all(color: widget.borderColor, width: widget.borderWidth),
       ),
-      child: gridView,
+      child: Row(
+          children: widget.items.map<Widget>((item) => _menu(item)).toList()),
     );
   }
 
@@ -106,69 +86,77 @@ class _DropDownHeaderState extends State<DropDownHeader>
     int menuIndex = widget.controller.menuIndex;
     _isShowDropDownItemWidget = index == menuIndex && widget.controller.isShow;
 
-    return GestureDetector(
-      onTap: () {
-        final RenderBox overlay =
-            widget.stackKey.currentContext.findRenderObject();
-
-        final RenderBox dropDownItemRenderBox =
-            _keyDropDownHearder.currentContext.findRenderObject();
-
-        var position =
-            dropDownItemRenderBox.localToGlobal(Offset.zero, ancestor: overlay);
-        debugPrint("POSITION : $position ");
-        var size = dropDownItemRenderBox.size;
-        debugPrint("SIZE : $size");
-
-        widget.controller.dropDownHearderHeight = size.height + position.dy;
-//        widget.controller.dropDownHearderHeight = dropDownItemRenderBox.size.height;
-
-        if (widget.controller.isShow) {
-          widget.controller.hide();
-        } else {
-          widget.controller.show(index);
-        }
-        if (widget.onItemTap != null) {
-          widget.onItemTap(index);
-        }
-        setState(() {});
-      },
-      child: Container(
+    return Expanded(
+      child: Material(
         color: widget.color,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Flexible(
-                      child: Text(item.title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: _isShowDropDownItemWidget
-                              ? widget.dropDownStyle
-                              : widget.style),
-                    ),
-                    Icon(
-                        !_isShowDropDownItemWidget
-                            ? item.iconData ?? Icons.arrow_drop_down
-                            : item.iconData ?? Icons.arrow_drop_up,
-                        color: _isShowDropDownItemWidget
-                            ? widget.iconDropDownColor
-                            : widget.iconColor,
-                        size: item.iconSize ?? widget.iconSize),
-                  ]),
+        child: InkWell(
+          onTap: () {
+            final RenderBox overlay =
+                widget.stackKey.currentContext.findRenderObject();
+
+            final RenderBox dropDownItemRenderBox =
+                _keyDropDownHeader.currentContext.findRenderObject();
+
+            var position = dropDownItemRenderBox.localToGlobal(Offset.zero,
+                ancestor: overlay);
+            debugPrint("POSITION : $position ");
+            var size = dropDownItemRenderBox.size;
+            debugPrint("SIZE : $size");
+
+            widget.controller.dropDownHeaderHeight = size.height + position.dy;
+
+            if (widget.controller.isShow) {
+              widget.controller.hide();
+            } else {
+              widget.controller.show(index);
+            }
+            if (widget.onItemTap != null) {
+              widget.onItemTap(index);
+            }
+            setState(() {});
+          },
+          child: Container(
+            height: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Flexible(
+                          child: Text(item.title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: _isShowDropDownItemWidget
+                                  ? widget.dropDownStyle ??
+                                      TextStyle(
+                                          color: Theme.of(context).primaryColor,
+                                          fontSize: 13)
+                                  : widget.style),
+                        ),
+                        Icon(
+                            !_isShowDropDownItemWidget
+                                ? item.iconData ?? Icons.arrow_drop_down
+                                : item.iconData ?? Icons.arrow_drop_up,
+                            color: _isShowDropDownItemWidget
+                                ? widget.iconDropDownColor ??
+                                    Theme.of(context).primaryColor
+                                : widget.iconColor,
+                            size: item.iconSize ?? widget.iconSize),
+                      ]),
+                ),
+                index == widget.items.length - 1
+                    ? Container()
+                    : Container(
+                        height: widget.dividerHeight,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                right: BorderSide(
+                                    color: widget.dividerColor, width: 1))))
+              ],
             ),
-            index == widget.items.length - 1
-                ? Container()
-                : Container(
-                    height: widget.dividerHeight,
-                    decoration: BoxDecoration(
-                        border: Border(
-                            right: BorderSide(
-                                color: widget.dividerColor, width: 1))))
-          ],
+          ),
         ),
       ),
     );

@@ -16,8 +16,6 @@ class MovieDetailHeader extends StatelessWidget {
         'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3271389503,231131796&fm=26&gp=0.jpg';
 
     return SliverAppBar(
-      floating: true,
-      snap: true,
       pinned: true,
       expandedHeight: 200,
       backgroundColor: pageColor,

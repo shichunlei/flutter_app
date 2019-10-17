@@ -32,9 +32,6 @@ class DropDownMenu extends StatefulWidget {
 class _DropDownMenuState extends State<DropDownMenu>
     with SingleTickerProviderStateMixin {
   bool _isShowDropDownItemWidget = false;
-  double _screenWidth;
-  double _screenHeight;
-  int _menuCount;
   bool _isShowMask = false;
 
   Animation<double> _animation;
@@ -74,19 +71,14 @@ class _DropDownMenuState extends State<DropDownMenu>
     if (menuIndex >= widget.menus.length || widget.menus[menuIndex] == null) {
       return;
     }
-//    final RenderBox dropDownItemRenderBox = _keyDropDownItem.currentContext.findRenderObject();
-//
-//    _dropDownHeight = dropDownItemRenderBox.size.height;
     _isShowDropDownItemWidget = !_isShowDropDownItemWidget;
     _isShowMask = !_isShowMask;
 
-    _animation =
-        new Tween(begin: 0.0, end: widget.menus[menuIndex].dropDownHeight)
-            .animate(_controller)
-              ..addListener(() {
-                //这行如果不写，没有动画效果
-                setState(() {});
-              });
+    _animation = Tween(begin: 0.0, end: widget.menus[menuIndex].dropDownHeight)
+        .animate(_controller)
+          ..addListener(() {
+            setState(() {});
+          });
 
     if (_animation.status == AnimationStatus.completed) {
       _controller.reverse();
@@ -110,7 +102,7 @@ class _DropDownMenuState extends State<DropDownMenu>
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          color: Color.fromRGBO(0, 0, 0, 0.1),
+          color: Colors.black54,
         ),
       );
     } else {
@@ -119,51 +111,22 @@ class _DropDownMenuState extends State<DropDownMenu>
   }
 
   Widget _buildDropDownWidget() {
-//    RenderBox renderBoxRed;
-//    double top = 0;
-//    if (_dropDownHeight != 0) {
-//      renderBoxRed = _keyFilter.currentContext.findRenderObject();
-//      top = renderBoxRed.size.height;
-//    }
-//    print('SearchResultListState._buildDrapDownWidget ${renderBoxRed.size}' );
     int menuIndex = widget.controller.menuIndex;
 
     return Positioned(
         width: MediaQuery.of(context).size.width,
-        top: widget.controller.dropDownHearderHeight,
-//    top: 50,
+        top: widget.controller.dropDownHeaderHeight,
         left: 0,
-//        height: 20,
         child: Column(
           children: <Widget>[
             Container(
               color: Colors.white,
               width: MediaQuery.of(context).size.width,
-//                color: Colors.white,
-//                height: animation.value,
               height: _animation == null ? 0 : _animation.value,
-
               child: widget.menus[menuIndex].dropDownWidget,
-//              child: Container(
-//                color: Colors.red,
-//                height: 200,
-//                width: MediaQuery.of(context).size.width,
-//              ),
             ),
             _mask()
           ],
-        )
-//      height: _animation == null ? 0 : _animation.value,
-//
-//      child: Container(
-////      color: Color.fromRGBO(0, 0, 0, 0.1),
-//      color: Colors.blue,
-//        width: MediaQuery.of(context).size.width,
-////                color: Colors.white,
-//                height: MediaQuery.of(context).size.height,
-//
-//        child: _dropDownItem,
-//      ),
-        );
+        ));
   }
 }

@@ -148,9 +148,6 @@ class Movie {
   /// 当前季数(tv only)
   String currentSeason;
 
-  /// 影评数量
-  int reviewsCount;
-
   /// 想看人数
   int wishCount;
 
@@ -159,9 +156,6 @@ class Movie {
 
   /// 剧照数量
   int photosCount;
-
-  /// 短评数量
-  int commentsCount;
 
   /// 评分人数
   int ratingsCount;
@@ -217,8 +211,14 @@ class Movie {
   /// 电影剧照，前10张
   List<Photos> photos;
 
-  /// 热评
+  /// 短评数量
+  int commentsCount;
+
+  /// 短评,4条
   List<Reviews> popularComments;
+
+  /// 影评数量
+  int reviewsCount;
 
   /// 影评，前10条
   List<Reviews> popularReviews;

@@ -11,7 +11,7 @@ class Condition {
 }
 
 List<Condition> countries = [
-  Condition(title: "全部地区🇺🇳", value: "", isSelected: true),
+  Condition(title: "全部地区", value: "", isSelected: true),
   Condition(title: "中国大陆🇨🇳", value: "中国大陆", isSelected: false),
   Condition(title: "中国香港🇭🇰", value: "中国香港", isSelected: false),
   Condition(title: "中国台湾🇨🇳", value: "中国台湾", isSelected: false),
@@ -88,7 +88,19 @@ List<Condition> years = [
   Condition(title: "80年代", value: "1980,1989", isSelected: false),
   Condition(title: "70年代", value: "1970,1979", isSelected: false),
   Condition(title: "60年代", value: "1960,1969", isSelected: false),
-  Condition(title: "更早", value: "0,1959", isSelected: false)
+  Condition(title: "更早", value: "1,1959", isSelected: false)
+];
+
+List<Condition> features = [
+  Condition(title: "经典", value: "经典", isSelected: false),
+  Condition(title: "青春", value: "青春", isSelected: false),
+  Condition(title: "文艺", value: "文艺", isSelected: false),
+  Condition(title: "搞笑", value: "搞笑", isSelected: false),
+  Condition(title: "励志", value: "励志", isSelected: false),
+  Condition(title: "魔幻", value: "魔幻", isSelected: false),
+  Condition(title: "感人", value: "感人", isSelected: false),
+  Condition(title: "女性", value: "女性", isSelected: false),
+  Condition(title: "黑帮", value: "黑帮", isSelected: false),
 ];
 
 List<Condition> brandSortConditions = [

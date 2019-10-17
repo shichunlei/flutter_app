@@ -21,23 +21,25 @@ class DetailsBottomView extends StatelessWidget {
               height: snapshot.bottomBarHeight,
               color: Color(0xFA303030),
               padding: EdgeInsets.all(20.0),
-              child: Material(
-                  type: MaterialType.transparency,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      /// 字号调整
-                      ChangeTextSizeView(),
-                      Gaps.vGap10,
+              child: SingleChildScrollView(
+                child: Material(
+                    type: MaterialType.transparency,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        /// 字号调整
+                        ChangeTextSizeView(),
+                        Gaps.vGap10,
 
-                      /// 行间距调整
-                      ChangeTextSpaceView(),
-                      Gaps.vGap20,
+                        /// 行间距调整
+                        ChangeTextSpaceView(),
+                        Gaps.vGap20,
 
-                      /// 设置
-                      buildSettingButton(context, snapshot, mBookShelf)
-                    ],
-                  )),
+                        /// 设置
+                        buildSettingButton(context, snapshot, mBookShelf)
+                      ],
+                    )),
+              ),
               width: double.infinity),
           bottom: 0,
           left: 0,
@@ -45,8 +47,8 @@ class DetailsBottomView extends StatelessWidget {
     });
   }
 
-  Widget buildSettingButton(BuildContext context, ReaderSettingModel snapshot,
-      BookModel mBookShelf) {
+  Widget buildSettingButton(
+      BuildContext context, ReaderSettingModel snapshot, BookModel mBookShelf) {
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
