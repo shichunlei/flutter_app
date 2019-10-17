@@ -100,7 +100,7 @@ class ApiService {
   /// 根据标签搜索
   static Future<List<Movie>> getSearchListByTag(String tag,
       {int page = 1, int limit = 20, String type = "movie"}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL).request(
+    Response response = await HttpUtils().request(
         ApiUrl.MOVIE_SEARCH_BY_TAG_URL,
         data: {'tag': tag, 'page': page, 'limit': limit, 'type': type});
     if (response == null || response.statusCode != 200) {
@@ -116,18 +116,42 @@ class ApiService {
     }
   }
 
-  /// 搜索电影
-  static Future<List<Movie>> getSearchList(
-      {String key, String tag, int start = 0, int count = 20}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.MOVIE_BASE_URL).request(
-        ApiUrl.MOVIE_SEARCH_URL,
-        data: {'q': key, 'tag': tag, 'start': start, 'count': count});
+  /// 找电影
+  static Future<List<Movie>> getFilterList(
+      {int page: 1,
+      String range: "1,10",
+      bool playable: false,
+      bool unwatched: false,
+      String yearRange,
+      String countries,
+      String genres,
+      String sort,
+      String type,
+      String feature}) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_FILTER_URL, data: {
+      'page': page,
+      'playable': playable ? 1 : null,
+      "range": range,
+      "unwatched": unwatched ? 1 : null,
+      "year_range": yearRange,
+      "countries": countries,
+      "genres": genres,
+      "sort": sort,
+      "type": type,
+      "feature": feature
+    });
     if (response == null || response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    return result.subjects;
+    if (result.code == 0) {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 获取电影详情

@@ -6,8 +6,6 @@ import '../../bean/movie.dart';
 
 import '../../page_index.dart';
 
-import 'package:custom_widgets/custom_widgets.dart';
-
 import 'movie_video.dart';
 import 'movie_comment.dart';
 import 'movie_photos.dart';
@@ -17,10 +15,10 @@ import '../ui/index.dart';
 class MovieDetail extends StatefulWidget {
   final String id;
 
-  MovieDetail(this.id, {Key key}) : super(key: key);
+  MovieDetail(this.id);
 
   @override
-  _MovieDetailState createState() => _MovieDetailState();
+  createState() => _MovieDetailState();
 }
 
 class _MovieDetailState extends State<MovieDetail> {
@@ -34,6 +32,8 @@ class _MovieDetailState extends State<MovieDetail> {
   double width = (Utils.width - 5 * 4) / 2;
   double height;
 
+  LoaderState status = LoaderState.Loading;
+
   @override
   void initState() {
     super.initState();
@@ -44,50 +44,37 @@ class _MovieDetailState extends State<MovieDetail> {
 
   @override
   Widget build(BuildContext context) {
-    if (movie == null) {
-      return Scaffold(
-          backgroundColor: pageColor,
-          appBar: AppBar(backgroundColor: pageColor),
-          body: Center(
-            child: Stack(children: <Widget>[
-              Offstage(
-                  offstage: !loadError,
-                  child: RaisedButton(
-                      onPressed: () => getMovieDetail(widget.id),
-                      child: Text("加载失败，重新加载"))),
-              Offstage(offstage: loadError, child: getLoadingWidget())
-            ]),
-          ));
-    }
-
     return Scaffold(
-        backgroundColor: pageColor,
-        body: BottomDragWidget(
-            body: CustomScrollView(slivers: <Widget>[
-              MovieDetailHeader(movie, pageColor: pageColor),
+      backgroundColor: pageColor,
+      body: LoaderContainer(
+        contentView: CustomScrollView(slivers: <Widget>[
+          MovieDetailHeader(movie, pageColor: pageColor),
 
-              _builderDesc(),
+          _builderDesc(),
 
-              /// 剧照、花絮、片段、评论
-              _builderContent(),
-            ]),
-            dragContainer: DragContainer(
-                drawer: Container(
-                    child:
-                        OverscrollNotificationWidget(child: BottomDragView()),
-                    decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 243, 244, 248),
-                        borderRadius: BorderRadius.only(
-                            topLeft: const Radius.circular(10.0),
-                            topRight: const Radius.circular(10.0)))),
-                defaultShowHeight: Utils.height * 0.1,
-                height: Utils.height * 0.6)));
+          /// 剧照、花絮、片段、评论
+          _builderContent(),
+
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => ItemComment(
+                  comment: movie?.popularComments[index],
+                  background: cardColor),
+              childCount: movie?.popularComments?.length ?? 0,
+            ),
+          ),
+        ]),
+        loaderState: status,
+      ),
+    );
   }
 
   void getMovieDetail(String id) async {
     movie = await ApiService.getMovieDetail(id);
 
-    loadError = movie == null;
+    if (movie != null) {
+      status = LoaderState.Succeed;
+    }
 
     pageColor = await Utils.getImageDarkMutedColor(movie.images.small,
         defaultColor: Color(0xff35374c));
@@ -104,10 +91,10 @@ class _MovieDetailState extends State<MovieDetail> {
     List<Casts> casts = [];
 
     /// 导演
-    movie.directors.forEach((director) => casts.add(director));
+    movie?.directors?.forEach((director) => casts.add(director));
 
     /// 演员
-    movie.casts.forEach((cast) {
+    movie?.casts?.forEach((cast) {
       if (casts.indexOf(cast) == -1) casts.add(cast);
     });
 
@@ -116,7 +103,7 @@ class _MovieDetailState extends State<MovieDetail> {
         SectionView("简介", hiddenMore: true, textColor: Colors.white),
         Padding(
             padding: const EdgeInsets.only(top: 10.0, left: 10, right: 10),
-            child: ExpandableText(movie.summary,
+            child: ExpandableText(movie?.summary,
                 textColor: Colors.white,
                 iconColor: Colors.white,
                 iconTextColor: Colors.white,
@@ -138,26 +125,26 @@ class _MovieDetailState extends State<MovieDetail> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
             Offstage(
-                offstage: movie.photos.isEmpty,
+                offstage: movie?.photos?.isEmpty ?? true,
                 child: Column(children: <Widget>[
-                  SectionView("剧照（${movie.photosCount}）",
-                      hiddenMore: movie.photos.length >= movie.photosCount,
+                  SectionView("剧照（${movie?.photosCount}）",
+                      hiddenMore: movie == null
+                          ? true
+                          : movie.photos.length >= movie?.photosCount,
                       textColor: Colors.white,
                       onPressed: () => pushNewPage(
                           context,
                           MoviePhotosPage(
-                              '《${movie.title}》剧照', 'subject', widget.id))),
+                              '《${movie?.title}》剧照', 'subject', widget.id))),
                   SizedBox.fromSize(
                       size: Size.fromHeight(width),
                       child: ListView.builder(
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
                           scrollDirection: Axis.horizontal,
-                          itemCount: movie.photos.length,
+                          itemCount: movie != null ? movie.photos.length : 0,
                           itemBuilder: (context, index) {
                             List<String> images = [];
-                            movie.photos.forEach((f) {
-                              images.add(f.image);
-                            });
+                            movie?.photos?.forEach((f) => images.add(f.image));
 
                             return Padding(
                                 padding:
@@ -166,15 +153,15 @@ class _MovieDetailState extends State<MovieDetail> {
                                   onTap: () => pushNewPage(
                                       context,
                                       PhotoView(
-                                        title: '《${movie.title}》剧照',
+                                        title: '《${movie?.title}》剧照',
                                         photos: images,
                                         index: index,
-                                        heroTag: movie.photos[index].id,
+                                        heroTag: movie?.photos[index]?.id,
                                       )),
                                   child: Hero(
-                                      tag: movie.photos[index].id,
+                                      tag: movie?.photos[index]?.id,
                                       child: Image.network(
-                                        movie.photos[index].cover,
+                                        movie?.photos[index]?.cover,
                                         // borderRadius: BorderRadius.circular(6.0),
                                         fit: BoxFit.cover,
                                         height: height,
@@ -187,43 +174,37 @@ class _MovieDetailState extends State<MovieDetail> {
                 hiddenMore: true,
                 backgroundColor: pageColor,
                 height: height,
-                size: movie.bloopers.length,
+                size: movie?.bloopers?.length ?? 0,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: movie.bloopers.length,
+                    itemCount: movie?.bloopers?.length,
                     itemBuilder: (context, index) => ItemCover(
-                        movie.bloopers[index].medium,
+                        movie?.bloopers[index]?.medium,
                         offstage: false,
                         onTop: () => pushNewPage(
                             context,
                             MovieVideoPage(
-                                movie.bloopers[index].resourceUrl))))),
+                                movie?.bloopers[index]?.resourceUrl))))),
             CoverSectionView('片段',
                 hiddenMore: true,
                 backgroundColor: pageColor,
                 height: height,
-                size: movie.clips.length,
+                size: movie?.clips?.length,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: movie.clips.length,
+                    itemCount: movie?.clips?.length,
                     itemBuilder: (context, index) => ItemCover(
-                        movie.clips[index].medium,
+                        movie?.clips[index]?.medium,
                         offstage: false,
-                        onTop: () => pushNewPage(context,
-                            MovieVideoPage(movie.clips[index].resourceUrl))))),
-            SectionView("热评",
-                hiddenMore: movie.popularComments.length < 4,
+                        onTop: () => pushNewPage(
+                            context,
+                            MovieVideoPage(
+                                movie?.clips[index]?.resourceUrl))))),
+            SectionView("短评",
+                hiddenMore: (movie?.commentsCount ?? 0) < 4,
                 onPressed: () =>
-                    pushNewPage(context, MovieCommentPage(movie.id)),
+                    pushNewPage(context, MovieCommentPage(movie?.id)),
                 textColor: Colors.white),
-            Padding(
-                padding: const EdgeInsets.only(
-                    bottom: 10.0, left: 10.0, right: 10.0),
-                child: Column(
-                    children: movie.popularComments
-                        .map((comment) => ItemComment(
-                            comment: comment, background: cardColor))
-                        .toList()))
           ])),
     );
   }

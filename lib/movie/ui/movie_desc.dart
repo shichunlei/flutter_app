@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
-import '../page/movie_search_page.dart';
+import 'package:flutter_app/movie/page/movie_tag_list.dart';
 import 'package:custom_widgets/custom_widgets.dart';
 
 import '../../page_index.dart';
@@ -11,7 +11,7 @@ class MovieDesc extends StatefulWidget {
   MovieDesc(this.movie);
 
   @override
-  _MovieDescState createState() => _MovieDescState();
+  createState() => _MovieDescState();
 }
 
 class _MovieDescState extends State<MovieDesc> {
@@ -192,7 +192,7 @@ class _MovieDescState extends State<MovieDesc> {
                                                 : widget.movie.rating.details
                                                         .star1 /
                                                     totalRating),
-                                        Text('${widget.movie.reviewsCount}人评论',
+                                        Text('${widget.movie.ratingsCount}人评论',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 12.0))
@@ -218,8 +218,7 @@ class _MovieDescState extends State<MovieDesc> {
                       children: <Widget>[
                         Padding(
                             padding: const EdgeInsets.only(right: 10),
-                            child: Text('所属频道',
-                                style: TextStyle(color: Colors.blueGrey))),
+                            child: Text('所属频道')),
                         Expanded(
                             child: SizedBox.fromSize(
                                 size: Size.fromHeight(30.0),
@@ -235,9 +234,8 @@ class _MovieDescState extends State<MovieDesc> {
                                                 .toString()),
                                             onPressed: () => pushNewPage(
                                                 context,
-                                                MovieSearchPage(
-                                                    tag: widget
-                                                        .movie.tags[index]))),
+                                                MovieTagListView(
+                                                    widget.movie.tags[index]))),
                                       );
                                     })))
                       ]))

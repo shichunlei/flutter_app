@@ -1,5 +1,4 @@
 export 'banner_view.dart';
-export 'bottom_drag_view.dart';
 export 'classify_section_home.dart';
 export 'classify_section_view.dart';
 export 'cover_section_view.dart';
@@ -20,3 +19,5 @@ export 'person_scroller.dart';
 export 'person_gridview.dart';
 export 'movie_grid_view.dart';
 export 'movie_celebrity_header.dart';
+export 'filter_listview.dart';
+export 'filter_view.dart';

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/index.dart';
 import 'package:flutter_app/movie/ui/index.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
 import 'movie_classify_page.dart';
+import 'movie_filter_page.dart';
 import 'movie_hot.dart';
 import 'movie_soon.dart';
 
@@ -40,7 +42,15 @@ class _MovieHomePageState extends State<MovieHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('豆瓣电影'), automaticallyImplyLeading: false),
+      appBar: AppBar(
+        title: Text('豆瓣电影'),
+        automaticallyImplyLeading: false,
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(FontAwesome.filter),
+              onPressed: () => pushNewPage(context, MovieFilterPage()))
+        ],
+      ),
       backgroundColor: Colors.white,
       body: LoaderContainer(
         contentView: ListView(
