@@ -7,7 +7,7 @@ class RangesData {
   static RangesData fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     RangesData data = RangesData();
-    data.cover = CoverBean.fromMap(map['cover']);
+    data.cover = map['cover'] != null ? CoverBean.fromMap(map['cover']) : null;
     data.ranges = List()
       ..addAll((map['ranges'] as List ?? []).map((o) => RangesBean.fromMap(o)));
     return data;
@@ -29,7 +29,8 @@ class RangesBean {
   static RangesBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     RangesBean rangesBean = RangesBean();
-    rangesBean.info = CoverBean.fromMap(map['info']);
+    rangesBean.info =
+        map['info'] != null ? CoverBean.fromMap(map['info']) : null;
     rangesBean.subjects = List()
       ..addAll((map['subjects'] as List ?? []).map((o) => Movie.fromMap(o)));
     return rangesBean;
@@ -51,10 +52,14 @@ class RangesBean {
 class CoverBean {
   String description;
   String backgroundImg;
+  String mobileBackgroundImg;
   String titleImg;
   String video;
   String title;
   int year;
+
+  String primaryColorLight;
+  String primaryColorDark;
 
   int id;
   bool left;
@@ -65,13 +70,17 @@ class CoverBean {
     CoverBean coverBean = CoverBean();
     coverBean.description = map['description'];
     coverBean.backgroundImg = map['background_img'];
+    coverBean.mobileBackgroundImg = map['mobile_background_img'];
     coverBean.titleImg = map['title_img'];
     coverBean.video = map['video'];
     coverBean.title = map['title'];
+    coverBean.primaryColorLight = map['primary_color_light'];
+    coverBean.primaryColorDark = map['primary_color_dark'];
     coverBean.year = map['year'];
     coverBean.id = map['id'];
     coverBean.left = map['left'];
-    coverBean.subject = Movie.fromMap(map['subject']);
+    coverBean.subject =
+        map['subject'] != null ? Movie.fromMap(map['subject']) : null;
     return coverBean;
   }
 

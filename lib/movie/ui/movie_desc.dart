@@ -150,47 +150,47 @@ class _MovieDescState extends State<MovieDesc> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: <Widget>[
-                                        _buildStarRate(
-                                            5.0,
-                                            5,
-                                            totalRating == 0
+                                        StarRate(
+                                            rating: 5.0,
+                                            starCount: 5,
+                                            rate: totalRating == 0
                                                 ? 0.0
                                                 : widget.movie.rating.details
                                                         .star5 /
                                                     totalRating),
-                                        _buildStarRate(
-                                            4.0,
-                                            4,
-                                            totalRating == 0
+                                        StarRate(
+                                            rating: 4.0,
+                                            starCount: 4,
+                                            rate: totalRating == 0
                                                 ? 0.0
                                                 : widget.movie.rating.details
                                                         .star4 /
                                                     totalRating),
-                                        _buildStarRate(
-                                            3.0,
-                                            3,
-                                            totalRating == 0
+                                        StarRate(
+                                            rating: 3.0,
+                                            starCount: 3,
+                                            rate: totalRating == 0
                                                 ? 0.0
                                                 : widget.movie.rating.details
                                                         .star3 /
                                                     totalRating),
-                                        _buildStarRate(
-                                            2.0,
-                                            2,
-                                            totalRating == 0
+                                        StarRate(
+                                            rating: 2.0,
+                                            starCount: 2,
+                                            rate: totalRating == 0
                                                 ? 0.0
                                                 : widget.movie.rating.details
                                                         .star2 /
                                                     totalRating),
-                                        _buildStarRate(
-                                            1.0,
-                                            1,
-                                            totalRating == 0
+                                        StarRate(
+                                            rating: 1.0,
+                                            starCount: 1,
+                                            rate: totalRating == 0
                                                 ? 0.0
                                                 : widget.movie.rating.details
                                                         .star1 /
                                                     totalRating),
-                                        Text('${widget.movie.ratingsCount}人评论',
+                                        Text('${widget.movie.ratingsCount}人评分',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 12.0))
@@ -240,23 +240,6 @@ class _MovieDescState extends State<MovieDesc> {
             ])));
   }
 
-  Widget _buildStarRate(double rating, int starCount, double rate) {
-    return Row(children: <Widget>[
-      SmoothStarRating(
-          rating: rating,
-          starCount: starCount,
-          size: 12,
-          color: Colors.blueGrey),
-      Gaps.hGap8,
-      Container(
-          width: 100,
-          child: LinearProgressIndicator(
-              backgroundColor: Colors.grey,
-              value: rate,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.red)))
-    ]);
-  }
-
   Widget _buildAverage(num value) {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -277,16 +260,16 @@ class _MovieDescState extends State<MovieDesc> {
 
   Widget _buildButton(String title, IconData icon) {
     return Expanded(
-        child: RaisedButton(
-            color: Colors.lightGreen,
-            onPressed: () {},
-            elevation: 0,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(icon, color: Colors.yellow, size: 18),
-                  SizedBox(width: 4),
-                  Text(title, style: TextStyle(color: Colors.white))
-                ])));
+      child: RaisedButton.icon(
+        color: Colors.lightGreen,
+        onPressed: () {},
+        elevation: 0,
+        icon: Icon(icon, color: Colors.yellow, size: 18),
+        label: Text(
+          title,
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
   }
 }

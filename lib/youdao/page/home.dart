@@ -54,37 +54,43 @@ class _YouDaoHomePageState extends State<YouDaoHomePage> {
                           url: banners[index]?.url,
                           title: '${banners[index]?.title}')))),
           Gaps.vGap3,
-          SectionView('热门课程', hiddenMore: true),
-          ListView.builder(
-              itemBuilder: (context, index) => ItemCourse(
-                  course: popularCourse[index],
-                  onPressed: () => pushNewPage(
-                      context,
-                      WebViewPage(
-                          url:
-                              "https://ke.youdao.com/wap/course/detail/${popularCourse[index].id}",
-                          title: '${popularCourse[index]?.courseTitle}'))),
-              padding: EdgeInsets.only(top: 0),
-              itemCount: popularCourse.length > 4 ? 4 : popularCourse?.length,
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              primary: false),
+          SectionView(
+            '热门课程',
+            hiddenMore: true,
+            child: ListView.builder(
+                itemBuilder: (context, index) => ItemCourse(
+                    course: popularCourse[index],
+                    onPressed: () => pushNewPage(
+                        context,
+                        WebViewPage(
+                            url:
+                                "https://ke.youdao.com/wap/course/detail/${popularCourse[index].id}",
+                            title: '${popularCourse[index]?.courseTitle}'))),
+                padding: EdgeInsets.only(top: 0),
+                itemCount: popularCourse.length > 4 ? 4 : popularCourse?.length,
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                primary: false),
+          ),
           Gaps.vGap3,
-//          SectionView('发现好课', hiddenMore: true),
-//          SizedBox.fromSize(
-//              size: Size.fromHeight(Utils.width * 348 / 720),
-//              child: ListView.builder(
-//                  itemBuilder: (context, index) => ItemGoodCourse(
-//                      discover: discover[index],
-//                      onPressed: () => pushNewPage(
-//                          context,
-//                          WebViewPage(
-//                              url: "${discover[index]?.url}",
-//                              title: '${discover[index]?.title}'))),
-//                  padding: EdgeInsets.only(top: 0),
-//                  itemCount: discover?.length,
-//                  physics: BouncingScrollPhysics(),
-//                  scrollDirection: Axis.horizontal)),
+//          SectionView(
+//            '发现好课',
+//            hiddenMore: true,
+//            child: SizedBox.fromSize(
+//                size: Size.fromHeight(Utils.width * 348 / 720),
+//                child: ListView.builder(
+//                    itemBuilder: (context, index) => ItemGoodCourse(
+//                        discover: discover[index],
+//                        onPressed: () => pushNewPage(
+//                            context,
+//                            WebViewPage(
+//                                url: "${discover[index]?.url}",
+//                                title: '${discover[index]?.title}'))),
+//                    padding: EdgeInsets.only(top: 0),
+//                    itemCount: discover?.length,
+//                    physics: BouncingScrollPhysics(),
+//                    scrollDirection: Axis.horizontal)),
+//          ),
           ListView.builder(
               itemBuilder: (context, index) =>
                   ItemTagRecommendCourse(bean: _tagRecommendCourses[index]),

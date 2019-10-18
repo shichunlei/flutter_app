@@ -140,9 +140,11 @@ class Utils {
     return duration?.toString()?.split('.')?.first ?? '';
   }
 
-  int getColorHexFromStr(String colorStr) {
-    colorStr = "FF" + colorStr;
+  static int getColorHexFromStr(String colorStr, {String alpha: "FF"}) {
     colorStr = colorStr.replaceAll("#", "");
+    if (colorStr.length == 6) {
+      colorStr = alpha + colorStr;
+    }
     int val = 0;
     int len = colorStr.length;
     for (int i = 0; i < len; i++) {

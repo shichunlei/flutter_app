@@ -53,24 +53,34 @@ class _MovieHomePageState extends State<MovieHomePage> {
           physics: const BouncingScrollPhysics(),
           children: <Widget>[
             BannerView(banner: banners),
-            SectionView("影院热映",
-                onPressed: () => pushNewPage(context, MovieHotPage())),
-            Container(
-                padding: EdgeInsets.all(6.0),
-                child: Wrap(
-                    spacing: 5,
-                    runSpacing: 5,
-                    children: hotMovies
-                        .map((movie) => MovieGridView(movie))
-                        .toList())),
-            SectionView("即将上映",
-                onPressed: () => pushNewPage(context, MovieSoonPage())),
-            ItemGridView(movies: soonMovies),
-            SectionView("电影榜单", hiddenMore: true),
-            RankingBanner(ranges),
-            SectionView("分类浏览",
-                onPressed: () => pushNewPage(context, MovieClassifyPage())),
-            ...widgets,
+            SectionView(
+              "影院热映",
+              onPressed: () => pushNewPage(context, MovieHotPage()),
+              child: Container(
+                  padding: EdgeInsets.all(6.0),
+                  child: Wrap(
+                      spacing: 5,
+                      runSpacing: 5,
+                      children: hotMovies
+                          .map((movie) => MovieGridView(movie))
+                          .toList())),
+            ),
+            SectionView(
+              "即将上映",
+              onPressed: () => pushNewPage(context, MovieSoonPage()),
+              child: ItemGridView(movies: soonMovies),
+            ),
+            SectionView(
+              "电影榜单",
+              more: '年度榜单',
+              onPressed: () => showYearsDialog(),
+              child: RankingBanner(ranges),
+            ),
+            SectionView(
+              "分类浏览",
+              onPressed: () => pushNewPage(context, MovieClassifyPage()),
+              child: Column(children: widgets),
+            ),
           ],
         ),
         loaderState: _status,
@@ -100,5 +110,40 @@ class _MovieHomePageState extends State<MovieHomePage> {
     }
 
     setState(() {});
+  }
+
+  void showYearsDialog() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            title: Text('豆瓣年度榜单'),
+            titlePadding: EdgeInsets.all(20),
+            children: <Widget>[
+              ListTile(
+                title: Text('豆瓣电影2016年度榜单'),
+                onTap: () {
+                  Navigator.pop(context);
+                  pushNewPage(context, MovieRangePage(year: 2016));
+                },
+              ),
+              ListTile(
+                title: Text('豆瓣电影2017年度榜单'),
+                onTap: () {
+                  Navigator.pop(context);
+                  pushNewPage(context, MovieRangePage(year: 2017));
+                },
+              ),
+              ListTile(
+                title: Text('豆瓣电影2018年度榜单'),
+                onTap: () {
+                  Navigator.pop(context);
+                  pushNewPage(context, MovieRangePage(year: 2018));
+                },
+              ),
+            ],
+            contentPadding: EdgeInsets.all(0),
+          );
+        });
   }
 }

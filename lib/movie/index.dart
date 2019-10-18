@@ -21,6 +21,9 @@ export 'ui/movie_grid_view.dart';
 export 'ui/movie_celebrity_header.dart';
 export 'ui/filter_listview.dart';
 export 'ui/filter_view.dart';
+export 'ui/item_range.dart';
+export 'ui/star_rate.dart';
+export 'ui/first_movie_view.dart';
 
 export 'page/movie_tag_list.dart';
 export 'page/movie_classify_page.dart';
@@ -36,6 +39,8 @@ export 'page/movie_ranking_sub_page.dart';
 export 'page/movie_celebrity.dart';
 export 'page/movie_ranking_home.dart';
 export 'page/movie_top250.dart';
+export 'page/movie_range.dart';
+export 'page/movie_range_detail.dart';
 
 export '../bean/movie.dart';
 export '../bean/news.dart';

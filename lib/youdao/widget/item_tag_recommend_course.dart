@@ -15,18 +15,20 @@ class ItemTagRecommendCourse extends StatelessWidget {
         child: ListView(
             padding: EdgeInsets.only(top: 0),
             children: <Widget>[
-              SectionView('${bean.tag.name}',
-                  onPressed: () => pushNewPage(context,
-                      TagPage(title: bean.tag.name, tagId: bean.tag.id))),
-              InkWell(
-                  child: ImageLoadView('${bean.headImg}',
-                      height: Utils.width * 320 / 678),
-                  onTap: () => pushNewPage(
-                      context,
-                      WebViewPage(
-                          url:
-                              "https://ke.youdao.com/wap/course/detail/${bean.headCourseId}",
-                          title: ''))),
+              SectionView(
+                '${bean.tag.name}',
+                onPressed: () => pushNewPage(
+                    context, TagPage(title: bean.tag.name, tagId: bean.tag.id)),
+                child: InkWell(
+                    child: ImageLoadView('${bean.headImg}',
+                        height: Utils.width * 320 / 678),
+                    onTap: () => pushNewPage(
+                        context,
+                        WebViewPage(
+                            url:
+                                "https://ke.youdao.com/wap/course/detail/${bean.headCourseId}",
+                            title: ''))),
+              ),
               ListView.builder(
                   itemBuilder: (context, index) {
                     return ItemCourse(

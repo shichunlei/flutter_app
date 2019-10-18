@@ -48,15 +48,6 @@ class _MovieDetailState extends State<MovieDetail> {
 
           /// 剧照、花絮、片段、评论
           _builderContent(),
-
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => ItemComment(
-                  comment: movie?.popularComments[index],
-                  background: cardColor),
-              childCount: movie?.popularComments?.length ?? 0,
-            ),
-          ),
         ]),
         loaderState: status,
       ),
@@ -94,19 +85,27 @@ class _MovieDetailState extends State<MovieDetail> {
 
     return SliverList(
       delegate: SliverChildListDelegate(<Widget>[
-        SectionView("简介", hiddenMore: true, textColor: Colors.white),
-        Padding(
-            padding: const EdgeInsets.only(top: 10.0, left: 10, right: 10),
-            child: ExpandableText(movie?.summary,
-                textColor: Colors.white,
-                iconColor: Colors.white,
-                iconTextColor: Colors.white,
-                alignment: MainAxisAlignment.center,
-                fontSize: 15.0,
-                isShow: isSummaryUnfold,
-                onPressed: () => changeSummaryMaxLines())),
-        SectionView("演职员", hiddenMore: true, textColor: Colors.white),
-        PersonScroller(casts: casts)
+        SectionView(
+          "简介",
+          hiddenMore: true,
+          textColor: Colors.white,
+          child: Padding(
+              padding: const EdgeInsets.only(top: 10.0, left: 10, right: 10),
+              child: ExpandableText(movie?.summary,
+                  textColor: Colors.white,
+                  iconColor: Colors.white,
+                  iconTextColor: Colors.white,
+                  alignment: MainAxisAlignment.center,
+                  fontSize: 15.0,
+                  isShow: isSummaryUnfold,
+                  onPressed: () => changeSummaryMaxLines())),
+        ),
+        SectionView(
+          "演职员",
+          hiddenMore: true,
+          textColor: Colors.white,
+          child: PersonScroller(casts: casts),
+        ),
       ]),
     );
   }
@@ -120,17 +119,17 @@ class _MovieDetailState extends State<MovieDetail> {
               children: <Widget>[
             Offstage(
                 offstage: movie?.photos?.isEmpty ?? true,
-                child: Column(children: <Widget>[
-                  SectionView("剧照（${movie?.photosCount}）",
-                      hiddenMore: movie == null
-                          ? true
-                          : movie.photos.length >= movie?.photosCount,
-                      textColor: Colors.white,
-                      onPressed: () => pushNewPage(
-                          context,
-                          MoviePhotosPage(
-                              '《${movie?.title}》剧照', 'subject', widget.id))),
-                  SizedBox.fromSize(
+                child: SectionView(
+                  "剧照（${movie?.photosCount}）",
+                  hiddenMore: movie == null
+                      ? true
+                      : movie.photos.length >= movie?.photosCount,
+                  textColor: Colors.white,
+                  onPressed: () => pushNewPage(
+                      context,
+                      MoviePhotosPage(
+                          '《${movie?.title}》剧照', 'subject', widget.id)),
+                  child: SizedBox.fromSize(
                       size: Size.fromHeight(width),
                       child: ListView.builder(
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -161,8 +160,8 @@ class _MovieDetailState extends State<MovieDetail> {
                                         height: height,
                                       )),
                                 ));
-                          }))
-                ])),
+                          })),
+                )),
             MovieDesc(movie),
             CoverSectionView('花絮',
                 hiddenMore: true,
@@ -194,11 +193,22 @@ class _MovieDetailState extends State<MovieDetail> {
                             context,
                             MovieVideoPage(
                                 movie?.clips[index]?.resourceUrl))))),
-            SectionView("短评",
-                hiddenMore: (movie?.commentsCount ?? 0) < 4,
-                onPressed: () =>
-                    pushNewPage(context, MovieCommentPage(movie?.id)),
-                textColor: Colors.white),
+            SectionView(
+              "短评",
+              hiddenMore: (movie?.commentsCount ?? 0) < 4,
+              onPressed: () =>
+                  pushNewPage(context, MovieCommentPage(movie?.id)),
+              textColor: Colors.white,
+              child: ListView.builder(
+                itemBuilder: (_, index) => ItemComment(
+                    comment: movie?.popularComments[index],
+                    background: cardColor),
+                itemCount: movie?.popularComments?.length ?? 0,
+                primary: false,
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+              ),
+            ),
           ])),
     );
   }

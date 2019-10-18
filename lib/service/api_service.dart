@@ -27,7 +27,7 @@ class ApiService {
   }
 
   /// 豆瓣电影年度榜单
-  static Future<RangesData> getMovieRanges(String year) async {
+  static Future<RangesData> getMovieRanges(int year) async {
     Response response =
         await HttpUtils().request(ApiUrl.MOVIE_RANGE_URL, data: {'year': year});
     if (response == null || response?.statusCode != 200) {

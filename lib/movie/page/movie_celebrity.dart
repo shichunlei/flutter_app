@@ -79,19 +79,23 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
           SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
-                SectionView("简介", hiddenMore: true, textColor: Colors.white),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(top: 10.0, left: 10, right: 10),
-                  child: ExpandableText(
-                    desc,
-                    textColor: Colors.white,
-                    iconColor: Colors.white,
-                    iconTextColor: Colors.white,
-                    alignment: MainAxisAlignment.center,
-                    fontSize: 15.0,
-                    isShow: isSummaryUnfold,
-                    onPressed: () => changeSummaryMaxLines(),
+                SectionView(
+                  "简介",
+                  hiddenMore: true,
+                  textColor: Colors.white,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 10.0, left: 10, right: 10),
+                    child: ExpandableText(
+                      desc,
+                      textColor: Colors.white,
+                      iconColor: Colors.white,
+                      iconTextColor: Colors.white,
+                      alignment: MainAxisAlignment.center,
+                      fontSize: 15.0,
+                      isShow: isSummaryUnfold,
+                      onPressed: () => changeSummaryMaxLines(),
+                    ),
                   ),
                 ),
                 CoverSectionView(

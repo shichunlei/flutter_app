@@ -28,28 +28,26 @@ class ClassifySectionView extends StatelessWidget {
       default:
     }
 
-    return Column(
-      children: <Widget>[
-        SectionView(title, hiddenMore: true),
-        Container(
-          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-          child: GridView.builder(
-            itemCount: classifyList.length,
-            shrinkWrap: true,
-            primary: false,
-            padding: EdgeInsets.only(top: 6.0, bottom: 6.0),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              mainAxisSpacing: 5.0,
-              crossAxisSpacing: 5.0,
-              childAspectRatio: 1.8,
-            ),
-            itemBuilder: (context, index) =>
-                ItemClassifyTag(tag: classifyList[index]),
+    return SectionView(
+      title,
+      hiddenMore: true,
+      child: Container(
+        padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+        child: GridView.builder(
+          itemCount: classifyList.length,
+          shrinkWrap: true,
+          primary: false,
+          padding: EdgeInsets.only(top: 6.0, bottom: 6.0),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4,
+            mainAxisSpacing: 5.0,
+            crossAxisSpacing: 5.0,
+            childAspectRatio: 1.8,
           ),
+          itemBuilder: (context, index) =>
+              ItemClassifyTag(tag: classifyList[index]),
         ),
-      ],
-      crossAxisAlignment: CrossAxisAlignment.start,
+      ),
     );
   }
 }

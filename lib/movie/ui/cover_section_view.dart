@@ -28,16 +28,14 @@ class CoverSectionView extends StatelessWidget {
       offstage: size == 0,
       child: Column(
         children: <Widget>[
-          SectionView(
-            "$title（$size）",
-            hiddenMore: hiddenMore,
-            textColor: Colors.white,
-            onPressed: onPressed,
-          ),
-          SizedBox.fromSize(
-            size: Size.fromHeight(height),
-            child: child,
-          ),
+          SectionView("$title（$size）",
+              hiddenMore: hiddenMore,
+              textColor: Colors.white,
+              onPressed: onPressed,
+              child: SizedBox.fromSize(
+                size: Size.fromHeight(height),
+                child: child,
+              )),
         ],
       ),
     );

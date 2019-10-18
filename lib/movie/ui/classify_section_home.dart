@@ -12,16 +12,18 @@ class ClassifySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
-      FlatButton(
-          onPressed: () => pushNewPage(context, MovieTagListView(title)),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[Text(title), Icon(Icons.chevron_right)])),
+      InkWell(
+          onTap: () => pushNewPage(context, MovieTagListView(title)),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[Text(title), Icon(Icons.chevron_right)]),
+          )),
       Container(
         padding: EdgeInsets.all(6.0),
         child: Wrap(
           spacing: 5,
-          runSpacing: 5,
           children: movies.length == 0
               ? []
               : movies.map((movie) => MovieGridView(movie)).toList(),
