@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:custom_widgets/custom_widgets.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+
+import '../../page_index.dart';
 
 class MovieCelebrityHeader extends StatelessWidget {
   final String name;

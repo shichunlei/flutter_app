@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/ui/index.dart';
+import 'package:flutter_app/movie/index.dart';
 import '../page/movie_detail.dart';
 
 import '../../page_index.dart';

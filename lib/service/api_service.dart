@@ -26,6 +26,22 @@ class ApiService {
     }
   }
 
+  /// 豆瓣电影年度榜单
+  static Future<RangesData> getMovieRanges(String year) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_RANGE_URL, data: {'year': year});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return RangesData.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
   /// 获取正在热映电影
   static Future<List<Movie>> getNowPlayingList(
       {String city, int page = 1, int limit = 20}) async {

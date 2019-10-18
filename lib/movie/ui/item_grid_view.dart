@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_detail.dart';
 
 import '../../page_index.dart';
+import '../index.dart';
 
 class ItemGridView extends StatelessWidget {
   final List<Movie> movies;

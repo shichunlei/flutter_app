@@ -1,5 +1,93 @@
 import 'news.dart';
 
+class RangesData {
+  CoverBean cover;
+  List<RangesBean> ranges;
+
+  static RangesData fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    RangesData data = RangesData();
+    data.cover = CoverBean.fromMap(map['cover']);
+    data.ranges = List()
+      ..addAll((map['ranges'] as List ?? []).map((o) => RangesBean.fromMap(o)));
+    return data;
+  }
+
+  Map toJson() => {
+        "cover": cover,
+        "ranges": ranges,
+      };
+}
+
+/// info : {"id":591,"background_img":"https://img3.doubanio.com/view/activity_page/raw/public/p2950.jpg","description":"　　多少理想主义者背负着别人的嘲讽往前走，而大他们十倍百倍的人一心想看他们笑话，多少人收到打击后一蹶不振，而只有他们十分之一百分之一的人可以触底反弹，这部电影他蒸馏你的热血，让你血气冲上大脑，然后水从眼里流出来，告诉你要成为这样的人。","left":false,"title":"2017评分最高的外语电影","subject":{"rating":{"average":9,"max":10,"min":0,"details":{"1":0.002013006781351064,"2":0.0030906547952579077,"3":0.049426210341008865,"4":0.295458656701272,"5":0.6500114713811102}},"original_title":"Dangal","playable":true,"is_released":true,"subtype":"movie","id":"26387939","title":"摔跤吧！爸爸","rating_count":906604,"primary_color_light":"a57947","primary_color_dark":"7f5d36","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2457983084.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2457983084.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2457983084.jpg"}}}
+/// subjects : [{"id":"26387939","is_released":true,"playable":true,"rating_count":906602,"title":"摔跤吧！爸爸","rating":{"average":9,"max":10,"min":0,"details":{"1":0.002013011222123931,"2":0.0030906616133650707,"3":0.04942631937719087,"4":0.29545930849479707,"5":0.6500106992925231}},"original_title":"Dangal","subtype":"movie","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2457983084.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2457983084.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2457983084.jpg"}},{"id":"26799731","is_released":true,"playable":false,"rating_count":350637,"title":"请以你的名字呼唤我","rating":{"average":8.8,"max":10,"min":0,"details":{"1":0.004697165444605104,"2":0.01127947136212094,"3":0.09679811314835571,"4":0.3322866668377838,"5":0.5549385832071344}},"original_title":"Call Me by Your Name","subtype":"movie","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2505525050.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2505525050.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2505525050.jpg"}},{"id":"26580232","is_released":true,"playable":true,"rating_count":675647,"title":"看不见的客人","rating":{"average":8.8,"max":10,"min":0,"details":{"1":0.001039004095333806,"2":0.0034603868588182884,"3":0.06568222755373739,"4":0.3725288501243993,"5":0.5572895313677112}},"original_title":"Contratiempo","subtype":"movie","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2498971355.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2498971355.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2498971355.jpg"}},{"id":"25980443","is_released":true,"playable":true,"rating_count":307038,"title":"海边的曼彻斯特","rating":{"average":8.6,"max":10,"min":0,"details":{"1":0.0027749008266077816,"2":0.010024817774998534,"3":0.11025996782157257,"4":0.4154404340830777,"5":0.46149987949374344}},"original_title":"Manchester by the Sea","subtype":"movie","images":{"small":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2496940327.jpg","large":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2496940327.jpg","medium":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2496940327.jpg"}},{"id":"10512661","is_released":true,"playable":true,"rating_count":298885,"title":"银翼杀手2049","rating":{"average":8.3,"max":10,"min":0,"details":{"1":0.012058149455476187,"2":0.027385114676213258,"3":0.17098884186225471,"4":0.4046941131204309,"5":0.3848737808856249}},"original_title":"Blade Runner 2049","subtype":"movie","images":{"small":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2501864539.jpg","large":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2501864539.jpg","medium":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2501864539.jpg"}},{"id":"26761416","is_released":true,"playable":true,"rating_count":232637,"title":"至暗时刻","rating":{"average":8.6,"max":10,"min":0,"details":{"1":0.0021492711821421355,"2":0.006275871851855036,"3":0.09724592390720306,"4":0.43787961502254585,"5":0.4564493180362539}},"original_title":"Darkest Hour","subtype":"movie","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2504277551.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2504277551.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2504277551.jpg"}},{"id":"26607693","is_released":true,"playable":true,"rating_count":480306,"title":"敦刻尔克","rating":{"average":8.4,"max":10,"min":0,"details":{"1":0.007963673158361545,"2":0.014130575091712366,"3":0.13491191032383523,"4":0.43677155813169105,"5":0.4062222832943998}},"original_title":"Dunkirk","subtype":"movie","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2494950714.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2494950714.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2494950714.jpg"}},{"id":"25934014","is_released":true,"playable":true,"rating_count":522887,"title":"爱乐之城","rating":{"average":8.4,"max":10,"min":0,"details":{"1":0.007814307871490398,"2":0.02148074058066083,"3":0.15218967004343195,"4":0.3808547544689388,"5":0.43766052703547803}},"original_title":"La La Land","subtype":"movie","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2395517414.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2395517414.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2395517414.jpg"}},{"id":"26844922","is_released":true,"playable":true,"rating_count":62585,"title":"杰出公民","rating":{"average":8.4,"max":10,"min":0,"details":{"1":0.003403371414875769,"2":0.011184788687385157,"3":0.13263561556283454,"4":0.49166733242789806,"5":0.36110889190700646}},"original_title":"El ciudadano ilustre","subtype":"movie","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2441383861.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2441383861.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2441383861.jpg"}},{"id":"27024903","is_released":true,"playable":true,"rating_count":494897,"title":"天才枪手","rating":{"average":8.2,"max":10,"min":0,"details":{"1":0.0029299025857905787,"2":0.009739400319662476,"3":0.14098085056082377,"4":0.5157760099576275,"5":0.3305738365760956}},"original_title":"ฉลาดเกมส์โกง","subtype":"movie","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2501863104.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2501863104.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2501863104.jpg"}}]
+
+class RangesBean {
+  CoverBean info;
+  List<Movie> subjects;
+
+  static RangesBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    RangesBean rangesBean = RangesBean();
+    rangesBean.info = CoverBean.fromMap(map['info']);
+    rangesBean.subjects = List()
+      ..addAll((map['subjects'] as List ?? []).map((o) => Movie.fromMap(o)));
+    return rangesBean;
+  }
+
+  Map toJson() => {
+        "info": info,
+        "subjects": subjects,
+      };
+}
+
+/// description : "基于2017年你和万千豆瓣用户的电影标记数据，排名依据评分、人数和时间综合考虑（统计截至2017-12-25）"
+/// background_img : "https://img9.doubanio.com/view/activity_page/raw/public/p2826.jpg"
+/// title_img : "https://img9.doubanio.com/view/activity_page/raw/public/p2096.jpg"
+/// video : "//sv1.doubanio.com/201910171814/c0be034fd7ef82197259daeb66c2d882/2017/mp4ie_annual_4.mp4"
+/// title : "豆瓣2017年度电影榜单"
+/// year : 2017
+
+class CoverBean {
+  String description;
+  String backgroundImg;
+  String titleImg;
+  String video;
+  String title;
+  int year;
+
+  int id;
+  bool left;
+  Movie subject;
+
+  static CoverBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    CoverBean coverBean = CoverBean();
+    coverBean.description = map['description'];
+    coverBean.backgroundImg = map['background_img'];
+    coverBean.titleImg = map['title_img'];
+    coverBean.video = map['video'];
+    coverBean.title = map['title'];
+    coverBean.year = map['year'];
+    coverBean.id = map['id'];
+    coverBean.left = map['left'];
+    coverBean.subject = Movie.fromMap(map['subject']);
+    return coverBean;
+  }
+
+  Map toJson() => {
+        "description": description,
+        "background_img": backgroundImg,
+        "title_img": titleImg,
+        "video": video,
+        "title": title,
+        "year": year,
+        "id": id,
+        "left": left,
+        "subject": subject,
+      };
+}
+
 /// banners : [{"cover":"https://img1.doubanio.com/view/movie_gallery_frame_hot_rec/normal/public/b4b3467a4a0df7c.jpg","link":"https://www.douban.com/note/735952605/?from=gallery","title":"秋日特惠！大师课八个课程4折起","summary":"10月1日~10月15日活动期间，豆瓣影人PRO大师课八门课程4折起，购买课程限量赠送「大师课学习手账」一本！"},{"cover":"https://img3.doubanio.com/view/movie_gallery_frame_hot_rec/normal/public/6a12b199b1ad0c3.jpg","link":"https://movie.douban.com/trailer/253939/?from=gallery","title":"高分动画《盗梦特攻队》定档11月15日","summary":"豆瓣8.4分动画电影《盗梦特攻队》11月15日全国上映！"},{"cover":"https://img3.doubanio.com/view/movie_gallery_frame_hot_rec/normal/public/7a517172a94b7d0.jpg","link":"https://movie.douban.com/trailer/253732/?from=gallery","title":"《瑞克和莫蒂》第四季11月10回归","summary":"快乐11月！"},{"cover":"https://img1.doubanio.com/view/movie_gallery_frame_hot_rec/normal/public/d36db4f25dcbe8b.jpg","link":"https://movie.douban.com/trailer/253234/?from=gallery","title":"《绝命毒师》电影版正式预告","summary":"“小粉”亚伦·保尔、“瘦皮猴”查尔斯·贝克、Badger马特·琼斯等超过十位剧版卡司回归！10月11日Netflix上线！"},{"cover":"https://img1.doubanio.com/view/movie_gallery_frame_hot_rec/normal/public/2cb68465216f54b.jpg","link":"https://movie.douban.com/trailer/253730/?from=gallery","title":"网飞首部华语原创剧集《罪梦者》预告","summary":"张孝全、贾静雯、范晓萱、王柏杰、刘子千主演Netflix首部华语原创剧集！《十七岁的天空》导演陈映蓉执导，10月31日Netflix全集上线！"},{"cover":"https://img3.doubanio.com/view/movie_gallery_frame_hot_rec/normal/public/b0545a25fc71c8d.jpg","link":"https://movie.douban.com/trailer/253172/?from=gallery","title":"昆汀新片《好莱坞往事》定档10月25日","summary":"昆汀·塔伦蒂诺第九部电影长片！小李x布拉德·皮特两大男神主演！"}]
 /// in_theaters : [{"rating":{"max":10,"average":8.0,"stars":"40","min":0},"title":"我和我的祖国","collect_count":381666,"mainland_pubdate":"2019-09-30","has_video":false,"original_title":"我和我的祖国","subtype":"movie","year":"2019","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2567998580.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2567998580.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2567998580.jpg"},"id":"32659890"},{"rating":{"max":10,"average":7.0,"stars":"35","min":0},"title":"中国机长","collect_count":252233,"mainland_pubdate":"2019-09-30","has_video":false,"original_title":"中国机长","subtype":"movie","year":"2019","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568261402.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568261402.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568261402.jpg"},"id":"30295905"},{"rating":{"max":10,"average":0,"stars":"00","min":0},"title":"犯罪现场","collect_count":103,"mainland_pubdate":"2019-10-12","has_video":false,"original_title":"犯罪現場","subtype":"movie","year":"2019","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570879785.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570879785.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570879785.jpg"},"id":"26235346"},{"rating":{"max":10,"average":6.2,"stars":"30","min":0},"title":"急速逃脱","collect_count":427,"mainland_pubdate":"2019-10-12","has_video":false,"original_title":"Steig. Nicht. Aus!","subtype":"movie","year":"2018","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568928751.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568928751.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568928751.jpg"},"id":"27098016"},{"rating":{"max":10,"average":6.6,"stars":"35","min":0},"title":"攀登者","collect_count":131913,"mainland_pubdate":"2019-09-30","has_video":false,"original_title":"攀登者","subtype":"movie","year":"2019","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568577681.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568577681.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568577681.jpg"},"id":"30413052"},{"rating":{"max":10,"average":0,"stars":"00","min":0},"title":"双子杀手","collect_count":2421,"mainland_pubdate":"2019-10-18","has_video":false,"original_title":"Gemini Man","subtype":"movie","year":"2019","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570906505.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570906505.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570906505.jpg"},"id":"3097572"}]
 /// soon_movies : [{"rating":{"max":10,"average":0,"stars":"00","min":0},"title":"犯罪现场","collect_count":103,"mainland_pubdate":"2019-10-12","has_video":false,"original_title":"犯罪現場","subtype":"movie","year":"2019","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570879785.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570879785.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570879785.jpg"},"id":"26235346"},{"rating":{"max":10,"average":6.2,"stars":"30","min":0},"title":"急速逃脱","collect_count":427,"mainland_pubdate":"2019-10-12","has_video":false,"original_title":"Steig. Nicht. Aus!","subtype":"movie","year":"2018","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568928751.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568928751.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2568928751.jpg"},"id":"27098016"},{"rating":{"max":10,"average":5.1,"stars":"25","min":0},"title":"丑娃娃","collect_count":853,"mainland_pubdate":"2019-10-13","has_video":false,"original_title":"UglyDolls","subtype":"movie","year":"2019","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570312295.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570312295.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570312295.jpg"},"id":"23774847"},{"rating":{"max":10,"average":0,"stars":"00","min":0},"title":"打过长江去","collect_count":3,"mainland_pubdate":"2019-10-16","has_video":false,"original_title":"打过长江去","subtype":"movie","year":"2019","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2546307854.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2546307854.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2546307854.jpg"},"id":"30345265"},{"rating":{"max":10,"average":0,"stars":"00","min":0},"title":"双子杀手","collect_count":2421,"mainland_pubdate":"2019-10-18","has_video":false,"original_title":"Gemini Man","subtype":"movie","year":"2019","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570906505.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570906505.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570906505.jpg"},"id":"3097572"},{"rating":{"max":10,"average":0,"stars":"00","min":0},"title":"沉睡魔咒2","collect_count":98,"mainland_pubdate":"2019-10-18","has_video":false,"original_title":"Maleficent: Mistress of Evil","subtype":"movie","year":"2019","images":{"small":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570105165.jpg","large":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570105165.jpg","medium":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2570105165.jpg"},"id":"26426056"}]

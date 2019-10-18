@@ -1,15 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/movie.dart';
-import '../page/movie_photos.dart';
-import '../page/movie_with_celebrity.dart';
-import '../ui/cover_section_view.dart';
-import '../ui/expandable_text.dart';
-import '../ui/movie_celebrity_header.dart';
-import '../ui/movie_grid_view.dart';
 
 import '../../page_index.dart';
+import '../index.dart';
 
 class MovieCelebrityPage extends StatefulWidget {
   final String id;

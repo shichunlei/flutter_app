@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/movie.dart';
 import '../../page_index.dart';
-import '../page/movie_ranking_home.dart';
-import '../page/movie_top250.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:custom_widgets/custom_widgets.dart';
+
+import '../index.dart';
 
 class RankingBanner extends StatelessWidget {
   final List<MovieTag> list;

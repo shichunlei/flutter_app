@@ -16,7 +16,7 @@ A new Flutter application.
 
 ## 本项目包括：
 
-- 各种基本控件使用（Text、TextField、Icon、Image、Listview、Gridview、Picker、Stepper、Dialog、Slider、Row、Appbar、Sizebox、BottomSheet、Chip、Dismissible、FlutterLogo、Check、Switch、TabBar、BottomNavigationBar、Sliver等）
+- 各种基本控件使用（Text、TextField、Icon、Image、ListView、GridView、Picker、Stepper、Dialog、Slider、Row、Appbar、SizeBox、BottomSheet、Chip、Dismissible、FlutterLogo、Check、Switch、TabBar、BottomNavigationBar、Sliver等）
 - 自定义控件及使用
 - 各种UI （豆瓣电影、好奇心日报、每日一文、和天气、百姓生活、随机诗词、联系人、句子迷、朋友圈、有道精品课、高德地图应用demo等）
 
@@ -300,6 +300,7 @@ A new Flutter application.
 | 骨架屏 | [Shimmer](https://github.com/hnvn/flutter_shimmer) | ![](https://img.shields.io/pub/v/shimmer.svg) | 
 | 类iOS侧滑 | [flutter_slidable](https://github.com/letsar/flutter_slidable) | ![](https://img.shields.io/pub/v/flutter_slidable.svg) | 
 | 权限访问 | [permission_handler](https://github.com/BaseflowIT/flutter-permission-handler) | ![](https://img.shields.io/pub/v/permission_handler.svg) | 
+| 日历 | [FlutterCustomCalendar](https://github.com/fluttercandies/flutter_custom_calendar) |  | 
 
 
 ## 赞赏

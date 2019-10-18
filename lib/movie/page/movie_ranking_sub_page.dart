@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/movie.dart';
-
-import '../page/movie_detail.dart';
-import '../ui/item_ranking_movie.dart';
 
 import '../../page_index.dart';
+import '../index.dart';
 
 class MovieRankingSubPage extends StatefulWidget {
   final String url;

@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/index.dart';
-import 'package:flutter_app/movie/ui/index.dart';
+import 'package:flutter_app/movie/index.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
-import 'movie_classify_page.dart';
-import 'movie_filter_page.dart';
-import 'movie_hot.dart';
-import 'movie_soon.dart';
 
 class MovieHomePage extends StatefulWidget {
   MovieHomePage({Key key}) : super(key: key);

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';

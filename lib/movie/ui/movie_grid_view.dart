@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_detail.dart';
-import 'package:custom_widgets/custom_widgets.dart';
-
 import '../../page_index.dart';
+import '../index.dart';
 
 class MovieGridView extends StatelessWidget {
   final Movie movie;

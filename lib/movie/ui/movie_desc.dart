@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_tag_list.dart';
-import 'package:custom_widgets/custom_widgets.dart';
 
 import '../../page_index.dart';
+import '../index.dart';
 
 class MovieDesc extends StatefulWidget {
   final Movie movie;

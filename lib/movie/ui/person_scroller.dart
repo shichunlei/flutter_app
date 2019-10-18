@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/movie.dart';
-import '../page/movie_celebrity.dart';
-import 'person_gridview.dart';
 import 'package:flutter_app/utils/route_util.dart';
+
+import '../index.dart';
 
 class PersonScroller extends StatelessWidget {
   final List<Casts> casts;

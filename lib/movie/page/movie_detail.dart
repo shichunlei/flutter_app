@@ -2,15 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../../bean/movie.dart';
-
 import '../../page_index.dart';
 
-import 'movie_video.dart';
-import 'movie_comment.dart';
-import 'movie_photos.dart';
-
-import '../ui/index.dart';
+import '../index.dart';
 
 class MovieDetail extends StatefulWidget {
   final String id;

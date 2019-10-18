@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/movie.dart';
-import '../page/movie_tag_list.dart';
 
 import '../../page_index.dart';
-import 'index.dart';
+import '../index.dart';
 
 class ClassifySection extends StatelessWidget {
   final String title;

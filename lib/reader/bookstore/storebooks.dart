@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';

@@ -1,3 +1,5 @@
+export 'package:custom_widgets/custom_widgets.dart';
+
 export 'splash_screen.dart';
 export 'intro_slide_page.dart';
 export 'home_page.dart';

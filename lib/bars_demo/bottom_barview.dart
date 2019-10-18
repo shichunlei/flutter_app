@@ -1,5 +1,5 @@
+import 'package:custom_widgets/bottom_bar_view.dart';
 import 'package:flutter/material.dart';
-import 'package:custom_widgets/custom_widgets.dart';
 
 class BottomBarViewDemo extends StatefulWidget {
   BottomBarViewDemo({Key key}) : super(key: key);

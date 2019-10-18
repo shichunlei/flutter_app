@@ -1,6 +1,6 @@
+import 'package:custom_widgets/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bars_demo/each_view.dart';
-import 'package:custom_widgets/custom_widgets.dart';
 
 class BubbleBottomBarPage extends StatefulWidget {
   BubbleBottomBarPage({Key key}) : super(key: key);
