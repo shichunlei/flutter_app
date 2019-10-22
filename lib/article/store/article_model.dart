@@ -59,7 +59,7 @@ class ArticleModel with ChangeNotifier {
     } else {
       /// 取消收藏
       _starStatus = false;
-      provider.cancelStarred(article.date.curr);
+      provider.cancelStarred(article.curr);
     }
     notifyListeners();
   }
@@ -80,7 +80,7 @@ class ArticleModel with ChangeNotifier {
     } else if (type == 'day') {
       _article = await ApiService.getDayArticle(date);
     }
-    _date = article.date.curr;
+    _date = article.curr;
     debugPrint(
         '$_today--------------------------------------${_date.toString()}');
     if (_date != _today && type == 'today') {

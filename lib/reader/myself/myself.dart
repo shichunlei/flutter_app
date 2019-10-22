@@ -122,7 +122,8 @@ class MySelfPage extends StatelessWidget {
                   SelectTextItem(
                       title: '我的账户',
                       content: '购买、充值记录',
-                      onTap: () => pushNewPage(context, LoginPage()),
+                      onTap: () => pushNewPage(context, LoginPage(),
+                          fullscreenDialog: true),
                       leading: Icon(Feather.user,
                           size: 20, color: Colors.redAccent)),
                   SelectTextItem(

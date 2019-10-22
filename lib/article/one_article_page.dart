@@ -164,7 +164,7 @@ class _OneArticlePageState extends State<OneArticlePage>
                   Navigator.pop(context);
                   articleModel.setPageStatus(LoaderState.Loading);
                   articleModel.getArticle('day',
-                      date: articleModel.article.date.prev);
+                      date: articleModel.article.prev);
                 },
                 child: Text('前一天', style: TextStyle(color: Colors.white)),
                 shape: const StadiumBorder())),
@@ -188,7 +188,7 @@ class _OneArticlePageState extends State<OneArticlePage>
                         Navigator.pop(context);
                         articleModel.setPageStatus(LoaderState.Loading);
                         articleModel.getArticle('day',
-                            date: articleModel.article.date.next);
+                            date: articleModel.article.next);
                       }
                     : null,
                 child: Text('后一天', style: TextStyle(color: Colors.white)),

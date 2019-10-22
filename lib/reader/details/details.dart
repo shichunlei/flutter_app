@@ -224,8 +224,10 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                   pageTopColorStart.green,
                   pageTopColorStart.blue,
                 ),
-                title: Text(
-                  '${book?.title}',
+                title: Marquee(
+                  text: '${book?.title}',
+                  style: TextStyle(fontSize: 18.0),
+                  scrollAxis: Axis.horizontal,
                 ),
               ),
               height: Utils.navigationBarHeight)

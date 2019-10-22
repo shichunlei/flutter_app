@@ -448,3 +448,66 @@ class SlideAnimationState extends State<SlideAnimation>
     );
   }
 }
+
+class AnimatedNumber extends StatefulWidget {
+  final double number;
+  final Duration duration;
+  final TextStyle style;
+  final double start;
+  final int decimal;
+  final Duration delay;
+
+  AnimatedNumber({
+    Key key,
+    @required this.number,
+    this.start: 0.0,
+    this.decimal: 0,
+    this.duration: const Duration(milliseconds: 1000),
+    this.style,
+    this.delay = Duration.zero,
+  })  : assert(number != null),
+        super(key: key);
+
+  @override
+  createState() => _AnimatedNumberState();
+}
+
+class _AnimatedNumberState extends State<AnimatedNumber>
+    with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<double> _animation;
+
+  double end = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    end = widget.number;
+
+    _controller = AnimationController(vsync: this, duration: widget.duration)
+      ..addListener(() {
+        setState(() {});
+      });
+
+    _animation = Tween(begin: widget.start, end: end).animate(_controller);
+
+    Future.delayed(widget.delay).then((_) {
+      if (mounted) _controller.forward();
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      '${_animation.value.toStringAsFixed(widget.decimal)}',
+      style: widget.style ?? TextStyles.textBoldDark26,
+    );
+  }
+}

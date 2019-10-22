@@ -304,6 +304,7 @@ A new Flutter application.
 | 类iOS侧滑 | [flutter_slidable](https://github.com/letsar/flutter_slidable) | ![](https://img.shields.io/pub/v/flutter_slidable.svg) | 
 | 权限访问 | [permission_handler](https://github.com/BaseflowIT/flutter-permission-handler) | ![](https://img.shields.io/pub/v/permission_handler.svg) | 
 | 日历 | [FlutterCustomCalendar](https://github.com/fluttercandies/flutter_custom_calendar) |  | 
+| 跑马灯 | [MarqueeWidget](https://github.com/baoolong/MarqueeWidget) | ![](https://img.shields.io/pub/v/marquee_flutter.svg) | 
 
 
 ## 赞赏

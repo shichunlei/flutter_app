@@ -275,35 +275,47 @@ class ApiService {
 
   /// 每日一文
   static Future<Article> getTodayArticle() async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.ARTICLE_BASE_URL)
-        .request(ApiUrl.ARTICLE_TODAY_URL, data: {'dev': 1});
+    Response response =
+        await HttpUtils().request(ApiUrl.ARTICLE_TODAY_URL, data: null);
     if (response.statusCode != 200) {
       return null;
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
-    return Article.fromMap(result.data);
+    if (result.code == 0) {
+      return Article.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 特定日期文章
   static Future<Article> getDayArticle(String date) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.ARTICLE_BASE_URL)
-        .request(ApiUrl.ARTICLE_DAY_URL, data: {'dev': 1, 'date': date});
+    Response response =
+        await HttpUtils().request(ApiUrl.ARTICLE_DAY_URL, data: {'date': date});
     if (response.statusCode != 200) {
       return null;
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
-    return Article.fromMap(result.data);
+    if (result.code == 0) {
+      return Article.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 随机文章
   static Future<Article> getRandomArticle() async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.ARTICLE_BASE_URL)
-        .request(ApiUrl.ARTICLE_RANDOM_URL, data: {'dev': 1});
+    Response response =
+        await HttpUtils().request(ApiUrl.ARTICLE_RANDOM_URL, data: null);
     if (response.statusCode != 200) {
       return null;
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
-    return Article.fromMap(result.data);
+    if (result.code == 0) {
+      return Article.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 得到实况天气

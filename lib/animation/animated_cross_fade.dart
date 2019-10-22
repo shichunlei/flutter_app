@@ -16,7 +16,7 @@ class _AnimatedCrossFadeDemoState extends State<AnimatedCrossFadeDemo> {
 
   @override
   Widget build(BuildContext context) {
-    Timer(new Duration(seconds: 3), () {
+    Timer(Duration(seconds: 3), () {
       setState(() {
         _first = !_first;
       });

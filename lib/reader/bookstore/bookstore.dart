@@ -34,6 +34,10 @@ class _BookStorePageState extends State<BookStorePage>
     super.initState();
 
     banners.add(Books(
+        id: "5c74f4ff66579954e8efd4f2",
+        cover:
+            "http://plf-bucket.zhuishushenqi.com/management/images/20191016/028722b4ac2144e48d427db909b35875.jpg"));
+    banners.add(Books(
         id: "59f8138d39d6e7d64d33d47a",
         cover:
             "http://plf-bucket.zhuishushenqi.com/management/images/20190820/e3a9f890cceb4a78892879384f166cd0.jpg"));
@@ -47,6 +51,10 @@ class _BookStorePageState extends State<BookStorePage>
             "http://plf-bucket.zhuishushenqi.com/management/images/20190820/0f76924d79b041a8bf7c8121df6fe140.jpg"));
 
     maleBanners.add(Books(
+        id: "565eb60d4e47b55a5ded7127",
+        cover:
+            'http://plf-bucket.zhuishushenqi.com/management/images/20191016/6a01d6a91a2843c79eac6645de03ee32.jpg'));
+    maleBanners.add(Books(
         id: "5d52108e6762b24fd63128fb",
         cover:
             'http://plf-bucket.zhuishushenqi.com/management/images/20190819/f3a1e08ed70742e8aa191a2c3ab91682.jpg'));
@@ -56,6 +64,10 @@ class _BookStorePageState extends State<BookStorePage>
             'http://plf-bucket.zhuishushenqi.com/management/images/20190816/4521cd23997c491993425f096972469e.jpg'));
 
     femaleBanners.add(Books(
+        id: "5a6afc6e26dfa479c0f4c97d",
+        cover:
+            'http://plf-bucket.zhuishushenqi.com/management/images/20191016/028722b4ac2144e48d427db909b35875.jpg'));
+    femaleBanners.add(Books(
         id: "5b20edb74a9e1d40912b84d6",
         cover:
             'http://plf-bucket.zhuishushenqi.com/management/images/20190827/91e3e77c67ea4f8ba51e412ca962f7e4.jpg'));
@@ -63,11 +75,19 @@ class _BookStorePageState extends State<BookStorePage>
         id: "58513103052645e06d613e9f",
         cover:
             'http://plf-bucket.zhuishushenqi.com/management/images/20190816/e21b5828535642aaa7b3cd9c9896dc59.jpg'));
+    femaleBanners.add(Books(
+        id: "592a6ec76c47852176c89f48",
+        cover:
+            'http://plf-bucket.zhuishushenqi.com/management/images/20191016/e978d7592ba44df5a07f94b291501909.jpg'));
 
     pressBanners.add(Books(
         id: "59cdf6a3135b5c9843c2cc25",
         cover:
             "http://plf-bucket.zhuishushenqi.com/management/images/20190718/3f95918726994398bda126b882828850.jpg"));
+    pressBanners.add(Books(
+        id: "5760c6333bb2dc793c8e81d6",
+        cover:
+            "http://plf-bucket.zhuishushenqi.com/management/images/20191016/583be49f98de4918a47ecab618b0dac6.jpg"));
 
     _controller = TabController(length: tabs.length, vsync: this);
   }

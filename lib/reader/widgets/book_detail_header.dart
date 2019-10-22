@@ -33,44 +33,56 @@ class BookDetailsHeaderView extends StatelessWidget {
                 child: ImageLoadView('${book?.cover}',
                     height: 99, width: 77, fit: BoxFit.cover)),
             Gaps.hGap5,
-            Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Gaps.vGap15,
-                  Row(children: <Widget>[
-                    Text('${book?.title}', style: TextStyles.textWhite16),
-                    Gaps.hGap5,
-                    TagView(
-                        tag: book.isSerial ? '连载' : '完结',
-                        textColor:
-                            book.isSerial ? Colors.redAccent : readerMainColor,
-                        borderColor:
-                            book.isSerial ? Colors.redAccent : readerMainColor)
+            Expanded(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Gaps.vGap15,
+                    Row(children: <Widget>[
+                      Text(
+                        '${book?.title}',
+                        style: TextStyles.textWhite16,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Gaps.hGap5,
+                      TagView(
+                          tag: book.isSerial ? '连载' : '完结',
+                          textColor: book.isSerial
+                              ? Colors.redAccent
+                              : readerMainColor,
+                          borderColor: book.isSerial
+                              ? Colors.redAccent
+                              : readerMainColor),
+                    ]),
+                    Gaps.vGap10,
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Row(children: <Widget>[
+                            Icon(FontAwesome.user,
+                                size: 16, color: readerMainColor),
+                            Text(
+                              '${book?.author ?? ""}',
+                              style: TextStyles.textReader16,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            )
+                          ], mainAxisSize: MainAxisSize.min),
+                          Container(
+                              margin: EdgeInsets.only(left: 10, right: 10),
+                              width: 1,
+                              color: Colors.white,
+                              height: 10),
+                          Text('${book?.cat ?? ""}',
+                              style: TextStyles.textWhite14)
+                        ]),
+                    Gaps.vGap10,
+                    Text('${book?.wordCount ?? ""}',
+                        style: TextStyles.textWhite12)
                   ]),
-                  Gaps.vGap10,
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Row(children: <Widget>[
-                          Icon(FontAwesome.user,
-                              size: 16, color: readerMainColor),
-                          Text('${book?.author ?? ""}',
-                              style: TextStyles.textReader16)
-                        ], mainAxisSize: MainAxisSize.min),
-                        Container(
-                            margin: EdgeInsets.only(left: 15, right: 15),
-                            width: 1,
-                            color: Colors.white,
-                            height: 10),
-                        Text('${book?.cat ?? ""}',
-                            style: TextStyles.textWhite14)
-                      ]),
-                  Gaps.vGap10,
-                  Text('${book?.wordCount ?? ""}',
-                      style: TextStyles.textWhite12)
-                ])
+            )
           ]),
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

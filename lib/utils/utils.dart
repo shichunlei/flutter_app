@@ -35,6 +35,12 @@ class Utils {
     return mediaQuery.size.width;
   }
 
+  /// RPX 用于屏幕适配（比例适配）
+  static double get rpx {
+    MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
+    return mediaQuery.size.width / 750;
+  }
+
   /// 屏幕高
   static double get height {
     MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
@@ -128,6 +134,8 @@ class Utils {
     }
   }
 
+  /// 校验邮箱
+  ///
   static bool isEmail(String email) {
     if (email == null) return false;
     Pattern pattern =
@@ -136,6 +144,16 @@ class Utils {
     return regex.hasMatch(email);
   }
 
+  /// 校验金额
+  ///
+  static bool isAmount(String amount) {
+    if (amount == null) return false;
+    RegExp regex = RegExp(r'^\d+(\.\d+)?$');
+    return regex.hasMatch(amount);
+  }
+
+  /// 时间转字符串
+  ///
   static String duration2String(Duration duration) {
     return duration?.toString()?.split('.')?.first ?? '';
   }

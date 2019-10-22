@@ -58,9 +58,10 @@ class MovieRangeDetailPage extends StatelessWidget {
                               Gaps.vGap10,
                               Text(
                                 '豆瓣$year年度电影榜单',
-                                textAlign: TextAlign.justify,
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    letterSpacing: 5.0),
                               )
                             ],
                           ),

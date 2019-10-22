@@ -24,13 +24,6 @@ class ApiUrl {
   static final String MOVIE_COMMENTS_URL = 'movies/comments';
   static final String MOVIE_REVIEWS_URL = 'movies/reviews';
 
-  /// 每日一文
-  static final String ARTICLE_BASE_URL = "https://interface.meiriyiwen.com";
-
-  static final String ARTICLE_TODAY_URL = "/article/today";
-  static final String ARTICLE_DAY_URL = "/article/day";
-  static final String ARTICLE_RANDOM_URL = "/article/random";
-
   /// 和风天气
   static final String WEATHER_BASE_URL = "https://free-api.heweather.net/s6";
 
@@ -69,6 +62,11 @@ class ApiUrl {
   static final String JUZIMI_LIST_URL = 'juzimi/list';
   static final String JUZIMI_TAG_LIST_URL = 'juzimi/tag_list';
   static final String JUZIMI_DETAILS_URL = 'juzimi/details';
+
+  /// 每日一文
+  static final String ARTICLE_TODAY_URL = "juzimi/article_today";
+  static final String ARTICLE_DAY_URL = "juzimi/article_day";
+  static final String ARTICLE_RANDOM_URL = "juzimi/article_random";
 
   static final String MEIZITU_URL = 'https://m.image.so.com/';
 
