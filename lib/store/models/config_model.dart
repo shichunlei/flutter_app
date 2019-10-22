@@ -6,15 +6,11 @@ class ConfigModel extends ChangeNotifier {
   int _theme = Colors.red.value;
   int _localIndex = 0;
 
-  ConfigModel() {
-    getTheme();
-    getLocal();
-  }
-
-  void getTheme() {
+  void init() {
     _theme = SpUtil.getInt('theme', defValue: Colors.red.value);
     debugPrint('config get Theme $_theme');
-    notifyListeners();
+    _localIndex = SpUtil.getInt('key_support_locale', defValue: 0);
+    debugPrint('config get Local $_localIndex');
   }
 
   int get theme => _theme;
@@ -22,12 +18,6 @@ class ConfigModel extends ChangeNotifier {
   void setTheme(theme) async {
     _theme = theme;
     SpUtil.setInt('theme', theme);
-    notifyListeners();
-  }
-
-  void getLocal() {
-    _localIndex = SpUtil.getInt('key_support_locale', defValue: 0);
-    debugPrint('config get Local $_localIndex');
     notifyListeners();
   }
 

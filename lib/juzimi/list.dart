@@ -5,6 +5,7 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import '../page_index.dart';
 import 'details.dart';
 import 'item_list.dart';
+import 'loading_view.dart';
 
 class JuZiMiListPage extends StatefulWidget {
   final String type;
@@ -38,6 +39,7 @@ class _JuZiMiListPageState extends State<JuZiMiListPage>
   @override
   Widget build(BuildContext context) {
     return LoaderContainer(
+      loadingView: LoadingView(),
       contentView: EasyRefresh(
           onRefresh: () async {
             page = 1;

@@ -24,7 +24,7 @@ class UserModel extends ChangeNotifier {
   String getAvatarPath() {
     String _avatarPath = SpUtil.getString('avatarPath',
         defValue:
-            'http://hbimg.b0.upaiyun.com/63ddc018b96442eeb24c73f393f5ae066d58fb7e6607e-WScNBs_fw658');
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1571745949856&di=19adcf4537b23919f479d7348e065c12&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201807%2F09%2F20180709235634_HEh8H.thumb.700_0.jpeg');
     debugPrint('================getAvatarPath()---$_avatarPath');
 
     return _avatarPath;

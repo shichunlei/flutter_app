@@ -5,6 +5,7 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import '../page_index.dart';
 import 'details.dart';
 import 'item_list.dart';
+import 'loading_view.dart';
 
 class JuZiMiTagListPage extends StatefulWidget {
   final int id;
@@ -42,6 +43,7 @@ class _JuZiMiTagListPageState extends State<JuZiMiTagListPage> {
           centerTitle: true,
         ),
         body: LoaderContainer(
+          loadingView: LoadingView(),
           contentView: EasyRefresh(
               onRefresh: () async {
                 page = 0;

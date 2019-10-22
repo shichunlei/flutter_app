@@ -11,7 +11,7 @@ class Store {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(builder: (_) => AddressModel()),
-        ChangeNotifierProvider(builder: (_) => ConfigModel()),
+        ChangeNotifierProvider(builder: (_) => ConfigModel()..init()),
         ChangeNotifierProvider(builder: (_) => UserModel()),
         ChangeNotifierProvider(builder: (_) => ArticleModel()),
         ChangeNotifierProvider(builder: (_) => ReaderSettingModel()),
