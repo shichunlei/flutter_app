@@ -81,7 +81,7 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
                           imageUrl: songsData[index].albumArtUrl),
                   onIndexChanged: (i) => setState(() {
                         onTop = i;
-                        _name = songsData[0].title;
+                        _name = songsData[i].title;
                         _artists = songsData[i].artists;
                         startPlay();
                       }),

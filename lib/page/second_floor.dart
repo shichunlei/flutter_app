@@ -53,7 +53,6 @@ class _SecondFloorDemoState extends State<SecondFloorDemo> {
                 SliverAppBar(
                     expandedHeight: 180.0,
                     pinned: true,
-                    backgroundColor: Colors.blue,
                     flexibleSpace: FlexibleSpaceBar(
                         centerTitle: false, title: Text('二楼'))),
                 SliverList(

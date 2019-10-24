@@ -37,6 +37,9 @@ class _SliverPageState extends State<SliverPage>
   double bannerHeight = 200;
   double viewHeight = 100;
 
+  Brightness brightness = Brightness.dark;
+  Color barIconColor = Colors.white;
+
   @override
   void initState() {
     super.initState();
@@ -45,19 +48,16 @@ class _SliverPageState extends State<SliverPage>
 
     scrollController.addListener(() {
       var offset = scrollController.offset;
-      if (offset < 0) {
-        if (navAlpha != 0) {
-          setState(() {
-            navAlpha = 0;
-          });
-        }
-      } else if (offset < headerHeight) {
+      if (offset <= headerHeight && offset >= 0) {
         setState(() {
           navAlpha = 1 - (headerHeight - offset) / headerHeight;
-        });
-      } else if (navAlpha != 1) {
-        setState(() {
-          navAlpha = 1;
+          if (navAlpha > 0.5) {
+            brightness = Brightness.light;
+          } else {
+            brightness = Brightness.dark;
+          }
+          barIconColor = Color.fromARGB(255, (255 - 255 * navAlpha).toInt(),
+              (255 - 255 * navAlpha).toInt(), (255 - 255 * navAlpha).toInt());
         });
       }
     });
@@ -76,7 +76,7 @@ class _SliverPageState extends State<SliverPage>
 
   @override
   void dispose() {
-    controller.dispose();
+    controller?.dispose();
     super.dispose();
   }
 
@@ -93,6 +93,7 @@ class _SliverPageState extends State<SliverPage>
                 handle:
                     NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                 child: SliverAppBar(
+                  automaticallyImplyLeading: false,
                   elevation: 0.0,
                   pinned: true,
                   backgroundColor: Colors.white,
@@ -157,6 +158,7 @@ class _SliverPageState extends State<SliverPage>
         Container(
           height: Utils.navigationBarHeight,
           child: AppBar(
+              brightness: brightness,
 
               /// AppBar背景随着页面向上滑动逐渐由透明色变为白色，即透明度由0->255
               backgroundColor:
@@ -171,24 +173,15 @@ class _SliverPageState extends State<SliverPage>
                         style: TextStyle(fontSize: 14, color: Colors.grey[300]))
                   ]),
                   decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Color.fromARGB(
-                              255,
-                              (255 - 255 * navAlpha).toInt(),
-                              (255 - 255 * navAlpha).toInt(),
-                              (255 - 255 * navAlpha).toInt())),
-                      color: Colors.white,
+                      border: Border.all(color: barIconColor),
+                      color: Colors.transparent,
                       borderRadius: BorderRadius.all(Radius.circular(30)))),
               automaticallyImplyLeading: false,
               leading: Container(
                   child: Image.asset('images/xianyu.png',
 
                       /// 左侧图标颜色由白色变为黑色即色值的R G B 均随着滑动变化由255 -> 0
-                      color: Color.fromARGB(
-                          255,
-                          (255 - 255 * navAlpha).toInt(),
-                          (255 - 255 * navAlpha).toInt(),
-                          (255 - 255 * navAlpha).toInt())),
+                      color: barIconColor),
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(left: 20)),
               actions: <Widget>[
@@ -196,11 +189,7 @@ class _SliverPageState extends State<SliverPage>
                     icon: Icon(CustomIcon.scan,
 
                         /// 右侧图标颜色由白色变为黑色即色值的R G B 均随着滑动变化由255 -> 0
-                        color: Color.fromARGB(
-                            255,
-                            (255 - 255 * navAlpha).toInt(),
-                            (255 - 255 * navAlpha).toInt(),
-                            (255 - 255 * navAlpha).toInt())),
+                        color: barIconColor),
                     onPressed: () {})
               ]),
         )

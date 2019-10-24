@@ -78,15 +78,18 @@ class _MinePageState extends State<MinePage> {
                                 Stack(
                                     alignment: Alignment.center,
                                     children: <Widget>[
-                                      ImageLoadView(
-                                          '${userModel.getAvatarPath()}',
-                                          imageType: userModel.isLocal()
-                                              ? ImageType.localFile
-                                              : ImageType.network,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(40.0)),
-                                          width: 80,
-                                          height: 80),
+                                      Hero(
+                                        child: ImageLoadView(
+                                            '${userModel.getAvatarPath()}',
+                                            imageType: userModel.isLocal()
+                                                ? ImageType.localFile
+                                                : ImageType.network,
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(40.0)),
+                                            width: 80,
+                                            height: 80),
+                                        tag: 'user_avatar',
+                                      ),
                                       Offstage(
                                           offstage: !isEdit,
                                           child: IconButton(

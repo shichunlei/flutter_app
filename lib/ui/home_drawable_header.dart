@@ -20,12 +20,16 @@ class HomeDrawableHeader extends StatelessWidget {
 
           /// 用户头像
           currentAccountPicture: InkWell(
-              child: ImageLoadView('${_data.getAvatarPath()}',
-                  imageType:
-                      _data.isLocal() ? ImageType.localFile : ImageType.network,
-                  borderRadius: BorderRadius.all(Radius.circular(40.0)),
-                  width: 80,
-                  height: 80),
+              child: Hero(
+                child: ImageLoadView('${_data.getAvatarPath()}',
+                    imageType: _data.isLocal()
+                        ? ImageType.localFile
+                        : ImageType.network,
+                    borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                    width: 80,
+                    height: 80),
+                tag: 'user_avatar',
+              ),
               onTap: () {
                 if (_data.isLogin()) {
                   Navigator.pop(context);
