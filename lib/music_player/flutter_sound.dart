@@ -6,7 +6,6 @@ import 'package:flutter_app/bean/music.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:intl/intl.dart';
 
 import '../page_index.dart';
 import 'widgets/cd_view.dart';
@@ -38,14 +37,14 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
 
   StreamSubscription _playerSubscription; //监听播放
   double _value = 0.0; //播放位置
-  double maxDuration = 1.0; //时长
+  double maxDuration = 0.0; //时长
   bool _isPlaying = false;
 
-  String get currentPositionTxt => DateFormat('mm:ss', 'en_US')
-      .format(DateTime.fromMillisecondsSinceEpoch(_value.toInt()));
+  String get currentPositionTxt =>
+      Utils.duration2String(Duration(milliseconds: _value.toInt()));
 
-  String get maxDurationTxt => DateFormat('mm:ss', 'en_US')
-      .format(DateTime.fromMillisecondsSinceEpoch(maxDuration.toInt()));
+  String get maxDurationTxt =>
+      Utils.duration2String(Duration(milliseconds: maxDuration.toInt()));
 
   @override
   void initState() {
@@ -149,7 +148,10 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
                 ),
                 // like
                 CircleButton(
-                  onPressedAction: () {},
+                  onPressedAction: () {
+                    Toast.show(context, '$_artists - $_name');
+                    Utils.copyToClipboard('$_artists - $_name');
+                  },
                   fillColor: Colors.white,
                   splashColor: lightAccentColor,
                   highlightColor: lightAccentColor.withOpacity(0.5),

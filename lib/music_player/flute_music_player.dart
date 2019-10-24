@@ -207,7 +207,6 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
             brightness: Brightness.light,
             iconTheme: lightIconTheme,
             backgroundColor: Colors.transparent,
-            title: Text(''),
             leading: IconButton(
                 icon: Icon(SimpleLineIcons.arrow_left, size: 20),
                 onPressed: () => Navigator.pop(context)),
@@ -260,27 +259,25 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
             child: Padding(
                 padding: EdgeInsets.only(top: 40, bottom: 50),
                 child: Column(children: <Widget>[
-                  RichText(
-                      text: TextSpan(text: '', children: [
-                    TextSpan(
-                        text: '$songTitle\n',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 4.0,
-                            height: 1.5)),
-                    TextSpan(
-                        text: position != null
-                            ? "${positionText ?? ''} / ${durationText ?? ''}"
-                            : duration != null ? durationText : '',
-                        style: TextStyle(
-                            color: Colors.white.withOpacity(0.75),
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 3.0,
-                            height: 1.5))
-                  ])),
+                  Text('$songTitle',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 4.0,
+                          height: 1.5)),
+                  Text(
+                      position != null
+                          ? "$positionText / $durationText"
+                          : duration != null
+                              ? durationText
+                              : '0:00:00 / 0:00:00',
+                      style: TextStyle(
+                          color: Colors.white.withOpacity(0.75),
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 3.0,
+                          height: 1.5)),
                   Padding(
                       padding: EdgeInsets.only(top: 40),
                       child: Row(children: <Widget>[

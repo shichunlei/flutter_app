@@ -64,7 +64,7 @@ class Utils {
   }
 
   /// 复制到剪粘板
-  static copyToClipboard(final String text) {
+  static copyToClipboard(String text) {
     if (text == null) return;
     Clipboard.setData(new ClipboardData(text: text));
   }
@@ -155,7 +155,7 @@ class Utils {
   /// 时间转字符串
   ///
   static String duration2String(Duration duration) {
-    return duration?.toString()?.split('.')?.first ?? '';
+    return duration?.toString()?.split('.')?.first ?? '0:00:00';
   }
 
   static int getColorHexFromStr(String colorStr, {String alpha: "FF"}) {

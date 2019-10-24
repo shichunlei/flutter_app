@@ -2,11 +2,9 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-
-import 'package:intl/intl.dart' show DateFormat;
-import 'package:intl/date_symbol_data_local.dart';
 
 class SoundDemo extends StatefulWidget {
   SoundDemo({Key key}) : super(key: key);
@@ -23,8 +21,8 @@ class _SoundDemoState extends State<SoundDemo> {
   StreamSubscription _playerSubscription;
   FlutterSound flutterSound;
 
-  String _recorderTxt = '00:00:00';
-  String _playerTxt = '00:00:00';
+  String _recorderTxt = '0:00:00';
+  String _playerTxt = '0:00:00';
   double _dbLevel;
 
   double sliderCurrentPosition = 0.0;
@@ -38,7 +36,6 @@ class _SoundDemoState extends State<SoundDemo> {
     flutterSound.setSubscriptionDuration(0.01);
     flutterSound.setDbPeakLevelUpdate(0.8);
     flutterSound.setDbLevelEnabled(true);
-    initializeDateFormatting();
   }
 
   void startRecorder() async {
@@ -48,13 +45,9 @@ class _SoundDemoState extends State<SoundDemo> {
       print('startRecorder: $path');
 
       _recorderSubscription = flutterSound.onRecorderStateChanged.listen((e) {
-        DateTime date = DateTime.fromMillisecondsSinceEpoch(
-            e.currentPosition.toInt(),
-            isUtc: true);
-        String txt = DateFormat('mm:ss:SS', 'en_GB').format(date);
-
         this.setState(() {
-          this._recorderTxt = txt.substring(0, 8);
+          this._recorderTxt = Utils.duration2String(
+              Duration(milliseconds: e.currentPosition.toInt()));
         });
       });
       _dbPeakSubscription =
@@ -107,13 +100,10 @@ class _SoundDemoState extends State<SoundDemo> {
           sliderCurrentPosition = e.currentPosition;
           maxDuration = e.duration;
 
-          DateTime date = DateTime.fromMillisecondsSinceEpoch(
-              e.currentPosition.toInt(),
-              isUtc: true);
-          String txt = DateFormat('mm:ss:SS', 'en_GB').format(date);
           this.setState(() {
             //this._isPlaying = true;
-            this._playerTxt = txt.substring(0, 8);
+            this._playerTxt = Utils.duration2String(
+                Duration(milliseconds: sliderCurrentPosition.toInt()));
           });
         }
       });
