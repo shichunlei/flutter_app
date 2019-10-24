@@ -275,6 +275,7 @@ A new Flutter application.
 | 图片裁剪 | [image_crop](https://github.com/VolodymyrLykhonis/image_crop) |![](https://img.shields.io/pub/v/image_crop.svg)|
 | 图片裁剪 | [image_cropper](https://github.com/hnvn/flutter_image_cropper) |![](https://img.shields.io/pub/v/image_cropper.svg)|
 | 多图像选择器 | [Multi Image Picker](https://github.com/Sh1d0w/multi_image_picker) | ![](https://img.shields.io/pub/v/multi_image_picker.svg) | 
+| 文件保存 | [image_gallery_saver](https://github.com/hui-z/image_gallery_saver) | ![](https://img.shields.io/pub/v/image_gallery_saver.svg) | 
 | 侧滑菜单 | [flutter_inner_drawer](https://github.com/Dn-a/flutter_inner_drawer) | ![](https://img.shields.io/pub/v/flutter_inner_drawer.svg) | 
 | 字母索引、悬停 | [AZListView](https://github.com/flutterchina/azlistview) | ![](https://img.shields.io/pub/v/azlistview.svg) |
 | 状态管理 | [provider](https://github.com/rrousselGit/provider) | ![](https://img.shields.io/pub/v/provider.svg) |
@@ -305,6 +306,7 @@ A new Flutter application.
 | 权限访问 | [permission_handler](https://github.com/BaseflowIT/flutter-permission-handler) | ![](https://img.shields.io/pub/v/permission_handler.svg) | 
 | 日历 | [FlutterCustomCalendar](https://github.com/fluttercandies/flutter_custom_calendar) |  | 
 | 跑马灯 | [MarqueeWidget](https://github.com/baoolong/MarqueeWidget) | ![](https://img.shields.io/pub/v/marquee_flutter.svg) | 
+| 手势密码锁 | [GestureRecognition](https://github.com/flutter-food/gesture_recognition) | ![](https://img.shields.io/pub/v/gesture_recognition.svg) | 
 
 
 ## 赞赏

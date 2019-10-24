@@ -151,7 +151,7 @@ class HttpUtils {
     return response;
   }
 
-  download(url, savePath,
+  Future<Response> download(url, savePath,
       {Function(int count, int total) onReceiveProgress,
       CancelToken cancelToken}) async {
     debugPrint('download请求启动! url：$url');

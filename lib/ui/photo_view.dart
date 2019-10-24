@@ -1,11 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:image_picker_saver/image_picker_saver.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:share/share.dart';
-import 'package:http/http.dart' as http;
 
 import '../page_index.dart';
 
@@ -139,13 +136,18 @@ class _PhotoViewState extends State<PhotoView>
   void _saveImage(String imageUrl) async {
     Toast.show(context, '正在保存...');
 
-    var response = await http.get(imageUrl);
+    var appDocDir = await FileUtil.getInstance().getTempPath();
+    String savePath = appDocDir + "$count.jpg";
+    await HttpUtils().download(imageUrl, savePath,
+        onReceiveProgress: (int count, int total) {
+      debugPrint("$count/$total");
 
-    var filePath =
-        await ImagePickerSaver.saveFile(fileData: response.bodyBytes);
-    var savedFile = File.fromUri(Uri.file(filePath));
-    Future<File>.sync(() => savedFile);
-    Toast.show(context, '保存成功');
+      if (count == total) {
+        Toast.show(context, '保存成功！');
+      }
+    });
+    final result = await ImageGallerySaver.saveFile(savePath);
+    debugPrint(result);
   }
 
   Widget _buildBgView(screenHeight) {
@@ -176,7 +178,7 @@ class _PhotoViewState extends State<PhotoView>
                   IconButton(
                       icon: Icon(Icons.share),
                       onPressed: () {
-                        Share.share(widget.photos[count]);
+                        Share.share(widget.photos[count - 1]);
                       })
                 ]),
             Container(
@@ -203,7 +205,7 @@ class _PhotoViewState extends State<PhotoView>
                       splashColor: Colors.red,
                       disabledColor: Colors.green,
                       color: Colors.white,
-                      onPressed: () => _saveImage(widget.photos[count]),
+                      onPressed: () => _saveImage(widget.photos[count - 1]),
                       icon: Icon(Icons.file_download))),
               alignment: Alignment.bottomRight)
         ]));

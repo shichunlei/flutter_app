@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/i18n.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import '../page_index.dart';
 
@@ -140,15 +141,21 @@ class _UpdateDialogState extends State<UpdateDialog> {
 
   /// 下载apk
   _download(String url, String savePath) async {
+    debugPrint("---------------$savePath");
+
     try {
       HttpUtils().download(url, savePath,
-          onReceiveProgress: (int count, int total) {
+          onReceiveProgress: (int count, int total) async {
         setState(() => _value = count / total);
+
         if (count == total) {
           Navigator.of(context).pop();
 
+          final _fileName = await ImageGallerySaver.saveFile(savePath);
+          debugPrint(_fileName.toString());
+
           /// VersionUtils.install(savePath);
-          showInstallDialog(savePath);
+          showInstallDialog(_fileName.toString());
         }
       }, cancelToken: _cancelToken);
     } catch (e) {

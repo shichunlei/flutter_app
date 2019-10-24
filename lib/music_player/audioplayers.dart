@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:custom_widgets/wave.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +7,6 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_app/bean/music.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:http/http.dart';
-import 'package:path_provider/path_provider.dart';
 
 import 'widgets/radial_seek_bar.dart';
 
@@ -434,18 +431,5 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
           },
           selected: _index == index);
     }).toList());
-  }
-
-  Future _loadFile(String url, String name) async {
-    final bytes = await readBytes(url);
-    final dir = await getApplicationDocumentsDirectory();
-    final file = File('${dir.path}/$name.mp3');
-
-    await file.writeAsBytes(bytes);
-    if (await file.exists()) {
-      setState(() {
-        localFilePath = file.path;
-      });
-    }
   }
 }

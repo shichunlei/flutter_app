@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/music.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:intl/intl.dart';
 
 import '../page_index.dart';
@@ -106,13 +107,15 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
               children: <Widget>[
                 // unlike
                 CircleButton(
-                  onPressedAction: () {},
+                  onPressedAction: () {
+                    _saveMusic(_name, songsData[onTop].audioPath);
+                  },
                   fillColor: Colors.white,
                   splashColor: lightAccentColor,
                   highlightColor: lightAccentColor.withOpacity(0.5),
                   elevation: 5.0,
                   highlightElevation: 5,
-                  icon: Icons.close,
+                  icon: Icons.file_download,
                   iconColor: Theme.of(context).primaryColor,
                   iconSize: 20,
                 ),
@@ -227,5 +230,20 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
       });
       debugPrint('error: $err');
     }
+  }
+
+  _saveMusic(String fileName, String url) async {
+    var appDocDir = await FileUtil.getInstance().getTempPath();
+    String savePath = appDocDir + "$fileName.mp3";
+    await HttpUtils().download(url, savePath,
+        onReceiveProgress: (int count, int total) {
+      debugPrint("$count/$total");
+
+      if (count == total) {
+        Toast.show(context, '下载成功！');
+      }
+    });
+    final result = await ImageGallerySaver.saveFile(savePath);
+    debugPrint(result);
   }
 }

@@ -1,11 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_app/contact/page/contact_list_page.dart';
 import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/login/page/login_page.dart';
 import 'package:flutter_app/store/index.dart';
-import 'package:path_provider/path_provider.dart';
 
 import '../page_index.dart';
 import 'update_dialog.dart';
@@ -44,8 +41,7 @@ class HomeDrawable extends StatelessWidget {
               leading: Icon(Icons.update),
               trailing: Icon(Icons.chevron_right),
               onTap: () async {
-                Directory appDocDir = await getApplicationDocumentsDirectory();
-                String appDocPath = appDocDir.path;
+                var appDocDir = await FileUtil.getInstance().getTempPath();
 
                 Navigator.of(context).pop();
                 showDialog(
@@ -54,7 +50,7 @@ class HomeDrawable extends StatelessWidget {
                     builder: (context) => UpdateDialog(
                         url:
                             'https://cdn.jsdelivr.net/gh/flutterchina/flutter-in-action@1.0/docs/imgs/book.jpg',
-                        savePath: "${appDocPath.toString()}/temp.jpg"));
+                        savePath: appDocDir + "temp.jpg"));
               }),
           Divider(),
           ListTile(
