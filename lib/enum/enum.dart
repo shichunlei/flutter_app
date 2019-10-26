@@ -22,3 +22,14 @@ enum RefreshType { DEFAULT, LOAD_MORE, REFRESH }
 enum Rotation { LR, RL, TB, BT, TL2BR, BL2TR, TR2BL, BR2TL }
 
 enum Direction { LEFT, RIGHT, UP, DOWN }
+
+enum CycleMode {
+  /// 单曲循环
+  SINGLE,
+
+  /// 顺序
+  SEQUENCE,
+
+  /// 随机
+  RANDOM
+}

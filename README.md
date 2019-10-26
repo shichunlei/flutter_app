@@ -24,11 +24,11 @@ A new Flutter application.
 ## 运行环境
 
 ```
-[✓] Flutter (Channel beta, v1.9.1+hotfix.2, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
-    • Flutter version 1.9.1+hotfix.2 at /Users/14cells/Android/flutter
-    • Framework revision 2d2a1ffec9 (4 days ago), 2019-09-06 18:39:49 -0700
-    • Engine revision b863200c37
-    • Dart version 2.5.0
+[✓] Flutter (Channel beta, v1.10.7, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
+    • Flutter version 1.10.7 at /Users/14cells/Android/flutter
+    • Framework revision e70236e36c (3 weeks ago), 2019-10-02 09:32:30 -0700
+    • Engine revision 9e6314d348
+    • Dart version 2.6.0 (build 2.6.0-dev.0.0 1103600280)
 
 [✓] Android toolchain - develop for Android devices (Android SDK version 29.0.2)
     • Android SDK at /Users/14cells/Android/SDK
@@ -50,12 +50,11 @@ A new Flutter application.
         For more info, see https://flutter.dev/platform-plugins
       To install:
         sudo gem install cocoapods
-        pod setup
 
 [✓] Android Studio (version 3.5)
     • Android Studio at /Applications/Android Studio.app/Contents
-    • Flutter plugin version 38.2.3
-    • Dart plugin version 191.8423
+    • Flutter plugin version 40.2.2
+    • Dart plugin version 191.8593
     • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
 
 [✓] Connected device (1 available)
@@ -68,6 +67,42 @@ A new Flutter application.
 - 高德定位ios设备的apikey没有配置，使用ios设备的朋友们可以自己去高德地图申请apikey，ios具体配置见[高德地图flutter插件](https://github.com/OpenFlutter/amap_base_flutter)配置。
 - 音乐🎵播放器[Music Player](https://github.com/shichunlei/flutter_app/blob/master/lib/music_player/flute_music_player.dart)暂不支持ios设备，详情请见插件[Flute-Music-Player](https://github.com/iampawan/Flute-Music-Player)。
 - Multi Image Picker 插件 ios 配置见[Multi Image Picker 使用](https://sh1d0w.github.io/multi_image_picker/#/gettingstarted)
+
+
+- 项目中某些接口为http url，Android 9.0/P和iOS禁止从非https网址加载，故需更改 App 的网络安全配置以允许此类连接
+
+__Android__
+
+在 res 下新增一个 xml 目录，创建[network_security_config.xml](https://github.com/shichunlei/flutter_app/blob/master/android/app/src/main/res/xml/network_security_config.xml)文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
+```
+
+在[AndroidManifest.xml](https://github.com/shichunlei/flutter_app/blob/master/android/app/src/main/AndroidManifest.xml)文件下的application标签增加以下属性
+
+```xml
+<application
+
+ android:networkSecurityConfig="@xml/network_security_config"
+
+/>
+```
+
+__iOS__
+
+在[Info.plist](https://github.com/shichunlei/flutter_app/blob/master/ios/Runner/Info.plist)下编辑
+
+```plist
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+</dict>
+```
 
 
 ## API接口

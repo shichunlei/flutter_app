@@ -1,6 +1,6 @@
 import 'dart:async';
+import 'dart:math';
 
-import 'package:custom_widgets/wave.dart';
 import 'package:flutter/material.dart';
 
 import 'package:audioplayers/audioplayers.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_app/bean/music.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
-import 'widgets/radial_seek_bar.dart';
+import 'widgets/album_cover.dart';
 
 class AudioPlayersPage extends StatefulWidget {
   @override
@@ -30,11 +30,11 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   AudioPlayer audioPlayer;
   AudioPlayerState _audioPlayerState;
 
-  StreamSubscription _durationSubscription;
-  StreamSubscription _positionSubscription;
-  StreamSubscription _playerCompleteSubscription;
-  StreamSubscription _playerErrorSubscription;
-  StreamSubscription _playerStateSubscription;
+  StreamSubscription _durationSubscription,
+      _positionSubscription,
+      _playerCompleteSubscription,
+      _playerErrorSubscription,
+      _playerStateSubscription;
 
   /// 当前音乐下标
   int _index = -1;
@@ -46,13 +46,16 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   /// 当前音乐名称
   String songTitle = '';
 
-  get isPlaying => playerState == PlayerState.playing;
+  bool get isPlaying => playerState == PlayerState.playing;
 
-  get isPaused => playerState == PlayerState.paused;
+  bool get isPaused => playerState == PlayerState.paused;
 
-  get durationText => Utils.duration2String(duration);
+  String get durationText => Utils.duration2String(duration);
 
-  get positionText => Utils.duration2String(position);
+  String get positionText => Utils.duration2String(position);
+
+  CycleMode mode = CycleMode.RANDOM;
+  IconData modeIcon = CustomIcon.random_player;
 
   @override
   void initState() {
@@ -141,6 +144,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
       playerState = PlayerState.stopped;
       _icon = Icons.stop;
     });
+    if (!(CycleMode.SEQUENCE == mode && _index == totalSongs - 1)) next();
   }
 
   Future<int> _play({isLocal: true}) async {
@@ -183,6 +187,19 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
       });
   }
 
+  void next() {
+    if (isPlaying || isPaused) _stop();
+    if (CycleMode.SINGLE == mode) {
+      _index = _index;
+    } else if (CycleMode.SEQUENCE == mode) {
+      _index++;
+    } else {
+      _index = Random().nextInt(totalSongs - 1);
+    }
+
+    _play();
+  }
+
   Future<int> _seek(Duration duration) async {
     setState(() {
       playerState = PlayerState.paused;
@@ -219,135 +236,141 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            brightness: Brightness.light,
+      body: Stack(children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromRGBO(208, 230, 165, 1),
+                Color.fromRGBO(233, 136, 124, 1),
+                Color.fromRGBO(204, 171, 218, 1),
+                Color.fromRGBO(134, 227, 206, 1),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+              top: Utils.navigationBarHeight - Utils.topSafeHeight),
+          child: AlbumCover(
+              image: songsData[_index].albumArtUrl, isPlaying: isPlaying),
+        ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              Text('$songTitle',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 4.0,
+                      height: 1.5)),
+              Text(
+                  position != null
+                      ? "$positionText / $durationText"
+                      : duration != null ? durationText : '0:00:00 / 0:00:00',
+                  style: TextStyle(
+                      color: Colors.white.withOpacity(0.75),
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 3.0,
+                      height: 1.5)),
+              Material(
+                type: MaterialType.transparency,
+                child: Padding(
+                    padding: EdgeInsets.only(top: 20, bottom: 20),
+                    child: Row(children: <Widget>[
+                      Spacer(),
+                      _buildModeButton(),
+                      Spacer(),
+                      _buildPreviousButton(),
+                      Spacer(),
+                      _buildPlayPausedButton(),
+                      Spacer(),
+                      _buildNextButton(),
+                      Spacer(),
+                      _buildListButton(),
+                      Spacer(),
+                    ])),
+              )
+            ]),
+          ),
+        ),
+        Container(
+          child: AppBar(
             backgroundColor: Colors.transparent,
             iconTheme: lightIconTheme,
-            leading: IconButton(
-                icon: Icon(SimpleLineIcons.arrow_left, size: 20),
-                onPressed: () => Navigator.pop(context)),
             elevation: 0.0,
-            actions: <Widget>[
-              IconButton(
-                  icon: Icon(SimpleLineIcons.playlist, size: 20),
-                  onPressed: () => showModalBottomSheet(
-                      context: context,
-                      builder: (builder) => _bottomSheetItem(context)))
-            ]),
-        body: Column(children: <Widget>[
-          // Seek bar
-          Expanded(
-              child: RadialSeekBarUI(
-                  imageUrl: songsData[_index].albumArtUrl,
-                  controller: _controller,
-                  thumbPercent: _thumbPercent,
-                  onDragEnd: (double percent) {
-                    if (percent < 1.0) _play();
-                  },
-                  onDragUpdate: (double percent) {
-                    setState(() {
-                      _thumbPercent = percent;
-                      if (isPlaying) _pause();
-
-                      if (duration != null) {
-                        position = Duration(
-                            milliseconds:
-                                (_thumbPercent * duration.inMilliseconds)
-                                    .round());
-                        _seek(position);
-                      }
-                    });
-                  })),
-
-          // Lyric
-          /// Container(height: 125.0, width: double.infinity),
-          Container(
-              height: 320.0,
-              child: Stack(children: <Widget>[
-                Wave(
-                    config: CustomConfig(
-                        gradients: [
-                          [
-                            Color.fromRGBO(233, 136, 124, 1),
-                            Color.fromRGBO(204, 171, 218, 1)
-                          ],
-                          [
-                            Color.fromRGBO(208, 230, 165, 1),
-                            Color.fromRGBO(245, 221, 149, 1)
-                          ],
-                          [
-                            Color.fromRGBO(245, 221, 149, 1),
-                            Color.fromRGBO(233, 136, 124, 1)
-                          ],
-                          [
-                            Color.fromRGBO(134, 227, 206, 1),
-                            Color.fromRGBO(208, 230, 165, 1)
-                          ]
-                        ],
-                        durations: [
-                          35000,
-                          19440,
-                          10800,
-                          6000
-                        ],
-                        heightPercentages: [
-                          0.20,
-                          0.23,
-                          0.25,
-                          0.30
-                        ],
-                        gradientBegin: Alignment.bottomLeft,
-                        gradientEnd: Alignment.topRight),
-                    wavePhase: 1.0,
-                    waveAmplitude: 0,
-                    size: Size(double.infinity, double.infinity)),
-
-                // Song title, artist name, and controls
-                Positioned(
-                    child: _buildBottomControls(), left: 0, right: 0, bottom: 0)
-              ])),
-        ]));
+          ),
+          height: Utils.navigationBarHeight,
+        )
+      ]),
+    );
   }
 
-  Widget _buildBottomControls() {
-    return Container(
-        width: double.infinity,
-        child: Material(
-            type: MaterialType.transparency,
-            child: Padding(
-                padding: EdgeInsets.only(bottom: 50),
-                child: Column(children: <Widget>[
-                  Text('$songTitle',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 4.0,
-                          height: 1.5)),
-                  Text(
-                      position != null
-                          ? "$positionText / $durationText"
-                          : duration != null
-                              ? durationText
-                              : '0:00:00 / 0:00:00',
-                      style: TextStyle(
-                          color: Colors.white.withOpacity(0.75),
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 3.0,
-                          height: 1.5)),
-                  Padding(
-                      padding: EdgeInsets.only(top: 20),
-                      child: Row(children: <Widget>[
-                        Spacer(),
-                        _buildPreviousButton(),
-                        Spacer(),
-                        _buildPlayPausedButton(),
-                        Spacer(),
-                        _buildNextButton(),
-                        Spacer()
-                      ]))
-                ]))));
+  Widget _buildModeButton() {
+    return IconButton(
+        splashColor: lightAccentColor,
+        highlightColor: Colors.transparent,
+        icon: Icon(modeIcon, color: Colors.white, size: 20),
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (context) {
+                return SimpleDialog(
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(CustomIcon.single_player),
+                      title: Text('单曲循环'),
+                      onTap: () {
+                        Navigator.pop(context);
+                        setState(() {
+                          modeIcon = CustomIcon.single_player;
+                          mode = CycleMode.SINGLE;
+                        });
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(CustomIcon.sequence_player, size: 20),
+                      title: Text('顺序播放'),
+                      onTap: () {
+                        Navigator.pop(context);
+                        setState(() {
+                          modeIcon = CustomIcon.sequence_player;
+                          mode = CycleMode.SEQUENCE;
+                        });
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(CustomIcon.random_player, size: 20),
+                      title: Text('随机播放'),
+                      onTap: () {
+                        Navigator.pop(context);
+                        setState(() {
+                          modeIcon = CustomIcon.random_player;
+                          mode = CycleMode.RANDOM;
+                        });
+                      },
+                    ),
+                  ],
+                  contentPadding: EdgeInsets.all(0),
+                );
+              });
+        });
+  }
+
+  Widget _buildListButton() {
+    return IconButton(
+        splashColor: lightAccentColor,
+        highlightColor: Colors.transparent,
+        icon: Icon(SimpleLineIcons.playlist, color: Colors.white, size: 20),
+        onPressed: () => showModalBottomSheet(
+            context: context, builder: (builder) => _bottomSheetItem(context)));
   }
 
   Widget _buildNextButton() {
@@ -355,13 +378,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
         icon: Icon(Icons.skip_next, color: Colors.white, size: 35),
-        onPressed: (_index + 1) >= totalSongs
-            ? null
-            : () {
-                if (isPlaying || isPaused) _stop();
-                _index++;
-                _play();
-              });
+        onPressed: (_index + 1) >= totalSongs ? null : () => next());
   }
 
   Widget _buildPreviousButton() {
@@ -394,7 +411,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
       highlightElevation: 5,
       icon: _icon,
       iconSize: 35,
-      size: 50,
+      size: 70,
       iconColor: darkAccentColor,
     );
   }

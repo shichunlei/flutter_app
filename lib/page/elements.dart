@@ -30,23 +30,19 @@ class ElementsPage extends StatelessWidget {
               AsyncSnapshot<List<ElementData>> snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.none:
-                debugPrint('none');
-                return Text('没有联网吗？');
+                break;
+              case ConnectionState.active:
               case ConnectionState.waiting:
-                debugPrint('waiting');
-                return getLoadingWidget();
+                return LoadingView();
               case ConnectionState.done:
                 if (snapshot.hasError) {
-                  debugPrint(snapshot.error.toString());
                   return ErrorPage(text: '数据加载失败');
                 } else {
                   return _buildTable(snapshot.data);
                 }
                 break;
-              default:
-                return null;
-                break;
             }
+            return null;
           },
         ));
   }

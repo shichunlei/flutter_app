@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ErrorPage extends StatelessWidget {
   final String text;
   final String imageAsset;
-  final VoidCallback onPressed;
+  final Function onPressed;
 
   ErrorPage({Key key, this.imageAsset, this.text: '网络加载失败', this.onPressed})
       : super(key: key);

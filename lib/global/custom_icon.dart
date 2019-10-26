@@ -81,4 +81,11 @@ class CustomIcon {
 
   static const IconData qdaily_logo =
       const IconData(0xe769, fontFamily: 'CustomIcon');
+
+  static const IconData single_player =
+      const IconData(0xe78d, fontFamily: 'CustomIcon');
+  static const IconData sequence_player =
+      const IconData(0xe791, fontFamily: 'CustomIcon');
+  static const IconData random_player =
+      const IconData(0xe6fc, fontFamily: 'CustomIcon');
 }

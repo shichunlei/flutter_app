@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:shimmer/shimmer.dart';
 
-class LoadingView extends StatelessWidget {
-  LoadingView({Key key}) : super(key: key);
+class ShimmerView extends StatelessWidget {
+  ShimmerView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -42,7 +42,7 @@ dependencies: # 应用或包依赖的其它包或插件
 
   city_picker: ^0.1.4
 
-  city_pickers: ^0.1.27
+  city_pickers: ^0.1.28
 
   clippy_flutter: ^1.1.0
 
@@ -54,7 +54,7 @@ dependencies: # 应用或包依赖的其它包或插件
     path: custom_widgets/
 
   # 设备信息
-  device_info: ^0.4.1
+  device_info: ^0.4.1+1
 
   # 网络请求库
   dio: 2.1.16
@@ -74,10 +74,10 @@ dependencies: # 应用或包依赖的其它包或插件
   # 刷新加载控件
   flutter_easyrefresh: ^2.0.4
 
-  flutter_html: ^0.10.4
+  flutter_html: ^0.11.0
 
   # 侧滑菜单
-  flutter_inner_drawer: ^0.4.0
+  flutter_inner_drawer: ^0.5.0
 
   flutter_jd_address_selector:
     git:
@@ -102,7 +102,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # AntDesign 地址：https://ant.design/components/icon/
   # Ionicons 地址：https://ionicons.com
   # Fontisto 地址：https://fontisto.com/icons
-  # Foundation 地址：https://zurb:com/playground/foundation-icon-fonts-3
+  # Foundation 地址：https://zurb.com/playground/foundation-icon-fonts-3
   # Octicons 地址：https://octicons.github.com/
   # SimpleLineIcons 地址：https://simplelineicons.github.io/
   flutter_vector_icons: ^0.2.1
@@ -128,19 +128,19 @@ dependencies: # 应用或包依赖的其它包或插件
 
   multi_image_picker: ^4.5.8
 
-  package_info: ^0.4.0+9
+  package_info: ^0.4.0+10
 
   palette_generator: ^0.2.0
 
   # 滑动视差效果图片 https://github.com/pulyaevskiy/parallax-image
-  parallax_image: ^0.3.1
+  parallax_image: ^0.3.1+1
 
   path_drawing: ^0.4.1
 
   path_provider: ^1.4.0
 
   # PhotoView
-  photo_view: ^0.5.0
+  photo_view: ^0.6.0
 
   # 数据管理层
   provider: ^3.1.0+1
@@ -154,10 +154,10 @@ dependencies: # 应用或包依赖的其它包或插件
   # https://github.com/ReactiveX/rxdart
   rxdart: ^0.22.4
 
-  share: ^0.6.3
+  share: ^0.6.3+1
 
   # SP
-  shared_preferences: ^0.5.4
+  shared_preferences: ^0.5.4+1
 
   # 骨架屏
   shimmer: ^1.0.1
@@ -171,7 +171,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # 透明占位图片
   transparent_image: ^1.0.0
 
-  url_launcher: ^5.2.1
+  url_launcher: ^5.2.5
 
   # 视频播放器器
   video_player: ^0.10.2+5

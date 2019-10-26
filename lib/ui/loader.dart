@@ -37,7 +37,7 @@ class _LoaderContainerState extends State<LoaderContainer> {
     Widget currentWidget;
     switch (widget.loaderState) {
       case LoaderState.Loading:
-        currentWidget = widget.loadingView ?? _ClassicalLoadingView();
+        currentWidget = widget.loadingView ?? LoadingView();
         break;
       case LoaderState.Failed:
         currentWidget = widget.errorView ??
@@ -59,20 +59,6 @@ class _LoaderContainerState extends State<LoaderContainer> {
   }
 }
 
-class _ClassicalLoadingView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => Center(
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-            CircularProgressIndicator(strokeWidth: 3.0),
-            Padding(
-                padding: const EdgeInsets.only(top: 15),
-                child: Text('加载中', style: TextStyle(fontSize: 16)))
-          ]));
-}
-
 class _ClassicalErrorView extends StatelessWidget {
   _ClassicalErrorView({@required this.onReload, this.reloadText, this.errorTip})
       : super();
@@ -84,7 +70,6 @@ class _ClassicalErrorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Center(
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
             Icon(Icons.portable_wifi_off, size: 70, color: Colors.grey[500]),
@@ -111,7 +96,6 @@ class _ClassicalNoDataView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Center(
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
             Icon(Icons.signal_cellular_no_sim,

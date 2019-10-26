@@ -120,8 +120,9 @@ export 'utils/file_util.dart';
 export 'utils/permissions_util.dart';
 export 'utils/num_utils.dart';
 
-export 'ui/empty.dart';
-export 'ui/error.dart';
+export 'ui/state_view/empty.dart';
+export 'ui/state_view/error.dart';
+export 'ui/state_view/loading.dart';
 export 'ui/loader.dart';
 export 'ui/gradual_change_view.dart';
 export 'ui/home_drawable.dart';

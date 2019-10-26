@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../page_index.dart';
+import '../../page_index.dart';
 
 class EmptyPage extends StatelessWidget {
   final String text;
@@ -20,8 +20,7 @@ class EmptyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-        Image.asset('$imageAsset',
-            width: 150, height: 150, fit: BoxFit.contain),
+        Image.asset('$imageAsset', width: 150, height: 150),
         Gaps.vGap20,
         Text('$text'),
         Gaps.vGap20,

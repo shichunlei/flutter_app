@@ -10,6 +10,7 @@ import './store/provider_store.dart';
 import 'page_index.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   setCustomErrorPage();
   _setTargetPlatformForDesktop();
   await SpUtil.getInstance();
