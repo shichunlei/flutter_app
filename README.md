@@ -342,6 +342,7 @@ __iOS__
 | 日历 | [FlutterCustomCalendar](https://github.com/fluttercandies/flutter_custom_calendar) |  | 
 | 跑马灯 | [MarqueeWidget](https://github.com/baoolong/MarqueeWidget) | ![](https://img.shields.io/pub/v/marquee_flutter.svg) | 
 | 手势密码锁 | [GestureRecognition](https://github.com/flutter-food/gesture_recognition) | ![](https://img.shields.io/pub/v/gesture_recognition.svg) | 
+| After Layout | [AfterLayout](https://github.com/fluttercommunity/flutter_after_layout) | ![](https://img.shields.io/pub/v/after_layout.svg) | 
 
 
 ## 赞赏

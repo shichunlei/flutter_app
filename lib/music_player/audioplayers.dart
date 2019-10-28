@@ -21,7 +21,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
 
   AnimationController _controller;
 
-  double _thumbPercent = 0.0;
+  double _progress = 0.0;
 
   /// 总时长
   Duration duration;
@@ -29,12 +29,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
 
   AudioPlayer audioPlayer;
   AudioPlayerState _audioPlayerState;
-
-  StreamSubscription _durationSubscription,
-      _positionSubscription,
-      _playerCompleteSubscription,
-      _playerErrorSubscription,
-      _playerStateSubscription;
 
   /// 当前音乐下标
   int _index = -1;
@@ -88,26 +82,24 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
     audioPlayer.setReleaseMode(ReleaseMode.RELEASE);
 
-    _durationSubscription = audioPlayer.onDurationChanged.listen((Duration d) {
+    audioPlayer.onDurationChanged.listen((Duration d) {
       debugPrint('onDurationChanged===============Max duration: $d');
       setState(() => duration = d);
     });
 
-    _positionSubscription =
-        audioPlayer.onAudioPositionChanged.listen((Duration p) {
+    audioPlayer.onAudioPositionChanged.listen((Duration p) {
       debugPrint('onAudioPositionChanged===============position: $p');
       setState(() {
         position = p;
 
-        _thumbPercent = position != null && position.inMilliseconds > 0
+        _progress = position != null && position.inMilliseconds > 0
             ? (position?.inMilliseconds?.toDouble() ?? 0.0) /
                 (duration?.inMilliseconds?.toDouble() ?? 0.0)
             : 0.0;
       });
     });
 
-    _playerCompleteSubscription =
-        audioPlayer.onPlayerCompletion.listen((event) {
+    audioPlayer.onPlayerCompletion.listen((event) {
       _onComplete();
       setState(() {
         position = duration;
@@ -116,7 +108,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
       });
     });
 
-    _playerErrorSubscription = audioPlayer.onPlayerError.listen((msg) {
+    audioPlayer.onPlayerError.listen((msg) {
       debugPrint('audioPlayer error : $msg');
       setState(() {
         playerState = PlayerState.stopped;
@@ -163,6 +155,21 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     return result;
   }
 
+  Future<int> _resume() async {
+    _controller.forward();
+
+    final result = await audioPlayer.resume();
+    if (result == 1) {
+      debugPrint('=============${audioPlayer.playerId}');
+      setState(() {
+        playerState = PlayerState.playing;
+        _icon = Icons.pause;
+        songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
+      });
+    }
+    return result;
+  }
+
   Future<int> _pause() async {
     _controller.stop();
     final result = await audioPlayer.pause();
@@ -189,6 +196,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
 
   void next() {
     if (isPlaying || isPaused) _stop();
+
     if (CycleMode.SINGLE == mode) {
       _index = _index;
     } else if (CycleMode.SEQUENCE == mode) {
@@ -197,7 +205,9 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
       _index = Random().nextInt(totalSongs - 1);
     }
 
-    _play();
+    Future.delayed(Duration(milliseconds: 800), () {
+      _play();
+    });
   }
 
   Future<int> _seek(Duration duration) async {
@@ -223,12 +233,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   @override
   void dispose() {
     audioPlayer.stop();
-    _durationSubscription?.cancel();
-    _positionSubscription?.cancel();
-    _playerCompleteSubscription?.cancel();
-    _playerErrorSubscription?.cancel();
-    _playerStateSubscription?.cancel();
-
     _controller?.dispose();
     super.dispose();
   }
@@ -263,13 +267,20 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
           right: 0,
           child: Container(
             child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              Text('$songTitle',
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                height: 50,
+                child: Marquee(
+                  text: '$songTitle',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 4.0,
-                      height: 1.5)),
+                      height: 1.5),
+                  scrollAxis: Axis.horizontal,
+                ),
+              ),
               Text(
                   position != null
                       ? "$positionText / $durationText"
@@ -400,6 +411,8 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
       onPressedAction: () {
         if (isPlaying) {
           _pause();
+        } else if (isPaused) {
+          _resume();
         } else {
           _play();
         }
@@ -429,6 +442,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
               borderRadius: BorderRadius.all(Radius.circular(20.0))),
           title: Text('${song.title}'),
           onTap: () {
+            Navigator.pop(context);
             if (isPlaying || isPaused) {
               if (_index != index)
                 setState(() {
@@ -441,7 +455,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
               _index = index;
               _play();
             }
-            Navigator.pop(context);
           },
           selected: _index == index);
     }).toList());
