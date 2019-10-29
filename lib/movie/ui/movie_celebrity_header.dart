@@ -34,64 +34,43 @@ class MovieCelebrityHeader extends StatelessWidget {
       ],
       flexibleSpace: FlexibleSpaceBar(
         title: Text(name),
-        background: Stack(
-          children: <Widget>[
-            ImageLoadView(backgroundImageUrl,
-                fit: BoxFit.fitWidth, width: double.infinity),
-
-            /// 加上一层毛玻璃效果
-            BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 5.0,
-                sigmaY: 6.0,
-              ),
-              child: Opacity(
-                opacity: 0.4,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: pageColor,
-                  ),
-                ),
-              ),
-            ),
-
-            /// 头像
-            Center(
-              child: AvatarGlow(
-                  startDelay: Duration(milliseconds: 1000),
-                  glowColor: Colors.white,
-                  endRadius: 90.0,
-                  duration: Duration(milliseconds: 2000),
-                  repeat: true,
-                  showTwoGlows: true,
-                  repeatPauseDuration: Duration(milliseconds: 100),
-                  child: Material(
-                      elevation: 8.0,
-                      shape: CircleBorder(),
-                      child: Stack(
-                        alignment: Alignment.bottomRight,
-                        children: <Widget>[
-                          CircleAvatar(
-                            backgroundImage: NetworkImage(avatarUrl),
-                            radius: 40.0,
+        background: ImageLoadView(backgroundImageUrl,
+            fit: BoxFit.fitWidth,
+            width: double.infinity,
+            sigmaX: 5.0,
+            sigmaY: 6.0,
+            opacity: 0.4,
+            filterColor: pageColor,
+            child: AvatarGlow(
+                startDelay: Duration(milliseconds: 1000),
+                glowColor: Colors.white,
+                endRadius: 90.0,
+                duration: Duration(milliseconds: 2000),
+                repeat: true,
+                showTwoGlows: true,
+                repeatPauseDuration: Duration(milliseconds: 100),
+                child: Material(
+                    elevation: 8.0,
+                    shape: CircleBorder(),
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: <Widget>[
+                        CircleAvatar(
+                          backgroundImage: NetworkImage(avatarUrl),
+                          radius: 40.0,
+                        ),
+                        Offstage(
+                          offstage: gender == -1,
+                          child: Icon(
+                            gender == 1 ? FontAwesome.mars : FontAwesome.venus,
+                            size: 20,
+                            color: gender == 0
+                                ? Colors.pinkAccent
+                                : Colors.blueAccent,
                           ),
-                          Offstage(
-                            offstage: gender == -1,
-                            child: Icon(
-                              gender == 1
-                                  ? FontAwesome.mars
-                                  : FontAwesome.venus,
-                              size: 20,
-                              color: gender == 0
-                                  ? Colors.pinkAccent
-                                  : Colors.blueAccent,
-                            ),
-                          ),
-                        ],
-                      ))),
-            ),
-          ],
-        ),
+                        ),
+                      ],
+                    )))),
       ),
     );
   }

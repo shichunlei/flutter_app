@@ -86,26 +86,33 @@ class _LabRatioPageViewState extends State<LabRatioPageView>
                       child: Row(
                         children: <Widget>[
                           Expanded(
-                            child: Stack(
-                              fit: StackFit.expand,
-                              children: <Widget>[
-                                ImageLoadView(
-                                  '${widget.questions[index]?.options?.first?.optionPicUrl}',
-                                ),
-                                buildClipRect(index, animation1.value),
-                              ],
-                            ),
+                            child: Material(
+                                type: MaterialType.transparency,
+                                child: InkWell(
+                                    onTap: () => next(index),
+                                    child: ImageLoadView(
+                                        '${widget.questions[index]?.options?.first?.optionPicUrl}',
+                                        sigmaX: 5.0,
+                                        sigmaY: 6.0,
+                                        opacity:
+                                            animationController.value * 0.8,
+                                        child: Text('${animation1.value}%',
+                                            style: TextStyle(fontSize: 40))))),
                           ),
                           Gaps.hGap8,
                           Expanded(
-                            child: Stack(
-                              fit: StackFit.expand,
-                              children: <Widget>[
-                                ImageLoadView(
-                                  '${widget.questions[index]?.options?.elementAt(1)?.optionPicUrl}',
-                                ),
-                                buildClipRect(index, animation2.value)
-                              ],
+                            child: Material(
+                              type: MaterialType.transparency,
+                              child: InkWell(
+                                onTap: () => next(index),
+                                child: ImageLoadView(
+                                    '${widget.questions[index]?.options?.elementAt(1)?.optionPicUrl}',
+                                    sigmaX: 5.0,
+                                    sigmaY: 6.0,
+                                    opacity: animationController.value * 0.8,
+                                    child: Text('${animation2.value}%',
+                                        style: TextStyle(fontSize: 40))),
+                              ),
                             ),
                           )
                         ],
@@ -120,22 +127,6 @@ class _LabRatioPageViewState extends State<LabRatioPageView>
         ),
       ],
     );
-  }
-
-  Widget buildClipRect(int index, int value) {
-    return Material(
-        type: MaterialType.transparency,
-        child: InkWell(
-            onTap: () => next(index),
-            child: ClipRect(
-                child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 6.0),
-                    child: Opacity(
-                        opacity: animationController.value * 0.8,
-                        child: Container(
-                            alignment: Alignment.center,
-                            child: Text('$value%',
-                                style: TextStyle(fontSize: 40))))))));
   }
 
   void next(int index) async {

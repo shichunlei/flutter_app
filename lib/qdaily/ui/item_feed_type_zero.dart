@@ -37,45 +37,50 @@ class ItemFeedTypeZero extends StatelessWidget {
                         title: feedsBean.post.column.name,
                         onPressed: () {}),
                   ),
-                  Stack(children: <Widget>[
-                    Hero(
-                        tag: tag,
-                        child: ImageLoadView('${feedsBean?.image}',
-                            height: width * 43 / 103, width: width)),
-                    Container(
+                  Hero(
+                      tag: tag,
+                      child: ImageLoadView(
+                        '${feedsBean?.image}',
                         height: width * 43 / 103,
-                        padding: EdgeInsets.all(10),
-                        alignment: Alignment.bottomLeft,
-                        child: ImageLoadView(
-                            '${feedsBean?.post?.category?.imageLab}',
-                            height: 50,
-                            width: 50)),
-                    Container(
-                        height: width * 43 / 103,
-                        padding: EdgeInsets.all(10),
-                        alignment: Alignment.topRight,
+                        width: width,
                         child: Stack(
-                          alignment: Alignment.topCenter,
+                          fit: StackFit.expand,
                           children: <Widget>[
-                            Image.asset(
-                                isNew
-                                    ? 'images/qdaily/icon_lab_vot_new.png'
-                                    : 'images/qdaily/icon_lab_vot_join.png',
-                                height: 47.5,
-                                width: 57),
-                            isNew
-                                ? SizedBox()
-                                : Container(
-                                    child: Text(
-                                      '${feedsBean?.post?.recordCount}',
-                                      style: TextStyle(
-                                          color: qdailyMajorColor,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    margin: EdgeInsets.only(top: 3))
+                            Positioned(
+                                child: ImageLoadView(
+                                    '${feedsBean?.post?.category?.imageLab}',
+                                    height: 50,
+                                    width: 50),
+                                left: 10,
+                                bottom: 10),
+                            Positioned(
+                              child: Stack(
+                                alignment: Alignment.topCenter,
+                                children: <Widget>[
+                                  Image.asset(
+                                      isNew
+                                          ? 'images/qdaily/icon_lab_vot_new.png'
+                                          : 'images/qdaily/icon_lab_vot_join.png',
+                                      height: 47.5,
+                                      width: 57),
+                                  isNew
+                                      ? SizedBox()
+                                      : Container(
+                                          child: Text(
+                                            '${feedsBean?.post?.recordCount}',
+                                            style: TextStyle(
+                                                color: qdailyMajorColor,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          margin: EdgeInsets.only(top: 3))
+                                ],
+                              ),
+                              top: 10,
+                              right: 10,
+                            )
                           ],
-                        )),
-                  ]),
+                        ),
+                      )),
                   Container(
                     padding: EdgeInsets.all(10),
                     child: Column(

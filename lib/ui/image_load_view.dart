@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/enum/enum.dart';
@@ -25,6 +26,20 @@ class ImageLoadView extends StatelessWidget {
   ///
   final ImageType imageType;
 
+  /// 透明度
+  final double opacity;
+
+  final double sigmaX;
+  final double sigmaY;
+
+  /// 过滤颜色
+  final Color filterColor;
+
+  final Widget child;
+
+  /// 子控件位置
+  final AlignmentGeometry alignment;
+
   ImageLoadView(
     this.path, {
     Key key,
@@ -34,6 +49,12 @@ class ImageLoadView extends StatelessWidget {
     this.borderRadius: const BorderRadius.all(Radius.circular(0.0)),
     this.placeholder: "images/loading.png",
     this.imageType: ImageType.network,
+    this.opacity: 1.0,
+    this.sigmaX: 0.0,
+    this.sigmaY: 0.0,
+    this.filterColor: Colors.transparent,
+    this.child: const SizedBox(),
+    this.alignment: Alignment.center,
   })  : assert(path != null),
         super(key: key);
 
@@ -46,24 +67,18 @@ class ImageLoadView extends StatelessWidget {
         imageWidget = FadeInImage(
             placeholder: AssetImage(placeholder),
             image: NetworkImage(path),
-            height: height,
-            width: width,
             fit: fit);
         break;
       case ImageType.assets:
         imageWidget = FadeInImage(
             placeholder: AssetImage(placeholder),
             image: AssetImage(path),
-            height: height,
-            width: width,
             fit: fit);
         break;
       case ImageType.localFile:
         imageWidget = FadeInImage(
             placeholder: AssetImage(placeholder),
             image: FileImage(File(path)),
-            height: height,
-            width: width,
             fit: fit);
         break;
       default:
@@ -72,6 +87,28 @@ class ImageLoadView extends StatelessWidget {
     }
 
     return Container(
-        child: ClipRRect(borderRadius: borderRadius, child: imageWidget));
+      height: height ?? double.infinity,
+      width: width ?? double.infinity,
+      child: ClipRRect(
+        borderRadius: borderRadius,
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            imageWidget,
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: sigmaX, sigmaY: sigmaY),
+              child: Opacity(
+                opacity: opacity,
+                child: Container(
+                  color: filterColor,
+                  child: child,
+                  alignment: alignment,
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

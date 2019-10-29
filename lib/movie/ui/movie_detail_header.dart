@@ -24,30 +24,16 @@ class MovieDetailHeader extends StatelessWidget {
       ],
       flexibleSpace: FlexibleSpaceBar(
         title: Text('${movie.title}(${movie.year})'),
-        background: Stack(
-          children: <Widget>[
-            ImageLoadView(movie?.photos?.first?.image ?? defaultImage,
-                fit: BoxFit.fitWidth, width: double.infinity),
-
-            /// 加上一层毛玻璃效果
-            BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 5.0,
-                sigmaY: 6.0,
-              ),
-              child: Opacity(
-                opacity: 0.4,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: pageColor,
-                  ),
-                ),
-              ),
-            ),
-            Center(
-                child: ImageLoadView(movie.images.large.toString(),
-                    height: 191.5, width: 135.0)),
-          ],
+        background: ImageLoadView(
+          movie?.photos?.first?.image ?? defaultImage,
+          fit: BoxFit.fitWidth,
+          width: double.infinity,
+          sigmaX: 5.0,
+          sigmaY: 6.0,
+          opacity: 0.4,
+          filterColor: pageColor,
+          child: ImageLoadView(movie.images.large.toString(),
+              height: 191.5, width: 135.0),
         ),
       ),
     );

@@ -41,18 +41,19 @@ class _BookDetailPageState extends State<BookDetailPage> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: Container(
-        height: Utils.height,
-        child: Stack(alignment: Alignment.bottomCenter, children: <Widget>[
+        child: Stack(fit: StackFit.expand, children: <Widget>[
           responseBean == null || detailBean == null
               ? getLoadingWidget()
               : SingleChildScrollView(
                   child: Column(children: <Widget>[
                     Stack(children: <Widget>[
-                      ImageLoadView('${post?.image}',
-                          fit: BoxFit.fitHeight, height: Utils.height),
-                      Container(
-                          color: Color.fromRGBO(255, 255, 255, 0.7),
-                          height: Utils.height),
+                      ImageLoadView(
+                        '${post?.image}',
+                        fit: BoxFit.fitHeight,
+                        height: Utils.height,
+                        opacity: 0.7,
+                        filterColor: Colors.white,
+                      ),
                       Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
                         ImageLoadView('${post?.image}',
                             width: Utils.width / 2,
@@ -124,28 +125,33 @@ class _BookDetailPageState extends State<BookDetailPage> {
                         height: Utils.navigationBarHeight - Utils.topSafeHeight)
                   ]),
                 ),
-          BottomAppbar(actions: <Widget>[
-            IconButton(
-                icon: Badge(
-                    shape: BadgeShape.circle,
-                    badgeContent: Text('${post.praiseCount}',
-                        style: TextStyle(color: Colors.white, fontSize: 10)),
-                    child: Icon(Feather.heart)),
-                onPressed: () {}),
-            IconButton(
-                icon: Badge(
-                    shape: BadgeShape.circle,
-                    badgeContent: Text('${post?.commentCount}',
-                        style: TextStyle(color: Colors.white, fontSize: 10)),
-                    child: Icon(Feather.message_square)),
-                onPressed: () => pushNewPage(
-                    context,
-                    CommentPage(
-                        id: post?.id,
-                        dataType: '${post?.dataType}',
-                        commentCount: post?.commentCount))),
-            IconButton(icon: Icon(Feather.share), onPressed: () {})
-          ]),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: BottomAppbar(actions: <Widget>[
+              IconButton(
+                  icon: Badge(
+                      shape: BadgeShape.circle,
+                      badgeContent: Text('${post?.praiseCount ?? 0}',
+                          style: TextStyle(color: Colors.white, fontSize: 10)),
+                      child: Icon(Feather.heart)),
+                  onPressed: () {}),
+              IconButton(
+                  icon: Badge(
+                      shape: BadgeShape.circle,
+                      badgeContent: Text('${post?.commentCount ?? 0}',
+                          style: TextStyle(color: Colors.white, fontSize: 10)),
+                      child: Icon(Feather.message_square)),
+                  onPressed: () => pushNewPage(
+                      context,
+                      CommentPage(
+                          id: post?.id,
+                          dataType: '${post?.dataType}',
+                          commentCount: post?.commentCount))),
+              IconButton(icon: Icon(Feather.share), onPressed: () {})
+            ]),
+          ),
         ]),
       ),
     );

@@ -400,7 +400,7 @@ class TeacherListBean {
     TeacherListBean teacherListBean = TeacherListBean();
     teacherListBean.imgUrl = map['imgUrl'];
     teacherListBean.name = map['name'];
-    teacherListBean.id = map['id'];
+    teacherListBean.id = "${map['id']}";
     return teacherListBean;
   }
 }
