@@ -62,10 +62,12 @@ class _LabRatioPageViewState extends State<LabRatioPageView>
             itemBuilder: (_, index) {
               animation1 = IntTween(
                       begin: 0,
-                      end: widget.questions[index]?.options[0]?.percent)
+                      end: widget.questions[index]?.options?.first?.percent)
                   .animate(animationController);
               animation2 = animationController.drive(IntTween(
-                  begin: 0, end: widget.questions[index]?.options[1]?.percent));
+                  begin: 0,
+                  end:
+                      widget.questions[index]?.options?.elementAt(1)?.percent));
 
               animationController.addListener(() => setState(() {}));
 
@@ -88,7 +90,7 @@ class _LabRatioPageViewState extends State<LabRatioPageView>
                               fit: StackFit.expand,
                               children: <Widget>[
                                 ImageLoadView(
-                                  '${widget.questions[index]?.options[0]?.optionPicUrl}',
+                                  '${widget.questions[index]?.options?.first?.optionPicUrl}',
                                 ),
                                 buildClipRect(index, animation1.value),
                               ],
@@ -100,7 +102,7 @@ class _LabRatioPageViewState extends State<LabRatioPageView>
                               fit: StackFit.expand,
                               children: <Widget>[
                                 ImageLoadView(
-                                  '${widget.questions[index]?.options[1]?.optionPicUrl}',
+                                  '${widget.questions[index]?.options?.elementAt(1)?.optionPicUrl}',
                                 ),
                                 buildClipRect(index, animation2.value)
                               ],

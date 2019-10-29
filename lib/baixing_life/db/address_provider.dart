@@ -37,7 +37,7 @@ class AddressProvider extends BaseDBProvider {
 
   Future<int> insertOrReplaceToDB(Address address) async {
     if (address == null) return -1;
-    if (address.id != null) return await updateAddress(address);
+    if (address.id != -1) return await updateAddress(address);
     Database db = await getDB();
     Map<String, dynamic> map = address.toMap();
     int addressId = await db.insert(table_name, map);
@@ -78,7 +78,7 @@ class AddressProvider extends BaseDBProvider {
         addresses.add(address);
       }
     }
-    return addresses[0];
+    return addresses?.first;
   }
 
   Future<int> deleteAddress(int id) async {
@@ -140,15 +140,11 @@ class AddressProvider extends BaseDBProvider {
 
     List<Address> addresses = List();
 
-    if (maps.isNotEmpty) {
-      for (Map<String, dynamic> map in maps) {
-        Address address = Address.fromMap(map);
-        addresses.add(address);
-      }
-
-      return addresses[0];
-    } else {
-      return null;
+    for (Map<String, dynamic> map in maps) {
+      Address address = Address.fromMap(map);
+      addresses.add(address);
     }
+
+    return addresses?.first;
   }
 }

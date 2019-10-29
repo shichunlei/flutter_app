@@ -154,7 +154,7 @@ class WeatherPageState extends State<WeatherPage> {
             padding: EdgeInsets.zero,
             controller: scrollController,
             child: Column(children: <Widget>[
-              NowView(now, dailyForecast: dailyForecast[0], air: air),
+              NowView(now, dailyForecast: dailyForecast?.first, air: air),
               air == null ? Container() : AirView(air),
               HourlyView(hourly),
               WeeklyView(dailyForecast),

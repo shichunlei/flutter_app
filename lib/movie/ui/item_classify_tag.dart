@@ -60,7 +60,7 @@ class _ItemClassifyTagState extends State<ItemClassifyTag>
 
     if (movies != null && movies.isNotEmpty) {
       setState(() {
-        cover = movies[0].images.small.toString();
+        cover = movies?.first?.images?.small.toString();
         print(cover);
       });
     }

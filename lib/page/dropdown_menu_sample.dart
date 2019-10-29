@@ -25,9 +25,9 @@ class _DropDownSampleState extends State<DropDownSample> {
   void initState() {
     super.initState();
 
-    _selectBrandSortCondition = brandSortConditions[0];
+    _selectBrandSortCondition = brandSortConditions?.first;
 
-    _selectDistanceSortCondition = distanceSortConditions[0];
+    _selectDistanceSortCondition = distanceSortConditions?.first;
   }
 
   @override
@@ -51,7 +51,7 @@ class _DropDownSampleState extends State<DropDownSample> {
           DropDownHeader(
             // 下拉的头部项，目前每一项，只能自定义显示的文字、图标、图标大小修改
             items: [
-              DropDownHeaderItem(_dropDownHeaderItemStrings[0]),
+              DropDownHeaderItem(_dropDownHeaderItemStrings?.first),
               DropDownHeaderItem(_dropDownHeaderItemStrings[1]),
               DropDownHeaderItem(_dropDownHeaderItemStrings[2]),
               DropDownHeaderItem(_dropDownHeaderItemStrings[3],
@@ -115,7 +115,7 @@ class _DropDownSampleState extends State<DropDownSample> {
               DropdownMenuBuilder(
                   dropDownHeight: 40 * 8.0,
                   dropDownWidget: _buildQuanChengWidget((selectValue) {
-                    _dropDownHeaderItemStrings[0] = selectValue;
+                    _dropDownHeaderItemStrings.first = selectValue;
                     _dropdownMenuController.hide();
                     setState(() {});
                   })),

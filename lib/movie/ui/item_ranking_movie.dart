@@ -59,8 +59,7 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
       desc += '$date上映';
     }).toList();
 
-    desc +=
-        '\n${widget.movie.durations.isNotEmpty ? "${widget.movie.durations[0]}" : ""}';
+    desc += "\n${widget.movie?.durations?.first ?? ''}";
 
     return ScaleTapView(
         child: Card(

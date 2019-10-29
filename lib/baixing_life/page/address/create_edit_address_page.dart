@@ -64,7 +64,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
     _addressController.addListener(_verify);
     _zipCodeController.addListener(_verify);
 
-    if (widget.id != null) {
+    if (widget.id != -1) {
       _status = LoaderState.Loading;
       getAddressData(widget.id);
     }
@@ -91,7 +91,10 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
       setState(() => _isClick = false);
       return;
     }
-    if (area.isEmpty || area == '请选择') {
+    if (_province.isEmpty ||
+        _city.isEmpty ||
+        _county.isEmpty ||
+        area == '请选择') {
       setState(() => _isClick = false);
       return;
     }
@@ -110,13 +113,13 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
 
   getAddressData(int id) async {
     await addressProvider.getAddress(id).then((address) {
-      _tag = address?.tag;
-      _isDefault = address?.isDefault;
+      _tag = address?.tag ?? '';
+      _isDefault = address?.isDefault ?? false;
 
-      _province = address?.province;
-      _city = address?.city;
-      _county = address?.county;
-      area = '$_province $_city $_county';
+      _province = address?.province ?? '';
+      _city = address?.city ?? '';
+      _county = address?.county ?? '';
+      area = "$_province" + " $_city" + " $_county";
       _addressController.text = address?.address;
       _nameController.text = address?.name;
       _phoneController.text = address?.phone;

@@ -100,7 +100,7 @@ class _SpecialPageState extends State<SpecialPage> {
                 radius: 30,
                 backgroundColor: Colors.white),
             column != null && column.authors.length > 0
-                ? ColumnAuthorView(author: column?.authors[0])
+                ? ColumnAuthorView(author: column?.authors?.first)
                 : Gaps.vGap20
           ]))
     ]);

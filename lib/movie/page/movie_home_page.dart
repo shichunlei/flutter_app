@@ -101,9 +101,10 @@ class _MovieHomePageState extends State<MovieHomePage> {
       List<MovieTag> tags = data.category;
 
       widgets = [
-        ClassifySection(tags[0].title, tags[0].subjects),
-        ClassifySection(tags[1].title, tags[1].subjects),
-        ClassifySection(tags[2].title, tags[2].subjects)
+        ClassifySection(tags?.first?.title, tags?.first?.subjects),
+        ClassifySection(
+            tags?.elementAt(1)?.title, tags?.elementAt(1)?.subjects),
+        ClassifySection(tags?.elementAt(2)?.title, tags?.elementAt(2)?.subjects)
       ];
 
       ranges = data.ranges;

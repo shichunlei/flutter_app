@@ -258,7 +258,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                                 offset: 0.0,
                                 chapterIndex: 0,
                                 totalChapter: snapshot.totalChapter,
-                                chapterLink: snapshot.chapters[0].link);
+                                chapterLink: snapshot.chapters?.first?.link);
 
                             snapshot.insertOrReplaceToDB(context, _book);
                           }

@@ -72,7 +72,7 @@ class CityPageState extends State<CityPage> {
     /// 根据A-Z排序
     SuspensionUtil.sortListBySuspensionTag(_cityList);
 
-    _suspensionTag = _hotCityList[0].getSuspensionTag();
+    _suspensionTag = _hotCityList?.first?.getSuspensionTag();
 
     setState(() {
       _status = LoaderState.Succeed;

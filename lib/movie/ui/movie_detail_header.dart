@@ -26,10 +26,8 @@ class MovieDetailHeader extends StatelessWidget {
         title: Text('${movie.title}(${movie.year})'),
         background: Stack(
           children: <Widget>[
-            ImageLoadView(
-                movie.photos.isNotEmpty ? movie.photos[0].image : defaultImage,
-                fit: BoxFit.fitWidth,
-                width: double.infinity),
+            ImageLoadView(movie?.photos?.first?.image ?? defaultImage,
+                fit: BoxFit.fitWidth, width: double.infinity),
 
             /// 加上一层毛玻璃效果
             BackdropFilter(

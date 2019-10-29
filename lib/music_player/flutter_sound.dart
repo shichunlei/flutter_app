@@ -49,8 +49,8 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
   @override
   void initState() {
     super.initState();
-    _name = songsData[0].title;
-    _artists = songsData[0].artists;
+    _name = songsData?.first?.title;
+    _artists = songsData?.first?.artists;
 
     _controller =
         AnimationController(duration: Duration(seconds: 15), vsync: this);

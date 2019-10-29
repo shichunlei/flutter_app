@@ -331,7 +331,7 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 得到逐小时天气
@@ -347,7 +347,7 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 得到3-10天天气
@@ -363,7 +363,7 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 常规天气数据集合
@@ -379,7 +379,7 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 日出日落
@@ -395,7 +395,7 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 空气质量数据集合
@@ -411,7 +411,7 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 空气质量实况
@@ -427,7 +427,7 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 生活指数
@@ -443,7 +443,7 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 热门城市
@@ -1383,7 +1383,7 @@ class ApiService {
           .map((o) => BtocResult.fromMap(o)));
 
     if (result.length > 0) {
-      return result[0];
+      return result.first;
     } else {
       return null;
     }

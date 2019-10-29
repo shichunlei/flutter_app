@@ -61,10 +61,10 @@ class _MovieFilterPageState extends State<MovieFilterPage> {
   void initState() {
     super.initState();
 
-    scCountry = countries[0];
-    scSort = sorts[0];
-    scGenre = genres[0];
-    scYear = years[0];
+    scCountry = countries.first;
+    scSort = sorts.first;
+    scGenre = genres.first;
+    scYear = years.first;
 
     searchMovies(page, RefreshType.DEFAULT);
 
@@ -132,7 +132,7 @@ class _MovieFilterPageState extends State<MovieFilterPage> {
                         items: genres,
                         itemOnTap: (value) {
                           scGenre = value;
-                          _dropDownHeaderItem[0] = scGenre.title;
+                          _dropDownHeaderItem.first = scGenre.title;
 
                           _dropdownMenuController.hide();
                           setState(() {

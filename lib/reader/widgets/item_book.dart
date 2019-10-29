@@ -48,7 +48,7 @@ class ItemBook extends StatelessWidget {
                               ]),
                         ),
                         book.tags.length > 0
-                            ? TagView(tag: book.tags[0])
+                            ? TagView(tag: book.tags.first)
                             : TagView(tag: '限免'),
                         book.tags.length > 1
                             ? Row(children: <Widget>[

@@ -60,18 +60,18 @@ class ItemBookList extends StatelessWidget {
       image3 = booklist?.cover;
     } else if (size == 1) {
       image1 = booklist?.cover == defaultCover
-          ? booklist?.covers[0]
+          ? booklist?.covers?.first
           : booklist?.cover;
-      image2 = booklist?.covers[0];
-      image3 = booklist?.covers[0];
+      image2 = booklist?.covers?.first;
+      image3 = booklist?.covers?.first;
     } else if (size == 2) {
       image1 = booklist?.cover == defaultCover
-          ? booklist?.covers[0]
+          ? booklist?.covers?.first
           : booklist?.cover;
-      image2 = booklist?.covers[0];
+      image2 = booklist?.covers?.first;
       image3 = booklist?.covers[1];
     } else if (size == 3) {
-      image1 = booklist?.cover[0];
+      image1 = booklist?.covers?.first;
       image2 = booklist?.covers[1];
       image3 = booklist?.covers[2];
     }

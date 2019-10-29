@@ -96,11 +96,11 @@ class _LabRadioFirstViewState extends State<LabRadioFirstView> {
           Row(
             children: <Widget>[
               Text(
-                '${widget.slideQuestion != null ? widget.slideQuestion?.options[0]?.title : ""}',
+                '${widget.slideQuestion?.options?.first?.title ?? ""}',
                 style: TextStyles.textBoldDark16,
               ),
               Text(
-                '${widget.slideQuestion != null ? widget.slideQuestion?.options[1]?.title : ""}',
+                '${widget.slideQuestion?.options?.elementAt(1)?.title ?? ""}',
                 style: TextStyles.textBoldDark16,
               )
             ],
@@ -109,33 +109,38 @@ class _LabRadioFirstViewState extends State<LabRadioFirstView> {
           Gaps.vGap5,
           Row(
             children: <Widget>[
-              Container(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  '${widget.slideQuestion != null ? widget.slideQuestion?.options[0]?.content : ""}',
-                  style: TextStyles.textGrey14,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(30),
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    '${widget.slideQuestion != null ? widget.slideQuestion?.options?.first?.content : ""}',
+                    style: TextStyles.textGrey14,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      bottomLeft: Radius.circular(15),
+                      bottomRight: Radius.circular(15),
+                    ),
                   ),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  '${widget.slideQuestion != null ? widget.slideQuestion?.options[1]?.content : ""}',
-                  style: TextStyles.textGrey14,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
+              Gaps.hGap20,
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    '${widget.slideQuestion != null ? widget.slideQuestion?.options[1]?.content : ""}',
+                    style: TextStyles.textGrey14,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      bottomLeft: Radius.circular(15),
+                      bottomRight: Radius.circular(15),
+                    ),
                   ),
                 ),
               )

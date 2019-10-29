@@ -55,10 +55,10 @@ class _MovieDescState extends State<MovieDesc> {
     desc += '/ ';
 
     desc +=
-        widget.movie.pubDates.isNotEmpty ? '${widget.movie.pubDates[0]}上映' : '';
+        widget.movie.pubDates.isNotEmpty ? '${widget.movie.pubDates?.first}上映' : '';
 
     desc +=
-        '${widget.movie.durations.isNotEmpty ? "/ 片长${widget.movie.durations[0]}" : ""}';
+        '${widget.movie.durations.isNotEmpty ? "/ 片长${widget.movie.durations?.first}" : ""}';
 
     num totalRating = widget.movie.rating.details.star5 +
         widget.movie.rating.details.star4 +

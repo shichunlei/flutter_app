@@ -63,7 +63,7 @@ class BookShelfDBHelper extends BaseDBProvider {
         books.add(book);
       }
 
-      return books[0];
+      return books.first;
     } else {
       return null;
     }
@@ -82,7 +82,7 @@ class BookShelfDBHelper extends BaseDBProvider {
         Books book = Books.fromMap2(map);
         books.add(book);
       }
-      return books[0];
+      return books.first;
     } else {
       return null;
     }

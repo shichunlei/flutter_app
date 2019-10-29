@@ -167,9 +167,11 @@ class ElementDetailsPage extends StatelessWidget {
     ].expand((widget) => [widget, Divider()]).toList();
 
     return Scaffold(
-      backgroundColor: Color.lerp(Colors.grey[850], element.colors[0], 0.07),
+      backgroundColor:
+          Color.lerp(Colors.grey[850], element?.colors?.first, 0.07),
       appBar: AppBar(
-        backgroundColor: Color.lerp(Colors.grey[850], element.colors[1], 0.2),
+        backgroundColor:
+            Color.lerp(Colors.grey[850], element?.colors?.elementAt(1), 0.2),
         bottom: ElementTile(element, isLarge: true),
       ),
       body: ListView(

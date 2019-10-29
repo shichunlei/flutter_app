@@ -68,9 +68,8 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
         body: CustomScrollView(slivers: <Widget>[
           MovieCelebrityHeader(
             widget.name,
-            backgroundImageUrl: celebrity.photos.isEmpty
-                ? defaultBgImageUrl
-                : celebrity.photos[0].cover,
+            backgroundImageUrl:
+                celebrity?.photos?.first?.cover ?? defaultBgImageUrl,
             pageColor: pageColor,
             avatarUrl: celebrity.avatars.medium.toString(),
             gender:

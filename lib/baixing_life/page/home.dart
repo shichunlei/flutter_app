@@ -193,20 +193,24 @@ class _HomePageState extends State<HomePage>
                     }),
                 Row(children: <Widget>[
                   GestureDetector(
-                      child: ImageLoadView('${ads[0].pictureAddress}',
+                      child: ImageLoadView('${ads?.first?.pictureAddress}',
                           width: width, height: height),
                       onTap: () {
                         /// TODO
                       }),
                   GestureDetector(
-                      child: ImageLoadView('${ads[1].pictureAddress}',
-                          width: width, height: height),
+                      child: ImageLoadView(
+                          '${ads?.elementAt(1)?.pictureAddress}',
+                          width: width,
+                          height: height),
                       onTap: () {
                         /// TODO
                       }),
                   GestureDetector(
-                      child: ImageLoadView('${ads[2].pictureAddress}',
-                          width: width, height: height),
+                      child: ImageLoadView(
+                          '${ads?.elementAt(2)?.pictureAddress}',
+                          width: width,
+                          height: height),
                       onTap: () {
                         /// TODO
                       })
