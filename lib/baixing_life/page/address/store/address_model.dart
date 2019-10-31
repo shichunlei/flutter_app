@@ -7,17 +7,15 @@ import '../../../index.dart';
 class AddressModel extends ChangeNotifier {
   List<Address> _addresses = [];
 
-  AddressProvider provider;
+  AddressProvider addressProvider;
 
   AddressModel() {
-    provider = AddressProvider();
+    addressProvider = AddressProvider();
   }
-
-  List<Address> get addresses => _addresses;
 
   /// 获取地址
   Future<List<Address>> getAddresses() async {
-    _addresses = await provider.getAddressList();
+    _addresses = await addressProvider.getAddressList();
     debugPrint('===========================getAddresses');
     return _addresses;
   }
@@ -26,7 +24,7 @@ class AddressModel extends ChangeNotifier {
   ///
   Future<void> insertOrReplaceAddress(
       BuildContext context, Address address, String title) async {
-    int success = await provider.insertOrReplaceToDB(address);
+    int success = await addressProvider.insertOrReplaceToDB(address);
 
     if (success > 0) {
       Toast.show(context, '$title${S.of(context).success}！');
@@ -43,7 +41,7 @@ class AddressModel extends ChangeNotifier {
   ///
   Future<void> updateAddressDefault(
       BuildContext context, int id, bool isDefault) async {
-    bool success = await provider.updateAddressDefault(id, isDefault);
+    bool success = await addressProvider.updateAddressDefault(id, isDefault);
 
     if (success) {
       Toast.show(context, '设置成功');
@@ -57,7 +55,7 @@ class AddressModel extends ChangeNotifier {
   /// 删除地址
   ///
   Future<void> deleteAddress(BuildContext context, int id) async {
-    int success = await provider.deleteAddress(id);
+    int success = await addressProvider.deleteAddress(id);
 
     if (success == 1) {
       Toast.show(context, '删除成功');

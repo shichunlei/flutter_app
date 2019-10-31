@@ -98,6 +98,10 @@ class TextStyles {
       fontWeight: FontWeight.bold);
   static TextStyle textBoldWhile14 =
       textStyle(fontSize: Dimens.font_sp14, fontWeight: FontWeight.bold);
+  static TextStyle textBoldBlue14 = textStyle(
+      fontSize: Dimens.font_sp14,
+      fontWeight: FontWeight.bold,
+      color: Colors.blueAccent);
 
   static TextStyle textReader16 =
       textStyle(fontSize: Dimens.font_sp16, color: readerMainColor);
