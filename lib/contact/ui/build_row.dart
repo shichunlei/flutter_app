@@ -19,7 +19,6 @@ class _BuildRowViewState extends State<BuildRowView> {
   void initState() {
     super.initState();
     _streamController = StreamController<bool>.broadcast();
-    _streamController.sink.add(isFavorite);
   }
 
   @override

@@ -14,11 +14,18 @@ A new Flutter application.
 `声明2：本项目中部分功能页面是别人其他项目中的，但是本人并不是完全照抄原作者代码，再此也特别感谢原作者，部分参考别人页面的功能也已标注出原出处，如有侵犯原作者的地方请联系本人进行删除。`
 
 
+联系作者：
+
+    手机号码：18601952581（微信同号）
+    QQ：1558053958
+    邮箱：1558053958@qq.com
+
+
 ## 本项目包括：
 
 - 各种基本控件使用（Text、TextField、Icon、Image、ListView、GridView、Picker、Stepper、Dialog、Slider、Row、Appbar、SizeBox、BottomSheet、Chip、Dismissible、FlutterLogo、Check、Switch、TabBar、BottomNavigationBar、Sliver等）
 - 自定义控件及使用
-- 各种UI （豆瓣电影、好奇心日报、每日一文、和天气、百姓生活、随机诗词、联系人、句子迷、朋友圈、有道精品课、高德地图应用demo等）
+- 各种UI （豆瓣电影、tubi TV、追书神器、好奇心日报、每日一文、和天气、百姓生活、随机诗词、联系人、句子迷、朋友圈、有道精品课、高德地图应用demo等）
 
 
 ## 运行环境
@@ -203,6 +210,13 @@ __iOS__
 |电影详情1|电影详情2|电影详情3|电影（TOP250）|
 |![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-28-47-225.jpg)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-31-09-30-31-617.jpg)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-16-52-22-895.png)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-03-05-16-52-48-129.jpg)|
 |电影花絮|电影花絮（全屏）|电影剧照|电影（排行榜）|
+
+
+### [tubi TV](https://tubitv.com/) 可以免费看电影的APP（纯英文）
+
+|![1](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-11-01-17-12-53-856.jpg)|![2](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-11-01-17-13-32-265.jpg)|![3](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-11-01-17-13-07-523.jpg)|![4](https://github.com/shichunlei/flutter_app/blob/master/screenshots/Screenshot_2019-11-01-17-13-21-054.jpg)|
+| :--: | :--: | :--: | :--: |
+|首页|分类列表|详情|搜索|
 
 
 ### 天气

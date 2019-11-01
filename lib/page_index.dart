@@ -144,6 +144,7 @@ export 'ui/web_view.dart';
 export 'ui/input_text_view.dart';
 export 'ui/icon_text.dart';
 export 'ui/light_theme.dart';
+export 'ui/dark_theme.dart';
 export 'ui/tagview.dart';
 export 'ui/photo_view.dart';
 export 'ui/bottom_sheet.dart';
@@ -175,6 +176,8 @@ export 'youdao/page/home.dart';
 export 'mvp/home_page.dart';
 
 export 'reader/home.dart';
+
+export 'tubitv/home.dart';
 
 export 'res/colors.dart';
 export 'res/dimens.dart';

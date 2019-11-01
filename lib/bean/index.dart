@@ -16,3 +16,4 @@ export 'news.dart';
 export 'qdaily.dart';
 export 'result.dart';
 export 'youdao.dart';
+export 'tubitv.dart';

@@ -1583,4 +1583,80 @@ class ApiService {
     Hitokoto result = Hitokoto.fromMap(json.decode(response.data));
     return result;
   }
+
+  /// tubi TV 首页数据
+  ///
+  static Future<List<TubiCategory>> getTubiTVHomeData(
+      {String deviceId, String platform}) async {
+    Response response = await HttpUtils().request(ApiUrl.TUBITV_HOME,
+        data: {'platform': platform, 'device_id': deviceId});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return List()
+        ..addAll(
+            (result.data as List ?? []).map((o) => TubiCategory.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// tubi TV 分类列表
+  ///
+  static Future<List<TuBiTV>> getTubiTVByCategory(
+      {int limit, int page, String category}) async {
+    Response response = await HttpUtils().request(ApiUrl.TUBITV_LIST,
+        data: {'page': page, 'category': category, 'limit': limit});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => TuBiTV.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// tubi TV 搜索
+  ///
+  static Future<List<TuBiTV>> getTubiTVSearchData(
+      {String deviceId, String platform, String key}) async {
+    Response response = await HttpUtils().request(ApiUrl.TUBITV_SEARCH,
+        data: {'platform': platform, 'device_id': deviceId, 'key': key});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => TuBiTV.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// tubi TV 详情
+  ///
+  static Future<TuBiTV> getTubiTVDetails(
+      {String deviceId, String platform, String id}) async {
+    Response response = await HttpUtils().request(ApiUrl.TUBITV_DETAIL,
+        data: {'platform': platform, 'device_id': deviceId, 'id': id});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == 0) {
+      return TuBiTV.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
 }

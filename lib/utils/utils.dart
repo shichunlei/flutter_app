@@ -181,4 +181,19 @@ class Utils {
     }
     return val;
   }
+
+  /// 隐藏键盘
+  /// [context] 上下文
+  ///
+  static void hideKeyboard(BuildContext context) {
+    FocusScope.of(context).requestFocus(FocusNode());
+  }
+
+  /// 状态栏状态
+  /// [enable] true为显示；false为隐藏
+  ///
+  static void statusBarEnable(bool enable) {
+    SystemChrome.setEnabledSystemUIOverlays(
+        enable ? SystemUiOverlay.values : []);
+  }
 }

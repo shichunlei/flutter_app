@@ -188,7 +188,7 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
   }
 
   Future _seek(double seconds) async {
-    await audioPlayer.seek((seconds / 1000).roundToDouble());
+    await audioPlayer.seek(seconds.roundToDouble());
   }
 
   @override
@@ -237,7 +237,7 @@ class _FluteMusicPlayerPageState extends State<FluteMusicPlayerPage>
                             milliseconds:
                                 (_thumbPercent * duration.inMilliseconds)
                                     .round());
-                        _seek(_thumbPercent * duration.inMilliseconds);
+                        _seek(_thumbPercent * duration.inSeconds);
                       }
                     });
                   })),

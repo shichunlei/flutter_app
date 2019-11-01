@@ -24,6 +24,11 @@ class ApiUrl {
   static final String MOVIE_COMMENTS_URL = 'movies/comments';
   static final String MOVIE_REVIEWS_URL = 'movies/reviews';
 
+  static final String TUBITV_HOME = 'tubitv/homescreen';
+  static final String TUBITV_LIST = 'tubitv/list';
+  static final String TUBITV_DETAIL = 'tubitv/details';
+  static final String TUBITV_SEARCH = 'tubitv/search';
+
   /// 和风天气
   static final String WEATHER_BASE_URL = "https://free-api.heweather.net/s6";
 

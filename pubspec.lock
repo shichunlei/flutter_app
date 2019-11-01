@@ -280,7 +280,7 @@ packages:
       name: flutter_sound
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.5.0"
+    version: "1.5.1"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -355,7 +355,7 @@ packages:
       name: image_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.6.1+8"
+    version: "0.6.1+10"
   intl:
     dependency: transitive
     description:
@@ -411,7 +411,7 @@ packages:
       name: multi_image_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.5.8"
+    version: "4.5.9"
   open_iconic_flutter:
     dependency: transitive
     description:
@@ -495,7 +495,7 @@ packages:
       name: photo_view
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.6.0"
+    version: "0.7.0"
   platform:
     dependency: transitive
     description:
@@ -565,7 +565,7 @@ packages:
       name: shared_preferences
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.5.4+1"
+    version: "0.5.4+3"
   shimmer:
     dependency: "direct main"
     description:
@@ -591,7 +591,7 @@ packages:
       name: sqflite
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.7+1"
+    version: "1.1.7+2"
   stack_trace:
     dependency: transitive
     description:
