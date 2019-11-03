@@ -40,7 +40,9 @@ class _JuZiMiDetailsState extends State<JuZiMiDetails> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: ImageLoadView(
-              'http://www.cnjxn.com/storage/2019/08/26/pEDsWrvnNU01QVuBQqIqQqc3TaZ8gQZjEFoopOpD.jpeg'),
+              'http://www.cnjxn.com/storage/2019/08/26/pEDsWrvnNU01QVuBQqIqQqc3TaZ8gQZjEFoopOpD.jpeg',
+              width: 95,
+              height: 42.5),
           centerTitle: true,
         ),
         body: LoaderContainer(

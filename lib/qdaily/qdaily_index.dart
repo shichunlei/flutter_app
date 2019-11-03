@@ -32,11 +32,13 @@ class _QDailyIndexPageState extends State<QDailyIndexPage> {
             Padding(
                 padding: EdgeInsets.only(left: 10, bottom: 10),
                 child: FloatingActionButton(
-                    backgroundColor: Colors.black,
-                    mini: true,
-                    onPressed: () => pushNewPage(context, SettingMenuPage()),
-                    child: Icon(CustomIcon.qdaily_logo,
-                        color: qdailyMajorColor, size: 28)))
+                  heroTag: "qdaily",
+                  backgroundColor: Colors.black,
+                  mini: true,
+                  onPressed: () => pushNewPage(context, SettingMenuPage()),
+                  child: Icon(CustomIcon.qdaily_logo,
+                      color: qdailyMajorColor, size: 28),
+                ))
           ]),
         ));
   }

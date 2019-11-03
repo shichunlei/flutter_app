@@ -19,7 +19,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return MovieHomeData.fromMap(result.data);
     } else {
       return null;
@@ -35,7 +35,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return RangesData.fromMap(result.data);
     } else {
       return null;
@@ -52,7 +52,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
     } else {
@@ -70,7 +70,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
     } else {
@@ -87,7 +87,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
     } else {
@@ -105,7 +105,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
     } else {
@@ -124,7 +124,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
     } else {
@@ -162,7 +162,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
     } else {
@@ -178,7 +178,7 @@ class ApiService {
       return null;
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
-    if (result.code == 0) {
+    if (result.code == '0') {
       return Movie.fromMap(result.data);
     } else {
       return null;
@@ -193,7 +193,7 @@ class ApiService {
       return null;
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
-    if (result.code == 0) {
+    if (result.code == '0') {
       return Celebrity.fromMap(result.data);
     } else {
       return null;
@@ -210,7 +210,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll((result.data as List ?? []).map((o) => Photos.fromMap(o)));
     } else {
@@ -229,7 +229,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
     } else {
@@ -247,7 +247,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll((result.data as List ?? []).map((o) => Reviews.fromMap(o)));
     } else {
@@ -265,7 +265,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll((result.data as List ?? []).map((o) => Reviews.fromMap(o)));
     } else {
@@ -281,7 +281,7 @@ class ApiService {
       return null;
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
-    if (result.code == 0) {
+    if (result.code == '0') {
       return Article.fromMap(result.data);
     } else {
       return null;
@@ -296,7 +296,7 @@ class ApiService {
       return null;
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
-    if (result.code == 0) {
+    if (result.code == '0') {
       return Article.fromMap(result.data);
     } else {
       return null;
@@ -311,7 +311,7 @@ class ApiService {
       return null;
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
-    if (result.code == 0) {
+    if (result.code == '0') {
       return Article.fromMap(result.data);
     } else {
       return null;
@@ -497,56 +497,68 @@ class ApiService {
   static Future<Baixing> getBaixingHomeData(String lon, String lat) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
         .request(ApiUrl.BAIXING_HOME,
-            data: {
-              "lon": lon,
-              'lat': lat,
-            },
-            method: HttpUtils.POST);
-    if (response.statusCode != 200) {
+            data: {"lon": lon, 'lat': lat}, method: HttpUtils.POST);
+    if (response == null || response.statusCode != 200) {
       return null;
     }
-    if (json.decode(response.data)['code'] == '0') {
-      return Baixing.fromMap(json.decode(response.data)['data']);
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.code == '0') {
+      return Baixing.fromMap(result.data);
     } else {
       return null;
     }
   }
 
   /// 百姓生活首页火爆专区商品数据接口
+  ///
+  /// [page] 页码
+  ///
   static Future<List<Goods>> getBaixingHomeHotData(int page) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
         .request(ApiUrl.BAIXING_HOME_HOT,
-            data: {
-              "page": page,
-            },
-            method: HttpUtils.POST);
-    if (response.statusCode != 200) {
-      return null;
+            data: {"page": page}, method: HttpUtils.POST);
+
+    if (response == null || response.statusCode != 200) {
+      return [];
     }
-    if (json.decode(response.data)['code'] == '0' &&
-        json.decode(response.data)['data'] != null) {
-      return Goods.fromMapList(json.decode(response.data)['data']);
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Goods.fromMap(o)));
     } else {
       return [];
     }
   }
 
   /// 百姓生活分类数据接口
+  ///
   static Future<List<Category>> getBaixingCategoryData() async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
         .request(ApiUrl.BAIXING_CATEGORY, method: HttpUtils.POST, data: null);
-    if (response.statusCode != 200) {
-      return null;
+
+    if (response == null || response.statusCode != 200) {
+      return [];
     }
-    if (json.decode(response.data)['code'] == '0' &&
-        json.decode(response.data)['data'] != null) {
-      return Category.fromMapList(json.decode(response.data)['data']);
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Category.fromMap(o)));
     } else {
       return [];
     }
   }
 
   /// 百姓生活分类商品数据接口
+  ///
+  /// [page] 页码
+  /// [categoryId] 类别
+  /// [categorySubId] 子类别
+  ///
   static Future<List<Goods>> getBaixingGoodsData(
     int page,
     String categoryId,
@@ -557,34 +569,38 @@ class ApiService {
             data: {
               "page": page,
               "categoryId": categoryId,
-              "categorySubId": categorySubId,
+              "categorySubId": categorySubId
             },
             method: HttpUtils.POST);
-    if (response.statusCode != 200) {
-      return null;
+    if (response == null || response.statusCode != 200) {
+      return [];
     }
-    if (json.decode(response.data)['code'] == '0' &&
-        json.decode(response.data)['data'] != null) {
-      return Goods.fromMapList(json.decode(response.data)['data']);
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Goods.fromMap(o)));
     } else {
       return [];
     }
   }
 
-  /// 百姓生活分类商品数据接口
+  /// 百姓生活商品详情接口
+  ///
+  /// [goodId] 商品ID
+  ///
   static Future<GoodsInfo> getBaixingGoodsDetailData(String goodId) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
         .request(ApiUrl.BAIXING_GOODS_DETAIL,
-            data: {
-              "goodId": goodId,
-            },
-            method: HttpUtils.POST);
-    if (response.statusCode != 200) {
+            data: {"goodId": goodId}, method: HttpUtils.POST);
+    if (response == null || response.statusCode != 200) {
       return null;
     }
-    if (json.decode(response.data)['code'] == '0' &&
-        json.decode(response.data)['data'] != null) {
-      return GoodsInfo.fromMap(json.decode(response.data)['data']);
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.code == '0') {
+      return GoodsInfo.fromMap(result.data);
     } else {
       return null;
     }
@@ -623,7 +639,7 @@ class ApiService {
 
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return JuZiMi.fromMap(result.data);
     } else {
       return null;
@@ -641,7 +657,7 @@ class ApiService {
 
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll((result.data as List ?? []).map((o) => JuZiMi.fromMap(o)));
     } else {
@@ -660,7 +676,7 @@ class ApiService {
 
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll((result.data as List ?? []).map((o) => JuZiMi.fromMap(o)));
     } else {
@@ -696,7 +712,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -713,7 +729,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -730,7 +746,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -747,7 +763,7 @@ class ApiService {
 
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -763,7 +779,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -780,7 +796,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -796,7 +812,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -812,7 +828,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -828,7 +844,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -844,7 +860,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -860,7 +876,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -877,7 +893,7 @@ class ApiService {
 
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -894,7 +910,7 @@ class ApiService {
 
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -912,7 +928,7 @@ class ApiService {
 
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -928,7 +944,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -944,7 +960,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -962,7 +978,7 @@ class ApiService {
 
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return ResponseBean.fromMap(result.data);
     } else {
       return null;
@@ -1595,7 +1611,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll(
             (result.data as List ?? []).map((o) => TubiCategory.fromMap(o)));
@@ -1615,7 +1631,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll((result.data as List ?? []).map((o) => TuBiTV.fromMap(o)));
     } else {
@@ -1634,7 +1650,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return List()
         ..addAll((result.data as List ?? []).map((o) => TuBiTV.fromMap(o)));
     } else {
@@ -1653,7 +1669,7 @@ class ApiService {
     }
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    if (result.code == 0) {
+    if (result.code == '0') {
       return TuBiTV.fromMap(result.data);
     } else {
       return null;

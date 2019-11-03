@@ -57,7 +57,7 @@ dependencies: # 应用或包依赖的其它包或插件
   device_info: ^0.4.1+1
 
   # 网络请求库
-  dio: 2.1.16
+  dio: ^3.0.4
 
   # 英文单词库
   english_words: ^3.1.5
@@ -152,7 +152,7 @@ dependencies: # 应用或包依赖的其它包或插件
   rounded_letter: ^0.0.6
 
   # https://github.com/ReactiveX/rxdart
-  rxdart: ^0.22.4
+  rxdart: ^0.22.5
 
   share: ^0.6.3+1
 

@@ -167,8 +167,6 @@ class _BookListInfoPageState extends State<BookListInfoPage> {
       _booksMap.forEach((key, value) {
         widgets.add(ChoiceChip(
             elevation: 0,
-            backgroundColor:
-                _selectedMaterial == key ? Colors.red : Colors.grey[200],
             label: Text('$key'),
             onSelected: (bool isChoice) {
               if (isChoice) {

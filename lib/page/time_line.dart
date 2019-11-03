@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/doodle.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
+import 'package:flutter_app/page_index.dart';
 import 'package:timeline_list/timeline.dart';
 import 'package:timeline_list/timeline_model.dart';
 
 class TimeLinePage extends StatefulWidget {
   @override
-  _TimeLinePageState createState() => _TimeLinePageState();
+  createState() => _TimeLinePageState();
 }
 
 class _TimeLinePageState extends State<TimeLinePage>
@@ -69,13 +69,17 @@ class _TimeLinePageState extends State<TimeLinePage>
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                ImageLoadView(doodle.doodle),
-                const SizedBox(height: 8.0),
+                ImageLoadView(
+                  doodle.doodle,
+                  height: 150.0,
+                  fit: BoxFit.cover,
+                ),
+                Gaps.vGap8,
                 Text(doodle.time, style: textTheme.caption),
-                const SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Text(doodle.name,
                     style: textTheme.title, textAlign: TextAlign.center),
-                const SizedBox(height: 8.0),
+                Gaps.vGap8,
               ],
             ),
           ),

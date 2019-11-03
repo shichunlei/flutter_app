@@ -16,13 +16,10 @@ class IndexPage extends StatefulWidget {
     this.index = 0,
     this.category = 0,
     this.subCategory = 0,
-  })  : assert(index != null),
-        assert(category != null),
-        assert(subCategory != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
-  _IndexPageState createState() => _IndexPageState();
+  createState() => _IndexPageState();
 }
 
 class _IndexPageState extends State<IndexPage>

@@ -69,6 +69,31 @@ class AddressModel extends ChangeNotifier {
     Navigator.of(context).pop();
   }
 
+  Address _address;
+
+  get address => _address;
+
+  /// 根据ID得到地址
+  ///
+  Future<Address> getAddress(int id) async {
+    if (id == -1) {
+      _address = Address(
+          name: "",
+          phone: "",
+          isDefault: false,
+          zipCode: "",
+          tag: "",
+          address: "",
+          province: "",
+          city: "",
+          county: "");
+    } else {
+      _address = await addressProvider.getAddress(id);
+    }
+
+    return _address;
+  }
+
   void refresh() {
     notifyListeners();
   }

@@ -65,16 +65,23 @@ class ItemDynamic extends StatelessWidget {
                                             crossAxisSpacing: 2.0,
                                             mainAxisSpacing: 2.0,
                                             childAspectRatio: 1),
-                                    itemBuilder: (context, index) => ImageLoadView(
-                                        '${this.dynamic.images.isNotEmpty ? this.dynamic.images[index].image : ''}',
-                                        fit: BoxFit.cover))
-                                : Padding(
-                                    padding: EdgeInsets.only(top: 8.0),
-                                    child: ImageLoadView(
-                                      this.dynamic?.images?.first?.image ?? '',
-                                      width: imageWidth,
-                                      fit: BoxFit.cover,
-                                    ))),
+                                    itemBuilder: (context, index) =>
+                                        ImageLoadView(
+                                          '${this.dynamic.images.isNotEmpty ? this.dynamic.images[index].image : ''}',
+                                          fit: BoxFit.cover,
+                                          width: imageWidth,
+                                          height: imageWidth,
+                                        ))
+                                : imageSize == 1
+                                    ? Padding(
+                                        padding: EdgeInsets.only(top: 8.0),
+                                        child: ImageLoadView(
+                                          this.dynamic?.images?.first?.image,
+                                          width: imageWidth,
+                                          height: imageWidth,
+                                          fit: BoxFit.cover,
+                                        ))
+                                    : SizedBox()),
 
                         /// 视频区域
                         Offstage(
@@ -85,7 +92,9 @@ class ItemDynamic extends StatelessWidget {
                                   alignment: Alignment.center,
                                   children: <Widget>[
                                     ImageLoadView(
-                                        '${this.dynamic.video?.image}'),
+                                      '${this.dynamic.video?.image}',
+                                      height: 200,
+                                    ),
                                     IconButton(
                                         icon: Icon(Icons.play_arrow,
                                             color: Colors.white),

@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -35,11 +33,6 @@ class HttpUtils {
       /// [表示期望以那种格式(方式)接受响应数据。接受四种类型 `json`, `stream`, `plain`, `bytes`. 默认值是 `json`](https://github.com/flutterchina/dio/issues/30)
       responseType: ResponseType.plain,
 
-      /// 请求的Content-Type，默认值是[ContentType.json]. 也可以用ContentType.parse("application/x-www-form-urlencoded")
-      contentType: ContentType(
-          'application', 'application/x-www-form-urlencoded',
-          charset: 'utf-8'),
-
       /// Http请求头.
       headers: {
         //do something
@@ -48,9 +41,6 @@ class HttpUtils {
     );
 
     _dio = Dio(options);
-
-    /// Cookie管理
-    _dio.interceptors.add(CookieManager(CookieJar()));
 
     /// 添加拦截器
     if (Config.DEBUG) {
@@ -68,8 +58,8 @@ class HttpUtils {
         }, onError: (DioError e) {
           debugPrint("\n================== 错误响应数据 ======================");
           debugPrint("type = ${e.type}");
+          debugPrint("error = ${e.error}");
           debugPrint("message = ${e.message}");
-          debugPrint("stackTrace = ${e.stackTrace}");
           debugPrint("\n");
         }))
 
@@ -179,7 +169,10 @@ class HttpUtils {
   /// check Options.
   Options _checkOptions(method, options) {
     if (options == null) {
-      options = Options();
+      options = Options(
+        contentType: "application/x-www-form-urlencoded",
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+      );
     }
     options.method = method;
     return options;

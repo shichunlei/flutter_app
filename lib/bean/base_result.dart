@@ -1,5 +1,5 @@
 class BaseResult<T> {
-  int code;
+  String code;
   bool status;
   String message;
   T data;
@@ -7,7 +7,7 @@ class BaseResult<T> {
   static BaseResult fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     BaseResult result = BaseResult();
-    result.code = map['code'];
+    result.code = '${map['code']}';
     result.status = map['status'];
     result.message = map['message'];
     result.data = map['data'];

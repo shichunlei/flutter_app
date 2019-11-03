@@ -72,8 +72,7 @@ class _TagPageState extends State<TagPage> {
                             title: '${banners[index].title}')))),
             Gaps.vGap5,
             Container(
-              child: SizedBox.fromSize(
-                  size: Size.fromHeight(90),
+              child: SizedBox(height: 90.0,
                   child: ListView.builder(
                       itemBuilder: (context, index) => ItemTag(
                           title: subTags[index].name,

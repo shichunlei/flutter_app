@@ -31,6 +31,41 @@ class Music {
 
 List<Music> songsData = [
   Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=1698391.mp3',
+    albumArtUrl:
+        'http://p2.music.126.net/mUbPStazv0oF9yrkOiwQ6Q==/1699844976542424.jpg?param=130y130',
+    title: 'Beat It',
+    artists: 'Michael Jackson',
+  ),
+  Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=4132379.mp3',
+    albumArtUrl:
+        'http://p2.music.126.net/rde3fYhAf7xUId0TDFSyBA==/2593747929926872.jpg?param=130y130',
+    title: 'I Hate Myself For Loving You',
+    artists: 'Joan Jett & the Blackhearts',
+  ),
+  Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=1334270932.mp3',
+    albumArtUrl:
+        'http://p2.music.126.net/J5vqHK0Hby0nUGe3a7bPXQ==/109951164088095370.jpg?param=130y130',
+    title: '逃爱',
+    artists: '于嘉乐',
+  ),
+  Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=555984413.mp3',
+    albumArtUrl:
+        'http://p1.music.126.net/Y1IIadn7rjGrZA5IAKLtBA==/109951163270175127.jpg?param=130y130',
+    title: '神话情话',
+    artists: '齐豫、周华健',
+  ),
+  Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=1349292048.mp3',
+    albumArtUrl:
+        'http://p2.music.126.net/MLQl_7poLz2PTON6_JZZRQ==/109951163938219545.jpg?param=130y130',
+    title: '心如止水',
+    artists: 'Ice Paper',
+  ),
+  Music(
     audioPath: 'https://music.163.com/song/media/outer/url?id=542152120.mp3',
     albumArtUrl:
         'http://p1.music.126.net/6w7oGzKqJAnEA6MJFSwT9A==/109951163167867712.jpg?param=130y130',
@@ -38,11 +73,46 @@ List<Music> songsData = [
     artists: 'Michael Learns To Rock',
   ),
   Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=454261189.mp3',
+    albumArtUrl:
+        'http://p1.music.126.net/3-1bjRrwNuP3vwCY2gBWdA==/18714787418092660.jpg?param=130y130',
+    title: '男人',
+    artists: '葛林',
+  ),
+  Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=26199445.mp3',
+    albumArtUrl:
+        'http://p1.music.126.net/N07DLBEqprGMTZH21VC0vw==/19129303300296000.jpg?param=130y130',
+    title: 'The Phoenix',
+    artists: 'Fall Out Boy',
+  ),
+  Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=86360.mp3',
+    albumArtUrl:
+        'http://p2.music.126.net/2-_sPmCBnN6VfwFmONRy2Q==/46179488378975.jpg?param=130y130',
+    title: '忘记时间',
+    artists: '胡歌',
+  ),
+  Music(
     audioPath: 'https://music.163.com/song/media/outer/url?id=26584442.mp3',
     albumArtUrl:
         'http://p1.music.126.net/KWonqfsj39pd5_Yyf2bE6g==/109951163856433553.jpg?param=130y130',
     title: '风的季节',
     artists: 'Soler',
+  ),
+  Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=93588.mp3',
+    albumArtUrl:
+        'http://p1.music.126.net/R5mODGRm_AE-gTO860nUig==/31885837218014.jpg?param=130y130',
+    title: '回到那一天',
+    artists: '郝云',
+  ),
+  Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=469699266.mp3',
+    albumArtUrl:
+        'http://p1.music.126.net/E1OLdBDVpfd70Z1mI-1odg==/18940187300130282.jpg?param=130y130',
+    title: '最美情侣',
+    artists: '白小白',
   ),
   Music(
     audioPath: 'https://music.163.com/song/media/outer/url?id=28923579.mp3',

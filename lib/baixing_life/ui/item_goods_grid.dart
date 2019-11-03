@@ -6,8 +6,10 @@ import '../index.dart';
 class ItemGoodsGrid extends StatelessWidget {
   final Goods goods;
   final GoodsProvider provider;
+  final double height;
 
-  ItemGoodsGrid(this.goods, {Key key, this.provider}) : super(key: key);
+  ItemGoodsGrid(this.goods, {Key key, this.provider, @required this.height})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,9 @@ class ItemGoodsGrid extends StatelessWidget {
         child: Container(
             alignment: Alignment.center,
             child: Column(children: <Widget>[
-              Hero(tag: goods.goodsId, child: ImageLoadView('${goods.comPic}')),
+              Hero(
+                  tag: goods.goodsId,
+                  child: ImageLoadView('${goods.comPic}', height: height - 38)),
               Container(
                   padding: EdgeInsets.symmetric(horizontal: 5.0),
                   child: Text('${goods.goodsName}',

@@ -86,8 +86,11 @@ class RightListViewState extends State<RightListView>
                     crossAxisSpacing: 1.0,
                     mainAxisSpacing: 1.0,
                     childAspectRatio: 0.75),
-                itemBuilder: (BuildContext context, int index) =>
-                    ItemGoodsGrid(goods[index], provider: widget.provider))));
+                itemBuilder: (BuildContext context, int index) => ItemGoodsGrid(
+                      goods[index],
+                      provider: widget.provider,
+                      height: rightWidth / 2 / 0.75,
+                    ))));
   }
 
   void getGoodsList(int page, String categoryId, String subId) async {

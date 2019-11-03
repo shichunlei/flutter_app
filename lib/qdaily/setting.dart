@@ -102,25 +102,26 @@ class _SettingPageState extends State<SettingMenuPage>
     return Padding(
         padding: EdgeInsets.only(left: 10, bottom: 10),
         child: FloatingActionButton(
-            backgroundColor: Colors.black,
-            mini: true,
-            onPressed: () {
-              if (_lrController.status == AnimationStatus.dismissed) {
-                _tbController.reverse();
-                Navigator.of(context).pop();
-              } else {
-                _lrController.reverse();
-              }
-            },
-            child: AnimatedSwitcher(
-                transitionBuilder:
-                    (Widget child, Animation<double> animation) =>
-                        ScaleTransition(child: child, scale: animation),
-                duration: Duration(milliseconds: 500),
-                child: Icon(
-                    bottomPage == 0 ? Icons.close : Icons.keyboard_arrow_left,
-                    color: Colors.white,
-                    key: ValueKey<int>(bottomPage)))));
+          heroTag: "qdaily",
+          backgroundColor: Colors.black,
+          mini: true,
+          onPressed: () {
+            if (_lrController.status == AnimationStatus.dismissed) {
+              _tbController.reverse();
+              Navigator.of(context).pop();
+            } else {
+              _lrController.reverse();
+            }
+          },
+          child: AnimatedSwitcher(
+              transitionBuilder: (Widget child, Animation<double> animation) =>
+                  ScaleTransition(child: child, scale: animation),
+              duration: Duration(milliseconds: 500),
+              child: Icon(
+                  bottomPage == 0 ? Icons.close : Icons.keyboard_arrow_left,
+                  color: Colors.white,
+                  key: ValueKey<int>(bottomPage))),
+        ));
   }
 
   Widget _buildSearchView() {

@@ -30,7 +30,6 @@ class TagView extends StatelessWidget {
         onTap: onPressed,
         child: Container(
           padding: padding ?? EdgeInsets.symmetric(horizontal: 5),
-          alignment: Alignment.center,
           child: Text(
             tag,
             style: TextStyle(

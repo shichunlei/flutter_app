@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/baixing_life/ui/item_home_floor.dart';
 
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -31,6 +32,8 @@ class _HomePageState extends State<HomePage>
   ScrollController scrollController = ScrollController();
 
   int page;
+
+  LoaderState state = LoaderState.Loading;
 
   @override
   void initState() {
@@ -71,48 +74,41 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    if (data == null) {
-      return Scaffold(
-          backgroundColor: Colors.grey[200],
-          body: Column(children: <Widget>[
-            ToolBar(
-                title: '${widget.title}', backgroundColor: Colors.transparent),
-            Expanded(child: Container(child: getLoadingWidget()))
-          ]));
-    }
-
     return Scaffold(
         backgroundColor: Colors.grey[200],
         body: Stack(children: <Widget>[
-          EasyRefresh.custom(
-              scrollController: scrollController,
-              footer: BallPulseFooter(),
-              onLoad: () async {
-                page++;
-                getHotGoods(page);
-              },
-              slivers: <Widget>[
-                /// 头部banner
-                _buildSliverAppBar(data.slides),
+          LoaderContainer(
+            contentView: EasyRefresh.custom(
+                scrollController: scrollController,
+                footer: BallPulseFooter(),
+                onLoad: () async {
+                  page++;
+                  getHotGoods(page);
+                },
+                slivers: <Widget>[
+                  /// 头部banner
+                  _buildSliverAppBar(data?.slides ?? []),
 
-                /// 分类
-                _buildSliverGridCategory(data.category),
+                  /// 分类
+                  _buildSliverGridCategory(data?.category ?? []),
 
-                /// 广告
-                _buildSliverToBoxAdapterAds(
-                    data.advertesPicture, data.shopInfo, data.ads),
+                  /// 广告
+                  _buildSliverToBoxAdapterAds(
+                      data?.advertesPicture, data?.shopInfo, data?.ads),
 
-                /// 商品推荐
-                _buildSliverToBoxAdapter('商品推荐'),
-                _buildSliverGridRecommend(data.recommend),
+                  /// 商品推荐
+                  _buildSliverToBoxAdapter('商品推荐'),
+                  _buildSliverGridRecommend(data?.recommend ?? []),
 
-                /// floor
-                _buildFloorView(data.floors),
+                  /// floor
+                  _buildFloorView(data?.floors ?? []),
 
-                /// 火爆专区
-                _buildHotGoodsTitle(),
-                _buildHotGoods()
-              ]),
+                  /// 火爆专区
+                  _buildHotGoodsTitle(),
+                  _buildHotGoods()
+                ]),
+            loaderState: state,
+          ),
           ChangeAppBar(
               title: widget.title,
               backgroundColor: Colors.red,
@@ -122,6 +118,10 @@ class _HomePageState extends State<HomePage>
 
   void getHomeData() async {
     data = await ApiService.getBaixingHomeData('115.02932', '35.76189');
+
+    if (data != null) {
+      state = LoaderState.Succeed;
+    }
 
     setState(() {});
   }
@@ -134,8 +134,9 @@ class _HomePageState extends State<HomePage>
             child: Swiper(
                 autoplay: true,
                 itemCount: slides.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    ImageLoadView('${slides[index].comPic}'),
+                itemBuilder: (BuildContext context, int index) => ImageLoadView(
+                    '${slides[index].comPic}',
+                    height: headerHeight),
                 onTap: (int index) => pushNewPage(
                     context,
                     DetailsPage(slides[index].goodsId,
@@ -181,26 +182,25 @@ class _HomePageState extends State<HomePage>
             child: Column(
               children: <Widget>[
                 GestureDetector(
-                    child: ImageLoadView('${advertesPicture.pictureAddress}'),
+                    child: ImageLoadView(
+                        '${advertesPicture?.pictureAddress ?? ""}',
+                        width: double.infinity,
+                        height: (Utils.width - 20) * 151 / 1125),
                     onTap: () {
                       /// TODO
                     }),
                 Gaps.vGap10,
                 GestureDetector(
-                    child: ImageLoadView(shopInfo.leaderImage),
+                    child: ImageLoadView(shopInfo?.leaderImage ?? "",
+                        width: double.infinity,
+                        height: (Utils.width - 20) * 239 / 750),
                     onTap: () {
                       /// TODO
                     }),
                 Row(children: <Widget>[
                   GestureDetector(
-                      child: ImageLoadView('${ads?.first?.pictureAddress}',
-                          width: width, height: height),
-                      onTap: () {
-                        /// TODO
-                      }),
-                  GestureDetector(
                       child: ImageLoadView(
-                          '${ads?.elementAt(1)?.pictureAddress}',
+                          '${ads?.first?.pictureAddress ?? ""}',
                           width: width,
                           height: height),
                       onTap: () {
@@ -208,7 +208,15 @@ class _HomePageState extends State<HomePage>
                       }),
                   GestureDetector(
                       child: ImageLoadView(
-                          '${ads?.elementAt(2)?.pictureAddress}',
+                          '${ads?.elementAt(1)?.pictureAddress ?? ""}',
+                          width: width,
+                          height: height),
+                      onTap: () {
+                        /// TODO
+                      }),
+                  GestureDetector(
+                      child: ImageLoadView(
+                          '${ads?.elementAt(2)?.pictureAddress ?? ""}',
                           width: width,
                           height: height),
                       onTap: () {
@@ -238,8 +246,9 @@ class _HomePageState extends State<HomePage>
   Widget _buildSliverGridRecommend(List<Goods> recommend) {
     return SliverGrid(
         delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) =>
-                ItemGoodsGrid(recommend[index], provider: widget.provider),
+            (BuildContext context, int index) => ItemGoodsGrid(recommend[index],
+                provider: widget.provider,
+                height: Utils.width / recommend.length * 2 / 1.45),
             childCount: recommend.length),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: Utils.width / recommend.length,
@@ -249,60 +258,13 @@ class _HomePageState extends State<HomePage>
 
   Widget _buildFloorView(List<FloorBean> floors) {
     return SliverList(
-      delegate: SliverChildBuilderDelegate((context, index) {
-        return Container(
-          child: Column(children: <Widget>[
-            _buildFloorHeader(floors[index]),
-            _buildFloorGoods(floors[index])
-          ]),
-        );
-      }, childCount: floors.length),
+      delegate: SliverChildBuilderDelegate(
+          (context, index) => ItemHomeFloor(
+                floor: floors[index],
+                provider: widget.provider,
+              ),
+          childCount: floors.length),
     );
-  }
-
-  Widget _buildFloorHeader(FloorBean floor) {
-    return Container(
-        padding: EdgeInsets.all(10.0),
-        child: GestureDetector(
-            onTap: () {
-              /// TODO 跳转商品列表页？
-            },
-            child: ImageLoadView(
-              '${floor.floorPic.pictureAddress}',
-              width: Utils.width - 20,
-              height: (Utils.width - 20) * 9 / 35,
-            )));
-  }
-
-  Widget _buildFloorGoods(FloorBean floor) {
-    return Container(
-        child: Column(children: <Widget>[
-          Container(
-              height: Utils.width / 2,
-              child: Row(children: <Widget>[
-                ItemFloorGoods(floor.floor[0].goodsId, floor.floor[0].comPic,
-                    width: Utils.width / 2, provider: widget.provider),
-                Container(
-                    width: Utils.width / 2,
-                    child: Column(children: <Widget>[
-                      ItemFloorGoods(
-                          floor.floor[1].goodsId, floor.floor[1].comPic,
-                          height: Utils.width / 4, provider: widget.provider),
-                      ItemFloorGoods(
-                          floor.floor[2].goodsId, floor.floor[2].comPic,
-                          height: Utils.width / 4, provider: widget.provider)
-                    ]))
-              ])),
-          Container(
-              height: Utils.width / 4,
-              child: Row(children: <Widget>[
-                ItemFloorGoods(floor.floor[3].goodsId, floor.floor[3].comPic,
-                    width: Utils.width / 2, provider: widget.provider),
-                ItemFloorGoods(floor.floor[4].goodsId, floor.floor[4].comPic,
-                    width: Utils.width / 2, provider: widget.provider)
-              ]))
-        ]),
-        color: Colors.white);
   }
 
   Widget _buildHotGoodsTitle() {
@@ -322,8 +284,11 @@ class _HomePageState extends State<HomePage>
   Widget _buildHotGoods() {
     return SliverGrid(
         delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) =>
-                ItemGoodsGrid(goods[index], provider: widget.provider),
+            (BuildContext context, int index) => ItemGoodsGrid(
+                  goods[index],
+                  provider: widget.provider,
+                  height: Utils.width / 1.6,
+                ),
             childCount: goods.length),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: Utils.width / 2,

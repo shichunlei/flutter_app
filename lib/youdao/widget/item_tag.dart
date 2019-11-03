@@ -16,11 +16,8 @@ class ItemTag extends StatelessWidget {
         padding: EdgeInsets.all(5),
         child: Column(
           children: <Widget>[
-            ImageLoadView(
-              '$image',
-              height: 80 * 129 / 177,
-              width: 80
-            ),
+            ImageLoadView('$image', height: 60 * 129 / 177, width: 60),
+            Gaps.vGap10,
             Text('$title')
           ],
         ),

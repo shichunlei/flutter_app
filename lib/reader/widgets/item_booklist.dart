@@ -81,16 +81,16 @@ class ItemBookList extends StatelessWidget {
         height: 80,
         child: Stack(alignment: Alignment.center, children: <Widget>[
           Positioned(
-              child: ImageLoadView(image2, height: 100),
+              child: ImageLoadView(image2, height: 100,width: 47),
               left: 0,
               top: 10,
               bottom: 10),
           Positioned(
-              child: ImageLoadView(image3, height: 100),
+              child: ImageLoadView(image3, height: 100,width: 47),
               right: 0,
               top: 10,
               bottom: 10),
-          ImageLoadView(image1, height: 120)
+          ImageLoadView(image1, height: 120,width: 55)
         ]));
   }
 }
