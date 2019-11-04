@@ -105,7 +105,6 @@ class _LogonPageState extends State<LogonPage>
         children: <Widget>[
           _buildFormView(LoginMode.LOGIN),
           Button(
-            height: 40,
             width: 110,
             onPressed: () {
               _flip(true);
@@ -148,14 +147,14 @@ class _LogonPageState extends State<LogonPage>
         children: <Widget>[
           _buildFormView(LoginMode.REGIST),
           Button(
-            height: 40,
             width: 110,
             onPressed: () {
               _flip(false);
             },
-            hasBorder: true,
+            buttonShape: ButtonShape.OUTLINE,
             text: '${S.of(context).register}',
             textColor: Colors.white,
+            color: Colors.transparent,
           ),
         ],
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

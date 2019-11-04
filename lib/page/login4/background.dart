@@ -1,6 +1,3 @@
-import 'dart:ui';
-import 'dart:ui' as ui show TextStyle;
-
 import 'package:flutter/material.dart';
 
 class Background extends CustomPainter {
@@ -8,106 +5,46 @@ class Background extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var rect = Offset(0.0, 0.0) & Size(size.width, size.height);
     var paint = Paint();
+    var width = size.width;
+    var height = size.height;
+
     paint
-      ..color = Colors.orange
+      ..color = Colors.deepOrangeAccent
       ..strokeWidth = 2.0
       ..shader = LinearGradient(
-        colors: [Colors.yellow[800], Colors.red],
-        begin: Alignment.topRight,
-        end: Alignment.bottomLeft,
+        colors: [Colors.deepOrangeAccent, Colors.purple],
+        begin: Alignment.bottomRight,
+        end: Alignment.centerLeft,
         tileMode: TileMode.clamp,
       ).createShader(rect)
       ..style = PaintingStyle.fill;
 
-    /// 整体背景。从右上角到左下角颜色渐变为[Colors.yellow[800], Colors.red],
-    canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
+    var pathBottom = Path();
+    pathBottom.moveTo(0.0, height);
+    pathBottom.lineTo(0, height);
+    pathBottom.lineTo(width, height);
 
-    paint
-      ..shader = LinearGradient(
-              colors: [
-            Colors.yellow.withOpacity(1.0),
-            Colors.red.withOpacity(1.0)
-          ],
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              tileMode: TileMode.clamp)
-          .createShader(rect);
+    var p1 = Offset(width / 4, height);
+    var p2 = Offset(0 * width / 4, 3.5 * height / 4);
+    pathBottom.quadraticBezierTo(p1.dx, p1.dy, p2.dx, p2.dy);
 
-    var path1 = Path();
-    path1.moveTo(size.width * 1, size.height);
-    path1.lineTo(size.width * 0, size.height);
+    var p3 = Offset(2 * width / 4, 3.5 * height / 4);
+    var p4 = Offset(0 * width / 4, 3.5 * height / 4);
+    pathBottom.quadraticBezierTo(p3.dx, p3.dy, p4.dx, p4.dy);
 
-    var endPoint1 = Offset(5 * size.width / 4, 4 * size.height / 4);
-    var ctlPoint1 = Offset(4.5 * size.width / 4, 2.5 * size.height / 4);
-    path1.quadraticBezierTo(
-        ctlPoint1.dx, ctlPoint1.dy, endPoint1.dx, endPoint1.dy);
+    var pathTop = Path();
+    pathTop.moveTo(0.0, 0.0);
+    pathTop.lineTo(width, 0.0);
+    pathTop.lineTo(0.0, 0.0);
 
-    canvas.drawPath(path1, paint);
+    var p21 = Offset(0.5 * width / 4, 1 * height / 4);
+    var p22 = Offset(5 * width / 4, 0 * height / 4);
+    pathTop.quadraticBezierTo(p21.dx, p21.dy, p22.dx, p22.dy);
 
-    paint
-      ..shader = LinearGradient(
-              colors: [
-            Colors.red.withOpacity(0.2),
-            Colors.yellow[800].withOpacity(0.3)
-          ],
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              tileMode: TileMode.clamp)
-          .createShader(rect);
-
-    var path = Path();
-    path.moveTo(size.width * 0, size.height);
-    path.lineTo(size.width, size.height);
-    var endPoint = Offset(0 * size.width / 4, 4 * size.height / 4);
-    var ctlPoint = Offset(0.2 * size.width / 4, 3 * size.height / 4);
-    path.quadraticBezierTo(ctlPoint.dx, ctlPoint.dy, endPoint.dx, endPoint.dy);
-
-    canvas.drawPath(path, paint);
-
-    var path2 = Path();
-    path2.moveTo(size.width, 0.0);
-    path2.lineTo(size.width, size.height);
-    path2.lineTo(0.0, size.height);
-    path2.lineTo(0.0, size.height + 5);
-    var secondControlPoint = Offset(size.width - (size.width / 6), size.height);
-    var secondEndPoint = Offset(size.width, 0.0);
-    path2.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
-        secondEndPoint.dx, secondEndPoint.dy);
-
-    canvas.drawPath(path2, paint);
-
-    paint
-      ..shader = LinearGradient(
-              colors: [
-            Colors.white,
-            Colors.white,
-          ],
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              tileMode: TileMode.clamp)
-          .createShader(rect);
-    canvas.drawCircle(Offset(size.width / 2, 160), 50, paint);
-    canvas.drawCircle(Offset(size.width / 2.5, 240), 20, paint);
-    canvas.drawCircle(Offset(size.width / 1.5, 200), 10, paint);
-    canvas.drawCircle(Offset(size.width / 1.7, 210), 3, paint);
-    canvas.drawOval(Rect.fromLTWH(70, 450, 45, 25), paint);
-
-    ParagraphBuilder pb = ParagraphBuilder(ParagraphStyle(
-      textAlign: TextAlign.center,
-      fontWeight: FontWeight.bold,
-      fontSize: 65.0,
-    ));
-    pb.pushStyle(ui.TextStyle(color: Colors.red));
-    pb.addText('GO');
-    // 设置文本的宽度约束
-    ParagraphConstraints pc = ParagraphConstraints(width: 100);
-    // 这里需要先layout,将宽度约束填入，否则无法绘制
-    Paragraph paragraph = pb.build()..layout(pc);
-    // 文字左上角起始点
-    Offset offset = Offset(size.width / 2 - 50, 125.0);
-    canvas.drawParagraph(paragraph, offset);
+    canvas.drawPath(pathTop, paint);
+    canvas.drawPath(pathBottom, paint);
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }

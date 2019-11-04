@@ -33,3 +33,15 @@ enum CycleMode {
   /// 随机
   RANDOM
 }
+
+enum ButtonShape {
+  NORMAL,
+  // 圆角
+  Fillet,
+  // 方角
+  SQUARE_CORNER,
+  // 圆形
+  CIRCLE,
+  // 边框
+  OUTLINE
+}

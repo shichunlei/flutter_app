@@ -29,9 +29,8 @@ class EmptyPage extends StatelessWidget {
             child: Button(
               onPressed: onPresses,
               text: pressText ?? '添加',
-              height: 40,
-              width: 100,
-              borderRadius: 20,
+              width: 110,
+              halfRadius: true,
             ))
       ]),
     );

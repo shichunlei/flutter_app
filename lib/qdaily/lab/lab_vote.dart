@@ -80,7 +80,7 @@ class _LabVotePageState extends State<LabVotePage> {
                           onPressed: () {},
                           text: '要玩更多测试',
                           textColor: Colors.black54,
-                          borderRadius: 30,
+                          halfRadius: true,
                           color: qdailyMajorColor,
                           disabledColor: qdailyMinorColor)
                       : Button(
@@ -95,7 +95,7 @@ class _LabVotePageState extends State<LabVotePage> {
                               : null,
                           text: '投票',
                           textColor: Colors.black54,
-                          borderRadius: 30,
+                          halfRadius: true,
                           color: qdailyMajorColor,
                           disabledColor: qdailyMinorColor),
                 ),

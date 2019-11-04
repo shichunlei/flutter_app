@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/generated/i18n.dart';
-import 'package:flutter_app/page_index.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
+import '../../page_index.dart';
 import 'background.dart';
+import 'login.dart';
 
-class LoginPage extends StatefulWidget {
-  LoginPage({Key key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  SignUpPage({Key key}) : super(key: key);
 
   @override
-  createState() => _LoginPageState();
+  createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   bool eye = true;
 
   final Shader linearGradient = LinearGradient(
@@ -32,6 +33,7 @@ class _LoginPageState extends State<LoginPage> {
         statusBarBrightness: Brightness.dark,
         statusBarIconBrightness: Brightness.dark,
         statusBarColor: Colors.transparent));
+
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: true,
@@ -46,24 +48,33 @@ class _LoginPageState extends State<LoginPage> {
           SingleChildScrollView(
             padding: EdgeInsets.only(top: Utils.navigationBarHeight),
             child: Container(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+              padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Text(
-                    "${S.of(context).login}",
+                    "${S.of(context).register}",
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w800,
                         foreground: Paint()..shader = linearGradient),
                   ),
-                  Gaps.vGap60,
+                  Gaps.vGap40,
                   TextField(
                     keyboardType: TextInputType.emailAddress,
                     autocorrect: false,
                     decoration: InputDecoration(
                       // hintText: "Email",
                       labelText: "${S.of(context).email}",
+                    ),
+                  ),
+                  Gaps.vGap20,
+                  TextField(
+                    keyboardType: TextInputType.text,
+                    autocorrect: false,
+                    decoration: InputDecoration(
+                      // hintText: "Email",
+                      labelText: "${S.of(context).username}",
                     ),
                   ),
                   Gaps.vGap20,
@@ -83,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Gaps.vGap20,
                   Button(
-                    text: "${S.of(context).login}",
+                    text: "${S.of(context).register}",
                     textColor: Colors.white,
                     color: Colors.black,
                     borderRadius: 30,
@@ -91,9 +102,9 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {},
                   ),
                   Container(
-                    padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                     child: Text(
-                      "Or sign in with social account",
+                      "Or sign up with social account",
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -101,48 +112,55 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Expanded(
-                        child: OutlineButton(
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                FontAwesome.facebook,
-                                size: 20,
-                              ),
-                              Gaps.hGap5,
-                              Text("Facebook",
-                                  style: TextStyle(color: Colors.black)),
-                            ],
-                          ),
-                          shape: StadiumBorder(),
+                        child: Button(
+                          text: "Facebook",
+                          icon: FontAwesome.facebook,
+                          buttonShape: ButtonShape.OUTLINE,
+                          halfRadius: true,
+                          textColor: Colors.black,
                           highlightedBorderColor: Colors.black,
-                          borderSide: BorderSide(color: Colors.black),
+                          borderColor: Colors.black,
                           onPressed: () {},
                         ),
                       ),
                       Gaps.hGap20,
                       Expanded(
-                        child: OutlineButton(
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                FontAwesome.twitter,
-                                size: 20,
-                              ),
-                              Gaps.hGap5,
-                              Text("Twitter",
-                                  style: TextStyle(color: Colors.black)),
-                            ],
-                          ),
-                          shape: StadiumBorder(),
-                          highlightedBorderColor: Colors.black,
-                          borderSide: BorderSide(color: Colors.black),
-                          onPressed: () {},
-                        ),
-                      ),
+                          child: Button(
+                        text: "Twitter",
+                        icon: FontAwesome.twitter,
+                        buttonShape: ButtonShape.OUTLINE,
+                        halfRadius: true,
+                        textColor: Colors.black,
+                        highlightedBorderColor: Colors.black,
+                        borderColor: Colors.black,
+                        onPressed: () {},
+                      )),
+                    ],
+                  ),
+                  Gaps.vGap20,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("By signing up you agree to our "),
+                      GestureDetector(
+                          child: Text("Terms of Use",
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                              )),
+                          onTap: () {})
+                    ],
+                  ),
+                  Gaps.vGap5,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("and "),
+                      GestureDetector(
+                          child: Text("Privacy Policy",
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                              )),
+                          onTap: () {}),
                     ],
                   ),
                 ],
@@ -160,19 +178,17 @@ class _LoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.fromLTRB(0, 10, 10, 10),
                   child: FlatButton(
                     child: Text(
-                      "${S.of(context).register}",
+                      "${S.of(context).login}".toUpperCase(),
                       style: TextStyle(color: Colors.black, fontSize: 17),
                     ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+                    onPressed: () => pushNewPage(context, LoginPage()),
                     highlightColor: Colors.black26,
                     shape: StadiumBorder(),
                   ),
-                ),
+                )
               ],
             ),
-          )
+          ),
         ],
       ),
     );

@@ -82,8 +82,8 @@ class _ClassicalErrorView extends StatelessWidget {
                 text: reloadText ?? "重新加载",
                 onPressed: onReload,
                 height: 30,
-                width: 80,
-                borderRadius: 20,
+                width: 110,
+                halfRadius: true,
                 textSize: 14)
           ]));
 }

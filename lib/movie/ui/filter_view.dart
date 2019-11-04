@@ -98,8 +98,7 @@ class FilterView extends StatelessWidget {
                               _unwatched);
                         },
                         text: '提交',
-                        borderRadius: 50,
-                        height: 40,
+                        halfRadius: true,
                       ),
                     ),
                     Gaps.hGap10,
@@ -114,8 +113,7 @@ class FilterView extends StatelessWidget {
                           });
                         },
                         text: '重置',
-                        borderRadius: 50,
-                        height: 40,
+                        halfRadius: true,
                         color: Theme.of(context).primaryColor,
                       ),
                     )

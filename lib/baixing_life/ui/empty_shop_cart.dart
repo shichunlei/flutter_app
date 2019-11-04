@@ -23,8 +23,8 @@ class EmptyShopCart extends StatelessWidget {
             onPressed: () => pushReplacement(context, IndexPage()),
             text: '随便逛逛',
             color: Colors.red,
-            borderRadius: 24,
-            width: 80,
+            halfRadius: true,
+            width: 120,
             height: 36,
           )
         ]));

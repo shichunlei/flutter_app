@@ -155,7 +155,7 @@ class _LabRadioFirstViewState extends State<LabRadioFirstView> {
                 : null,
             text: '下一步',
             textColor: Colors.black54,
-            borderRadius: 30,
+            halfRadius: true,
             color: qdailyMajorColor,
             disabledColor: qdailyMinorColor,
           ),

@@ -51,7 +51,7 @@ class BottomSheetView extends StatelessWidget {
                         Button(
                           color: Colors.transparent,
                           textColor: Colors.grey,
-                          width: 60,
+                          width: 80,
                           onPressed: closeOnTap,
                           text: '${S
                               .of(context)
@@ -60,7 +60,7 @@ class BottomSheetView extends StatelessWidget {
                         Button(
                             color: Colors.transparent,
                             textColor: Colors.blueAccent,
-                            width: 60,
+                            width: 80,
                             onPressed: () {},
                             text: '${S
                                 .of(context)

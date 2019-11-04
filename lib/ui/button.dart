@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/enum/enum.dart';
 
 class Button extends StatelessWidget {
-  Button(
-      {Key key,
-      this.text,
-      @required this.onPressed,
-      this.borderRadius: 5.0,
-      this.color,
-      this.height: 48.0,
-      this.textColor,
-      this.disabledColor,
-      this.highlightColor,
-      this.textSize: 18,
-      this.disabledTextColor,
-      this.width: double.infinity,
-      this.hasBorder: false,
-      this.disabledBorderColor,
-      this.highlightedBorderColor,
-      this.borderWidth: 1.0,
-      this.borderColor})
-      : super(key: key);
+  Button({
+    Key key,
+    @required this.text,
+    @required this.onPressed,
+    this.borderRadius: 5.0,
+    this.color,
+    this.height: 42.0,
+    this.textColor,
+    this.disabledColor,
+    this.highlightColor,
+    this.textSize: 18,
+    this.disabledTextColor,
+    this.width: double.infinity,
+    this.disabledBorderColor,
+    this.highlightedBorderColor,
+    this.borderWidth: 1.0,
+    this.borderColor: Colors.black,
+    this.buttonShape: ButtonShape.NORMAL,
+    this.icon,
+    this.halfRadius: false,
+  }) : super(key: key);
 
   /// 按钮文字
   final String text;
@@ -30,7 +33,7 @@ class Button extends StatelessWidget {
   /// 按钮文字大小
   final double textSize;
 
-  final VoidCallback onPressed;
+  final Function onPressed;
 
   /// 按钮文字颜色
   final Color textColor;
@@ -44,49 +47,80 @@ class Button extends StatelessWidget {
   final double width;
   final double height;
 
-  final bool hasBorder;
   final Color disabledBorderColor;
   final Color highlightedBorderColor;
   final double borderWidth;
   final Color borderColor;
 
+  // shape
+  final ButtonShape buttonShape;
+
+  final IconData icon;
+  final bool halfRadius;
+
   @override
   Widget build(BuildContext context) {
-    Widget _child = Container(
-        height: height,
-        width: width,
-        alignment: Alignment.center,
-        child: Text('$text', style: TextStyle(fontSize: textSize)));
+    ShapeBorder shape;
 
-    return hasBorder
-        ? OutlineButton(
-            onPressed: onPressed,
-            textColor: textColor ?? Colors.white,
-            disabledTextColor: disabledTextColor ?? Color(0xFFD4E2FA),
-            disabledBorderColor: disabledBorderColor ?? color ?? Colors.grey,
-            highlightedBorderColor:
-                highlightedBorderColor ?? Theme.of(context).accentColor,
-            borderSide: BorderSide(
-                width: borderWidth, color: borderColor ?? Colors.white),
-            highlightColor: highlightColor,
-            shape: borderRadius >= height / 2
-                ? StadiumBorder()
-                : RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(borderRadius)),
-            child: _child,
-          )
-        : FlatButton(
-            onPressed: onPressed,
-            textColor: textColor ?? Colors.white,
-            disabledTextColor: disabledTextColor ?? Color(0xFFD4E2FA),
-            color: color ?? Theme.of(context).accentColor,
-            disabledColor: disabledColor ?? Color(0xFF96BBFA),
-            highlightColor: highlightColor,
-            shape: borderRadius >= height / 2
-                ? StadiumBorder()
-                : RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(borderRadius)),
-            child: _child,
-          );
+    if (halfRadius) {
+      shape = StadiumBorder(
+          side: buttonShape == ButtonShape.OUTLINE
+              ? BorderSide(color: borderColor, width: borderWidth)
+              : BorderSide.none);
+    } else {
+      if (buttonShape == ButtonShape.OUTLINE) {
+        shape = RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+            side: BorderSide(color: borderColor, width: borderWidth));
+      } else if (buttonShape == ButtonShape.SQUARE_CORNER) {
+        shape = BeveledRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius));
+      } else if (buttonShape == ButtonShape.CIRCLE) {
+        shape = CircleBorder(
+          side: BorderSide(
+            color: borderColor,
+            width: borderWidth,
+            style: BorderStyle.solid,
+          ),
+        );
+      } else {
+        shape = RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius));
+      }
+    }
+
+    return Container(
+      width: width,
+      height: height,
+      child: icon == null
+          ? FlatButton(
+              onPressed: onPressed,
+              textColor: textColor ?? Colors.white,
+              disabledTextColor: disabledTextColor ?? Color(0xFFD4E2FA),
+              color: color ??
+                  (buttonShape == ButtonShape.OUTLINE
+                      ? Colors.transparent
+                      : Theme.of(context).accentColor),
+              disabledColor: disabledColor ?? Color(0xFF96BBFA),
+              highlightColor: highlightColor,
+              shape: shape,
+              child: Text('$text', style: TextStyle(fontSize: textSize)),
+              materialTapTargetSize: MaterialTapTargetSize.padded,
+            )
+          : FlatButton.icon(
+              onPressed: onPressed,
+              icon: Icon(icon, size: 22),
+              label: Text('$text', style: TextStyle(fontSize: textSize)),
+              textColor: textColor ?? Colors.white,
+              disabledTextColor: disabledTextColor ?? Color(0xFFD4E2FA),
+              color: color ??
+                  (buttonShape == ButtonShape.OUTLINE
+                      ? Colors.transparent
+                      : Theme.of(context).accentColor),
+              disabledColor: disabledColor ?? Color(0xFF96BBFA),
+              highlightColor: highlightColor,
+              shape: shape,
+            ),
+    );
   }
 }

@@ -112,6 +112,8 @@ class _BottomSheetLoginPagePageState extends State<BottomSheetLoginPage> {
                   Gaps.vGap40,
                   Container(
                       padding: EdgeInsets.only(
+                          left: 20,
+                          right: 20,
                           bottom: MediaQuery.of(context).viewInsets.bottom),
                       child: Button(
                           text: "${S.of(context).login}",
@@ -163,13 +165,13 @@ class _BottomSheetLoginPagePageState extends State<BottomSheetLoginPage> {
           Gaps.vGap20,
           Container(
             padding: EdgeInsets.only(
+                left: 20,
+                right: 20,
                 bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Button(
                 text: "${S.of(context).register}",
                 color: Color(0xFFF4511E),
                 onPressed: _registerUser),
-            height: 50,
-            width: MediaQuery.of(context).size.width,
           ),
         ]),
       );

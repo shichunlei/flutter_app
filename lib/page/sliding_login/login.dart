@@ -146,7 +146,7 @@ class _SlidingLoginPageState extends State<SlidingLoginPage>
           position: _slideAnimation,
           child: Container(
             color: Color(0xFF2A3ED7),
-            padding: EdgeInsets.only(top: 50, left: 42, right: 42),
+            padding: EdgeInsets.only(top: 80, left: 42, right: 42),
             width: double.infinity,
             height: _defaultMargin,
             child: Column(
@@ -172,7 +172,7 @@ class _SlidingLoginPageState extends State<SlidingLoginPage>
                   text: '${S.of(context).login}'.toUpperCase(),
                   color: Colors.white,
                   textColor: Colors.black,
-                  borderRadius: 40,
+                  halfRadius: true,
                 ),
               ],
               mainAxisSize: MainAxisSize.min,
@@ -225,7 +225,7 @@ class _SlidingLoginPageState extends State<SlidingLoginPage>
             text: '${S.of(context).register}'.toUpperCase(),
             textColor: Colors.white,
             color: Color(0xFF2A3ED7),
-            borderRadius: 40,
+            halfRadius: true,
           )
         ],
         mainAxisSize: MainAxisSize.min,
