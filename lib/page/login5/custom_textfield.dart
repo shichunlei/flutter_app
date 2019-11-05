@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CTextField extends StatelessWidget {
-  CTextField(
-      {this.controller, this.hintText, this.obscure: false, this.icon});
+  CTextField({this.controller, this.hintText, this.obscure: false, this.icon});
 
   final TextEditingController controller;
   final String hintText;
