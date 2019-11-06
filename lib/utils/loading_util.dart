@@ -36,7 +36,7 @@ List<Widget> widgets = [
   SpinKitSpinningCircle(color: Colors.deepPurple, shape: BoxShape.rectangle),
   SpinKitFadingCircle(color: Colors.deepPurpleAccent),
   SpinKitPouringHourglass(color: Colors.indigo),
-  CupertinoActivityIndicator(animating: false),
+  CupertinoActivityIndicator(),
   CircularProgressIndicator(backgroundColor: Colors.greenAccent),
   AnimatedRotationBox(
       child: GradientCircularProgressIndicator(

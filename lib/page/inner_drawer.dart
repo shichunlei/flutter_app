@@ -4,6 +4,8 @@ import 'package:flutter_inner_drawer/inner_drawer.dart';
 
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
+import '../page_index.dart';
+
 class InnerDrawerSample extends StatefulWidget {
   InnerDrawerSample({Key key}) : super(key: key);
 
@@ -359,33 +361,30 @@ class _InnerDrawerSampleState extends State<InnerDrawerSample> {
                               ]),
                               Padding(padding: EdgeInsets.all(10)),
                               FlatButton(
-                                  child: Text("Set Color Transition",
-                                      style: TextStyle(
-                                          color: currentColor,
-                                          fontWeight: FontWeight.w500)),
-                                  onPressed: () {
-                                    showDialog(
-                                        context: context,
-                                        child: AlertDialog(
-                                            title: const Text('Pick a color!'),
-                                            content: SingleChildScrollView(
-                                                child: ColorPicker(
-                                                    pickerColor: pickerColor,
-                                                    onColorChanged: changeColor,
-                                                    enableLabel: true,
-                                                    pickerAreaHeightPercent:
-                                                        0.8)),
-                                            actions: <Widget>[
-                                              FlatButton(
-                                                  child: Text('Set'),
-                                                  onPressed: () {
-                                                    setState(() =>
-                                                        currentColor =
-                                                            pickerColor);
-                                                    Navigator.of(context).pop();
-                                                  })
-                                            ]));
-                                  }),
+                                child: Text("Set Color Transition",
+                                    style: TextStyle(
+                                        color: currentColor,
+                                        fontWeight: FontWeight.w500)),
+                                onPressed: () {
+                                  showDiffDialog(
+                                    context,
+                                    title: const Text('Pick a color!'),
+                                    content: SingleChildScrollView(
+                                        child: ColorPicker(
+                                            pickerColor: pickerColor,
+                                            onColorChanged: changeColor,
+                                            enableLabel: false,
+                                            enableAlpha: false,
+                                            pickerAreaHeightPercent: 0.5)),
+                                    pressed: () {
+                                      setState(
+                                          () => currentColor = pickerColor);
+                                      Navigator.of(context).pop();
+                                    },
+                                    yesText: "Set",
+                                  );
+                                },
+                              ),
                               Padding(padding: EdgeInsets.all(25)),
                               RaisedButton(
                                   child: Text("open"),

@@ -59,26 +59,14 @@ class HomeDrawable extends StatelessWidget {
               trailing: Icon(Icons.chevron_right),
               onTap: () {
                 Navigator.of(context).pop();
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                          title: Text("退出账号"),
-                          content: Text("您确定要退出账号吗？"),
-                          actions: <Widget>[
-                            FlatButton(
-                                child: Text("退出"),
-                                onPressed: () {
-                                  Store.value<UserModel>(context)
-                                      .cleanUserInfo();
-                                  pushAndRemovePage(context, LoginPage());
-                                }),
-                            FlatButton(
-                                child: Text("再想想",
-                                    style: Theme.of(context).textTheme.button),
-                                onPressed: () => Navigator.of(context).pop())
-                          ]);
-                    });
+                showDiffDialog(context,
+                    title: Text("退出账号"),
+                    content: Text("您确定要退出账号吗？"),
+                    noText: '再想想',
+                    yesText: '退出', pressed: () {
+                  Store.value<UserModel>(context).cleanUserInfo();
+                  pushAndRemovePage(context, LoginPage());
+                });
               }),
           Divider(),
           ListTile(

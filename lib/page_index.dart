@@ -119,6 +119,7 @@ export 'utils/sp_util.dart';
 export 'utils/file_util.dart';
 export 'utils/permissions_util.dart';
 export 'utils/num_utils.dart';
+export 'utils/view_utils.dart';
 
 export 'ui/state_view/empty.dart';
 export 'ui/state_view/error.dart';

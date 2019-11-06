@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/generated/i18n.dart';
 
 import '../ui/asset_view.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
@@ -177,21 +176,17 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
               //操作按钮数组
               FlatButton(
                 onPressed: () {
-                  debugPrint("不保留");
                   Navigator.pop(context);
-                  Navigator.pop(context, true);
+                  Navigator.pop(context, false);
                 },
-                child: Text('${S.of(context).cancel}',
-                    style: TextStyles.textGrey14),
+                child: Text('不保留', style: TextStyles.textGrey14),
               ),
               FlatButton(
                 onPressed: () {
-                  debugPrint('保留');
                   Navigator.pop(context);
                   Navigator.pop(context, true);
                 },
-                child:
-                    Text('${S.of(context).sure}', style: TextStyles.textRed14),
+                child: Text('保留', style: TextStyles.textRed14),
               ),
             ],
           );

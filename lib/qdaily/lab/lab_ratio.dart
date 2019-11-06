@@ -1,6 +1,5 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import '../index.dart';
@@ -117,27 +116,17 @@ class _LabRatioPageState extends State<LabRatioPage>
 
   Future<bool> _onBackPressed() async {
     if (currentPaper == 1 && currentPage < questions.length) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text('提示'),
-              content: Text('您还没有回答完问题，确定要退出？'),
-              contentPadding: EdgeInsets.all(20),
-              titlePadding: EdgeInsets.only(top: 20, left: 20),
-              actions: <Widget>[
-                FlatButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text(S.of(context).cancel)),
-                FlatButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                    },
-                    child: Text(S.of(context).sure)),
-              ],
-            );
-          });
+      showDiffDialog(
+        context,
+        title: Text('提示'),
+        content: Text('您还没有回答完问题，确定要退出？'),
+        contentPadding: EdgeInsets.all(20),
+        titlePadding: EdgeInsets.only(top: 20, left: 20),
+        pressed: () {
+          Navigator.pop(context);
+          Navigator.pop(context);
+        },
+      );
       return false;
     } else {
       return true;

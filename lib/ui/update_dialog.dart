@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/generated/i18n.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import '../page_index.dart';
@@ -165,25 +164,13 @@ class _UpdateDialogState extends State<UpdateDialog> {
   }
 
   void showInstallDialog(String savePath) async {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-              title: Text('安装提示'),
-              titlePadding: EdgeInsets.all(20),
-              content: Text('$savePath\n你是否安装该APP'),
-              contentPadding: EdgeInsets.only(left: 20, right: 20),
-              actions: <Widget>[
-                FlatButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text(S.of(context).cancel)),
-                FlatButton(
-                    onPressed: () {
-                      /// TODO 进行安装操作
-                      Navigator.pop(context);
-                    },
-                    child: Text(S.of(context).sure))
-              ]);
-        });
+    showDiffDialog(context,
+        title: Text('安装提示'),
+        titlePadding: EdgeInsets.all(20),
+        content: Text('$savePath\n你是否安装该APP'),
+        contentPadding: EdgeInsets.only(left: 20, right: 20), pressed: () {
+      /// TODO 进行安装操作
+      Navigator.pop(context);
+    }, yesText: "安装");
   }
 }

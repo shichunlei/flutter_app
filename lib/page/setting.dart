@@ -115,29 +115,23 @@ class _SettingPageState extends State<SettingPage> {
   }
 
   void _chooseColor() {
-    showDialog(
-        context: context,
-        builder: (_) => AlertDialog(
-                title: Text(S.of(context).pick_a_color),
-                content: SingleChildScrollView(
-                    child: ColorPicker(
-                        pickerColor:
-                            Color(Store.value<ConfigModel>(context).theme),
-                        onColorChanged: (color) =>
-                            setState(() => _pickerColor = color),
-                        enableLabel: true,
-                        pickerAreaHeightPercent: 0.8)),
-                actions: <Widget>[
-                  FlatButton(
-                      child: Text(S.of(context).sure),
-                      onPressed: () {
-                        if (_pickerColor != null) {
-                          Store.value<ConfigModel>(context)
-                              .setTheme(_pickerColor.value);
-                        }
-                        Navigator.of(context).pop();
-                      })
-                ]));
+    showDiffDialog(
+      context,
+      title: Text(S.of(context).pick_a_color),
+      content: SingleChildScrollView(
+          child: ColorPicker(
+              pickerColor: Color(Store.value<ConfigModel>(context).theme),
+              onColorChanged: (color) => setState(() => _pickerColor = color),
+              enableLabel: false,
+              enableAlpha: false,
+              pickerAreaHeightPercent: 0.5)),
+      pressed: () {
+        if (_pickerColor != null) {
+          Store.value<ConfigModel>(context).setTheme(_pickerColor.value);
+        }
+        Navigator.of(context).pop();
+      },
+    );
   }
 
   void _chooseAddress() {

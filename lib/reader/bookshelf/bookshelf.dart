@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/store/index.dart';
 
 import '../../page_index.dart';
@@ -90,27 +89,14 @@ class _BookShelfPageState extends State<BookShelfPage> {
   }
 
   void showDelDialog(List<Books> books, int index) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('提示'),
-            content: Text('您确定要删除《${books[index].title}》吗？'),
-            contentPadding: EdgeInsets.all(20),
-            titlePadding: EdgeInsets.only(top: 20, left: 20),
-            actions: <Widget>[
-              FlatButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text(S.of(context).cancel)),
-              FlatButton(
-                  onPressed: () {
-                    Store.value<BookModel>(context)
-                        .deleteBook(context, books[index].id);
-                    Navigator.pop(context);
-                  },
-                  child: Text(S.of(context).sure)),
-            ],
-          );
-        });
+    showDiffDialog(
+      context,
+      title: Text('提示'),
+      content: Text('您确定要删除《${books[index].title}》吗？'),
+      pressed: () {
+        Store.value<BookModel>(context).deleteBook(context, books[index].id);
+        Navigator.pop(context);
+      },
+    );
   }
 }
