@@ -18,7 +18,7 @@ Future<Null> showDiffDialog(BuildContext context,
     Function cancelPressed}) async {
   await showDialog(
     context: context,
-    builder: (context) => Utils.isIOS
+    builder: (context) => Utils.isAndroid
         ? AlertDialog(
             title: title,
             titlePadding: titlePadding,
