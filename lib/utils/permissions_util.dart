@@ -27,4 +27,16 @@ class PermissionsUtil {
       return true;
     }
   }
+
+  /// 请求相机权限
+  static Future<bool> requestCameraPermission() async {
+    final permissions =
+        await PermissionHandler().requestPermissions([PermissionGroup.camera]);
+
+    if (permissions.values.any((status) => status == PermissionStatus.denied)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

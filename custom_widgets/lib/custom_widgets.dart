@@ -7,7 +7,6 @@ export 'bottom_drag_widget.dart';
 export 'bubble_bottom_bar.dart';
 export 'circle_progress.dart';
 export 'curved_navigation_bar.dart';
-export 'dots_indicator.dart';
 export 'flip_card.dart';
 export 'flutter_flip_view.dart';
 export 'gradient_circular_progress_indicator.dart';
@@ -29,3 +28,7 @@ export 'dialog/network_giffy_dialog.dart';
 export 'dropdown_menu/dropdown_menu.dart';
 
 export 'likebutton/like_button.dart';
+
+export 'indicator/dots_indicator.dart';
+export 'indicator/rect_indicator.dart';
+export 'indicator/scroll_indicator.dart';

@@ -6,6 +6,7 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../../page_index.dart';
+import '../baixing_page.dart';
 import '../index.dart';
 
 class HomePage extends StatefulWidget {
@@ -128,6 +129,7 @@ class _HomePageState extends State<HomePage>
 
   Widget _buildSliverAppBar(List<Goods> slides) {
     return SliverAppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.red,
         expandedHeight: headerHeight,
         flexibleSpace: Container(

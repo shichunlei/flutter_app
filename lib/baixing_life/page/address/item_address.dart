@@ -93,7 +93,7 @@ class _ItemAddressState extends State<ItemAddress>
                             padding: EdgeInsets.all(2),
                             width: 20.0,
                             height: 20.0,
-                            child: Icon(CustomIcon.more)),
+                            child: Icon(Icons.more_horiz)),
                         onTap: () {
                           /// 开始执行动画
                           _controller.forward(from: 0.0);

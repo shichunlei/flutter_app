@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'baixing_life/baixing_page.dart';
 import 'generated/i18n.dart';
 import 'store/index.dart';
 import 'page_index.dart';

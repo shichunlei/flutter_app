@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 /// 原插件地址：https://github.com/Pyozer/dots_indicator
@@ -27,30 +29,33 @@ class DotsIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dotsList = List<Widget>.generate(dotsCount, _buildDot);
+    final dots = reversed ? dotsList.reversed.toList() : dotsList;
 
-    if (axis == Axis.vertical) {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: reversed == true ? dotsList.reversed.toList() : dotsList,
-      );
-    }
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: reversed == true ? dotsList.reversed.toList() : dotsList,
-    );
+    return axis == Axis.vertical
+        ? Column(mainAxisSize: MainAxisSize.min, children: dots)
+        : Row(mainAxisSize: MainAxisSize.min, children: dots);
   }
 
   Widget _buildDot(int index) {
-    final isCurrent = index == position;
-    final size = isCurrent ? decorator.activeSize : decorator.size;
+    final state = min(1.0, (position - index).abs());
+
+    final size =
+        Size.lerp(decorator.activeSize, decorator.size, state.toDouble());
+    final color =
+        Color.lerp(decorator.activeColor, decorator.color, state.toDouble());
+    final shape = ShapeBorder.lerp(
+      decorator.activeShape,
+      decorator.shape,
+      state.toDouble(),
+    );
 
     return Container(
       width: size.width,
       height: size.height,
       margin: decorator.spacing,
       decoration: ShapeDecoration(
-        color: isCurrent ? decorator.activeColor : decorator.color,
-        shape: isCurrent ? decorator.activeShape : decorator.shape,
+        color: color,
+        shape: shape,
       ),
     );
   }

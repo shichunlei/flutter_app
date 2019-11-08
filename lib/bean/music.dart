@@ -31,11 +31,60 @@ class Music {
 
 List<Music> songsData = [
   Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=1398633928.mp3',
+    albumArtUrl:
+        'http://p1.music.126.net/qz6xHSzC4gERYzfEVx6F-Q==/109951164443883328.jpg?param=130y130',
+    title: 'Lose You To Love Me',
+    artists: 'Selena Gomez',
+  ),
+  Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=1301027901.mp3',
+    albumArtUrl:
+        'http://p2.music.126.net/lIH4I7d7879op3sOfSUMrw==/109951163854904814.jpg?param=130y130',
+    title: 'Just Like This',
+    artists: 'Deepmaniak',
+  ),
+  Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=1300528275.mp3',
+    albumArtUrl:
+        'http://p1.music.126.net/gee-5oSaBNjcg3fhcBJdBQ==/109951163781396587.jpg?param=130y130',
+    title: 'Sweet but Psycho',
+    artists: 'Ava Max',
+  ),
+  Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=436487129.mp3',
+    albumArtUrl:
+        'http://p1.music.126.net/9h_TA43qbHLTKwQrQzhLgQ==/18162832579997237.jpg?param=130y130',
+    title: 'Move Your Body (Alan Walker Remix)',
+    artists: 'Sia / Alan Walker',
+  ),
+  Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=545947179.mp3',
+    albumArtUrl:
+        'http://p2.music.126.net/jzZQFQdFrb89H22tUA1Qlg==/109951163369745204.jpg?param=130y130',
+    title: 'Flames',
+    artists: 'David Guetta / Sia',
+  ),
+  Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=81787305.mp3',
+    albumArtUrl:
+        'http://p2.music.126.net/ff8QRXiKefz7qUj6VeFHHg==/109951164375334868.jpg?param=177y177',
+    title: 'Memories',
+    artists: 'Maroon 5',
+  ),
+  Music(
     audioPath: 'https://music.163.com/song/media/outer/url?id=1698391.mp3',
     albumArtUrl:
         'http://p2.music.126.net/mUbPStazv0oF9yrkOiwQ6Q==/1699844976542424.jpg?param=130y130',
     title: 'Beat It',
     artists: 'Michael Jackson',
+  ),
+  Music(
+    audioPath: 'https://music.163.com/song/media/outer/url?id=1357785909.mp3',
+    albumArtUrl:
+        'http://p1.music.126.net/USRrIEfSNxJ4JnfKp4f6pA==/109951164470147956.jpg?param=130y130',
+    title: '野狼disco',
+    artists: '宝石gem',
   ),
   Music(
     audioPath: 'https://music.163.com/song/media/outer/url?id=4132379.mp3',

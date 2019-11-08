@@ -166,7 +166,7 @@ export 'question/pages/quiz_page.dart';
 
 export 'article/one_article_page.dart';
 
-export 'baixing_life/baixing_page.dart';
+export 'baixing_life/on_boarding_page.dart';
 
 export 'juzimi/splash.dart';
 

@@ -103,10 +103,12 @@ __iOS__
 
 在[Info.plist](https://github.com/shichunlei/flutter_app/blob/master/ios/Runner/Info.plist)下编辑
 
-```plist
+```
 <key>NSAppTransportSecurity</key>
 <dict>
     <key>NSAllowsArbitraryLoads</key>
+    <true/>
+    <key>NSAllowsArbitraryLoadsInWebContent</key>
     <true/>
 </dict>
 ```
@@ -335,6 +337,7 @@ __iOS__
 | path_provider | [path_provider](https://github.com/flutter/plugins/tree/master/packages/path_provider) | ![](https://img.shields.io/pub/v/path_provider.svg) |
 | 高德地图定位 | [AMapBaseLocation](https://github.com/OpenFlutter/amap_base_flutter) | ![](https://img.shields.io/pub/v/amap_base_location.svg) |
 | 动画字体 | [animated_text_kit](https://github.com/aagarwal1012/Animated-Text-Kit) | ![](https://img.shields.io/pub/v/animated_text_kit.svg) |
+| GradientText | [GradientText](https://github.com/tunitowen/gradient_text) | ![](https://img.shields.io/pub/v/gradient_text.svg) |
 | 集成icons库 |[flutter_vector_icons](https://github.com/pd4d10/flutter-vector-icons)| ![](https://img.shields.io/pub/v/flutter_vector_icons.svg) |
 | 仿京东地址选择器 | [flutter_jd_address_selector](https://github.com/shichunlei/flutter_jd_address_selector) | 0.0.1 |
 | SleekCircularSlider | [sleek_circular_slider](https://github.com/matthewfx/sleek_circular_slider) | ![](https://img.shields.io/pub/v/sleek_circular_slider.svg) |

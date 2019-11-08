@@ -273,7 +273,7 @@ packages:
       name: flutter_sound
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.5.1"
+    version: "1.5.2"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -314,6 +314,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.3.8"
+  gradient_text:
+    dependency: "direct main"
+    description:
+      name: gradient_text
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.2"
   html:
     dependency: transitive
     description:
@@ -495,7 +502,7 @@ packages:
       name: photo_view
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.7.0"
+    version: "0.8.0"
   platform:
     dependency: transitive
     description:
@@ -523,7 +530,7 @@ packages:
       name: qr_flutter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.0.1"
+    version: "3.1.0"
   quiver:
     dependency: transitive
     description:
@@ -544,7 +551,7 @@ packages:
       name: rxdart
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.22.5"
+    version: "0.22.6"
   screen:
     dependency: transitive
     description:

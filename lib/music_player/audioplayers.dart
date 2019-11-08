@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_app/bean/music.dart';
 import 'package:flutter_app/page_index.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import 'widgets/album_cover.dart';
 
@@ -35,7 +34,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   int totalSongs = 0;
 
   PlayerState playerState = PlayerState.stopped;
-  IconData _icon = Icons.play_arrow;
 
   /// 当前音乐名称
   String songTitle = '';
@@ -48,8 +46,8 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
 
   String get positionText => Utils.duration2String(position);
 
-  CycleMode mode = CycleMode.RANDOM;
-  IconData modeIcon = CustomIcon.random_player;
+  CycleMode mode = CycleMode.SEQUENCE;
+  IconData modeIcon = Icons.repeat;
 
   @override
   void initState() {
@@ -79,54 +77,53 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     _index = 0;
     songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
 
-    audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
-    audioPlayer.setReleaseMode(ReleaseMode.RELEASE);
+    audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER)
+      ..setReleaseMode(ReleaseMode.RELEASE)
+      ..onDurationChanged.listen((Duration duration) {
+        debugPrint('onDurationChanged===============Max duration: $duration');
+        setState(() {
+          this.duration = duration;
+          if (position != null) {
+            this._progress = position.inMilliseconds / duration.inMilliseconds;
+          }
+        });
+      })
+      ..onAudioPositionChanged.listen((Duration position) {
+        debugPrint('onAudioPositionChanged===============position: $position');
+        setState(() {
+          this.position = position;
 
-    audioPlayer.onDurationChanged.listen((Duration d) {
-      debugPrint('onDurationChanged===============Max duration: $d');
-      setState(() => duration = d);
-    });
+          if (duration != null) {
+            this._progress = position.inMilliseconds / duration.inMilliseconds;
+          }
+        });
+      })
+      ..onPlayerCompletion.listen((event) {
+        _onComplete();
+        setState(() {
+          position = duration;
 
-    audioPlayer.onAudioPositionChanged.listen((Duration p) {
-      debugPrint('onAudioPositionChanged===============position: $p');
-      setState(() {
-        position = p;
+          debugPrint('onPlayerCompletion========$position');
+        });
+      })
+      ..onPlayerError.listen((msg) {
+        debugPrint('audioPlayer error : $msg');
+        setState(() {
+          playerState = PlayerState.stopped;
+          duration = Duration(seconds: 0);
+          position = Duration(seconds: 0);
 
-        _progress = position != null && position.inMilliseconds > 0
-            ? (position?.inMilliseconds?.toDouble() ?? 0.0) /
-                (duration?.inMilliseconds?.toDouble() ?? 0.0)
-            : 0.0;
+          debugPrint('onPlayerError========$position============$duration');
+        });
+      })
+      ..onPlayerStateChanged.listen((AudioPlayerState state) {
+        if (!mounted) return;
+        setState(() {
+          _audioPlayerState = state;
+        });
+
+        debugPrint('${_audioPlayerState.toString()}');
       });
-    });
-
-    audioPlayer.onPlayerCompletion.listen((event) {
-      _onComplete();
-      setState(() {
-        position = duration;
-
-        debugPrint('onPlayerCompletion========$position');
-      });
-    });
-
-    audioPlayer.onPlayerError.listen((msg) {
-      debugPrint('audioPlayer error : $msg');
-      setState(() {
-        playerState = PlayerState.stopped;
-        duration = Duration(seconds: 0);
-        position = Duration(seconds: 0);
-
-        debugPrint('onPlayerError========$position============$duration');
-      });
-    });
-
-    audioPlayer.onPlayerStateChanged.listen((AudioPlayerState state) {
-      if (!mounted) return;
-      setState(() {
-        _audioPlayerState = state;
-      });
-
-      debugPrint('${_audioPlayerState.toString()}');
-    });
   }
 
   void _onComplete() {
@@ -134,7 +131,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     debugPrint('onComplete========');
     setState(() {
       playerState = PlayerState.stopped;
-      _icon = Icons.stop;
     });
     if (!(CycleMode.SEQUENCE == mode && _index == totalSongs - 1)) next();
   }
@@ -148,7 +144,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
       debugPrint('=============${audioPlayer.playerId}');
       setState(() {
         playerState = PlayerState.playing;
-        _icon = Icons.pause;
         songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
       });
     }
@@ -163,7 +158,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
       debugPrint('=============${audioPlayer.playerId}');
       setState(() {
         playerState = PlayerState.playing;
-        _icon = Icons.pause;
         songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
       });
     }
@@ -176,7 +170,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     if (result == 1)
       setState(() {
         playerState = PlayerState.paused;
-        _icon = Icons.play_arrow;
         songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
       });
     return result;
@@ -189,7 +182,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     if (result == 1)
       setState(() {
         playerState = PlayerState.stopped;
-        _icon = Icons.stop;
         position = Duration();
       });
   }
@@ -204,22 +196,19 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     } else {
       _index = Random().nextInt(totalSongs - 1);
     }
+    _seek(Duration(milliseconds: 0));
 
     Future.delayed(Duration(milliseconds: 800), () {
       _play();
     });
   }
 
-  Future<int> _seek(Duration duration) async {
-    setState(() {
-      playerState = PlayerState.paused;
-    });
-    int result = await audioPlayer.seek(duration);
+  Future<int> _seek(Duration position) async {
+    int result = await audioPlayer.seek(position);
 
     if (result == 1) {
       setState(() {
-        playerState = PlayerState.playing;
-        position = duration;
+        this.position = position;
       });
     }
 
@@ -281,16 +270,50 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
                   scrollAxis: Axis.horizontal,
                 ),
               ),
-              Text(
-                  position != null
-                      ? "$positionText / $durationText"
-                      : duration != null ? durationText : '0:00:00 / 0:00:00',
-                  style: TextStyle(
-                      color: Colors.white.withOpacity(0.75),
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 3.0,
-                      height: 1.5)),
+              Slider(
+                onChanged: (value) {
+                  if (duration != null) {
+                    _seek(Duration(
+                        milliseconds:
+                            (duration.inMilliseconds * value).toInt()));
+                  }
+                },
+                value: _progress,
+                onChangeEnd: (value) {
+                  setState(() {
+                    playerState = PlayerState.playing;
+                  });
+                },
+                onChangeStart: (value) {
+                  if (isPlaying) {
+                    setState(() {
+                      playerState = PlayerState.paused;
+                    });
+                  }
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(positionText,
+                        style: TextStyle(
+                            color: Colors.white.withOpacity(0.75),
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 3.0,
+                            height: 1.5)),
+                    Text(durationText,
+                        style: TextStyle(
+                            color: Colors.white.withOpacity(0.75),
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 3.0,
+                            height: 1.5))
+                  ],
+                ),
+              ),
               Material(
                 type: MaterialType.transparency,
                 child: Padding(
@@ -333,43 +356,56 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
           showDialog(
               context: context,
               builder: (context) {
-                return SimpleDialog(
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(CustomIcon.single_player),
-                      title: Text('单曲循环'),
-                      onTap: () {
-                        Navigator.pop(context);
-                        setState(() {
-                          modeIcon = CustomIcon.single_player;
-                          mode = CycleMode.SINGLE;
-                        });
-                      },
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SimpleDialog(
+                          children: <Widget>[
+                            ListTile(
+                              leading: Icon(Icons.repeat_one),
+                              title: Text('单曲循环'),
+                              onTap: () {
+                                Navigator.pop(context);
+                                setState(() {
+                                  modeIcon = Icons.repeat_one;
+                                  mode = CycleMode.SINGLE;
+                                });
+                              },
+                              selected: mode == CycleMode.SINGLE,
+                            ),
+                            ListTile(
+                              leading: Icon(Icons.repeat, size: 20),
+                              title: Text('顺序播放'),
+                              onTap: () {
+                                Navigator.pop(context);
+                                setState(() {
+                                  modeIcon = Icons.repeat;
+                                  mode = CycleMode.SEQUENCE;
+                                });
+                              },
+                              selected: mode == CycleMode.SEQUENCE,
+                            ),
+                            ListTile(
+                              leading: Icon(Icons.shuffle, size: 20),
+                              title: Text('随机播放'),
+                              onTap: () {
+                                Navigator.pop(context);
+                                setState(() {
+                                  modeIcon = Icons.shuffle;
+                                  mode = CycleMode.RANDOM;
+                                });
+                              },
+                              selected: mode == CycleMode.RANDOM,
+                            ),
+                          ],
+                          contentPadding: EdgeInsets.all(0),
+                        ),
+                      ),
                     ),
-                    ListTile(
-                      leading: Icon(CustomIcon.sequence_player, size: 20),
-                      title: Text('顺序播放'),
-                      onTap: () {
-                        Navigator.pop(context);
-                        setState(() {
-                          modeIcon = CustomIcon.sequence_player;
-                          mode = CycleMode.SEQUENCE;
-                        });
-                      },
-                    ),
-                    ListTile(
-                      leading: Icon(CustomIcon.random_player, size: 20),
-                      title: Text('随机播放'),
-                      onTap: () {
-                        Navigator.pop(context);
-                        setState(() {
-                          modeIcon = CustomIcon.random_player;
-                          mode = CycleMode.RANDOM;
-                        });
-                      },
-                    ),
-                  ],
-                  contentPadding: EdgeInsets.all(0),
+                  ),
                 );
               });
         });
@@ -379,7 +415,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
-        icon: Icon(SimpleLineIcons.playlist, color: Colors.white, size: 20),
+        icon: Icon(Icons.queue_music, color: Colors.white, size: 20),
         onPressed: () => showModalBottomSheet(
             context: context, builder: (builder) => _bottomSheetItem(context)));
   }
@@ -422,7 +458,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
       highlightColor: lightAccentColor.withOpacity(0.5),
       elevation: 10.0,
       highlightElevation: 5,
-      icon: _icon,
+      icon: isPlaying ? Icons.pause : isPaused ? Icons.play_arrow : Icons.stop,
       iconSize: 35,
       size: 70,
       iconColor: darkAccentColor,

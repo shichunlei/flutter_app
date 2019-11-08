@@ -144,7 +144,7 @@ class ExpandStateBean {
           SubExpandBean('仿好奇心日报', QDailySplashPage()),
           SubExpandBean('豆瓣电影', MovieHomePage()),
           SubExpandBean('tubi TV', TubiTVHomePage()),
-          SubExpandBean('百姓生活+', IndexPage()),
+          SubExpandBean('百姓生活+', OnBoardingPage()),
           SubExpandBean('我是个句子迷', SplashPage()),
           SubExpandBean('有道精品课', YouDaoHomePage()),
           SubExpandBean('每日一文', OneArticlePage()),

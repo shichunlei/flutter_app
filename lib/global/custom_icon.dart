@@ -11,7 +11,6 @@ class CustomIcon {
   static const IconData back = const IconData(0xe605, fontFamily: 'CustomIcon');
   static const IconData choose =
       const IconData(0xe501, fontFamily: 'CustomIcon');
-  static const IconData more = const IconData(0xe608, fontFamily: 'CustomIcon');
 
   static const IconData share =
       const IconData(0xe61e, fontFamily: 'CustomIcon');
@@ -31,9 +30,6 @@ class CustomIcon {
   static const IconData press =
       const IconData(0xe6cc, fontFamily: 'CustomIcon');
   static const IconData pcpn = const IconData(0xe9be, fontFamily: 'CustomIcon');
-
-  static const IconData sun = const IconData(0xe609, fontFamily: 'CustomIcon');
-  static const IconData moon = const IconData(0xe650, fontFamily: 'CustomIcon');
 
   static const IconData air = const IconData(0xe65a, fontFamily: 'CustomIcon');
   static const IconData co = const IconData(0xe620, fontFamily: 'CustomIcon');
@@ -81,11 +77,4 @@ class CustomIcon {
 
   static const IconData qdaily_logo =
       const IconData(0xe769, fontFamily: 'CustomIcon');
-
-  static const IconData single_player =
-      const IconData(0xe78d, fontFamily: 'CustomIcon');
-  static const IconData sequence_player =
-      const IconData(0xe791, fontFamily: 'CustomIcon');
-  static const IconData random_player =
-      const IconData(0xe6fc, fontFamily: 'CustomIcon');
 }
