@@ -121,7 +121,7 @@ class ExpandStateBean {
           SubExpandBean('骨架屏示例', ShimmerDemo()),
           SubExpandBean('录音', SoundDemo()),
         ]),
-    ExpandStateBean(leading: Icons.filter_6, title: 'UI Challenges', children: [
+    ExpandStateBean(leading: Icons.filter_6, title: 'Beautiful UI', children: [
       SubExpandBean('登录页面1', PasswordLoginPage()),
       SubExpandBean('登录页面2', LogonPage()),
       SubExpandBean('登录页面3', SlidingLoginPage()),
@@ -135,6 +135,8 @@ class ExpandStateBean {
       SubExpandBean('CardFlip', CardFlipPage()),
       SubExpandBean('仿抖音首页动画', TikTokPage()),
       SubExpandBean('BackDrop', BackDropPage()),
+      SubExpandBean('BankScreen', BankScreen()),
+      SubExpandBean('TravelScreen', TravelScreen()),
     ]),
     ExpandStateBean(
         leading: Icons.filter_7,

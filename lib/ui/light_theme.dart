@@ -11,7 +11,6 @@ class LightTheme extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
         data: ThemeData(
-            brightness: Brightness.light,
             accentColor: readerMainColor,
             primaryColor: readerMainColor,
             scaffoldBackgroundColor: Colors.grey[200],

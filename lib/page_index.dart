@@ -180,6 +180,9 @@ export 'reader/home.dart';
 
 export 'tubitv/home.dart';
 
+export 'ui_screen/bank_screen.dart';
+export 'ui_screen/travel_screen.dart';
+
 export 'res/colors.dart';
 export 'res/dimens.dart';
 export 'res/styles.dart';
