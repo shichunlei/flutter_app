@@ -77,7 +77,7 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_html: ^0.11.0
 
   # 侧滑菜单
-  flutter_inner_drawer: ^0.5.0
+  flutter_inner_drawer: ^0.5.1
 
   flutter_jd_address_selector:
     git:
@@ -117,7 +117,7 @@ dependencies: # 应用或包依赖的其它包或插件
   image_gallery_saver: ^1.2.2
 
   # 图片选择器
-  image_picker: ^0.6.1+10
+  image_picker: ^0.6.1+11
 
   # 引导页
   intro_slider: ^2.2.8

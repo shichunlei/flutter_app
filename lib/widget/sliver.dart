@@ -84,116 +84,112 @@ class _SliverPageState extends State<SliverPage>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      body: Stack(children: <Widget>[
-        NestedScrollView(
-          controller: scrollController,
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              SliverOverlapAbsorber(
-                handle:
-                    NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                child: SliverAppBar(
-                  automaticallyImplyLeading: false,
-                  elevation: 0.0,
-                  pinned: true,
-                  backgroundColor: Colors.white,
-                  forceElevated: innerBoxIsScrolled,
-                  expandedHeight: headerHeight - Utils.topSafeHeight,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: Column(
-                      children: <Widget>[
-                        /// 顶部banner部分
-                        Container(
-                          height: bannerHeight,
-                          child: Swiper(
-                              itemBuilder: (context, index) => ImageLoadView(
-                                    bannerImages[index],
-                                    fit: BoxFit.cover,
-                                  ),
-                              itemCount: 4,
-                              pagination: SwiperPagination(
-                                  builder: SwiperPagination.fraction,
-                                  alignment: Alignment.bottomRight),
-                              autoplay: true),
-                        ),
+      body: NestedScrollView(
+        controller: scrollController,
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverOverlapAbsorber(
+              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+              child: SliverAppBar(
+                brightness: brightness,
+                automaticallyImplyLeading: false,
+                elevation: 0.0,
+                pinned: true,
+                backgroundColor: Colors.white,
+                forceElevated: innerBoxIsScrolled,
+                expandedHeight: headerHeight - Utils.topSafeHeight,
+                titleSpacing: 0.0,
+                title: AppBar(
+                    elevation: 0,
 
-                        /// TabBar上面部分，（如果TabBar上面纵向有多个控件应尽可能多的将控件放到此处）
-                        Container(
-                          padding: EdgeInsets.all(20),
-                          alignment: Alignment.center,
-                          child: Text(
-                            '这里是tabBar上面的部分',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 24.0),
-                          ),
-                          height: 100.0,
-                          color: Colors.pinkAccent.withOpacity(0.8),
+                    /// AppBar背景随着页面向上滑动逐渐由透明色变为白色，即透明度由0->255
+                    backgroundColor: Colors.transparent,
+                    centerTitle: true,
+                    title: Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                        child: Row(children: <Widget>[
+                          Icon(Icons.search, color: Colors.grey[300]),
+                          Text('关键字',
+                              style: TextStyle(
+                                  fontSize: 14, color: Colors.grey[300]))
+                        ]),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: barIconColor),
+                            color: Colors.transparent,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30)))),
+                    automaticallyImplyLeading: false,
+                    leading: Container(
+                        child: Image.asset('images/xianyu.png',
+
+                            /// 左侧图标颜色由白色变为黑色即色值的R G B 均随着滑动变化由255 -> 0
+                            color: barIconColor),
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(left: 20)),
+                    actions: <Widget>[
+                      IconButton(
+                          icon: Icon(CustomIcon.scan,
+
+                              /// 右侧图标颜色由白色变为黑色即色值的R G B 均随着滑动变化由255 -> 0
+                              color: barIconColor),
+                          onPressed: () {})
+                    ]),
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Column(
+                    children: <Widget>[
+                      /// 顶部banner部分
+                      Container(
+                        height: bannerHeight,
+                        child: Swiper(
+                            itemBuilder: (context, index) => ImageLoadView(
+                                  bannerImages[index],
+                                  fit: BoxFit.cover,
+                                ),
+                            itemCount: 4,
+                            pagination: SwiperPagination(
+                                builder: SwiperPagination.fraction,
+                                alignment: Alignment.bottomRight),
+                            autoplay: true),
+                      ),
+
+                      /// TabBar上面部分，（如果TabBar上面纵向有多个控件应尽可能多的将控件放到此处）
+                      Container(
+                        padding: EdgeInsets.all(20),
+                        alignment: Alignment.center,
+                        child: Text(
+                          '这里是tabBar上面的部分',
+                          style: TextStyle(color: Colors.white, fontSize: 24.0),
                         ),
-                      ],
-                    ),
+                        height: 100.0,
+                        color: Colors.pinkAccent.withOpacity(0.8),
+                      ),
+                    ],
                   ),
                 ),
               ),
+            ),
 
-              /// TabBar部分
-              SliverPersistentHeader(
-                  delegate: SliverAppBarDelegate(TabBar(
-                      tabs: tabs,
-                      labelColor: Colors.black,
-                      unselectedLabelColor: Colors.grey,
-                      controller: controller,
-                      isScrollable: true,
-                      indicatorColor: Colors.yellowAccent)),
-                  // 悬停到顶部
-                  pinned: true),
-            ];
-          },
-          body: TabBarView(
-            controller: controller,
-            children: titleTabs.map((view) {
-              return BottomGridView(title: titleTabs[currentIndex]);
-            }).toList(),
-          ),
+            /// TabBar部分
+            SliverPersistentHeader(
+                delegate: SliverAppBarDelegate(TabBar(
+                    tabs: tabs,
+                    labelColor: Colors.black,
+                    unselectedLabelColor: Colors.grey,
+                    controller: controller,
+                    isScrollable: true,
+                    indicatorColor: Colors.yellowAccent)),
+                // 悬停到顶部
+                pinned: true),
+          ];
+        },
+        body: TabBarView(
+          controller: controller,
+          children: titleTabs.map((view) {
+            return BottomGridView(title: titleTabs[currentIndex]);
+          }).toList(),
         ),
-        Container(
-          height: Utils.navigationBarHeight,
-          child: AppBar(
-              brightness: brightness,
-
-              /// AppBar背景随着页面向上滑动逐渐由透明色变为白色，即透明度由0->255
-              backgroundColor:
-                  Color.fromARGB((navAlpha * 255).toInt(), 255, 255, 255),
-              elevation: 0,
-              centerTitle: true,
-              title: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  child: Row(children: <Widget>[
-                    Icon(Icons.search, color: Colors.grey[300]),
-                    Text('关键字',
-                        style: TextStyle(fontSize: 14, color: Colors.grey[300]))
-                  ]),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: barIconColor),
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.all(Radius.circular(30)))),
-              automaticallyImplyLeading: false,
-              leading: Container(
-                  child: Image.asset('images/xianyu.png',
-
-                      /// 左侧图标颜色由白色变为黑色即色值的R G B 均随着滑动变化由255 -> 0
-                      color: barIconColor),
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 20)),
-              actions: <Widget>[
-                IconButton(
-                    icon: Icon(CustomIcon.scan,
-
-                        /// 右侧图标颜色由白色变为黑色即色值的R G B 均随着滑动变化由255 -> 0
-                        color: barIconColor),
-                    onPressed: () {})
-              ]),
-        )
-      ]),
+      ),
     );
   }
 }

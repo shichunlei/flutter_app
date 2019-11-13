@@ -245,7 +245,7 @@ packages:
       name: flutter_inner_drawer
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.5.0"
+    version: "0.5.1"
   flutter_jd_address_selector:
     dependency: "direct main"
     description:
@@ -362,7 +362,7 @@ packages:
       name: image_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.6.1+10"
+    version: "0.6.1+11"
   intl:
     dependency: transitive
     description:

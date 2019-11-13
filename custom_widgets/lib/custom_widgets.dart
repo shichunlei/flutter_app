@@ -18,6 +18,7 @@ export 'ruler.dart';
 export 'skip_down_time_progress.dart';
 export 'smooth_star_rating.dart';
 export 'sparkline.dart';
+export 'stick_widget.dart';
 export 'titled_navigation_bar.dart';
 export 'utils.dart';
 export 'wave.dart';

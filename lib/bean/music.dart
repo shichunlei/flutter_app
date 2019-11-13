@@ -31,6 +31,126 @@ class Music {
 
 List<Music> songsData = [
   Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C400004U394g3ZqSXz.m4a?guid=2796982635&vkey=0741870AAFD65C360FBA75A7EE49860BD3E504939726C7FB58A5CA4EC07F905FCBD44DE5B910B3C4232C8D9A47AD9E088B3D1D2DFA4C02BE&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000000eR8wf1H9AIh.jpg?max_age=2592000',
+    title: '又见送情郎',
+    artists: '王琪',
+  ),
+  Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C400002ZKWJ21Iqzpe.m4a?guid=2796982635&vkey=85729734C2B1CACA2C78013AB9E0C5454FBC51149956840A17DAD1E857422EC9178DDE203D51DC817B9792B89A39F46AF986D61365E5D3F3&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000003u7YSp2jv8zL.jpg?max_age=2592000',
+    title: '送亲',
+    artists: '王琪',
+  ),
+  Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C400001lZWGy3wSExc.m4a?guid=2796982635&vkey=5857C17B2E9A217654EE85336D1E8F9365C396845F8EDAD2A3B16E1EB70527F0B8742DEFE7005D5E2F8C6EABAA2748441EC02D6AE988B695&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M0000035jVc236fOjM.jpg?max_age=2592000',
+    title: '红尘情痴',
+    artists: '王琪',
+  ),
+  Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C400002zLKsf1qrKaq.m4a?guid=2796982635&vkey=7D5BD64104A26263D6DFB1927635324A3190CE06F5BA68EB644139C392561689679AB18AA51B2CDB3CC185C345F4510909166514BF892248&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000004CqsM73IMs7y.jpg?max_age=2592000',
+    title: '站着等你三千年',
+    artists: '王琪',
+  ),
+  Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C400003qf2r33lue13.m4a?guid=2796982635&vkey=E573F3629E03B4E83A043661C1DB0CCE99A33C1A26E76A27264435A1C4B068DB73AA207FDE1BB6D789FD997231044058AF68D113AFAAAF1C&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000002AsAzl0fHsXP.jpg?max_age=2592000',
+    title: '赢在江湖',
+    artists: '姜鹏',
+  ),
+  Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C400001eaMqi4Rfv95.m4a?guid=2796982635&vkey=827FC949E36BD5C1D6AD775AA3675C71B8CFBBD1E20F372974DC74DC8CCE3B8627EEB3A0A95C674B386ADB8E0F550A2C146E37A6534CE4A8&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000000vk5dU1O8lQs.jpg?max_age=2592000',
+    title: '万物生（梵语）',
+    artists: '萨顶顶',
+  ),
+  Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C400003i9Ifn0SDlkd.m4a?guid=2796982635&vkey=1B927BD64FC530B3743295462FA9C3A49A2B7C37311959EC168817817E11982D1EDB8445CFB08D62D241D02549783D46DE0DBEEBAB2B8ADE&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000000HqrR73Ovy3F.jpg?max_age=2592000',
+    title: '万物生（国语）',
+    artists: '萨顶顶',
+  ),
+  Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C400000NHaW52MQIeE.m4a?guid=2796982635&vkey=5C8794DDF5DA3DE83811B77A70539CC875F4BB19DB1A1A734EB9E9520811A27FF9C16F6F2F0C05277B1B2322321EACF6E59F7E1AE776E660&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000003wZs1S3qoU9J.jpg?max_age=2592000',
+    title: '全世界宣布爱你',
+    artists: '孙子涵、李潇潇',
+  ),
+  Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C400000Qq37c4bV6Tm.m4a?guid=2796982635&vkey=38DF15CBD5AD4355D04970E438488CC698FCCB9C5D8E9C8C36B89B1C1C49EA3C88D6A2CF627BF86AAC77EF827C4632BE2C23FD57E69A340B&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000002xsHEV0y3vLe.jpg?max_age=2592000',
+    title: 'Ignite',
+    artists: 'K-391、Alan Walker、Julie Bergan、胜利 (승리)',
+  ),
+  Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C400000xhio724WRmK.m4a?guid=2796982635&vkey=3F6C9D04AB9EEF91641499CE477946D9376C991756E87C3E4BA4AC450B23BDAAFAEE911235776391F672DC85A31B5899357937807E301269&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000001z1OuX41cBAx.jpg?max_age=2592000',
+    title: '缘分一道桥',
+    artists: '王力宏、谭维维',
+  ),
+  Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C400001WI9Aa0T7Yni.m4a?guid=2796982635&vkey=888209494B06082C4238ED9498B37F9639C897BF4F5F745869BB111181CCCE5092E6134D7D8EC121501E1FC9C8A3275EC7DEDC1B000765C6&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000004S9OCr1uiKcv.jpg?max_age=2592000',
+    title: '渡我不渡她',
+    artists: '孤独诗人',
+  ),
+  Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C400001FS7ce41y4dZ.m4a?guid=2796982635&vkey=7A12BB76CCF8C1AE5B6C5DA208C59AF85DC63044597932757246820D04DEFA5B60E6355A2C9B79A8AB16181FFB1FF93AADA72CC29C2A5190&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000004NiE4r2IRs6I.jpg?max_age=2592000',
+    title: '多年以后',
+    artists: '大欢',
+  ),
+  Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C4000049yy4N3SQcyk.m4a?guid=2796982635&vkey=2F91FB75FCBA55550FAFCBDA36962802F91390B65215A4D8A3632114AA36F864D2344982E613810693BBF9EDDED2BDFB3B4BF5481675EF85&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000003shwy324oZyo.jpg?max_age=2592000',
+    title: '被遗忘的回忆',
+    artists: '二小姐',
+  ),
+  Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C400001MmaJX3tzmUW.m4a?guid=2796982635&vkey=D63EB03AB7E850B91F6B65172F6E4D098FB539E89EEEC3E8C929A289BB0BE5551DA53AD68F95B796080040F82CF84D3FAD769CB66D070BBC&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000000HYV6S2UjqUh.jpg?max_age=2592000',
+    title: '隔壁泰山',
+    artists: '阿里郎',
+  ),
+  Music(
+    audioPath:
+        'http://124.89.197.18/amobile.music.tc.qq.com/C400000DWjrF1HSCPL.m4a?guid=2796982635&vkey=30E7261536CBF7A54034E7931DD6769FB7F73D28BD7A286ED8C564AD14FA403CBB091D51EA6E9BB82A9DA26E2AA04E3D559DAB0BB51DCC6C&uin=1899&fromtag=66',
+    albumArtUrl:
+        'http://y.gtimg.cn/music/photo_new/T002R300x300M000000f6Ing0O09Et.jpg?max_age=2592000',
+    title: '干就完了',
+    artists: '金久哲',
+  ),
+  Music(
     audioPath: 'https://music.163.com/song/media/outer/url?id=1398633928.mp3',
     albumArtUrl:
         'http://p1.music.126.net/qz6xHSzC4gERYzfEVx6F-Q==/109951164443883328.jpg?param=130y130',
@@ -63,7 +183,7 @@ List<Music> songsData = [
     albumArtUrl:
         'http://p2.music.126.net/jzZQFQdFrb89H22tUA1Qlg==/109951163369745204.jpg?param=130y130',
     title: 'Flames',
-    artists: 'David Guetta / Sia',
+    artists: 'David Guetta、Sia',
   ),
   Music(
     audioPath: 'https://music.163.com/song/media/outer/url?id=81787305.mp3',
@@ -91,7 +211,7 @@ List<Music> songsData = [
     albumArtUrl:
         'http://p2.music.126.net/rde3fYhAf7xUId0TDFSyBA==/2593747929926872.jpg?param=130y130',
     title: 'I Hate Myself For Loving You',
-    artists: 'Joan Jett & the Blackhearts',
+    artists: 'Joan Jett、the Blackhearts',
   ),
   Music(
     audioPath: 'https://music.163.com/song/media/outer/url?id=1334270932.mp3',
@@ -196,7 +316,7 @@ List<Music> songsData = [
     albumArtUrl:
         'http://p2.music.126.net/7ZKMPIvPcwaK08ffDBTjJw==/109951164124664532.jpg?param=130y130',
     title: '芒种',
-    artists: '音阙诗听 / 赵方婧',
+    artists: '音阙诗听、赵方婧',
   ),
   Music(
     audioPath: 'https://music.163.com/song/media/outer/url?id=1297743701.mp3',
