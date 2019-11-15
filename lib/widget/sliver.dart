@@ -98,43 +98,35 @@ class _SliverPageState extends State<SliverPage>
                 backgroundColor: Colors.white,
                 forceElevated: innerBoxIsScrolled,
                 expandedHeight: headerHeight - Utils.topSafeHeight,
-                titleSpacing: 0.0,
-                title: AppBar(
-                    elevation: 0,
-
-                    /// AppBar背景随着页面向上滑动逐渐由透明色变为白色，即透明度由0->255
-                    backgroundColor: Colors.transparent,
-                    centerTitle: true,
-                    title: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                        child: Row(children: <Widget>[
-                          Icon(Icons.search, color: Colors.grey[300]),
-                          Text('关键字',
-                              style: TextStyle(
-                                  fontSize: 14, color: Colors.grey[300]))
-                        ]),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: barIconColor),
-                            color: Colors.transparent,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(30)))),
-                    automaticallyImplyLeading: false,
-                    leading: Container(
-                        child: Image.asset('images/xianyu.png',
-
-                            /// 左侧图标颜色由白色变为黑色即色值的R G B 均随着滑动变化由255 -> 0
-                            color: barIconColor),
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(left: 20)),
-                    actions: <Widget>[
-                      IconButton(
-                          icon: Icon(CustomIcon.scan,
-
-                              /// 右侧图标颜色由白色变为黑色即色值的R G B 均随着滑动变化由255 -> 0
-                              color: barIconColor),
-                          onPressed: () {})
+                centerTitle: true,
+                title: Container(
+//                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    child: Row(children: <Widget>[
+                      Icon(Icons.search, color: Colors.grey[300]),
+                      Text('关键字',
+                          style:
+                              TextStyle(fontSize: 14, color: Colors.grey[300]))
                     ]),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: barIconColor),
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.all(Radius.circular(30)))),
+                leading: Container(
+                    child: Image.asset('images/xianyu.png',
+
+                        /// 左侧图标颜色由白色变为黑色即色值的R G B 均随着滑动变化由255 -> 0
+                        color: barIconColor),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(left: 20)),
+                actions: <Widget>[
+                  IconButton(
+                      icon: Icon(CustomIcon.scan,
+
+                          /// 右侧图标颜色由白色变为黑色即色值的R G B 均随着滑动变化由255 -> 0
+                          color: barIconColor),
+                      onPressed: () {})
+                ],
                 flexibleSpace: FlexibleSpaceBar(
                   background: Column(
                     children: <Widget>[

@@ -13,7 +13,7 @@ class ItemRange extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScaleTapView(
+    return BouncingView(
       child: Card(
         elevation: 5.0,
         shape: const RoundedRectangleBorder(

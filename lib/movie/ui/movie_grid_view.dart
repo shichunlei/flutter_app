@@ -15,7 +15,7 @@ class MovieGridView extends StatelessWidget {
     double width = (Utils.width - 6 * 2 - 5 * 2) / 3;
     double height = width * 383 / 270;
 
-    return ScaleTapView(
+    return BouncingView(
       child: Container(
           width: width,
           child: Column(

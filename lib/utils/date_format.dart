@@ -520,3 +520,25 @@ String friendlyDateTime(String datetime) {
 
   return friendly;
 }
+
+/// 根据生日计算年龄
+///
+/// [birthday] 生日
+///
+int getAge(String birthday) {
+  DateTime date = DateTime.parse(birthday);
+
+  DateTime today = DateTime.now();
+
+  int age = today.year - date.year;
+
+  if (today.month == date.month) {
+    if (today.day < date.day) {
+      age = age - 1;
+    }
+  } else if (today.month < date.month) {
+    age = age - 1;
+  }
+
+  return age;
+}

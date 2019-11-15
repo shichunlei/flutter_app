@@ -12,7 +12,7 @@ class FirstMovieView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScaleTapView(
+    return BouncingView(
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         height: 200,

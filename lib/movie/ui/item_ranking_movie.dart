@@ -61,7 +61,7 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
 
     desc += "\n${widget.movie?.durations?.first ?? ''}";
 
-    return ScaleTapView(
+    return BouncingView(
         child: Card(
           color: cardBackgroundColor,
           child: Container(

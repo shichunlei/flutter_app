@@ -81,7 +81,7 @@ class ItemList extends StatelessWidget {
       ),
     );
 
-    return ScaleTapView(
+    return BouncingView(
       //点击事件
       onPressed: onTap,
 

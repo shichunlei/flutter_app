@@ -42,7 +42,7 @@ class _ItemSoonViewState extends State<ItemSoonView>
       desc += ' ';
     }).toList();
 
-    return ScaleTapView(
+    return BouncingView(
       child: Card(
         color: cardBackgroundColor,
         child: Container(

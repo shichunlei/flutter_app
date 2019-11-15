@@ -38,7 +38,7 @@ class ExpandStateBean {
           SubExpandBean('AppBar', AppBarWidget()),
           SubExpandBean('Dialog', DialogWidget()),
           SubExpandBean('Sliver 家族控件基本使用', SliverWidget()),
-          SubExpandBean('Sliver AppBar渐变使用', SliverPage()),
+          SubExpandBean('Sliver NestedScrollView使用', SliverPage()),
           SubExpandBean('Sliver 高级用法', SliverDemo()),
           SubExpandBean('Table', TablePage()),
           SubExpandBean('日期时间选择', DateTimePicker()),

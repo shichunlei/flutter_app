@@ -24,7 +24,7 @@ class _ItemClassifyTagState extends State<ItemClassifyTag>
 
   @override
   Widget build(BuildContext context) {
-    return ScaleTapView(
+    return BouncingView(
       child: Stack(
         children: <Widget>[
           ImageLoadView(
