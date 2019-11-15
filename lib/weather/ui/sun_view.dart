@@ -36,6 +36,7 @@ class _SunViewState extends State<SunView>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
         margin: EdgeInsets.only(top: 10.0),
         color: Color(0x2a000000),

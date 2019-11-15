@@ -38,6 +38,7 @@ class _JuZiMiListPageState extends State<JuZiMiListPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return LoaderContainer(
       loadingView: ShimmerView(),
       contentView: EasyRefresh(

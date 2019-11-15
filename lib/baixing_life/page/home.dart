@@ -75,6 +75,7 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
         backgroundColor: Colors.grey[200],
         body: Stack(children: <Widget>[

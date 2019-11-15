@@ -39,6 +39,7 @@ class _BookListsPageState extends State<BookListsPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return LoaderContainer(
         loaderState: _status,
         contentView: EasyRefresh(

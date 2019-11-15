@@ -28,6 +28,7 @@ class _MovieRankingSubPageState extends State<MovieRankingSubPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return FutureBuilder<List<Movie>>(
         builder: (_, AsyncSnapshot<List<Movie>> snapshot) {
           switch (snapshot.connectionState) {

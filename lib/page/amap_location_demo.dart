@@ -34,6 +34,7 @@ class _AMapLocationDemoState extends State<AMapLocationDemo>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
       color: Theme.of(context).primaryColor,
       child: Column(

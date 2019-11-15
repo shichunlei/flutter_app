@@ -208,6 +208,7 @@ class BottomGridViewState extends State<BottomGridView>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     double itemWidth = Utils.width / 2 - 4;
 
     return images.isEmpty

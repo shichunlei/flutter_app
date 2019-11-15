@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../page_index.dart';
 
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:flutter_app/widget/sliver.dart';
 
 class ExpandStateBean {
   String title;

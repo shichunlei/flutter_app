@@ -38,6 +38,7 @@ class _RankingBookListPageState extends State<RankingBookListPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: LoaderContainer(
           contentView: ListView.separated(

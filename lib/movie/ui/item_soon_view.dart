@@ -36,6 +36,7 @@ class _ItemSoonViewState extends State<ItemSoonView>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     String desc = '';
     widget.movie.genres.map((genre) {
       desc += genre;

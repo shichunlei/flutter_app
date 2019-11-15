@@ -19,6 +19,7 @@ class KeepAliveWidgetState extends State<KeepAliveWidget>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Center(
         child: Column(
@@ -34,8 +35,8 @@ class KeepAliveWidgetState extends State<KeepAliveWidget>
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => setState(() {
-              _counter++;
-            }),
+          _counter++;
+        }),
         tooltip: "Increment",
         child: Icon(Icons.add),
       ),

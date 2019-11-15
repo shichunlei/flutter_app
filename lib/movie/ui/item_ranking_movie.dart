@@ -48,6 +48,7 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     String desc = '${widget.movie.year}\n';
     widget.movie.genres.map((genre) {
       desc += genre;
