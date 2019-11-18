@@ -245,7 +245,7 @@ packages:
       name: flutter_inner_drawer
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.5.1"
+    version: "0.5.2"
   flutter_jd_address_selector:
     dependency: "direct main"
     description:
@@ -313,7 +313,7 @@ packages:
       name: flutter_webview_plugin
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.8"
+    version: "0.3.9+1"
   gradient_text:
     dependency: "direct main"
     description:
@@ -474,7 +474,7 @@ packages:
       name: path_provider
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.4.0"
+    version: "1.4.2"
   pedantic:
     dependency: transitive
     description:
@@ -572,7 +572,7 @@ packages:
       name: shared_preferences
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.5.4+3"
+    version: "0.5.4+5"
   shimmer:
     dependency: "direct main"
     description:

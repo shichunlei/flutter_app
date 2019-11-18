@@ -125,11 +125,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                     child: Row(
                       children: <Widget>[
                         IconButton(
-                            icon: Image.asset(
-                              'images/rew_15_normal.png',
-                              height: 40,
-                              width: 40,
-                            ),
+                            icon: Icon(Icons.replay_30),
                             onPressed: () {
                               _backwardAction();
                             }),
@@ -151,8 +147,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                             }),
                         Gaps.hGap24,
                         IconButton(
-                            icon: Image.asset('images/fwd_15_normal.png',
-                                height: 40, width: 40),
+                            icon: Icon(Icons.forward_30),
                             onPressed: () {
                               _forwardAction();
                             }),
@@ -227,22 +222,22 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
     );
   }
 
-  /// 快退15秒
+  /// 快退30秒
   _backwardAction() {
     if (_controller.value == null) return;
 
     var position = _controller.value.position.inSeconds;
-    position = max(0, position - 15);
+    position = max(0, position - 30);
 
     _controller.seekTo(Duration(seconds: position));
   }
 
-  /// 快进15秒
+  /// 快进30秒
   _forwardAction() {
     if (_controller.value == null) return;
 
     var position = _controller.value.position.inSeconds;
-    position = min(duration.inSeconds, position + 15);
+    position = min(duration.inSeconds, position + 30);
 
     _controller.seekTo(Duration(seconds: position));
   }

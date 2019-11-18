@@ -78,17 +78,17 @@ class _ItemSeasonViewState extends State<ItemSeasonView> {
                                 ),
                               ))
                           .toList(),
-                      selectedItemBuilder: (_) {
-                        return widget.seasons
-                            .map((value) => DropdownMenuItem<TuBiTV>(
-                                  value: value,
-                                  child: Text(
-                                    '${value?.title}',
-                                    style: TextStyles.textGreyC16,
-                                  ),
-                                ))
-                            .toList();
-                      },
+//                      selectedItemBuilder: (_) {
+//                        return widget.seasons
+//                            .map((value) => DropdownMenuItem<TuBiTV>(
+//                                  value: value,
+//                                  child: Text(
+//                                    '${value?.title}',
+//                                    style: TextStyles.textGreyC16,
+//                                  ),
+//                                ))
+//                            .toList();
+//                      },
                     )
                   : SizedBox(),
             ),
