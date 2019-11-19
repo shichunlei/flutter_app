@@ -3,17 +3,17 @@
 /// title : "秋日特惠！大师课八个课程4折起"
 /// summary : "10月1日~10月15日活动期间，豆瓣影人PRO大师课八门课程4折起，购买课程限量赠送「大师课学习手账」一本！"
 
-class News {
+class MovieNews {
   String title;
   String cover;
   String summary;
   String link;
 
-  News({this.title, this.cover, this.summary, this.link});
+  MovieNews({this.title, this.cover, this.summary, this.link});
 
-  static News fromMap(Map<String, dynamic> map) {
+  static MovieNews fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-    News bannersBean = News();
+    MovieNews bannersBean = MovieNews();
     bannersBean.cover = map['cover'];
     bannersBean.link = map['link'];
     bannersBean.title = map['title'];

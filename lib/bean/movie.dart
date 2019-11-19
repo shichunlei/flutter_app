@@ -107,7 +107,7 @@ class CoverBean {
 /// category : [{"title":"热门","subjects":[{"rate":"6.2","cover_x":1200,"title":"银河补习班","url":"https://movie.douban.com/subject/30282387/","playable":true,"cover":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2561542089.jpg","id":"30282387","cover_y":1694,"is_new":false},{"rate":"7.7","cover_x":3543,"title":"安娜","url":"https://movie.douban.com/subject/27166976/","playable":false,"cover":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2553320254.jpg","id":"27166976","cover_y":4724,"is_new":false},{"rate":"6.6","cover_x":510,"title":"我的天使","url":"https://movie.douban.com/subject/30141343/","playable":false,"cover":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2565435561.jpg","id":"30141343","cover_y":755,"is_new":true}]},{"title":"最新","subjects":[{"rate":"7.1","cover_x":1500,"title":"特别的她 Progressive","url":"https://movie.douban.com/subject/27080660/","playable":false,"cover":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2516948449.jpg","id":"27080660","cover_y":2122,"is_new":true},{"rate":"6.8","cover_x":1475,"title":"我们无法阻挡","url":"https://movie.douban.com/subject/30186498/","playable":false,"cover":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2525120569.jpg","id":"30186498","cover_y":2048,"is_new":true},{"rate":"5.8","cover_x":2000,"title":"幽灵女孩","url":"https://movie.douban.com/subject/27046734/","playable":false,"cover":"https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2560021039.jpg","id":"27046734","cover_y":3000,"is_new":true}]},{"title":"经典","subjects":[{"rate":"9.7","cover_x":2000,"title":"肖申克的救赎","url":"https://movie.douban.com/subject/1292052/","playable":true,"cover":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p480747492.jpg","id":"1292052","cover_y":2963,"is_new":false},{"rate":"9.6","cover_x":600,"title":"霸王别姬","url":"https://movie.douban.com/subject/1291546/","playable":true,"cover":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2561716440.jpg","id":"1291546","cover_y":889,"is_new":false},{"rate":"9.4","cover_x":658,"title":"这个杀手不太冷","url":"https://movie.douban.com/subject/1295644/","playable":true,"cover":"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p511118051.jpg","id":"1295644","cover_y":980,"is_new":false}]}]
 
 class MovieHomeData {
-  List<News> banners;
+  List<MovieNews> banners;
   List<Movie> inTheaters;
   List<Movie> soonMovies;
   List<MovieTag> category;
@@ -117,7 +117,7 @@ class MovieHomeData {
     if (map == null) return null;
     MovieHomeData data = MovieHomeData();
     data.banners = List()
-      ..addAll((map['banners'] as List ?? []).map((o) => News.fromMap(o)));
+      ..addAll((map['banners'] as List ?? []).map((o) => MovieNews.fromMap(o)));
     data.inTheaters = List()
       ..addAll((map['in_theaters'] as List ?? []).map((o) => Movie.fromMap(o)));
     data.soonMovies = List()

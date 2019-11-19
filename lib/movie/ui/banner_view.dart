@@ -6,7 +6,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import '../../page_index.dart';
 
 class BannerView extends StatelessWidget {
-  final List<News> banner;
+  final List<MovieNews> banner;
 
   BannerView({Key key, this.banner}) : super(key: key);
 

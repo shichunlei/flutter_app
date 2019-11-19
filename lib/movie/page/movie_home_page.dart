@@ -15,7 +15,7 @@ class _MovieHomePageState extends State<MovieHomePage> {
   LoaderState _status = LoaderState.Loading;
 
   /// 头部banner新闻
-  List<News> banners = [];
+  List<MovieNews> banners = [];
 
   /// 影院热映
   List<Movie> hotMovies = [];
