@@ -159,6 +159,9 @@ class Utils {
   }
 
   static int getColorHexFromStr(String colorStr, {String alpha: "FF"}) {
+    if (colorStr == null) {
+      return 0;
+    }
     colorStr = colorStr.replaceAll("#", "");
     if (colorStr.length == 6) {
       colorStr = alpha + colorStr;
