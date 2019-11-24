@@ -11,7 +11,7 @@ class ItemOptionText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Utils.randomColor(),
+      color: Utils.randomRGB(),
       child: Container(
           padding: EdgeInsets.all(10),
           child: Column(children: <Widget>[

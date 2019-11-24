@@ -24,9 +24,15 @@ class Utils {
   }
 
   /// 随机颜色
-  static Color randomColor() {
+  static Color randomRGB() {
     return Color.fromARGB(255, Random().nextInt(255), Random().nextInt(255),
         Random().nextInt(255));
+  }
+
+  static Color randomARGB() {
+    Random random = new Random();
+    return Color.fromARGB(random.nextInt(180), random.nextInt(255),
+        random.nextInt(255), random.nextInt(255));
   }
 
   /// 屏幕宽

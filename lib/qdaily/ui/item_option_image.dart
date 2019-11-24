@@ -13,7 +13,7 @@ class ItemOptionImage extends StatelessWidget {
     double width = Utils.width;
 
     return Container(
-        color: Utils.randomColor(),
+        color: Utils.randomRGB(),
         child: Column(children: <Widget>[
           Stack(children: <Widget>[
             ImageLoadView('${option?.image}',
