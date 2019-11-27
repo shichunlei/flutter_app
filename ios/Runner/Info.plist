@@ -8,6 +8,8 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string></string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -42,21 +44,21 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSPhotoLibraryUsageDescription</key>
-    <string>Example usage description</string>
+	<string>Example usage description</string>
 	<key>NSCameraUsageDescription</key>
-    <string>Camera permission is required for barcode scanning.</string>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-        <key>NSAllowsArbitraryLoadsInWebContent</key>
-        <true/>
-    </dict>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>This sample uses the microphone to record your speech and convert it to text.</string>
-    <key>UIBackgroundModes</key>
-    <array>
-    	<string>audio</string>
-    </array>
+	<string>Camera permission is required for barcode scanning.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
+	</dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This sample uses the microphone to record your speech and convert it to text.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 </dict>
 </plist>

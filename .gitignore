@@ -8,3 +8,4 @@ gradlew
 flutter_export_environment.sh
 test.dart
 .dart_tool
+Podfile.lock
