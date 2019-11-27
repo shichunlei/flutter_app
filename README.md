@@ -33,7 +33,7 @@ A new Flutter application.
 ```
 [✓] Flutter (Channel beta, v1.10.7, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
     • Flutter version 1.10.7 at /Users/14cells/Android/flutter
-    • Framework revision e70236e36c (3 weeks ago), 2019-10-02 09:32:30 -0700
+    • Framework revision e70236e36c (8 weeks ago), 2019-10-02 09:32:30 -0700
     • Engine revision 9e6314d348
     • Dart version 2.6.0 (build 2.6.0-dev.0.0 1103600280)
 
@@ -45,18 +45,10 @@ A new Flutter application.
     • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
     • All Android licenses accepted.
 
-[✗] Xcode - develop for iOS and macOS
-    ✗ Xcode installation is incomplete; a full installation is necessary for iOS development.
-      Download at: https://developer.apple.com/xcode/download/
-      Or install Xcode via the App Store.
-      Once installed, run:
-        sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-    ✗ CocoaPods not installed.
-        CocoaPods is used to retrieve the iOS and macOS platform side's plugin code that responds to your plugin usage on the Dart side.
-        Without CocoaPods, plugins will not work on iOS or macOS.
-        For more info, see https://flutter.dev/platform-plugins
-      To install:
-        sudo gem install cocoapods
+[✓] Xcode - develop for iOS and macOS (Xcode 11.2.1)
+    • Xcode at /Applications/Xcode.app/Contents/Developer
+    • Xcode 11.2.1, Build version 11B500
+    • CocoaPods version 1.8.4
 
 [✓] Android Studio (version 3.5)
     • Android Studio at /Applications/Android Studio.app/Contents
@@ -66,6 +58,7 @@ A new Flutter application.
 
 [✓] Connected device (1 available)
     • MI 5X • 1c7664100104 • android-arm64 • Android 8.1.0 (API 27)
+    • iPhone 11 Pro Max • B366D105-9EEC-47E4-A0CE-94C43E9ACD2D • ios • com.apple.CoreSimulator.SimRuntime.iOS-13-2 (simulator)
 ```
 
 #### 注意事项

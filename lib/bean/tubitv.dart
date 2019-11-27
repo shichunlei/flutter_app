@@ -305,8 +305,8 @@ class MonetizationBean {
 /// prelogue : 0
 
 class CreditCuePoints {
-  int postlude;
-  int prelogue;
+  num postlude;
+  num prelogue;
 
   static CreditCuePoints fromMap(Map<String, dynamic> map) {
     if (map == null) return null;

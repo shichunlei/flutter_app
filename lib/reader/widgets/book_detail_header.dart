@@ -20,7 +20,7 @@ class BookDetailsHeaderView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.only(top: Utils.navigationBarHeight),
-        height: 280,
+        height: 285,
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 colors: [pageTopColorStart, pageTopColorEnd],

@@ -77,8 +77,11 @@ class AddressProvider extends BaseDBProvider {
         Address address = Address.fromMap(map);
         addresses.add(address);
       }
+
+      return addresses[0];
     }
-    return addresses?.first;
+
+    return null;
   }
 
   Future<int> deleteAddress(int id) async {
@@ -140,11 +143,15 @@ class AddressProvider extends BaseDBProvider {
 
     List<Address> addresses = List();
 
-    for (Map<String, dynamic> map in maps) {
-      Address address = Address.fromMap(map);
-      addresses.add(address);
-    }
+    if (maps.length > 0) {
+      for (Map<String, dynamic> map in maps) {
+        Address address = Address.fromMap(map);
+        addresses.add(address);
+      }
 
-    return addresses?.first;
+      return addresses[0];
+    } else {
+      return null;
+    }
   }
 }

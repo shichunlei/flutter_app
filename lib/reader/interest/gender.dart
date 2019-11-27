@@ -16,11 +16,11 @@ class _ChoiceGenderPageState extends State<ChoiceGenderPage> {
     return LightTheme(
       child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(automaticallyImplyLeading: false),
           body: Padding(
             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: Stack(
               children: <Widget>[
+                AppBar(automaticallyImplyLeading: false),
                 Positioned(
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +33,7 @@ class _ChoiceGenderPageState extends State<ChoiceGenderPage> {
                               style:
                                   TextStyle(color: Colors.grey, fontSize: 18))
                         ]),
-                    top: 0,
+                    top: Utils.navigationBarHeight,
                     left: 0),
                 Center(
                   child: Row(children: <Widget>[

@@ -13,22 +13,12 @@ class _ChoiceTagPageState extends State<ChoiceTagPage> {
   List<String> tags = [];
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return LightTheme(
       child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(automaticallyImplyLeading: false),
           body: Stack(children: <Widget>[
+            AppBar(automaticallyImplyLeading: false),
             Positioned(
                 child: Column(children: <Widget>[
                   Row(children: <Widget>[
@@ -37,7 +27,7 @@ class _ChoiceTagPageState extends State<ChoiceTagPage> {
                   ], crossAxisAlignment: CrossAxisAlignment.end),
                   Text('让我们更好的为您服务', style: TextStyles.textGrey16)
                 ], crossAxisAlignment: CrossAxisAlignment.start),
-                top: 0,
+                top: Utils.navigationBarHeight,
                 left: 20),
             Positioned(
                 child: Column(children: <Widget>[
@@ -90,7 +80,7 @@ class _ChoiceTagPageState extends State<ChoiceTagPage> {
                     ChoiceChip(label: Text('游戏竞技'), selected: false)
                   ])
                 ]),
-                top: 80,
+                top: 70 + Utils.navigationBarHeight,
                 left: 0,
                 right: 0),
             Positioned(

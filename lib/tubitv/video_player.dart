@@ -42,7 +42,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
         volume = _controller.value.volume;
         position = _controller.value.position;
         duration = _controller.value.duration;
-        if (position >= duration) {
+        if (position > duration) {
           position = Duration(milliseconds: 0);
           _seek(0);
         }
@@ -168,7 +168,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                           Text('$positionText', style: TextStyles.textWhite14),
                           Expanded(
                             child: Slider(
-                              value: position == null
+                              value: position == null || duration == null
                                   ? 0.0
                                   : (position.inMilliseconds /
                                           duration.inMilliseconds)

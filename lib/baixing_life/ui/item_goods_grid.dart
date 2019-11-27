@@ -23,7 +23,7 @@ class ItemGoodsGrid extends StatelessWidget {
             child: Column(children: <Widget>[
               Hero(
                   tag: goods.goodsId,
-                  child: ImageLoadView('${goods.comPic}', height: height - 38)),
+                  child: ImageLoadView('${goods.comPic}', height: height - 40)),
               Container(
                   padding: EdgeInsets.symmetric(horizontal: 5.0),
                   child: Text('${goods.goodsName}',

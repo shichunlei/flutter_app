@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/qdaily.dart';
+import 'package:flutter_app/page_index.dart';
 import 'package:flutter_app/ui/image_load_view.dart';
 
 class ItemColumn extends StatelessWidget {
@@ -21,10 +22,10 @@ class ItemColumn extends StatelessWidget {
                   tag: 'cloumn-image-${column.id}',
                   child: ImageLoadView('${column.image}',
                       width: 80, height: 80, fit: BoxFit.cover)),
-              SizedBox(width: 5),
+              Gaps.hGap10,
               Expanded(
                 child: Container(
-                  height: 80,
+                  height: 85,
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -38,7 +39,7 @@ class ItemColumn extends StatelessWidget {
                       ]),
                 ),
               ),
-              SizedBox(width: 5),
+              Gaps.hGap5,
               Image.asset('images/qdaily/all_column_unsub.png',
                   width: 40, height: 40),
             ]),

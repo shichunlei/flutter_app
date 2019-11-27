@@ -127,7 +127,7 @@ class _QDailySplashPageState extends State<QDailySplashPage>
       if (i == length - 1) {
         _bannerList.add(Stack(children: <Widget>[
           Image.asset(guideList[i],
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity),
           Container(
