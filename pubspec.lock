@@ -119,7 +119,7 @@ packages:
       name: city_pickers
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.28"
+    version: "0.1.29"
   clippy_flutter:
     dependency: "direct main"
     description:
@@ -182,14 +182,14 @@ packages:
       name: device_info
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.4.1+1"
+    version: "0.4.1+2"
   dio:
     dependency: "direct main"
     description:
       name: dio
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.0.5"
+    version: "3.0.7"
   english_words:
     dependency: "direct main"
     description:
@@ -204,15 +204,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.3.2"
-  flute_music_player:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "375653ba14bc7bb20c137c8b422c4c1dfdce7400"
-      url: "https://github.com/iampawan/Flute-Music-Player"
-    source: git
-    version: "0.0.6"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -362,7 +353,7 @@ packages:
       name: image_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.6.2"
+    version: "0.6.2+1"
   intl:
     dependency: transitive
     description:
@@ -432,7 +423,7 @@ packages:
       name: package_info
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.4.0+10"
+    version: "0.4.0+11"
   palette_generator:
     dependency: "direct main"
     description:
@@ -474,7 +465,7 @@ packages:
       name: path_provider
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.4.4"
+    version: "1.4.5"
   pedantic:
     dependency: transitive
     description:
@@ -502,7 +493,7 @@ packages:
       name: photo_view
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.8.2"
+    version: "0.9.0"
   platform:
     dependency: transitive
     description:
@@ -565,14 +556,14 @@ packages:
       name: share
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.6.3+1"
+    version: "0.6.3+3"
   shared_preferences:
     dependency: "direct main"
     description:
       name: shared_preferences
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.5.4+5"
+    version: "0.5.4+6"
   shimmer:
     dependency: "direct main"
     description:
@@ -598,7 +589,7 @@ packages:
       name: sqflite
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.7+2"
+    version: "1.1.7+3"
   stack_trace:
     dependency: transitive
     description:
@@ -675,7 +666,7 @@ packages:
       name: url_launcher
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "5.2.5"
+    version: "5.2.7"
   url_launcher_platform_interface:
     dependency: transitive
     description:
@@ -703,7 +694,7 @@ packages:
       name: video_player
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.10.2+5"
+    version: "0.10.3+3"
   xml:
     dependency: transitive
     description:
@@ -713,4 +704,4 @@ packages:
     version: "3.5.0"
 sdks:
   dart: ">=2.5.0 <3.0.0"
-  flutter: ">=1.9.1+hotfix.4 <2.0.0"
+  flutter: ">=1.9.1+hotfix.5 <2.0.0"

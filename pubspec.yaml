@@ -42,7 +42,7 @@ dependencies: # 应用或包依赖的其它包或插件
 
   city_picker: ^0.1.4
 
-  city_pickers: ^0.1.28
+  city_pickers: ^0.1.29
 
   clippy_flutter: ^1.1.0
 
@@ -54,19 +54,19 @@ dependencies: # 应用或包依赖的其它包或插件
     path: custom_widgets/
 
   # 设备信息
-  device_info: ^0.4.1+1
+  device_info: ^0.4.1+2
 
   # 网络请求库
-  dio: ^3.0.5
+  dio: ^3.0.7
 
   # 英文单词库
   english_words: ^3.1.5
 
   fancy_bottom_navigation: ^0.3.2
 
-  flute_music_player:
-    git:
-      url: https://github.com/iampawan/Flute-Music-Player
+#  flute_music_player:
+#    git:
+#      url: https://github.com/iampawan/Flute-Music-Player
 
   # 颜色选择器
   flutter_colorpicker: ^0.2.6
@@ -117,7 +117,7 @@ dependencies: # 应用或包依赖的其它包或插件
   image_gallery_saver: ^1.2.2
 
   # 图片选择器
-  image_picker: ^0.6.2
+  image_picker: ^0.6.2+1
 
   # 引导页
   intro_slider: ^2.2.8
@@ -130,7 +130,7 @@ dependencies: # 应用或包依赖的其它包或插件
 
   multi_image_picker: ^4.5.9
 
-  package_info: ^0.4.0+10
+  package_info: ^0.4.0+11
 
   palette_generator: ^0.2.0
 
@@ -139,10 +139,10 @@ dependencies: # 应用或包依赖的其它包或插件
 
   path_drawing: ^0.4.1
 
-  path_provider: ^1.4.4
+  path_provider: ^1.4.5
 
   # PhotoView
-  photo_view: ^0.8.2
+  photo_view: ^0.9.0
 
   # 数据管理层
   provider: ^3.1.0+1
@@ -156,16 +156,16 @@ dependencies: # 应用或包依赖的其它包或插件
   # https://github.com/ReactiveX/rxdart
   rxdart: ^0.22.6
 
-  share: ^0.6.3+1
+  share: ^0.6.3+3
 
   # SP
-  shared_preferences: ^0.5.4+5
+  shared_preferences: ^0.5.4+6
 
   # 骨架屏
   shimmer: ^1.0.1
 
   # 数据库
-  sqflite: ^1.1.7+2
+  sqflite: ^1.1.7+3
 
   # 时间线 https://github.com/furkantektas/timeline_list
   timeline_list: ^0.0.5
@@ -173,10 +173,10 @@ dependencies: # 应用或包依赖的其它包或插件
   # 透明占位图片
   transparent_image: ^1.0.0
 
-  url_launcher: ^5.2.5
+  url_launcher: ^5.2.7
 
   # 视频播放器器
-  video_player: ^0.10.2+5
+  video_player: ^0.10.3+3
 
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:

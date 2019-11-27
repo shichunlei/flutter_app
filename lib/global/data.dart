@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/nba/index.dart';
 
 import '../page_index.dart';
 
@@ -128,7 +129,7 @@ class ExpandStateBean {
       SubExpandBean('登录页面5', BottomSheetLoginPage()),
       SubExpandBean('登录页面6', OnboardingPage()),
       SubExpandBean('视频背景登录页面', LoginVideoPage()),
-      SubExpandBean('Music Player', FluteMusicPlayerPage()),
+//      SubExpandBean('Music Player', FluteMusicPlayerPage()),
       SubExpandBean('Audio Player', AudioPlayersPage()),
       SubExpandBean('Flutter Sound', FlutterSoundPage()),
       SubExpandBean('CardFlip', CardFlipPage()),
@@ -145,6 +146,7 @@ class ExpandStateBean {
           SubExpandBean('仿好奇心日报', QDailySplashPage()),
           SubExpandBean('豆瓣电影', MovieHomePage()),
           SubExpandBean('tubi TV', TubiTVHomePage()),
+          SubExpandBean('NBA Sports', NBAHomePage()),
           SubExpandBean('百姓生活+', OnBoardingPage()),
           SubExpandBean('我是个句子迷', SplashPage()),
           SubExpandBean('有道精品课', YouDaoHomePage()),
