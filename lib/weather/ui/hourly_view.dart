@@ -26,7 +26,7 @@ class HourlyView extends StatelessWidget {
                   height: 80.0,
                   padding: EdgeInsets.symmetric(vertical: 10.0),
                   alignment: Alignment.center,
-                  child: Sparkline(
+                  child: SparkLine(
                       data: data,
                       pointsMode: PointsMode.all,
                       showValue: true,

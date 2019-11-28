@@ -14,6 +14,7 @@ export 'horizontal_number_picker.dart';
 export 'marquee.dart';
 export 'preview.dart';
 export 'progress_button.dart';
+export 'radar.dart';
 export 'ruler.dart';
 export 'skip_down_time_progress.dart';
 export 'smooth_star_rating.dart';

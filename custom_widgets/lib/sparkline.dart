@@ -1,26 +1,27 @@
 import 'dart:math' as math;
 import 'dart:ui' as ui show PointMode;
-import 'dart:ui' as ui show TextStyle;
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-/// Strategy used when filling the area of a sparkline.
+import 'utils.dart';
+
+/// Strategy used when filling the area of a SparkLine.
 enum FillMode {
-  /// Do not fill, draw only the sparkline.
+  /// Do not fill, draw only the SparkLine.
   none,
 
-  /// Fill the area above the sparkline: creating a closed path from the line
+  /// Fill the area above the SparkLine: creating a closed path from the line
   /// to the upper edge of the widget.
   above,
 
-  /// Fill the area below the sparkline: creating a closed path from the line
+  /// Fill the area below the SparkLine: creating a closed path from the line
   /// to the lower edge of the widget.
   below,
 }
 
-/// Strategy used when drawing individual data points over the sparkline.
+/// Strategy used when drawing individual data points over the SparkLine.
 enum PointsMode {
   /// Do not draw individual points.
   none,
@@ -32,30 +33,30 @@ enum PointsMode {
   last,
 }
 
-/// A widget that draws a sparkline chart.
+/// A widget that draws a SparkLine chart.
 ///
-/// Represents the given [data] in a sparkline chart that spans the available
+/// Represents the given [data] in a SparkLine chart that spans the available
 /// space.
 ///
-/// By default only the sparkline is drawn, with its looks defined by
+/// By default only the SparkLine is drawn, with its looks defined by
 /// the [lineWidth], [lineColor], and [lineGradient] properties.
 ///
-/// The corners between two segments of the sparkline can be made sharper by
+/// The corners between two segments of the SparkLine can be made sharper by
 /// setting [sharpCorners] to true.
 ///
-/// The area above or below the sparkline can be filled with the provided
+/// The area above or below the SparkLine can be filled with the provided
 /// [fillColor] or [fillGradient] by setting the desired [fillMode].
 ///
-/// [pointsMode] controls how individual points are drawn over the sparkline
+/// [pointsMode] controls how individual points are drawn over the SparkLine
 /// at the provided data point. Their appearance is determined by the
 /// [pointSize] and [pointColor] properties.
 ///
-/// By default, the sparkline is sized to fit its container. If the
-/// sparkline is in an unbounded space, it will size itself according to the
+/// By default, the SparkLine is sized to fit its container. If the
+/// SparkLine is in an unbounded space, it will size itself according to the
 /// given [fallbackWidth] and [fallbackHeight].
-class Sparkline extends StatelessWidget {
-  /// Creates a widget that represents provided [data] in a Sparkline chart.
-  Sparkline(
+class SparkLine extends StatelessWidget {
+  /// Creates a widget that represents provided [data] in a SparkLine chart.
+  SparkLine(
       {Key key,
       @required this.data,
       this.lineWidth = 2.0,
@@ -216,7 +217,7 @@ class Sparkline extends StatelessWidget {
       maxHeight: fallbackHeight,
       child: CustomPaint(
           size: Size.infinite,
-          painter: _SparklinePainter(data,
+          painter: _SparkLinePainter(data,
               lineWidth: lineWidth,
               lineColor: lineColor,
               lineGradient: lineGradient,
@@ -242,8 +243,8 @@ class Sparkline extends StatelessWidget {
   }
 }
 
-class _SparklinePainter extends CustomPainter {
-  _SparklinePainter(this.dataPoints,
+class _SparkLinePainter extends CustomPainter {
+  _SparkLinePainter(this.dataPoints,
       {@required this.lineWidth,
       @required this.lineColor,
       this.lineGradient,
@@ -396,18 +397,11 @@ class _SparklinePainter extends CustomPainter {
       }
 
       if (showValue) {
-        // 新建一个段落建造器，然后将文字基本信息填入;
-        ParagraphBuilder pb = ParagraphBuilder(ParagraphStyle(
-            textAlign: TextAlign.center, fontSize: valueFontSize));
-        pb.pushStyle(ui.TextStyle(color: valueColor));
-        pb.addText('${dataPoints[i]}');
-        // 设置文本的宽度约束
-        ParagraphConstraints pc = ParagraphConstraints(width: widthNormalizer);
-        // 这里需要先layout,将宽度约束填入，否则无法绘制
-        Paragraph paragraph = pb.build()..layout(pc);
         // 文字左上角起始点
         Offset offset = Offset(x - widthNormalizer / 2, y + 5);
-        canvas.drawParagraph(paragraph, offset);
+
+        drawText(canvas, '${dataPoints[i]}', offset,
+            color: valueColor, fontSize: valueFontSize, width: widthNormalizer);
       }
     }
 
@@ -462,7 +456,5 @@ class _SparklinePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_SparklinePainter old) {
-    return true;
-  }
+  bool shouldRepaint(_SparkLinePainter old) => true;
 }

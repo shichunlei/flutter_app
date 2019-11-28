@@ -1,7 +1,7 @@
 import 'dart:ui';
-import 'dart:ui' as ui show TextStyle;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/page_index.dart';
 
 class Background extends CustomPainter {
   @override
@@ -92,20 +92,14 @@ class Background extends CustomPainter {
     canvas.drawCircle(Offset(size.width / 1.7, 210), 3, paint);
     canvas.drawOval(Rect.fromLTWH(70, 450, 45, 25), paint);
 
-    ParagraphBuilder pb = ParagraphBuilder(ParagraphStyle(
-      textAlign: TextAlign.center,
-      fontWeight: FontWeight.bold,
-      fontSize: 65.0,
-    ));
-    pb.pushStyle(ui.TextStyle(color: Colors.red));
-    pb.addText('GO');
-    // 设置文本的宽度约束
-    ParagraphConstraints pc = ParagraphConstraints(width: 100);
-    // 这里需要先layout,将宽度约束填入，否则无法绘制
-    Paragraph paragraph = pb.build()..layout(pc);
     // 文字左上角起始点
     Offset offset = Offset(size.width / 2 - 50, 125.0);
-    canvas.drawParagraph(paragraph, offset);
+
+    drawText(canvas, 'GO', offset,
+        color: Colors.red,
+        fontSize: 65.0,
+        fontWeight: FontWeight.bold,
+        width: 100);
   }
 
   @override
