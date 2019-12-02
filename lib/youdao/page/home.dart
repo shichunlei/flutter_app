@@ -39,6 +39,7 @@ class _YouDaoHomePageState extends State<YouDaoHomePage> {
     return LoaderContainer(
       loaderState: _status,
       contentView: ListView(
+        padding: EdgeInsets.zero,
         physics: const BouncingScrollPhysics(),
         children: <Widget>[
           AspectRatio(

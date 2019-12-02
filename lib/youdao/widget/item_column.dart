@@ -13,7 +13,7 @@ class ItemColumn extends StatelessWidget {
     return Container(
         padding: EdgeInsets.only(top: 5),
         child: ListView(
-            padding: EdgeInsets.only(top: 0),
+            padding: EdgeInsets.zero,
             children: <Widget>[
               Stack(children: <Widget>[
                 ImageLoadView('${columnBean.img}',
@@ -25,6 +25,7 @@ class ItemColumn extends StatelessWidget {
                         fontSize: 25))
               ], alignment: Alignment.center),
               ListView.builder(
+                  padding: EdgeInsets.zero,
                   itemBuilder: (context, index) => ItemCourse(
                       course: columnBean.courseCards[index],
                       onPressed: () => pushNewPage(

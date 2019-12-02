@@ -17,6 +17,7 @@ class PersonScroller extends StatelessWidget {
         padding:
             const EdgeInsets.only(top: 10, left: 5.0, right: 5.0, bottom: 0.0),
         child: ListView.builder(
+            padding: EdgeInsets.zero,
             scrollDirection: Axis.horizontal,
             itemCount: casts.length,
             itemBuilder: (context, index) => PersonGridView(

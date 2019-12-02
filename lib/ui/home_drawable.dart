@@ -14,7 +14,7 @@ class HomeDrawable extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ListView(
-        padding: EdgeInsets.only(top: 0),
+        padding: EdgeInsets.zero,
         children: <Widget>[
           HomeDrawableHeader(),
           Divider(),

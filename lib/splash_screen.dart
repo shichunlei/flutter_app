@@ -40,7 +40,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
               onFinishCallBack: (bool value) {
                 if (value) goToHomePage();
               }),
-          top: Utils.topSafeHeight,
+          top: Utils.topSafeHeight + 20,
           right: 30),
       Positioned(
           child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[

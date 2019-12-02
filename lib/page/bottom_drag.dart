@@ -1,4 +1,3 @@
-import 'package:custom_widgets/bottom_drag_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../page_index.dart';

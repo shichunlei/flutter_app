@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_app/page_index.dart';
-import 'package:flutter_app/ui/line.dart';
 import 'package:flutter_app/utils/date_format.dart';
 
 import 'temp_range_painter.dart';
@@ -24,7 +23,7 @@ class WeeklyView extends StatelessWidget {
               Text('未来一周天气预报', style: TextStyle(color: Colors.white)),
               Line(),
               SizedBox.fromSize(
-                size: Size(Utils.width * 1.5, 266.0),
+                size: Size(Utils.width * 1.5, 271.0),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(

@@ -81,6 +81,7 @@ class HomeStatePage extends State<HomePage> {
             backgroundColor: Colors.grey[200],
             key: _scaffoldKey,
             appBar: AppBar(
+                centerTitle: false,
                 title: InkWell(
                   onTap: () {
                     if (city != '正在定位...') {
@@ -111,8 +112,12 @@ class HomeStatePage extends State<HomePage> {
                       onPressed: () => getTestData(),
                       tooltip: "Tune")
                 ]),
-            body: ListView(
-                physics: BouncingScrollPhysics(), children: _buildListBody()),
+            body: SafeArea(
+              child: ListView(
+                  padding: EdgeInsets.zero,
+                  physics: BouncingScrollPhysics(),
+                  children: _buildListBody()),
+            ),
             drawer: Drawer(child: HomeDrawable())));
   }
 

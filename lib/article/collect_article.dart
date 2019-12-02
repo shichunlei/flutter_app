@@ -55,6 +55,7 @@ class _CollectArticleState extends State<CollectArticle> {
                 debugPrint('${snapshot.data.length}');
                 if (snapshot.data.length > 0) {
                   return ListView.builder(
+                    padding: EdgeInsets.zero,
                     itemBuilder: (context, index) {
                       final item = snapshot.data[index].curr;
                       return GestureDetector(

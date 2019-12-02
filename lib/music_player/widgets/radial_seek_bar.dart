@@ -1,4 +1,3 @@
-import 'package:custom_widgets/fluttery/seekbars.dart';
 import 'package:flutter/material.dart';
 
 import '../../page_index.dart';

@@ -13,7 +13,7 @@ class ItemTagRecommendCourse extends StatelessWidget {
     return Container(
         padding: EdgeInsets.only(top: 5),
         child: ListView(
-            padding: EdgeInsets.only(top: 0),
+            padding: EdgeInsets.zero,
             children: <Widget>[
               SectionView(
                 '${bean.tag.name}',
@@ -30,6 +30,7 @@ class ItemTagRecommendCourse extends StatelessWidget {
                             title: ''))),
               ),
               ListView.builder(
+                  padding: EdgeInsets.zero,
                   itemBuilder: (context, index) {
                     return ItemCourse(
                         course: bean.courses[index],

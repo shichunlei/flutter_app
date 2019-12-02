@@ -82,6 +82,7 @@ class _ColumnsPageState extends State<ColumnsPage> {
           onLoad: () async => getColumnsData(lastKey, RefreshType.LOAD_MORE),
           onRefresh: () async => getColumnsData('0', RefreshType.REFRESH),
           child: ListView.separated(
+              padding: EdgeInsets.zero,
               itemBuilder: (context, index) => ItemColumn(
                   column: columns[index],
                   onTap: () => pushNewPage(

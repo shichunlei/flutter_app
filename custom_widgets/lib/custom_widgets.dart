@@ -34,3 +34,5 @@ export 'likebutton/like_button.dart';
 export 'indicator/dots_indicator.dart';
 export 'indicator/rect_indicator.dart';
 export 'indicator/scroll_indicator.dart';
+
+export 'fluttery/seekbars.dart';

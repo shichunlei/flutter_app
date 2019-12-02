@@ -118,7 +118,7 @@ class _StoreBooksPageState extends State<StoreBooksPage>
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     primary: false,
-                    padding: EdgeInsets.only(top: 0),
+                    padding: EdgeInsets.zero,
                     itemCount: _books.length,
                     itemBuilder: (_, int position) => ItemBook(
                         book: _books[position],

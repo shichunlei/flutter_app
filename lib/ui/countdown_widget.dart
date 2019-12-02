@@ -44,7 +44,7 @@ class _CountdownWidgetState extends State<CountdownWidget> {
           '$_seconds',
           style: TextStyle(fontSize: 17.0, color: Colors.white),
         ),
-        margin: EdgeInsets.only(top: Utils.topSafeHeight + 10, right: 10),
+        margin: EdgeInsets.only(top: Utils.topSafeHeight, right: 10),
         padding: EdgeInsets.all(10));
   }
 
