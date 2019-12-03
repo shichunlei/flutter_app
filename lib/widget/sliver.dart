@@ -233,7 +233,9 @@ class BottomGridViewState extends State<BottomGridView>
     images = [];
     images = await ApiService.getImagesData(key);
 
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override

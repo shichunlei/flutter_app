@@ -90,7 +90,8 @@ class _JuZiMiListPageState extends State<JuZiMiListPage>
     }
 
     list.addAll(_list);
-
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 }

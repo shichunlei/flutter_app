@@ -83,7 +83,8 @@ class _BookListsPageState extends State<BookListsPage>
     }
 
     _booklist.addAll(_list);
-
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 }

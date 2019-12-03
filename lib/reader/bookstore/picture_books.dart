@@ -75,8 +75,10 @@ class _PictureBookPageState extends State<PictureBookPage>
 
     _books.addAll(_list);
 
-    setState(() {
-      _status = LoaderState.Succeed;
-    });
+    if (mounted) {
+      setState(() {
+        _status = LoaderState.Succeed;
+      });
+    }
   }
 }

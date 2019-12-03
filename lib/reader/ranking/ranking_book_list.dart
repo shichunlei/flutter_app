@@ -73,6 +73,8 @@ class _RankingBookListPageState extends State<RankingBookListPage>
         _status = LoaderState.Succeed;
       }
     }
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 }

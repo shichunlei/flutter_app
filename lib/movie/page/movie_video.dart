@@ -25,8 +25,7 @@ class _MovieVideoPageState extends State<MovieVideoPage> {
       aspectRatio: 16 / 9,
       autoPlay: true,
       looping: true,
-
-      /// Try playing around with some of these other options:
+      allowedScreenSleep: false,
       materialProgressColors: ChewieProgressColors(
           playedColor: Colors.red,
           handleColor: Colors.blue,

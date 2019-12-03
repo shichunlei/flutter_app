@@ -146,6 +146,8 @@ class _StoreBooksPageState extends State<StoreBooksPage>
 
     _books.addAll(_list);
     _status = LoaderState.Succeed;
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 }
