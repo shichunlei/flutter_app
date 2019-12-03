@@ -179,4 +179,52 @@ class ApiUrl {
 
   /// 一言
   static final String HITOKOTO_URL = 'https://v1.hitokoto.cn/';
+
+  /// NBA赛程
+  static final NBA_SCHEDULE = 'sports/nba_schedule';
+
+  /// NBA球队赛程
+  static final TEAM_SCHEDULE = 'sports/team_schedule';
+
+  /// NBA球队阵容
+  static final TEAM_ROSTER = 'sports/team_roster';
+
+  /// NBA球队排名
+  static final TEAM_RANK = 'sports/team_rank';
+
+  /// NBA球队数据排名（前五）
+  static final TEAM_RANNGE = 'sports/team_range';
+
+  /// NBA球队数据排名（全）
+  static final TEAM_RANNGE_ALL = 'sports/team_range_all';
+
+  /// NBA球员数据排名（前五）
+  static final PLAYER_RANNGE = 'sports/player_range';
+
+  /// NBA球员数据排名（全）
+  static final PLAYER_RANNGE_ALL = 'sports/player_range_all';
+
+  /// NBA球员详情
+  static final PLAYER_DETAIL = 'sports/player_details';
+
+  /// NBA球员详情
+  static final PLAYER_INFO = 'sports/player_info';
+
+  /// NBA球员生涯数据
+  static final PLAYER_CAREER = 'sports/player_career';
+
+  /// NBA球员单赛季比赛数据
+  static final PLAYER_MATCH = 'sports/player_match';
+
+  /// 球队数据概况
+  static final TEAM_STATS = 'sports/team_stats';
+
+  /// NBA球队详情
+  static final TEAM_INFO = 'sports/team_info';
+
+  /// NBA比赛本场概况（技术统计）
+  static final MATCH_STATS = 'sports/match_stats';
+
+  /// NBA最新动态
+  static final NBA_NEWS = 'sports/nba_news';
 }

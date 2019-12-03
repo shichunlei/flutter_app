@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/nba/index.dart';
 
 import '../page_index.dart';
 
@@ -145,6 +146,7 @@ class ExpandStateBean {
           SubExpandBean('仿好奇心日报', QDailySplashPage()),
           SubExpandBean('豆瓣电影', MovieHomePage()),
           SubExpandBean('tubi TV', TubiTVHomePage()),
+          SubExpandBean('NBA Sports', NBAHomePage()),
           SubExpandBean('百姓生活+', OnBoardingPage()),
           SubExpandBean('我是个句子迷', SplashPage()),
           SubExpandBean('有道精品课', YouDaoHomePage()),
