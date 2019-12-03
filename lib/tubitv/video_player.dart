@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
@@ -26,9 +27,12 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
 
   bool _showControls = false;
 
+  // 记录播放控件ui是否显示(进度条，播放按钮，全屏按钮等等)
+  Timer _timer; // 计时器，用于延迟隐藏控件ui
+
   /// 总时长
   Duration duration;
-  Duration position;
+  Duration position = Duration(seconds: 0);
 
   String get durationText => Utils.duration2String(duration);
 
@@ -43,8 +47,8 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
         position = _controller.value.position;
         duration = _controller.value.duration;
         if (position > duration) {
-          position = Duration(milliseconds: 0);
-          _seek(0);
+          position = Duration(seconds: 0);
+          _controller.seekTo(Duration(seconds: 0));
         }
         setState(() {});
       }
@@ -90,8 +94,9 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
 
   @override
   void dispose() {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    if (_timer != null) _timer.cancel();
     _controller?.dispose();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     super.dispose();
   }
 
@@ -105,6 +110,9 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
           setState(() {
             _showControls = !_showControls;
           });
+          if (_showControls) {
+            _startPlayControlTimer();
+          }
         },
         child: Stack(
           children: <Widget>[
@@ -125,10 +133,8 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                     child: Row(
                       children: <Widget>[
                         IconButton(
-                            icon: Icon(Icons.replay_30),
-                            onPressed: () {
-                              _backwardAction();
-                            }),
+                            icon: Icon(Icons.replay_30, color: Colors.white),
+                            onPressed: () => _backwardAction()),
                         Gaps.hGap24,
                         IconButton(
                             iconSize: 80,
@@ -147,10 +153,8 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                             }),
                         Gaps.hGap24,
                         IconButton(
-                            icon: Icon(Icons.forward_30),
-                            onPressed: () {
-                              _forwardAction();
-                            }),
+                            icon: Icon(Icons.forward_30, color: Colors.white),
+                            onPressed: () => _forwardAction()),
                       ],
                       mainAxisSize: MainAxisSize.min,
                     ),
@@ -162,42 +166,34 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                     child: Container(
                       width: double.infinity,
                       height: 50,
-                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Row(
                         children: <Widget>[
-                          Text('$positionText', style: TextStyles.textWhite14),
-                          Expanded(
-                            child: Slider(
-                              value: position == null || duration == null
-                                  ? 0.0
-                                  : (position.inMilliseconds /
-                                          duration.inMilliseconds)
-                                      .toDouble(),
-                              onChanged: (double value) {
-                                position = Duration(
-                                    milliseconds:
-                                        (duration.inMilliseconds * value)
-                                            .round());
-                                setState(() {
-                                  _seek((duration.inMilliseconds * value)
-                                      .toInt());
-                                });
-                              },
-                              onChangeEnd: (value) {
-                                /// 快进完毕后恢复播放
-                                if (value < 1.0) {
-                                  _controller.play();
-                                }
-                              },
-                              onChangeStart: (value) {
-                                /// 开始滑动进度条时先停止播放
-                                if (_controller.value.isPlaying) {
-                                  _controller.pause();
-                                }
-                              },
-                            ),
+                          Container(
+                            child: Text('$positionText',
+                                style: TextStyles.textWhite14),
+                            width: 80.0,
+                            alignment: Alignment.centerLeft,
                           ),
-                          Text('$durationText', style: TextStyles.textWhite14),
+                          Expanded(
+                              child: VideoProgressIndicator(
+                            _controller, allowScrubbing: true, // 允许手势操作进度条
+                            padding: EdgeInsets.all(0),
+                            colors: VideoProgressColors(
+                              // 配置进度条颜色
+                              playedColor:
+                                  Theme.of(context).accentColor, // 已播放的颜色
+                              bufferedColor:
+                                  Color.fromRGBO(255, 255, 255, .5), // 缓存中的颜色
+                              backgroundColor:
+                                  Color.fromRGBO(255, 255, 255, .2), // 未缓存的颜色
+                            ),
+                          )),
+                          Container(
+                              width: 80.0,
+                              alignment: Alignment.centerRight,
+                              child: Text('$durationText',
+                                  style: TextStyles.textWhite14)),
                         ],
                       ),
                     ),
@@ -210,6 +206,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                     child: AppBar(
                       title: Text('${widget.title}'),
                       backgroundColor: Colors.transparent,
+                      centerTitle: false,
                     ),
                   ),
                 ],
@@ -249,9 +246,16 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
     _controller.setVolume(volume);
   }
 
-  _seek(int value) {
-    var position = min(value, duration.inMilliseconds);
-
-    _controller.seekTo(Duration(milliseconds: position));
+  void _startPlayControlTimer() {
+    // 计时器
+    if (_timer != null) _timer.cancel();
+    _timer = Timer(Duration(seconds: 3), () {
+      // 延迟3s后隐藏
+      setState(() {
+        Future.delayed(Duration(milliseconds: 300)).whenComplete(() {
+          _showControls = false;
+        });
+      });
+    });
   }
 }

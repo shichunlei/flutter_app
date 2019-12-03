@@ -27,14 +27,13 @@ class _MovieVideoPageState extends State<MovieVideoPage> {
       looping: true,
 
       /// Try playing around with some of these other options:
-//      showControls: false,
       materialProgressColors: ChewieProgressColors(
           playedColor: Colors.red,
           handleColor: Colors.blue,
           backgroundColor: Colors.grey,
           bufferedColor: Colors.lightGreen),
       placeholder: Container(color: Colors.black),
-//      autoInitialize: true,
+      autoInitialize: true,
     );
   }
 
