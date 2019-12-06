@@ -18,6 +18,10 @@ export 'details/details.dart';
 export 'details/chapters.dart';
 export 'details/reader.dart';
 
+export 'details/book_reader.dart';
+
+export 'details/reader_page_agent.dart';
+
 export 'interest/gender.dart';
 export 'interest/choice_tag.dart';
 
