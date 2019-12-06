@@ -69,15 +69,12 @@ class _AlbumCoverState extends State<AlbumCover> {
           // player disc
           Positioned(
               child: Container(
+                padding: EdgeInsets.all(40),
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: Colors.black),
                 child: Transform.rotate(
-                  child: Container(
-                    padding: EdgeInsets.all(40),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(131)),
-                        color: Colors.black),
-                    child: ClipOval(
-                      child: ImageLoadView(widget.image),
-                    ),
+                  child: ClipOval(
+                    child: ImageLoadView(widget.image),
                   ),
                   angle: math.pi * _rotation / 180,
                 ),
@@ -92,9 +89,7 @@ class _AlbumCoverState extends State<AlbumCover> {
             child: GestureDetector(
               child: Container(
                 child: Transform(
-                  child: Container(
-                    child: Image.asset('images/player_needle.png'),
-                  ),
+                  child: Image.asset('images/player_needle.png'),
                   // pause: -30 playing: 0
                   transform: Matrix4.identity()
                     ..rotateZ((widget.isPlaying ? 0 : -30) * math.pi / 180),

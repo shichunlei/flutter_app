@@ -16,6 +16,13 @@ class _OneArticlePageState extends State<OneArticlePage>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
 
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((callback) {
+      Store.value<ArticleModel>(context).getArticle('today');
+    });
+  }
+
   @override
   void dispose() {
     _tabController?.dispose();

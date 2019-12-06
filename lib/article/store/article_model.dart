@@ -14,8 +14,6 @@ class ArticleModel with ChangeNotifier {
 
   ArticleModel() {
     provider = ArticleProvider();
-
-    getArticle('today');
   }
 
   setPageStatus(LoaderState status) {

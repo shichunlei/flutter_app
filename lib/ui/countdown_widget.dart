@@ -10,7 +10,7 @@ class CountdownWidget extends StatefulWidget {
   final int seconds;
 
   CountdownWidget(
-      {Key key, @required this.onCountdownFinishCallBack, this.seconds})
+      {Key key, @required this.onCountdownFinishCallBack, this.seconds: 5})
       : super(key: key);
 
   @override
@@ -24,7 +24,7 @@ class _CountdownWidgetState extends State<CountdownWidget> {
   @override
   void initState() {
     super.initState();
-    _seconds = widget.seconds ?? 5;
+    _seconds = widget.seconds;
     _startTimer();
   }
 

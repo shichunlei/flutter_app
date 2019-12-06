@@ -10,12 +10,12 @@ class Store {
     /// 返回多个状态
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(builder: (_) => AddressModel()),
-        ChangeNotifierProvider(builder: (_) => ConfigModel()..init()),
-        ChangeNotifierProvider(builder: (_) => UserModel()),
-        ChangeNotifierProvider(builder: (_) => ArticleModel()),
-        ChangeNotifierProvider(builder: (_) => ReaderSettingModel()),
-        ChangeNotifierProvider(builder: (_) => BookModel()),
+        ChangeNotifierProvider(create: (_) => AddressModel()),
+        ChangeNotifierProvider(create: (_) => ConfigModel()..init()),
+        ChangeNotifierProvider(create: (_) => UserModel()),
+        ChangeNotifierProvider(create: (_) => ArticleModel()),
+        ChangeNotifierProvider(create: (_) => ReaderSettingModel()),
+        ChangeNotifierProvider(create: (_) => BookModel()),
       ],
       child: child,
     );
