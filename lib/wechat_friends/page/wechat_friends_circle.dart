@@ -120,30 +120,21 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
                     primary: false)
               ]),
             ),
-            Container(
-              height: Utils.navigationBarHeight,
-              child: AppBar(
-                titleSpacing: 0,
-                leading: IconButton(
-                    icon: Icon(Icons.arrow_back_ios),
-                    onPressed: () => Navigator.pop(context)),
-                actions: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.add_a_photo),
-                    onPressed: () => _showDialog(context),
-                  )
-                ],
-                iconTheme: IconThemeData(color: c, size: 20),
-                elevation: 0.0,
-                backgroundColor:
-                    Color.fromARGB((navAlpha * 255).toInt(), 180, 180, 180),
-                title: Text(title,
-                    style: TextStyle(
-                        fontSize: 16.0,
-                        color:
-                            Color.fromARGB((navAlpha * 255).toInt(), 0, 0, 0))),
+            CurrentAppBar(
+              bgColor: Color.fromARGB((navAlpha * 255).toInt(), 180, 180, 180),
+              title: Text(title,
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      color: Color.fromARGB(
+                          (navAlpha * 255).toInt(), 255, 255, 255))),
+              action: IconButton(
+                icon: Icon(
+                  Icons.add_a_photo,
+                  color: Colors.white,
+                ),
+                onPressed: () => _showDialog(context),
               ),
-            )
+            ),
           ],
         ));
   }

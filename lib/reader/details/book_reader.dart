@@ -84,7 +84,9 @@ class _BookReaderPageState extends State<BookReaderPage> {
                               height: Utils.height,
                               width: Utils.width,
                               padding: EdgeInsets.only(
-                                  left: 8.0, right: 8.0, top: 8.0),
+                                  left: 8.0,
+                                  right: 8.0,
+                                  top: Utils.topSafeHeight),
                               child: Text.rich(
                                 TextSpan(children: [
                                   TextSpan(
@@ -314,7 +316,7 @@ class _BookReaderPageState extends State<BookReaderPage> {
   void getChapterInfo(String link, PageJumpType type) async {
     chapterInfo = await ApiService.getBookChapterInfo("$link");
 
-    if (chapterInfo.cpContent == '请下载最新的追书神器app阅读本作品。') {
+    if (chapterInfo?.cpContent == '请下载最新的追书神器app阅读本作品。') {
       _status = LoaderState.Failed;
     } else {
       _status = LoaderState.Succeed;

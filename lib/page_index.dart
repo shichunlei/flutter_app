@@ -150,6 +150,7 @@ export 'ui/tagview.dart';
 export 'ui/photo_view.dart';
 export 'ui/bottom_sheet.dart';
 export 'ui/circle_button.dart';
+export 'ui/current_appbar.dart';
 
 export 'qdaily/splash.dart';
 

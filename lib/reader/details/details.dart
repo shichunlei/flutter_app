@@ -114,111 +114,112 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
         backgroundColor: Colors.white,
         body: Stack(children: <Widget>[
           LoaderContainer(
-              contentView: Column(children: <Widget>[
-                Expanded(
-                  child: SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
-                    controller: _controller,
-                    padding: EdgeInsets.zero,
-                    child: Column(children: <Widget>[
-                      /// 头部
-                      BookDetailsHeaderView(
-                          pageTopColorStart: pageTopColorStart,
-                          pageTopColorEnd: pageTopColorEnd,
-                          book: book),
+              contentView: SafeArea(
+                bottom: true,
+                top: false,
+                child: Column(children: <Widget>[
+                  Expanded(
+                    child: SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
+                      controller: _controller,
+                      padding: EdgeInsets.zero,
+                      child: Column(children: <Widget>[
+                        /// 头部
+                        BookDetailsHeaderView(
+                            pageTopColorStart: pageTopColorStart,
+                            pageTopColorEnd: pageTopColorEnd,
+                            book: book),
 
-                      /// 简介
-                      Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.all(15),
-                          child: Column(children: <Widget>[
-                            Text('简介',
-                                style:
-                                    TextStyle(fontSize: 22, color: grey3Color)),
-                            Gaps.vGap5,
+                        /// 简介
+                        Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.all(15),
+                            child: Column(children: <Widget>[
+                              Text('简介',
+                                  style: TextStyle(
+                                      fontSize: 22, color: grey3Color)),
+                              Gaps.vGap5,
 
-                            /// 标签
-                            Wrap(
-                              children: tags(),
-                              spacing: 5,
-                              runSpacing: 3,
-                            ),
-                            Gaps.vGap5,
-                            Text('${book?.longIntro}',
-                                style: TextStyles.textGrey14),
-                          ], crossAxisAlignment: CrossAxisAlignment.start)),
+                              /// 标签
+                              Wrap(
+                                children: tags(),
+                                spacing: 5,
+                                runSpacing: 3,
+                              ),
+                              Gaps.vGap5,
+                              Text('${book?.longIntro}',
+                                  style: TextStyles.textGrey14),
+                            ], crossAxisAlignment: CrossAxisAlignment.start)),
 
-                      /// 目录
-                      SelectTextItem(
-                          margin: EdgeInsets.symmetric(horizontal: 15),
-                          title: '目录\t\t\t\t',
-                          content:
-                              '[${book != null ? (book.isSerial ? "更新:${friendlyDateTime(book?.updated)}" : "完结") : ""}]\t${book?.lastChapter}',
-                          onTap: () {
-                            final state = Store.value<BookModel>(context);
-                            state.setBook(book);
-                            pushNewPage(
-                                context, ChaptersPage(name: book?.title));
-                          }),
+                        /// 目录
+                        SelectTextItem(
+                            margin: EdgeInsets.symmetric(horizontal: 15),
+                            title: '目录\t\t\t\t',
+                            content:
+                                '[${book != null ? (book.isSerial ? "更新:${friendlyDateTime(book?.updated)}" : "完结") : ""}]\t${book?.lastChapter}',
+                            onTap: () {
+                              final state = Store.value<BookModel>(context);
+                              state.setBook(book);
+                              pushNewPage(
+                                  context, ChaptersPage(name: book?.title));
+                            }),
 
-                      Line(lineHeight: 5, color: Colors.grey[200]),
+                        Line(lineHeight: 5, color: Colors.grey[200]),
 
-                      /// 热门短评
-                      DetailsDocView(
-                          docs: docs, id: widget.id, onPressed: () {}),
+                        /// 热门短评
+                        DetailsDocView(
+                            docs: docs, id: widget.id, onPressed: () {}),
 
-                      Line(lineHeight: 5, color: Colors.grey[200]),
+                        Line(lineHeight: 5, color: Colors.grey[200]),
 
-                      /// 热门书评
-                      DetailsReviewView(
-                          reviews: reviews,
-                          id: widget.id,
-                          reviewsCount: reviewsCount,
-                          onPressed: () {}),
+                        /// 热门书评
+                        DetailsReviewView(
+                            reviews: reviews,
+                            id: widget.id,
+                            reviewsCount: reviewsCount,
+                            onPressed: () {}),
 
-                      Line(lineHeight: 5, color: Colors.grey[200]),
+                        Line(lineHeight: 5, color: Colors.grey[200]),
 
-                      /// 你可能感兴趣的
-                      DetailsInterestedView(
-                          books: interestedBooks, onPressed: () {}),
+                        /// 你可能感兴趣的
+                        DetailsInterestedView(
+                            books: interestedBooks, onPressed: () {}),
 
-                      /// 包含本书的书单
+                        /// 包含本书的书单
 
-                      Line(lineHeight: 5, color: Colors.grey[200]),
+                        Line(lineHeight: 5, color: Colors.grey[200]),
 
-                      /// 版权声明
-                      Container(
-                          height: 50,
-                          width: double.infinity,
-                          alignment: Alignment.center,
-                          child: Text('${book?.copyrightDesc}',
-                              style: TextStyles.textGrey16)),
+                        /// 版权声明
+                        Container(
+                            height: 50,
+                            width: double.infinity,
+                            alignment: Alignment.center,
+                            child: Text('${book?.copyrightDesc}',
+                                style: TextStyles.textGrey16)),
 
-                      Line(lineHeight: 5, color: Colors.grey[200])
-                    ]),
+                        Line(lineHeight: 5, color: Colors.grey[200])
+                      ]),
+                    ),
                   ),
-                ),
 
-                /// 底部
-                buildBottomView()
-              ]),
-              loaderState: _status),
-          Container(
-              child: AppBar(
-                elevation: 0.0,
-                backgroundColor: Color.fromARGB(
-                  (navAlpha * 255).toInt(),
-                  pageTopColorStart.red,
-                  pageTopColorStart.green,
-                  pageTopColorStart.blue,
-                ),
-                title: Marquee(
-                  text: '${book?.title}',
-                  style: TextStyle(fontSize: 18.0),
-                  scrollAxis: Axis.horizontal,
-                ),
+                  /// 底部
+                  buildBottomView()
+                ]),
               ),
-              height: Utils.navigationBarHeight)
+              loaderState: _status),
+          CurrentAppBar(
+            bgColor: Color.fromARGB(
+              (navAlpha * 255).toInt(),
+              pageTopColorStart.red,
+              pageTopColorStart.green,
+              pageTopColorStart.blue,
+            ),
+            title: Marquee(
+              text: '${book?.title}',
+              style: TextStyle(fontSize: 18.0, color: Colors.white),
+              scrollAxis: Axis.horizontal,
+            ),
+          ),
         ]));
   }
 
