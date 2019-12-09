@@ -43,13 +43,19 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
 
   BookShelfDBHelper bdHelper;
 
-  String readerText = '开始阅读';
-
   @override
   void initState() {
     super.initState();
 
     bdHelper = BookShelfDBHelper();
+
+    WidgetsBinding.instance.addPostFrameCallback((callback) {
+      final state = Store.value<BookModel>(context);
+
+      state
+        ..updateIsExist(widget.id)
+        ..getChapters(widget.id);
+    });
 
     initPageTopColor();
 
@@ -96,16 +102,6 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
     docs = await ApiService.getBookShortReview(id, limit: 2);
 
     interestedBooks = await ApiService.getBookByRecommend(id);
-
-    final state = Store.value<BookModel>(context);
-
-    state
-      ..updateIsExist(id)
-      ..getChapters(id);
-
-    if (state.isExist) {
-      readerText = '继续阅读';
-    }
 
     setState(() {
       _status = LoaderState.Succeed;
@@ -160,17 +156,9 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                               '[${book != null ? (book.isSerial ? "更新:${friendlyDateTime(book?.updated)}" : "完结") : ""}]\t${book?.lastChapter}',
                           onTap: () {
                             final state = Store.value<BookModel>(context);
-                            int readingChapterIndex = 0;
-                            if (state.isExist) {
-                              readingChapterIndex = state.chapterIndex;
-                            }
                             state.setBook(book);
                             pushNewPage(
-                                context,
-                                ChaptersPage(
-                                    id: widget.id,
-                                    name: book?.title,
-                                    readingChapterIndex: readingChapterIndex));
+                                context, ChaptersPage(name: book?.title));
                           }),
 
                       Line(lineHeight: 5, color: Colors.grey[200]),
@@ -254,11 +242,13 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                                 id: widget.id,
                                 title: book?.title,
                                 cover: widget.imageUrl,
-                                progress: 0,
+                                progress: snapshot.chapterIndex /
+                                    snapshot.totalChapter,
                                 offset: 0.0,
-                                chapterIndex: 0,
+                                chapterIndex: snapshot.chapterIndex,
                                 totalChapter: snapshot.totalChapter,
-                                chapterLink: snapshot.chapters?.first?.link);
+                                chapterLink: snapshot
+                                    .chapters[snapshot.chapterIndex]?.link);
 
                             snapshot.insertOrReplaceToDB(context, _book);
                           }
@@ -280,7 +270,6 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                     color: readerMainColor,
                     child: InkWell(
                         onTap: () async {
-                          setState(() => readerText = '读取中...');
                           snapshot.setBook(book);
                           String chapterLink = '';
 
@@ -300,14 +289,12 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                                     progress: snapshot.chapterIndex /
                                         snapshot.totalChapter);
 
-                                setState(() => readerText = '继续阅读');
                                 pushNewPage(
-                                    context, ReaderPage(link: chapterLink));
+                                    context, BookReaderPage(link: chapterLink));
                               }
                             } else {
-                              setState(() => readerText = '继续阅读');
                               pushNewPage(
-                                  context, ReaderPage(link: chapterLink));
+                                  context, BookReaderPage(link: chapterLink));
                             }
                           } else {
                             chapterLink =
@@ -315,15 +302,14 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                             debugPrint(
                                 'chapterLink===================$chapterLink');
                             if (chapterLink != '' && null != chapterLink) {
-                              setState(() => readerText = '开始阅读');
                               pushNewPage(
-                                  context, ReaderPage(link: chapterLink));
+                                  context, BookReaderPage(link: chapterLink));
                             }
                           }
                         },
                         child: Container(
-                            child:
-                                Text(readerText, style: TextStyles.textWhite16),
+                            child: Text(snapshot.isExist ? '继续阅读' : '开始阅读',
+                                style: TextStyles.textWhite16),
                             alignment: Alignment.center)))),
 
             /// 下载按钮

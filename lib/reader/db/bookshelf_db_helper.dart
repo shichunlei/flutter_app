@@ -59,7 +59,7 @@ class BookShelfDBHelper extends BaseDBProvider {
         .query(table_name, where: "$COLUMN_BOOK_ID = ?", whereArgs: [bookId]);
     if (maps.isNotEmpty) {
       for (Map<String, dynamic> map in maps) {
-        Books book = Books.fromMap2(map);
+        Books book = Books.fromMap(map);
         books.add(book);
       }
 
@@ -79,7 +79,7 @@ class BookShelfDBHelper extends BaseDBProvider {
         await db.query(table_name, where: "$COLUMN_ID = ?", whereArgs: [_id]);
     if (maps.isNotEmpty) {
       for (Map<String, dynamic> map in maps) {
-        Books book = Books.fromMap2(map);
+        Books book = Books.fromMap(map);
         books.add(book);
       }
       return books.first;
@@ -97,7 +97,7 @@ class BookShelfDBHelper extends BaseDBProvider {
     List<Map<String, dynamic>> maps = await db.query(table_name);
     if (maps.isNotEmpty) {
       for (Map<String, dynamic> map in maps) {
-        Books book = Books.fromMap2(map);
+        Books book = Books.fromMap(map);
         books.add(book);
       }
     }
@@ -115,8 +115,7 @@ class BookShelfDBHelper extends BaseDBProvider {
     bool _isExist = await isExist(id);
     if (!_isExist) {}
     Database db = await getDB();
-    Map<String, dynamic> map = book.toMap();
-    return await db.insert(table_name, map);
+    return await db.insert(table_name, book.toMap());
   }
 
   /// 跟新书架上的小说信息[book]
@@ -130,9 +129,8 @@ class BookShelfDBHelper extends BaseDBProvider {
     if (!_isExist) return false;
     Database db = await getDB();
 
-    Map<String, dynamic> map = book.toMap();
-    int result = await db
-        .update(table_name, map, where: "$COLUMN_BOOK_ID = ?", whereArgs: [id]);
+    int result = await db.update(table_name, book.toMap(),
+        where: "$COLUMN_BOOK_ID = ?", whereArgs: [id]);
 
     return result == 1;
   }

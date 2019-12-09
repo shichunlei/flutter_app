@@ -27,11 +27,11 @@ Future<Null> showDiffDialog(BuildContext context,
             actions: <Widget>[
               FlatButton(
                 onPressed: cancelPressed ?? () => Navigator.pop(context),
-                child: Text(noText ?? S.of(context).cancel),
+                child: Text(noText ??= S.of(context).cancel),
               ),
               FlatButton(
                 onPressed: () => pressed(),
-                child: Text(yesText),
+                child: Text(yesText ??= S.of(context).sure),
               )
             ],
           )
@@ -44,11 +44,11 @@ Future<Null> showDiffDialog(BuildContext context,
             actions: <Widget>[
               CupertinoDialogAction(
                 onPressed: cancelPressed ?? () => Navigator.pop(context),
-                child: Text(noText ?? S.of(context).cancel),
+                child: Text(noText ??= S.of(context).cancel),
               ),
               CupertinoDialogAction(
                 onPressed: () => pressed(),
-                child: Text(yesText ?? S.of(context).sure),
+                child: Text(yesText ??= S.of(context).sure),
               )
             ],
           ),

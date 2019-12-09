@@ -77,4 +77,9 @@ class CustomIcon {
 
   static const IconData qdaily_logo =
       const IconData(0xe769, fontFamily: 'CustomIcon');
+
+  static const IconData bookmark_check =
+      const IconData(0xe6d1, fontFamily: 'CustomIcon');
+  static const IconData bookmark_nor =
+      const IconData(0xe619, fontFamily: 'CustomIcon');
 }

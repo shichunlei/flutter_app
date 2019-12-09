@@ -1254,7 +1254,7 @@ class ApiService {
     Response response = await HttpUtils(baseUrl: ApiUrl.YOUDAO_BASE_URL)
         .request(ApiUrl.YOUDAO_GROUP_ALL_COURSE_URL,
             data: {"tag": tag, "rank": rank, "time": time});
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return null;
     }
     YoudaoResult result = YoudaoResult.fromMap(json.decode(response.data));
@@ -1283,7 +1283,7 @@ class ApiService {
       "limit": limit,
       "minor": minor
     });
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return [];
     }
 
@@ -1299,11 +1299,11 @@ class ApiService {
   static Future<Books> getBookDetails(String id) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
         .request(ApiUrl.BOOK_DETAILS_URL, data: {"id": id});
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return null;
     }
 
-    Books book = Books.fromMap(json.decode(response.data));
+    Books book = Books.fromJson(json.decode(response.data));
     return book;
   }
 
@@ -1311,7 +1311,7 @@ class ApiService {
   static Future<List<Books>> getBookByRecommend(String id) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
         .request(ApiUrl.BOOK_RECOMMEND_URL, data: {"id": id});
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return [];
     }
 
@@ -1329,7 +1329,7 @@ class ApiService {
     Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL).request(
         ApiUrl.BOOK_REVIEW_URL,
         data: {"book": id, "sort": sort, "start": start, "limit": limit});
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return null;
     }
 
@@ -1347,7 +1347,7 @@ class ApiService {
     Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL).request(
         ApiUrl.BOOK_SHORT_REVIEW_URL,
         data: {"book": id, "sort": sort, "start": start, "limit": limit});
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return [];
     }
 
@@ -1373,7 +1373,7 @@ class ApiService {
       "limit": limit,
       "type": type
     });
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return [];
     }
 
@@ -1390,7 +1390,7 @@ class ApiService {
     Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL).request(
         ApiUrl.BOOK_BTOC_URL,
         data: {"book": bookId, 'view': 'summary'});
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return null;
     }
 
@@ -1410,7 +1410,7 @@ class ApiService {
     Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL).request(
         ApiUrl.BOOK_ATOC_URL,
         data: {"sourceId": sourceId, 'view': 'chapters'});
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return [];
     }
 
@@ -1425,7 +1425,7 @@ class ApiService {
   /// 小说章节详情
   static Future<ChapterInfo> getBookChapterInfo(String link) async {
     Response response = await HttpUtils().request(link, data: null);
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return null;
     }
 
@@ -1441,7 +1441,7 @@ class ApiService {
   static Future<RankingResult> getBookRankings() async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
         .request(ApiUrl.BOOK_RANKING_URL, data: null);
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return null;
     }
 
@@ -1457,7 +1457,7 @@ class ApiService {
   static Future<Ranking> getRankingBooks(String rankingId) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
         .request(ApiUrl.BOOK_RANKING_INFO_URL, data: {"rankingId": rankingId});
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return null;
     }
 
@@ -1473,7 +1473,7 @@ class ApiService {
   static Future<StatisticsResult> getBookStatistics() async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
         .request(ApiUrl.BOOK_STATISTICS_URL, data: null);
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return null;
     }
 
@@ -1490,7 +1490,7 @@ class ApiService {
   static Future<CategoryResult> getBookCategory() async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
         .request(ApiUrl.BOOK_CATEGORY_URL, data: null);
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return null;
     }
 
@@ -1512,7 +1512,7 @@ class ApiService {
     Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL).request(
         ApiUrl.BOOK_SEARCH_URL,
         data: {"query": query, "start": start, "limit": limit});
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return [];
     }
 
@@ -1529,7 +1529,7 @@ class ApiService {
   static Future<List<String>> getSearchHotWords() async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
         .request(ApiUrl.BOOK_HOT_WORDS_URL, data: null);
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return [];
     }
 
@@ -1558,7 +1558,7 @@ class ApiService {
       "start": start,
       "limit": limit
     });
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return [];
     }
 
@@ -1575,7 +1575,7 @@ class ApiService {
   static Future<BookList> getBookListInfo(String booklistId) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
         .request(ApiUrl.BOOK_LIST_INFO_URL, data: {"booklistId": booklistId});
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return null;
     }
 
@@ -1592,7 +1592,7 @@ class ApiService {
   static Future<Hitokoto> hitokoto() async {
     Response response =
         await HttpUtils(baseUrl: ApiUrl.HITOKOTO_URL).request('', data: null);
-    if (response.statusCode != 200) {
+    if (response?.statusCode != 200) {
       return null;
     }
 

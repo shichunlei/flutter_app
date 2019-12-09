@@ -49,7 +49,7 @@ class BookResult {
     BookResult bBean = BookResult();
     bBean.total = map['total'];
     bBean.books = List()
-      ..addAll((map['books'] as List ?? []).map((o) => Books.fromMap(o)));
+      ..addAll((map['books'] as List ?? []).map((o) => Books.fromJson(o)));
     bBean.bookLists = List()
       ..addAll(
           (map['bookLists'] as List ?? []).map((o) => BookList.fromMap(o)));
@@ -284,79 +284,80 @@ class Books {
 
   double otherReadRatio;
 
-  Books(
-      {this.id,
-      this.longIntro,
-      this.author,
-      this.majorCate,
-      this.majorCateV2,
-      this.minorCate,
-      this.minorCateV2,
-      this.title,
-      this.cover,
-      this.creator,
-      this.starRatingCount,
-      this.starRatings,
-      this.rating,
-      this.isMakeMoneyLimit,
-      this.contentLevel,
-      this.isFineBook,
-      this.safeLevel,
-      this.allowFree,
-      this.originalAuthor,
-      this.anchors,
-      this.authorDesc,
-      this.hasCopyright,
-      this.buyType,
-      this.sizeType,
-      this.superscript,
-      this.currency,
-      this.contentType,
-      this.le,
-      this.allowMonthly,
-      this.allowVoucher,
-      this.allowBeanVoucher,
-      this.hasCp,
-      this.banned,
-      this.postCount,
-      this.totalFollower,
-      this.latelyFollower,
-      this.followerCount,
-      this.wordCount,
-      this.serializeWordCount,
-      this.retentionRatio,
-      this.updated,
-      this.isSerial,
-      this.chaptersCount,
-      this.lastChapter,
-      this.gender,
-      this.tags,
-      this.advertRead,
-      this.cat,
-      this.donate,
-      this.copyright,
-      this.copyrightDesc,
-      this.gg,
-      this.isForbidForFreeApp,
-      this.isAllowNetSearch,
-      this.limit,
-      this.discount,
-      this.shortIntro,
-      this.site,
-      this.desc,
-      this.collectorCount,
-      this.aliases,
-      this.highlight,
-      this.progress,
-      this.chapterLink,
-      this.chapterIndex,
-      this.offset,
-      this.book,
-      this.comment,
-      this.otherReadRatio,
-      this.totalChapter});
+  Books({
+    this.id,
+    this.longIntro,
+    this.author,
+    this.majorCate,
+    this.majorCateV2,
+    this.minorCate,
+    this.minorCateV2,
+    this.title,
+    this.cover,
+    this.creator,
+    this.starRatingCount,
+    this.starRatings,
+    this.rating,
+    this.isMakeMoneyLimit,
+    this.contentLevel,
+    this.isFineBook,
+    this.safeLevel,
+    this.allowFree,
+    this.originalAuthor,
+    this.anchors,
+    this.authorDesc,
+    this.hasCopyright,
+    this.buyType,
+    this.sizeType,
+    this.superscript,
+    this.currency,
+    this.contentType,
+    this.le,
+    this.allowMonthly,
+    this.allowVoucher,
+    this.allowBeanVoucher,
+    this.hasCp,
+    this.banned,
+    this.postCount,
+    this.totalFollower,
+    this.latelyFollower,
+    this.followerCount,
+    this.wordCount,
+    this.serializeWordCount,
+    this.retentionRatio,
+    this.updated,
+    this.isSerial,
+    this.chaptersCount,
+    this.lastChapter,
+    this.gender,
+    this.tags,
+    this.advertRead,
+    this.cat,
+    this.donate,
+    this.copyright,
+    this.copyrightDesc,
+    this.gg,
+    this.isForbidForFreeApp,
+    this.isAllowNetSearch,
+    this.limit,
+    this.discount,
+    this.shortIntro,
+    this.site,
+    this.desc,
+    this.collectorCount,
+    this.aliases,
+    this.highlight,
+    this.progress,
+    this.chapterLink,
+    this.chapterIndex,
+    this.offset,
+    this.book,
+    this.comment,
+    this.otherReadRatio,
+    this.totalChapter,
+  });
 
-  static Books fromMap(Map<String, dynamic> map) {
+  static Books fromJson(Map<String, dynamic> map) {
     if (map == null) return null;
     Books booksBean = Books();
     booksBean.id = map['_id'];
@@ -429,7 +430,7 @@ class Books {
 
     booksBean.highlight = Highlight.fromMap(map['highlight']);
 
-    booksBean.book = Books.fromMap(map['book']);
+    booksBean.book = Books.fromJson(map['book']);
     booksBean.comment = map['comment'];
     return booksBean;
   }
@@ -445,7 +446,7 @@ class Books {
         BookShelfDBHelper.COLUMN_TOTAL_CHAPTER: totalChapter,
       };
 
-  static Books fromMap2(Map<String, dynamic> map) {
+  static Books fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     Books book = Books();
     book.id = map[BookShelfDBHelper.COLUMN_BOOK_ID];
@@ -458,74 +459,6 @@ class Books {
     book.totalChapter = map[BookShelfDBHelper.COLUMN_TOTAL_CHAPTER];
     return book;
   }
-
-  Map toJson() => {
-        "_id": id,
-        "longIntro": longIntro,
-        "majorCateV2": majorCateV2,
-        "author": author,
-        "minorCateV2": minorCateV2,
-        "majorCate": majorCate,
-        "minorCate": minorCate,
-        "title": title,
-        "cover": cover,
-        "creater": creator,
-        "starRatingCount": starRatingCount,
-        "starRatings": starRatings,
-        "isMakeMoneyLimit": isMakeMoneyLimit,
-        "contentLevel": contentLevel,
-        "isFineBook": isFineBook,
-        "safelevel": safeLevel,
-        "allowFree": allowFree,
-        "originalAuthor": originalAuthor,
-        "anchors": anchors,
-        "authorDesc": authorDesc,
-        "rating": rating,
-        "hasCopyright": hasCopyright,
-        "buytype": buyType,
-        "sizetype": sizeType,
-        "superscript": superscript,
-        "currency": currency,
-        "contentType": contentType,
-        "_le": le,
-        "allowMonthly": allowMonthly,
-        "allowVoucher": allowVoucher,
-        "allowBeanVoucher": allowBeanVoucher,
-        "hasCp": hasCp,
-        "banned": banned,
-        "postCount": postCount,
-        "totalFollower": totalFollower,
-        "latelyFollower": latelyFollower,
-        "followerCount": followerCount,
-        "wordCount": wordCount,
-        "serializeWordCount": serializeWordCount,
-        "retentionRatio": retentionRatio,
-        "updated": updated,
-        "isSerial": isSerial,
-        "chaptersCount": chaptersCount,
-        "lastChapter": lastChapter,
-        "gender": gender,
-        "tags": tags,
-        "advertRead": advertRead,
-        "cat": cat,
-        "donate": donate,
-        "copyright": copyright,
-        "_gg": gg,
-        "isForbidForFreeApp": isForbidForFreeApp,
-        "isAllowNetSearch": isAllowNetSearch,
-        "limit": limit,
-        "copyrightDesc": copyrightDesc,
-        "discount": discount,
-        "shortIntro": shortIntro,
-        "site": site,
-        "desc": desc,
-        "collectorCount": collectorCount,
-        "aliases": aliases,
-        "highlight": highlight,
-        "book": book,
-        "comment": comment,
-        "otherReadRatio": otherReadRatio,
-      };
 }
 
 /// title : ["斗","破","苍","穹"]
@@ -824,7 +757,7 @@ class Ranking {
     rankingBean.gender = map['gender'];
     rankingBean.priority = map['priority'];
     rankingBean.books = List()
-      ..addAll((map['books'] as List ?? []).map((o) => Books.fromMap(o)));
+      ..addAll((map['books'] as List ?? []).map((o) => Books.fromJson(o)));
     rankingBean.id = map['_id'];
     rankingBean.total = map['total'];
     return rankingBean;
@@ -889,7 +822,7 @@ class DocsBean {
     docsBean.rating = map['rating'];
     docsBean.type = map['type'];
     docsBean.author = BookAuthorBean.fromMap(map['author']);
-    docsBean.book = Books.fromMap(map['book']);
+    docsBean.book = Books.fromJson(map['book']);
     docsBean.likeCount = map['likeCount'];
     docsBean.priority = dynamicToDouble(map['priority']);
     docsBean.block = map['block'];
@@ -953,7 +886,7 @@ class Post {
     if (map == null) return null;
     Post post = Post();
     post.id = map['_id'];
-    post.book = Books.fromMap(map['book']);
+    post.book = Books.fromJson(map['book']);
     post.author = BookAuthorBean.fromMap(map['author']);
     post.type = map['type'];
     post.likeCount = map['likeCount'];
@@ -1302,10 +1235,23 @@ class ChapterInfo {
     chapterBean.id = map['id'];
     chapterBean.created = formatDateTime(map['created']);
     chapterBean.updated = formatDateTime(map['updated']);
-    chapterBean.cpContent = map['cpContent'];
+    chapterBean.cpContent = map['cpContent']
+        .toString()
+        .replaceAll('\n\r\n\r\n\r', '\n\r')
+        .replaceAll('\r\n\n　　\r\n\n', '\n\r')
+        .replaceAll('\r\n\r\n　　\r\n\r\n　　\r\n\r\n', '\n\r')
+        .replaceAll('\r\n\r\n　　\r\n\r\n', '\n\r');
 
-    chapterBean.pageOffsets = ReaderPageAgent.getPageOffsets(map['cpContent'],
-        Utils.height - Utils.topSafeHeight - 16.0, Utils.width - 16.0, 18.0);
+    chapterBean.pageOffsets = ReaderPageAgent.getPageOffsets(
+        map['cpContent']
+            .toString()
+            .replaceAll('\n\r\n\r\n\r', '\n\r')
+            .replaceAll('\r\n\n　　\r\n\n', '\n\r')
+            .replaceAll('\r\n\r\n　　\r\n\r\n　　\r\n\r\n', '\n\r')
+            .replaceAll('\r\n\r\n　　\r\n\r\n', '\n\r'),
+        Utils.height - Utils.topSafeHeight - 36.0,
+        Utils.width - 18.0,
+        18.0);
 
     return chapterBean;
   }
@@ -1395,7 +1341,7 @@ class BookList {
     bookListBean.shareLink = map['shareLink'];
     bookListBean.total = map['total'];
     bookListBean.books = List()
-      ..addAll((map['books'] as List ?? []).map((o) => Books.fromMap(o)));
+      ..addAll((map['books'] as List ?? []).map((o) => Books.fromJson(o)));
     bookListBean.bookCount = map['bookCount'];
     bookListBean.cover = convertImageUrl(map['cover']);
     bookListBean.covers = List()

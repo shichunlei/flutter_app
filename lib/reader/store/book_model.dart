@@ -25,9 +25,9 @@ class BookModel extends ChangeNotifier {
 
       /// 更新ID为[bookId]的书籍在书架中的状态
       updateIsExist(bookId);
-      Toast.show(context, '删除成功');
+      Toast.show(context, '已在书架移除');
     } else {
-      Toast.show(context, '删除失败');
+      Toast.show(context, '移除失败');
     }
   }
 
@@ -37,9 +37,9 @@ class BookModel extends ChangeNotifier {
     if (await dbHelper.deleteAllBook()) {
       getBooks();
       refresh();
-      Toast.show(context, '删除成功');
+      Toast.show(context, '移除成功');
     } else {
-      Toast.show(context, '删除失败');
+      Toast.show(context, '移除失败');
     }
   }
 
@@ -53,9 +53,6 @@ class BookModel extends ChangeNotifier {
     if (null != _book) {
       _chapterIndex = _book.chapterIndex;
     }
-
-    debugPrint(
-        'getBook($bookId)============================${_book == null ? "不存在" : _book.toMap()}');
 
     getBooks();
     refresh();
@@ -84,29 +81,29 @@ class BookModel extends ChangeNotifier {
 
   /// 更新书籍ID为[id]的书籍
   ///
-  Future updateBook(String id,
-      {double progress,
-      int chapterIndex,
-      String link,
-      double offset,
-      int totalChapter}) async {
+  Future updateBook(
+    String id, {
+    double progress,
+    int chapterIndex: 0,
+    @required String link,
+    double offset,
+    int totalChapter,
+  }) async {
     _book = await dbHelper.getBook(id);
 
-    if (null != chapterIndex) {
-      _chapterIndex = chapterIndex;
-    }
+    _chapterIndex = chapterIndex;
 
     /// 已加入书架
     if (null != _book) {
       Books book = Books(
-        id: _book.id,
+        id: id,
         title: _book.title,
         cover: _book.cover,
-        progress: progress ?? _book.progress,
-        chapterIndex: chapterIndex ?? _book.chapterIndex,
-        chapterLink: link ?? _book.chapterLink,
-        offset: offset ?? _book.offset,
-        totalChapter: totalChapter ?? _book.totalChapter,
+        progress: progress ??= _book.progress,
+        chapterIndex: chapterIndex ??= _book.chapterIndex,
+        chapterLink: link ??= _book.chapterLink,
+        offset: offset ??= _book.offset,
+        totalChapter: totalChapter ??= _book.totalChapter,
       );
 
       bool result = await dbHelper.updateBook(book);
@@ -114,10 +111,9 @@ class BookModel extends ChangeNotifier {
       if (result) {
         getBook(id);
       }
-    } else {
-      /// 未加入书架
-      _chapterIndex = chapterIndex ?? 0;
     }
+
+    refresh();
   }
 
   /// 当前书籍的章节总数

@@ -24,6 +24,7 @@ void main() async {
     SystemChrome.setPreferredOrientations(
             [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp])
         .then((_) {
+      Utils.statusBarEnable(true);
       runApp(Store.init(child: MyApp()));
 
       if (Platform.isAndroid) {

@@ -76,13 +76,19 @@ class _RankingsPageState extends State<RankingsPage>
   void getRankings() async {
     result = await ApiService.getBookRankings();
 
-    male = result.male;
-    picture = result.picture;
-    female = result.female;
-    epub = result.epub;
+    if (result != null) {
+      male = result.male;
+      picture = result.picture;
+      female = result.female;
+      epub = result.epub;
 
-    setState(() {
-      _status = LoaderState.Succeed;
-    });
+      setState(() {
+        _status = LoaderState.Succeed;
+      });
+    } else {
+      setState(() {
+        _status = LoaderState.Failed;
+      });
+    }
   }
 }

@@ -8,13 +8,9 @@ import '../../page_index.dart';
 import '../index.dart';
 
 class ChaptersPage extends StatefulWidget {
-  final String id;
   final String name;
-  final int readingChapterIndex;
 
-  ChaptersPage(
-      {Key key, @required this.id, this.name, this.readingChapterIndex: 0})
-      : super(key: key);
+  ChaptersPage({Key key, @required this.name}) : super(key: key);
 
   @override
   createState() => _ChaptersPageState();
@@ -28,32 +24,32 @@ class _ChaptersPageState extends State<ChaptersPage>
 
   ScrollController _scrollController;
 
-  int checkIndex = 0;
-
   Timer _timer;
 
-  bool _isVisible = true;
+  bool _isVisible = false;
 
   IconData _sIcon = Icons.arrow_upward;
 
   @override
   void initState() {
     super.initState();
-    checkIndex = widget.readingChapterIndex;
-
     _scrollController = ScrollController();
 
-    Store.connect<BookModel>(builder: (_, BookModel snapshot, __) {
+    WidgetsBinding.instance.addPostFrameCallback((callback) {
+      final state = Store.value<BookModel>(context);
+
+      var chapterIndex = state.chapterIndex;
+
       _scrollController.addListener(() {
         if (_scrollController.offset ==
-            snapshot.chapterIndex * Dimens.chapterItemHeight) {
+            chapterIndex * Dimens.chapterItemHeight) {
           _isVisible = false;
         } else {
           if (_scrollController.offset >
-              snapshot.chapterIndex * Dimens.chapterItemHeight) {
+              chapterIndex * Dimens.chapterItemHeight) {
             _sIcon = Icons.arrow_upward;
           } else if (_scrollController.offset <
-              snapshot.chapterIndex * Dimens.chapterItemHeight) {
+              chapterIndex * Dimens.chapterItemHeight) {
             _sIcon = Icons.arrow_downward;
           }
           _isVisible = true;
@@ -61,9 +57,20 @@ class _ChaptersPageState extends State<ChaptersPage>
 
         setState(() {});
       });
-    });
 
-    getBookChapters(widget.id);
+      chapters = state.chapters;
+
+      if (chapters.length > 0) {
+        setState(() {
+          _status = LoaderState.Succeed;
+        });
+        animateTo(chapterIndex);
+      } else {
+        setState(() {
+          _status = LoaderState.NoData;
+        });
+      }
+    });
   }
 
   @override
@@ -95,14 +102,14 @@ class _ChaptersPageState extends State<ChaptersPage>
                           if (chapters[index].isVip) {
                             Toast.show(context, '需要开通VIP才能阅读');
                           } else {
-                            snapshot.updateBook(widget.id,
+                            snapshot.updateBook(snapshot.currentBook.id,
                                 chapterIndex: index,
                                 link: chapters[index].link,
                                 progress: index / chapters.length,
                                 totalChapter: chapters.length);
 
                             pushNewPage(context,
-                                ReaderPage(link: chapters[index].link));
+                                BookReaderPage(link: chapters[index].link));
                           }
                         }),
                     itemCount: chapters.length,
@@ -115,22 +122,10 @@ class _ChaptersPageState extends State<ChaptersPage>
                   onPressed: () =>
                       animateTo(Store.value<BookModel>(context).chapterIndex),
                   mini: true,
-                  child: Icon(_sIcon),
+                  child: Icon(_sIcon, color: Colors.white),
                   backgroundColor: readerMainColor),
               opacity: _isVisible ? 1.0 : 0.0)),
     );
-  }
-
-  void getBookChapters(String id) async {
-    BtocResult result = await ApiService.getBookBtocSource(id);
-    if (result != null) {
-      chapters = await ApiService.getBookChapters(result.id);
-
-      setState(() {
-        _status = LoaderState.Succeed;
-      });
-      animateTo(checkIndex);
-    }
   }
 
   void animateTo(int index) {
