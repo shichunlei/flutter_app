@@ -23,6 +23,7 @@ class ExpandStateBean {
           SubExpandBean('Image', ImageWidget()),
           SubExpandBean('Icon', IconWidget()),
           SubExpandBean('TextField', TextFieldWidget()),
+          SubExpandBean('全局悬浮按钮', FloatingTouchDemoPage()),
           SubExpandBean('Slider', SliderWidget()),
           SubExpandBean('Range Slider', RangeSliderPage()),
           SubExpandBean('Chip', ChipWidget()),
