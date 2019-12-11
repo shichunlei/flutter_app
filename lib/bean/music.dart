@@ -9,8 +9,16 @@ class Music {
   String artists;
   String audioPath;
   String albumArtUrl;
+  String lyric;
 
-  Music({this.id, this.title, this.artists, this.audioPath, this.albumArtUrl});
+  Music({
+    this.id,
+    this.title,
+    this.artists,
+    this.audioPath,
+    this.albumArtUrl,
+    this.lyric,
+  });
 
   static Music fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
@@ -20,6 +28,7 @@ class Music {
     musicBean.artists = map['artists'];
     musicBean.audioPath = map['audioPath'];
     musicBean.albumArtUrl = map['albumArtUrl'];
+    musicBean.lyric = map['lyric'];
     return musicBean;
   }
 
@@ -29,6 +38,7 @@ class Music {
         "artists": artists,
         "audioPath": audioPath,
         "albumArtUrl": albumArtUrl,
+        "lyric": lyric,
       };
 }
 

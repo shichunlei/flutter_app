@@ -33,7 +33,7 @@ A new Flutter application.
 ```
 [✓] Flutter (Channel beta, v1.10.7, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
     • Flutter version 1.10.7 at /Users/14cells/Android/flutter
-    • Framework revision e70236e36c (8 weeks ago), 2019-10-02 09:32:30 -0700
+    • Framework revision e70236e36c (2 months ago), 2019-10-02 09:32:30 -0700
     • Engine revision 9e6314d348
     • Dart version 2.6.0 (build 2.6.0-dev.0.0 1103600280)
 
@@ -299,6 +299,19 @@ __iOS__
 
 |![1](https://github.com/shichunlei/flutter_app/blob/master/admire-for/771564454769_.pic.jpg)|![2](https://github.com/shichunlei/flutter_app/blob/master/admire-for/801564454769_.pic.jpg)|![3](https://github.com/shichunlei/flutter_app/blob/master/admire-for/761564454769_.pic_hd.jpg)|![4](https://github.com/shichunlei/flutter_app/blob/master/admire-for/821564454769_.pic.jpg)|
 | :--: | :--: | :--: | :--: |
+
+
+## 特别鸣谢
+
+
+- [simplezhli/flutter_deer](https://github.com/simplezhli/flutter_deer)
+- [jsososo/QQMusicApi](https://github.com/jsososo/QQMusicApi)
+- [huanxsd/flutter_shuqi](https://github.com/huanxsd/flutter_shuqi)
+- [fluttercandies/NeteaseCloudMusic](https://github.com/fluttercandies/NeteaseCloudMusic)
+- [ditclear/tiktok_gestures](https://github.com/ditclear/tiktok_gestures)
+- [Mayandev/morec](https://github.com/Mayandev/morec)
+- [chengww5217/one_article](https://github.com/chengww5217/one_article)
+- [shenghy/flutter_shop](https://github.com/shenghy/flutter_shop)
 
 
 

@@ -33,14 +33,14 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   int _index = -1;
   int totalSongs = 0;
 
-  PlayerState playerState = PlayerState.stopped;
+//  PlayerState playerState = PlayerState.stopped;
 
   /// 当前音乐名称
   String songTitle = '';
 
-  bool get isPlaying => playerState == PlayerState.playing;
+  bool get isPlaying => _audioPlayerState == AudioPlayerState.PLAYING;
 
-  bool get isPaused => playerState == PlayerState.paused;
+  bool get isPaused => _audioPlayerState == AudioPlayerState.PAUSED;
 
   String get durationText => Utils.duration2String(duration);
 
@@ -98,18 +98,10 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
           }
         });
       })
-      ..onPlayerCompletion.listen((event) {
-        _onComplete();
-        setState(() {
-          position = duration;
-
-          debugPrint('onPlayerCompletion========$position');
-        });
-      })
       ..onPlayerError.listen((msg) {
         debugPrint('audioPlayer error : $msg');
         setState(() {
-          playerState = PlayerState.stopped;
+          _stop();
           duration = Duration(seconds: 0);
           position = Duration(seconds: 0);
 
@@ -122,17 +114,12 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
           _audioPlayerState = state;
         });
 
+        if (state == AudioPlayerState.COMPLETED) {
+          if (!(CycleMode.SEQUENCE == mode && _index == totalSongs - 1)) next();
+        }
+
         debugPrint('${_audioPlayerState.toString()}');
       });
-  }
-
-  void _onComplete() {
-    _controller.reset();
-    debugPrint('onComplete========');
-    setState(() {
-      playerState = PlayerState.stopped;
-    });
-    if (!(CycleMode.SEQUENCE == mode && _index == totalSongs - 1)) next();
   }
 
   Future<int> _play({isLocal: true}) async {
@@ -143,7 +130,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     if (result == 1) {
       debugPrint('=============${audioPlayer.playerId}');
       setState(() {
-        playerState = PlayerState.playing;
         songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
       });
     }
@@ -157,7 +143,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     if (result == 1) {
       debugPrint('=============${audioPlayer.playerId}');
       setState(() {
-        playerState = PlayerState.playing;
         songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
       });
     }
@@ -169,7 +154,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     final result = await audioPlayer.pause();
     if (result == 1)
       setState(() {
-        playerState = PlayerState.paused;
         songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
       });
     return result;
@@ -181,7 +165,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     final result = await audioPlayer.stop();
     if (result == 1)
       setState(() {
-        playerState = PlayerState.stopped;
         position = Duration();
       });
   }
@@ -209,19 +192,17 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     if (result == 1) {
       setState(() {
         this.position = position;
+        audioPlayer.resume();
       });
     }
 
     return result;
   }
 
-  void _setVolume(double volume) {
-    audioPlayer.setVolume(volume);
-  }
-
   @override
   void dispose() {
-    audioPlayer.stop();
+    _stop();
+    audioPlayer.dispose();
     _controller?.dispose();
     super.dispose();
   }
@@ -279,18 +260,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
                   }
                 },
                 value: _progress,
-                onChangeEnd: (value) {
-                  setState(() {
-                    playerState = PlayerState.playing;
-                  });
-                },
-                onChangeStart: (value) {
-                  if (isPlaying) {
-                    setState(() {
-                      playerState = PlayerState.paused;
-                    });
-                  }
-                },
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
