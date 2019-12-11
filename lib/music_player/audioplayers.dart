@@ -1,11 +1,7 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_app/bean/music.dart';
 import 'package:flutter_app/page_index.dart';
+import 'package:flutter_app/store/index.dart';
 
 import 'widgets/album_cover.dart';
 
@@ -16,46 +12,16 @@ class AudioPlayersPage extends StatefulWidget {
 
 class _AudioPlayersPageState extends State<AudioPlayersPage>
     with SingleTickerProviderStateMixin {
-  String localFilePath;
-
   AnimationController _controller;
-
-  double _progress = 0.0;
-
-  /// 总时长
-  Duration duration;
-  Duration position;
-
-  AudioPlayer audioPlayer;
-  AudioPlayerState _audioPlayerState;
-
-  /// 当前音乐下标
-  int _index = -1;
-  int totalSongs = 0;
-
-//  PlayerState playerState = PlayerState.stopped;
-
-  /// 当前音乐名称
-  String songTitle = '';
-
-  bool get isPlaying => _audioPlayerState == AudioPlayerState.PLAYING;
-
-  bool get isPaused => _audioPlayerState == AudioPlayerState.PAUSED;
-
-  String get durationText => Utils.duration2String(duration);
-
-  String get positionText => Utils.duration2String(position);
-
-  CycleMode mode = CycleMode.SEQUENCE;
-  IconData modeIcon = Icons.repeat;
 
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 5));
 
-    //动画开始、结束、向前移动或向后移动时会调用StatusListener
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 20));
+
+    /// 动画开始、结束、向前移动或向后移动时会调用StatusListener
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         /// 动画从 controller.forward() 正向执行 结束时会回调此方法
@@ -69,140 +35,16 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
       }
     });
 
-    initPlayer();
-  }
-
-  void initPlayer() async {
-    totalSongs = songsData.length;
-    _index = 0;
-    songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
-
-    audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER)
-      ..setReleaseMode(ReleaseMode.RELEASE)
-      ..onDurationChanged.listen((Duration duration) {
-        debugPrint('onDurationChanged===============Max duration: $duration');
-        setState(() {
-          this.duration = duration;
-          if (position != null) {
-            this._progress = position.inMilliseconds / duration.inMilliseconds;
-          }
-        });
-      })
-      ..onAudioPositionChanged.listen((Duration position) {
-        debugPrint('onAudioPositionChanged===============position: $position');
-        setState(() {
-          this.position = position;
-
-          if (duration != null) {
-            this._progress = position.inMilliseconds / duration.inMilliseconds;
-          }
-        });
-      })
-      ..onPlayerError.listen((msg) {
-        debugPrint('audioPlayer error : $msg');
-        setState(() {
-          _stop();
-          duration = Duration(seconds: 0);
-          position = Duration(seconds: 0);
-
-          debugPrint('onPlayerError========$position============$duration');
-        });
-      })
-      ..onPlayerStateChanged.listen((AudioPlayerState state) {
-        if (!mounted) return;
-        setState(() {
-          _audioPlayerState = state;
-        });
-
-        if (state == AudioPlayerState.COMPLETED) {
-          if (!(CycleMode.SEQUENCE == mode && _index == totalSongs - 1)) next();
-        }
-
-        debugPrint('${_audioPlayerState.toString()}');
-      });
-  }
-
-  Future<int> _play({isLocal: true}) async {
-    _controller.forward();
-
-    final result =
-        await audioPlayer.play(songsData[_index].audioPath, isLocal: isLocal);
-    if (result == 1) {
-      debugPrint('=============${audioPlayer.playerId}');
-      setState(() {
-        songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
-      });
-    }
-    return result;
-  }
-
-  Future<int> _resume() async {
-    _controller.forward();
-
-    final result = await audioPlayer.resume();
-    if (result == 1) {
-      debugPrint('=============${audioPlayer.playerId}');
-      setState(() {
-        songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
-      });
-    }
-    return result;
-  }
-
-  Future<int> _pause() async {
-    _controller.stop();
-    final result = await audioPlayer.pause();
-    if (result == 1)
-      setState(() {
-        songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
-      });
-    return result;
-  }
-
-  Future _stop() async {
-    _controller.reset();
-
-    final result = await audioPlayer.stop();
-    if (result == 1)
-      setState(() {
-        position = Duration();
-      });
-  }
-
-  void next() {
-    if (isPlaying || isPaused) _stop();
-
-    if (CycleMode.SINGLE == mode) {
-      _index = _index;
-    } else if (CycleMode.SEQUENCE == mode) {
-      _index++;
-    } else {
-      _index = Random().nextInt(totalSongs - 1);
-    }
-    _seek(Duration(milliseconds: 0));
-
-    Future.delayed(Duration(milliseconds: 800), () {
-      _play();
+    WidgetsBinding.instance.addPostFrameCallback((callback) {
+      var value = Store.value<MusicModel>(context);
+      if (value.allSongs.length == 0) {
+        value.addSongs(songsData);
+      }
     });
-  }
-
-  Future<int> _seek(Duration position) async {
-    int result = await audioPlayer.seek(position);
-
-    if (result == 1) {
-      setState(() {
-        this.position = position;
-        audioPlayer.resume();
-      });
-    }
-
-    return result;
   }
 
   @override
   void dispose() {
-    _stop();
-    audioPlayer.dispose();
     _controller?.dispose();
     super.dispose();
   }
@@ -229,7 +71,8 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
           padding: EdgeInsets.only(
               top: Utils.navigationBarHeight - Utils.topSafeHeight),
           child: AlbumCover(
-              image: songsData[_index].albumArtUrl, isPlaying: isPlaying),
+              image: Store.value<MusicModel>(context).curSong?.albumArtUrl,
+              isPlaying: Store.value<MusicModel>(context).isPlaying),
         ),
         Positioned(
           bottom: 0,
@@ -241,7 +84,8 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 height: 50,
                 child: Marquee(
-                  text: '$songTitle',
+                  text:
+                      '${Store.value<MusicModel>(context).curSong?.title}-${Store.value<MusicModel>(context).curSong?.artists}',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 14,
@@ -253,27 +97,23 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
               ),
               Slider(
                 onChanged: (value) {
-                  if (duration != null) {
-                    _seek(Duration(
-                        milliseconds:
-                            (duration.inMilliseconds * value).toInt()));
-                  }
+                  Store.value<MusicModel>(context).seekPlay(value);
                 },
-                value: _progress,
+                value: Store.value<MusicModel>(context).progress,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(positionText,
+                    Text(Store.value<MusicModel>(context).positionText,
                         style: TextStyle(
                             color: Colors.white.withOpacity(0.75),
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 3.0,
                             height: 1.5)),
-                    Text(durationText,
+                    Text(Store.value<MusicModel>(context).durationText,
                         style: TextStyle(
                             color: Colors.white.withOpacity(0.75),
                             fontSize: 12,
@@ -287,19 +127,16 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
                 type: MaterialType.transparency,
                 child: Padding(
                     padding: EdgeInsets.only(top: 20, bottom: 20),
-                    child: Row(children: <Widget>[
-                      Spacer(),
-                      _buildModeButton(),
-                      Spacer(),
-                      _buildPreviousButton(),
-                      Spacer(),
-                      _buildPlayPausedButton(),
-                      Spacer(),
-                      _buildNextButton(),
-                      Spacer(),
-                      _buildListButton(),
-                      Spacer(),
-                    ])),
+                    child: Row(
+                      children: <Widget>[
+                        _buildModeButton(),
+                        _buildPreviousButton(),
+                        _buildPlayPausedButton(),
+                        _buildNextButton(),
+                        _buildListButton(),
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    )),
               )
             ]),
           ),
@@ -317,10 +154,11 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   }
 
   Widget _buildModeButton() {
+    var snapshot = Store.value<MusicModel>(context);
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
-        icon: Icon(modeIcon, color: Colors.white, size: 20),
+        icon: Icon(snapshot.modeIcon, color: Colors.white, size: 20),
         onPressed: () {
           showDialog(
               context: context,
@@ -338,36 +176,27 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
                               title: Text('单曲循环'),
                               onTap: () {
                                 Navigator.pop(context);
-                                setState(() {
-                                  modeIcon = Icons.repeat_one;
-                                  mode = CycleMode.SINGLE;
-                                });
+                                snapshot.toggleMode(CycleMode.SINGLE);
                               },
-                              selected: mode == CycleMode.SINGLE,
+                              selected: snapshot.mode == CycleMode.SINGLE,
                             ),
                             ListTile(
-                              leading: Icon(Icons.repeat, size: 20),
+                              leading: Icon(Icons.repeat),
                               title: Text('顺序播放'),
                               onTap: () {
                                 Navigator.pop(context);
-                                setState(() {
-                                  modeIcon = Icons.repeat;
-                                  mode = CycleMode.SEQUENCE;
-                                });
+                                snapshot.toggleMode(CycleMode.SEQUENCE);
                               },
-                              selected: mode == CycleMode.SEQUENCE,
+                              selected: snapshot.mode == CycleMode.SEQUENCE,
                             ),
                             ListTile(
-                              leading: Icon(Icons.shuffle, size: 20),
+                              leading: Icon(Icons.shuffle),
                               title: Text('随机播放'),
                               onTap: () {
                                 Navigator.pop(context);
-                                setState(() {
-                                  modeIcon = Icons.shuffle;
-                                  mode = CycleMode.RANDOM;
-                                });
+                                snapshot.toggleMode(CycleMode.RANDOM);
                               },
-                              selected: mode == CycleMode.RANDOM,
+                              selected: snapshot.mode == CycleMode.RANDOM,
                             ),
                           ],
                           contentPadding: EdgeInsets.all(0),
@@ -384,7 +213,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
-        icon: Icon(Icons.queue_music, color: Colors.white, size: 20),
+        icon: Icon(Icons.queue_music, color: Colors.white),
         onPressed: () => showModalBottomSheet(
             context: context, builder: (builder) => _bottomSheetItem(context)));
   }
@@ -394,7 +223,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
         icon: Icon(Icons.skip_next, color: Colors.white, size: 35),
-        onPressed: (_index + 1) >= totalSongs ? null : () => next());
+        onPressed: () => Store.value<MusicModel>(context).nextMusic());
   }
 
   Widget _buildPreviousButton() {
@@ -402,32 +231,22 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
         icon: Icon(Icons.skip_previous, color: Colors.white, size: 35),
-        onPressed: _index <= 0
-            ? null
-            : () {
-                if (isPlaying || isPaused) _stop();
-                _index--;
-                _play();
-              });
+        onPressed: () => Store.value<MusicModel>(context).prePlay());
   }
 
   Widget _buildPlayPausedButton() {
     return CircleButton(
       onPressedAction: () {
-        if (isPlaying) {
-          _pause();
-        } else if (isPaused) {
-          _resume();
-        } else {
-          _play();
-        }
+        Store.value<MusicModel>(context).togglePlay();
       },
       fillColor: Colors.white,
       splashColor: lightAccentColor,
       highlightColor: lightAccentColor.withOpacity(0.5),
       elevation: 10.0,
       highlightElevation: 5,
-      icon: isPlaying ? Icons.pause : isPaused ? Icons.play_arrow : Icons.stop,
+      icon: Store.value<MusicModel>(context).isPlaying
+          ? Icons.pause
+          : Icons.play_arrow,
       iconSize: 35,
       size: 70,
       iconColor: darkAccentColor,
@@ -435,33 +254,24 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
   }
 
   Widget _bottomSheetItem(BuildContext context) {
-    return ListView(
-        // 生成一个列表选择器
-        children: songsData.map((song) {
-      int index = songsData.indexOf(song);
-      return ListTile(
-          leading: ImageLoadView('${song.albumArtUrl}',
+    var snapshot = Store.value<MusicModel>(context);
+    return ListView.builder(
+      itemBuilder: (_, index) {
+        return ListTile(
+          leading: ImageLoadView('${snapshot.allSongs[index].albumArtUrl}',
               width: 40,
               height: 40,
               fit: BoxFit.cover,
               borderRadius: BorderRadius.all(Radius.circular(20.0))),
-          title: Text('${song.title}'),
+          title: Text('${snapshot.allSongs[index].title}'),
           onTap: () {
             Navigator.pop(context);
-            if (isPlaying || isPaused) {
-              if (_index != index)
-                setState(() {
-                  _stop().then((_) {
-                    _index = index;
-                    _play();
-                  });
-                });
-            } else {
-              _index = index;
-              _play();
-            }
+            snapshot.playSongByIndex(index);
           },
-          selected: _index == index);
-    }).toList());
+          selected: snapshot.curIndex == index,
+        );
+      },
+      itemCount: snapshot.allSongs.length,
+    );
   }
 }

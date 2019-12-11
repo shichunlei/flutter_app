@@ -44,9 +44,8 @@ class MusicModel extends ChangeNotifier {
 
   Music get curSong => _songs.length == 0 ? null : _songs[curIndex];
 
-  void init() {
-    _mode = CycleMode.SEQUENCE;
-    _modeIcon = Icons.repeat;
+  void init() async {
+    toggleMode(CycleMode.SEQUENCE);
 
     addSongs(songsData);
 
@@ -102,17 +101,17 @@ class MusicModel extends ChangeNotifier {
       );
   }
 
-  // 播放指定一首歌
+  // 播放指定歌曲
   void playSongByIndex(int index) {
     if (curIndex != index) {
       if (isPlaying) {
-        stopPlay();
+        _stop();
       }
       curIndex = index;
-      play();
+      _play();
     } else {
       if (!isPlaying) {
-        play();
+        _play();
       }
     }
   }
@@ -120,14 +119,14 @@ class MusicModel extends ChangeNotifier {
   // 播放一首歌
   void playSong(Music song) {
     _songs.insert(curIndex, song);
-    play();
+    _play();
   }
 
   // 播放很多歌
   void playSongs(List<Music> songs, {int index}) {
     this._songs = songs;
     if (index != null) curIndex = index;
-    play();
+    _play();
   }
 
   // 添加歌曲
@@ -136,43 +135,43 @@ class MusicModel extends ChangeNotifier {
   }
 
   /// 播放
-  void play() {
+  void _play() {
     _audioPlayer.play("${_songs[curIndex].audioPath}");
   }
 
-  /// 暂停、恢复
+  /// 开始、暂停、恢复
   void togglePlay() {
-    if (_position == null) {
-      play();
+    if (_audioPlayer.state == AudioPlayerState.PAUSED) {
+      _resume();
+    } else if (_audioPlayer.state == AudioPlayerState.PLAYING) {
+      _pause();
     } else {
-      if (_audioPlayer.state == AudioPlayerState.PAUSED) {
-        resumePlay();
-      } else {
-        pausePlay();
-      }
+      _play();
     }
   }
 
   // 停止
-  void stopPlay() {
+  void _stop() {
     _audioPlayer.stop();
   }
 
   // 暂停
-  void pausePlay() {
+  void _pause() {
     _audioPlayer.pause();
   }
 
   /// 跳转到固定时间
-  void seekPlay(int milliseconds, {bool resume: true}) {
-    _audioPlayer.seek(Duration(milliseconds: milliseconds));
+  void seekPlay(double progress, {bool resume: true}) {
+    this._progress = progress;
+    _audioPlayer.seek(
+        Duration(milliseconds: (_duration.inMilliseconds * progress).toInt()));
     if (resume) {
-      resumePlay();
+      _resume();
     }
   }
 
   /// 恢复播放
-  void resumePlay() {
+  void _resume() {
     _audioPlayer.resume();
   }
 
@@ -191,13 +190,13 @@ class MusicModel extends ChangeNotifier {
     }
 
     if (_curState != AudioPlayerState.STOPPED) {
-      stopPlay();
+      _stop();
     }
 
-    seekPlay(0, resume: false);
+    seekPlay(0.0, resume: false);
 
     Future.delayed(Duration(milliseconds: 500), () {
-      play();
+      _play();
     });
   }
 
@@ -215,13 +214,13 @@ class MusicModel extends ChangeNotifier {
       curIndex = Random().nextInt(_songs.length - 1);
     }
     if (_curState != AudioPlayerState.STOPPED) {
-      stopPlay();
+      _stop();
     }
 
-    seekPlay(0, resume: false);
+    seekPlay(0.0, resume: false);
 
     Future.delayed(Duration(milliseconds: 500), () {
-      play();
+      _play();
     });
   }
 
@@ -246,7 +245,7 @@ class MusicModel extends ChangeNotifier {
 
   @override
   void dispose() {
-    stopPlay();
+    _stop();
     _audioPlayer.dispose();
     super.dispose();
   }
