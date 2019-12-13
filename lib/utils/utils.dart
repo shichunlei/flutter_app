@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui show window;
 
 import 'package:flutter/services.dart';
+import 'package:flutter_app/bean/music.dart';
 
 import 'package:palette_generator/palette_generator.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -63,6 +64,12 @@ class Utils {
   static double get topSafeHeight {
     MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     return mediaQuery.padding.top;
+  }
+
+  /// 底部状态栏高度
+  static double get bottomSafeHeight {
+    MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
+    return mediaQuery.padding.bottom;
   }
 
   static updateStatusBarStyle(SystemUiOverlayStyle style) {

@@ -75,7 +75,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
               isPlaying: Store.value<MusicModel>(context).isPlaying),
         ),
         Positioned(
-          bottom: 0,
+          bottom: Utils.bottomSafeHeight,
           left: 0,
           right: 0,
           child: Container(
@@ -214,8 +214,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
         icon: Icon(Icons.queue_music, color: Colors.white),
-        onPressed: () => showModalBottomSheet(
-            context: context, builder: (builder) => _bottomSheetItem(context)));
+        onPressed: () => showMusicListBottomSheet(context));
   }
 
   Widget _buildNextButton() {
@@ -250,28 +249,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
       iconSize: 35,
       size: 70,
       iconColor: darkAccentColor,
-    );
-  }
-
-  Widget _bottomSheetItem(BuildContext context) {
-    var snapshot = Store.value<MusicModel>(context);
-    return ListView.builder(
-      itemBuilder: (_, index) {
-        return ListTile(
-          leading: ImageLoadView('${snapshot.allSongs[index].albumArtUrl}',
-              width: 40,
-              height: 40,
-              fit: BoxFit.cover,
-              borderRadius: BorderRadius.all(Radius.circular(20.0))),
-          title: Text('${snapshot.allSongs[index].title}'),
-          onTap: () {
-            Navigator.pop(context);
-            snapshot.playSongByIndex(index);
-          },
-          selected: snapshot.curIndex == index,
-        );
-      },
-      itemCount: snapshot.allSongs.length,
     );
   }
 }

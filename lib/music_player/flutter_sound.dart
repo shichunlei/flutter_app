@@ -72,22 +72,27 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
         appBar: AppBar(title: Text('Flutter Sound')),
         body: Column(children: <Widget>[
           /// cd
-          Container(
-              height: 300.0,
-              child: Swiper(
-                  itemBuilder: (BuildContext context, int index) =>
-                      AnimatedCDView(
-                          animation: _controller,
-                          imageUrl: songsData[index].albumArtUrl),
-                  onIndexChanged: (i) => setState(() {
-                        onTop = i;
-                        _name = songsData[i].title;
-                        _artists = songsData[i].artists;
-                        startPlay();
-                      }),
-                  itemCount: songsData.length,
-                  viewportFraction: 0.70,
-                  scale: 0.6)),
+          Expanded(
+            child: Center(
+              child: Container(
+                  height: 300.0,
+                  child: Swiper(
+                      itemBuilder: (BuildContext context, int index) =>
+                          AnimatedCDView(
+                              animation: _controller,
+                              imageUrl: songsData[index].albumArtUrl),
+                      onIndexChanged: (i) => setState(() {
+                            onTop = i;
+                            _name = songsData[i].title;
+                            _artists = songsData[i].artists;
+                            startPlay();
+                          }),
+                      itemCount: songsData.length,
+                      viewportFraction: 0.70,
+                      scale: 0.6)),
+            ),
+          ),
+
           // name
           Container(
               height: 90.0,
@@ -174,7 +179,8 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
               min: 0.0,
               max: maxDuration),
 
-          Text('$currentPositionTxt / $maxDurationTxt')
+          Text('$currentPositionTxt / $maxDurationTxt'),
+          Gaps.vGap(Utils.bottomSafeHeight)
         ]));
   }
 

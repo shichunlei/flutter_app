@@ -134,6 +134,12 @@ class MusicModel extends ChangeNotifier {
     this._songs.addAll(songs);
   }
 
+  // 删除歌曲
+  void deleteSong(int index) {
+    this._songs.removeAt(index);
+    notifyListeners();
+  }
+
   /// 播放
   void _play() {
     _audioPlayer.play("${_songs[curIndex].audioPath}");

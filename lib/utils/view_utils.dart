@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/i18n.dart';
+import 'package:flutter_app/store/index.dart';
 
-import 'utils.dart';
+import '../page_index.dart';
 
 /// 根据Android或IOS显示不同风格dialog
 ///
@@ -52,5 +53,36 @@ Future<Null> showDiffDialog(BuildContext context,
               )
             ],
           ),
+  );
+}
+
+void showMusicListBottomSheet(BuildContext context) {
+  var snapshot = Store.value<MusicModel>(context);
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: Colors.white,
+    builder: (builder) => ListView.separated(
+      itemBuilder: (_, index) {
+        return ListTile(
+          leading: ImageLoadView('${snapshot.allSongs[index].albumArtUrl}',
+              width: 40,
+              height: 40,
+              fit: BoxFit.cover,
+              borderRadius: BorderRadius.all(Radius.circular(20.0))),
+          title: Text('${snapshot.allSongs[index].title}'),
+          subtitle: Text('${snapshot.allSongs[index].artists}'),
+          onTap: () {
+            Navigator.pop(context);
+            snapshot.playSongByIndex(index);
+          },
+          selected: snapshot.curIndex == index,
+        );
+      },
+      itemCount: snapshot.allSongs.length,
+      separatorBuilder: (BuildContext context, int index) => Container(
+        height: 0.1,
+        color: Colors.grey,
+      ),
+    ),
   );
 }

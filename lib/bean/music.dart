@@ -72,7 +72,7 @@ List<Music> songsData = [
     audioPath: 'https://music.163.com/song/media/outer/url?id=436487129.mp3',
     albumArtUrl:
         'http://p1.music.126.net/9h_TA43qbHLTKwQrQzhLgQ==/18162832579997237.jpg?param=130y130',
-    title: 'Move Your Body (Alan Walker Remix)',
+    title: 'Move Your Body',
     artists: 'Sia / Alan Walker',
   ),
   Music(

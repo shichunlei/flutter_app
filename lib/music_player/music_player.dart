@@ -119,7 +119,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
     _controller.forward();
 
     final result =
-    await audioPlayer.play(songsData[_index].audioPath, isLocal: isLocal);
+        await audioPlayer.play(songsData[_index].audioPath, isLocal: isLocal);
     if (result == 1) {
       debugPrint('=============${audioPlayer.playerId}');
       setState(() {
@@ -153,7 +153,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
   }
 
   Future _stop() async {
-    _controller.reset();
+    _controller?.reset();
 
     final result = await audioPlayer.stop();
     if (result == 1)
@@ -208,7 +208,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
   @override
   void dispose() {
     _stop();
-    audioPlayer.dispose();
+    audioPlayer?.dispose();
     _controller?.dispose();
     super.dispose();
   }
@@ -250,7 +250,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
                       if (duration != null) {
                         position = Duration(
                             milliseconds:
-                            (_progress * duration.inMilliseconds).round());
+                                (_progress * duration.inMilliseconds).round());
                         _seek(position);
                       }
                     });
@@ -271,7 +271,8 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
             color: accentColor,
             shadowColor: const Color(0x44000000),
             child: Padding(
-                padding: EdgeInsets.only(top: 40, bottom: 50),
+                padding: EdgeInsets.only(
+                    top: 40, bottom: 50.0 + Utils.bottomSafeHeight),
                 child: Column(children: <Widget>[
                   Text('$songTitle',
                       style: TextStyle(
@@ -284,8 +285,8 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
                       position != null
                           ? "$positionText / $durationText"
                           : duration != null
-                          ? durationText
-                          : '0:00:00 / 0:00:00',
+                              ? durationText
+                              : '0:00:00 / 0:00:00',
                       style: TextStyle(
                           color: Colors.white.withOpacity(0.75),
                           fontSize: 12,
@@ -349,32 +350,32 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
 
   Widget _bottomSheetItem(BuildContext context) {
     return ListView(
-      // 生成一个列表选择器
+        // 生成一个列表选择器
         children: songsData.map((song) {
-          int index = songsData.indexOf(song);
-          return ListTile(
-              leading: ImageLoadView('${song.albumArtUrl}',
-                  width: 40,
-                  height: 40,
-                  fit: BoxFit.cover,
-                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
-              title: Text('${song.title}'),
-              onTap: () {
-                Navigator.pop(context);
-                if (isPlaying || isPaused) {
-                  if (_index != index)
-                    setState(() {
-                      _stop().then((_) {
-                        _index = index;
-                        _play();
-                      });
-                    });
-                } else {
-                  _index = index;
-                  _play();
-                }
-              },
-              selected: _index == index);
-        }).toList());
+      int index = songsData.indexOf(song);
+      return ListTile(
+          leading: ImageLoadView('${song.albumArtUrl}',
+              width: 40,
+              height: 40,
+              fit: BoxFit.cover,
+              borderRadius: BorderRadius.all(Radius.circular(20.0))),
+          title: Text('${song.title}'),
+          onTap: () {
+            Navigator.pop(context);
+            if (isPlaying || isPaused) {
+              if (_index != index)
+                setState(() {
+                  _stop().then((_) {
+                    _index = index;
+                    _play();
+                  });
+                });
+            } else {
+              _index = index;
+              _play();
+            }
+          },
+          selected: _index == index);
+    }).toList());
   }
 }
