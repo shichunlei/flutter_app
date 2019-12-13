@@ -67,6 +67,10 @@ dependencies: # 应用或包依赖的其它包或插件
   # 颜色选择器
   flutter_colorpicker: ^0.2.6
 
+#  flutter_custom_calendar:
+#    git:
+#      url: https://github.com/LXD312569496/flutter_custom_calendar.git
+
   # 刷新加载控件
   flutter_easyrefresh: ^2.0.6
 
@@ -124,7 +128,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.7
 
-  multi_image_picker: ^4.5.9
+  multi_image_picker: ^4.6.0
 
   package_info: ^0.4.0+13
 
@@ -155,7 +159,7 @@ dependencies: # 应用或包依赖的其它包或插件
   share: ^0.6.3+5
 
   # SP
-  shared_preferences: ^0.5.4+8
+  shared_preferences: ^0.5.6
 
   # 骨架屏
   shimmer: ^1.0.1
@@ -169,10 +173,10 @@ dependencies: # 应用或包依赖的其它包或插件
   # 透明占位图片
   transparent_image: ^1.0.0
 
-  url_launcher: ^5.2.7
+  url_launcher: ^5.4.1
 
   # 视频播放器器
-  video_player: ^0.10.4+1
+  video_player: ^0.10.5
 
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:

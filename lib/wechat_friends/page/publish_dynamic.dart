@@ -68,18 +68,20 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
                     crossAxisSpacing: 5.0,
                     mainAxisSpacing: 5.0,
                     childAspectRatio: 1.0),
-                itemBuilder: (context, index) => AssetView(
-                      asset: index == imageNum ? null : _images[index],
-                      onTap: () {
-                        if (imageNum < widget.maxImages && index == imageNum) {
-                          loadAssets();
-                        }
-
-                        /// TODO 进入预览界面
-                      },
+                itemBuilder: (context, index) => AssetThumb(
+                      asset:  _images[index],
+                      height: 300,
+                      width: 300,
+//                      onTap: () {
+//                        if (imageNum < widget.maxImages && index == imageNum) {
+//                          loadAssets();
+//                        }
+//
+//                        /// TODO 进入预览界面
+//                      },
                     ),
                 itemCount:
-                    imageNum < widget.maxImages ? imageNum + 1 : imageNum,
+                    imageNum ,//< widget.maxImages ? imageNum + 1 : imageNum,
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 primary: false),
@@ -136,7 +138,7 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
       );
 
       for (var r in resultList) {
-        var t = await r.filePath;
+        var t = r.name;
         print(t);
       }
     } on PlatformException catch (e) {

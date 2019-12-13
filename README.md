@@ -31,11 +31,11 @@ A new Flutter application.
 ## 运行环境
 
 ```
-[✓] Flutter (Channel beta, v1.10.7, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
-    • Flutter version 1.10.7 at /Users/14cells/Android/flutter
-    • Framework revision e70236e36c (2 months ago), 2019-10-02 09:32:30 -0700
-    • Engine revision 9e6314d348
-    • Dart version 2.6.0 (build 2.6.0-dev.0.0 1103600280)
+[✓] Flutter (Channel beta, v1.12.13+hotfix.6, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
+    • Flutter version 1.12.13+hotfix.6 at /Users/14cells/Android/flutter
+    • Framework revision 18cd7a3601 (2 days ago), 2019-12-11 06:35:39 -0800
+    • Engine revision 2994f7e1e6
+    • Dart version 2.7.0
 
 [✓] Android toolchain - develop for Android devices (Android SDK version 29.0.2)
     • Android SDK at /Users/14cells/Android/SDK

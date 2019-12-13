@@ -202,7 +202,7 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
       );
 
       for (var r in resultList) {
-        var t = await r.filePath;
+        var t = r.name;
         print(t);
       }
     } on PlatformException catch (e) {
