@@ -168,7 +168,7 @@ packages:
       name: cupertino_icons
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.2"
+    version: "0.1.3"
   custom_widgets:
     dependency: "direct main"
     description:
@@ -222,7 +222,7 @@ packages:
       name: flutter_easyrefresh
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.5"
+    version: "2.0.6"
   flutter_html:
     dependency: "direct main"
     description:

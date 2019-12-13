@@ -68,7 +68,7 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_colorpicker: ^0.2.6
 
   # 刷新加载控件
-  flutter_easyrefresh: ^2.0.5
+  flutter_easyrefresh: ^2.0.6
 
   flutter_html: ^0.11.0
 

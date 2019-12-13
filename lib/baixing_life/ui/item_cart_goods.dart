@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../page_index.dart';
 import '../index.dart';
 
-class ItemCartGoods extends StatefulWidget {
+class ItemCartGoods extends StatelessWidget {
   final VoidCallback onTap;
   final Goods goods;
   final VoidCallback deleteOnTap;
@@ -29,11 +29,6 @@ class ItemCartGoods extends StatefulWidget {
         super(key: key);
 
   @override
-  createState() => _ItemCartGoodsState();
-}
-
-class _ItemCartGoodsState extends State<ItemCartGoods> {
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
         child: Column(
@@ -44,47 +39,43 @@ class _ItemCartGoodsState extends State<ItemCartGoods> {
               child: Row(children: <Widget>[
                 GestureDetector(
                     child: Row(children: <Widget>[
-                      Icon(
-                          widget.isChecked
-                              ? CustomIcon.check
-                              : CustomIcon.normal,
+                      Icon(isChecked ? CustomIcon.check : CustomIcon.normal,
                           size: 20,
-                          color: widget.goods.isChecked == 1
-                              ? Colors.red
-                              : Colors.grey),
+                          color:
+                              goods.isChecked == 1 ? Colors.red : Colors.grey),
                       Hero(
-                          tag: widget.goods.goodsId,
-                          child: ImageLoadView('${widget.goods.comPic}',
+                          tag: goods.goodsId,
+                          child: ImageLoadView('${goods.comPic}',
                               height: 80.0, width: 80.0))
                     ]),
-                    onTap: widget.checkOnTap),
-                SizedBox(width: 8.0),
+                    onTap: checkOnTap),
+                Gaps.hGap8,
                 Expanded(
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('${widget.goods.goodsName}', maxLines: 2),
-                        SizedBox(height: 10.0),
+                        Text('${goods.goodsName}', maxLines: 2),
+                        Gaps.vGap8,
                         CartAmountView(
-                            amount: widget.amount,
-                            addOnPressed: widget.addOnPressed,
-                            minusOnPressed: widget.minusOnPressed)
+                            amount: amount,
+                            addOnPressed: addOnPressed,
+                            minusOnPressed: minusOnPressed)
                       ]),
                 ),
-                SizedBox(width: 8.0),
+                Gaps.hGap8,
                 Column(
                     children: <Widget>[
-                      Text('￥ ${widget.goods.presentPrice}',
+                      Text('￥ ${goods.presentPrice}',
                           style:
                               TextStyle(color: Colors.black, fontSize: 16.0)),
-                      Text('￥ ${widget.goods.oriPrice}',
+                      Text('￥ ${goods.oriPrice}',
                           style: TextStyle(
                               color: Colors.grey,
                               fontSize: 12.0,
                               decoration: TextDecoration.lineThrough)),
                       GestureDetector(
-                          child: Icon(Icons.delete), onTap: widget.deleteOnTap)
+                          child: Icon(Icons.delete), onTap: deleteOnTap)
                     ],
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end)
@@ -93,6 +84,6 @@ class _ItemCartGoodsState extends State<ItemCartGoods> {
             Container(height: 0.5, color: Colors.grey[200])
           ],
         ),
-        onTap: widget.onTap);
+        onTap: onTap);
   }
 }

@@ -18,7 +18,6 @@ class CartAmountView extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(8.0))),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           GestureDetector(
               child: Icon(Icons.remove,

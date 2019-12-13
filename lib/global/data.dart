@@ -31,6 +31,7 @@ class ExpandStateBean {
           SubExpandBean('主题', ThemeSample()),
           SubExpandBean('ColorFiltered', ColorFilteredWidget()),
           SubExpandBean('ScrollNotification', ScrollNotificationDemo()),
+          SubExpandBean('ValueListenableBuilder', ValueListenableBuilderWidget()),
         ]),
     ExpandStateBean(
         leading: Icons.filter_2,

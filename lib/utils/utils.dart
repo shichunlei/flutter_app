@@ -164,6 +164,11 @@ class Utils {
     return duration?.toString()?.split('.')?.first ?? '0:00:00';
   }
 
+  /// 16进制颜色值转换为10进制值
+  ///
+  /// [colorStr] 颜色值 #FFEE22
+  /// [alpha] 透明度（16进制）
+  ///
   static int getColorHexFromStr(String colorStr, {String alpha: "FF"}) {
     if (colorStr == null) {
       return 0;

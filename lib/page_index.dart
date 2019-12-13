@@ -37,6 +37,7 @@ export 'widget/stepper_widget.dart';
 export 'widget/text_widget.dart';
 export 'widget/textfield_widget.dart';
 export 'widget/toggle_buttons.dart';
+export 'widget/value_listenable_builder_widget.dart';
 
 export 'page/charts_widget.dart';
 export 'page/city_picker_page.dart';
