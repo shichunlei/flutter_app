@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/nba/index.dart';
 
 import '../page_index.dart';
 

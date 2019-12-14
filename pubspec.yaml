@@ -72,7 +72,7 @@ dependencies: # 应用或包依赖的其它包或插件
 #      url: https://github.com/LXD312569496/flutter_custom_calendar.git
 
   # 刷新加载控件
-  flutter_easyrefresh: ^2.0.6
+  flutter_easyrefresh: ^2.0.7
 
   flutter_html: ^0.11.0
 
