@@ -36,33 +36,36 @@ class _PlayerDataPageState extends State<PlayerDataPage>
             padding: const EdgeInsets.all(8.0),
             child: Text('数据总览'),
           ),
-          Container(
+          Center(
             child: RadarWidget(
               layerNum: 5,
               data: {
                 "得分": playerSeasonStat?.pointsSerial == '0'
                     ? 0.0
-                    : (100 - double.parse(playerSeasonStat?.pointsSerial)) /
-                        100,
+                    : 100 - double.parse(playerSeasonStat?.pointsSerial),
                 "助攻": playerSeasonStat?.assistsSerial == '0'
                     ? 0.0
-                    : (100 - double.parse(playerSeasonStat?.assistsSerial)) /
-                        100,
+                    : 100 - double.parse(playerSeasonStat?.assistsSerial),
                 "篮板": playerSeasonStat?.reboundsSerial == '0'
                     ? 0.0
-                    : (100 - double.parse(playerSeasonStat?.reboundsSerial)) /
-                        100,
+                    : 100 - double.parse(playerSeasonStat?.reboundsSerial),
                 "抢断": playerSeasonStat?.stealsSerial == '0'
                     ? 0.0
-                    : (100 - double.parse(playerSeasonStat?.stealsSerial)) /
-                        100,
+                    : 100 - double.parse(playerSeasonStat?.stealsSerial),
                 "盖帽": playerSeasonStat?.blocksSerial == '0'
                     ? 0.0
-                    : (100 - double.parse(playerSeasonStat?.blocksSerial)) / 100
+                    : 100 - double.parse(playerSeasonStat?.blocksSerial)
               },
+              pointColors: [
+                Colors.redAccent,
+                Colors.purpleAccent,
+                Colors.lightBlue,
+                Colors.green,
+                Colors.pink
+              ],
+              sideStyle: SideStyle.circle,
+              maxValue: 100.0,
             ),
-            height: 200,
-            margin: EdgeInsets.all(8.0),
           ),
           Container(
             color: Colors.white,

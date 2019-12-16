@@ -4,45 +4,113 @@ import 'package:flutter/material.dart';
 
 import 'utils.dart';
 
-class RadarWidget extends StatelessWidget {
+enum SideStyle { polygon, circle }
+
+class RadarWidget extends StatefulWidget {
   /// 几层多边形
   final int layerNum;
   final Map<String, double> data;
+  final List<Color> pointColors;
   final PaintingStyle pointStyle;
   final Color layerColor;
-  final Color pointColor;
+  final double fallbackHeight;
+  final double fallbackWidth;
+  final SideStyle sideStyle;
+  final double maxValue;
 
   RadarWidget({
     Key key,
-    this.data,
+    @required this.data,
     this.layerNum: 6,
     this.pointStyle: PaintingStyle.fill,
     this.layerColor: const Color(0x3aFF00FF),
-    this.pointColor: Colors.white,
+    @required this.pointColors,
+    this.fallbackHeight: 200,
+    this.fallbackWidth: 200,
+    this.sideStyle: SideStyle.polygon,
+    @required this.maxValue,
   })  : assert(data.length > 2),
+        assert(data.length == pointColors.length,
+            'Length of data and color lists must be equal'),
         super(key: key);
 
   @override
+  createState() => _RadarWidgetState();
+}
+
+class _RadarWidgetState extends State<RadarWidget>
+    with SingleTickerProviderStateMixin {
+  double fraction = 0.0;
+  Animation<double> animation;
+  AnimationController animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(
+        duration: Duration(milliseconds: 1000), vsync: this);
+
+    animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+      curve: Curves.fastOutSlowIn,
+      parent: animationController,
+    ))
+      ..addListener(() {
+        setState(() {
+          fraction = animation.value;
+        });
+      });
+
+    animationController.forward();
+  }
+
+  @override
+  void didUpdateWidget(RadarWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    animationController.reset();
+    animationController.forward();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      size: Size(double.infinity, double.infinity),
-      painter: RadarView(layerNum, data, pointStyle, layerColor, pointColor),
+    return LimitedBox(
+      maxWidth: widget.fallbackWidth,
+      maxHeight: widget.fallbackHeight,
+      child: CustomPaint(
+        size: Size.infinite,
+        painter: RadarViewPainter(
+          widget.layerNum,
+          widget.data,
+          widget.pointStyle,
+          widget.layerColor,
+          widget.pointColors,
+          widget.sideStyle,
+          widget.maxValue,
+          this.fraction,
+        ),
+      ),
     );
   }
 }
 
-class RadarView extends CustomPainter {
+class RadarViewPainter extends CustomPainter {
   /// 雷达图顶点数
   int sideNum;
 
   final int layerNum;
 
   final Map<String, double> data;
+  final double maxValue;
 
   final PaintingStyle pointStyle;
 
   final Color layerColor;
-  final Color pointColor;
+  final List<Color> pointColors;
+
+  /// 边的样式：圆形或正多边形
+  final SideStyle sideStyle;
+
+  final double fraction;
 
   /// view 的中心点
   double viewCenterX;
@@ -63,8 +131,8 @@ class RadarView extends CustomPainter {
   /// 顶点数是否为奇数个
   bool isOdd;
 
-  RadarView(this.layerNum, this.data, this.pointStyle, this.layerColor,
-      this.pointColor)
+  RadarViewPainter(this.layerNum, this.data, this.pointStyle, this.layerColor,
+      this.pointColors, this.sideStyle, this.maxValue, this.fraction)
       : mPaint = Paint()
           ..color = Colors.blueAccent
           ..isAntiAlias = true
@@ -78,10 +146,8 @@ class RadarView extends CustomPainter {
           ..filterQuality = FilterQuality.high
           ..style = PaintingStyle.fill,
         mPointPaint = Paint()
-          ..color = pointColor
           ..isAntiAlias = true
           ..strokeCap = StrokeCap.round
-          ..strokeWidth = 1.0
           ..filterQuality = FilterQuality.high
           ..style = pointStyle,
         mPath = Path(),
@@ -94,17 +160,37 @@ class RadarView extends CustomPainter {
     viewCenterY = size.height / 2;
     maxRadius = min(size.width / 2, size.height / 2) - 20;
     canvas.save(); // 新建图层
-    _drawPolygon(canvas);
+    if (sideStyle == SideStyle.circle) {
+      _drawCircle(canvas);
+    } else {
+      _drawPolygon(canvas);
+    }
     _drawMaskLayer(canvas);
     _drawText(canvas);
     canvas.restore(); // 释放图层
   }
 
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => oldDelegate != this;
-
   double eachRadius;
   double eachAngle;
+
+  void _drawCircle(Canvas canvas) {
+    /// 每个角的度数
+    eachAngle = CIRCLE_ANGLE / sideNum;
+
+    /// 找好所有的顶点，连接起来即可
+    for (int i = 0; i < layerNum; i++) {
+      eachRadius = maxRadius / layerNum * (i + 1);
+
+      if (i == layerNum - 1) {
+        canvas.drawCircle(Offset(viewCenterX, viewCenterY), eachRadius,
+            mPaint..strokeWidth = 2.0);
+      } else {
+        canvas.drawCircle(Offset(viewCenterX, viewCenterY), eachRadius,
+            mPaint..strokeWidth = 1.0);
+      }
+    }
+    _drawLineLinkPoint(canvas, eachAngle, eachRadius);
+  }
 
   void _drawPolygon(Canvas canvas) {
     /// 每个角的度数
@@ -137,7 +223,11 @@ class RadarView extends CustomPainter {
       }
 
       mPath.close();
-      canvas.drawPath(mPath, mPaint);
+      if (i == layerNum - 1) {
+        canvas.drawPath(mPath, mPaint..strokeWidth = 2.0);
+      } else {
+        canvas.drawPath(mPath, mPaint..strokeWidth = 1.0);
+      }
     }
     _drawLineLinkPoint(canvas, eachAngle, eachRadius);
   }
@@ -156,7 +246,7 @@ class RadarView extends CustomPainter {
       }
       mPath.lineTo(x, y);
       mPath.close();
-      canvas.drawPath(mPath, mPaint);
+      canvas.drawPath(mPath, mPaint..strokeWidth = 1.0);
     }
   }
 
@@ -167,14 +257,34 @@ class RadarView extends CustomPainter {
       double value = data.values.toList()[i];
       double x, y;
       if (isOdd) {
-        x = viewCenterX - maxRadius * sin(degToRad(eachAngle * i)) * value;
-        y = viewCenterY - maxRadius * cos(degToRad(eachAngle * i)) * value;
+        x = viewCenterX -
+            maxRadius *
+                sin(degToRad(eachAngle * i)) *
+                value /
+                maxValue *
+                fraction;
+        y = viewCenterY -
+            maxRadius *
+                cos(degToRad(eachAngle * i)) *
+                value /
+                maxValue *
+                fraction;
       } else {
-        x = viewCenterX + maxRadius * cos(degToRad(eachAngle * i)) * value;
-        y = viewCenterY + maxRadius * sin(degToRad(eachAngle * i)) * value;
+        x = viewCenterX +
+            maxRadius *
+                cos(degToRad(eachAngle * i)) *
+                value /
+                maxValue *
+                fraction;
+        y = viewCenterY +
+            maxRadius *
+                sin(degToRad(eachAngle * i)) *
+                value /
+                maxValue *
+                fraction;
       }
 
-      canvas.drawCircle(Offset(x, y), 2.0, mPointPaint);
+      canvas.drawCircle(Offset(x, y), 2.0, mPointPaint..color = pointColors[i]);
 
       if (i == 0) {
         mPath.moveTo(x, y);
@@ -207,4 +317,8 @@ class RadarView extends CustomPainter {
       canvas.restore();
     }
   }
+
+  @override
+  bool shouldRepaint(RadarViewPainter oldDelegate) =>
+      oldDelegate.fraction != fraction;
 }

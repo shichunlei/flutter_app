@@ -1983,7 +1983,7 @@ class ApiService {
   ///
   static Future<StatsBase> getTeamStats({String id}) async {
     Response response =
-    await HttpUtils().request(ApiUrl.TEAM_STATS, data: {'id': id});
+        await HttpUtils().request(ApiUrl.TEAM_STATS, data: {'id': id});
     if (response == null || response?.statusCode != 200) {
       return null;
     }

@@ -34,6 +34,7 @@ class _TeamDataPageState extends State<TeamDataPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return LoaderContainer(
       contentView: SingleChildScrollView(
         child: Column(
@@ -182,31 +183,36 @@ class _TeamDataPageState extends State<TeamDataPage>
                 style: TextStyles.textDark16,
               ),
             ),
-            Container(
+            Center(
               child: RadarWidget(
                 layerNum: 5,
                 data: {
                   "得分": teamSeasonStat == null
                       ? 0.0
-                      : (30 - double.parse(teamSeasonStat?.pointsSerial)) / 30,
+                      : 30 - double.parse(teamSeasonStat?.pointsSerial),
                   "助攻": teamSeasonStat == null
                       ? 0.0
-                      : (30 - double.parse(teamSeasonStat?.assistsSerial)) / 30,
+                      : 30 - double.parse(teamSeasonStat?.assistsSerial),
                   "篮板": teamSeasonStat == null
                       ? 0.0
-                      : (30 - double.parse(teamSeasonStat?.reboundsSerial)) /
-                          30,
+                      : 30 - double.parse(teamSeasonStat?.reboundsSerial),
                   "抢断": teamSeasonStat == null
                       ? 0.0
-                      : (30 - double.parse(teamSeasonStat?.stealsSerial)) / 30,
+                      : 30 - double.parse(teamSeasonStat?.stealsSerial),
                   "盖帽": teamSeasonStat == null
                       ? 0.0
-                      : (30 - double.parse(teamSeasonStat?.blocksSerial)) / 30
+                      : 30 - double.parse(teamSeasonStat?.blocksSerial)
                 },
-                pointColor: Colors.redAccent,
+                pointColors: [
+                  Colors.redAccent,
+                  Colors.purpleAccent,
+                  Colors.lightBlue,
+                  Colors.green,
+                  Colors.pink
+                ],
                 layerColor: widget.teamColor,
+                maxValue: 30.0,
               ),
-              height: 200,
             ),
           ],
         ),
