@@ -5,6 +5,7 @@ class CurrentAppBar extends StatelessWidget {
   final Widget title;
   final bool centerTitle;
   final Color bgColor;
+  final Color iconColor;
   final VoidCallback onPressed;
   final Widget action;
   final Brightness brightness;
@@ -14,6 +15,7 @@ class CurrentAppBar extends StatelessWidget {
     this.title,
     this.centerTitle: true,
     this.bgColor: Colors.white,
+    this.iconColor: Colors.black,
     this.onPressed,
     this.action,
     this.brightness: Brightness.light,
@@ -31,7 +33,7 @@ class CurrentAppBar extends StatelessWidget {
             IconButton(
                 icon: Icon(
                   Utils.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
-                  color: Colors.white,
+                  color: iconColor,
                 ),
                 onPressed: () => Navigator.pop(context)),
             Expanded(

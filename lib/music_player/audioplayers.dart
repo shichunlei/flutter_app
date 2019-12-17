@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/music.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_app/store/index.dart';
 
-import 'widgets/album_cover.dart';
+import 'index.dart';
 
 class AudioPlayersPage extends StatefulWidget {
   @override

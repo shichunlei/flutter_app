@@ -152,7 +152,7 @@ class RadarViewPainter extends CustomPainter {
           ..style = pointStyle,
         mPath = Path(),
         sideNum = data.length,
-        isOdd = data.length % 2 == 1;
+        isOdd = data.length.isOdd;
 
   @override
   void paint(Canvas canvas, Size size) {

@@ -2,13 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app/bean/music.dart';
+import 'index.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import '../page_index.dart';
-import 'widgets/cd_view.dart';
 
 class FlutterSoundPage extends StatefulWidget {
   FlutterSoundPage({Key key}) : super(key: key);

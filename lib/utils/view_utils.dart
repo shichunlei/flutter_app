@@ -61,7 +61,7 @@ void showMusicListBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     backgroundColor: Colors.white,
-    builder: (builder) => ListView.separated(
+    builder: (BuildContext context) => ListView.separated(
       itemBuilder: (_, index) {
         return ListTile(
           leading: ImageLoadView('${snapshot.allSongs[index].albumArtUrl}',

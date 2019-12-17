@@ -104,6 +104,7 @@ class WeatherPageState extends State<WeatherPage> {
         Image.asset(background, fit: BoxFit.fitHeight, height: double.infinity),
         _buildContentView(),
         CurrentAppBar(
+          iconColor: Colors.white,
           bgColor: Color.fromARGB((navAlpha * 255 * 0.8).toInt(), barColor.red,
               barColor.green, barColor.blue),
           title: GestureDetector(

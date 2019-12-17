@@ -214,6 +214,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
               pageTopColorStart.green,
               pageTopColorStart.blue,
             ),
+            iconColor: Colors.white,
             title: Marquee(
               text: '${book?.title}',
               style: TextStyle(fontSize: 18.0, color: Colors.white),

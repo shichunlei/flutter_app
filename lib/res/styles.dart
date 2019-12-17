@@ -137,6 +137,12 @@ class TextStyles {
 
   static TextStyle textBoldWhile40 =
       textStyle(fontSize: Dimens.font_sp40, fontWeight: FontWeight.w400);
+
+  static TextStyle textBoldDark40 = textStyle(
+    fontSize: Dimens.font_sp40,
+    fontWeight: FontWeight.w400,
+    color: Colors.black,
+  );
 }
 
 const IconThemeData lightIconTheme = IconThemeData(color: Colors.black54);

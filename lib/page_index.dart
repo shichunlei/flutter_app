@@ -186,7 +186,6 @@ export 'tubitv/home.dart';
 export 'nba/index.dart';
 
 export 'ui_screen/bank_screen.dart';
-export 'ui_screen/travel_screen.dart';
 
 export 'res/colors.dart';
 export 'res/dimens.dart';

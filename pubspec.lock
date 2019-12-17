@@ -222,14 +222,14 @@ packages:
       name: flutter_easyrefresh
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.7"
+    version: "2.0.8"
   flutter_html:
     dependency: "direct main"
     description:
       name: flutter_html
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.11.0"
+    version: "0.11.1"
   flutter_inner_drawer:
     dependency: "direct main"
     description:
@@ -264,14 +264,14 @@ packages:
       name: flutter_sound
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.6.0"
+    version: "1.7.0"
   flutter_spinkit:
     dependency: "direct main"
     description:
       name: flutter_spinkit
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.1.0"
+    version: "4.1.1+1"
   flutter_staggered_grid_view:
     dependency: "direct main"
     description:
@@ -622,7 +622,7 @@ packages:
       name: sqflite
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.8"
+    version: "1.2.0"
   stack_trace:
     dependency: transitive
     description:
@@ -764,5 +764,5 @@ packages:
     source: hosted
     version: "3.5.0"
 sdks:
-  dart: ">=2.5.0 <3.0.0"
+  dart: ">=2.6.0 <3.0.0"
   flutter: ">=1.12.13+hotfix.4 <2.0.0"

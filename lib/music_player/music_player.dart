@@ -3,11 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter_app/bean/music.dart';
+import 'index.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-
-import 'widgets/radial_seek_bar.dart';
 
 class MusicPlayerPage extends StatefulWidget {
   @override
