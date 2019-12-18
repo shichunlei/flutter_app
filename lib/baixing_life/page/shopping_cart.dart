@@ -46,18 +46,15 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
+        appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: Text('${widget.title}'),
+            backgroundColor: Colors.indigo),
         backgroundColor: Colors.grey[200],
-        body: Column(children: <Widget>[
-          ToolBar(title: '${widget.title}', backgroundColor: Colors.indigo),
-          Expanded(
-              child: Container(
-                  child: products.isEmpty
-                      ? EmptyShopCart()
-                      : Column(children: <Widget>[
-                          _buildCartGoodsList(),
-                          _buildCartBottom()
-                        ])))
-        ]));
+        body: products.isEmpty
+            ? EmptyShopCart()
+            : Column(
+                children: <Widget>[_buildCartGoodsList(), _buildCartBottom()]));
   }
 
   Widget _buildCartGoodsList() {

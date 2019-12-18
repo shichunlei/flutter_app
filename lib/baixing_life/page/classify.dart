@@ -48,13 +48,12 @@ class _ClassifyPageState extends State<ClassifyPage>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
+        appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: Text('${widget.title}'),
+            backgroundColor: Colors.deepPurple),
         backgroundColor: Colors.grey[200],
-        body: Column(children: <Widget>[
-          ToolBar(title: '${widget.title}', backgroundColor: Colors.deepPurple),
-          Expanded(
-              child:
-                  category.isNotEmpty ? _buildBodyView() : getLoadingWidget())
-        ]));
+        body: category.isNotEmpty ? _buildBodyView() : getLoadingWidget());
   }
 
   void getCategoryData() async {

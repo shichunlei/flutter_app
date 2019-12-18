@@ -11,13 +11,12 @@ class ToolBar extends StatelessWidget {
     this.backgroundColor = Colors.red,
     this.title,
     this.centerTitle = false,
-  })  : assert(centerTitle != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(color: backgroundColor),
+        color: backgroundColor,
         padding: EdgeInsets.fromLTRB(20, Utils.topSafeHeight, 0, 0),
         height: Utils.navigationBarHeight,
         child: Align(

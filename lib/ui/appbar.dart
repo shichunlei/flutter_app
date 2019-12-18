@@ -3,9 +3,64 @@ import 'package:flutter/services.dart';
 
 import '../page_index.dart';
 
+class CurrentAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final Widget title;
+  final bool centerTitle;
+  final Color bgColor;
+  final Color iconColor;
+  final VoidCallback onPressed;
+  final Widget action;
+  final Brightness brightness;
+
+  CurrentAppBar({
+    Key key,
+    this.title,
+    this.centerTitle: true,
+    this.bgColor: Colors.white,
+    this.iconColor: Colors.black,
+    this.onPressed,
+    this.action,
+    this.brightness: Brightness.light,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: bgColor,
+      child: Container(
+        height: preferredSize.height,
+        padding: EdgeInsets.only(top: Utils.topSafeHeight),
+        child: Row(
+          children: <Widget>[
+            IconButton(
+                icon: Icon(
+                  Utils.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
+                  color: iconColor,
+                ),
+                onPressed: () => Navigator.pop(context)),
+            Expanded(
+              child: Container(
+                child: title,
+                alignment:
+                    centerTitle ? Alignment.center : Alignment.centerLeft,
+              ),
+            ),
+            SizedBox(
+              child: action,
+              width: Utils.navigationBarHeight - Utils.topSafeHeight,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(Utils.navigationBarHeight);
+}
+
 class SearchBar extends StatefulWidget implements PreferredSizeWidget {
   final Color backgroundColor;
-  final IconData backImg;
   final String hintText;
   final Function(String) onPressed;
   final bool showBackIcon;
@@ -14,7 +69,6 @@ class SearchBar extends StatefulWidget implements PreferredSizeWidget {
       {Key key,
       this.backgroundColor: Colors.white,
       this.hintText,
-      this.backImg: Icons.arrow_back_ios,
       this.onPressed,
       this.showBackIcon: false})
       : super(key: key);
@@ -65,11 +119,6 @@ class _SearchBarState extends State<SearchBar> {
         value: overlayStyle,
         child: Material(
             child: AppBar(
-                leading: widget.showBackIcon
-                    ? IconButton(
-                        icon: Icon(widget.backImg, color: getColor()),
-                        onPressed: () => Navigator.maybePop(context))
-                    : null,
                 elevation: 0,
                 backgroundColor: widget.backgroundColor,
                 automaticallyImplyLeading: widget.showBackIcon,

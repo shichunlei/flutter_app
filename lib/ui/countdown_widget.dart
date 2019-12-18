@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../page_index.dart';
-
 /// 倒计时控件
 class CountdownWidget extends StatefulWidget {
   final onCountdownFinishCallBack;
@@ -44,7 +42,7 @@ class _CountdownWidgetState extends State<CountdownWidget> {
           '$_seconds',
           style: TextStyle(fontSize: 17.0, color: Colors.white),
         ),
-        margin: EdgeInsets.only(top: Utils.topSafeHeight, right: 10),
+        margin: EdgeInsets.only(right: 10),
         padding: EdgeInsets.all(10));
   }
 
