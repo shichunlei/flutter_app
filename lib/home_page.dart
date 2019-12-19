@@ -2,7 +2,6 @@ import 'package:amap_base_location/amap_base_location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/he_weather.dart';
-import 'package:flutter_app/service/api_service.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:async';

@@ -141,8 +141,10 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
   }
 
   void getData() async {
-    rootBundle.loadString('assets/data/friends.json').then((value) {
-      friendsDynamic = FriendsDynamic.fromMapList(json.decode(value));
+    FileUtil.getInstance()
+        .readDataFromAssets("assets/data/", "friends.json")
+        .then((data) {
+      friendsDynamic = FriendsDynamic.fromMapList(json.decode(data));
       setState(() {});
     });
   }

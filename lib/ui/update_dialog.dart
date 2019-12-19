@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import '../page_index.dart';
 
@@ -115,7 +114,8 @@ class _UpdateDialogState extends State<UpdateDialog> {
                                         setState(() {
                                           _isDownload = true;
                                         });
-                                        _download(widget.url, widget.savePath);
+                                        _download(context, widget.url,
+                                            widget.savePath);
                                       }
                                     },
                                     textColor: Colors.white,
@@ -139,7 +139,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
   }
 
   /// 下载apk
-  _download(String url, String savePath) async {
+  _download(BuildContext context, String url, String savePath) async {
     debugPrint("---------------$savePath");
 
     try {
@@ -150,11 +150,8 @@ class _UpdateDialogState extends State<UpdateDialog> {
         if (count == total) {
           Navigator.of(context).pop();
 
-          final _fileName = await ImageGallerySaver.saveFile(savePath);
-          debugPrint(_fileName.toString());
-
           /// VersionUtils.install(savePath);
-          showInstallDialog(_fileName.toString());
+          showInstallDialog(savePath.toString());
         }
       }, cancelToken: _cancelToken);
     } catch (e) {
@@ -170,7 +167,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
         content: Text('$savePath\n你是否安装该APP'),
         contentPadding: EdgeInsets.only(left: 20, right: 20), pressed: () {
       /// TODO 进行安装操作
-      Navigator.pop(context);
+      Navigator.of(context).pop();
     }, yesText: "安装");
   }
 }

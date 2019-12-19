@@ -36,6 +36,7 @@ class ImageLoadView extends StatelessWidget {
   final Color filterColor;
 
   final Widget child;
+  final EdgeInsetsGeometry padding;
 
   /// 子控件位置
   final AlignmentGeometry alignment;
@@ -55,6 +56,7 @@ class ImageLoadView extends StatelessWidget {
     this.filterColor: Colors.transparent,
     this.child: const SizedBox(),
     this.alignment: Alignment.center,
+    this.padding: EdgeInsets.zero,
   })  : assert(path != null),
         super(key: key);
 
@@ -103,6 +105,7 @@ class ImageLoadView extends StatelessWidget {
                   color: filterColor,
                   child: child,
                   alignment: alignment,
+                  padding: padding,
                 ),
               ),
             )

@@ -67,8 +67,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(
-              top: Utils.navigationBarHeight - Utils.topSafeHeight),
+          padding: EdgeInsets.only(top: Utils.topSafeHeight),
           child: AlbumCover(
               image: Store.value<MusicModel>(context).curSong?.albumArtUrl,
               isPlaying: Store.value<MusicModel>(context).isPlaying),
@@ -140,14 +139,6 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
             ]),
           ),
         ),
-        Container(
-          child: AppBar(
-            backgroundColor: Colors.transparent,
-            iconTheme: lightIconTheme,
-            elevation: 0.0,
-          ),
-          height: Utils.navigationBarHeight,
-        )
       ]),
     );
   }

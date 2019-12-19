@@ -147,7 +147,7 @@ class HttpUtils {
     debugPrint('download请求启动! url：$url');
     Response response;
     try {
-      response = await dio.download(
+      response = await Dio().download(
         url,
         savePath,
         cancelToken: cancelToken,

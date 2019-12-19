@@ -41,16 +41,18 @@ class HomeDrawable extends StatelessWidget {
               leading: Icon(Icons.update),
               trailing: Icon(Icons.chevron_right),
               onTap: () async {
-                var appDocDir = await FileUtil.getInstance().getTempPath();
+                var apkPath =
+                    await FileUtil.getInstance().getFolderPath('/apk/');
 
                 Navigator.of(context).pop();
                 showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (context) => UpdateDialog(
-                        url:
-                            'https://cdn.jsdelivr.net/gh/flutterchina/flutter-in-action@1.0/docs/imgs/book.jpg',
-                        savePath: appDocDir + "temp.jpg"));
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context) => UpdateDialog(
+                      url:
+                          'https://qd.myapp.com/myapp/qqteam/AndroidQQi/qq_6.0.1.6600_android_r25029_GuanWang_537057608_release.apk',
+                      savePath: apkPath + "temp.apk"),
+                );
               }),
           Divider(),
           ListTile(
