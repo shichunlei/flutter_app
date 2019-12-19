@@ -27,7 +27,18 @@ class ApiService {
   }
 
   /// 豆瓣电影年度榜单
+  ///
+  /// [year] 年份
+  ///
   static Future<RangesData> getMovieRanges(int year) async {
+    String data = await FileUtil.getInstance()
+        .readDataFromFile('rank_$year.json', folderPath: '/movie/json/');
+
+    if (data != null && data != "") {
+      BaseResult result = BaseResult.fromMap(json.decode(data));
+      return RangesData.fromMap(result.data);
+    }
+
     Response response =
         await HttpUtils().request(ApiUrl.MOVIE_RANGE_URL, data: {'year': year});
     if (response == null || response?.statusCode != 200) {
@@ -36,6 +47,9 @@ class ApiService {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
+      await FileUtil.getInstance().writeDataToFile(
+          'rank_$year.json', response.data.toString(),
+          folderPath: '/movie/json/');
       return RangesData.fromMap(result.data);
     } else {
       return null;
