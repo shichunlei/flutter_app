@@ -9,6 +9,7 @@
   "delete": "Delete",
   "edit": "Edit",
   "update": "Update",
+  "clear": "Clear Cache Files",
   "zh": "Chinese",
   "en": "English",
   "pick_a_color": "Pick a color!",

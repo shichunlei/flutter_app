@@ -7,6 +7,7 @@
   "setting": "設置",
   "exit": "退出賬號",
   "update": "檢查更新",
+  "clear": "清理緩存",
   "zh": "中文",
   "en": "英文",
   "pick_a_color": "選擇一種顏色!",

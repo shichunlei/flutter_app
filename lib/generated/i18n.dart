@@ -29,6 +29,7 @@ class S implements WidgetsLocalizations {
   String get cancel_collect => "Cancel Collect";
   String get choice_address => "Choice Address";
   String get choose => "Please Choose";
+  String get clear => "Clear Cache Files";
   String get close => "close";
   String get collect => "Collect";
   String get completeLoad => "Load done";
@@ -209,6 +210,8 @@ class $zh_HK extends S {
   @override
   String get pullToRefresh => "拉動刷新";
   @override
+  String get clear => "清理緩存";
+  @override
   String get refresh => "刷新";
   @override
   String get EMAIL_AUTH_VALIDATION_INVALID => "邮箱不合法!";
@@ -350,6 +353,8 @@ class $zh_TW extends S {
   String get refreshed => "刷新完成";
   @override
   String get pullToRefresh => "拉動刷新";
+  @override
+  String get clear => "清理緩存";
   @override
   String get refresh => "刷新";
   @override
@@ -496,6 +501,8 @@ class $zh_CN extends S {
   String get refreshed => "刷新完成";
   @override
   String get pullToRefresh => "拉动刷新";
+  @override
+  String get clear => "清理缓存";
   @override
   String get refresh => "刷新";
   @override

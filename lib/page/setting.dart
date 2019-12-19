@@ -73,7 +73,7 @@ class _SettingPageState extends State<SettingPage> {
                 )),
             Line(
               color: Colors.grey,
-              lineHeight: 10,
+              lineHeight: 5,
             ),
             ExpansionTile(
               leading: Icon(Icons.language),
@@ -101,6 +101,20 @@ class _SettingPageState extends State<SettingPage> {
               ),
               children: _itemColors(),
             ),
+            ListTile(
+                onTap: () async {
+                  String path = await FileUtil.getInstance().getTempPath();
+                  bool success =
+                      await FileUtil.getInstance().deleteFolder(path);
+                  if (success) {
+                    Toast.show(context, '清理完成');
+                  } else {
+                    Toast.show(context, '清理失败');
+                  }
+                },
+                leading: Icon(Icons.delete_forever),
+                title: Text(S.of(context).clear),
+                trailing: Icon(Icons.navigate_next)),
           ]));
     });
   }
