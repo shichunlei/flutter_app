@@ -373,13 +373,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.2.8"
-  keyboard_actions:
-    dependency: "direct main"
-    description:
-      name: keyboard_actions
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.1.2"
   logging:
     dependency: transitive
     description:

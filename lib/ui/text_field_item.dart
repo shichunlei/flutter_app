@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:keyboard_actions/keyboard_actions.dart';
 
 import '../page_index.dart';
 
@@ -11,7 +10,6 @@ class TextFieldItem extends StatelessWidget {
   final String hintText;
   final TextInputType keyboardType;
   final FocusNode focusNode;
-  final KeyboardActionsConfig config;
   final FocusNode nextFocusNode;
   final int maxLines;
   final int maxLength;
@@ -24,17 +22,12 @@ class TextFieldItem extends StatelessWidget {
       this.hintText: "",
       this.focusNode,
       this.nextFocusNode,
-      this.config,
       this.maxLines: 1,
       this.maxLength})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (config != null && Utils.isIOS) {
-      // 因Android平台输入法兼容问题，所以只配置IOS平台
-      FormKeyboardActions.setKeyboardActions(context, config);
-    }
     return Container(
         height: maxLines == 1 ? 55.0 : maxLines * 55.0 * 0.75,
         margin: const EdgeInsets.only(left: 16.0, right: 16),

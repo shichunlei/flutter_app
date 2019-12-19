@@ -32,6 +32,7 @@ class S implements WidgetsLocalizations {
   String get clear => "Clear Cache Files";
   String get close => "close";
   String get collect => "Collect";
+  String get complete => "Done";
   String get completeLoad => "Load done";
   String get completeRefresh => "Refresh done";
   String get confirmPassword => "Confirm Password";
@@ -223,6 +224,8 @@ class $zh_HK extends S {
   @override
   String get create_address => "新增地址";
   @override
+  String get complete => "完成";
+  @override
   String get contacts => "通訊錄";
   @override
   String get register => "註冊";
@@ -364,6 +367,8 @@ class $zh_TW extends S {
   String get refreshing => "正在刷新...";
   @override
   String get create_address => "新增地址";
+  @override
+  String get complete => "完成";
   @override
   String get contacts => "通訊錄";
   @override
@@ -510,6 +515,8 @@ class $zh_CN extends S {
   String get refreshing => "正在刷新...";
   @override
   String get create_address => "新增地址";
+  @override
+  String get complete => "完成";
   @override
   String get contacts => "通讯录";
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../page_index.dart';
+import 'package:flutter_app/generated/i18n.dart';
+import 'package:flutter_app/res/styles.dart';
 
 class InputTextPage extends StatefulWidget {
   InputTextPage({
@@ -22,7 +22,7 @@ class InputTextPage extends StatefulWidget {
   final int maxLines;
 
   @override
-  _InputTextPageState createState() => _InputTextPageState();
+  createState() => _InputTextPageState();
 }
 
 class _InputTextPageState extends State<InputTextPage> {
@@ -42,7 +42,7 @@ class _InputTextPageState extends State<InputTextPage> {
         title: Text(widget.title),
         actions: <Widget>[
           IconButton(
-              icon: Text('完成'),
+              icon: Text(S.of(context).complete),
               onPressed: () {
                 Navigator.of(context).pop(_controller.text);
               })

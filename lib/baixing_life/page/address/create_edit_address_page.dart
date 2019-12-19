@@ -4,8 +4,6 @@ import 'package:flutter_jd_address_selector/flutter_jd_address_selector.dart';
 import '../../../generated/i18n.dart';
 import '../../../store/index.dart';
 
-import 'package:keyboard_actions/keyboard_actions.dart';
-
 import '../../../page_index.dart';
 import '../../index.dart';
 
@@ -142,10 +140,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
             loaderState: _status,
             contentView: SafeArea(
               child: Column(children: <Widget>[
-                Expanded(
-                    child: Utils.isIOS
-                        ? FormKeyboardActions(child: _buildBody())
-                        : SingleChildScrollView(child: _buildBody())),
+                Expanded(child: SingleChildScrollView(child: _buildBody())),
                 Padding(
                     padding: const EdgeInsets.only(
                         left: 16.0, right: 16.0, bottom: 8.0),

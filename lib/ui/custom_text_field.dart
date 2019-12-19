@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/generated/i18n.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:keyboard_actions/keyboard_actions.dart';
 
 import '../page_index.dart';
 
@@ -19,20 +18,18 @@ class CustomTextField extends StatefulWidget {
   final FocusNode nextFocusNode;
   final bool isInputPwd;
   final Function getVCode;
-  final KeyboardActionsConfig config;
 
-  CustomTextField(
-      {Key key,
-      @required this.controller,
-      this.maxLength: 16,
-      this.autoFocus: false,
-      this.keyboardType: TextInputType.text,
-      this.hintText: "",
-      this.focusNode,
-      this.nextFocusNode,
-      this.isInputPwd: false,
-      this.getVCode,
-      this.config})
+  CustomTextField({Key key,
+    @required this.controller,
+    this.maxLength: 16,
+    this.autoFocus: false,
+    this.keyboardType: TextInputType.text,
+    this.hintText: "",
+    this.focusNode,
+    this.nextFocusNode,
+    this.isInputPwd: false,
+    this.getVCode,
+  })
       : super(key: key);
 
   @override
@@ -60,10 +57,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
         _isShowDelete = widget.controller.text.isEmpty;
       });
     });
-    if (widget.config != null && defaultTargetPlatform == TargetPlatform.iOS) {
-      // 因Android平台输入法兼容问题，所以只配置IOS平台
-      FormKeyboardActions.setKeyboardActions(context, widget.config);
-    }
   }
 
   @override
@@ -90,7 +83,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           keyboardType: widget.keyboardType,
           // 数字、手机号限制格式为0到9(白名单)， 密码限制不包含汉字（黑名单）
           inputFormatters: (widget.keyboardType == TextInputType.number ||
-                  widget.keyboardType == TextInputType.phone)
+              widget.keyboardType == TextInputType.phone)
               ? [WhitelistingTextInputFormatter(RegExp("[0-9]"))]
               : [BlacklistingTextInputFormatter(RegExp("[\u4e00-\u9fa5]"))],
           decoration: InputDecoration(
@@ -102,7 +95,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   borderSide: BorderSide(color: Colors.blueAccent, width: 0.8)),
               enabledBorder: UnderlineInputBorder(
                   borderSide:
-                      BorderSide(color: Color(0xFFEEEEEE), width: 0.8)))),
+                  BorderSide(color: Color(0xFFEEEEEE), width: 0.8)))),
       Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
         Offstage(
             offstage: _isShowDelete,
@@ -136,19 +129,20 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     child: FlatButton(
                         onPressed: _isClick
                             ? () {
-                                widget.getVCode();
-                                setState(() {
-                                  s = second;
-                                  _isClick = false;
-                                });
-                                _subscription = Observable.periodic(
-                                        Duration(seconds: 1), (i) => i)
-                                    .take(second)
-                                    .listen((i) => setState(() {
-                                          s = second - i - 1;
-                                          _isClick = s < 1;
-                                        }));
-                              }
+                          widget.getVCode();
+                          setState(() {
+                            s = second;
+                            _isClick = false;
+                          });
+                          _subscription = Observable.periodic(
+                              Duration(seconds: 1), (i) => i)
+                              .take(second)
+                              .listen((i) =>
+                              setState(() {
+                                s = second - i - 1;
+                                _isClick = s < 1;
+                              }));
+                        }
                             : null,
                         padding: const EdgeInsetsDirectional.only(
                             start: 8.0, end: 8.0),
@@ -165,7 +159,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                                 width: 0.8)),
                         child: Text(
                             _isClick
-                                ? "${S.of(context).get_v_code}"
+                                ? "${S
+                                .of(context)
+                                .get_v_code}"
                                 : "（$s s）",
                             style: TextStyle(fontSize: Dimens.font_sp12))))))
       ])

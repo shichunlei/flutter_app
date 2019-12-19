@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/i18n.dart';
 
-import 'package:keyboard_actions/keyboard_actions.dart';
-
 import '../../page_index.dart';
 import 'quickly_login_page.dart';
 import 'register_page.dart';
@@ -23,25 +21,6 @@ class _LoginPageState extends State<PasswordLoginPage> {
   final FocusNode _nodePassword = FocusNode();
 
   bool _isClick = false;
-
-  KeyboardActionsConfig _buildConfig(BuildContext context) {
-    return KeyboardActionsConfig(
-        keyboardActionsPlatform: KeyboardActionsPlatform.IOS,
-        keyboardBarColor: Colors.grey[200],
-        nextFocus: true,
-        actions: [
-          KeyboardAction(
-              focusNode: _nodePhone,
-              closeWidget: Padding(
-                  padding: EdgeInsets.all(5.0),
-                  child: Text("${S.of(context).close}"))),
-          KeyboardAction(
-              focusNode: _nodePassword,
-              closeWidget: Padding(
-                  padding: EdgeInsets.all(5.0),
-                  child: Text("${S.of(context).close}")))
-        ]);
-  }
 
   @override
   void initState() {
@@ -101,9 +80,7 @@ class _LoginPageState extends State<PasswordLoginPage> {
               ),
             )
           ]),
-          body: Utils.isIOS
-              ? FormKeyboardActions(child: _buildBodyView())
-              : SingleChildScrollView(child: _buildBodyView())),
+          body: SingleChildScrollView(child: _buildBodyView())),
     );
   }
 
@@ -126,7 +103,6 @@ class _LoginPageState extends State<PasswordLoginPage> {
               Gaps.vGap10,
               CustomTextField(
                   focusNode: _nodePassword,
-                  config: _buildConfig(context),
                   isInputPwd: true,
                   controller: _passwordController,
                   maxLength: 16,
