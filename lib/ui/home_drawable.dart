@@ -19,15 +19,6 @@ class HomeDrawable extends StatelessWidget {
           HomeDrawableHeader(),
           Divider(),
           ListTile(
-              title: Text("${S.of(context).poetry}"),
-              leading: Icon(Icons.book),
-              trailing: Icon(Icons.chevron_right),
-              onTap: () {
-                Navigator.of(context).pop();
-                pushNewPageBack(context, RandomPoetryPage());
-              }),
-          Divider(),
-          ListTile(
               title: Text(S.of(context).contact),
               leading: Icon(Icons.supervisor_account),
               trailing: Icon(Icons.chevron_right),

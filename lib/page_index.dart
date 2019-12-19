@@ -58,7 +58,6 @@ export 'page/wave_sample.dart';
 export 'page/palette_generator_sample.dart';
 export 'page/mine_page.dart';
 export 'page/setting.dart';
-export 'page/random_poetry_page.dart';
 export 'page/ruler_sample.dart';
 export 'page/preview_sample.dart';
 export 'page/card_flip_page.dart';

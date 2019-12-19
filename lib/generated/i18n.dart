@@ -64,7 +64,6 @@ class S implements WidgetsLocalizations {
   String get password => "Password";
   String get password_login => "Password Login";
   String get pick_a_color => "Pick a color!";
-  String get poetry => "Poetry";
   String get pullToRefresh => "Pull to refresh";
   String get pushToLoad => "Pull to load";
   String get quickly_login => "Quickly Login";
@@ -201,8 +200,6 @@ class $zh_HK extends S {
   String get completeRefresh => "完成刷新";
   @override
   String get email => "邮箱";
-  @override
-  String get poetry => "詩詞";
   @override
   String get address => "收貨地址";
   @override
@@ -345,8 +342,6 @@ class $zh_TW extends S {
   String get completeRefresh => "完成刷新";
   @override
   String get email => "邮箱";
-  @override
-  String get poetry => "詩詞";
   @override
   String get address => "收貨地址";
   @override
@@ -493,8 +488,6 @@ class $zh_CN extends S {
   String get completeRefresh => "完成刷新";
   @override
   String get email => "邮箱";
-  @override
-  String get poetry => "诗词";
   @override
   String get address => "收货地址";
   @override

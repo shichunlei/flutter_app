@@ -33,7 +33,7 @@ A new Flutter application.
 ```
 [✓] Flutter (Channel beta, v1.12.13+hotfix.6, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
     • Flutter version 1.12.13+hotfix.6 at /Users/14cells/Android/flutter
-    • Framework revision 18cd7a3601 (2 days ago), 2019-12-11 06:35:39 -0800
+    • Framework revision 18cd7a3601 (8 days ago), 2019-12-11 06:35:39 -0800
     • Engine revision 2994f7e1e6
     • Dart version 2.7.0
 
@@ -52,7 +52,7 @@ A new Flutter application.
 
 [✓] Android Studio (version 3.5)
     • Android Studio at /Applications/Android Studio.app/Contents
-    • Flutter plugin version 40.2.2
+    • Flutter plugin version 42.1.1
     • Dart plugin version 191.8593
     • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
 

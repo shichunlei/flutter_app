@@ -67,10 +67,6 @@ dependencies: # 应用或包依赖的其它包或插件
   # 颜色选择器
   flutter_colorpicker: ^0.2.6
 
-#  flutter_custom_calendar:
-#    git:
-#      url: https://github.com/LXD312569496/flutter_custom_calendar.git
-
   # 刷新加载控件
   flutter_easyrefresh: ^2.0.8
 
@@ -112,7 +108,7 @@ dependencies: # 应用或包依赖的其它包或插件
   gradient_text: ^1.0.2
 
   # 图片裁剪
-  image_cropper: ^1.1.1
+  image_cropper: ^1.1.2
 
   image_gallery_saver: ^1.2.2
 
