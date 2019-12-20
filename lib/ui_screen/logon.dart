@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/i18n.dart';
 
-import '../../page_index.dart';
+import '../page_index.dart';
 
 class LogonPage extends StatefulWidget {
   LogonPage({Key key}) : super(key: key);
@@ -100,7 +100,7 @@ class _LogonPageState extends State<LogonPage>
           ),
         ),
       ),
-      height: 260,
+      height: 240,
       child: Column(
         children: <Widget>[
           _buildFormView(LoginMode.LOGIN),
@@ -141,7 +141,7 @@ class _LogonPageState extends State<LogonPage>
           ),
         ),
       ),
-      height: 260,
+      height: 290,
       width: double.infinity,
       child: Column(
         children: <Widget>[

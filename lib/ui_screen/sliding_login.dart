@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/page_index.dart';
 
-import 'text_field.dart';
-
 /// 参考：https://github.com/pedromassango/my_flutter_challenges/blob/master/lib/sliding_login.dart
 class SlidingLoginPage extends StatefulWidget {
   SlidingLoginPage({Key key}) : super(key: key);

@@ -5,7 +5,6 @@ import 'package:rounded_letter/shape_type.dart';
 
 import '../../page_index.dart';
 import 'background.dart';
-import 'custom_textfield.dart';
 
 /// 参考：https://github.com/pr-Mais/login_ui
 class BottomSheetLoginPage extends StatefulWidget {

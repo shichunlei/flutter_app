@@ -66,13 +66,11 @@ export 'page/elements.dart';
 export 'page/theme_sample.dart';
 export 'page/flutter_flip_view_sample.dart';
 export 'page/flip_view_custom.dart';
-export 'page/logon/index.dart';
 export 'page/login5/index.dart';
 export 'page/login4/signup.dart';
 export 'page/login6/index.dart';
 export 'page/login/login_page.dart';
 export 'page/login_video_page.dart';
-export 'page/sliding_login/login.dart';
 export 'page/second_floor.dart';
 export 'page/parallax_image.dart';
 export 'page/shimmer.dart';
@@ -136,8 +134,6 @@ export 'ui/suspension_tag.dart';
 export 'ui/countdown_widget.dart';
 export 'ui/bouncing_view.dart';
 export 'ui/button.dart';
-export 'ui/custom_text_field.dart';
-export 'ui/text_field_item.dart';
 export 'ui/select_text_item.dart';
 export 'ui/selected_text.dart';
 export 'ui/section_view.dart';
@@ -152,6 +148,7 @@ export 'ui/bottom_sheet.dart';
 export 'ui/circle_button.dart';
 export 'ui/appbar.dart';
 export 'ui/pin_input_view.dart';
+export 'ui/input_view.dart';
 
 export 'qdaily/splash.dart';
 
@@ -185,6 +182,8 @@ export 'tubitv/home.dart';
 export 'nba/index.dart';
 
 export 'ui_screen/bank_screen.dart';
+export 'ui_screen/sliding_login.dart';
+export 'ui_screen/logon.dart';
 
 export 'res/colors.dart';
 export 'res/dimens.dart';
