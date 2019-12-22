@@ -137,7 +137,6 @@ class SlideToUnlockPage extends StatelessWidget {
         children: [
           ImageLoadView(
             'https://github.com/hnvn/flutter_shimmer/blob/master/example/assets/images/background.jpg?raw=true',
-            fit: BoxFit.cover,
           ),
           Positioned(
             top: 48.0,

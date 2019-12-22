@@ -50,6 +50,8 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
 
   @override
   Widget build(BuildContext context) {
+    var snapshot = Store.value<MusicModel>(context);
+
     return Scaffold(
       body: Stack(children: <Widget>[
         Container(
@@ -69,82 +71,77 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
         Padding(
           padding: EdgeInsets.only(top: Utils.topSafeHeight),
           child: AlbumCover(
-              image: Store.value<MusicModel>(context).curSong?.albumArtUrl,
-              isPlaying: Store.value<MusicModel>(context).isPlaying),
+              image: snapshot.curSong?.albumArtUrl,
+              isPlaying: snapshot.isPlaying),
         ),
         Positioned(
           bottom: Utils.bottomSafeHeight,
           left: 0,
           right: 0,
-          child: Container(
-            child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                height: 50,
-                child: Marquee(
-                  text:
-                      '${Store.value<MusicModel>(context).curSong?.title}-${Store.value<MusicModel>(context).curSong?.artists}',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 4.0,
-                      height: 1.5),
-                  scrollAxis: Axis.horizontal,
-                ),
+          child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              height: 30,
+              child: Marquee(
+                text: '${snapshot.curSong?.title}-${snapshot.curSong?.artists}',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 4.0,
+                    height: 1.5),
+                scrollAxis: Axis.horizontal,
               ),
-              Slider(
-                onChanged: (value) {
-                  Store.value<MusicModel>(context).seekPlay(value);
-                },
-                value: Store.value<MusicModel>(context).progress,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                children: <Widget>[
+                  Text(snapshot.positionText,
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.75),
+                        fontSize: 10,
+                      )),
+                  Expanded(
+                    child: Slider(
+                      onChanged: (value) {
+                        snapshot.seekPlay(value);
+                      },
+                      value: snapshot.progress,
+                      inactiveColor: Colors.grey,
+                      activeColor: Colors.white,
+                    ),
+                  ),
+                  Text(snapshot.durationText,
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.75),
+                        fontSize: 10,
+                      ))
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(Store.value<MusicModel>(context).positionText,
-                        style: TextStyle(
-                            color: Colors.white.withOpacity(0.75),
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 3.0,
-                            height: 1.5)),
-                    Text(Store.value<MusicModel>(context).durationText,
-                        style: TextStyle(
-                            color: Colors.white.withOpacity(0.75),
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 3.0,
-                            height: 1.5))
-                  ],
-                ),
-              ),
-              Material(
-                type: MaterialType.transparency,
-                child: Padding(
-                    padding: EdgeInsets.only(top: 20, bottom: 20),
-                    child: Row(
-                      children: <Widget>[
-                        _buildModeButton(),
-                        _buildPreviousButton(),
-                        _buildPlayPausedButton(),
-                        _buildNextButton(),
-                        _buildListButton(),
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    )),
-              )
-            ]),
-          ),
+            ),
+            Material(
+              type: MaterialType.transparency,
+              child: Padding(
+                  padding: EdgeInsets.only(top: 20, bottom: 20),
+                  child: Row(
+                    children: <Widget>[
+                      _buildModeButton(snapshot),
+                      _buildPreviousButton(snapshot),
+                      _buildPlayPausedButton(snapshot),
+                      _buildNextButton(snapshot),
+                      _buildListButton(),
+                    ],
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  )),
+            )
+          ]),
         ),
       ]),
     );
   }
 
-  Widget _buildModeButton() {
-    var snapshot = Store.value<MusicModel>(context);
+  Widget _buildModeButton(MusicModel snapshot) {
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
@@ -166,27 +163,27 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
                               title: Text('单曲循环'),
                               onTap: () {
                                 Navigator.pop(context);
-                                snapshot.toggleMode(CycleMode.SINGLE);
+                                snapshot.toggleMode(2);
                               },
-                              selected: snapshot.mode == CycleMode.SINGLE,
+                              selected: snapshot.mode == 2,
                             ),
                             ListTile(
                               leading: Icon(Icons.repeat),
                               title: Text('顺序播放'),
                               onTap: () {
                                 Navigator.pop(context);
-                                snapshot.toggleMode(CycleMode.SEQUENCE);
+                                snapshot.toggleMode(0);
                               },
-                              selected: snapshot.mode == CycleMode.SEQUENCE,
+                              selected: snapshot.mode == 0,
                             ),
                             ListTile(
                               leading: Icon(Icons.shuffle),
                               title: Text('随机播放'),
                               onTap: () {
                                 Navigator.pop(context);
-                                snapshot.toggleMode(CycleMode.RANDOM);
+                                snapshot.toggleMode(1);
                               },
-                              selected: snapshot.mode == CycleMode.RANDOM,
+                              selected: snapshot.mode == 1,
                             ),
                           ],
                           contentPadding: EdgeInsets.all(0),
@@ -207,35 +204,28 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
         onPressed: () => showMusicListBottomSheet(context));
   }
 
-  Widget _buildNextButton() {
+  Widget _buildNextButton(MusicModel snapshot) {
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
         icon: Icon(Icons.skip_next, color: Colors.white, size: 35),
-        onPressed: () => Store.value<MusicModel>(context).nextMusic());
+        onPressed: () => snapshot.nextMusic());
   }
 
-  Widget _buildPreviousButton() {
+  Widget _buildPreviousButton(MusicModel snapshot) {
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
         icon: Icon(Icons.skip_previous, color: Colors.white, size: 35),
-        onPressed: () => Store.value<MusicModel>(context).prePlay());
+        onPressed: () => snapshot.prePlay());
   }
 
-  Widget _buildPlayPausedButton() {
+  Widget _buildPlayPausedButton(MusicModel snapshot) {
     return CircleButton(
-      onPressedAction: () {
-        Store.value<MusicModel>(context).togglePlay();
-      },
-      fillColor: Colors.white,
+      onPressedAction: () => snapshot.togglePlay(),
       splashColor: lightAccentColor,
       highlightColor: lightAccentColor.withOpacity(0.5),
-      elevation: 10.0,
-      highlightElevation: 5,
-      icon: Store.value<MusicModel>(context).isPlaying
-          ? Icons.pause
-          : Icons.play_arrow,
+      icon: snapshot.isPlaying ? Icons.pause : Icons.play_arrow,
       iconSize: 35,
       size: 70,
       iconColor: darkAccentColor,

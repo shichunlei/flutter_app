@@ -25,7 +25,6 @@ class ItemEpisodeView extends StatelessWidget {
             children: <Widget>[
               ImageLoadView(
                 '${item?.thumbnails?.first}',
-                fit: BoxFit.cover,
                 height: 140,
               ),
               Container(

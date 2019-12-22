@@ -21,7 +21,6 @@ class ItemMovie extends StatelessWidget {
           children: <Widget>[
             ImageLoadView(
               '$image',
-              fit: BoxFit.cover,
               height: 200,
             ),
             Padding(

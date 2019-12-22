@@ -21,7 +21,7 @@ class ItemRankingBook extends StatelessWidget {
             padding: EdgeInsets.all(5),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
               ImageLoadView('${book?.cover}',
-                  height: 99, width: 77, fit: BoxFit.cover),
+                  height: 99, width: 77),
               Gaps.hGap5,
               Expanded(
                 child: Column(children: <Widget>[

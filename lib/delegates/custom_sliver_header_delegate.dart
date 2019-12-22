@@ -56,7 +56,6 @@ class SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate {
         children: <Widget>[
           ImageLoadView(
             this.coverImgUrl,
-            fit: BoxFit.cover,
           ),
           Center(
             child: Hero(

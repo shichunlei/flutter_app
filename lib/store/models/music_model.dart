@@ -12,9 +12,9 @@ class MusicModel extends ChangeNotifier {
 
   AudioPlayerState _curState;
 
-  List<Music> _songs = [];
+  List<Song> _songs = [];
 
-  List<Music> get allSongs => _songs;
+  List<Song> get allSongs => _songs;
 
   int curIndex = 0;
 
@@ -29,10 +29,10 @@ class MusicModel extends ChangeNotifier {
 
   String get positionText => Utils.duration2String(_position);
 
-  CycleMode _mode;
+  int _mode;
   IconData _modeIcon;
 
-  CycleMode get mode => _mode;
+  int get mode => _mode;
 
   IconData get modeIcon => _modeIcon;
 
@@ -42,33 +42,31 @@ class MusicModel extends ChangeNotifier {
 
   bool get isPlaying => _curState == AudioPlayerState.PLAYING;
 
-  Music get curSong => _songs.length == 0 ? null : _songs[curIndex];
+  Song get curSong => _songs.length == 0 ? null : _songs[curIndex];
 
   void init() async {
-    toggleMode(CycleMode.SEQUENCE);
+    int mode = SpUtil.getInt("song_mode", defValue: 0);
+    toggleMode(mode);
 
     addSongs(songsData);
 
     _audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER)
       ..setReleaseMode(ReleaseMode.RELEASE)
-
-      ///
       ..onDurationChanged.listen(
-        (Duration duration) {
-          debugPrint('onDurationChanged===============Max duration: $duration');
-          _duration = duration;
-        },
+        (Duration duration) => _duration = duration,
       )
 
       /// 当前播放进度监听
       ..onAudioPositionChanged.listen(
         (Duration position) {
-          debugPrint(
-              'onAudioPositionChanged===============position: $position');
           _position = position;
 
-          if (_duration != null) {
+          if (_duration != null &&
+              _position != null &&
+              _duration.inMilliseconds > 0) {
             _progress = _position.inMilliseconds / _duration.inMilliseconds;
+          } else {
+            _progress = 0.0;
           }
 
           notifyListeners();
@@ -101,7 +99,10 @@ class MusicModel extends ChangeNotifier {
       );
   }
 
-  // 播放指定歌曲
+  /// 播放指定歌曲
+  ///
+  /// [index] 歌曲位置【下标】
+  ///
   void playSongByIndex(int index) {
     if (curIndex != index) {
       if (isPlaying) {
@@ -116,33 +117,72 @@ class MusicModel extends ChangeNotifier {
     }
   }
 
-  // 播放一首歌
-  void playSong(Music song) {
+  /// 播放一首歌
+  ///
+  /// [song] 播放的歌曲
+  ///
+  void playSong(Song song) {
     _songs.insert(curIndex, song);
     _play();
   }
 
-  // 播放很多歌
-  void playSongs(List<Music> songs, {int index}) {
+  /// 播放很多歌
+  ///
+  /// [songs] 歌曲列表
+  /// [index] 从哪儿开始
+  ///
+  void playSongs(List<Song> songs, {int index: 0}) {
     this._songs = songs;
     if (index != null) curIndex = index;
+    if (isPlaying) {
+      _stop();
+    }
     _play();
   }
 
-  // 添加歌曲
-  void addSongs(List<Music> songs) {
+  /// 添加歌曲到播放列表
+  ///
+  /// [songs] 添加的歌曲
+  ///
+  void addSongs(List<Song> songs) {
     this._songs.addAll(songs);
   }
 
-  // 删除歌曲
+  /// 添加歌曲到播放列表
+  ///
+  /// [song] 歌曲
+  /// [isFirst] 是否放在最前面，默认添加到列表末尾
+  ///
+  void addSong(Song song, {bool isFirst: false}) {
+    if (isFirst) {
+      this._songs.insert(0, song);
+    } else {
+      this._songs.add(song);
+    }
+  }
+
+  /// 从播放列表删除歌曲
+  ///
+  /// [index] 歌曲位置
+  ///
   void deleteSong(int index) {
     this._songs.removeAt(index);
     notifyListeners();
   }
 
+  /// 删除播放列表
+  ///
+  void deleteSongs() {
+    if (isPlaying) {
+      _stop();
+    }
+    this._songs.clear();
+    notifyListeners();
+  }
+
   /// 播放
-  void _play() {
-    _audioPlayer.play("${_songs[curIndex].audioPath}");
+  void _play() async {
+      _audioPlayer.play("${_songs[curIndex].audioPath}");
   }
 
   /// 开始、暂停、恢复
@@ -158,7 +198,10 @@ class MusicModel extends ChangeNotifier {
 
   // 停止
   void _stop() {
+    _progress = 0.0;
     _audioPlayer.stop();
+    _duration = Duration(seconds: 0);
+    _position = Duration(seconds: 0);
   }
 
   // 暂停
@@ -183,15 +226,15 @@ class MusicModel extends ChangeNotifier {
 
   /// 下一首
   void nextMusic() {
-    if (CycleMode.SINGLE == _mode) {
+    if (2 == _mode) {
       curIndex = curIndex;
-    } else if (CycleMode.SEQUENCE == _mode) {
+    } else if (0 == _mode) {
       if (curIndex >= _songs.length) {
         curIndex = 0;
       } else {
         curIndex++;
       }
-    } else if (CycleMode.RANDOM == _mode) {
+    } else if (1 == _mode) {
       curIndex = Random().nextInt(_songs.length - 1);
     }
 
@@ -208,15 +251,15 @@ class MusicModel extends ChangeNotifier {
 
   /// 上一首
   void prePlay() {
-    if (CycleMode.SINGLE == _mode) {
+    if (2 == _mode) {
       curIndex = curIndex;
-    } else if (CycleMode.SEQUENCE == _mode) {
+    } else if (0 == _mode) {
       if (curIndex <= 0) {
         curIndex = _songs.length - 1;
       } else {
         curIndex--;
       }
-    } else if (CycleMode.RANDOM == _mode) {
+    } else if (1 == _mode) {
       curIndex = Random().nextInt(_songs.length - 1);
     }
     if (_curState != AudioPlayerState.STOPPED) {
@@ -236,15 +279,17 @@ class MusicModel extends ChangeNotifier {
   }
 
   /// 切换播放顺序
-  void toggleMode(CycleMode mode) {
+  void toggleMode(int mode) {
     _mode = mode;
-    if (mode == CycleMode.SEQUENCE) {
+    if (mode == 0) {
       _modeIcon = Icons.repeat;
-    } else if (mode == CycleMode.RANDOM) {
+    } else if (mode == 1) {
       _modeIcon = Icons.shuffle;
-    } else if (mode == CycleMode.SINGLE) {
+    } else if (mode == 2) {
       _modeIcon = Icons.repeat_one;
     }
+
+    SpUtil.setInt("song_mode", mode);
 
     notifyListeners();
   }

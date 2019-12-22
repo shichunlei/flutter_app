@@ -68,7 +68,6 @@ class ItemDynamic extends StatelessWidget {
                                     itemBuilder: (context, index) =>
                                         ImageLoadView(
                                           '${this.dynamic.images.isNotEmpty ? this.dynamic.images[index].image : ''}',
-                                          fit: BoxFit.cover,
                                           width: imageWidth,
                                           height: imageWidth,
                                         ))
@@ -79,7 +78,6 @@ class ItemDynamic extends StatelessWidget {
                                           this.dynamic?.images?.first?.image,
                                           width: imageWidth,
                                           height: imageWidth,
-                                          fit: BoxFit.cover,
                                         ))
                                     : SizedBox()),
 

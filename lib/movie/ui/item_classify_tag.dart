@@ -30,7 +30,6 @@ class _ItemClassifyTagState extends State<ItemClassifyTag>
         children: <Widget>[
           ImageLoadView(
             cover,
-            fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
             borderRadius: BorderRadius.circular(3.0),

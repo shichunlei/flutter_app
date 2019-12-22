@@ -65,7 +65,6 @@ class _LabChoiceItemViewState extends State<LabChoiceItemView>
                                 child: Expanded(
                                   child: ImageLoadView(
                                     '${widget.question?.options[index]?.optionPicUrl}',
-                                    fit: BoxFit.cover,
                                     width: double.infinity,
                                   ),
                                 ),

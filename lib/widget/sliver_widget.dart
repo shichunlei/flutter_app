@@ -125,7 +125,6 @@ class _SliverWidgetState extends State<SliverWidget> {
         ),
         background: ImageLoadView(
           'https://www.snapphotography.co.nz/wp-content/uploads/New-Zealand-Landscape-Photography-prints-12.jpg',
-          fit: BoxFit.cover,
         ),
       ),
 
@@ -167,7 +166,6 @@ class _SliverWidgetState extends State<SliverWidget> {
           child: Container(
             child: ImageLoadView(
               'https://www.snapphotography.co.nz/wp-content/uploads/New-Zealand-Landscape-Photography-prints-12.jpg',
-              fit: BoxFit.cover,
             ),
           )),
       pinned: false,

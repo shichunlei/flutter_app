@@ -22,7 +22,6 @@ class DetailsInfoView extends StatelessWidget {
             children: <Widget>[
               ImageLoadView(
                 '${data?.posterarts?.first}',
-                fit: BoxFit.cover,
                 width: 125,
               ),
               Gaps.hGap8,

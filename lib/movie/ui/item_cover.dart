@@ -23,7 +23,6 @@ class ItemCover extends StatelessWidget {
           child: Stack(children: <Widget>[
             ImageLoadView(
               url,
-              fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
               borderRadius: BorderRadius.circular(5.0),

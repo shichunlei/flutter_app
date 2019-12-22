@@ -110,7 +110,6 @@ class _HomePageState extends State<HomePage>
                 itemCount: slides.length,
                 itemBuilder: (BuildContext context, int index) => ImageLoadView(
                     '${slides[index].comPic}',
-                    fit: BoxFit.cover,
                     height: headerHeight),
                 onTap: (int index) => pushNewPage(
                     context,

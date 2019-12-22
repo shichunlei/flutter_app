@@ -79,7 +79,7 @@ class _MovieDescState extends State<MovieDesc> {
                   children: <Widget>[
                     /// 图片
                     ImageLoadView(widget.movie.images.large.toString(),
-                        fit: BoxFit.cover, width: 88, height: 130),
+                        width: 88, height: 130),
                     Gaps.hGap10,
 
                     /// 名称等

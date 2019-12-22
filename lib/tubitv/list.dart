@@ -67,7 +67,6 @@ class _CategoryListPageState extends State<CategoryListPage> {
                     aspectRatio: 0.6,
                     child: ImageLoadView(
                       '${widget.topImage}',
-                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -81,7 +80,6 @@ class _CategoryListPageState extends State<CategoryListPage> {
                         children: <Widget>[
                           ImageLoadView(
                             '${list[index]?.posterarts?.first ?? ""}',
-                            fit: BoxFit.cover,
                             height: (Utils.width - 10) / 3 * 2 - 50,
                           ),
                           Padding(

@@ -92,7 +92,6 @@ class _ItemSoonViewState extends State<ItemSoonView>
                               cast?.avatars?.small ?? douBanDefaultImage,
                               width: 44.0,
                               height: 44.0,
-                              fit: BoxFit.cover,
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(22.0)),
                             );

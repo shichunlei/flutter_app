@@ -89,8 +89,7 @@ class _StoreBooksPageState extends State<StoreBooksPage>
                     child: Swiper(
                         autoplay: widget.banners.length > 1,
                         itemBuilder: (_, index) => ImageLoadView(
-                            widget.banners[index].cover,
-                            fit: BoxFit.cover),
+                            widget.banners[index].cover),
                         itemCount: widget.banners.length,
                         onTap: (index) => pushNewPage(
                             context,

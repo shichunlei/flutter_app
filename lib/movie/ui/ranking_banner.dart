@@ -25,7 +25,6 @@ class RankingBanner extends StatelessWidget {
               ImageLoadView(list[index]?.subjects?.first?.images?.medium,
                   height: height,
                   width: double.infinity,
-                  fit: BoxFit.cover,
                   opacity: 0.5,
                   filterColor: Colors.black,
                   borderRadius: BorderRadius.all(Radius.circular(radius))),

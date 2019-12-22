@@ -37,7 +37,7 @@ class AnimatedCDView extends AnimatedWidget {
                           width: 190,
                           borderRadius:
                               BorderRadius.all(Radius.circular(150.0)),
-                          fit: BoxFit.cover),
+                      ),
                       CircleAvatar(
                           backgroundColor: Colors.white,
                           radius: 27.5,

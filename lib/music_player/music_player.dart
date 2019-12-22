@@ -355,7 +355,6 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
           leading: ImageLoadView('${song.albumArtUrl}',
               width: 40,
               height: 40,
-              fit: BoxFit.cover,
               borderRadius: BorderRadius.all(Radius.circular(20.0))),
           title: Text('${song.title}'),
           onTap: () {

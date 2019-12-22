@@ -85,7 +85,6 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
                   children: <Widget>[
                     Container(
                         child: ImageLoadView(backgroundImage,
-                            fit: BoxFit.cover,
                             height: headerHeight,
                             width: Utils.width),
                         margin: EdgeInsets.only(bottom: 30.0)),

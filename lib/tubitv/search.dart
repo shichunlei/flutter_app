@@ -135,7 +135,6 @@ class _SearchListPageState extends State<SearchListPage> {
                   children: <Widget>[
                     ImageLoadView(
                       '${data[index]?.posterarts?.first ?? ""}',
-                      fit: BoxFit.cover,
                       height: (Utils.width - 10) / 3 * 2 - 50,
                     ),
                     Padding(

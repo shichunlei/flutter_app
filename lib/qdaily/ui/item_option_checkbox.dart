@@ -26,7 +26,7 @@ class _ItemOptionCheckboxState extends State<ItemOptionCheckbox> {
             child: Row(
               children: <Widget>[
                 ImageLoadView('${widget.option?.image}',
-                    width: 90, height: 90, fit: BoxFit.cover),
+                    width: 90, height: 90),
                 SizedBox(width: 10),
                 Expanded(child: Text('${widget.option?.content}')),
                 Checkbox(

@@ -23,7 +23,7 @@ class ItemBookListBook extends StatelessWidget {
                     children: <Widget>[
                       Row(children: <Widget>[
                         ImageLoadView('${book?.book?.cover}',
-                            height: 80, width: 60, fit: BoxFit.cover),
+                            height: 80, width: 60),
                         Gaps.hGap5,
                         Expanded(
                             child: Column(

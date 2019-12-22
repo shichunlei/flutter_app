@@ -20,7 +20,7 @@ class ItemBook extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
               child: Row(children: <Widget>[
                 ImageLoadView('${book.cover}',
-                    height: 99, width: 77, fit: BoxFit.cover),
+                    height: 99, width: 77),
                 Gaps.hGap10,
                 Expanded(
                     child: Column(
