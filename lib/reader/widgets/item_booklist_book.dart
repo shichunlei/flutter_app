@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
 import '../index.dart';
@@ -40,7 +39,7 @@ class ItemBookListBook extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween),
                               Gaps.vGap5,
                               Row(children: <Widget>[
-                                Icon(FontAwesome.user,
+                                Icon(Icons.person,
                                     size: 13, color: Colors.grey),
                                 Gaps.hGap5,
                                 Text('${book?.book?.author}',

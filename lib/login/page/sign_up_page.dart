@@ -126,7 +126,7 @@ class _SignUpPageState extends State<SignUpPage> {
             onEditingComplete: () =>
                 FocusScope.of(context).requestFocus(emailFocusNode),
             decoration: InputDecoration(
-                icon: Icon(FontAwesome.user, color: Colors.black),
+                icon: Icon(Icons.person, color: Colors.black),
                 hintText: "${S.of(context).username}",
                 border: InputBorder.none),
             style: TextStyle(fontSize: 16, color: Colors.black)));

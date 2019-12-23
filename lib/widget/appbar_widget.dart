@@ -1,4 +1,3 @@
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 
 import '../page_index.dart';
@@ -111,7 +110,7 @@ class _AppBarWidgetState extends State<AppBarWidget>
                     onPressed: () {},
                   ),
                   IconButton(
-                    icon: Icon(Feather.settings, color: Colors.white),
+                    icon: Icon(Icons.settings, color: Colors.white),
                     onPressed: () {},
                   ),
                 ],
@@ -170,7 +169,7 @@ class _AppBarWidgetState extends State<AppBarWidget>
                   title: Text('AppBar leading'),
                   elevation: 0.0,
                   leading: IconButton(
-                      icon: Icon(Feather.chevron_left),
+                      icon: Icon(Icons.chevron_left),
                       onPressed: () => Navigator.of(context).pop()))),
         ]));
   }

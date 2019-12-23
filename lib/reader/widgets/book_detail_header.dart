@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
 import '../index.dart';
@@ -61,7 +60,7 @@ class BookDetailsHeaderView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Row(children: <Widget>[
-                            Icon(FontAwesome.user,
+                            Icon(Icons.person,
                                 size: 16, color: readerMainColor),
                             Text(
                               '${book?.author ?? ""}',

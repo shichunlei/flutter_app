@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
 import '../index.dart';
@@ -17,10 +16,9 @@ class ItemBook extends StatelessWidget {
       child: InkWell(
           onTap: onPressed,
           child: Container(
-              padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               child: Row(children: <Widget>[
-                ImageLoadView('${book.cover}',
-                    height: 99, width: 77),
+                ImageLoadView('${book.cover}', height: 99, width: 77),
                 Gaps.hGap10,
                 Expanded(
                     child: Column(
@@ -36,16 +34,14 @@ class ItemBook extends StatelessWidget {
                       Gaps.vGap8,
                       Row(children: <Widget>[
                         Expanded(
-                          child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Icon(FontAwesome.user,
-                                    size: 13, color: Colors.grey),
-                                Gaps.hGap5,
-                                Text('${book?.author}',
-                                    style: TextStyle(
-                                        color: grey9Color, fontSize: 14))
-                              ]),
+                          child: Row(mainAxisSize: MainAxisSize.min, children: <
+                              Widget>[
+                            Icon(Icons.person, size: 13, color: Colors.grey),
+                            Gaps.hGap5,
+                            Text('${book?.author}',
+                                style:
+                                    TextStyle(color: grey9Color, fontSize: 14))
+                          ]),
                         ),
                         book.tags.length > 0
                             ? TagView(tag: book.tags.first)

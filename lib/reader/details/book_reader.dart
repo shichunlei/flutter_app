@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/store/index.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
 import '../index.dart';
@@ -205,8 +204,8 @@ class _BookReaderPageState extends State<BookReaderPage> {
                           Expanded(
                             child: IconButton(
                                 icon: Icon(brightness == Brightness.light
-                                    ? Feather.moon
-                                    : Feather.sun),
+                                    ? Icons.brightness_2
+                                    : Icons.wb_sunny),
                                 onPressed: () {
                                   setState(() {
                                     if (brightness == Brightness.dark) {
@@ -224,8 +223,8 @@ class _BookReaderPageState extends State<BookReaderPage> {
                                     Widget child) {
                               return IconButton(
                                   icon: Icon(snapshot.isExist
-                                      ? CustomIcon.bookmark_check
-                                      : CustomIcon.bookmark_nor),
+                                      ? Icons.bookmark
+                                      : Icons.bookmark_border),
                                   onPressed: () {
                                     if (snapshot.isExist) {
                                       /// 不追了，在书架删除
@@ -256,7 +255,7 @@ class _BookReaderPageState extends State<BookReaderPage> {
                           ),
                           Expanded(
                             child: IconButton(
-                                icon: Icon(Feather.settings),
+                                icon: Icon(Icons.settings),
                                 onPressed: () {
                                   setState(() {
                                     isMenuVisible = false;
@@ -265,7 +264,7 @@ class _BookReaderPageState extends State<BookReaderPage> {
                           ),
                           Expanded(
                             child: IconButton(
-                                icon: Icon(Feather.download),
+                                icon: Icon(Icons.file_download),
                                 onPressed: () {
                                   setState(() {
                                     isMenuVisible = false;

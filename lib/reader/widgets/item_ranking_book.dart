@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
 import '../index.dart';
@@ -58,7 +57,7 @@ class ItemRankingBook extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                          Icon(FontAwesome.user, size: 13, color: Colors.grey),
+                          Icon(Icons.person, size: 13, color: Colors.grey),
                           Gaps.hGap5,
                           Text('${book?.author}', style: TextStyles.textGreyC14)
                         ]),

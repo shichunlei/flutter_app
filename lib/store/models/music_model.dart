@@ -14,8 +14,10 @@ class MusicModel extends ChangeNotifier {
 
   List<Song> _songs = [];
 
+  /// 播放列表所有歌曲
   List<Song> get allSongs => _songs;
 
+  /// 当前播放歌曲下标
   int curIndex = 0;
 
   /// 总时长
@@ -25,23 +27,29 @@ class MusicModel extends ChangeNotifier {
 
   Duration _position;
 
+  /// 歌曲时长
   String get durationText => Utils.duration2String(_duration);
 
+  /// 歌曲当前播放时长
   String get positionText => Utils.duration2String(_position);
 
   int _mode;
   IconData _modeIcon;
 
+  /// 播放模式
   int get mode => _mode;
 
   IconData get modeIcon => _modeIcon;
 
   double _progress = 0.0;
 
+  /// 播放进度
   double get progress => _progress;
 
+  /// 正在播放状态
   bool get isPlaying => _curState == AudioPlayerState.PLAYING;
 
+  /// 当前音乐
   Song get curSong => _songs.length == 0 ? null : _songs[curIndex];
 
   void init() async {
@@ -132,11 +140,12 @@ class MusicModel extends ChangeNotifier {
   /// [index] 从哪儿开始
   ///
   void playSongs(List<Song> songs, {int index: 0}) {
-    this._songs = songs;
-    if (index != null) curIndex = index;
+    this._songs.clear();
+    this._songs.addAll(songs);
     if (isPlaying) {
       _stop();
     }
+    curIndex = index;
     _play();
   }
 
@@ -154,6 +163,9 @@ class MusicModel extends ChangeNotifier {
   /// [isFirst] 是否放在最前面，默认添加到列表末尾
   ///
   void addSong(Song song, {bool isFirst: false}) {
+    if (this._songs.contains(song)) {
+      this._songs.remove(song);
+    }
     if (isFirst) {
       this._songs.insert(0, song);
     } else {

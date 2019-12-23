@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
 import '../index.dart';
@@ -56,13 +55,13 @@ class _StoreBooksPageState extends State<StoreBooksPage>
                       Expanded(
                           child: IconText(
                               text: '分类',
-                              icon: Icon(SimpleLineIcons.grid,
+                              icon: Icon(Icons.dashboard,
                                   color: Colors.blueAccent),
                               onPressed: () {})),
                       Expanded(
                         child: IconText(
                             text: '排行',
-                            icon: Icon(SimpleLineIcons.trophy,
+                            icon: Icon(Icons.equalizer,
                                 color: Colors.green),
                             onPressed: () =>
                                 pushNewPage(context, RankingsPage())),
@@ -70,7 +69,7 @@ class _StoreBooksPageState extends State<StoreBooksPage>
                       Expanded(
                         child: IconText(
                             text: '书单',
-                            icon: Icon(SimpleLineIcons.docs,
+                            icon: Icon(Icons.insert_drive_file,
                                 color: Colors.pinkAccent),
                             onPressed: () =>
                                 pushNewPage(context, BookListPage())),
@@ -78,7 +77,7 @@ class _StoreBooksPageState extends State<StoreBooksPage>
                       Expanded(
                         child: IconText(
                             text: '漫画',
-                            icon: Icon(SimpleLineIcons.picture,
+                            icon: Icon(Icons.photo,
                                 color: Colors.purple),
                             onPressed: () =>
                                 pushNewPage(context, PicturePage())),
