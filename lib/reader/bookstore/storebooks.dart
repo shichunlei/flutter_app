@@ -61,8 +61,7 @@ class _StoreBooksPageState extends State<StoreBooksPage>
                       Expanded(
                         child: IconText(
                             text: '排行',
-                            icon: Icon(Icons.equalizer,
-                                color: Colors.green),
+                            icon: Icon(Icons.equalizer, color: Colors.green),
                             onPressed: () =>
                                 pushNewPage(context, RankingsPage())),
                       ),
@@ -77,8 +76,7 @@ class _StoreBooksPageState extends State<StoreBooksPage>
                       Expanded(
                         child: IconText(
                             text: '漫画',
-                            icon: Icon(Icons.photo,
-                                color: Colors.purple),
+                            icon: Icon(Icons.photo, color: Colors.purple),
                             onPressed: () =>
                                 pushNewPage(context, PicturePage())),
                       )
@@ -87,8 +85,8 @@ class _StoreBooksPageState extends State<StoreBooksPage>
                     padding: EdgeInsets.all(10),
                     child: Swiper(
                         autoplay: widget.banners.length > 1,
-                        itemBuilder: (_, index) => ImageLoadView(
-                            widget.banners[index].cover),
+                        itemBuilder: (_, index) =>
+                            ImageLoadView(widget.banners[index].cover),
                         itemCount: widget.banners.length,
                         onTap: (index) => pushNewPage(
                             context,
@@ -109,8 +107,9 @@ class _StoreBooksPageState extends State<StoreBooksPage>
                                             size: const Size.square(5.0),
                                             activeSize: const Size(10.0, 5.0),
                                             activeShape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(
-                                                    2.5))))))),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        2.5))))))),
                     height: (Utils.width - 20) / 69 * 28 + 20),
                 ListView.separated(
                     physics: NeverScrollableScrollPhysics(),
