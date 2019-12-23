@@ -252,25 +252,56 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   Future<void> _login() async {
-    User user = await ApiService.login(
-        _emailController.text.toString(), _pwdController.text.toString());
+//    User user = await ApiService.login(
+//        _emailController.text.toString(), _pwdController.text.toString());
+//
+//    if (user != null) {
+//      Store.value<UserModel>(context)
+//        ..setUser(
+//          id: user.id,
+//          email: '${user?.email}',
+//          name: '${user.name}',
+//          avatarPath: user.avatarUrl,
+//          login: true,
+//          mobile: user.mobile,
+//        );
+//      if (isShowLoading) {
+//        Navigator.of(context).pop();
+//      }
+//      pushAndRemovePage(context, HomePage());
+//    } else {
+//      Toast.show(context, '登录失败');
+//    }
 
-    if (user != null) {
-      Store.value<UserModel>(context)
-        ..setUser(
-          id: user.id,
-          email: '${user?.email}',
-          name: '${user.name}',
-          avatarPath: user.avatarUrl,
-          login: true,
-          mobile: user.mobile,
-        );
-      if (isShowLoading) {
-        Navigator.of(context).pop();
-      }
-      pushAndRemovePage(context, HomePage());
-    } else {
-      Toast.show(context, '登录失败');
-    }
+    await HttpUtils().post(
+        ApiUrl.LOGIN,
+        (data) {
+          User user = User.fromMap(data);
+
+          Store.value<UserModel>(context)
+            ..setUser(
+              id: user.id,
+              email: '${user?.email}',
+              name: '${user.name}',
+              avatarPath: user.avatarUrl,
+              login: true,
+              mobile: user.mobile,
+            );
+          if (isShowLoading) {
+            Navigator.of(context).pop();
+          }
+          pushAndRemovePage(context, HomePage());
+        },
+        params: {
+          'email': _emailController.text.toString(),
+          'password': _pwdController.text.toString()
+        },
+        errorCallBack: (error) {
+          print(error);
+          if (isShowLoading) {
+            Navigator.of(context).pop();
+          }
+          Toast.show(context, error.message);
+        });
   }
 }

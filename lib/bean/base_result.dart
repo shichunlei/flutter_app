@@ -4,6 +4,8 @@ class BaseResult<T> {
   String message;
   T data;
 
+  BaseResult({this.code, this.status, this.message, this.data});
+
   static BaseResult fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     BaseResult result = BaseResult();
