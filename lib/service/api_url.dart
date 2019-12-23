@@ -1,6 +1,10 @@
 class ApiUrl {
   static const String BASE_URL = 'http://data.chingsoft.com/api/v1/';
 
+  static const String LOGIN = 'users/login';
+
+  static const String UPDATE_AVATAR = 'users/update_avatar';
+
   static const String MOVIE_BASE_URL = "https://api.douban.com/v2/movie";
 
   static final String MOVIE_HOME_URL = "movies/home_data";

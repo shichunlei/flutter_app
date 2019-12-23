@@ -22,9 +22,6 @@ class HomeDrawableHeader extends StatelessWidget {
           currentAccountPicture: InkWell(
               child: Hero(
                 child: ImageLoadView('${_data.getAvatarPath()}',
-                    imageType: _data.isLocal()
-                        ? ImageType.localFile
-                        : ImageType.network,
                     borderRadius: BorderRadius.all(Radius.circular(40.0)),
                     width: 80,
                     height: 80),

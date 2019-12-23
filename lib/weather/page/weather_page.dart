@@ -103,7 +103,7 @@ class WeatherPageState extends State<WeatherPage> {
       body: Stack(children: <Widget>[
         Image.asset(background, fit: BoxFit.fitHeight, height: double.infinity),
         _buildContentView(),
-        CurrentAppBar(
+        CustomAppBar(
           iconColor: Colors.white,
           bgColor: Color.fromARGB((navAlpha * 255 * 0.8).toInt(), barColor.red,
               barColor.green, barColor.blue),

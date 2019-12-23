@@ -51,15 +51,9 @@ class HomeDrawable extends StatelessWidget {
               leading: Icon(Icons.exit_to_app),
               trailing: Icon(Icons.chevron_right),
               onTap: () {
+                Store.value<UserModel>(context).cleanUserInfo();
                 Navigator.of(context).pop();
-                showDiffDialog(context,
-                    title: Text("退出账号"),
-                    content: Text("您确定要退出账号吗？"),
-                    noText: '再想想',
-                    yesText: '退出', pressed: () {
-                  Store.value<UserModel>(context).cleanUserInfo();
-                  pushAndRemovePage(context, LoginPage());
-                });
+                pushAndRemovePage(context, LoginPage());
               }),
           Divider(),
           ListTile(

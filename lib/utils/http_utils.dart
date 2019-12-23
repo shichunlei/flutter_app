@@ -82,7 +82,7 @@ class HttpUtils {
   /// [options] The request options.
   ///
   /// String 返回 json data .
-  request(
+  Future<Response> request(
     String path, {
     Map<String, dynamic> data,
     String method: GET,
@@ -158,6 +158,53 @@ class HttpUtils {
           onReceiveProgress(count, total);
         },
       );
+    } on DioError catch (e) {
+      debugPrint(e.response.toString());
+      formatError(e);
+    }
+
+    return response;
+  }
+
+  /// 上传文件
+  ///
+  /// [path] The url path.
+  /// [data] The request data
+  ///
+  Future<Response> uploadFile(String path,
+      {String baseUrl = ApiUrl.BASE_URL, @required FormData data}) async {
+    /// 打印请求相关信息：请求地址、请求方式、请求参数
+    debugPrint("请求地址：【$baseUrl$path】");
+    debugPrint('请求参数：' + data.toString());
+    Response response;
+    try {
+      response = await Dio(
+        BaseOptions(
+            baseUrl: baseUrl, connectTimeout: 15000, receiveTimeout: 15000),
+      ).post(
+        "$path",
+        data: data,
+        onReceiveProgress: (int count, int total) {
+          debugPrint(
+              'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
+        },
+        onSendProgress: (int count, int total) {
+          debugPrint(
+              'onSendProgress: ${(count / total * 100).toStringAsFixed(0)} %');
+        },
+      );
+
+      /// 响应数据，可能已经被转换了类型, 详情请参考Options中的[ResponseType].
+      debugPrint('请求成功!response.data：${response.data}');
+
+      /// 响应头
+      debugPrint('请求成功!response.headers：${response.headers}');
+
+      /// 本次请求信息
+      debugPrint('请求成功!response.request：${response.request}');
+
+      /// Http status code.
+      debugPrint('请求成功!response.statusCode：${response.statusCode}');
     } on DioError catch (e) {
       debugPrint(e.response.toString());
       formatError(e);

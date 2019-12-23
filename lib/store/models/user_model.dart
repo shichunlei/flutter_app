@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/bean/user.dart';
 
 import '../../page_index.dart';
 
@@ -10,7 +11,7 @@ class UserModel extends ChangeNotifier {
   }
 
   String getName() {
-    String name = SpUtil.getString('name', defValue: 'SCL');
+    String name = SpUtil.getString('name', defValue: '未填写');
     debugPrint('================getName()---$name');
     return name;
   }
@@ -19,6 +20,18 @@ class UserModel extends ChangeNotifier {
     String _email = SpUtil.getString('email', defValue: '');
     debugPrint('================getEmail()---$_email');
     return _email;
+  }
+
+  String getMobile() {
+    String mobile = SpUtil.getString('mobile', defValue: '未填写');
+    debugPrint('================getMobile()---$mobile');
+    return mobile;
+  }
+
+  int getUserId() {
+    int id = SpUtil.getInt('id', defValue: -1);
+    debugPrint('================getUserId()---$id');
+    return id;
   }
 
   String getAvatarPath() {
@@ -30,50 +43,58 @@ class UserModel extends ChangeNotifier {
     return _avatarPath;
   }
 
-  bool isLocal() {
-    bool _isLocal = SpUtil.getBool('isLocal', defValue: false);
+  Future<User> getUser() async {
+    String name = SpUtil.getString('name', defValue: '未填写');
+    String email = SpUtil.getString('email', defValue: '');
+    String mobile = SpUtil.getString('mobile', defValue: '未填写');
+    String avatarPath = SpUtil.getString('avatarPath', defValue: '');
+    int id = SpUtil.getInt('id', defValue: -1);
+    User user = User(
+        name: name,
+        email: email,
+        avatarUrl: avatarPath,
+        id: id,
+        mobile: mobile);
 
-    debugPrint('================getIsLocal()---$_isLocal');
-
-    return _isLocal;
+    return user;
   }
 
-  setUser({
+  void setUser({
+    int id,
     String name,
     String email,
+    String mobile,
     String avatarPath,
-    bool isLocalImage,
+    bool login,
   }) async {
-    String _name = name ?? getName();
-    String _email = email ?? getEmail();
-    String _avatarPath = avatarPath ?? getAvatarPath();
-    bool _isLocal = isLocalImage ?? isLocal();
+    User user = await getUser();
+
+    String _name = name ?? user.name;
+    String _email = email ?? user.email;
+    String _avatarPath = avatarPath ?? user.avatarUrl;
+    String _mobile = mobile ?? user.mobile;
+    bool _isLogin = login ?? isLogin();
+    int _id = id ?? user.id;
 
     debugPrint(
-        '========setUser()---$_name|====|$_email|---|$_avatarPath|=-=-=-=-|$_isLocal');
+        '========setUser()---$_name|====|$_email|---|$_avatarPath|=-=-=-=-|$_isLogin');
 
+    SpUtil.setInt('id', _id);
     SpUtil.setString('name', _name);
+    SpUtil.setString('mobile', _mobile);
     SpUtil.setString('email', _email);
     SpUtil.setString('avatarPath', _avatarPath);
-    SpUtil.setBool('isLocal', _isLocal);
-    notifyListeners();
-  }
-
-  initLogin(bool value) async {
-    bool _isLogin = value ?? isLogin();
-
-    debugPrint('================initLogin()---$_isLogin');
-
     SpUtil.setBool('isLogin', _isLogin);
     notifyListeners();
   }
 
-  cleanUserInfo() async {
+  void cleanUserInfo() async {
     SpUtil.remove('isLogin');
-    SpUtil.remove('isLocal');
     SpUtil.remove('avatarPath');
     SpUtil.remove('email');
     SpUtil.remove('name');
+    SpUtil.remove('mobile');
+    SpUtil.remove('id');
 
     debugPrint('================cleanUserInfo()');
 

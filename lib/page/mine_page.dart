@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:clippy_flutter/clippy_flutter.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/bean/user.dart';
 
 import '../generated/i18n.dart';
 import '../store/index.dart';
@@ -21,6 +23,7 @@ class MinePage extends StatefulWidget {
 
 class _MinePageState extends State<MinePage> {
   bool isEdit = false;
+  bool isShowLoading = false;
 
   File _imageFile;
 
@@ -81,9 +84,6 @@ class _MinePageState extends State<MinePage> {
                                       Hero(
                                         child: ImageLoadView(
                                             '${userModel.getAvatarPath()}',
-                                            imageType: userModel.isLocal()
-                                                ? ImageType.localFile
-                                                : ImageType.network,
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(40.0)),
                                             width: 80,
@@ -125,21 +125,20 @@ class _MinePageState extends State<MinePage> {
                   Divider(),
                 ]),
               ),
-              Container(
-                height: Utils.navigationBarHeight,
-                child: AppBar(
-                  elevation: 0.0,
-                  title: Text('个人中心'),
-                  centerTitle: true,
-                  backgroundColor: Colors.transparent,
-                  actions: <Widget>[
-                    IconButton(
-                        icon: Text(isEdit
-                            ? "${S.of(context).save}"
-                            : '${S.of(context).edit}'),
-                        onPressed: () => setState(() => isEdit = !isEdit))
-                  ],
+              CustomAppBar(
+                title: Text(
+                  '个人中心',
+                  style: TextStyle(fontSize: 22, color: Colors.white),
                 ),
+                bgColor: Colors.transparent,
+                iconColor: Colors.white,
+                action: IconButton(
+                    icon: Text(
+                        isEdit
+                            ? "${S.of(context).complete}"
+                            : '${S.of(context).edit}',
+                        style: TextStyle(fontSize: 15, color: Colors.white)),
+                    onPressed: () => setState(() => isEdit = !isEdit)),
               ),
             ],
           ));
@@ -233,7 +232,31 @@ class _MinePageState extends State<MinePage> {
     );
 
     debugPrint('cropImage=============${croppedFile.path}');
-    Store.value<UserModel>(context)
-        .setUser(avatarPath: croppedFile.path, isLocalImage: true);
+
+    showLoadingDialog(context, '上传中...');
+    isShowLoading = true;
+    uploadImage(croppedFile.path);
+  }
+
+  void uploadImage(String path) async {
+    var filename = path.substring(path.lastIndexOf("/") + 1, path.length);
+    print(filename);
+    var suffix =
+        filename.substring(filename.lastIndexOf(".") + 1, filename.length);
+    print(suffix);
+
+    FormData data = FormData.fromMap({
+      'avatar': MultipartFile.fromFileSync(path, filename: filename),
+      'id': Store.value<UserModel>(context).getUserId(),
+    });
+
+    User user = await ApiService.updateAvatar(data);
+
+    if (user != null) {
+      Store.value<UserModel>(context).setUser(avatarPath: user.avatarUrl);
+      if (isShowLoading) {
+        Navigator.of(context).pop();
+      }
+    }
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../page_index.dart';
 
-class CurrentAppBar extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget title;
   final bool centerTitle;
   final Color bgColor;
@@ -12,7 +12,7 @@ class CurrentAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget action;
   final Brightness brightness;
 
-  CurrentAppBar({
+  CustomAppBar({
     Key key,
     this.title,
     this.centerTitle: true,

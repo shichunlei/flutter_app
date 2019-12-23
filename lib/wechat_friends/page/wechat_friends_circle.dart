@@ -119,7 +119,7 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
                     primary: false)
               ]),
             ),
-            CurrentAppBar(
+            CustomAppBar(
               iconColor: Colors.white,
               bgColor: Color.fromARGB((navAlpha * 255).toInt(), 180, 180, 180),
               title: Text(title,

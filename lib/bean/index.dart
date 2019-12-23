@@ -19,3 +19,4 @@ export 'youdao.dart';
 export 'tubitv.dart';
 export 'sports.dart';
 export 'music.dart';
+export 'user.dart';
