@@ -15,8 +15,6 @@ class TicketFoldPage extends StatefulWidget {
 }
 
 class _TicketFoldPageState extends State<TicketFoldPage> {
-  final List<BoardingPassData> _boardingPasses = DemoData().boardingPasses;
-
   final ScrollController _scrollController = ScrollController();
 
   final List<int> _openTickets = [];
@@ -35,10 +33,10 @@ class _TicketFoldPageState extends State<TicketFoldPage> {
                 controller: _scrollController,
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (_, index) => Ticket(
-                  boardingPass: _boardingPasses[index],
+                  boardingPass: boardingPasses[index],
                   onClick: () => _handleClickedTicket(index),
                 ),
-                itemCount: _boardingPasses.length,
+                itemCount: boardingPasses.length,
               ),
             )
           ],

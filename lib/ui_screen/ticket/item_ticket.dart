@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/ui/line.dart';
 
 import 'data.dart';
 import 'flight_baarcode.dart';

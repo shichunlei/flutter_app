@@ -42,7 +42,7 @@ dependencies: # 应用或包依赖的其它包或插件
 
   city_picker: ^0.1.4
 
-  city_pickers: ^0.1.29
+  city_pickers: ^0.1.30
 
   clippy_flutter: ^1.1.0
 
@@ -130,15 +130,13 @@ dependencies: # 应用或包依赖的其它包或插件
   # 滑动视差效果图片 https://github.com/pulyaevskiy/parallax-image
   parallax_image: ^0.3.1+1
 
-  path_drawing: ^0.4.1
-
   path_provider: ^1.5.1
 
   # PhotoView
   photo_view: ^0.9.0
 
   # 数据管理层
-  provider: ^3.2.0
+  provider: ^4.0.0
 
   # flutter 生成二维码
   qr_flutter: ^3.1.0

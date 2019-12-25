@@ -1,7 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:path_drawing/path_drawing.dart';
+
+import '../../page_index.dart';
 
 class WeatherTempView extends StatelessWidget {
   final double max;

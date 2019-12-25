@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -10,12 +12,12 @@ class FlightSummary extends StatelessWidget {
   final SummaryTheme theme;
   final bool isOpen;
 
-  const FlightSummary(
-      {Key key,
-      this.boardingPass,
-      this.theme = SummaryTheme.light,
-      this.isOpen = false})
-      : super(key: key);
+  const FlightSummary({
+    Key key,
+    this.boardingPass,
+    this.theme = SummaryTheme.light,
+    this.isOpen = false,
+  }) : super(key: key);
 
   Color get mainTextColor {
     Color textColor;
@@ -52,25 +54,21 @@ class FlightSummary extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             _buildLogoHeader(),
-            _buildSeparationLine(),
+            Container(width: double.infinity, height: 1, color: separatorColor),
             _buildTicketHeader(context),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: Stack(
-                children: <Widget>[
-                  Align(
-                      alignment: Alignment.centerLeft,
-                      child: _buildTicketOrigin()),
-                  Align(
-                      alignment: Alignment.center,
-                      child: _buildTicketDuration()),
-                  Align(
-                      alignment: Alignment.centerRight,
-                      child: _buildTicketDestination())
-                ],
-              ),
+            Row(
+              children: <Widget>[
+                _buildTicketOrigin(),
+                Expanded(child: _buildTicketDuration()),
+                _buildTicketDestination()
+              ],
             ),
-            _buildBottomIcon()
+            Icon(
+                theme == SummaryTheme.light
+                    ? Icons.keyboard_arrow_down
+                    : Icons.keyboard_arrow_up,
+                color: mainTextColor,
+                size: 18)
           ],
         ),
       ),
@@ -92,34 +90,26 @@ class FlightSummary extends StatelessWidget {
   }
 
   _buildLogoHeader() {
-    if (theme == SummaryTheme.light)
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
-            child: Image.asset('images/flutterlogo.png', width: 8),
-          ),
-          Text('Fluttair'.toUpperCase(),
-              style: TextStyle(
-                  color: mainTextColor,
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.5))
-        ],
-      );
-    if (theme == SummaryTheme.dark)
-      return Padding(
-        padding: const EdgeInsets.only(top: 2.0),
-        child: Image.asset('images/logo_white.png', height: 12),
-      );
-  }
-
-  Widget _buildSeparationLine() {
-    return Container(
-      width: double.infinity,
-      height: 1,
-      color: separatorColor,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          child: theme == SummaryTheme.light
+              ? Image.asset('images/flutterlogo.png', width: 8)
+              : Image.asset(
+                  'images/flutterlogo.png',
+                  width: 8,
+                  color: Colors.white,
+                ),
+        ),
+        Text('boarding pass'.toUpperCase(),
+            style: TextStyle(
+                color: mainTextColor,
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.5))
+      ],
     );
   }
 
@@ -150,15 +140,8 @@ class FlightSummary extends StatelessWidget {
   }
 
   Widget _buildTicketDuration() {
-    String planeRoutePath;
-    if (theme == SummaryTheme.light)
-      planeRoutePath = 'images/planeroute_blue.png';
-    if (theme == SummaryTheme.dark)
-      planeRoutePath = 'images/planeroute_white.png';
-
     return Container(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Container(
@@ -167,14 +150,24 @@ class FlightSummary extends StatelessWidget {
             child: Stack(
               alignment: Alignment.center,
               children: <Widget>[
-                Image.asset(planeRoutePath, fit: BoxFit.fitWidth),
+                Image.asset(
+                  'images/planeroute_white.png',
+                  fit: BoxFit.fitWidth,
+                  color: theme == SummaryTheme.dark
+                      ? Colors.white
+                      : Colors.blueGrey,
+                ),
                 if (theme == SummaryTheme.light)
-                  Image.asset('images/airplane_blue.png',
-                      height: 20),
+                  _rotateIcon(
+                      iconData: Icons.flight,
+                      angle: math.pi / 2,
+                      iconColor: Colors.blueGrey),
                 if (theme == SummaryTheme.dark)
                   _AnimatedSlideToRight(
-                    child: Image.asset('images/airplane_white.png',
-                        height: 20, fit: BoxFit.contain),
+                    child: _rotateIcon(
+                        iconData: Icons.flight,
+                        angle: math.pi / 2,
+                        iconColor: Colors.white),
                     isOpen: isOpen,
                   )
               ],
@@ -185,6 +178,11 @@ class FlightSummary extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _rotateIcon({IconData iconData, double angle, Color iconColor}) {
+    return Transform.rotate(
+        child: Icon(iconData, color: iconColor), angle: angle);
   }
 
   Widget _buildTicketDestination() {
@@ -202,17 +200,6 @@ class FlightSummary extends StatelessWidget {
       ],
     );
   }
-
-  Widget _buildBottomIcon() {
-    IconData icon;
-    if (theme == SummaryTheme.light) icon = Icons.keyboard_arrow_down;
-    if (theme == SummaryTheme.dark) icon = Icons.keyboard_arrow_up;
-    return Icon(
-      icon,
-      color: mainTextColor,
-      size: 18,
-    );
-  }
 }
 
 class _AnimatedSlideToRight extends StatefulWidget {
@@ -223,7 +210,7 @@ class _AnimatedSlideToRight extends StatefulWidget {
       : super(key: key);
 
   @override
-  _AnimatedSlideToRightState createState() => _AnimatedSlideToRightState();
+  createState() => _AnimatedSlideToRightState();
 }
 
 class _AnimatedSlideToRightState extends State<_AnimatedSlideToRight>

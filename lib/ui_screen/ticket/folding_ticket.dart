@@ -11,7 +11,7 @@ class FoldingTicket extends StatefulWidget {
   FoldingTicket({this.duration, @required this.entries, this.isOpen = false});
 
   @override
-  _FoldingTicketState createState() => _FoldingTicketState();
+  createState() => _FoldingTicketState();
 }
 
 class _FoldingTicketState extends State<FoldingTicket>

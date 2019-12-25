@@ -7,6 +7,7 @@ export 'bottom_drag_widget.dart';
 export 'bubble_bottom_bar.dart';
 export 'circle_progress.dart';
 export 'curved_navigation_bar.dart';
+export 'dash_path.dart';
 export 'flip_card.dart';
 export 'flutter_flip_view.dart';
 export 'gradient_circular_progress_indicator.dart';

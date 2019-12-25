@@ -37,65 +37,57 @@ class _Airport {
   _Airport({this.city, this.code});
 }
 
-class DemoData {
-  List<BoardingPassData> _boardingPasses = [
-    BoardingPassData(
-        passengerName: 'Ms. Jane Doe',
-        origin: _Airport(code: 'YEG', city: 'Edmonton'),
-        destination: _Airport(code: 'LAX', city: 'Los Angeles'),
-        duration: '3时 30分',
-        boardingTime: TimeOfDay(hour: 7, minute: 10),
-        departs: DateTime(2019, 10, 17, 23, 45),
-        arrives: DateTime(2019, 10, 18, 02, 15),
-        gate: '50',
-        zone: 3,
-        seat: '12A',
-        flightClass: 'Economy',
-        flightNumber: 'AC237'),
-    BoardingPassData(
-        passengerName: 'Ms. Jane Doe',
-        origin: _Airport(code: 'YYC', city: 'Calgary'),
-        destination: _Airport(code: 'YOW', city: 'Ottawa'),
-        duration: '3时 50分',
-        boardingTime: TimeOfDay(hour: 12, minute: 15),
-        departs: DateTime(2019, 10, 17, 23, 45),
-        arrives: DateTime(2019, 10, 18, 02, 15),
-        gate: '22',
-        zone: 1,
-        seat: '17C',
-        flightClass: 'Economy',
-        flightNumber: 'AC237'),
-    BoardingPassData(
-        passengerName: 'Ms. Jane Doe',
-        origin: _Airport(code: 'YEG', city: 'Edmonton'),
-        destination: _Airport(code: 'MEX', city: 'Mexico'),
-        duration: '4时 15分',
-        boardingTime: TimeOfDay(hour: 16, minute: 45),
-        departs: DateTime(2019, 10, 17, 23, 45),
-        arrives: DateTime(2019, 10, 18, 02, 15),
-        gate: '30',
-        zone: 2,
-        seat: '22B',
-        flightClass: 'Economy',
-        flightNumber: 'AC237'),
-    BoardingPassData(
-        passengerName: 'Ms. Jane Doe',
-        origin: _Airport(code: 'YYC', city: 'Calgary'),
-        destination: _Airport(code: 'YOW', city: 'Ottawa'),
-        duration: "3时 15分",
-        boardingTime: TimeOfDay(hour: 12, minute: 15),
-        departs: DateTime(2019, 10, 17, 23, 45),
-        arrives: DateTime(2019, 10, 18, 02, 15),
-        gate: '22',
-        zone: 1,
-        seat: '17C',
-        flightClass: 'Economy',
-        flightNumber: 'AC237'),
-  ];
-
-  get boardingPasses => _boardingPasses;
-
-  getBoardingPass(int index) {
-    return _boardingPasses.elementAt(index);
-  }
-}
+List<BoardingPassData> boardingPasses = [
+  BoardingPassData(
+      passengerName: 'Ms. Jane Doe',
+      origin: _Airport(code: 'YEG', city: 'Edmonton'),
+      destination: _Airport(code: 'LAX', city: 'Los Angeles'),
+      duration: '3时 30分',
+      boardingTime: TimeOfDay(hour: 7, minute: 10),
+      departs: DateTime(2019, 10, 17, 23, 45),
+      arrives: DateTime(2019, 10, 18, 02, 15),
+      gate: '50',
+      zone: 3,
+      seat: '12A',
+      flightClass: 'Economy',
+      flightNumber: 'AC237'),
+  BoardingPassData(
+      passengerName: 'Ms. Jane Doe',
+      origin: _Airport(code: 'YYC', city: 'Calgary'),
+      destination: _Airport(code: 'YOW', city: 'Ottawa'),
+      duration: '3时 50分',
+      boardingTime: TimeOfDay(hour: 12, minute: 15),
+      departs: DateTime(2019, 10, 17, 23, 45),
+      arrives: DateTime(2019, 10, 18, 02, 15),
+      gate: '22',
+      zone: 1,
+      seat: '17C',
+      flightClass: 'Economy',
+      flightNumber: 'AC237'),
+  BoardingPassData(
+      passengerName: 'Ms. Jane Doe',
+      origin: _Airport(code: 'YEG', city: 'Edmonton'),
+      destination: _Airport(code: 'MEX', city: 'Mexico'),
+      duration: '4时 15分',
+      boardingTime: TimeOfDay(hour: 16, minute: 45),
+      departs: DateTime(2019, 10, 17, 23, 45),
+      arrives: DateTime(2019, 10, 18, 02, 15),
+      gate: '30',
+      zone: 2,
+      seat: '22B',
+      flightClass: 'Economy',
+      flightNumber: 'AC237'),
+  BoardingPassData(
+      passengerName: 'Ms. Jane Doe',
+      origin: _Airport(code: 'YYC', city: 'Calgary'),
+      destination: _Airport(code: 'YOW', city: 'Ottawa'),
+      duration: "3时 15分",
+      boardingTime: TimeOfDay(hour: 12, minute: 15),
+      departs: DateTime(2019, 10, 17, 23, 45),
+      arrives: DateTime(2019, 10, 18, 02, 15),
+      gate: '22',
+      zone: 1,
+      seat: '17C',
+      flightClass: 'Economy',
+      flightNumber: 'AC237'),
+];
