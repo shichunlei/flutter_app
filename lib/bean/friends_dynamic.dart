@@ -1,18 +1,4 @@
 class FriendsDynamic {
-  /**
-   * username : "张三"
-   * userAvatar : "http://cdn.duitang.com/uploads/item/201409/18/20140918141220_N4Tic.thumb.700_0.jpeg"
-   * desc : "这里是文字描述"
-   * address : "北京"
-   * datetime : "2019-01-01 23:11:23"
-   * isSelf : true
-   * share : null
-   * id : 1
-   * video : {"id":1,"url":"","image":"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2267040693,3719567402&fm=27&gp=0.jpg"}
-   * images : [{"id":1,"image":"https://www.7160.com/templets/new7160/hotpic/2/s.jpg"}]
-   * comment : []
-   */
-
   String username;
   String userAvatar;
   String desc;
@@ -22,6 +8,8 @@ class FriendsDynamic {
   int id;
   VideoBean video;
   List<ImagesListBean> images;
+  List<CommentBean> comment;
+  List<String> praise;
 
   static FriendsDynamic fromMap(Map<String, dynamic> map) {
     FriendsDynamic friends_dynamic = FriendsDynamic();
@@ -34,8 +22,15 @@ class FriendsDynamic {
     friends_dynamic.id = map['id'];
     friends_dynamic.video =
         map['video'] == null ? null : VideoBean.fromMap(map['video']);
-    friends_dynamic.images =
-        map['images'] == null ? [] : ImagesListBean.fromMapList(map['images']);
+    friends_dynamic.images = List()
+      ..addAll(
+          (map['images'] as List ?? []).map((o) => ImagesListBean.fromMap(o)));
+    friends_dynamic.comment = List()
+      ..addAll(
+          (map['comment'] as List ?? []).map((o) => CommentBean.fromMap(o)));
+    friends_dynamic.praise = List()..addAll(
+        (map['praise'] as List ?? []).map((o) => o.toString())
+    );
     return friends_dynamic;
   }
 
@@ -49,39 +44,27 @@ class FriendsDynamic {
 }
 
 class VideoBean {
-  /**
-   * url : ""
-   * image : "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2267040693,3719567402&fm=27&gp=0.jpg"
-   * id : 1
-   */
-
+  int id;
   String url;
   String image;
-  int id;
 
   static VideoBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
     VideoBean videoBean = VideoBean();
+    videoBean.id = map['id'];
     videoBean.url = map['url'];
     videoBean.image = map['image'];
-    videoBean.id = map['id'];
     return videoBean;
   }
 
-  static List<VideoBean> fromMapList(dynamic mapList) {
-    List<VideoBean> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
-  }
+  Map toJson() => {
+        "id": id,
+        "url": url,
+        "image": image,
+      };
 }
 
 class ImagesListBean {
-  /**
-   * image : "https://www.7160.com/templets/new7160/hotpic/2/s.jpg"
-   * id : 1
-   */
-
   String image;
   int id;
 
@@ -99,4 +82,28 @@ class ImagesListBean {
     }
     return list;
   }
+}
+
+class CommentBean {
+  bool source;
+  String fromUser;
+  String toUser;
+  String content;
+
+  static CommentBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    CommentBean commentBean = CommentBean();
+    commentBean.source = map['source'];
+    commentBean.fromUser = map['fromUser'];
+    commentBean.toUser = map['toUser'];
+    commentBean.content = map['content'];
+    return commentBean;
+  }
+
+  Map toJson() => {
+        "source": source,
+        "fromUser": fromUser,
+        "toUser": toUser,
+        "content": content,
+      };
 }

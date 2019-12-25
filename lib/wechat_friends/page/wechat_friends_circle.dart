@@ -85,8 +85,7 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
                   children: <Widget>[
                     Container(
                         child: ImageLoadView(backgroundImage,
-                            height: headerHeight,
-                            width: Utils.width),
+                            height: headerHeight, width: Utils.width),
                         margin: EdgeInsets.only(bottom: 30.0)),
                     Container(
                         child: Row(
@@ -109,14 +108,20 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
                         margin: EdgeInsets.only(right: 10))
                   ],
                 ),
-                SizedBox(height: 10),
-                ListView.builder(
-                    itemBuilder: (context, index) =>
-                        ItemDynamic(friendsDynamic[index]),
-                    itemCount: friendsDynamic.length,
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    primary: false)
+                Gaps.vGap10,
+                ListView.separated(
+                  itemBuilder: (context, index) =>
+                      ItemDynamic(friendsDynamic[index]),
+                  itemCount: friendsDynamic.length,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  primary: false,
+                  separatorBuilder: (BuildContext context, int index) =>
+                      Container(
+                    height: 0.4,
+                    color: Colors.grey,
+                  ),
+                )
               ]),
             ),
             CustomAppBar(
@@ -207,14 +212,6 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
         var t = r.name;
         print(t);
       }
-    } on PlatformException catch (e) {
-      debugPrint(e.message.toString());
-    } on NoImagesSelectedException catch (e) {
-      debugPrint(e.message.toString());
-    } on PermissionDeniedException catch (e) {
-      debugPrint(e.message.toString());
-    } on PermissionPermanentlyDeniedExeption catch (e) {
-      debugPrint(e.message.toString());
     } on Exception catch (e) {
       debugPrint(e.toString());
     }

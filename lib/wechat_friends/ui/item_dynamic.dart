@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/friends_dynamic.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/utils.dart';
+import 'package:flutter_app/utils/date_format.dart';
+
+import '../../page_index.dart';
 
 class ItemDynamic extends StatelessWidget {
   final FriendsDynamic dynamic;
@@ -17,14 +18,13 @@ class ItemDynamic extends StatelessWidget {
             ? 3.0
             : (imageSize == 2 || imageSize == 4) ? 2.0 : 1.5);
 
-    double videoWidth = (Utils.width - 20 - 50 - 10) / 2.2;
-
     String desc = this.dynamic.desc;
 
-    return Container(
-      padding: EdgeInsets.all(10.0),
-      child: Column(children: <Widget>[
-        Row(
+    return Material(
+      color: Colors.white,
+      child: Container(
+        padding: EdgeInsets.all(10.0),
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -76,8 +76,8 @@ class ItemDynamic extends StatelessWidget {
                                         padding: EdgeInsets.only(top: 8.0),
                                         child: ImageLoadView(
                                           this.dynamic?.images?.first?.image,
-                                          width: imageWidth,
-                                          height: imageWidth,
+                                          height: 180,
+                                          fit: BoxFit.fitHeight,
                                         ))
                                     : SizedBox()),
 
@@ -85,21 +85,22 @@ class ItemDynamic extends StatelessWidget {
                         Offstage(
                             offstage: this.dynamic.video == null,
                             child: Container(
-                                padding: EdgeInsets.only(top: 8.0),
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: <Widget>[
-                                    ImageLoadView(
-                                      '${this.dynamic.video?.image}',
-                                      height: 200,
-                                    ),
-                                    IconButton(
-                                        icon: Icon(Icons.play_arrow,
-                                            color: Colors.white),
-                                        onPressed: () {})
-                                  ],
-                                ),
-                                width: videoWidth)),
+                              padding: EdgeInsets.only(top: 8.0),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: <Widget>[
+                                  ImageLoadView(
+                                    '${this.dynamic.video?.image}',
+                                    height: 180,
+                                    fit: BoxFit.fitHeight,
+                                  ),
+                                  IconButton(
+                                      icon: Icon(Icons.play_arrow,
+                                          color: Colors.white),
+                                      onPressed: () {})
+                                ],
+                              ),
+                            )),
 
                         /// 定位地址
                         Offstage(
@@ -112,36 +113,123 @@ class ItemDynamic extends StatelessWidget {
                                         fontSize: 13)))),
 
                         /// 发布时间
-                        Row(children: <Widget>[
-                          Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Text('${this.dynamic.datetime}',
-                                    style: TextStyle(
-                                        color: Colors.grey[500], fontSize: 13)),
-                                Offstage(
-                                    offstage: !this.dynamic.isSelf,
-                                    child: Padding(
-                                        padding: EdgeInsets.only(left: 10.0),
-                                        child: Text('删除',
-                                            style: TextStyle(
-                                                color: Colors.blueAccent))))
-                              ]),
-                          IconButton(
-                              icon: Icon(Icons.more_horiz, color: Colors.black),
-                              onPressed: () {})
-                        ], mainAxisAlignment: MainAxisAlignment.spaceBetween),
+                        Container(
+                          height: 35.0,
+                          child: Row(children: <Widget>[
+                            Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Text(
+                                      '${friendlyDateTime(this.dynamic.datetime)}',
+                                      style: TextStyle(
+                                          color: Colors.grey[500],
+                                          fontSize: 13)),
+                                  Gaps.hGap10,
+                                  Visibility(
+                                      visible: this.dynamic.isSelf,
+                                      child: InkWell(
+                                          onTap: () {},
+                                          child: Text('删除',
+                                              style: TextStyle(
+                                                  color: Colors.blueAccent))))
+                                ]),
+                            InkWell(
+                              onTap: () {},
+                              child: Container(
+                                padding: EdgeInsets.all(5.0),
+                                child: Icon(
+                                  Icons.more_horiz,
+                                  color: Colors.black,
+                                  size: 20.0,
+                                ),
+                              ),
+                            )
+                          ], mainAxisAlignment: MainAxisAlignment.spaceBetween),
+                        ),
+
+                        /// 点赞
+                        Visibility(
+                          child: Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.only(
+                                left: 10, right: 10, top: 5, bottom: 5),
+                            color: Color(0xFFF3F3F5),
+                            child: Wrap(
+                              children: [
+                                Icon(
+                                  Icons.favorite_border,
+                                  color: Colors.blueAccent,
+                                  size: 20.0,
+                                ),
+                                Gaps.hGap3,
+                              ]..addAll(this.dynamic.praise.map((item) {
+                                  return Text(
+                                    '$item,',
+                                    style: TextStyles.textBlue14,
+                                  );
+                                }).toList()),
+                            ),
+                          ),
+                          visible: this.dynamic.praise.length > 0,
+                        ),
+
+                        Gaps.vGap(0.4),
 
                         /// 评论部分
+                        Visibility(
+                          child: buildComments(this.dynamic.comment),
+                          visible: this.dynamic.comment.length > 0,
+                        ),
                       ])),
             )
           ],
         ),
-        Container(
-            height: 0.5,
-            color: Colors.grey[200],
-            margin: EdgeInsets.only(top: 10))
-      ]),
+      ),
+    );
+  }
+
+  Widget buildComments(List<CommentBean> data) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      color: Color(0xFFF3F3F5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: data.map((comment) {
+          return Text.rich(
+            TextSpan(
+              style: TextStyle(
+                fontSize: 15,
+                color: Color(0xFF333333),
+              ),
+              children: [
+                TextSpan(
+                  text: comment.fromUser,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.blueAccent,
+                  ),
+                ),
+                TextSpan(text: '：${comment.content}'),
+              ]..insertAll(
+                  1,
+                  comment.source
+                      ? [TextSpan()]
+                      : [
+                          TextSpan(text: ' 回复 '),
+                          TextSpan(
+                            text: comment.toUser,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                        ],
+                ),
+            ),
+          );
+        }).toList(),
+      ),
     );
   }
 }

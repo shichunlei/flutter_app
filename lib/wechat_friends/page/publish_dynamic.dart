@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter/services.dart';
-
-import '../ui/asset_view.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 
 import '../../page_index.dart';
@@ -141,14 +138,6 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
         var t = r.name;
         print(t);
       }
-    } on PlatformException catch (e) {
-      debugPrint(e.message.toString());
-    } on NoImagesSelectedException catch (e) {
-      debugPrint(e.message.toString());
-    } on PermissionDeniedException catch (e) {
-      debugPrint(e.message.toString());
-    } on PermissionPermanentlyDeniedExeption catch (e) {
-      debugPrint(e.message.toString());
     } on Exception catch (e) {
       debugPrint(e.toString());
     }
