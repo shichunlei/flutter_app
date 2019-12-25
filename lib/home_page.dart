@@ -6,6 +6,7 @@ import 'package:flutter_app/bean/he_weather.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:async';
 
+import 'music_player/widgets/song_player_bar.dart';
 import 'page_index.dart';
 
 import 'package:flutter/scheduler.dart';
@@ -111,11 +112,18 @@ class HomeStatePage extends State<HomePage> {
                       onPressed: () => getTestData(),
                       tooltip: "Tune")
                 ]),
-            body: SafeArea(
-              child: ListView(
-                  padding: EdgeInsets.zero,
-                  physics: BouncingScrollPhysics(),
-                  children: _buildListBody()),
+            body: Stack(
+              children: <Widget>[
+                ListView(
+                    padding:
+                        EdgeInsets.only(bottom: Utils.bottomSafeHeight + 60.0),
+                    physics: BouncingScrollPhysics(),
+                    children: _buildListBody()),
+                Positioned(
+                  child: SongPlayerBar(),
+                  bottom: 0.0,
+                ),
+              ],
             ),
             drawer: Drawer(child: HomeDrawable())));
   }

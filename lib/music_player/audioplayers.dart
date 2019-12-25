@@ -137,6 +137,39 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
             )
           ]),
         ),
+        Positioned(
+          child: Material(
+            type: MaterialType.transparency,
+            child: IconButton(
+                splashColor: lightAccentColor,
+                highlightColor: Colors.transparent,
+                icon: Icon(
+                  Icons.more_horiz,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                }),
+          ),
+          right: 0,
+          top: Utils.topSafeHeight,
+        ),
+        Positioned(
+          child: Material(
+            type: MaterialType.transparency,
+            child: IconButton(
+                splashColor: lightAccentColor,
+                highlightColor: Colors.transparent,
+                icon: Icon(
+                  Icons.keyboard_arrow_down,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
+          ),
+          left: 0,
+          top: Utils.topSafeHeight,
+        ),
       ]),
     );
   }

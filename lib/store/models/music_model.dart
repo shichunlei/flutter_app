@@ -194,7 +194,7 @@ class MusicModel extends ChangeNotifier {
 
   /// 播放
   void _play() async {
-      _audioPlayer.play("${_songs[curIndex].audioPath}");
+    _audioPlayer.play("${_songs[curIndex].audioPath}");
   }
 
   /// 开始、暂停、恢复
