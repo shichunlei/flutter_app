@@ -35,14 +35,12 @@ dependencies: # 应用或包依赖的其它包或插件
   # 扫描二维码
   barcode_scan: ^1.0.0
 
+  cached_network_image: ^2.0.0-rc.1
+
   # 图表
   charts_flutter: ^0.8.1
 
   chewie: ^0.9.8+1
-
-  city_picker: ^0.1.4
-
-  city_pickers: ^0.1.30
 
   clippy_flutter: ^1.1.0
 

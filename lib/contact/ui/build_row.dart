@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import '../../page_index.dart';
-import '../index.dart';
 import 'package:flutter_app/generated/i18n.dart';
 
 class BuildRowView extends StatefulWidget {
@@ -33,12 +32,12 @@ class _BuildRowViewState extends State<BuildRowView> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        ContactImageText(
+        IconText(
           icon: Icon(
             Icons.share,
             color: Colors.grey,
           ),
-          text: Text("${S.of(context).share}"),
+          text: "${S.of(context).share}",
           onPressed: () {},
         ),
         LineWidget(
@@ -46,12 +45,12 @@ class _BuildRowViewState extends State<BuildRowView> {
           width: 1.0,
           lineType: LineType.vertical,
         ),
-        ContactImageText(
+        IconText(
           icon: Icon(
             Icons.history,
             color: Colors.grey,
           ),
-          text: Text("${S.of(context).call_history}"),
+          text: "${S.of(context).call_history}",
           onPressed: () {},
         ),
         LineWidget(
@@ -64,13 +63,13 @@ class _BuildRowViewState extends State<BuildRowView> {
             initialData: false, //初始值
             builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
               isFavorite = snapshot.data;
-              return ContactImageText(
+              return IconText(
                 icon: Icon(
                     snapshot.data ? Icons.favorite : Icons.favorite_border,
                     color: snapshot.data ? Colors.redAccent : Colors.grey),
-                text: Text(snapshot.data
+                text: snapshot.data
                     ? "${S.of(context).cancel_collect}"
-                    : "${S.of(context).collect}"),
+                    : "${S.of(context).collect}",
                 onPressed: () => _toggleFavorite(),
               );
             }),

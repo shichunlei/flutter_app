@@ -10,14 +10,17 @@ class Line extends StatelessWidget {
 
   Line(
       {Key key,
-      this.color: Colors.white,
+      this.color,
       this.margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
       this.lineHeight: 0.2})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(height: lineHeight, color: color, margin: margin);
+    return Container(
+        height: lineHeight,
+        color: color ?? Theme.of(context).dividerColor,
+        margin: margin);
   }
 }
 
@@ -28,7 +31,7 @@ class DashLine extends StatelessWidget {
 
   DashLine({
     Key key,
-    this.color: Colors.black,
+    this.color,
     this.lineHeight: 0.2,
     this.padding: EdgeInsets.zero,
   }) : super(key: key);
@@ -38,7 +41,8 @@ class DashLine extends StatelessWidget {
     return Padding(
       padding: padding,
       child: CustomPaint(
-        painter: DashPathPainter(lineHeight, color),
+        painter: DashPathPainter(
+            lineHeight, color ?? Theme.of(context).dividerColor),
         size: Size.fromHeight(lineHeight),
       ),
     );
@@ -77,5 +81,45 @@ class DashPathPainter extends CustomPainter {
           ),
         ),
         black);
+  }
+}
+
+class LineWidget extends StatelessWidget {
+  final double height;
+  final double width;
+  final Color color;
+  final LineType lineType;
+
+  LineWidget({
+    Key key,
+    this.width,
+    this.height,
+    this.color,
+    this.lineType,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return lineType == LineType.vertical
+        ? _buildVerticalLine(context, color)
+        : lineType == LineType.horizontal
+            ? _buildHorizontalLine(context, color)
+            : null;
+  }
+
+  Widget _buildVerticalLine(context, color) {
+    return Container(
+      height: height ?? 1.0,
+      width: width,
+      color: color ?? Theme.of(context).dividerColor,
+    );
+  }
+
+  Widget _buildHorizontalLine(context, color) {
+    return Container(
+      height: height,
+      width: width ?? 1.0,
+      color: color ?? Theme.of(context).dividerColor,
+    );
   }
 }

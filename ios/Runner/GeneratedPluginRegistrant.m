@@ -22,12 +22,6 @@
 @import barcode_scan;
 #endif
 
-#if __has_include(<city_pickers/CityPickersPlugin.h>)
-#import <city_pickers/CityPickersPlugin.h>
-#else
-@import city_pickers;
-#endif
-
 #if __has_include(<contact_picker/ContactPickerPlugin.h>)
 #import <contact_picker/ContactPickerPlugin.h>
 #else
@@ -148,7 +142,6 @@
   [AMapBaseLocationPlugin registerWithRegistrar:[registry registrarForPlugin:@"AMapBaseLocationPlugin"]];
   [AudioplayersPlugin registerWithRegistrar:[registry registrarForPlugin:@"AudioplayersPlugin"]];
   [BarcodeScanPlugin registerWithRegistrar:[registry registrarForPlugin:@"BarcodeScanPlugin"]];
-  [CityPickersPlugin registerWithRegistrar:[registry registrarForPlugin:@"CityPickersPlugin"]];
   [ContactPickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"ContactPickerPlugin"]];
   [FLTDeviceInfoPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTDeviceInfoPlugin"]];
   [FlutterJdAddressSelectorPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterJdAddressSelectorPlugin"]];

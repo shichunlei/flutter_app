@@ -3,11 +3,9 @@ export 'ui/build_email.dart';
 export 'ui/build_other.dart';
 export 'ui/build_phone.dart';
 export 'ui/build_row.dart';
-export 'ui/line_widget.dart';
 export 'ui/contact_list_header.dart';
 export 'ui/contact_category.dart';
 export 'ui/contact_item.dart';
-export 'ui/contact_image_text.dart';
 
 export 'page/contact_page.dart';
 

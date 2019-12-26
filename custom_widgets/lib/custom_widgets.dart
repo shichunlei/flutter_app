@@ -13,7 +13,6 @@ export 'flutter_flip_view.dart';
 export 'gradient_circular_progress_indicator.dart';
 export 'horizontal_number_picker.dart';
 export 'marquee.dart';
-export 'preview.dart';
 export 'progress_button.dart';
 export 'radar.dart';
 export 'ruler.dart';

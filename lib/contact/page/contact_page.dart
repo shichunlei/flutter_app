@@ -88,20 +88,11 @@ class _ContactPageState extends State<ContactPage> {
                     dd
                   ])}",
                 ),
-                FutureBuilder<Null>(future: _launched, builder: _launchStatus),
               ],
             ),
           ),
         ],
       ),
     );
-  }
-
-  Widget _launchStatus(BuildContext context, AsyncSnapshot<Null> snapshot) {
-    if (snapshot.hasError) {
-      return Text('Error: ${snapshot.error}');
-    } else {
-      return const Text('');
-    }
   }
 }

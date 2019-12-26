@@ -4,7 +4,6 @@ import io.flutter.plugin.common.PluginRegistry;
 import me.yohom.amapbaselocation.AMapBaseLocationPlugin;
 import xyz.luan.audioplayers.AudioplayersPlugin;
 import com.apptreesoftware.barcodescan.BarcodeScanPlugin;
-import com.example.citypickers.CityPickersPlugin;
 import net.goderbauer.flutter.contactpicker.ContactPickerPlugin;
 import io.flutter.plugins.deviceinfo.DeviceInfoPlugin;
 import com.chingsoft.flutter_jd_address_selector.FlutterJdAddressSelectorPlugin;
@@ -36,7 +35,6 @@ public final class GeneratedPluginRegistrant {
     AMapBaseLocationPlugin.registerWith(registry.registrarFor("me.yohom.amapbaselocation.AMapBaseLocationPlugin"));
     AudioplayersPlugin.registerWith(registry.registrarFor("xyz.luan.audioplayers.AudioplayersPlugin"));
     BarcodeScanPlugin.registerWith(registry.registrarFor("com.apptreesoftware.barcodescan.BarcodeScanPlugin"));
-    CityPickersPlugin.registerWith(registry.registrarFor("com.example.citypickers.CityPickersPlugin"));
     ContactPickerPlugin.registerWith(registry.registrarFor("net.goderbauer.flutter.contactpicker.ContactPickerPlugin"));
     DeviceInfoPlugin.registerWith(registry.registrarFor("io.flutter.plugins.deviceinfo.DeviceInfoPlugin"));
     FlutterJdAddressSelectorPlugin.registerWith(registry.registrarFor("com.chingsoft.flutter_jd_address_selector.FlutterJdAddressSelectorPlugin"));
