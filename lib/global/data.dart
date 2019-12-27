@@ -135,6 +135,7 @@ class ExpandStateBean {
       SubExpandBean('仿抖音首页动画', TikTokPage()),
       SubExpandBean('BackDrop', BackDropPage()),
       SubExpandBean('CardScroll', CardScrollDemo()),
+      SubExpandBean('GuillotineMenu', GuillotineMenuPage()),
       SubExpandBean('BankScreen', BankScreen()),
     ]),
     ExpandStateBean(
