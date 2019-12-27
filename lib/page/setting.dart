@@ -192,6 +192,8 @@ class _SettingPageState extends State<SettingPage> {
   }
 
   List<Widget> _itemColors() {
+    var value = Store.value<ConfigModel>(context);
+
     List<Widget> _colors = [
       Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -200,15 +202,13 @@ class _SettingPageState extends State<SettingPage> {
               return Material(
                 color: color,
                 child: InkWell(
-                  onTap: () =>
-                      Store.value<ConfigModel>(context).setTheme(color.value),
+                  onTap: () => value.setTheme(color.value),
                   child: Container(
                     width: 40,
                     height: 40,
-                    child:
-                        Store.value<ConfigModel>(context).theme == color.value
-                            ? Icon(Icons.done)
-                            : SizedBox(),
+                    child: value.theme == color.value
+                        ? Icon(Icons.done)
+                        : SizedBox(),
                   ),
                 ),
               );

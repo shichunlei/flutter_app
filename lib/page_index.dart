@@ -180,6 +180,7 @@ export 'ui_screen/bank_screen.dart';
 export 'ui_screen/sliding_login.dart';
 export 'ui_screen/logon.dart';
 export 'ui_screen/ticket/index.dart';
+export 'ui_screen/card_scroll_page.dart';
 
 export 'res/colors.dart';
 export 'res/dimens.dart';

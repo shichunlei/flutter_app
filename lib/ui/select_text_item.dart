@@ -17,7 +17,7 @@ class SelectTextItem extends StatelessWidget {
     this.margin,
     this.bgColor,
     this.textStyle,
-  })  : assert(title != null),
+  })  : assert(title != null, height >= 50.0),
         super(key: key);
 
   final GestureTapCallback onTap;
@@ -53,6 +53,7 @@ class SelectTextItem extends StatelessWidget {
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text('${title ?? ""}',
                           style: textStyle ?? TextStyles.textDark14,
@@ -71,7 +72,7 @@ class SelectTextItem extends StatelessWidget {
                             maxLines: 1,
                             textAlign: textAlign,
                             overflow: TextOverflow.ellipsis,
-                            style: style ?? TextStyles.textDark14))),
+                            style: style ?? TextStyles.textGrey12))),
                 Offstage(
                     offstage: onTap == null,
                     child: Icon(trailing ?? Icons.chevron_right, size: 22.0))
