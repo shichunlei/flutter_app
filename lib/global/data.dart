@@ -113,6 +113,7 @@ class ExpandStateBean {
           SubExpandBean('DropDown', DropDownSample()),
           SubExpandBean('Image Colors', ImageColors()),
           SubExpandBean('尺子', RulerSample()),
+          SubExpandBean('尺子2', HorizontalPickerDemo()),
           SubExpandBean('高德地图定位', AMapLocationDemo()),
           SubExpandBean('SecondFloor', SecondFloorDemo()),
           SubExpandBean('视差图片效果', ParallaxImageDemo()),

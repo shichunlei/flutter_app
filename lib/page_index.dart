@@ -74,6 +74,7 @@ export 'page/parallax_image.dart';
 export 'page/shimmer.dart';
 export 'page/backdrop.dart';
 export 'page/sound_demo.dart';
+export 'page/horizontal_picker_demo.dart';
 
 export 'animation/curves_demo.dart';
 export 'animation/animated_opacity.dart';
