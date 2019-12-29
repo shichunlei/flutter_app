@@ -102,7 +102,7 @@ class RightListViewState extends State<RightListView>
       isLoadComplete = true;
     }
     goods.addAll(_goods);
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   void refreshView(int page, int currentIndex, Category subCategory) {
@@ -132,6 +132,6 @@ class RightListViewState extends State<RightListView>
     getGoodsList(this.page, this.subCategory.mallCategoryId,
         this.subCategory.bxMallSubDto[this.currentIndex].mallSubId);
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 }

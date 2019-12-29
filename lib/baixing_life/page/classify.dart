@@ -59,7 +59,7 @@ class _ClassifyPageState extends State<ClassifyPage>
   void getCategoryData() async {
     category = await ApiService.getBaixingCategoryData();
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   Widget _buildBodyView() {

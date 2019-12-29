@@ -110,7 +110,7 @@ class _MovieHomePageState extends State<MovieHomePage> {
       ranges = data.ranges;
     }
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   void showYearsDialog() {

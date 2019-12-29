@@ -184,7 +184,7 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
           celebrity?.avatars?.small ?? douBanDefaultImage);
     }
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   /// 展开 or 收起

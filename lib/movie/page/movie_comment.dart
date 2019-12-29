@@ -69,7 +69,7 @@ class _MovieCommentPageState extends State<MovieCommentPage> {
 
     comments.addAll(reviews);
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   Widget _buildBodyView() {

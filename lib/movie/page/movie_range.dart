@@ -98,7 +98,7 @@ class _MovieRangePageState extends State<MovieRangePage> {
       cover = data.cover;
       ranges.addAll(data.ranges);
       state = LoaderState.Succeed;
-      setState(() {});
+      if (mounted) setState(() {});
     } else {
       state = LoaderState.Failed;
     }

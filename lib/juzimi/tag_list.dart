@@ -97,7 +97,6 @@ class _JuZiMiTagListPageState extends State<JuZiMiTagListPage> {
     }
 
     list.addAll(_list);
-
-    setState(() {});
+    if (mounted) setState(() {});
   }
 }

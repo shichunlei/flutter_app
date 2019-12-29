@@ -126,7 +126,7 @@ class _YouDaoHomePageState extends State<YouDaoHomePage> {
 
         _status = LoaderState.Succeed;
 
-        setState(() {});
+        if (mounted) setState(() {});
       });
     });
   }

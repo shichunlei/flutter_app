@@ -110,6 +110,6 @@ class _MovieTop250State extends State<MovieTop250> {
       isFirst = false;
     }
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 }

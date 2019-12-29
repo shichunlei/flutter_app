@@ -66,7 +66,7 @@ class _MovieDetailState extends State<MovieDetail> {
 
     cardColor = await Utils.getImageLightVibrantColor(movie.images.small);
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   /// 展开 or 收起

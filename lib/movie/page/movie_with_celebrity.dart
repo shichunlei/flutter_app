@@ -63,7 +63,7 @@ class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
       }
     }
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   Widget builderPageView() {

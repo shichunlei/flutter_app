@@ -50,7 +50,7 @@ class _MovieSoonPageState extends State<MovieSoonPage> {
       }
     }
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   Widget builderPageView() {

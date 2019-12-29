@@ -66,7 +66,7 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
     if (isFirst) {
       isFirst = false;
     }
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   Widget _buildBodyView() {

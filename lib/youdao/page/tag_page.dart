@@ -146,7 +146,7 @@ class _TagPageState extends State<TagPage> {
 
     _status = LoaderState.Succeed;
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   Future<void> loadMore() async {
@@ -162,6 +162,6 @@ class _TagPageState extends State<TagPage> {
 
     lastRank = data.last.rank;
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 }

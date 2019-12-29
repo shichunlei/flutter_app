@@ -79,6 +79,6 @@ class _MovieTagListViewState extends State<MovieTagListView> {
       isLoadComplete = true;
     }
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 }

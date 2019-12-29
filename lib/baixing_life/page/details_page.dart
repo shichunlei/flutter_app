@@ -137,7 +137,7 @@ class _DetailsPageState extends State<DetailsPage>
       goods_number = await widget.provider?.goodsAmount(widget.id);
     }
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   void addCart() async {
