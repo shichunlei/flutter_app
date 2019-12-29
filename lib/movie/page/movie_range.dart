@@ -49,8 +49,12 @@ class _MovieRangePageState extends State<MovieRangePage> {
                         width: Utils.width,
                         height: Utils.width / 3 * 4,
                       ),
-                      ImageLoadView('${cover?.titleImg}',
-                          height: 200.0, width: 200.0)
+                      ImageLoadView(
+                        '${cover?.titleImg}',
+                        height: 200.0,
+                        width: 200.0,
+                        fit: BoxFit.scaleDown,
+                      ),
                     ],
                   )),
               Padding(
@@ -98,9 +102,9 @@ class _MovieRangePageState extends State<MovieRangePage> {
       cover = data.cover;
       ranges.addAll(data.ranges);
       state = LoaderState.Succeed;
-      if (mounted) setState(() {});
     } else {
       state = LoaderState.Failed;
     }
+    if (mounted) setState(() {});
   }
 }

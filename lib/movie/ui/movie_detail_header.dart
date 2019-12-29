@@ -25,7 +25,7 @@ class MovieDetailHeader extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         title: Text('${movie.title}(${movie.year})'),
         background: ImageLoadView(
-          movie?.photos?.first?.image ?? defaultImage,
+          movie.photos.length > 0 ? movie?.photos?.first?.image : defaultImage,
           fit: BoxFit.fitWidth,
           width: double.infinity,
           sigmaX: 5.0,

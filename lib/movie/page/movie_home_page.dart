@@ -122,10 +122,17 @@ class _MovieHomePageState extends State<MovieHomePage> {
             titlePadding: EdgeInsets.all(20),
             children: <Widget>[
               ListTile(
-                title: Text('豆瓣电影2016年度榜单'),
+                title: Text('豆瓣电影2019年度榜单'),
                 onTap: () {
                   Navigator.pop(context);
-                  pushNewPage(context, MovieRangePage(year: 2016));
+                  pushNewPage(context, MovieRangePage(year: 2019));
+                },
+              ),
+              ListTile(
+                title: Text('豆瓣电影2018年度榜单'),
+                onTap: () {
+                  Navigator.pop(context);
+                  pushNewPage(context, MovieRangePage(year: 2018));
                 },
               ),
               ListTile(
@@ -136,10 +143,17 @@ class _MovieHomePageState extends State<MovieHomePage> {
                 },
               ),
               ListTile(
-                title: Text('豆瓣电影2018年度榜单'),
+                title: Text('豆瓣电影2016年度榜单'),
                 onTap: () {
                   Navigator.pop(context);
-                  pushNewPage(context, MovieRangePage(year: 2018));
+                  pushNewPage(context, MovieRangePage(year: 2016));
+                },
+              ),
+              ListTile(
+                title: Text('豆瓣电影2015年度榜单'),
+                onTap: () {
+                  Navigator.pop(context);
+                  pushNewPage(context, MovieRangePage(year: 2015));
                 },
               ),
             ],

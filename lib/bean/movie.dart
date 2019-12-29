@@ -42,7 +42,6 @@ class RangesBean {
       };
 }
 
-/// description : "基于2017年你和万千豆瓣用户的电影标记数据，排名依据评分、人数和时间综合考虑（统计截至2017-12-25）"
 /// background_img : "https://img9.doubanio.com/view/activity_page/raw/public/p2826.jpg"
 /// title_img : "https://img9.doubanio.com/view/activity_page/raw/public/p2096.jpg"
 /// video : "//sv1.doubanio.com/201910171814/c0be034fd7ef82197259daeb66c2d882/2017/mp4ie_annual_4.mp4"
@@ -50,7 +49,6 @@ class RangesBean {
 /// year : 2017
 
 class CoverBean {
-  String description;
   String backgroundImg;
   String mobileBackgroundImg;
   String titleImg;
@@ -62,13 +60,11 @@ class CoverBean {
   String primaryColorDark;
 
   int id;
-  bool left;
   Movie subject;
 
   static CoverBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     CoverBean coverBean = CoverBean();
-    coverBean.description = map['description'];
     coverBean.backgroundImg = map['background_img'];
     coverBean.mobileBackgroundImg = map['mobile_background_img'];
     coverBean.titleImg = map['title_img'];
@@ -78,21 +74,18 @@ class CoverBean {
     coverBean.primaryColorDark = map['primary_color_dark'];
     coverBean.year = map['year'];
     coverBean.id = map['id'];
-    coverBean.left = map['left'];
     coverBean.subject =
         map['subject'] != null ? Movie.fromMap(map['subject']) : null;
     return coverBean;
   }
 
   Map toJson() => {
-        "description": description,
         "background_img": backgroundImg,
         "title_img": titleImg,
         "video": video,
         "title": title,
         "year": year,
         "id": id,
-        "left": left,
         "subject": subject,
       };
 }
