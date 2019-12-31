@@ -86,6 +86,7 @@ class ExpandStateBean {
           SubExpandBean('AnimatedNumber', AnimatedNumberDemo()),
           SubExpandBean('Tween', TweenDemo()),
           SubExpandBean('自定义动画', CustomAnimationDemo()),
+          SubExpandBean('路由过渡动画', RouteSample()),
         ]),
     ExpandStateBean(
         leading: Icons.filter_5,
@@ -109,7 +110,6 @@ class ExpandStateBean {
           SubExpandBean('图表示例', ChartsWidget()),
           SubExpandBean('本地读取json数据', LoadingJsonPage()),
           SubExpandBean('侧滑菜单示例', InnerDrawerSample()),
-          SubExpandBean('路由过渡动画', RouteSample()),
           SubExpandBean('DropDown', DropDownSample()),
           SubExpandBean('Image Colors', ImageColors()),
           SubExpandBean('尺子', RulerSample()),

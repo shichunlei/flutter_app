@@ -1,7 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
-import '../page_index.dart';
 
 void pushAndRemovePage(BuildContext context, Widget routePage) {
   Navigator.of(context).pushAndRemoveUntil(
@@ -48,197 +48,188 @@ void pushReplacementName(BuildContext context, String routeName) {
   Navigator.pushReplacementNamed(context, routeName);
 }
 
-class EnterExitRoute<T> extends PageRouteBuilder<T> {
-  final Widget enterPage;
-  final Widget exitPage;
-  final Duration duration;
+void pushNewPageAnimation(
+  BuildContext context,
+  Widget toPage, {
+  @required TransitionType type,
+  Widget fromPage,
+  Duration duration: const Duration(milliseconds: 500),
+  Curve curve: Curves.fastOutSlowIn,
+  SlideDirection direction: SlideDirection.right2left,
+  Axis axis: Axis.vertical,
+}) {
+  Navigator.push(
+      context,
+      PageTransition(
+        type: type,
+        toPage: toPage,
+        fromPage: fromPage,
+        duration: duration,
+        curve: curve,
+        direction: direction,
+        axis: axis,
+      ));
+}
 
-  EnterExitRoute(
-      {this.exitPage,
-      this.enterPage,
-      this.duration: const Duration(milliseconds: 500)})
-      : super(
+enum TransitionType {
+  fade,
+  scale,
+  rotate,
+  transform,
+  size,
+  scale_rotate,
+  slide,
+  enter_exit,
+}
+
+enum SlideDirection {
+  bottom2top,
+  right2left,
+  top2bottom,
+  left2right,
+}
+
+class PageTransition extends PageRouteBuilder {
+  final Widget fromPage;
+  final Widget toPage;
+  final Duration duration;
+  final Curve curve;
+  final TransitionType type;
+  final SlideDirection direction;
+  final Axis axis;
+
+  PageTransition({
+    @required this.toPage,
+    this.fromPage,
+    this.direction,
+    this.curve,
+    this.duration,
+    this.type,
+    this.axis,
+  }) : super(
             pageBuilder: (BuildContext context, Animation<double> animation,
-                    Animation<double> secondaryAnimation) =>
-                enterPage,
+                Animation<double> secondaryAnimation) {
+              return toPage;
+            },
             transitionDuration: duration,
             transitionsBuilder: (BuildContext context,
-                    Animation<double> animation,
-                    Animation<double> secondaryAnimation,
-                    Widget child) =>
-                Stack(children: <Widget>[
-                  SlideTransition(
-                      position: new Tween<Offset>(
-                        begin: const Offset(0.0, 0.0),
-                        end: const Offset(-1.0, 0.0),
-                      ).animate(animation),
-                      child: exitPage),
-                  SlideTransition(
-                      position: new Tween<Offset>(
-                              begin: const Offset(1.0, 0.0), end: Offset.zero)
-                          .animate(animation),
-                      child: enterPage)
-                ]));
-}
-
-/// 渐变透明路由动画
-class FadeRoute<T> extends PageRouteBuilder<T> {
-  final Widget page;
-  final Duration duration;
-  final Curve curve;
-
-  FadeRoute(
-      {this.page,
-      this.duration: const Duration(milliseconds: 500),
-      this.curve: Curves.fastOutSlowIn})
-      : super(
-          pageBuilder: (BuildContext context, Animation<double> animation,
-                  Animation<double> secondaryAnimation) =>
-              page,
-          transitionDuration: duration,
-          transitionsBuilder: (BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child) =>
-              FadeTransition(
-                  opacity: Tween(begin: 0.1, end: 1.0).animate(
-                      CurvedAnimation(parent: animation, curve: curve)),
-                  child: child),
-        );
-}
-
-class RotationRoute<T> extends PageRouteBuilder<T> {
-  final Widget page;
-  final Duration duration;
-  final Curve curve;
-
-  RotationRoute(
-      {this.page,
-      this.duration: const Duration(milliseconds: 500),
-      this.curve: Curves.fastOutSlowIn})
-      : super(
-          pageBuilder: (BuildContext context, Animation<double> animation,
-                  Animation<double> secondaryAnimation) =>
-              page,
-          transitionDuration: duration,
-          transitionsBuilder: (BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child) =>
-              RotationTransition(
-                  turns: Tween<double>(begin: 0.0, end: 1.0).animate(
-                      CurvedAnimation(parent: animation, curve: curve)),
-                  child: child),
-        );
-}
-
-class ScaleRotateRoute<T> extends PageRouteBuilder<T> {
-  final Widget page;
-
-  ScaleRotateRoute({this.page})
-      : super(
-          pageBuilder: (BuildContext context, Animation<double> animation,
-                  Animation<double> secondaryAnimation) =>
-              page,
-          transitionDuration: Duration(seconds: 1),
-          transitionsBuilder: (BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child) =>
-              ScaleTransition(
-                  scale: Tween<double>(begin: 0.0, end: 1.0).animate(
-                      CurvedAnimation(
-                          parent: animation, curve: Curves.fastOutSlowIn)),
-                  child: RotationTransition(
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+                Widget child) {
+              switch (type) {
+                case TransitionType.fade: // 渐变透明路由动画
+                  return FadeTransition(
+                      opacity: Tween(begin: 0.1, end: 1.0).animate(
+                          CurvedAnimation(parent: animation, curve: curve)),
+                      child: child);
+                  break;
+                case TransitionType.rotate: // 旋转动画
+                  return RotationTransition(
                       turns: Tween<double>(begin: 0.0, end: 1.0).animate(
-                          CurvedAnimation(
-                              parent: animation, curve: Curves.fastOutSlowIn)),
-                      child: child)),
-        );
-}
+                          CurvedAnimation(parent: animation, curve: curve)),
+                      child: child);
+                  break;
+                case TransitionType.scale: // 缩放路由动画
+                  return ScaleTransition(
+                      scale: Tween<double>(begin: 0.0, end: 1.0).animate(
+                          CurvedAnimation(parent: animation, curve: curve)),
+                      child: child);
+                  break;
+                case TransitionType.size: //
+                  return Center(
+                    child: SizeTransition(
+                        sizeFactor: Tween<double>(begin: 0.0, end: 1.0).animate(
+                            CurvedAnimation(parent: animation, curve: curve)),
+                        axis: axis,
+                        child: child),
+                  );
+                  break;
+                case TransitionType.scale_rotate: //
+                  return ScaleTransition(
+                      scale: Tween<double>(begin: 0.0, end: 1.0).animate(
+                          CurvedAnimation(parent: animation, curve: curve)),
+                      child: RotationTransition(
+                          turns: Tween<double>(begin: 0.0, end: 1.0).animate(
+                              CurvedAnimation(parent: animation, curve: curve)),
+                          child: child));
+                  break;
+                case TransitionType.transform:
+                  return Transform(
+                    transform: Matrix4.identity()
+                      ..setEntry(3, 2, 0.0001)
+                      ..rotateX(animation.value * pi * 2)
+                      ..rotateY(animation.value * pi * 2),
+                    alignment: FractionalOffset.center,
+                    child: child,
+                  );
+                  break;
+                case TransitionType.enter_exit:
+                  Offset begin, end;
 
-/// 缩放路由动画
-class ScaleRoute<T> extends PageRouteBuilder<T> {
-  final Widget page;
-  final Duration duration;
-  final Curve curve;
+                  switch (direction) {
+                    case SlideDirection.left2right:
+                      begin = Offset(-1.0, 0.0);
+                      end = Offset(1.0, 0.0);
+                      break;
+                    case SlideDirection.right2left:
+                      begin = Offset(1.0, 0.0);
+                      end = Offset(-1.0, 0.0);
+                      break;
+                    case SlideDirection.bottom2top:
+                      begin = Offset(0.0, 1.0);
+                      end = Offset(0.0, -1.0);
+                      break;
+                    case SlideDirection.top2bottom:
+                      begin = Offset(0.0, -1.0);
+                      end = Offset(0.0, 1.0);
+                      break;
+                    default:
+                      break;
+                  }
 
-  ScaleRoute(
-      {this.page,
-      this.duration: const Duration(milliseconds: 500),
-      this.curve: Curves.fastOutSlowIn})
-      : super(
-            pageBuilder: (_, Animation<double> animation,
-                    Animation<double> secondaryAnimation) =>
-                page,
-            transitionDuration: duration,
-            transitionsBuilder: (_, Animation<double> animation,
-                    Animation<double> secondaryAnimation, Widget child) =>
-                ScaleTransition(
-                    scale: Tween<double>(begin: 0.0, end: 1.0).animate(
-                        CurvedAnimation(parent: animation, curve: curve)),
-                    child: child));
-}
+                  return Stack(
+                    children: <Widget>[
+                      SlideTransition(
+                          position: Tween<Offset>(begin: Offset.zero, end: end)
+                              .animate(CurvedAnimation(
+                                  parent: animation, curve: curve)),
+                          child: fromPage),
+                      SlideTransition(
+                          position:
+                              Tween<Offset>(begin: begin, end: Offset.zero)
+                                  .animate(CurvedAnimation(
+                                      parent: animation, curve: curve)),
+                          child: toPage)
+                    ],
+                  );
+                  break;
+                case TransitionType.slide:
+                  Offset begin;
+                  switch (direction) {
+                    case SlideDirection.left2right:
+                      begin = Offset(-1.0, 0.0);
+                      break;
+                    case SlideDirection.right2left:
+                      begin = Offset(1.0, 0.0);
+                      break;
+                    case SlideDirection.bottom2top:
+                      begin = Offset(0.0, 1.0);
+                      break;
+                    case SlideDirection.top2bottom:
+                      begin = Offset(0.0, -1.0);
+                      break;
+                    default:
+                      break;
+                  }
 
-class SizeRoute<T> extends PageRouteBuilder<T> {
-  final Widget page;
-  final Duration duration;
-
-  SizeRoute({this.page, this.duration: const Duration(milliseconds: 500)})
-      : super(
-          pageBuilder: (BuildContext context, Animation<double> animation,
-                  Animation<double> secondaryAnimation) =>
-              page,
-          transitionDuration: duration,
-          transitionsBuilder: (BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child) =>
-              Align(child: SizeTransition(sizeFactor: animation, child: child)),
-        );
-}
-
-class SlideRoute<T> extends PageRouteBuilder<T> {
-  final Widget page;
-  final SlideDirection direction;
-
-  SlideRoute({this.page, this.direction = SlideDirection.right})
-      : super(
-            pageBuilder: (
-              BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-            ) =>
-                page,
-            transitionsBuilder: (
-              BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-              Widget child,
-            ) {
-              Offset begin;
-              if (direction == SlideDirection.right) {
-                begin = Offset(-1, 0);
+                  return SlideTransition(
+                      position: Tween<Offset>(begin: begin, end: Offset.zero)
+                          .animate(
+                              CurvedAnimation(parent: animation, curve: curve)),
+                      child: child);
+                  break;
+                default:
+                  return child;
               }
-
-              if (direction == SlideDirection.top) {
-                begin = Offset(0, 1);
-              }
-
-              if (direction == SlideDirection.bottom) {
-                begin = Offset(0, -1);
-              }
-
-              if (direction == SlideDirection.left) {
-                begin = Offset(1, 0);
-              }
-
-              return SlideTransition(
-                position: Tween<Offset>(
-                  begin: begin,
-                  end: Offset.zero,
-                ).animate(animation),
-                child: child,
-              );
             });
 }

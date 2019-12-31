@@ -11,8 +11,6 @@ enum LoginMode {
   REGIST
 }
 
-enum SlideDirection { top, left, bottom, right }
-
 enum LoaderState { NoAction, Loading, Succeed, Failed, NoData }
 
 enum RefreshType { DEFAULT, LOAD_MORE, REFRESH }
