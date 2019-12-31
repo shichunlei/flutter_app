@@ -17,6 +17,8 @@ class Store {
         ChangeNotifierProvider(create: (_) => ReaderSettingModel()),
         ChangeNotifierProvider(create: (_) => BookModel()),
         ChangeNotifierProvider(create: (_) => MusicModel()..init()),
+        ChangeNotifierProvider(
+            create: (_) => ShoppingCartModel()..refreshCartProducts()),
       ],
       child: child,
     );

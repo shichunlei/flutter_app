@@ -5,9 +5,8 @@ import '../index.dart';
 
 class ItemHomeFloor extends StatelessWidget {
   final FloorBean floor;
-  final GoodsProvider provider;
 
-  ItemHomeFloor({Key key, this.floor, this.provider}) : super(key: key);
+  ItemHomeFloor({Key key, this.floor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,25 +28,25 @@ class ItemHomeFloor extends StatelessWidget {
               height: Utils.width / 2,
               child: Row(children: <Widget>[
                 ItemFloorGoods(floor.floor[0].goodsId, floor.floor[0].comPic,
-                    width: Utils.width / 2, provider: provider),
+                    width: Utils.width / 2),
                 Container(
                     width: Utils.width / 2,
                     child: Column(children: <Widget>[
                       ItemFloorGoods(
                           floor.floor[1].goodsId, floor.floor[1].comPic,
-                          height: Utils.width / 4, provider: provider),
+                          height: Utils.width / 4),
                       ItemFloorGoods(
                           floor.floor[2].goodsId, floor.floor[2].comPic,
-                          height: Utils.width / 4, provider: provider)
+                          height: Utils.width / 4)
                     ]))
               ])),
           Container(
               height: Utils.width / 4,
               child: Row(children: <Widget>[
                 ItemFloorGoods(floor.floor[3].goodsId, floor.floor[3].comPic,
-                    width: Utils.width / 2, provider: provider),
+                    width: Utils.width / 2),
                 ItemFloorGoods(floor.floor[4].goodsId, floor.floor[4].comPic,
-                    width: Utils.width / 2, provider: provider)
+                    width: Utils.width / 2)
               ]))
         ],
       ),

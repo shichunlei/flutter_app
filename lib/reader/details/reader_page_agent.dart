@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// https://github.com/huanxsd/flutter_shuqi/blob/master/lib/reader/reader_page_agent.dart
+
 class ReaderPageAgent {
   static List<Map<String, int>> getPageOffsets(
       String content, double height, double width, double fontSize) {

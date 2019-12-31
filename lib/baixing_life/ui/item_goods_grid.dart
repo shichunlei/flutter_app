@@ -5,19 +5,16 @@ import '../index.dart';
 
 class ItemGoodsGrid extends StatelessWidget {
   final Goods goods;
-  final GoodsProvider provider;
   final double height;
 
-  ItemGoodsGrid(this.goods, {Key key, this.provider, @required this.height})
-      : super(key: key);
+  ItemGoodsGrid(this.goods, {Key key, @required this.height}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.white,
       child: InkWell(
-        onTap: () => pushNewPage(
-            context, DetailsPage(goods.goodsId, provider: provider)),
+        onTap: () => pushNewPage(context, DetailsPage(goods.goodsId)),
         child: Container(
             alignment: Alignment.center,
             child: Column(children: <Widget>[

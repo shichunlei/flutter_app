@@ -48,7 +48,7 @@ class _OnboardingPageState extends State<OnboardingPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomPadding: true,
       body: AnimatedBuilder(
           animation: animationController,
           builder: (BuildContext context, Widget child) {

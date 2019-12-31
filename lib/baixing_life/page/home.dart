@@ -11,9 +11,8 @@ import '../index.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
-  final GoodsProvider provider;
 
-  HomePage(this.title, this.provider, {Key key}) : super(key: key);
+  HomePage(this.title, {Key key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -111,10 +110,8 @@ class _HomePageState extends State<HomePage>
                 itemBuilder: (BuildContext context, int index) => ImageLoadView(
                     '${slides[index].comPic}',
                     height: headerHeight),
-                onTap: (int index) => pushNewPage(
-                    context,
-                    DetailsPage(slides[index].goodsId,
-                        provider: widget.provider)))));
+                onTap: (int index) =>
+                    pushNewPage(context, DetailsPage(slides[index].goodsId)))));
   }
 
   Widget _buildSliverGridCategory(List<Category> category) {
@@ -221,7 +218,6 @@ class _HomePageState extends State<HomePage>
     return SliverGrid(
         delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) => ItemGoodsGrid(recommend[index],
-                provider: widget.provider,
                 height: Utils.width / recommend.length * 2 / 1.45),
             childCount: recommend.length),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -235,7 +231,6 @@ class _HomePageState extends State<HomePage>
       delegate: SliverChildBuilderDelegate(
           (context, index) => ItemHomeFloor(
                 floor: floors[index],
-                provider: widget.provider,
               ),
           childCount: floors.length),
     );
@@ -260,7 +255,6 @@ class _HomePageState extends State<HomePage>
         delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) => ItemGoodsGrid(
                   goods[index],
-                  provider: widget.provider,
                   height: Utils.width / 1.6,
                 ),
             childCount: goods.length),

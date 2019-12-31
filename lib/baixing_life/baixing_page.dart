@@ -28,23 +28,17 @@ class _IndexPageState extends State<IndexPage>
 
   List<Widget> list = [];
 
-  GoodsProvider provider;
-
   @override
   void initState() {
     super.initState();
 
-    provider = GoodsProvider();
-
     currentIndex = widget.index;
 
     list
-      ..add(HomePage('百姓生活+', provider))
+      ..add(HomePage('百姓生活+'))
       ..add(ClassifyPage('分类',
-          categoryIndex: widget.category,
-          subIndex: widget.subCategory,
-          provider: provider))
-      ..add(ShoppingCartPage('购物车', provider))
+          categoryIndex: widget.category, subIndex: widget.subCategory))
+      ..add(ShoppingCartPage('购物车'))
       ..add(MemberPage('会员'));
   }
 

@@ -6,13 +6,16 @@ import '../index.dart';
 class ItemFloorGoods extends StatelessWidget {
   final String goodsId;
   final String goodsImage;
-  final GoodsProvider provider;
   final double height;
   final double width;
 
-  ItemFloorGoods(this.goodsId, this.goodsImage,
-      {Key key, this.provider, this.width, this.height})
-      : super(key: key);
+  ItemFloorGoods(
+    this.goodsId,
+    this.goodsImage, {
+    Key key,
+    this.width,
+    this.height,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,6 @@ class ItemFloorGoods extends StatelessWidget {
         height: height,
         child: GestureDetector(
             child: ImageLoadView('$goodsImage'),
-            onTap: () => pushNewPage(
-                context, DetailsPage(goodsId, provider: provider))));
+            onTap: () => pushNewPage(context, DetailsPage(goodsId))));
   }
 }

@@ -8,10 +8,8 @@ import '../index.dart';
 class RightListView extends StatefulWidget {
   final Category subCategory;
   final int subCategoryIndex;
-  final GoodsProvider provider;
 
-  RightListView(
-      {Key key, this.subCategory, this.subCategoryIndex, this.provider})
+  RightListView({Key key, this.subCategory, this.subCategoryIndex})
       : super(key: key);
 
   @override
@@ -88,7 +86,6 @@ class RightListViewState extends State<RightListView>
                     childAspectRatio: 0.75),
                 itemBuilder: (BuildContext context, int index) => ItemGoodsGrid(
                       goods[index],
-                      provider: widget.provider,
                       height: rightWidth / 2 / 0.75,
                     ))));
   }

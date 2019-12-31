@@ -29,7 +29,7 @@ class _BottomSheetLoginPagePageState extends State<BottomSheetLoginPage> {
   Widget build(BuildContext context) {
     return Theme(
       child: Scaffold(
-          resizeToAvoidBottomPadding: false,
+          resizeToAvoidBottomPadding: true,
           key: _scaffoldKey,
           //backgroundColor: Theme.of(context).primaryColor,
           body: Stack(

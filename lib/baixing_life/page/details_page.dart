@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/store/index.dart';
 
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -8,9 +9,8 @@ import '../index.dart';
 
 class DetailsPage extends StatefulWidget {
   final String id;
-  final GoodsProvider provider;
 
-  DetailsPage(this.id, {Key key, this.provider}) : super(key: key);
+  DetailsPage(this.id, {Key key}) : super(key: key);
 
   @override
   createState() => _DetailsPageState();
@@ -19,8 +19,6 @@ class DetailsPage extends StatefulWidget {
 class _DetailsPageState extends State<DetailsPage>
     with TickerProviderStateMixin {
   GoodsInfo goods;
-
-  int goods_number = 0;
 
   double navAlpha = 0;
   double headerHeight;
@@ -108,7 +106,8 @@ class _DetailsPageState extends State<DetailsPage>
           child: GestureDetector(
               onTap: () {
                 Toast.show(context, '加入购物车');
-                addCart();
+                Store.value<ShoppingCartModel>(context).addGoodsToCart(
+                    goods.goodInfo);
               },
               child: Container(
                   alignment: Alignment.center,
@@ -132,20 +131,7 @@ class _DetailsPageState extends State<DetailsPage>
   void getGoodsInfo() async {
     goods = await ApiService.getBaixingGoodsDetailData(widget.id);
 
-    bool isExist = await widget.provider?.isExist(widget.id);
-    if (isExist) {
-      goods_number = await widget.provider?.goodsAmount(widget.id);
-    }
-
     if (mounted) setState(() {});
-  }
-
-  void addCart() async {
-    goods.goodInfo.isChecked = 0;
-    goods_number += 1;
-    goods.goodInfo.amount = goods_number;
-    setState(() {});
-    widget.provider?.insertOrReplaceToDB(goods.goodInfo);
   }
 
   Widget _buildSliverAppBar(List<String> pics) {
