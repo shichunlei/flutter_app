@@ -182,7 +182,7 @@ packages:
       name: dio
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.0.7"
+    version: "3.0.8"
   english_words:
     dependency: "direct main"
     description:
@@ -309,7 +309,7 @@ packages:
       name: flutter_webview_plugin
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.10"
+    version: "0.3.10+1"
   gradient_text:
     dependency: "direct main"
     description:
@@ -415,13 +415,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "4.6.0"
-  nested:
-    dependency: transitive
-    description:
-      name: nested
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.0.4"
   open_iconic_flutter:
     dependency: transitive
     description:
@@ -512,7 +505,7 @@ packages:
       name: provider
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.0.0"
+    version: "3.2.0"
   qr:
     dependency: transitive
     description:
@@ -526,7 +519,7 @@ packages:
       name: qr_flutter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.1.0"
+    version: "3.2.0"
   quiver:
     dependency: transitive
     description:
@@ -541,13 +534,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.0.6"
-  rxdart:
-    dependency: "direct main"
-    description:
-      name: rxdart
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.22.6"
   screen:
     dependency: transitive
     description:

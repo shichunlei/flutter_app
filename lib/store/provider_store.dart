@@ -26,7 +26,7 @@ class Store {
 
   //  通过Provider.value<T>(context)获取状态数据
   static T value<T>(BuildContext context) {
-    return Provider.of(context);
+    return Provider.of<T>(context);
   }
 
   //  通过Consumer获取状态数据

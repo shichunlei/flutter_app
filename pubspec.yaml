@@ -55,7 +55,7 @@ dependencies: # 应用或包依赖的其它包或插件
   device_info: ^0.4.1+4
 
   # 网络请求库
-  dio: ^3.0.7
+  dio: ^3.0.8
 
   # 英文单词库
   english_words: ^3.1.5
@@ -101,7 +101,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # SimpleLineIcons 地址：https://simplelineicons.github.io/
   flutter_vector_icons: ^0.2.1
 
-  flutter_webview_plugin: ^0.3.10
+  flutter_webview_plugin: ^0.3.10+1
 
   gradient_text: ^1.0.2
 
@@ -134,16 +134,13 @@ dependencies: # 应用或包依赖的其它包或插件
   photo_view: ^0.9.0
 
   # 数据管理层
-  provider: ^4.0.0
+  provider: ^3.2.0
 
   # flutter 生成二维码
-  qr_flutter: ^3.1.0
+  qr_flutter: ^3.2.0
 
   #
   rounded_letter: ^0.0.6
-
-  # https://github.com/ReactiveX/rxdart
-  rxdart: ^0.22.6
 
   share: ^0.6.3+5
 

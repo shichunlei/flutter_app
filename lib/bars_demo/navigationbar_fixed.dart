@@ -9,9 +9,30 @@ class NavigationBarFixed extends StatefulWidget {
 class _NavigationBarFixedState extends State<NavigationBarFixed>
     with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
-  var _controller = PageController(
-    initialPage: 0,
-  );
+  PageController _controller;
+  PageView _pageView;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = PageController(initialPage: 0);
+
+    _pageView = PageView(
+      controller: _controller,
+      children: <Widget>[
+        EachView('home'),
+        EachView('email'),
+        EachView('pages'),
+        EachView('airplay')
+      ],
+      onPageChanged: (index) {
+        setState(() {
+          _currentIndex = index;
+        });
+      },
+      //physics: NeverScrollableScrollPhysics() // 禁止滑动
+    );
+  }
 
   @override
   void dispose() {
@@ -22,19 +43,12 @@ class _NavigationBarFixedState extends State<NavigationBarFixed>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-          controller: _controller,
-          children: <Widget>[
-            EachView('home'),
-            EachView('email'),
-            EachView('pages'),
-            EachView('airplay')
-          ],
-          physics: NeverScrollableScrollPhysics()),
+      body: _pageView,
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: (index) {
-            _controller.jumpToPage(index);
+            _controller.animateToPage(index,
+                curve: Curves.linear, duration: Duration(milliseconds: 100));
             setState(() {
               _currentIndex = index;
             });

@@ -36,9 +36,9 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
               duration: Duration(seconds: 5),
               size: Size(25.0, 25.0),
               skipText: "跳过",
-              onTap: () => goToHomePage(),
+              onTap: () => goToHomePage(context),
               onFinishCallBack: (bool value) {
-                if (value) goToHomePage();
+                if (value) goToHomePage(context);
               }),
           top: Utils.topSafeHeight + 20,
           right: 30),
@@ -67,7 +67,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     ]);
   }
 
-  void goToHomePage() async {
+  void goToHomePage(BuildContext context) async {
     firstOpen = SpUtil.getBool('first_open', defValue: true);
 
     debugPrint("$firstOpen");
