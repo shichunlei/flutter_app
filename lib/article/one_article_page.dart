@@ -18,9 +18,8 @@ class _OneArticlePageState extends State<OneArticlePage>
 
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((callback) {
-      Store.value<ArticleModel>(context).getArticle('today');
-    });
+    Future.microtask(
+        () => Store.value<ArticleModel>(context).getArticle('today'));
   }
 
   @override

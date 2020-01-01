@@ -25,7 +25,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # https://github.com/aagarwal1012/Animated-Text-Kit
   animated_text_kit: ^2.0.0
 
-  audioplayers: ^0.13.5
+  audioplayers: ^0.13.6
 
   # AzListView，Flutter 城市列表，联系人列表，自定义Header，索引，悬停效果。
   azlistview: ^0.1.2
