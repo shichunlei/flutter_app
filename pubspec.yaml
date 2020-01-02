@@ -46,8 +46,6 @@ dependencies: # 应用或包依赖的其它包或插件
 
   contact_picker: ^0.0.2
 
-  crypto: ^2.1.3
-
   custom_widgets:
     path: custom_widgets/
 
@@ -102,8 +100,6 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_vector_icons: ^0.2.1
 
   flutter_webview_plugin: ^0.3.10+1
-
-  gradient_text: ^1.0.2
 
   # 图片裁剪
   image_cropper: ^1.1.2

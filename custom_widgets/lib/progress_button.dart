@@ -22,7 +22,7 @@ class ProgressButton extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ProgressButtonState createState() => _ProgressButtonState();
+  createState() => _ProgressButtonState();
 }
 
 enum ButtonState { inProgress, error, normal }

@@ -12,8 +12,10 @@ export 'dash_path.dart';
 export 'flip_card.dart';
 export 'flutter_flip_view.dart';
 export 'gradient_circular_progress_indicator.dart';
+export 'gradient_text.dart';
 export 'horizontal_number_picker.dart';
 export 'horizontal_picker.dart';
+export 'like_button.dart';
 export 'marquee.dart';
 export 'progress_button.dart';
 export 'radar.dart';
@@ -30,8 +32,6 @@ export 'dialog/asset_giffy_dialog.dart';
 export 'dialog/network_giffy_dialog.dart';
 
 export 'dropdown_menu/dropdown_menu.dart';
-
-export 'likebutton/like_button.dart';
 
 export 'indicator/dots_indicator.dart';
 export 'indicator/rect_indicator.dart';

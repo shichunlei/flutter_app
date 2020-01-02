@@ -30,7 +30,7 @@ class CurvedNavigationBar extends StatefulWidget {
         super(key: key);
 
   @override
-  _CurvedNavigationBarState createState() => _CurvedNavigationBarState();
+  createState() => _CurvedNavigationBarState();
 }
 
 class _CurvedNavigationBarState extends State<CurvedNavigationBar>
@@ -68,7 +68,7 @@ class _CurvedNavigationBarState extends State<CurvedNavigationBar>
   @override
   void didUpdateWidget(CurvedNavigationBar oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print(_animationController.status);
+    debugPrint("${_animationController.status}");
     if (oldWidget.index != widget.index) {
       final newPosition = widget.index / _length;
       _startingPos = _pos;
@@ -189,9 +189,7 @@ class NavCustomPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return this != oldDelegate;
-  }
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
 
 class NavButton extends StatelessWidget {

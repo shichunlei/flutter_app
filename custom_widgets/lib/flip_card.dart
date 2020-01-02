@@ -43,9 +43,7 @@ class FlipCard extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    return _FlipCardState();
-  }
+  createState() => _FlipCardState();
 }
 
 class _FlipCardState extends State<FlipCard>

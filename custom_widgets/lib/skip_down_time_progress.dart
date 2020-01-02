@@ -23,9 +23,7 @@ class SkipDownTimeProgress extends StatefulWidget {
       : super(key: key);
 
   @override
-  _SkipDownTimeProgressState createState() {
-    return _SkipDownTimeProgressState();
-  }
+  createState() => _SkipDownTimeProgressState();
 }
 
 class _SkipDownTimeProgressState extends State<SkipDownTimeProgress>
@@ -154,7 +152,5 @@ class _DrawProgress extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
-  }
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }

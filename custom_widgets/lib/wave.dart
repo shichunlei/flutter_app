@@ -24,7 +24,7 @@ class Wave extends StatefulWidget {
   });
 
   @override
-  State<StatefulWidget> createState() => _WaveState();
+  createState() => _WaveState();
 }
 
 class _WaveState extends State<Wave> with TickerProviderStateMixin {

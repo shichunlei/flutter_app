@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/page_index.dart';
-import 'package:gradient_text/gradient_text.dart';
 
 import 'baixing_page.dart';
 

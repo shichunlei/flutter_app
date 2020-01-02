@@ -2,19 +2,18 @@ import 'package:flutter/widgets.dart';
 
 /// Rotates forever
 class AnimatedRotationBox extends StatefulWidget {
-  AnimatedRotationBox(
-      {this.child,
-      this.duration = const Duration(seconds: 1),
-      this.curve = Curves.linear});
+  AnimatedRotationBox({
+    this.child,
+    this.duration = const Duration(seconds: 1),
+    this.curve = Curves.linear,
+  });
 
   final Widget child;
   final Duration duration;
   final Curve curve;
 
   @override
-  _AnimatedRotationBoxState createState() {
-    return _AnimatedRotationBoxState();
-  }
+  createState() => _AnimatedRotationBoxState();
 }
 
 class _AnimatedRotationBoxState extends State<AnimatedRotationBox>

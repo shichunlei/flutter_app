@@ -25,7 +25,7 @@ class AvatarGlow extends StatefulWidget {
   });
 
   @override
-  _AvatarGlowState createState() => _AvatarGlowState();
+  createState() => _AvatarGlowState();
 }
 
 class _AvatarGlowState extends State<AvatarGlow>

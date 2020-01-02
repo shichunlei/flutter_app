@@ -142,7 +142,7 @@ packages:
     source: hosted
     version: "2.1.1"
   crypto:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: crypto
       url: "https://pub.flutter-io.cn"
@@ -310,13 +310,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.3.10+1"
-  gradient_text:
-    dependency: "direct main"
-    description:
-      name: gradient_text
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.0.2"
   html:
     dependency: transitive
     description:
