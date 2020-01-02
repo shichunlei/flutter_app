@@ -1,3 +1,5 @@
+import 'package:flutter_app/article/db/article_provider.dart';
+
 /// author : "希区柯克"
 /// title : "门牙"
 /// digest : "太阳穿过厚厚的窗帘，照在杜克警官的房间，我们正在他的房间里。 我掏出手枪，对着他宽阔的腰部，他露出惊讶的神情。 “罗伯特，”他是，“你这是干"
@@ -32,13 +34,20 @@ class Article {
   }
 
   Map toJson() => {
-        "author": author,
-        "title": title,
-        "digest": digest,
+        "${ArticleProvider.columnAuthor}": author,
+        "${ArticleProvider.columnTitle}": title,
+        "${ArticleProvider.columnDigest}": digest,
         "content": content,
         "id": id,
-        "curr": curr,
+        "${ArticleProvider.columnDate}": curr,
         "next": next,
         "prev": prev,
+      };
+
+  Map<String, dynamic> toMap() => {
+        "${ArticleProvider.columnAuthor}": author,
+        "${ArticleProvider.columnTitle}": title,
+        "${ArticleProvider.columnDigest}": digest,
+        "${ArticleProvider.columnDate}": curr,
       };
 }

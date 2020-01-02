@@ -129,19 +129,20 @@ class _SettingPageState extends State<SettingPage> {
   }
 
   void _chooseColor() {
+    var _value = Store.value<ConfigModel>(context, listen: false);
     showDiffDialog(
       context,
       title: Text(S.of(context).pick_a_color),
       content: SingleChildScrollView(
           child: ColorPicker(
-              pickerColor: Color(Store.value<ConfigModel>(context).theme),
+              pickerColor: Color(_value.theme),
               onColorChanged: (color) => setState(() => _pickerColor = color),
               enableLabel: false,
               enableAlpha: false,
               pickerAreaHeightPercent: 0.5)),
       pressed: () {
         if (_pickerColor != null) {
-          Store.value<ConfigModel>(context).setTheme(_pickerColor.value);
+          _value.setTheme(_pickerColor.value);
         }
         Navigator.of(context).pop();
       },
@@ -169,7 +170,7 @@ class _SettingPageState extends State<SettingPage> {
       return ListTile(
           title: Text("${mapSupportLocale[local]}"),
           onTap: () {
-            Store.value<ConfigModel>(context).setLocal(index);
+            Store.value<ConfigModel>(context, listen: false).setLocal(index);
             Navigator.pop(context);
           },
           selected: Store.value<ConfigModel>(context).localIndex == index);
@@ -183,10 +184,10 @@ class _SettingPageState extends State<SettingPage> {
         value: index,
         title: Text("${mapSupportLocale[local]}"),
         onChanged: (index) {
-          Store.value<ConfigModel>(context).setLocal(index);
+          Store.value<ConfigModel>(context, listen: false).setLocal(index);
           //Navigator.pop(context);
         },
-        groupValue: Store.value<ConfigModel>(context).localIndex,
+        groupValue: Store.value<ConfigModel>(context, listen: false).localIndex,
       );
     }).toList();
   }

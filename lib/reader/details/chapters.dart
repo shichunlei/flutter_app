@@ -36,7 +36,7 @@ class _ChaptersPageState extends State<ChaptersPage>
     _scrollController = ScrollController();
 
     WidgetsBinding.instance.addPostFrameCallback((callback) {
-      final state = Store.value<BookModel>(context);
+      final state = Store.value<BookModel>(context, listen: false);
 
       var chapterIndex = state.chapterIndex;
 
@@ -85,46 +85,48 @@ class _ChaptersPageState extends State<ChaptersPage>
   Widget build(BuildContext context) {
     return LightTheme(
       child: Scaffold(
-          appBar: AppBar(
-              title: Text('${widget.name}',
-                  style: TextStyle(color: Colors.black54))),
-          body: LoaderContainer(
-              contentView: Store.connect<BookModel>(
-                  builder: (_, BookModel snapshot, __) {
-                return ListView.separated(
-                    padding: EdgeInsets.only(top: 3),
-                    controller: _scrollController,
-                    itemBuilder: (_, index) => ItemChapter(
-                        chapter: chapters[index],
-                        checked: snapshot.chapterIndex == index &&
-                            !chapters[index].isVip,
-                        onPressed: () {
-                          if (chapters[index].isVip) {
-                            Toast.show(context, '需要开通VIP才能阅读');
-                          } else {
-                            snapshot.updateBook(snapshot.currentBook.id,
-                                chapterIndex: index,
-                                link: chapters[index].link,
-                                progress: index / chapters.length,
-                                totalChapter: chapters.length);
+        appBar: AppBar(
+            title: Text('${widget.name}',
+                style: TextStyle(color: Colors.black54))),
+        body: LoaderContainer(
+            contentView:
+                Store.connect<BookModel>(builder: (_, BookModel snapshot, __) {
+              return ListView.separated(
+                  padding: EdgeInsets.only(top: 3),
+                  controller: _scrollController,
+                  itemBuilder: (_, index) => ItemChapter(
+                      chapter: chapters[index],
+                      checked: snapshot.chapterIndex == index &&
+                          !chapters[index].isVip,
+                      onPressed: () {
+                        if (chapters[index].isVip) {
+                          Toast.show(context, '需要开通VIP才能阅读');
+                        } else {
+                          snapshot.updateBook(snapshot.currentBook.id,
+                              chapterIndex: index,
+                              link: chapters[index].link,
+                              progress: index / chapters.length,
+                              totalChapter: chapters.length);
 
-                            pushNewPage(context,
-                                BookReaderPage(link: chapters[index].link));
-                          }
-                        }),
-                    itemCount: chapters.length,
-                    separatorBuilder: (BuildContext context, int index) =>
-                        Gaps.line);
-              }),
-              loaderState: _status),
-          floatingActionButton: Opacity(
-              child: FloatingActionButton(
-                  onPressed: () =>
-                      animateTo(Store.value<BookModel>(context).chapterIndex),
-                  mini: true,
-                  child: Icon(_sIcon, color: Colors.white),
-                  backgroundColor: readerMainColor),
-              opacity: _isVisible ? 1.0 : 0.0)),
+                          pushNewPage(context,
+                              BookReaderPage(link: chapters[index].link));
+                        }
+                      }),
+                  itemCount: chapters.length,
+                  separatorBuilder: (BuildContext context, int index) =>
+                      Gaps.line);
+            }),
+            loaderState: _status),
+        floatingActionButton: Opacity(
+            child: FloatingActionButton(
+                onPressed: () => animateTo(
+                    Store.value<BookModel>(context, listen: false)
+                        .chapterIndex),
+                mini: true,
+                child: Icon(_sIcon, color: Colors.white),
+                backgroundColor: readerMainColor),
+            opacity: _isVisible ? 1.0 : 0.0),
+      ),
     );
   }
 

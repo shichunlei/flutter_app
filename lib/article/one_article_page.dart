@@ -18,8 +18,8 @@ class _OneArticlePageState extends State<OneArticlePage>
 
   void initState() {
     super.initState();
-    Future.microtask(
-        () => Store.value<ArticleModel>(context).getArticle('today'));
+    Future.microtask(() =>
+        Store.value<ArticleModel>(context, listen: false).getArticle('today'));
   }
 
   @override

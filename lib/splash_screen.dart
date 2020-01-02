@@ -72,7 +72,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
 
     debugPrint("$firstOpen");
     if (!firstOpen) {
-      if (Store.value<UserModel>(context).isLogin()) {
+      if (Store.value<UserModel>(context, listen: false).isLogin()) {
         pushAndRemovePage(context, HomePage());
       } else {
         pushAndRemovePage(context, LoginPage());

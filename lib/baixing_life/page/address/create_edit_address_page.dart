@@ -267,7 +267,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
         city: _city,
         county: _county);
 
-    await Store.value<AddressModel>(context)
+    await Store.value<AddressModel>(context, listen: false)
         .insertOrReplaceAddress(context, address, widget.title);
   }
 }

@@ -81,7 +81,8 @@ class _LoginPageState extends State<LoginPage>
     return Container(
       width: 300.0,
       height: 42.0,
-      padding: const EdgeInsets.only(left: 2.0, right: 2.0, top: 20.0),
+      margin: const EdgeInsets.only(top: 20.0),
+      padding: const EdgeInsets.only(left: 2.0, right: 2.0),
       decoration: BoxDecoration(
         color: Color(0x552B2B2B),
 

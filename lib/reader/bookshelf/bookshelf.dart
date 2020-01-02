@@ -94,7 +94,8 @@ class _BookShelfPageState extends State<BookShelfPage> {
       title: Text('提示'),
       content: Text('您确定要删除《${books[index].title}》吗？'),
       pressed: () {
-        Store.value<BookModel>(context).deleteBook(context, books[index].id);
+        Store.value<BookModel>(context, listen: false)
+            .deleteBook(context, books[index].id);
         Navigator.pop(context);
       },
     );

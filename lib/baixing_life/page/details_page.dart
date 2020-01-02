@@ -106,8 +106,8 @@ class _DetailsPageState extends State<DetailsPage>
           child: GestureDetector(
               onTap: () {
                 Toast.show(context, '加入购物车');
-                Store.value<ShoppingCartModel>(context).addGoodsToCart(
-                    goods.goodInfo);
+                Store.value<ShoppingCartModel>(context, listen: false)
+                    .addGoodsToCart(goods.goodInfo);
               },
               child: Container(
                   alignment: Alignment.center,

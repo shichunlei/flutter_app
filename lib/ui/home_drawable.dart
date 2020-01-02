@@ -51,7 +51,7 @@ class HomeDrawable extends StatelessWidget {
               leading: Icon(Icons.exit_to_app),
               trailing: Icon(Icons.chevron_right),
               onTap: () {
-                Store.value<UserModel>(context).cleanUserInfo();
+                Store.value<UserModel>(context, listen: false).cleanUserInfo();
                 Navigator.of(context).pop();
                 pushAndRemovePage(context, LoginPage());
               }),

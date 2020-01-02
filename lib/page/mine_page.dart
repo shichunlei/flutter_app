@@ -240,20 +240,21 @@ class _MinePageState extends State<MinePage> {
 
   void uploadImage(String path) async {
     var filename = path.substring(path.lastIndexOf("/") + 1, path.length);
-    print(filename);
+    debugPrint(filename);
     var suffix =
         filename.substring(filename.lastIndexOf(".") + 1, filename.length);
-    print(suffix);
+    debugPrint(suffix);
 
     FormData data = FormData.fromMap({
       'avatar': MultipartFile.fromFileSync(path, filename: filename),
-      'id': Store.value<UserModel>(context).getUserId(),
+      'id': Store.value<UserModel>(context, listen: false).getUserId(),
     });
 
     User user = await ApiService.updateAvatar(data);
 
     if (user != null) {
-      Store.value<UserModel>(context).setUser(avatarPath: user.avatarUrl);
+      Store.value<UserModel>(context, listen: false)
+          .setUser(avatarPath: user.avatarUrl);
       if (isShowLoading) {
         Navigator.of(context).pop();
       }

@@ -25,8 +25,8 @@ class Store {
   }
 
   //  通过Provider.value<T>(context)获取状态数据
-  static T value<T>(BuildContext context) {
-    return Provider.of<T>(context);
+  static T value<T>(BuildContext context, {bool listen: true}) {
+    return Provider.of<T>(context, listen: listen);
   }
 
   //  通过Consumer获取状态数据

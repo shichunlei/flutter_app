@@ -46,7 +46,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
     bdHelper = BookShelfDBHelper();
 
     WidgetsBinding.instance.addPostFrameCallback((callback) {
-      final state = Store.value<BookModel>(context);
+      final state = Store.value<BookModel>(context, listen: false);
 
       state
         ..updateIsExist(widget.id)
@@ -139,7 +139,8 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
                           content:
                               '[${book != null ? (book.isSerial ? "更新:${friendlyDateTime(book?.updated)}" : "完结") : ""}]\t${book?.lastChapter}',
                           onTap: () {
-                            final state = Store.value<BookModel>(context);
+                            final state =
+                                Store.value<BookModel>(context, listen: false);
                             state.setBook(book);
                             pushNewPage(
                                 context, ChaptersPage(name: book?.title));

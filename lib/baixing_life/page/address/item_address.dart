@@ -164,7 +164,8 @@ class _ItemAddressState extends State<ItemAddress>
                                 _isCheck = false;
 
                                 if (!widget.address.isDefault) {
-                                  Store.value<AddressModel>(context)
+                                  Store.value<AddressModel>(context,
+                                          listen: false)
                                       .updateAddressDefault(
                                           context, widget.address?.id, true);
                                 }
@@ -198,9 +199,10 @@ class _ItemAddressState extends State<ItemAddress>
                                 textColor: Colors.red,
                                 child:
                                     Text("确认删除", style: TextStyles.textRed16),
-                                onPressed: () =>
-                                    Store.value<AddressModel>(context)
-                                        .deleteAddress(context, id))),
+                                onPressed: () => Store.value<AddressModel>(
+                                        context,
+                                        listen: false)
+                                    .deleteAddress(context, id))),
                         Gaps.line,
                         Container(
                             height: 54.0,

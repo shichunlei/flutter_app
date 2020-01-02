@@ -257,7 +257,7 @@ class _SignInPageState extends State<SignInPage> {
 //        _emailController.text.toString(), _pwdController.text.toString());
 //
 //    if (user != null) {
-//      Store.value<UserModel>(context)
+//      Store.value<UserModel>(context, listen: false)
 //        ..setUser(
 //          id: user.id,
 //          email: '${user?.email}',
@@ -279,7 +279,7 @@ class _SignInPageState extends State<SignInPage> {
         (data) {
           User user = User.fromMap(data);
 
-          Store.value<UserModel>(context)
+          Store.value<UserModel>(context, listen: false)
             ..setUser(
               id: user.id,
               email: '${user?.email}',

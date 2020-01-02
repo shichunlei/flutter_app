@@ -49,7 +49,7 @@ class ArticleProvider extends BaseDBProvider {
     if (article == null || strings.isEmpty(date) == null) return null;
     Database db = await getDB();
     bool provider = await isCollection(date);
-    Map<String, dynamic> map = article.toJson();
+    Map<String, dynamic> map = article.toMap();
     if (provider) {
       return await db
           .update(table_name, map, where: "$columnDate = ?", whereArgs: [date]);
