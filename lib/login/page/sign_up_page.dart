@@ -103,7 +103,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             _userInfo['password'].toString()) {
                           Toast.show(context, "两次密码不一致");
                         } else {
-                          _regist();
+                          _register();
                         }
                       }))
             ])));
@@ -203,7 +203,7 @@ class _SignUpPageState extends State<SignUpPage> {
             style: TextStyle(fontSize: 16.0, color: Colors.black)));
   }
 
-  void _regist() async {
+  void _register() async {
     Toast.show(context, "${S.of(context).register}");
   }
 }

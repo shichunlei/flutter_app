@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/enum/enum.dart';
 import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/login/page/sign_in_page.dart';
 import 'package:flutter_app/login/page/sign_up_page.dart';
+import 'package:flutter_app/ui/button.dart';
 import 'package:flutter_app/ui/gradual_change_view.dart';
-import 'package:flutter_app/login/ui/custom_button.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -69,7 +70,7 @@ class _LoginPageState extends State<LoginPage>
                           /// 指示器
                           _buildIndicator(),
 
-                          /// pageview
+                          /// PageView
                           Expanded(child: _pageView)
                         ]))))
       ]),
@@ -77,42 +78,47 @@ class _LoginPageState extends State<LoginPage>
   }
 
   Widget _buildIndicator() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20.0),
-      child: Container(
-        width: 300.0,
-        height: 42.0,
-        padding: const EdgeInsets.only(left: 2.0, right: 2.0),
-        decoration: BoxDecoration(
-          color: Color(0x552B2B2B),
+    return Container(
+      width: 300.0,
+      height: 42.0,
+      padding: const EdgeInsets.only(left: 2.0, right: 2.0, top: 20.0),
+      decoration: BoxDecoration(
+        color: Color(0x552B2B2B),
 
-          /// 圆角
-          borderRadius: BorderRadius.all(
-            Radius.circular(21.0),
+        /// 圆角
+        borderRadius: BorderRadius.all(
+          Radius.circular(21.0),
+        ),
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Button(
+              onPressed: () => _controller.animateToPage(0,
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.decelerate),
+              text: "${S.of(context).login}",
+              buttonShape: ButtonShape.Fillet,
+              borderRadius: 30.0,
+              textColor: _currentPage == 0 ? Colors.black54 : Colors.white,
+              height: 35.0,
+              color: _currentPage == 0 ? Colors.white : Colors.transparent,
+            ),
           ),
-        ),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: CustomButton(
-                onPressed: () => _controller.animateToPage(0,
-                    duration: Duration(milliseconds: 300),
-                    curve: Curves.decelerate),
-                title: "${S.of(context).login}",
-                status: _currentPage == 0,
-              ),
+          Expanded(
+            child: Button(
+              onPressed: () => _controller.animateToPage(1,
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.decelerate),
+              text: "${S.of(context).register}",
+              buttonShape: ButtonShape.Fillet,
+              borderRadius: 30.0,
+              height: 35.0,
+              textColor: _currentPage == 1 ? Colors.black54 : Colors.white,
+              color: _currentPage == 1 ? Colors.white : Colors.transparent,
             ),
-            Expanded(
-              child: CustomButton(
-                onPressed: () => _controller.animateToPage(1,
-                    duration: Duration(milliseconds: 300),
-                    curve: Curves.decelerate),
-                title: "${S.of(context).register}",
-                status: _currentPage == 1,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -8,7 +8,6 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import '../../page_index.dart';
 import 'forgot_password_page.dart';
 import '../ui/submit_button.dart';
-import '../ui/third_login_button.dart';
 import '../../store/index.dart';
 
 class SignInPage extends StatefulWidget {
@@ -30,103 +29,105 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.only(top: 23),
-      child: Container(
-        child: Stack(
-          /// 注意这里要设置溢出如何处理，设置为visible的话，可以看到孩子，设置为clip的话，若溢出会进行裁剪
-          overflow: Overflow.visible,
-          alignment: Alignment.topCenter,
-          children: <Widget>[
-            Column(children: <Widget>[
-              /// 创建表单
-              _buildLoginTextForm(),
+      child: Stack(
+        /// 注意这里要设置溢出如何处理，设置为visible的话，可以看到孩子，设置为clip的话，若溢出会进行裁剪
+        overflow: Overflow.visible,
+        alignment: Alignment.topCenter,
+        children: <Widget>[
+          Column(children: <Widget>[
+            /// 创建表单
+            _buildLoginTextForm(),
 
-              /// 忘记密码
-              Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: FlatButton(
-                      color: Color(0x00000000),
-                      shape: const StadiumBorder(),
-                      onPressed: () {
-                        pushNewPage(context, ForgotPasswordPage());
-                      },
-                      child: Text("忘记密码？",
-                          style: TextStyle(
-                              fontSize: 16.0,
-                              color: Colors.white,
-                              decoration: TextDecoration.underline)))),
-
-              /// Or 横线
-              Padding(
-                  padding: const EdgeInsets.only(top: 5.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                            width: 100.0,
-                            height: 1.0,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  colors: [Colors.white10, Colors.white]),
-                            )),
-                        Padding(
-                            padding:
-                                const EdgeInsets.only(left: 15.0, right: 15.0),
-                            child: Text('Or',
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.white))),
-                        Container(
-                            width: 100.0,
-                            height: 1.0,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  colors: [Colors.white, Colors.white10]),
-                            ))
-                      ])),
-
-              /// 第三方登录按钮
-              Padding(
-                  padding: const EdgeInsets.only(top: 5.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        ThirdLoginButton(
-                            onPressed: () {
-                              Toast.show(context, "微信");
-                            },
-                            icon: FontAwesome.weixin),
-                        SizedBox(width: 40.0),
-                        ThirdLoginButton(
-                            onPressed: () {
-                              Toast.show(context, "QQ");
-                            },
-                            icon: FontAwesome.qq)
-                      ]))
-            ]),
-
-            /// 登录按钮
+            /// 忘记密码
             Padding(
-                padding: const EdgeInsets.only(top: 148.0),
-                child: SubmitButton(
-                    title: "${S.of(context).login}",
-                    onTap: () {
-                      if (_emailController.text.isEmpty) {
-                        Toast.show(context, "邮箱不能为空");
-                      } else if (!Utils.isEmail(_emailController.text)) {
-                        Toast.show(context, "邮箱格式不正确");
-                      } else if (_pwdController.text.isEmpty) {
-                        Toast.show(context, "密码不能为空");
-                      } else if (_pwdController.text.length < 6) {
-                        Toast.show(context, "密码长度不能小于6位！");
-                      } else {
-                        showLoadingDialog(context, '登录中...');
-                        isShowLoading = true;
-                        _login();
-                      }
-                    }))
-          ],
-        ),
+                padding: const EdgeInsets.only(top: 20.0),
+                child: FlatButton(
+                    color: Color(0x00000000),
+                    shape: const StadiumBorder(),
+                    onPressed: () {
+                      pushNewPage(context, ForgotPasswordPage());
+                    },
+                    child: Text("忘记密码？",
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.white,
+                            decoration: TextDecoration.underline)))),
+
+            /// Or 横线
+            Padding(
+                padding: const EdgeInsets.only(top: 5.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                          width: 100.0,
+                          height: 1.0,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                colors: [Colors.white10, Colors.white]),
+                          )),
+                      Padding(
+                          padding:
+                              const EdgeInsets.only(left: 15.0, right: 15.0),
+                          child: Text('Or',
+                              style: TextStyle(
+                                  fontSize: 16, color: Colors.white))),
+                      Container(
+                          width: 100.0,
+                          height: 1.0,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                colors: [Colors.white, Colors.white10]),
+                          ))
+                    ])),
+
+            /// 第三方登录按钮
+            Padding(
+                padding: const EdgeInsets.only(top: 5.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      CircleButton(
+                        icon: FontAwesome.weixin,
+                        onPressedAction: () {
+                          Toast.show(context, "微信");
+                        },
+                        iconSize: 25.0,
+                      ),
+                      SizedBox(width: 40.0),
+                      CircleButton(
+                        icon: FontAwesome.qq,
+                        onPressedAction: () {
+                          Toast.show(context, "QQ");
+                        },
+                        iconSize: 25.0,
+                      ),
+                    ]))
+          ]),
+
+          /// 登录按钮
+          Padding(
+              padding: const EdgeInsets.only(top: 148.0),
+              child: SubmitButton(
+                  title: "${S.of(context).login}",
+                  onTap: () {
+                    if (_emailController.text.isEmpty) {
+                      Toast.show(context, "邮箱不能为空");
+                    } else if (!Utils.isEmail(_emailController.text)) {
+                      Toast.show(context, "邮箱格式不正确");
+                    } else if (_pwdController.text.isEmpty) {
+                      Toast.show(context, "密码不能为空");
+                    } else if (_pwdController.text.length < 6) {
+                      Toast.show(context, "密码长度不能小于6位！");
+                    } else {
+                      showLoadingDialog(context, '登录中...');
+                      isShowLoading = true;
+                      _login();
+                    }
+                  }))
+        ],
       ),
     );
   }
