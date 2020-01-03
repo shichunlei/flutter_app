@@ -90,6 +90,7 @@ export 'animation/tween.dart';
 export 'animation/animated_container.dart';
 export 'animation/custom_animation.dart';
 export 'animation/animated_number.dart';
+export 'animation/animated_physical_model.dart';
 
 export 'bars_demo/bottom_navigation_bar.dart';
 export 'bars_demo/navigationbar_shifting.dart';

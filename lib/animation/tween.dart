@@ -33,7 +33,6 @@ class _TweenDemoState extends State<TweenDemo>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     //创建AnimationController
     controller = AnimationController(
@@ -54,8 +53,8 @@ class _TweenDemoState extends State<TweenDemo>
       });
 
     //animation第二种创建方式：
-    offsetAnimation = controller.drive(
-        Tween<Offset>(begin: Offset.zero, end: Offset(400.0, 200.0)));
+    offsetAnimation = controller
+        .drive(Tween<Offset>(begin: Offset.zero, end: Offset(400.0, 200.0)));
 
     colorAnimation =
         ColorTween(begin: Colors.yellow, end: Colors.red).animate(controller);

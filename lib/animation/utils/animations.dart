@@ -168,7 +168,7 @@ class SlideInAnimation extends StatefulWidget {
   final Curve curve;
 
   @override
-  _SlideInAnimationState createState() => _SlideInAnimationState();
+  createState() => _SlideInAnimationState();
 }
 
 class _SlideInAnimationState extends State<SlideInAnimation>
@@ -246,7 +246,7 @@ class SlideFadeInAnimation extends StatefulWidget {
   final Curve curve;
 
   @override
-  _SlideFadeInAnimationState createState() => _SlideFadeInAnimationState();
+  createState() => _SlideFadeInAnimationState();
 }
 
 class _SlideFadeInAnimationState extends State<SlideFadeInAnimation>
@@ -306,7 +306,7 @@ class FadeOutWidget extends StatefulWidget {
   final Duration duration;
 
   @override
-  _FadeOutWidgetState createState() => _FadeOutWidgetState();
+  createState() => _FadeOutWidgetState();
 }
 
 class _FadeOutWidgetState extends State<FadeOutWidget>
@@ -369,7 +369,7 @@ class AnimatedScale extends ImplicitlyAnimatedWidget {
   final Widget child;
 
   @override
-  _AnimatedScaleState createState() => _AnimatedScaleState();
+  createState() => _AnimatedScaleState();
 }
 
 class _AnimatedScaleState extends AnimatedWidgetBaseState<AnimatedScale> {
@@ -407,10 +407,10 @@ class SlideAnimation extends StatefulWidget {
   final Duration duration;
 
   @override
-  SlideAnimationState createState() => SlideAnimationState();
+  createState() => _SlideAnimationState();
 }
 
-class SlideAnimationState extends State<SlideAnimation>
+class _SlideAnimationState extends State<SlideAnimation>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<Offset> _animation;
@@ -449,6 +449,8 @@ class SlideAnimationState extends State<SlideAnimation>
   }
 }
 
+/// 计数动画
+///
 class AnimatedNumber extends StatefulWidget {
   final double number;
   final Duration duration;

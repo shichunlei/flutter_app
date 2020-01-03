@@ -1,26 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/enum/enum.dart';
 import 'package:flutter_app/page_index.dart';
 
 import 'utils/animations.dart';
 
-class CustomAnimationDemo extends StatefulWidget {
+class CustomAnimationDemo extends StatelessWidget {
   CustomAnimationDemo({Key key}) : super(key: key);
-
-  @override
-  createState() => _CustomAnimationDemoState();
-}
-
-class _CustomAnimationDemoState extends State<CustomAnimationDemo> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

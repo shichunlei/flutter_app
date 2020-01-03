@@ -12,8 +12,7 @@ class AnimatedNumberDemo extends StatelessWidget {
       appBar: AppBar(title: Text('AnimatedNumberDemo')),
       body: Center(
         child: AnimatedNumber(
-          number: 0.01,
-          decimal: 2,
+          number: 1000,
         ),
       ),
     );

@@ -20,7 +20,10 @@ class _AnimatedPositionedDemoState extends State<AnimatedPositionedDemo> {
               top: status ? 50 : 100,
               height: status ? 50 : 100,
               left: status ? 50 : 100,
+              curve: Curves.elasticInOut,
               child: Container(
+                  padding: EdgeInsets.all(8.0),
+                  alignment: Alignment.center,
                   color: Colors.deepPurpleAccent,
                   child: Text("AnimatedPositioned动画演示")),
               duration: Duration(milliseconds: 500))

@@ -27,7 +27,7 @@ class _AnimatedCrossFadeDemoState extends State<AnimatedCrossFadeDemo> {
         appBar: AppBar(title: Text('AnimatedCrossFade')),
         body: Center(
           child: AnimatedCrossFade(
-            duration: const Duration(seconds: 3),
+            duration: const Duration(milliseconds: 300),
             firstChild: const FlutterLogo(
                 style: FlutterLogoStyle.horizontal, size: 100.0),
             secondChild:

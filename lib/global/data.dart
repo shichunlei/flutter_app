@@ -83,6 +83,7 @@ class ExpandStateBean {
           SubExpandBean('AnimatedSize', AnimatedSizeDemo()),
           SubExpandBean('AnimatedAlign', AnimatedAlignDemo()),
           SubExpandBean('AnimatedPositioned', AnimatedPositionedDemo()),
+          SubExpandBean('AnimatedPhysicalModel', AnimatedPhysicalModelDemo()),
           SubExpandBean('AnimatedNumber', AnimatedNumberDemo()),
           SubExpandBean('Tween', TweenDemo()),
           SubExpandBean('自定义动画', CustomAnimationDemo()),

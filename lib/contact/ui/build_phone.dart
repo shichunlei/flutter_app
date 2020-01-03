@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/page_index.dart';
 import '../index.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class BuildPhoneView extends StatefulWidget {
   final String phone;
   final String cell;
-  Future<Null> launched;
 
-  BuildPhoneView({Key key, this.phone, this.launched, this.cell})
-      : super(key: key);
+  BuildPhoneView({Key key, this.phone, this.cell}) : super(key: key);
 
   @override
   _BuildPhoneViewState createState() => _BuildPhoneViewState();
 }
 
 class _BuildPhoneViewState extends State<BuildPhoneView> {
-
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -28,9 +25,7 @@ class _BuildPhoneViewState extends State<BuildPhoneView> {
             icon: Icons.call,
             tooltip: "call",
             onPressed: () {
-              setState(() {
-                widget.launched = _launch('tel:${widget.phone}');
-              });
+              Utils.launchURL('tel:${widget.phone}');
             },
             lines: <String>[
               '${widget.phone}',
@@ -41,9 +36,7 @@ class _BuildPhoneViewState extends State<BuildPhoneView> {
             icon: Icons.message,
             tooltip: "send message",
             onPressed: () {
-              setState(() {
-                widget.launched = _launch('sms:${widget.phone}');
-              });
+              Utils.launchURL('sms:${widget.phone}');
             },
             lines: <String>[
               '${widget.cell}',
@@ -62,13 +55,5 @@ class _BuildPhoneViewState extends State<BuildPhoneView> {
         ],
       ),
     );
-  }
-
-  Future<Null> _launch(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }
