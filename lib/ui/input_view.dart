@@ -75,6 +75,7 @@ class CustomTextField extends StatefulWidget {
   final FocusNode nextFocusNode;
   final bool isInputPwd;
   final Function getVCode;
+  final Duration duration;
   final Widget prefixIcon;
   final TextStyle hintTextStyle;
 
@@ -91,6 +92,7 @@ class CustomTextField extends StatefulWidget {
     this.getVCode,
     this.prefixIcon,
     this.hintTextStyle,
+    this.duration: const Duration(seconds: 60),
   }) : super(key: key);
 
   @override
@@ -104,7 +106,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   final StreamController<Model> _streamController = StreamController<Model>();
 
   /// 倒计时秒数
-  final int second = 30;
+  int second;
 
   /// 当前秒数
   int s;
@@ -112,6 +114,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   void initState() {
     super.initState();
+    second = widget.duration.inSeconds;
+
     //监听输入改变
     widget.controller.addListener(() {
       setState(() {
@@ -269,18 +273,20 @@ class TextFieldItem extends StatelessWidget {
   final FocusNode nextFocusNode;
   final int maxLines;
   final int maxLength;
+  final TextAlign textAlign;
 
-  const TextFieldItem(
-      {Key key,
-      this.controller,
-      @required this.title,
-      this.keyboardType: TextInputType.text,
-      this.hintText: "",
-      this.focusNode,
-      this.nextFocusNode,
-      this.maxLines: 1,
-      this.maxLength})
-      : super(key: key);
+  const TextFieldItem({
+    Key key,
+    this.controller,
+    @required this.title,
+    this.keyboardType: TextInputType.text,
+    this.hintText: "",
+    this.focusNode,
+    this.nextFocusNode,
+    this.maxLines: 1,
+    this.maxLength,
+    this.textAlign: TextAlign.start,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -300,6 +306,7 @@ class TextFieldItem extends StatelessWidget {
                   child: Text(title, style: TextStyles.textDark14)),
               Expanded(
                   child: TextField(
+                      textAlign: textAlign,
                       maxLength: maxLength,
                       style: TextStyles.textDark14,
                       maxLines: maxLines,
