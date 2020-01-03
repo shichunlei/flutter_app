@@ -190,7 +190,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                           setState(() => _isShowPwd = !_isShowPwd);
                         }))),
             Visibility(
-              visible: widget.getVCode == null,
+              visible: widget.getVCode != null,
               child: Padding(
                 padding: const EdgeInsets.only(left: 15.0),
                 child: Container(
