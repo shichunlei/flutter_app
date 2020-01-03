@@ -4,10 +4,16 @@
 
 #import "GeneratedPluginRegistrant.h"
 
-#if __has_include(<amap_base_location/AMapBaseLocationPlugin.h>)
-#import <amap_base_location/AMapBaseLocationPlugin.h>
+#if __has_include(<amap_core_fluttify/AmapCoreFluttifyPlugin.h>)
+#import <amap_core_fluttify/AmapCoreFluttifyPlugin.h>
 #else
-@import amap_base_location;
+@import amap_core_fluttify;
+#endif
+
+#if __has_include(<amap_location_fluttify/AmapLocationFluttifyPlugin.h>)
+#import <amap_location_fluttify/AmapLocationFluttifyPlugin.h>
+#else
+@import amap_location_fluttify;
 #endif
 
 #if __has_include(<audioplayers/AudioplayersPlugin.h>)
@@ -50,6 +56,12 @@
 #import <flutter_webview_plugin/FlutterWebviewPlugin.h>
 #else
 @import flutter_webview_plugin;
+#endif
+
+#if __has_include(<foundation_fluttify/FoundationFluttifyPlugin.h>)
+#import <foundation_fluttify/FoundationFluttifyPlugin.h>
+#else
+@import foundation_fluttify;
 #endif
 
 #if __has_include(<image_cropper/ImageCropperPlugin.h>)
@@ -139,7 +151,8 @@
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
-  [AMapBaseLocationPlugin registerWithRegistrar:[registry registrarForPlugin:@"AMapBaseLocationPlugin"]];
+  [AmapCoreFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapCoreFluttifyPlugin"]];
+  [AmapLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapLocationFluttifyPlugin"]];
   [AudioplayersPlugin registerWithRegistrar:[registry registrarForPlugin:@"AudioplayersPlugin"]];
   [BarcodeScanPlugin registerWithRegistrar:[registry registrarForPlugin:@"BarcodeScanPlugin"]];
   [ContactPickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"ContactPickerPlugin"]];
@@ -147,6 +160,7 @@
   [FlutterJdAddressSelectorPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterJdAddressSelectorPlugin"]];
   [FlutterSoundPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterSoundPlugin"]];
   [FlutterWebviewPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterWebviewPlugin"]];
+  [FoundationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"FoundationFluttifyPlugin"]];
   [FLTImageCropperPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImageCropperPlugin"]];
   [ImageGallerySaverPlugin registerWithRegistrar:[registry registrarForPlugin:@"ImageGallerySaverPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];

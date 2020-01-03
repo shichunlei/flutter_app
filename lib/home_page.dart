@@ -1,4 +1,4 @@
-import 'package:amap_base_location/amap_base_location.dart';
+import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/he_weather.dart';
@@ -22,8 +22,6 @@ class HomePage extends StatefulWidget {
 class HomeStatePage extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final _aMapLocation = AMapLocation();
-
   Location location;
 
   /// 上次点击时间
@@ -35,7 +33,6 @@ class HomeStatePage extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _aMapLocation.init();
 
     SchedulerBinding.instance.addPostFrameCallback((Duration timestamp) {
       // 设置EasyRefresh的默认样式
@@ -64,7 +61,7 @@ class HomeStatePage extends State<HomePage> {
 
   @override
   void dispose() {
-    _aMapLocation.stopLocate();
+    AmapLocation.stopLocation();
 
     super.dispose();
   }
@@ -163,10 +160,10 @@ class HomeStatePage extends State<HomePage> {
   /// 监听返回键，点击两下退出程序
   Future<bool> _onBackPressed() async {
     if (_scaffoldKey.currentState.isDrawerOpen) {
-      print("菜单打开着");
+      debugPrint("菜单打开着");
     } else if (_lastPressedAt == null ||
         DateTime.now().difference(_lastPressedAt) > Duration(seconds: 2)) {
-      print("点击时间");
+      debugPrint("点击时间");
       //两次点击间隔超过2秒则重新计时
       _lastPressedAt = DateTime.now();
       Toast.show(context, "再按一次退出",
@@ -177,22 +174,14 @@ class HomeStatePage extends State<HomePage> {
   }
 
   Future<void> _location() async {
-    final options = LocationClientOptions(
-      isOnceLocation: true,
-      locatingWithReGeocode: true,
-    );
-
     if (await PermissionsUtil.requestMapPermission()) {
-      _aMapLocation.getLocation(options).then((value) {
-        location = value;
-        debugPrint("location==========${location.city}");
-        setState(() {
-          city = location.district;
-        });
-        if (city != null || city.isNotEmpty) {
-          getWeatherData(city);
-        }
-      });
+      final __location = await AmapLocation.fetchLocation();
+      setState(() => location = __location);
+      city = await location.district;
+      setState(() {});
+      if (city != null || city.isNotEmpty) {
+        getWeatherData(city);
+      }
     } else {
       Scaffold.of(context).showSnackBar(SnackBar(content: Text('权限不足')));
     }

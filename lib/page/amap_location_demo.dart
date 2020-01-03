@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:amap_base_location/amap_base_location.dart';
+import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:flutter/material.dart';
 
 import '../page_index.dart';
@@ -14,20 +12,11 @@ class AMapLocationDemo extends StatefulWidget {
 
 class _AMapLocationDemoState extends State<AMapLocationDemo>
     with AutomaticKeepAliveClientMixin {
-  final _amapLocation = AMapLocation();
-
   List<Location> _result = [];
 
   @override
-  void initState() {
-    super.initState();
-
-    _amapLocation.init();
-  }
-
-  @override
   void dispose() {
-    _amapLocation.stopLocate();
+    AmapLocation.stopLocation();
 
     super.dispose();
   }
@@ -50,16 +39,10 @@ class _AMapLocationDemoState extends State<AMapLocationDemo>
               Expanded(
                   child: Button(
                       onPressed: () async {
-                        final options = LocationClientOptions(
-                          isOnceLocation: true,
-                          locatingWithReGeocode: true,
-                        );
-
-                        if (await Permissions.requestMapPermission()) {
-                          _amapLocation
-                              .getLocation(options)
-                              .then(_result.add)
-                              .then((_) => setState(() {}));
+                        if (await PermissionsUtil.requestMapPermission()) {
+                          final location = await AmapLocation.fetchLocation();
+                          _result.add(location);
+                          setState(() {});
                         } else {
                           Scaffold.of(context)
                               .showSnackBar(SnackBar(content: Text('权限不足')));
@@ -70,16 +53,12 @@ class _AMapLocationDemoState extends State<AMapLocationDemo>
                   child: Button(
                 text: '连续定位',
                 onPressed: () async {
-                  final options = LocationClientOptions(
-                    isOnceLocation: false,
-                    locatingWithReGeocode: true,
-                  );
-
-                  if (await Permissions.requestMapPermission()) {
-                    _amapLocation
-                        .startLocate(options)
-                        .map(_result.add)
-                        .listen((_) => setState(() {}));
+                  if (await PermissionsUtil.requestMapPermission()) {
+                    await for (final location
+                        in AmapLocation.listenLocation()) {
+                      _result.add(location);
+                      setState(() {});
+                    }
                   } else {
                     Scaffold.of(context)
                         .showSnackBar(SnackBar(content: Text('权限不足')));
@@ -87,12 +66,13 @@ class _AMapLocationDemoState extends State<AMapLocationDemo>
                 },
               )),
               Expanded(
-                  child: Button(
-                text: '停止定位',
-                onPressed: () {
-                  _amapLocation.stopLocate();
-                },
-              ))
+                child: Button(
+                  text: '停止定位',
+                  onPressed: () async {
+                    await AmapLocation.stopLocation();
+                  },
+                ),
+              )
             ],
           ),
         ],
@@ -105,9 +85,9 @@ class _AMapLocationDemoState extends State<AMapLocationDemo>
 }
 
 class _ResultItem extends StatelessWidget {
-  final Location _data;
+  final Location _location;
 
-  const _ResultItem(this._data, {Key key}) : super(key: key);
+  const _ResultItem(this._location, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -121,18 +101,125 @@ class _ResultItem extends StatelessWidget {
                   color: Colors.grey,
                   fontSize: 16,
                   decoration: TextDecoration.none)),
-          Text(jsonFormat(_data.toJson()),
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  decoration: TextDecoration.none))
+          if (_location != null)
+            FutureBuilder<String>(
+              initialData: '',
+              future: _location.address,
+              builder: (_, ss) => Text(
+                'address: ${ss.data}' ?? '',
+                style: TextStyles.textWhite14,
+              ),
+            ),
+          if (_location != null)
+            FutureBuilder<String>(
+              initialData: '',
+              future: _location.country,
+              builder: (_, ss) => Text(
+                'country: ${ss.data}' ?? '',
+                style: TextStyles.textWhite14,
+              ),
+            ),
+          if (_location != null)
+            FutureBuilder<String>(
+              initialData: '',
+              future: _location.province,
+              builder: (_, ss) => Text(
+                'province: ${ss.data}' ?? '',
+                style: TextStyles.textWhite14,
+              ),
+            ),
+          if (_location != null)
+            FutureBuilder<String>(
+              initialData: '',
+              future: _location.city,
+              builder: (_, ss) => Text(
+                'city: ${ss.data}' ?? '',
+                style: TextStyles.textWhite14,
+              ),
+            ),
+          if (_location != null)
+            FutureBuilder<String>(
+              initialData: '',
+              future: _location.district,
+              builder: (_, ss) => Text(
+                'district: ${ss.data}' ?? '',
+                style: TextStyles.textWhite14,
+              ),
+            ),
+          if (_location != null)
+            FutureBuilder<String>(
+              initialData: '',
+              future: _location.poiName,
+              builder: (_, ss) => Text(
+                'poiName: ${ss.data}' ?? '',
+                style: TextStyles.textWhite14,
+              ),
+            ),
+          if (_location != null)
+            FutureBuilder<String>(
+              initialData: '',
+              future: _location.street,
+              builder: (_, ss) => Text(
+                'street: ${ss.data}' ?? '',
+                style: TextStyles.textWhite14,
+              ),
+            ),
+          if (_location != null)
+            FutureBuilder<String>(
+              initialData: '',
+              future: _location.aoiName,
+              builder: (_, ss) => Text(
+                'aoiName: ${ss.data}' ?? '',
+                style: TextStyles.textWhite14,
+              ),
+            ),
+          if (_location != null)
+            FutureBuilder<double>(
+              initialData: 0.0,
+              future: _location.latLng.then((it) => it.latitude),
+              builder: (_, ss) => Text(
+                'latitude: ${ss.data}' ?? '',
+                style: TextStyles.textWhite14,
+              ),
+            ),
+          if (_location != null)
+            FutureBuilder<double>(
+              initialData: 0.0,
+              future: _location.latLng.then((it) => it.longitude),
+              builder: (_, ss) => Text(
+                'longitude: ${ss.data}' ?? '',
+                style: TextStyles.textWhite14,
+              ),
+            ),
+          if (_location != null)
+            FutureBuilder<double>(
+              initialData: 0.0,
+              future: _location.altitude,
+              builder: (_, ss) => Text(
+                'altitude: ${ss.data}' ?? '',
+                style: TextStyles.textWhite14,
+              ),
+            ),
+          if (_location != null)
+            FutureBuilder<double>(
+              initialData: 0.0,
+              future: _location.bearing,
+              builder: (_, ss) => Text(
+                'bearing: ${ss.data}' ?? '',
+                style: TextStyles.textWhite14,
+              ),
+            ),
+          if (_location != null)
+            FutureBuilder<double>(
+              initialData: 0.0,
+              future: _location.accuracy,
+              builder: (_, ss) => Text(
+                'accuracy: ${ss.data}' ?? '',
+                style: TextStyles.textWhite14,
+              ),
+            ),
         ],
       ),
     );
-  }
-
-  String jsonFormat(Map<String, Object> json) {
-    JsonEncoder encoder = JsonEncoder.withIndent('  ');
-    return encoder.convert(json);
   }
 }
