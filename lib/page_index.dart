@@ -75,6 +75,7 @@ export 'page/shimmer.dart';
 export 'page/backdrop.dart';
 export 'page/sound_demo.dart';
 export 'page/horizontal_picker_demo.dart';
+export 'page/bottom_drag.dart';
 
 export 'animation/curves_demo.dart';
 export 'animation/animated_opacity.dart';
@@ -184,6 +185,9 @@ export 'ui_screen/logon.dart';
 export 'ui_screen/ticket/index.dart';
 export 'ui_screen/card_scroll_page.dart';
 export 'ui_screen/guillotine_menu.dart';
+export 'ui_screen/bottom_menu.dart';
+export 'ui_screen/navigation/dark_drawer.dart';
+export 'ui_screen/navigation/light_drawer.dart';
 
 export 'res/colors.dart';
 export 'res/dimens.dart';

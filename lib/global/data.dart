@@ -138,7 +138,11 @@ class ExpandStateBean {
       SubExpandBean('BackDrop', BackDropPage()),
       SubExpandBean('CardScroll', CardScrollDemo()),
       SubExpandBean('GuillotineMenu', GuillotineMenuPage()),
+      SubExpandBean('BottomMenu', BottomMenuPage()),
       SubExpandBean('BankScreen', BankScreen()),
+      SubExpandBean('BottomDrag', BottomDragWidgetDemo()),
+      SubExpandBean('DarkDrawer', DarkDrawerPage()),
+      SubExpandBean('LightDrawer', LightDrawerPage()),
     ]),
     ExpandStateBean(
         leading: Icons.filter_7,
