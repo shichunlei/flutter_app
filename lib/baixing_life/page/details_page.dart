@@ -80,7 +80,7 @@ class _DetailsPageState extends State<DetailsPage>
     return Scaffold(
         backgroundColor: Colors.grey[200],
         body: goods == null
-            ? getLoadingWidget()
+            ? LoadingWidget()
             : Column(children: <Widget>[_buildBodyView(), _buildBottomView()]));
   }
 

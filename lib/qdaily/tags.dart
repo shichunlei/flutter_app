@@ -40,7 +40,7 @@ class _TagsPageState extends State<TagsPage> {
     return Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(title: Text('${widget.title}')),
-        body: feeds.length == 0 ? getLoadingWidget() : _buildBodyView());
+        body: feeds.length == 0 ? LoadingWidget() : _buildBodyView());
   }
 
   Widget _buildBodyView() {

@@ -37,7 +37,7 @@ class _MovieRankingSubPageState extends State<MovieRankingSubPage>
               return Text('');
             case ConnectionState.waiting:
               debugPrint('MovieRankingSubPage waiting');
-              return getLoadingWidget();
+              return LoadingWidget();
             case ConnectionState.done:
               debugPrint('MovieRankingSubPage done');
               if (snapshot.hasError) {

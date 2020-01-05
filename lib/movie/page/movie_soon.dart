@@ -55,7 +55,7 @@ class _MovieSoonPageState extends State<MovieSoonPage> {
 
   Widget builderPageView() {
     if (isFirst && movies.isEmpty) {
-      return getLoadingWidget();
+      return LoadingWidget();
     }
     return EasyRefresh(
       footer: BallPulseFooter(),

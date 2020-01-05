@@ -9,7 +9,7 @@ class CollectArticle extends StatefulWidget {
   CollectArticle(this.themeColor, {Key key}) : super(key: key);
 
   @override
-  _CollectArticleState createState() => _CollectArticleState();
+  createState() => _CollectArticleState();
 }
 
 class _CollectArticleState extends State<CollectArticle> {
@@ -45,7 +45,7 @@ class _CollectArticleState extends State<CollectArticle> {
               return Text('');
             case ConnectionState.waiting:
               debugPrint('waiting');
-              return getLoadingWidget();
+              return LoadingWidget();
             case ConnectionState.done:
               debugPrint('done');
               if (snapshot.hasError) {

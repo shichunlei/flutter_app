@@ -36,7 +36,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: feeds.length == 0 ? getLoadingWidget() : _buildBodyView());
+        body: feeds.length == 0 ? LoadingWidget() : _buildBodyView());
   }
 
   Future<void> getSearchData(String keywords, String lastKey) async {

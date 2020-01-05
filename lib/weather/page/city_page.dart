@@ -37,7 +37,7 @@ class CityPageState extends State<CityPage> {
         appBar: AppBar(title: Text('城市列表')),
         body: LoaderContainer(
           loaderState: _status,
-          loadingView: getLoadingWidget(),
+          loadingView: LoadingWidget(),
           contentView: AzListView(
               data: _cityList,
               topData: _hotCityList,

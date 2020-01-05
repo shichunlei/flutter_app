@@ -1,7 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/data.dart';
 
+import '../../page_index.dart';
 import 'oval_right_border_clipper.dart';
 
 class DarkDrawerPage extends StatelessWidget {
@@ -87,10 +86,12 @@ class DarkDrawerPage extends StatelessWidget {
                         shape: BoxShape.circle,
                         gradient: LinearGradient(
                             colors: [Colors.pink, Colors.deepPurple])),
-                    child: CircleAvatar(
-                      radius: 40,
-                      backgroundImage:
-                          CachedNetworkImageProvider(backgroundImage),
+                    child: ImageLoadView(
+                      backgroundImage,
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(40.0)),
+                      height: 80.0,
+                      width: 80.0,
                     ),
                   ),
                   SizedBox(height: 5.0),
@@ -146,4 +147,3 @@ class DarkDrawerPage extends StatelessWidget {
     );
   }
 }
-

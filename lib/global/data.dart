@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../page_index.dart';
 
@@ -143,6 +145,7 @@ class ExpandStateBean {
       SubExpandBean('BottomDrag', BottomDragWidgetDemo()),
       SubExpandBean('DarkDrawer', DarkDrawerPage()),
       SubExpandBean('LightDrawer', LightDrawerPage()),
+      SubExpandBean('ScrollHeader', ScrollHeaderDemoPage()),
     ]),
     ExpandStateBean(
         leading: Icons.filter_7,
@@ -613,4 +616,37 @@ List<String> guideList = [
   "images/qdaily/bg_whatsnew_bg_1.jpg",
   "images/qdaily/bg_whatsnew_bg_2.jpg",
   "images/qdaily/bg_whatsnew_bg_3.jpg"
+];
+
+List<Widget> loadingWidgets = [
+  SpinKitThreeBounce(color: Utils.strToColor('ThreeBounce'), size: 30.0),
+  SpinKitCircle(color: Utils.strToColor('Circle')),
+  SpinKitChasingDots(color: Utils.strToColor('ChasingDots')),
+  SpinKitRotatingCircle(color: Utils.strToColor('RotatingCircle')),
+  SpinKitRotatingPlain(color: Utils.strToColor('RotatingPlain')),
+  SpinKitPumpingHeart(color: Utils.strToColor('PumpingHeart')),
+  SpinKitPulse(color: Utils.strToColor('Pulse')),
+  SpinKitDoubleBounce(color: Colors.grey),
+  SpinKitWave(color: Colors.blue, type: SpinKitWaveType.start),
+  SpinKitWave(color: Colors.red, type: SpinKitWaveType.center),
+  SpinKitWave(color: Colors.pink, type: SpinKitWaveType.end),
+  SpinKitWanderingCubes(color: Colors.teal),
+  SpinKitWanderingCubes(color: Colors.lightBlue, shape: BoxShape.circle),
+  SpinKitFadingFour(color: Colors.lightBlueAccent),
+  SpinKitFadingFour(color: Colors.lightGreen, shape: BoxShape.rectangle),
+  SpinKitFadingCube(color: Colors.lightGreenAccent),
+  SpinKitCubeGrid(size: 51.0, color: Colors.lime),
+  SpinKitFoldingCube(color: Colors.limeAccent),
+  SpinKitRing(color: Colors.teal),
+  SpinKitDualRing(color: Colors.tealAccent),
+  SpinKitRipple(color: Colors.pinkAccent),
+  SpinKitFadingGrid(color: Colors.pinkAccent),
+  SpinKitFadingGrid(color: Colors.purple, shape: BoxShape.rectangle),
+  SpinKitHourGlass(color: Colors.purpleAccent),
+  SpinKitSpinningCircle(color: Colors.deepOrange),
+  SpinKitSpinningCircle(color: Colors.deepPurple, shape: BoxShape.rectangle),
+  SpinKitFadingCircle(color: Colors.deepPurpleAccent),
+  SpinKitPouringHourglass(color: Colors.indigo),
+  CupertinoActivityIndicator(),
+  CircularProgressIndicator(backgroundColor: Colors.greenAccent),
 ];

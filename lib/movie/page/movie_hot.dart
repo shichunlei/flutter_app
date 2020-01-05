@@ -39,7 +39,7 @@ class _MovieHotPageState extends State<MovieHotPage> {
                 return Text('');
               case ConnectionState.waiting:
                 debugPrint('waiting');
-                return getLoadingWidget();
+                return LoadingWidget();
               case ConnectionState.done:
                 debugPrint('done');
                 if (snapshot.hasError) {

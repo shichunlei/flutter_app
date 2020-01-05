@@ -212,7 +212,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                 ],
               ),
             ),
-            Visibility(child: getLoadingWidget(), visible: !ready),
+            Visibility(child: LoadingWidget(), visible: !ready),
           ],
         ),
       ),

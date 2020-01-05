@@ -68,7 +68,7 @@ class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
 
   Widget builderPageView() {
     if (isFirst && movies.isEmpty) {
-      return getLoadingWidget();
+      return LoadingWidget();
     }
     return EasyRefresh(
       footer: BallPulseFooter(),

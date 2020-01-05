@@ -41,7 +41,7 @@ class _MovieTop250State extends State<MovieTop250> {
 
   Widget _builderPageView(List<Movie> movies) {
     if (isFirst && movies.isEmpty) {
-      return getLoadingWidget();
+      return LoadingWidget();
     } else {
       if (loadError) {
         return Center(

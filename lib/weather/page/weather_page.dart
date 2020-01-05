@@ -144,7 +144,7 @@ class WeatherPageState extends State<WeatherPage> {
 
   Widget _buildContentView() {
     if (null == weather || airData == null) {
-      return getLoadingWidget();
+      return LoadingWidget();
     }
     return RefreshIndicator(
         child: SingleChildScrollView(

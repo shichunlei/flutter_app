@@ -85,7 +85,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
 
   void getHitokotoData() async {
     data = await ApiService.hitokoto();
-
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 }

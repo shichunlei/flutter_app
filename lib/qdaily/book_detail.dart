@@ -43,7 +43,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
       body: Container(
         child: Stack(fit: StackFit.expand, children: <Widget>[
           responseBean == null || detailBean == null
-              ? getLoadingWidget()
+              ? LoadingWidget()
               : SingleChildScrollView(
                   child: Column(children: <Widget>[
                     Stack(children: <Widget>[

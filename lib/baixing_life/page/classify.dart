@@ -51,7 +51,7 @@ class _ClassifyPageState extends State<ClassifyPage>
             title: Text('${widget.title}'),
             backgroundColor: Colors.deepPurple),
         backgroundColor: Colors.grey[200],
-        body: category.isNotEmpty ? _buildBodyView() : getLoadingWidget());
+        body: category.isNotEmpty ? _buildBodyView() : LoadingWidget());
   }
 
   void getCategoryData() async {

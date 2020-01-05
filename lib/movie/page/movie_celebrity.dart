@@ -38,7 +38,7 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
     if (null == celebrity) {
       return Scaffold(
         backgroundColor: pageColor,
-        body: getLoadingWidget(),
+        body: LoadingWidget(),
       );
     } else {
       List<Movie> movies = celebrity.subjects;

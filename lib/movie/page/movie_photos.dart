@@ -71,7 +71,7 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
 
   Widget _buildBodyView() {
     if (isFirst && photos.isEmpty) {
-      return getLoadingWidget();
+      return LoadingWidget();
     }
     return EasyRefresh(
         footer: BallPulseFooter(),

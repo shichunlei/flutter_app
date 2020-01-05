@@ -45,7 +45,7 @@ class _CommentPageState extends State<CommentPage> {
           AppBar(title: Text('${widget.commentCount}条评论'), centerTitle: true),
       body: widget.commentCount == 0
           ? EmptyPage(text: '暂无评论', imageAsset: 'images/empty.jpeg')
-          : comments.isEmpty ? getLoadingWidget() : _buildBodyView(),
+          : comments.isEmpty ? LoadingWidget() : _buildBodyView(),
     );
   }
 
