@@ -77,38 +77,35 @@ class _QDailySplashPageState extends State<QDailySplashPage>
                 return Transform.scale(
                     scale: _animation.value,
                     child: SafeArea(
-                      child: Stack(
-                          alignment: Alignment.topRight,
-                          children: <Widget>[
-                            Container(
-                                padding: EdgeInsets.only(top: 50, bottom: 50),
-                                alignment: Alignment.center,
-                                child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Image.asset(
-                                          'images/qdaily/qdaily_logo.jpeg'),
-                                      Text('「好奇驱动你的世界」',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 20))
-                                    ])),
-                            showTimer
-                                ? CountdownWidget(
-                                    seconds: 3,
-                                    onCountdownFinishCallBack: (bool value) {
-                                      if (value) {
-                                        if (isFirst) {
-                                          setState(() => showGuidePages = true);
-                                        } else {
-                                          pushReplacement(
-                                              context, QDailyIndexPage());
-                                        }
-                                      }
-                                    })
-                                : SizedBox()
-                          ]),
+                      child: Stack(alignment: Alignment.topRight, children: <
+                          Widget>[
+                        Container(
+                            padding: EdgeInsets.only(top: 50, bottom: 50),
+                            alignment: Alignment.center,
+                            child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Image.asset('images/qdaily/qdaily_logo.jpeg'),
+                                  Text('「好奇驱动你的世界」',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 20))
+                                ])),
+                        Visibility(
+                          visible: showTimer,
+                          child: CountdownWidget(
+                              seconds: 3,
+                              onCountdownFinishCallBack: (bool value) {
+                                if (value) {
+                                  if (isFirst) {
+                                    setState(() => showGuidePages = true);
+                                  } else {
+                                    pushReplacement(context, QDailyIndexPage());
+                                  }
+                                }
+                              }),
+                        )
+                      ]),
                     ));
               }),
 

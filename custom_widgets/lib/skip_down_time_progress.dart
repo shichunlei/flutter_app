@@ -16,7 +16,7 @@ class SkipDownTimeProgress extends StatefulWidget {
       this.color,
       this.radius,
       this.duration,
-      this.size,
+      this.size: const Size(25.0, 25.0),
       this.skipText = "跳过",
       this.onTap,
       this.onFinishCallBack})
@@ -28,27 +28,26 @@ class SkipDownTimeProgress extends StatefulWidget {
 
 class _SkipDownTimeProgressState extends State<SkipDownTimeProgress>
     with TickerProviderStateMixin {
-  AnimationController animationController;
-  double curAngle = 360.0;
+  Animation<double> _animation;
+  AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
     debugPrint('initState----------------------');
-    animationController =
-        AnimationController(vsync: this, duration: widget.duration);
-    animationController.addListener(() {
-      debugPrint('ange == ${animationController.value}');
-      double ange =
-          double.parse(((animationController.value * 360) ~/ 1).toString());
-      setState(() {
-        curAngle = (360.0 - ange);
-        if (curAngle <= 0) {
+    _controller = AnimationController(vsync: this, duration: widget.duration);
+    _animation = Tween(begin: 360.0, end: 0.0).animate(_controller)
+      ..addListener(() {
+        debugPrint('ange == ${_controller.value}');
+        if (mounted) setState(() {});
+      })
+      ..addStatusListener((AnimationStatus status) {
+        if (status == AnimationStatus.completed) {
           widget.onFinishCallBack(true);
         }
       });
-    });
-    _doAnimation();
+
+    _controller.forward().orCancel;
   }
 
   @override
@@ -59,50 +58,28 @@ class _SkipDownTimeProgressState extends State<SkipDownTimeProgress>
 
   @override
   void dispose() {
+    _controller.dispose();
     super.dispose();
     debugPrint('dispose----------------------');
-    animationController.dispose();
-  }
-
-  void _doAnimation() async {
-    Future.delayed(Duration(milliseconds: 50), () {
-      if (mounted) {
-        animationController.forward().orCancel;
-      } else {
-        _doAnimation();
-      }
-    });
-  }
-
-  void _change() {
-    debugPrint('ange == ${animationController.value}');
-    double ange =
-        double.parse(((animationController.value * 360) ~/ 1).toString());
-    setState(() {
-      curAngle = (360.0 - ange);
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.onTap,
-      child: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          CustomPaint(
-            painter:
-                _DrawProgress(widget.color, widget.radius, angle: curAngle),
-            size: widget.size,
-          ),
-          Text(
+      child: CustomPaint(
+        painter:
+            _DrawProgress(widget.color, widget.radius, angle: _animation.value),
+        size: widget.size,
+        child: Center(
+          child: Text(
             widget.skipText,
             style: TextStyle(
                 color: widget.color,
                 fontSize: 13.5,
                 decoration: TextDecoration.none),
           ),
-        ],
+        ),
       ),
     );
   }

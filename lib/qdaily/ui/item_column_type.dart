@@ -91,7 +91,7 @@ class _ItemColumnTypeViewState extends State<ItemColumnTypeView> {
 
       debugPrint(
           'ItemColumnTypeOne===========${this.lastKey}=============$isLoadComplete');
-      setState(() {});
+      if (mounted) setState(() {});
     }
   }
 }

@@ -268,6 +268,6 @@ class _ArticleDetailState extends State<ArticleDetail> {
 
     detailBean = await ApiService.getQDailyArticleData(id);
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 }
