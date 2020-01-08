@@ -15,7 +15,7 @@ void main() async {
   setCustomErrorPage();
   _setTargetPlatformForDesktop();
   await SpUtil.getInstance();
-  await AmapCore.init('24d68b20bd23ec522658ddd98d3cd5b0');
+  await AmapCore.init(Config.AMAP_KEY);
   runZoned(() {
     //强制横屏
     // SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);

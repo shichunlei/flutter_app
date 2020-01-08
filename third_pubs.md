@@ -34,7 +34,10 @@
 | Badges | [badges](https://github.com/yadaniyil/flutter_badges) | ![](https://img.shields.io/pub/v/badges.svg) |
 | Palette Generator | [palette_generator](https://github.com/flutter/packages/tree/master/packages/palette_generator) | ![](https://img.shields.io/pub/v/palette_generator.svg) |
 | path_provider | [path_provider](https://github.com/flutter/plugins/tree/master/packages/path_provider) | ![](https://img.shields.io/pub/v/path_provider.svg) |
-| 高德地图定位 | [AMapBaseLocation](https://github.com/OpenFlutter/amap_base_flutter) | ![](https://img.shields.io/pub/v/amap_base_location.svg) |
+| 高德整合组件 | [AMapAll](https://github.com/fluttify-project/amap_all_fluttify) | ![](https://img.shields.io/pub/v/amap_all_fluttify.svg) |
+| 高德定位组件 | [AMapLocation](https://github.com/fluttify-project/amap_location_fluttify) | ![](https://img.shields.io/pub/v/amap_location_fluttify.svg) |
+| 高德地图组件 | [AMapMap](https://github.com/fluttify-project/amap_map_fluttify) | ![](https://img.shields.io/pub/v/amap_map_fluttify.svg) |
+| 高德搜索插件 | [AMapSearch](https://github.com/fluttify-project/amap_search_fluttify) | ![](https://img.shields.io/pub/v/amap_search_fluttify.svg) |
 | 动画字体 | [animated_text_kit](https://github.com/aagarwal1012/Animated-Text-Kit) | ![](https://img.shields.io/pub/v/animated_text_kit.svg) |
 | GradientText | [GradientText](https://github.com/tunitowen/gradient_text) | ![](https://img.shields.io/pub/v/gradient_text.svg) |
 | 集成icons库 |[flutter_vector_icons](https://github.com/pd4d10/flutter-vector-icons)| ![](https://img.shields.io/pub/v/flutter_vector_icons.svg) |
