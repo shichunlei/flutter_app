@@ -44,8 +44,7 @@ class _MovieSoonPageState extends State<MovieSoonPage> {
     } else if (type == RefreshType.LOAD_MORE) {
       movies.addAll(list);
       if (list.isEmpty) {
-        Toast.show(context, "加载完...",
-            duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+        Toast.show(context, "加载完...");
         isLoadComplete = true;
       }
     }

@@ -9,43 +9,16 @@ class AudioPlayersPage extends StatefulWidget {
   createState() => _AudioPlayersPageState();
 }
 
-class _AudioPlayersPageState extends State<AudioPlayersPage>
-    with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-
+class _AudioPlayersPageState extends State<AudioPlayersPage> {
   @override
   void initState() {
     super.initState();
-
-    _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 20));
-
-    /// 动画开始、结束、向前移动或向后移动时会调用StatusListener
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        /// 动画从 controller.forward() 正向执行 结束时会回调此方法
-        debugPrint("status is completed");
-
-        /// 重置起点
-        _controller.reset();
-
-        /// 开启
-        _controller.forward();
-      }
-    });
-
     WidgetsBinding.instance.addPostFrameCallback((callback) {
       var value = Store.value<MusicModel>(context, listen: false);
       if (value.allSongs.length == 0) {
         value.addSongs(songsData);
       }
     });
-  }
-
-  @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
   }
 
   @override
@@ -68,17 +41,18 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
             ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(top: Utils.topSafeHeight),
-          child: AlbumCover(
-              image: snapshot.curSong?.albumArtUrl,
-              isPlaying: snapshot.isPlaying),
-        ),
         Positioned(
           bottom: Utils.bottomSafeHeight,
           left: 0,
           right: 0,
-          child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+          top: Utils.topSafeHeight,
+          child: Column(children: <Widget>[
+            Expanded(
+              child: AlbumCover(
+                image: snapshot.curSong?.albumArtUrl,
+                isPlaying: snapshot.isPlaying,
+              ),
+            ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               height: 30,
@@ -147,8 +121,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage>
                   Icons.more_horiz,
                   color: Colors.white,
                 ),
-                onPressed: () {
-                }),
+                onPressed: () {}),
           ),
           right: 0,
           top: Utils.topSafeHeight,

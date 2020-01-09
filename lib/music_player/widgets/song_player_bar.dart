@@ -10,8 +10,11 @@ class SongPlayerBar extends StatelessWidget {
   Widget build(BuildContext context) {
     var snapshot = Store.value<MusicModel>(context);
     return GestureDetector(
-      onTap: () => pushNewPageAnimation(context, AudioPlayersPage(),
-          type: TransitionType.slide, direction: SlideDirection.bottom2top),
+      onTap: () => pushNewPageAnimation(
+        context,
+        AudioPlayersPage(),
+        type: TransitionType.slide_top,
+      ),
       child: Container(
         height: 60.0 + Utils.bottomSafeHeight,
         width: Utils.width,

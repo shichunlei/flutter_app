@@ -166,8 +166,7 @@ class HomeStatePage extends State<HomePage> {
       debugPrint("点击时间");
       //两次点击间隔超过2秒则重新计时
       _lastPressedAt = DateTime.now();
-      Toast.show(context, "再按一次退出",
-          duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+      Toast.show(context, "再按一次退出");
       return false;
     }
     return true;

@@ -8,16 +8,17 @@ class AlbumCover extends StatefulWidget {
   final String image;
   final bool isPlaying;
 
-  const AlbumCover({Key key, @required this.image, this.isPlaying})
-      : super(key: key);
+  const AlbumCover({
+    Key key,
+    @required this.image,
+    this.isPlaying,
+  }) : super(key: key);
 
   @override
   createState() => _AlbumCoverState();
 }
 
 class _AlbumCoverState extends State<AlbumCover> {
-  void _toggleShowLyric() {}
-
   double _rotation = 0; // 旋转角度
 
   Timer _timer;
@@ -86,20 +87,17 @@ class _AlbumCoverState extends State<AlbumCover> {
 
           // player needle
           Positioned(
-            child: GestureDetector(
-              child: Container(
-                child: Transform(
-                  child: Image.asset('images/player_needle.png'),
-                  // pause: -30 playing: 0
-                  transform: Matrix4.identity()
-                    ..rotateZ((widget.isPlaying ? 0 : -30) * math.pi / 180),
-                  origin: Offset(15, 13),
-                ),
-                // color: Colors.white,
-                height: 134,
-                padding: EdgeInsets.only(left: 62),
+            child: Container(
+              child: Transform(
+                child: Image.asset('images/player_needle.png'),
+                // pause: -30 playing: 0
+                transform: Matrix4.identity()
+                  ..rotateZ((widget.isPlaying ? 0 : -30) * math.pi / 180),
+                origin: Offset(15, 13),
               ),
-              onTap: _toggleShowLyric,
+              // color: Colors.white,
+              height: 134,
+              padding: EdgeInsets.only(left: 62),
             ),
             top: 20,
             height: 134,

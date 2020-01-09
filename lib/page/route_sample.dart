@@ -24,26 +24,22 @@ class RouteSample extends StatelessWidget {
           RaisedButton(
             child: Text('Slide L2R'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
-                type: TransitionType.slide,
-                direction: SlideDirection.left2right),
+                type: TransitionType.slide_right),
           ),
           RaisedButton(
             child: Text('Slide R2L'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
-                type: TransitionType.slide,
-                direction: SlideDirection.right2left),
+                type: TransitionType.slide_left),
           ),
           RaisedButton(
             child: Text('Slide B2T'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
-                type: TransitionType.slide,
-                direction: SlideDirection.bottom2top),
+                type: TransitionType.slide_top),
           ),
           RaisedButton(
             child: Text('Slide T2B'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
-                type: TransitionType.slide,
-                direction: SlideDirection.top2bottom),
+                type: TransitionType.slide_bottom),
           ),
           RaisedButton(
             child: Text('EnterExit R2L'),
