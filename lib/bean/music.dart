@@ -564,24 +564,59 @@ class Lyric {
   }
 }
 
+class MusicCategory {
+  String title;
+  List<SubCategoryBean> list;
 
-/// id : 265
-/// mid : "001JDzPT3JdvqK"
-/// name : "王力宏"
-
-class SingerBean {
-  int id;
-  String mid;
-  String name;
-
-  static SingerBean fromMap(Map<String, dynamic> map) {
+  static MusicCategory fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-    SingerBean singerBean = SingerBean();
-    singerBean.id = map['id'];
-    singerBean.mid = map['mid'];
-    singerBean.name = map['name'];
-    return singerBean;
+    MusicCategory bean = MusicCategory();
+    bean.title = map['title'];
+    bean.list = List()
+      ..addAll(
+          (map['list'] as List ?? []).map((o) => SubCategoryBean.fromMap(o)));
+    return bean;
   }
 
-  Map toJson() => {"id": id, "mid": mid, "name": name};
+  Map toJson() => {
+        "title": title,
+        "list": list,
+      };
+}
+
+class SubCategoryBean {
+  int id;
+  String value;
+  String label;
+  String desc;
+  String period;
+  String update;
+  List<Song> list;
+  String coverUrl;
+
+  static SubCategoryBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    SubCategoryBean listBean = SubCategoryBean();
+    listBean.value = "${map['value']}";
+    listBean.label = map['label'];
+    listBean.desc = map['intro'];
+    listBean.id = map['id'];
+    listBean.period = map['period'];
+    listBean.update = map['update'];
+    listBean.list = List()
+      ..addAll((map['list'] as List ?? []).map((o) => Song.fromMap(o)));
+    listBean.coverUrl = map['picUrl'];
+    return listBean;
+  }
+
+  Map toJson() => {
+        "value": value,
+        "label": label,
+        "desc": desc,
+        "id": id,
+        "period": period,
+        "update": update,
+        "list": list,
+        "coverUrl": coverUrl,
+      };
 }

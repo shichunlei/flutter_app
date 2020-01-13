@@ -85,8 +85,9 @@ class MusicModel extends ChangeNotifier {
       ..onPlayerError.listen(
         (msg) {
           debugPrint('audioPlayer error : $msg');
-          _duration = Duration(seconds: 0);
-          _position = Duration(seconds: 0);
+          _progress = 0.0;
+          _duration = Duration();
+          _position = Duration();
         },
       )
 
@@ -212,8 +213,8 @@ class MusicModel extends ChangeNotifier {
   void _stop() {
     _progress = 0.0;
     _audioPlayer.stop();
-    _duration = Duration(seconds: 0);
-    _position = Duration(seconds: 0);
+    _duration = Duration();
+    _position = Duration();
   }
 
   // 暂停
