@@ -131,8 +131,10 @@ class _CategoryListPageState extends State<CategoryListPage> {
       list.addAll(_list);
     }
 
-    setState(() {
-      state = LoaderState.Succeed;
-    });
+    if (mounted) {
+      setState(() {
+        state = LoaderState.Succeed;
+      });
+    }
   }
 }

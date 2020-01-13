@@ -51,7 +51,7 @@ class TextFieldView extends StatelessWidget {
           Expanded(
             child: TextField(
               controller: controller,
-              style: style,
+              style: style.copyWith(textBaseline: TextBaseline.alphabetic),
               decoration: InputDecoration(
                 hintText: hintText,
                 hintStyle: hintStyle,
@@ -141,6 +141,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         TextField(
           focusNode: widget.focusNode,
           maxLength: widget.maxLength,
+          style: TextStyle(textBaseline: TextBaseline.alphabetic),
 
           /// 键盘动作按钮点击之后执行的代码： 光标切换到指定的输入框
           onEditingComplete: widget.nextFocusNode == null

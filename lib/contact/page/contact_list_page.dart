@@ -9,7 +9,7 @@ import '../index.dart';
 
 class ContactListPage extends StatefulWidget {
   @override
-  _ContactListPageState createState() => _ContactListPageState();
+  createState() => _ContactListPageState();
 }
 
 class _ContactListPageState extends State<ContactListPage> {
@@ -32,9 +32,6 @@ class _ContactListPageState extends State<ContactListPage> {
             future: data,
             builder: (_, AsyncSnapshot<List<Contact>> snapshot) {
               switch (snapshot.connectionState) {
-                case ConnectionState.none:
-                  debugPrint('none');
-                  return Text('');
                 case ConnectionState.waiting:
                   debugPrint('waiting');
                   return LoadingWidget();

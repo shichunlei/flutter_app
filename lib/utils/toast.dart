@@ -29,8 +29,7 @@ class Toast {
 
 class ToastView {
   bool _isVisible = false;
-  OverlayState overlayState;
-  OverlayEntry overlayEntry;
+  var overlayEntry;
 
   ToastView(BuildContext context, String msg, int duration, int gravity,
       Color background, Color textColor, double backgroundRadius) {
@@ -40,7 +39,6 @@ class ToastView {
 
   void createView(BuildContext context, String msg, int duration, int gravity,
       Color background, Color textColor, double backgroundRadius) async {
-    overlayState = Overlay.of(context);
     overlayEntry = OverlayEntry(
       builder: (BuildContext context) => ToastWidget(
           widget: Container(
@@ -67,7 +65,7 @@ class ToastView {
           ),
           gravity: gravity),
     );
-    overlayState.insert(overlayEntry);
+    Overlay.of(context).insert(overlayEntry);
     _isVisible = true;
     await Future.delayed(
         Duration(seconds: duration == null ? Toast.LENGTH_SHORT : duration));

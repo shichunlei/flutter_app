@@ -345,6 +345,8 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int index = Random().nextInt(loadingWidgets.length - 1);
+
     return Material(
         type: MaterialType.transparency,
         child: Center(
@@ -359,9 +361,7 @@ class LoadingWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Center(
-                          child: loadingWidgets[
-                              Random().nextInt(loadingWidgets.length - 1)]),
+                      Center(child: loadingWidgets[index]),
                       Padding(
                           padding: EdgeInsets.only(top: 20.0),
                           child: Text(text, style: TextStyles.textGrey12))
