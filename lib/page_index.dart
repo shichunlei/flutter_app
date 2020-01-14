@@ -24,7 +24,6 @@ export 'widget/image_widget.dart';
 export 'widget/inherited_widget.dart';
 export 'widget/load_image_widget.dart';
 export 'widget/notification_listener.dart';
-export 'widget/qr_image_wiget.dart';
 export 'widget/range_slider_demo.dart';
 export 'widget/rounded_letter_widget.dart';
 export 'widget/scroll_header_demo.dart';
@@ -93,6 +92,7 @@ export 'animation/animated_container.dart';
 export 'animation/custom_animation.dart';
 export 'animation/animated_number.dart';
 export 'animation/animated_physical_model.dart';
+export 'animation/tween_animation_builder.dart';
 
 export 'bars_demo/bottom_navigation_bar.dart';
 export 'bars_demo/navigationbar_shifting.dart';
@@ -188,6 +188,7 @@ export 'ui_screen/guillotine_menu.dart';
 export 'ui_screen/bottom_menu.dart';
 export 'ui_screen/navigation/dark_drawer.dart';
 export 'ui_screen/navigation/light_drawer.dart';
+export 'ui_screen/qrcode.dart';
 
 export 'res/colors.dart';
 export 'res/dimens.dart';

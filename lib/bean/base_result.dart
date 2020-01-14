@@ -16,7 +16,7 @@ class BaseResult<T> {
     return result;
   }
 
-  Map toJson() => {
+  Map<String, dynamic> toJson() => {
         "code": code,
         "message": message,
         "data": data,
