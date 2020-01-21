@@ -15,6 +15,8 @@
 
 ## 联系我们
 ### QQ群：691819454
+
+![](https://github.com/shichunlei/flutter_app/blob/master/screenshots/QQ图片20200121110501.png)
     
     手机号码：18601952581（微信同号）
     QQ：1558053958
