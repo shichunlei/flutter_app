@@ -1,8 +1,7 @@
 ![](https://github.com/shichunlei/flutter_app/blob/master/FlutterApp.png)
 
 # FlutterApp
-
-A new Flutter application.
+  FLutter各种项目学习文档,帮助你快速构建一个Flutter项目及功能点
 
 ## Android APK 下载地址
 
@@ -14,13 +13,14 @@ A new Flutter application.
 `声明2：本项目中部分功能页面是别人其他项目中的，但是本人并不是完全照抄原作者代码，再此也特别感谢原作者，部分参考别人页面的功能也已标注出原出处，如有侵犯原作者的地方请联系本人进行删除。`
 
 
-## 联系我
-
+## 联系我们
+### QQ群：691819454
+    
     手机号码：18601952581（微信同号）
     QQ：1558053958
     邮箱：1558053958@qq.com
-
-    QQ群：691819454
+    
+    
 
 
 ## 本项目包括：
