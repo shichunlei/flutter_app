@@ -20,6 +20,8 @@ A new Flutter application.
     QQ：1558053958
     邮箱：1558053958@qq.com
 
+    QQ群：691819454
+
 
 ## 本项目包括：
 
