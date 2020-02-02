@@ -128,7 +128,7 @@ class QRCodePage extends StatelessWidget {
       String qrResult = await BarcodeScanner.scan();
       debugPrint(qrResult);
     } catch (ex) {
-      debugPrint(ex);
+      debugPrint(ex.toString());
     }
   }
 }

@@ -9,9 +9,9 @@ class HomeDrawableHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Store.connect<UserModel>(builder: (_, UserModel _data, __) {
-      return UserAccountsDrawerHeader(
-
+    return Store.connect<UserModel>(
+      builder: (_, UserModel _data, __) {
+        return UserAccountsDrawerHeader(
           /// 姓名
           accountName: Text('${_data.getName()}'),
 
@@ -52,9 +52,14 @@ class HomeDrawableHeader extends StatelessWidget {
 
           /// 装饰器 header区域的decoration，通常用来设置背景颜色或者背景图片
           decoration: BoxDecoration(
-              color: Colors.blue,
-              image: DecorationImage(
-                  image: NetworkImage(backgroundImage), fit: BoxFit.cover)));
-    });
+            image: DecorationImage(
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(.2), BlendMode.multiply),
+                image: NetworkImage(backgroundImage),
+                fit: BoxFit.cover),
+          ),
+        );
+      },
+    );
   }
 }

@@ -79,7 +79,7 @@ dependencies: # 应用或包依赖的其它包或插件
       url: https://github.com/shichunlei/flutter_jd_address_selector
 
   # https://github.com/dooboolab/flutter_sound
-  flutter_sound: ^1.8.0
+  flutter_sound: ^2.0.0
 
   # 加载提示组件
   flutter_spinkit: ^4.1.1+1
@@ -163,7 +163,7 @@ dependencies: # 应用或包依赖的其它包或插件
   url_launcher: ^5.4.1
 
   # 视频播放器器
-  video_player: ^0.10.5+1
+  video_player: ^0.10.5+2
 
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:

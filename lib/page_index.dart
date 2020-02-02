@@ -145,7 +145,6 @@ export 'ui/photo_view.dart';
 export 'ui/bottom_sheet.dart';
 export 'ui/circle_button.dart';
 export 'ui/appbar.dart';
-export 'ui/pin_input_view.dart';
 export 'ui/input_view.dart';
 
 export 'qdaily/splash.dart';

@@ -178,7 +178,11 @@ class Utils {
     if (email == null) return false;
     Pattern pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regex = RegExp(pattern);
+    RegExp regex = RegExp(
+      pattern,
+      caseSensitive: false,
+      multiLine: false,
+    );
     return regex.hasMatch(email);
   }
 
@@ -188,6 +192,17 @@ class Utils {
     if (amount == null) return false;
     RegExp regex = RegExp(r'^\d+(\.\d+)?$');
     return regex.hasMatch(amount);
+  }
+
+  /// 校验密码
+  ///
+  bool validatePassword(String password) {
+    if (password.length < 6 ||
+        !password.contains(RegExp(r'[A-z]')) ||
+        !password.contains(RegExp(r'[0-9]'))) {
+      return false;
+    }
+    return true;
   }
 
   /// 时间转字符串

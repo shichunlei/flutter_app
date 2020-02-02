@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_app/bean/friends_dynamic.dart';
 import 'package:flutter_app/generated/i18n.dart';
 import '../ui/item_dynamic.dart';
