@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/utils.dart';
@@ -40,8 +39,7 @@ class _SoundDemoState extends State<SoundDemo> {
 
   void startRecorder() async {
     try {
-      String path = await flutterSound
-          .startRecorder(Platform.isIOS ? 'ios.m4a' : 'android.mp4');
+      String path = await flutterSound.startRecorder();
       print('startRecorder: $path');
 
       _recorderSubscription = flutterSound.onRecorderStateChanged.listen((e) {
@@ -64,6 +62,9 @@ class _SoundDemoState extends State<SoundDemo> {
       });
     } catch (err) {
       print('startRecorder error: $err');
+      setState(() {
+        this._isRecording = false;
+      });
     }
   }
 

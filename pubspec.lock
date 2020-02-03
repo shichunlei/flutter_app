@@ -49,7 +49,7 @@ packages:
       name: audioplayers
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.13.7"
+    version: "0.14.0"
   azlistview:
     dependency: "direct main"
     description:
@@ -229,7 +229,7 @@ packages:
       name: flutter_easyrefresh
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.8"
+    version: "2.0.9"
   flutter_html:
     dependency: "direct main"
     description:
@@ -278,7 +278,7 @@ packages:
       name: flutter_sound
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.4"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -365,7 +365,7 @@ packages:
       name: image_cropper
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.2"
+    version: "1.2.1"
   image_gallery_saver:
     dependency: "direct main"
     description:
@@ -379,7 +379,7 @@ packages:
       name: image_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.6.3"
+    version: "0.6.3+1"
   intl:
     dependency: transitive
     description:
@@ -407,7 +407,7 @@ packages:
       name: lpinyin
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.7"
+    version: "1.0.9"
   matcher:
     dependency: transitive
     description:
@@ -477,7 +477,7 @@ packages:
       name: path_provider
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.5.1"
+    version: "1.6.0"
   pedantic:
     dependency: transitive
     description:
@@ -491,7 +491,7 @@ packages:
       name: permission_handler
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.1.0"
+    version: "4.2.0+hotfix.3"
   petitparser:
     dependency: transitive
     description:
@@ -526,7 +526,7 @@ packages:
       name: provider
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.0.1"
+    version: "4.0.2"
   qr:
     dependency: transitive
     description:
@@ -575,7 +575,7 @@ packages:
       name: shared_preferences
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.5.6"
+    version: "0.5.6+1"
   shared_preferences_macos:
     dependency: transitive
     description:
@@ -741,7 +741,7 @@ packages:
       name: video_player
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.10.5+2"
+    version: "0.10.6"
   video_player_platform_interface:
     dependency: transitive
     description:

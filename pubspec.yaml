@@ -25,7 +25,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # https://github.com/aagarwal1012/Animated-Text-Kit
   animated_text_kit: ^2.0.0
 
-  audioplayers: ^0.13.7
+  audioplayers: ^0.14.0
 
   # AzListView，Flutter 城市列表，联系人列表，自定义Header，索引，悬停效果。
   azlistview: ^0.1.2
@@ -67,7 +67,7 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_colorpicker: ^0.2.6
 
   # 刷新加载控件
-  flutter_easyrefresh: ^2.0.8
+  flutter_easyrefresh: ^2.0.9
 
   flutter_html: ^0.11.1
 
@@ -79,7 +79,7 @@ dependencies: # 应用或包依赖的其它包或插件
       url: https://github.com/shichunlei/flutter_jd_address_selector
 
   # https://github.com/dooboolab/flutter_sound
-  flutter_sound: ^2.0.0
+  flutter_sound: ^2.0.4
 
   # 加载提示组件
   flutter_spinkit: ^4.1.1+1
@@ -105,18 +105,18 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_webview_plugin: ^0.3.10+1
 
   # 图片裁剪
-  image_cropper: ^1.1.2
+  image_cropper: ^1.2.1
 
   image_gallery_saver: ^1.2.2
 
   # 图片选择器
-  image_picker: ^0.6.3
+  image_picker: ^0.6.3+1
 
   # 引导页
   intro_slider: ^2.2.8
 
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
-  lpinyin: ^1.0.7
+  lpinyin: ^1.0.9
 
   multi_image_picker: ^4.6.1
 
@@ -127,15 +127,15 @@ dependencies: # 应用或包依赖的其它包或插件
   # 滑动视差效果图片 https://github.com/pulyaevskiy/parallax-image
   parallax_image: ^0.3.1+1
 
-  path_provider: ^1.5.1
+  path_provider: ^1.6.0
 
-  permission_handler: ^4.1.0
+  permission_handler: ^4.2.0+hotfix.3
 
   # PhotoView
   photo_view: ^0.9.1
 
   # 数据管理层
-  provider: ^4.0.1
+  provider: ^4.0.2
 
   # flutter 生成二维码
   qr_flutter: ^3.2.0
@@ -146,7 +146,7 @@ dependencies: # 应用或包依赖的其它包或插件
   share: ^0.6.3+5
 
   # SP
-  shared_preferences: ^0.5.6
+  shared_preferences: ^0.5.6+1
 
   # 骨架屏
   shimmer: ^1.0.1
@@ -163,7 +163,7 @@ dependencies: # 应用或包依赖的其它包或插件
   url_launcher: ^5.4.1
 
   # 视频播放器器
-  video_player: ^0.10.5+2
+  video_player: ^0.10.6
 
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:
