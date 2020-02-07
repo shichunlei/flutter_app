@@ -6,8 +6,7 @@ class NavigationBarShifting extends StatefulWidget {
   createState() => _NavigationBarShiftingState();
 }
 
-class _NavigationBarShiftingState extends State<NavigationBarShifting>
-    with SingleTickerProviderStateMixin {
+class _NavigationBarShiftingState extends State<NavigationBarShifting> {
   int _currentIndex = 0;
   List<Widget> list = List();
 
