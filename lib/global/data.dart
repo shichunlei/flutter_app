@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/ui_screen/demo/home.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../page_index.dart';
@@ -147,6 +148,7 @@ class ExpandStateBean {
       SubExpandBean('LightDrawer', LightDrawerPage()),
       SubExpandBean('ScrollHeader', ScrollHeaderDemoPage()),
       SubExpandBean('QRCode', QRCodePage()),
+      SubExpandBean('DemoHomePage', DemoHomePage()),
     ]),
     ExpandStateBean(
         leading: Icons.filter_7,

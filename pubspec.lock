@@ -271,7 +271,7 @@ packages:
       name: flutter_plugin_android_lifecycle
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   flutter_sound:
     dependency: "direct main"
     description:
@@ -400,7 +400,7 @@ packages:
       name: logging
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.11.3+2"
+    version: "0.11.4"
   lpinyin:
     dependency: "direct main"
     description:
@@ -582,7 +582,7 @@ packages:
       name: shared_preferences_macos
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.0.1+3"
+    version: "0.0.1+4"
   shared_preferences_platform_interface:
     dependency: transitive
     description:
@@ -596,7 +596,7 @@ packages:
       name: shared_preferences_web
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.2+2"
+    version: "0.1.2+3"
   shimmer:
     dependency: "direct main"
     description:
@@ -650,7 +650,7 @@ packages:
       name: synchronized
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.1"
+    version: "2.2.0"
   term_glyph:
     dependency: transitive
     description:
@@ -720,7 +720,7 @@ packages:
       name: url_launcher_web
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.0+2"
+    version: "0.1.1"
   uuid:
     dependency: transitive
     description:
@@ -741,7 +741,7 @@ packages:
       name: video_player
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.10.6"
+    version: "0.10.7"
   video_player_platform_interface:
     dependency: transitive
     description:
@@ -755,7 +755,7 @@ packages:
       name: video_player_web
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.1+1"
+    version: "0.1.2"
   xml:
     dependency: transitive
     description:
