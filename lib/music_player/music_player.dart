@@ -1,8 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
-import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter_app/store/index.dart';
 import 'index.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -15,30 +13,6 @@ class MusicPlayerPage extends StatefulWidget {
 class _MusicPlayerPageState extends State<MusicPlayerPage>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
-
-  double _progress = 0.0;
-
-  /// 总时长
-  Duration duration;
-  Duration position;
-
-  AudioPlayer audioPlayer;
-  AudioPlayerState _audioPlayerState;
-
-  /// 当前音乐下标
-  int _index = -1;
-  int totalSongs = 0;
-
-  /// 当前音乐名称
-  String songTitle = '';
-
-  bool get isPlaying => _audioPlayerState == AudioPlayerState.PLAYING;
-
-  bool get isPaused => _audioPlayerState == AudioPlayerState.PAUSED;
-
-  String get durationText => Utils.duration2String(duration);
-
-  String get positionText => Utils.duration2String(position);
 
   @override
   void initState() {
@@ -60,159 +34,24 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
       }
     });
 
-    initPlayer();
-  }
-
-  void initPlayer() async {
-    totalSongs = songsData.length;
-    _index = 0;
-    songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
-
-    audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER)
-      ..setReleaseMode(ReleaseMode.RELEASE)
-      ..onDurationChanged.listen((Duration duration) {
-        debugPrint('onDurationChanged===============Max duration: $duration');
-        setState(() {
-          this.duration = duration;
-          if (position != null) {
-            this._progress = position.inMilliseconds / duration.inMilliseconds;
-          }
-        });
-      })
-      ..onAudioPositionChanged.listen((Duration position) {
-        debugPrint('onAudioPositionChanged===============position: $position');
-        setState(() {
-          this.position = position;
-
-          if (duration != null) {
-            this._progress = position.inMilliseconds / duration.inMilliseconds;
-          }
-        });
-      })
-      ..onPlayerError.listen((msg) {
-        debugPrint('audioPlayer error : $msg');
-        setState(() {
-          _stop();
-          duration = Duration(seconds: 0);
-          position = Duration(seconds: 0);
-
-          debugPrint('onPlayerError========$position============$duration');
-        });
-      })
-      ..onPlayerStateChanged.listen((AudioPlayerState state) {
-        if (!mounted) return;
-        setState(() {
-          _audioPlayerState = state;
-        });
-
-        if (state == AudioPlayerState.COMPLETED) {
-          next();
-        }
-
-        debugPrint('${_audioPlayerState.toString()}');
-      });
-  }
-
-  Future<int> _play({isLocal: true}) async {
-    _controller.forward();
-
-    final result =
-        await audioPlayer.play(songsData[_index].audioPath, isLocal: isLocal);
-    if (result == 1) {
-      debugPrint('=============${audioPlayer.playerId}');
-      setState(() {
-        songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
-      });
-    }
-    return result;
-  }
-
-  Future<int> _resume() async {
-    _controller.forward();
-
-    final result = await audioPlayer.resume();
-    if (result == 1) {
-      debugPrint('=============${audioPlayer.playerId}');
-      setState(() {
-        songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
-      });
-    }
-    return result;
-  }
-
-  Future<int> _pause() async {
-    _controller.stop();
-    final result = await audioPlayer.pause();
-    if (result == 1)
-      setState(() {
-        songTitle = "${songsData[_index].title} - ${songsData[_index].artists}";
-      });
-    return result;
-  }
-
-  Future _stop() async {
-    _controller?.reset();
-
-    final result = await audioPlayer.stop();
-    if (result == 1)
-      setState(() {
-        position = Duration();
-      });
-  }
-
-  void next() {
-    if (isPlaying) _pause();
-
-    if (_index == totalSongs - 1) {
-      _index = 0;
-    } else {
-      _index++;
-    }
-    _seek(Duration(milliseconds: 0));
-
-    Future.delayed(Duration(milliseconds: 800), () {
-      _play();
+    WidgetsBinding.instance.addPostFrameCallback((callback) {
+      var value = Store.value<MusicModel>(context, listen: false);
+      if (value.allSongs.length == 0) {
+        value.getMusics();
+      }
     });
-  }
-
-  void previous() {
-    if (isPlaying) _pause();
-
-    if (_index == 0) {
-      _index = totalSongs - 1;
-    } else {
-      _index--;
-    }
-    _seek(Duration(milliseconds: 0));
-
-    Future.delayed(Duration(milliseconds: 800), () {
-      _play();
-    });
-  }
-
-  Future<int> _seek(Duration position) async {
-    int result = await audioPlayer.seek(position);
-
-    if (result == 1) {
-      setState(() {
-        this.position = position;
-        audioPlayer.resume();
-      });
-    }
-
-    return result;
   }
 
   @override
   void dispose() {
-    _stop();
-    audioPlayer?.dispose();
     _controller?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    var snapshot = Store.value<MusicModel>(context);
+
     return Scaffold(
         appBar: AppBar(
             brightness: Brightness.light,
@@ -225,44 +64,34 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
             actions: <Widget>[
               IconButton(
                   icon: Icon(SimpleLineIcons.playlist, size: 20),
-                  onPressed: () => showModalBottomSheet(
-                      context: context,
-                      builder: (builder) => _bottomSheetItem(context)))
+                  onPressed: () => showMusicListBottomSheet(context))
             ]),
         body: Column(children: <Widget>[
           // Seek bar
           Expanded(
               child: RadialSeekBarUI(
-                  imageUrl: songsData[_index].albumArtUrl,
+                  imageUrl: snapshot.curSong?.albumArtUrl,
                   controller: _controller,
-                  thumbPercent: _progress,
+                  thumbPercent: snapshot.progress,
                   onDragStart: (double percent) {
-                    if (isPlaying) _pause();
+                    if (snapshot.isPlaying) snapshot.togglePlay();
                   },
                   onDragEnd: (double percent) {
-                    if (percent < 1.0) _resume();
+                    snapshot.togglePlay();
                   },
                   onDragUpdate: (double percent) {
-                    setState(() {
-                      _progress = percent;
-                      if (duration != null) {
-                        position = Duration(
-                            milliseconds:
-                                (_progress * duration.inMilliseconds).round());
-                        _seek(position);
-                      }
-                    });
+                    snapshot.seekPlay(percent);
                   })),
 
           // Lyric
           Container(height: 125.0, width: double.infinity),
 
           // Song title, artist name, and controls
-          _buildBottomControls()
+          _buildBottomControls(snapshot)
         ]));
   }
 
-  Widget _buildBottomControls() {
+  Widget _buildBottomControls(MusicModel snapshot) {
     return Container(
         width: double.infinity,
         child: Material(
@@ -272,19 +101,14 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
                 padding: EdgeInsets.only(
                     top: 40, bottom: 50.0 + Utils.bottomSafeHeight),
                 child: Column(children: <Widget>[
-                  Text('$songTitle',
+                  Text('${snapshot.curSong?.title}',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 4.0,
                           height: 1.5)),
-                  Text(
-                      position != null
-                          ? "$positionText / $durationText"
-                          : duration != null
-                              ? durationText
-                              : '0:00:00 / 0:00:00',
+                  Text("${snapshot?.positionText} / ${snapshot?.durationText}",
                       style: TextStyle(
                           color: Colors.white.withOpacity(0.75),
                           fontSize: 12,
@@ -295,84 +119,46 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
                       padding: EdgeInsets.only(top: 40),
                       child: Row(children: <Widget>[
                         Spacer(),
-                        _buildPreviousButton(),
+                        _buildPreviousButton(snapshot),
                         Spacer(),
-                        _buildPlayPausedButton(),
+                        _buildPlayPausedButton(snapshot),
                         Spacer(),
-                        _buildNextButton(),
+                        _buildNextButton(snapshot),
                         Spacer()
                       ]))
                 ]))));
   }
 
-  Widget _buildNextButton() {
+  Widget _buildNextButton(MusicModel snapshot) {
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
         icon: Icon(Icons.skip_next, color: Colors.white, size: 35),
-        onPressed: () => next());
+        onPressed: () => snapshot.nextMusic());
   }
 
-  Widget _buildPreviousButton() {
+  Widget _buildPreviousButton(MusicModel snapshot) {
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
         icon: Icon(Icons.skip_previous, color: Colors.white, size: 35),
-        onPressed: () => previous());
+        onPressed: () => snapshot.prePlay());
   }
 
-  Widget _buildPlayPausedButton() {
+  Widget _buildPlayPausedButton(MusicModel snapshot) {
     return CircleButton(
       onPressedAction: () {
-        if (isPlaying) {
-          _pause();
-        } else {
-          if (isPaused) {
-            _resume();
-          } else {
-            _play();
-          }
-        }
+        snapshot.togglePlay();
       },
       fillColor: Colors.white,
       splashColor: lightAccentColor,
       highlightColor: lightAccentColor.withOpacity(0.5),
       elevation: 10.0,
       highlightElevation: 5,
-      icon: isPlaying ? Icons.pause : Icons.play_arrow,
+      icon: snapshot.isPlaying ? Icons.pause : Icons.play_arrow,
       iconSize: 35,
       size: 50,
       iconColor: darkAccentColor,
     );
-  }
-
-  Widget _bottomSheetItem(BuildContext context) {
-    return ListView(
-        // 生成一个列表选择器
-        children: songsData.map((song) {
-      int index = songsData.indexOf(song);
-      return ListTile(
-          leading: ImageLoadView('${song.albumArtUrl}',
-              width: 40,
-              height: 40,
-              borderRadius: BorderRadius.all(Radius.circular(20.0))),
-          title: Text('${song.title}'),
-          onTap: () {
-            Navigator.pop(context);
-            if (isPlaying || isPaused) {
-              if (_index != index)
-                setState(() {
-                  _stop().then((_) {
-                    _index = index;
-                    _play();
-                  });
-                });
-            } else {
-              _index = index;
-              _play();
-            }
-          },
-          selected: _index == index);
-    }).toList());
   }
 }

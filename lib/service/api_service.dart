@@ -2055,4 +2055,21 @@ class ApiService {
       return null;
     }
   }
+
+  /// 音乐列表
+  ///
+  static Future<List<Song>> getMusics() async {
+    Response response = await HttpUtils().request(ApiUrl.MUSIC, data: null);
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Song.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
 }

@@ -231,4 +231,7 @@ class ApiUrl {
 
   /// NBA最新动态
   static final NBA_NEWS = 'sports/nba_news';
+
+  /// 我的音乐
+  static final MUSIC = "musics/list";
 }

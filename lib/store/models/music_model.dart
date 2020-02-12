@@ -52,11 +52,13 @@ class MusicModel extends ChangeNotifier {
   /// 当前音乐
   Song get curSong => _songs.length == 0 ? null : _songs[curIndex];
 
+  List<Song> songs = [];
+
   void init() async {
     int mode = SpUtil.getInt("song_mode", defValue: 0);
     toggleMode(mode);
 
-    addSongs(songsData);
+    getMusics();
 
     _audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER)
       ..setReleaseMode(ReleaseMode.RELEASE)
@@ -312,5 +314,15 @@ class MusicModel extends ChangeNotifier {
     _stop();
     _audioPlayer.dispose();
     super.dispose();
+  }
+
+  /// 获取网络音乐列表
+  ///
+  void getMusics() async {
+    List<Song> list = await ApiService.getMusics();
+
+    songs.addAll(list);
+
+    addSongs(songs);
   }
 }

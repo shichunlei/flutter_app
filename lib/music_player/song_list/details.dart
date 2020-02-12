@@ -10,9 +10,18 @@ class SongListDetailsPage extends StatefulWidget {
 }
 
 class _SongListDetailsPageState extends State<SongListDetailsPage> {
-  List<Song> list = songsData;
+  List<Song> list = [];
 
   double height = Utils.width * 0.6;
+
+  LoaderState state = LoaderState.Loading;
+
+  @override
+  void initState() {
+    super.initState();
+
+    getSongList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,102 +29,104 @@ class _SongListDetailsPageState extends State<SongListDetailsPage> {
       child: Scaffold(
         body: Store.connect2<MusicModel, SongListModel>(
           builder: (_, MusicModel snapshot, SongListModel snapshot2, __) =>
-              Stack(
-            children: <Widget>[
-              ImageLoadView(
-                'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3877537738,1446238429&fm=26&gp=0.jpg',
-                fit: BoxFit.cover,
-                filterColor: Colors.black,
-                opacity: 0.4,
-              ),
-              CustomScrollView(
-                slivers: <Widget>[
-                  SliverAppBar(
-                      title: Text('默认歌单'),
-                      expandedHeight: height,
-                      pinned: true,
-                      elevation: 0.0,
-                      flexibleSpace: FlexibleSpaceBar(
-                        background: AspectRatio(
-                          aspectRatio: 0.6,
-                          child: ImageLoadView(
-                            backgroundImage,
-                            fit: BoxFit.cover,
-                            padding:
-                                EdgeInsets.only(top: Utils.navigationBarHeight),
-                            alignment: Alignment.center,
-                            child: CircleButton(
-                              onPressedAction: () {
-                                snapshot.playSongs(list);
-                              },
-                              fillColor: Colors.black26,
-                              elevation: 20.0,
-                              highlightElevation: 5,
-                              icon: Icons.play_arrow,
-                              iconSize: 55,
-                              size: 70,
+              LoaderContainer(
+                  contentView: Stack(
+                    children: <Widget>[
+                      ImageLoadView(
+                        'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3877537738,1446238429&fm=26&gp=0.jpg',
+                        fit: BoxFit.cover,
+                        filterColor: Colors.black,
+                        opacity: 0.4,
+                      ),
+                      CustomScrollView(
+                        slivers: <Widget>[
+                          SliverAppBar(
+                              title: Text('默认歌单'),
+                              expandedHeight: height,
+                              pinned: true,
+                              elevation: 0.0,
+                              flexibleSpace: FlexibleSpaceBar(
+                                background: AspectRatio(
+                                  aspectRatio: 0.6,
+                                  child: ImageLoadView(
+                                    backgroundImage,
+                                    fit: BoxFit.cover,
+                                    padding: EdgeInsets.only(
+                                        top: Utils.navigationBarHeight),
+                                    alignment: Alignment.center,
+                                    child: CircleButton(
+                                      onPressedAction: () {
+                                        snapshot.playSongs(list);
+                                      },
+                                      fillColor: Colors.black26,
+                                      elevation: 20.0,
+                                      highlightElevation: 5,
+                                      icon: Icons.play_arrow,
+                                      iconSize: 55,
+                                      size: 70,
+                                    ),
+                                  ),
+                                ),
+                              )),
+                          buildSliverPersistentHeader(snapshot, snapshot2),
+                          SliverList(
+                            delegate: SliverChildBuilderDelegate(
+                              (_, index) => ItemSongListSong(item: list[index]),
+                              childCount: list.length,
+                            ),
+                          ),
+                          SliverPadding(
+                            padding: EdgeInsets.only(
+                                bottom: 60.0 + Utils.bottomSafeHeight),
+                          ),
+                        ],
+                      ),
+                      Positioned(child: SongPlayerBar(), bottom: 0),
+                      Positioned(
+                        child: Material(
+                          color: Colors.white,
+                          child: Container(
+                            width: Utils.width,
+                            height: 60.0 + Utils.bottomSafeHeight,
+                            child: Row(
+                              children: <Widget>[
+                                IconButton(
+                                  icon: Icon(Icons.playlist_play),
+                                  onPressed: () {
+                                    if (snapshot2.songNumber > 0) {
+                                      snapshot.playSongs(snapshot2.songs);
+
+                                      snapshot2.togglePlayerBarBottom();
+                                    }
+                                  },
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.playlist_add),
+                                  onPressed: () {
+                                    if (snapshot2.songNumber > 0) {
+                                      snapshot.addSongs(snapshot2.songs);
+
+                                      snapshot2.togglePlayerBarBottom();
+                                    }
+                                  },
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.save_alt),
+                                  onPressed: () {
+                                    /// TODO 下载选中的歌曲
+                                    snapshot2.togglePlayerBarBottom();
+                                  },
+                                ),
+                              ],
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             ),
                           ),
                         ),
-                      )),
-                  buildSliverPersistentHeader(snapshot, snapshot2),
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (_, index) => ItemSongListSong(item: list[index]),
-                      childCount: list.length,
-                    ),
+                        bottom: snapshot2.choiceBottom,
+                      ),
+                    ],
                   ),
-                  SliverPadding(
-                    padding:
-                        EdgeInsets.only(bottom: 60.0 + Utils.bottomSafeHeight),
-                  ),
-                ],
-              ),
-              Positioned(child: SongPlayerBar(), bottom: 0),
-              Positioned(
-                child: Material(
-                  color: Colors.white,
-                  child: Container(
-                    width: Utils.width,
-                    height: 60.0 + Utils.bottomSafeHeight,
-                    child: Row(
-                      children: <Widget>[
-                        IconButton(
-                          icon: Icon(Icons.playlist_play),
-                          onPressed: () {
-                            if (snapshot2.songNumber > 0) {
-                              snapshot.playSongs(snapshot2.songs);
-
-                              snapshot2.togglePlayerBarBottom();
-                            }
-                          },
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.playlist_add),
-                          onPressed: () {
-                            if (snapshot2.songNumber > 0) {
-                              snapshot.addSongs(snapshot2.songs);
-
-                              snapshot2.togglePlayerBarBottom();
-                            }
-                          },
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.save_alt),
-                          onPressed: () {
-                            /// TODO 下载选中的歌曲
-                            snapshot2.togglePlayerBarBottom();
-                          },
-                        ),
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    ),
-                  ),
-                ),
-                bottom: snapshot2.choiceBottom,
-              ),
-            ],
-          ),
+                  loaderState: state),
         ),
       ),
     );
@@ -225,5 +236,16 @@ class _SongListDetailsPageState extends State<SongListDetailsPage> {
             ),
             maxHeight: 48),
         pinned: true);
+  }
+
+  void getSongList() async {
+    List<Song> _list = await ApiService.getMusics();
+
+    list.addAll(_list);
+
+    if (mounted)
+      setState(() {
+        state = LoaderState.Succeed;
+      });
   }
 }

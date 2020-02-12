@@ -11,16 +11,16 @@
         "update": "2019-12-24",
         "list": [
           {
-            "title": "别再对我好",
-            "singerName": "Uu"
+            "name": "别再对我好",
+            "artists": "Uu"
           },
           {
-            "title": "配合",
-            "singerName": "薛之谦"
+            "name": "配合",
+            "artists": "薛之谦"
           },
           {
-            "title": "末日长河",
-            "singerName": "易烊千玺"
+            "name": "末日长河",
+            "artists": "易烊千玺"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000000oenB744P19H.jpg"
@@ -34,16 +34,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "桥边姑娘",
-            "singerName": "海伦"
+            "name": "桥边姑娘",
+            "artists": "海伦"
           },
           {
-            "title": "我是如此相信",
-            "singerName": "周杰伦"
+            "name": "我是如此相信",
+            "artists": "周杰伦"
           },
           {
-            "title": "麻雀",
-            "singerName": "李荣浩"
+            "name": "麻雀",
+            "artists": "李荣浩"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002MVV0P4Gax0j.jpg"
@@ -57,16 +57,16 @@
         "update": "2019-12-24",
         "list": [
           {
-            "title": "火红的萨日朗",
-            "singerName": "要不要买菜"
+            "name": "火红的萨日朗",
+            "artists": "要不要买菜"
           },
           {
-            "title": "句号",
-            "singerName": "G.E.M. 邓紫棋"
+            "name": "句号",
+            "artists": "G.E.M. 邓紫棋"
           },
           {
-            "title": "麻雀",
-            "singerName": "李荣浩"
+            "name": "麻雀",
+            "artists": "李荣浩"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000001I5Jxg2cGAwD.jpg"
@@ -80,17 +80,17 @@
         "update": "2019-12-24",
         "list": [
           {
-            "title": "问情 (Live)",
-            "singerName": "周华健/肖战"
+            "name": "问情 (Live)",
+            "artists": "周华健/肖战"
           },
           {
-            "title": "勇气",
-            "singerName": "棉子",
+            "name": "勇气",
+            "artists": "棉子",
             "singerMid": "000xbcRD1xjp1P"
           },
           {
-            "title": "Psycho",
-            "singerName": "Red Velvet (레드벨벳)",
+            "name": "Psycho",
+            "artists": "Red Velvet (레드벨벳)",
             "singerMid": "004NfJdF0gn6Z1"
           }
         ],
@@ -105,16 +105,16 @@
         "update": "2019-12-24",
         "list": [
           {
-            "title": "清新的小女孩",
-            "singerName": "ไทย"
+            "name": "清新的小女孩",
+            "artists": "ไทย"
           },
           {
-            "title": "你的答案",
-            "singerName": "阿冗"
+            "name": "你的答案",
+            "artists": "阿冗"
           },
           {
-            "title": "I Want You To Know (Hella x Pegato Remix)",
-            "singerName": "Pegato/Zedd/Selena Gomez"
+            "name": "I Want You To Know (Hella x Pegato Remix)",
+            "artists": "Pegato/Zedd/Selena Gomez"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002DUd9u03RBsk.jpg"
@@ -128,16 +128,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "Red Velvet《Psycho》MV",
-            "singerName": "Red Velvet (레드벨벳)"
+            "name": "Red Velvet《Psycho》MV",
+            "artists": "Red Velvet (레드벨벳)"
           },
           {
-            "title": "句号",
-            "singerName": "G.E.M. 邓紫棋"
+            "name": "句号",
+            "artists": "G.E.M. 邓紫棋"
           },
           {
-            "title": "我是如此相信 (《天火》电影主题曲)",
-            "singerName": "周杰伦"
+            "name": "我是如此相信 (《天火》电影主题曲)",
+            "artists": "周杰伦"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002XLqnq0w2lr3.jpg"
@@ -156,16 +156,16 @@
         "update": "2019-12-19",
         "song": [
           {
-            "title": "麻雀",
-            "singerName": "李荣浩"
+            "name": "麻雀",
+            "artists": "李荣浩"
           },
           {
-            "title": "桥边姑娘",
-            "singerName": "海伦"
+            "name": "桥边姑娘",
+            "artists": "海伦"
           },
           {
-            "title": "陪你去流浪",
-            "singerName": "薛之谦"
+            "name": "陪你去流浪",
+            "artists": "薛之谦"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002ed1N636QT3d.jpg"
@@ -179,16 +179,16 @@
         "update": "2019-12-19",
         "song": [
           {
-            "title": "句号",
-            "singerName": "G.E.M. 邓紫棋"
+            "name": "句号",
+            "artists": "G.E.M. 邓紫棋"
           },
           {
-            "title": "摩天动物园",
-            "singerName": "G.E.M. 邓紫棋"
+            "name": "摩天动物园",
+            "artists": "G.E.M. 邓紫棋"
           },
           {
-            "title": "平安夜",
-            "singerName": "梁咏琪"
+            "name": "平安夜",
+            "artists": "梁咏琪"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002XnHEO2uns1E.jpg"
@@ -202,16 +202,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "我是如此相信",
-            "singerName": "周杰伦"
+            "name": "我是如此相信",
+            "artists": "周杰伦"
           },
           {
-            "title": "背光",
-            "singerName": "杨宗纬"
+            "name": "背光",
+            "artists": "杨宗纬"
           },
           {
-            "title": "亡羊",
-            "singerName": "萧敬腾"
+            "name": "亡羊",
+            "artists": "萧敬腾"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M0000048QeAu1NZB13.jpg"
@@ -225,16 +225,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "Christmas Tree Farm",
-            "singerName": "Taylor Swift"
+            "name": "Christmas Tree Farm",
+            "artists": "Taylor Swift"
           },
           {
-            "title": "Ghost (Joe Stone Remix)",
-            "singerName": "Au/Ra/Alan Walker"
+            "name": "Ghost (Joe Stone Remix)",
+            "artists": "Au/Ra/Alan Walker"
           },
           {
-            "title": "Billboard",
-            "singerName": "Jonas Blue/陈梓童"
+            "name": "Billboard",
+            "artists": "Jonas Blue/陈梓童"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000000ZB2ec2i0AtI.jpg"
@@ -248,16 +248,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "Coming Home (Sung by 태일, 도영, 재현, 해찬)",
-            "singerName": "NCT U (엔시티 유)/泰一 (태일)/道英 (도영)/재현 (在玹)/Haechan (해찬)"
+            "name": "Coming Home (Sung by 태일, 도영, 재현, 해찬)",
+            "artists": "NCT U (엔시티 유)/泰一 (태일)/道英 (도영)/재현 (在玹)/Haechan (해찬)"
           },
           {
-            "title": "우연인 듯 운명 (But it's Destiny)",
-            "singerName": "10cm (십센치)"
+            "name": "우연인 듯 운명 (But it's Destiny)",
+            "artists": "10cm (십센치)"
           },
           {
-            "title": "첫눈 (with 산다라박) (初雪)",
-            "singerName": "朴春 (박봄)/Dara (다라)"
+            "name": "첫눈 (with 산다라박) (初雪)",
+            "artists": "朴春 (박봄)/Dara (다라)"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000001JD2Zf4L0qy8.jpg"
@@ -271,16 +271,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "GrandMaster",
-            "singerName": "PRODUCE 101 JAPAN"
+            "name": "GrandMaster",
+            "artists": "PRODUCE 101 JAPAN"
           },
           {
-            "title": "グリム (格林)",
-            "singerName": "majiko (まじ娘)"
+            "name": "グリム (格林)",
+            "artists": "majiko (まじ娘)"
           },
           {
-            "title": "Innocent(from 'Castle in the Sky') (映画「天空の城ラピュタ」より)",
-            "singerName": "久石让 (ひさいし じょう)"
+            "name": "Innocent(from 'Castle in the Sky') (映画「天空の城ラピュタ」より)",
+            "artists": "久石让 (ひさいし じょう)"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002xbVrl2DtAsX.jpg"
@@ -299,16 +299,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "火红的萨日朗",
-            "singerName": "要不要买菜"
+            "name": "火红的萨日朗",
+            "artists": "要不要买菜"
           },
           {
-            "title": "你说的都对",
-            "singerName": "小凤九"
+            "name": "你说的都对",
+            "artists": "小凤九"
           },
           {
-            "title": "欧若拉 (完整版)",
-            "singerName": "胜屿"
+            "name": "欧若拉 (完整版)",
+            "artists": "胜屿"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002Gz9Jc34ozCL.jpg"
@@ -322,16 +322,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "下山",
-            "singerName": "要不要买菜"
+            "name": "下山",
+            "artists": "要不要买菜"
           },
           {
-            "title": "火红的萨日朗",
-            "singerName": "要不要买菜"
+            "name": "火红的萨日朗",
+            "artists": "要不要买菜"
           },
           {
-            "title": "忘情牛肉面",
-            "singerName": "马健涛"
+            "name": "忘情牛肉面",
+            "artists": "马健涛"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000003qw7XU2IpSHW.jpg"
@@ -345,16 +345,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "Ghost (Joe Stone Remix)",
-            "singerName": "Au/Ra/Alan Walker"
+            "name": "Ghost (Joe Stone Remix)",
+            "artists": "Au/Ra/Alan Walker"
           },
           {
-            "title": "Play",
-            "singerName": "K-391/Alan Walker/Tungevaag/Mangoo"
+            "name": "Play",
+            "artists": "K-391/Alan Walker/Tungevaag/Mangoo"
           },
           {
-            "title": "Fades Away (Tribute Concert Version)",
-            "singerName": "Avicii/MishCatt"
+            "name": "Fades Away (Tribute Concert Version)",
+            "artists": "Avicii/MishCatt"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000001RnKhF1GViDT.jpg"
@@ -368,16 +368,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "涅槃 (Phoenix)",
-            "singerName": "英雄联盟"
+            "name": "涅槃 (Phoenix)",
+            "artists": "英雄联盟"
           },
           {
-            "title": "Into the Unknown",
-            "singerName": "Idina Menzel/AURORA"
+            "name": "Into the Unknown",
+            "artists": "Idina Menzel/AURORA"
           },
           {
-            "title": "GIANTS",
-            "singerName": "英雄联盟/True Damage/Becky G/Keke Palmer/DUCKWRTH/Thutmose/田小娟 (전소연)"
+            "name": "GIANTS",
+            "artists": "英雄联盟/True Damage/Becky G/Keke Palmer/DUCKWRTH/Thutmose/田小娟 (전소연)"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002lFcqr2rMGm0.jpg"
@@ -391,16 +391,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "下山",
-            "singerName": "要不要买菜"
+            "name": "下山",
+            "artists": "要不要买菜"
           },
           {
-            "title": "你说的都对",
-            "singerName": "小凤九"
+            "name": "你说的都对",
+            "artists": "小凤九"
           },
           {
-            "title": "一生与你擦肩而过",
-            "singerName": "阿悠悠"
+            "name": "一生与你擦肩而过",
+            "artists": "阿悠悠"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000000bhHr51PYtsO.jpg"
@@ -414,16 +414,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "军港之夜 (Live)",
-            "singerName": "那英/肖战"
+            "name": "军港之夜 (Live)",
+            "artists": "那英/肖战"
           },
           {
-            "title": "我爱他 (Live)",
-            "singerName": "许魏洲/周深"
+            "name": "我爱他 (Live)",
+            "artists": "许魏洲/周深"
           },
           {
-            "title": "你最珍贵 (Live)",
-            "singerName": "陈立农/赵安妮/张鑫/江映蓉/李嘉格"
+            "name": "你最珍贵 (Live)",
+            "artists": "陈立农/赵安妮/张鑫/江映蓉/李嘉格"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M0000042GvKs0u408j.jpg"
@@ -437,16 +437,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "我是如此相信",
-            "singerName": "周杰伦"
+            "name": "我是如此相信",
+            "artists": "周杰伦"
           },
           {
-            "title": "余年",
-            "singerName": "肖战"
+            "name": "余年",
+            "artists": "肖战"
           },
           {
-            "title": "fly",
-            "singerName": "岑宁儿"
+            "name": "fly",
+            "artists": "岑宁儿"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000003rIjyf1Lekx1.jpg"
@@ -460,16 +460,16 @@
         "update": "2019-12-18",
         "list": [
           {
-            "title": "这个星球我最喜欢你",
-            "singerName": "黎子明/想飞的鱼"
+            "name": "这个星球我最喜欢你",
+            "artists": "黎子明/想飞的鱼"
           },
           {
-            "title": "像极了",
-            "singerName": "永彬Ryan.B"
+            "name": "像极了",
+            "artists": "永彬Ryan.B"
           },
           {
-            "title": "惊喜",
-            "singerName": "徐畅SEN"
+            "name": "惊喜",
+            "artists": "徐畅SEN"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000001qwAfd3FN9S1.jpg"
@@ -483,16 +483,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "嚣张",
-            "singerName": "en"
+            "name": "嚣张",
+            "artists": "en"
           },
           {
-            "title": "说好不哭（with 五月天阿信）",
-            "singerName": "周杰伦"
+            "name": "说好不哭（with 五月天阿信）",
+            "artists": "周杰伦"
           },
           {
-            "title": "体面",
-            "singerName": "于文文"
+            "name": "体面",
+            "artists": "于文文"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000001N8GCC2zjgr5.jpg"
@@ -506,16 +506,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "摩天动物园",
-            "singerName": "G.E.M. 邓紫棋"
+            "name": "摩天动物园",
+            "artists": "G.E.M. 邓紫棋"
           },
           {
-            "title": "野狼Disco（feat.陈伟霆）",
-            "singerName": "宝石Gem/陈伟霆"
+            "name": "野狼Disco（feat.陈伟霆）",
+            "artists": "宝石Gem/陈伟霆"
           },
           {
-            "title": "FEEL GOOD",
-            "singerName": "满舒克"
+            "name": "FEEL GOOD",
+            "artists": "满舒克"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/common/upload/test_order_channel_hitlist_con/1383151.jpg"
@@ -534,16 +534,16 @@
         "update": "2019-12-17",
         "list": [
           {
-            "title": "All I Want for Christmas Is You",
-            "singerName": "Mariah Carey"
+            "name": "All I Want for Christmas Is You",
+            "artists": "Mariah Carey"
           },
           {
-            "title": "Circles",
-            "singerName": "Post Malone"
+            "name": "Circles",
+            "artists": "Post Malone"
           },
           {
-            "title": "Rockin' Around The Christmas Tree(Single Version)",
-            "singerName": "Brenda Lee"
+            "name": "Rockin' Around The Christmas Tree(Single Version)",
+            "artists": "Brenda Lee"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000004ZKA1d0TqlX2.jpg"
@@ -557,16 +557,16 @@
         "update": "2019-12-15",
         "list": [
           {
-            "title": "Nobody But You (Duet with Gwen Stefani)",
-            "singerName": "Blake Shelton/Gwen Stefani"
+            "name": "Nobody But You (Duet with Gwen Stefani)",
+            "artists": "Blake Shelton/Gwen Stefani"
           },
           {
-            "title": "Dance Monkey",
-            "singerName": "Tones and I"
+            "name": "Dance Monkey",
+            "artists": "Tones and I"
           },
           {
-            "title": "Memories",
-            "singerName": "Maroon 5"
+            "name": "Memories",
+            "artists": "Maroon 5"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M0000034VXWA0cytOT.jpg"
@@ -580,16 +580,16 @@
         "update": "2019-12-23",
         "list": [
           {
-            "title": "아마두",
-            "singerName": "YumDDa (염따)/Deepflow (딥플로우)/Paloalto (팔로알토)/The Quiett (더 콰이엇)/Simon Dominic (사이먼 도미닉)"
+            "name": "아마두",
+            "artists": "YumDDa (염따)/Deepflow (딥플로우)/Paloalto (팔로알토)/The Quiett (더 콰이엇)/Simon Dominic (사이먼 도미닉)"
           },
           {
-            "title": "Square (2017)",
-            "singerName": "白艺潾 (백예린)"
+            "name": "Square (2017)",
+            "artists": "白艺潾 (백예린)"
           },
           {
-            "title": "Blueming",
-            "singerName": "IU (아이유)"
+            "name": "Blueming",
+            "artists": "IU (아이유)"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M0000047mUJT1iYwhQ.jpg"
@@ -603,16 +603,16 @@
         "update": "2019-12-20",
         "list": [
           {
-            "title": "I Love Sausage Rolls",
-            "singerName": "LadBaby"
+            "name": "I Love Sausage Rolls",
+            "artists": "LadBaby"
           },
           {
-            "title": "Own It (feat. Ed Sheeran & Burna Boy)",
-            "singerName": "Stormzy/Ed Sheeran/Burna Boy"
+            "name": "Own It (feat. Ed Sheeran & Burna Boy)",
+            "artists": "Stormzy/Ed Sheeran/Burna Boy"
           },
           {
-            "title": "Before You Go",
-            "singerName": "Lewis Capaldi"
+            "name": "Before You Go",
+            "artists": "Lewis Capaldi"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000000Rzivh2Xs3iQ.jpg"
@@ -626,16 +626,16 @@
         "update": "2019-12-18",
         "list": [
           {
-            "title": "Try Again",
-            "singerName": "MAG!C☆PRINCE (マジックプリンス)"
+            "name": "Try Again",
+            "artists": "MAG!C☆PRINCE (マジックプリンス)"
           },
           {
-            "title": "冬空",
-            "singerName": "三代目 J SOUL BROTHERS from EXILE TRIBE (三代目 J SOUL BROTHERS from 放浪一族)"
+            "name": "冬空",
+            "artists": "三代目 J SOUL BROTHERS from EXILE TRIBE (三代目 J SOUL BROTHERS from 放浪一族)"
           },
           {
-            "title": "unlasting",
-            "singerName": "LiSA (織部里沙)"
+            "name": "unlasting",
+            "artists": "LiSA (織部里沙)"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000001yiBDK278bKH.jpg"
@@ -649,16 +649,16 @@
         "update": "2019-12-19",
         "list": [
           {
-            "title": "嫁给爱情",
-            "singerName": "杨千嬅"
+            "name": "嫁给爱情",
+            "artists": "杨千嬅"
           },
           {
-            "title": "让爱高飞",
-            "singerName": "周柏豪"
+            "name": "让爱高飞",
+            "artists": "周柏豪"
           },
           {
-            "title": "忘记和记",
-            "singerName": "黎明/麦浚龙"
+            "name": "忘记和记",
+            "artists": "黎明/麦浚龙"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M0000028ppU23zrh9T.jpg"
@@ -672,16 +672,16 @@
         "update": "2019-12-21",
         "list": [
           {
-            "title": "一秒",
-            "singerName": "林欣彤"
+            "name": "一秒",
+            "artists": "林欣彤"
           },
           {
-            "title": "忘记和记",
-            "singerName": "黎明/麦浚龙"
+            "name": "忘记和记",
+            "artists": "黎明/麦浚龙"
           },
           {
-            "title": "心之书",
-            "singerName": "小尘埃"
+            "name": "心之书",
+            "artists": "小尘埃"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002DqyRV3AaIyy.jpg"
@@ -695,16 +695,16 @@
         "update": "2019-12-20",
         "list": [
           {
-            "title": "句号",
-            "singerName": "G.E.M. 邓紫棋"
+            "name": "句号",
+            "artists": "G.E.M. 邓紫棋"
           },
           {
-            "title": "全世界的朋友都让我失望",
-            "singerName": "吴卓源"
+            "name": "全世界的朋友都让我失望",
+            "artists": "吴卓源"
           },
           {
-            "title": "摩天动物园",
-            "singerName": "G.E.M. 邓紫棋"
+            "name": "摩天动物园",
+            "artists": "G.E.M. 邓紫棋"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000003JhQ7e4E4Rg6.jpg"
@@ -718,16 +718,16 @@
         "update": "2019-12-23",
         "list": [
           {
-            "title": "BOP (Explicit)",
-            "singerName": "DaBaby"
+            "name": "BOP (Explicit)",
+            "artists": "DaBaby"
           },
           {
-            "title": "Ballin' (Explicit)",
-            "singerName": "Mustard/Roddy Ricch"
+            "name": "Ballin' (Explicit)",
+            "artists": "Mustard/Roddy Ricch"
           },
           {
-            "title": "Bandit (Explicit)",
-            "singerName": "Juice WRLD/Youngboy Never Broke Again"
+            "name": "Bandit (Explicit)",
+            "artists": "Juice WRLD/Youngboy Never Broke Again"
           }
         ],
         "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M0000007MbAB0ouAdX.jpg"

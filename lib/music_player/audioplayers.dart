@@ -16,7 +16,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
     WidgetsBinding.instance.addPostFrameCallback((callback) {
       var value = Store.value<MusicModel>(context, listen: false);
       if (value.allSongs.length == 0) {
-        value.addSongs(songsData);
+        value.getMusics();
       }
     });
   }

@@ -70,7 +70,7 @@ class SongPlayerBar extends StatelessWidget {
               bottom: 10 + Utils.bottomSafeHeight,
               child: CircleAvatar(
                   backgroundImage:
-                      NetworkImage('${snapshot.curSong.albumArtUrl}'),
+                      NetworkImage('${snapshot.curSong?.albumArtUrl}'),
                   radius: 25,
                   child: Container(
                     width: 50,
