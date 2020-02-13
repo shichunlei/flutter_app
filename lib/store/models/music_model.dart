@@ -157,7 +157,11 @@ class MusicModel extends ChangeNotifier {
   /// [songs] 添加的歌曲
   ///
   void addSongs(List<Song> songs) {
-    this._songs.addAll(songs);
+    songs.forEach((item) {
+      if (!this._songs.contains(item)) {
+        this._songs.add(item);
+      }
+    });
   }
 
   /// 添加歌曲到播放列表
