@@ -275,6 +275,7 @@ class TextFieldItem extends StatelessWidget {
   final int maxLines;
   final int maxLength;
   final TextAlign textAlign;
+  final Color bgColor;
 
   const TextFieldItem({
     Key key,
@@ -287,11 +288,13 @@ class TextFieldItem extends StatelessWidget {
     this.maxLines: 1,
     this.maxLength,
     this.textAlign: TextAlign.start,
+    this.bgColor: Colors.transparent,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+        color: bgColor,
         height: maxLines == 1 ? 55.0 : maxLines * 55.0 * 0.75,
         margin: const EdgeInsets.only(left: 16.0, right: 16),
         width: double.infinity,

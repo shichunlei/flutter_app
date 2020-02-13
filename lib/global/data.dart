@@ -144,7 +144,6 @@ class ExpandStateBean {
       SubExpandBean('BottomMenu', BottomMenuPage()),
       SubExpandBean('BankScreen', BankScreen()),
       SubExpandBean('BottomDrag', BottomDragWidgetDemo()),
-      SubExpandBean('DarkDrawer', DarkDrawerPage()),
       SubExpandBean('LightDrawer', LightDrawerPage()),
       SubExpandBean('ScrollHeader', ScrollHeaderDemoPage()),
       SubExpandBean('QRCode', QRCodePage()),

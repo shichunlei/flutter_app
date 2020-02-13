@@ -185,7 +185,6 @@ export 'ui_screen/ticket/index.dart';
 export 'ui_screen/card_scroll_page.dart';
 export 'ui_screen/guillotine_menu.dart';
 export 'ui_screen/bottom_menu.dart';
-export 'ui_screen/navigation/dark_drawer.dart';
 export 'ui_screen/navigation/light_drawer.dart';
 export 'ui_screen/qrcode.dart';
 
