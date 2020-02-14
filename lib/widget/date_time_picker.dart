@@ -20,11 +20,11 @@ class DateTimePicker extends StatelessWidget {
               onPressed: () {
                 showDatePicker(
                   context: context,
-                  initialDate: DateTime.parse("20181209"),
+                  firstDate: DateTime.parse("20200101"),
                   // 初始选中日期
-                  firstDate: DateTime.now(),
+                  initialDate: DateTime.now(),
                   // 可选日期范围第一个日期
-                  lastDate: DateTime.parse("20190109"),
+                  lastDate: DateTime.now(),
                   // 可选日期范围最后一个日期
                   selectableDayPredicate: (dateTime) {
                     //通过此方法可以过滤掉可选范围内不可选的特定日期
