@@ -40,9 +40,6 @@ dependencies: # 应用或包依赖的其它包或插件
 
   cached_network_image: ^2.0.0
 
-  # 图表
-  charts_flutter: ^0.8.1
-
   chewie: ^0.9.8+1
 
   clippy_flutter: ^1.1.0

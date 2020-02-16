@@ -32,7 +32,7 @@ class _MovieDescState extends State<MovieDesc> {
     String desc = '';
 
     widget.movie.tags.map((tag) {
-      if (Config.RegionList.indexOf(tag) != -1) {
+      if (RegionList.indexOf(tag) != -1) {
         desc += tag;
         desc += ' ';
       }
@@ -54,8 +54,9 @@ class _MovieDescState extends State<MovieDesc> {
 
     desc += '/ ';
 
-    desc +=
-        widget.movie.pubDates.isNotEmpty ? '${widget.movie.pubDates?.first}上映' : '';
+    desc += widget.movie.pubDates.isNotEmpty
+        ? '${widget.movie.pubDates?.first}上映'
+        : '';
 
     desc +=
         '${widget.movie.durations.isNotEmpty ? "/ 片长${widget.movie.durations?.first}" : ""}';

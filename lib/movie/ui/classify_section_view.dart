@@ -14,16 +14,16 @@ class ClassifySectionView extends StatelessWidget {
 
     switch (title) {
       case '类型':
-        classifyList = Config.GenreList;
+        classifyList = GenreList;
         break;
       case '地区':
-        classifyList = Config.RegionList;
+        classifyList = RegionList;
         break;
       case '年代':
-        classifyList = Config.YearList;
+        classifyList = YearList;
         break;
       case '特色':
-        classifyList = Config.FeatureList;
+        classifyList = FeatureList;
         break;
       default:
     }

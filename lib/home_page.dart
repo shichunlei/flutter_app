@@ -174,9 +174,10 @@ class HomeStatePage extends State<HomePage> {
 
   Future<void> _location() async {
     if (await PermissionsUtil.requestMapPermission()) {
-      final __location = await AmapLocation.fetchLocation();
-      setState(() => location = __location);
+      location = await AmapLocation.fetchLocation();
       city = await location.district;
+      String province = await location?.province;
+      debugPrint("-----------------------------$province");
       setState(() {});
       if (city != null || city.isNotEmpty) {
         getWeatherData(city);
