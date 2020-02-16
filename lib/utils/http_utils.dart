@@ -116,7 +116,7 @@ class HttpUtils {
 
           /// 请求路径，如果 `path` 以 "http(s)"开始, 则 `baseURL` 会被忽略； 否则, 将会和baseUrl拼接出完整的的url.
           path,
-          data: data,
+          data: data != null ? FormData.fromMap(data) : null,
           queryParameters: data,
           options: _checkOptions(method, options),
           onReceiveProgress: (int count, int total) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
 import '../index.dart';
@@ -58,7 +59,7 @@ class _NBAHomePageState extends State<NBAHomePage>
             preferredSize: Size.fromHeight(38),
           ),
           actions: customIndex == 0
-              ? [IconButton(icon: Icon(Icons.event), onPressed: () {})]
+              ? [IconButton(icon: Icon(Octicons.calendar), onPressed: () {})]
               : [],
         ),
         body: SafeArea(

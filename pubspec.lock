@@ -393,7 +393,7 @@ packages:
       name: intro_slider
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.2.8"
+    version: "2.2.9"
   logging:
     dependency: transitive
     description:
@@ -505,7 +505,7 @@ packages:
       name: photo_view
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.9.1"
+    version: "0.9.2"
   platform:
     dependency: transitive
     description:
