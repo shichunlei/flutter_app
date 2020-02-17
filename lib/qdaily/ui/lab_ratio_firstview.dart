@@ -153,7 +153,7 @@ class _LabRadioFirstViewState extends State<LabRadioFirstView> {
                 ? () =>
                     setState(() => widget.callBack(true, choice, sliderValue))
                 : null,
-            text: '下一步',
+            child: Text("下一步", style: TextStyle(fontSize: 18)),
             textColor: Colors.black54,
             halfRadius: true,
             color: qdailyMajorColor,

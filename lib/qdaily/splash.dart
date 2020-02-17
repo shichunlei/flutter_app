@@ -129,12 +129,13 @@ class _QDailySplashPageState extends State<QDailySplashPage>
               height: double.infinity),
           Container(
               child: Button(
-                  borderRadius: 10,
-                  onPressed: () {
-                    SpUtil.setBool('qdaily_isFirst', false);
-                    pushReplacement(context, QDailyIndexPage());
-                  },
-                  text: '立即体验'),
+                borderRadius: 10,
+                onPressed: () {
+                  SpUtil.setBool('qdaily_isFirst', false);
+                  pushReplacement(context, QDailyIndexPage());
+                },
+                child: Text("立即体验", style: TextStyle(fontSize: 18)),
+              ),
               width: 200,
               height: 48,
               margin: EdgeInsets.only(bottom: 30))

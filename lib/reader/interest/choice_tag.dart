@@ -88,9 +88,8 @@ class _ChoiceTagPageState extends State<ChoiceTagPage> {
                     child: Button(
                         onPressed: () {},
                         width: 120,
-                        text: '开始阅读之旅',
+                        child: Text("开始阅读之旅", style: TextStyle(fontSize: 14)),
                         halfRadius: true,
-                        textSize: 14,
                         color: readerMainColor)),
                 bottom: 20,
                 left: 0,

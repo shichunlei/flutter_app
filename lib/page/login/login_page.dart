@@ -110,7 +110,8 @@ class _LoginPageState extends State<PasswordLoginPage> {
               Gaps.vGap25,
               Button(
                   onPressed: _isClick ? _login : null,
-                  text: "${S.of(context).login}",
+                  child: Text('${S.of(context).login}',
+                      style: TextStyle(fontSize: 18)),
                   borderRadius: 0),
               Gaps.vGap16,
               Container(

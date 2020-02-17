@@ -43,7 +43,8 @@ class _BottomSheetLoginPagePageState extends State<BottomSheetLoginPage> {
                   Padding(
                     child: Builder(
                       builder: (context) => Button(
-                          text: "${S.of(context).login}",
+                          child: Text("${S.of(context).login}",
+                              style: TextStyle(fontSize: 18)),
                           color: Colors.white,
                           textColor: Theme.of(context).primaryColor,
                           onPressed: () => _loginSheet(context)),
@@ -52,7 +53,8 @@ class _BottomSheetLoginPagePageState extends State<BottomSheetLoginPage> {
                   ),
                   Padding(
                     child: Button(
-                      text: "${S.of(context).register}",
+                      child: Text("${S.of(context).register}",
+                          style: TextStyle(fontSize: 18)),
                       color: Colors.white,
                       onPressed: _registerSheet,
                       textColor: Theme.of(context).primaryColor,
@@ -115,7 +117,8 @@ class _BottomSheetLoginPagePageState extends State<BottomSheetLoginPage> {
                           right: 20,
                           bottom: MediaQuery.of(context).viewInsets.bottom),
                       child: Button(
-                          text: "${S.of(context).login}",
+                          child: Text("${S.of(context).login}",
+                              style: TextStyle(fontSize: 18)),
                           color: Theme.of(context).primaryColor,
                           onPressed: _loginUser))
                 ],
@@ -168,7 +171,8 @@ class _BottomSheetLoginPagePageState extends State<BottomSheetLoginPage> {
                 right: 20,
                 bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Button(
-                text: "${S.of(context).register}",
+                child: Text("${S.of(context).register}",
+                    style: TextStyle(fontSize: 18)),
                 color: Color(0xFFF4511E),
                 onPressed: _registerUser),
           ),

@@ -94,7 +94,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   Gaps.vGap20,
                   Button(
-                    text: "${S.of(context).register}",
+                    child: Text('${S.of(context).register}',
+                        style: TextStyle(fontSize: 18)),
                     textColor: Colors.white,
                     color: Colors.black,
                     borderRadius: 30,
@@ -113,7 +114,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     children: <Widget>[
                       Expanded(
                         child: Button(
-                          text: "Facebook",
+                          child:
+                              Text('FaceBook', style: TextStyle(fontSize: 18)),
                           icon: FontAwesome.facebook,
                           buttonShape: ButtonShape.OUTLINE,
                           halfRadius: true,
@@ -126,7 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       Gaps.hGap20,
                       Expanded(
                           child: Button(
-                        text: "Twitter",
+                        child: Text('Twitter', style: TextStyle(fontSize: 18)),
                         icon: FontAwesome.twitter,
                         buttonShape: ButtonShape.OUTLINE,
                         halfRadius: true,

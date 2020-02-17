@@ -78,7 +78,7 @@ class _LabVotePageState extends State<LabVotePage> {
                   child: isResult
                       ? Button(
                           onPressed: () {},
-                          text: '要玩更多测试',
+                          child: Text("要玩更多测试", style: TextStyle(fontSize: 18)),
                           textColor: Colors.black54,
                           halfRadius: true,
                           color: qdailyMajorColor,
@@ -93,7 +93,7 @@ class _LabVotePageState extends State<LabVotePage> {
                                   getResultData(widget.post?.id);
                                 }
                               : null,
-                          text: '投票',
+                          child: Text("投票", style: TextStyle(fontSize: 18)),
                           textColor: Colors.black54,
                           halfRadius: true,
                           color: qdailyMajorColor,

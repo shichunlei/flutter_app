@@ -22,7 +22,7 @@ class EmptyShopCart extends StatelessWidget {
           Gaps.vGap15,
           Button(
             onPressed: () => pushReplacement(context, IndexPage()),
-            text: '随便逛逛',
+            child: Text('随便逛逛', style: TextStyle(fontSize: 18)),
             color: Colors.red,
             halfRadius: true,
             width: 120,

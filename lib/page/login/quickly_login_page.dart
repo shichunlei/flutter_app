@@ -104,9 +104,11 @@ class _QuicklyLoginPageState extends State<QuicklyLoginPage> {
                             ]))),
                     Gaps.vGap25,
                     Button(
-                        borderRadius: 0,
-                        onPressed: _isClick ? _login : null,
-                        text: "${S.of(context).login}"),
+                      borderRadius: 0,
+                      onPressed: _isClick ? _login : null,
+                      child: Text('${S.of(context).login}',
+                          style: TextStyle(fontSize: 18)),
+                    ),
                     Gaps.vGap10,
                     Container(
                         alignment: Alignment.centerRight,

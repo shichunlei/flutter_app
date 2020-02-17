@@ -78,7 +78,7 @@ class DetailsInfoView extends StatelessWidget {
               Expanded(
                   child: Button(
                     onPressed: () {},
-                    text: 'ADD TO QUEUE',
+                    child: Text('ADD TO QUEUE', style: TextStyle(fontSize: 18)),
                     color: Colors.white,
                     textColor: Color(0xff26262d),
                   ),
@@ -87,7 +87,7 @@ class DetailsInfoView extends StatelessWidget {
               Expanded(
                   child: Button(
                     onPressed: () {},
-                    text: 'SHARE',
+                    child: Text('SHARE', style: TextStyle(fontSize: 18)),
                     buttonShape: ButtonShape.OUTLINE,
                     borderColor: Colors.white,
                   ),
@@ -96,10 +96,9 @@ class DetailsInfoView extends StatelessWidget {
               Expanded(
                   child: Button(
                     onPressed: () {},
-                    text: '···',
+                    child: Text('...', style: TextStyle(fontSize: 16)),
                     buttonShape: ButtonShape.OUTLINE,
                     borderColor: Colors.white,
-                    textSize: 16,
                   ),
                   flex: 1),
             ],

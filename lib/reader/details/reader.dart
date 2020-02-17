@@ -51,8 +51,8 @@ class _ReaderPageState extends State<ReaderPage>
   @override
   Widget build(BuildContext context) {
     return Store.connect2<ReaderSettingModel, BookModel>(builder:
-        (BuildContext context, ReaderSettingModel snapshot, BookModel mBookShelf,
-            Widget child) {
+        (BuildContext context, ReaderSettingModel snapshot,
+            BookModel mBookShelf, Widget child) {
       return Scaffold(
           key: snapshot.scaffoldKey,
           backgroundColor: snapshot.bgColor,
@@ -107,8 +107,8 @@ class _ReaderPageState extends State<ReaderPage>
   }
 
   Widget buildContentView() {
-    return Store.connect<ReaderSettingModel>(
-        builder: (BuildContext context, ReaderSettingModel snapshot, Widget child) {
+    return Store.connect<ReaderSettingModel>(builder:
+        (BuildContext context, ReaderSettingModel snapshot, Widget child) {
       return GestureDetector(
         child: LoaderContainer(
             errorTip: '请下载最新的追书神器app阅读本作品。',
@@ -169,7 +169,7 @@ class _ReaderPageState extends State<ReaderPage>
                         });
                         getChapterInfo(snapshot.chapters[_index].link);
                       },
-                text: '上一章',
+                child: Text("上一章", style: TextStyle(fontSize: 18)),
                 width: 100,
                 height: 40,
                 borderRadius: 20,
@@ -198,7 +198,7 @@ class _ReaderPageState extends State<ReaderPage>
                           getChapterInfo(snapshot.chapters[_index].link);
                         }
                       },
-                text: '下一章',
+                child: Text("下一章", style: TextStyle(fontSize: 18)),
                 width: 100,
                 height: 40,
                 borderRadius: 20,

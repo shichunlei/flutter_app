@@ -19,7 +19,7 @@ class ChangeTextSpaceView extends StatelessWidget {
                 onPressed: snapshot.spaceValue <= Dimens.minSpace
                     ? null
                     : () => snapshot.spaceMinus(),
-                text: '-',
+                child: Text("-", style: TextStyle(fontSize: 18)),
                 height: 30,
                 halfRadius: true,
                 width: 60,
@@ -31,7 +31,7 @@ class ChangeTextSpaceView extends StatelessWidget {
                 onPressed: snapshot.spaceValue >= Dimens.maxSpace
                     ? null
                     : () => snapshot.spaceAdd(),
-                text: '+',
+                child: Text("+", style: TextStyle(fontSize: 18)),
                 height: 30,
                 halfRadius: true,
                 width: 60,

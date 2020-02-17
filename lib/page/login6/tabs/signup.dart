@@ -90,7 +90,8 @@ class SignUpTab extends StatelessWidget {
                   alignment: FractionalOffset.center,
                   child: Button(
                     width: 150,
-                    text: '${S.of(context).register}',
+                    child: Text("${S.of(context).register}",
+                        style: TextStyle(fontSize: 18)),
                     onPressed: onPressed,
                     color: Color(0xFFFF7539),
                   ),

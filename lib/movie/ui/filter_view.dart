@@ -97,7 +97,7 @@ class FilterView extends StatelessWidget {
                               _isPlayable,
                               _unwatched);
                         },
-                        text: '提交',
+                        child: Text('提交', style: TextStyle(fontSize: 18)),
                         halfRadius: true,
                       ),
                     ),
@@ -112,7 +112,7 @@ class FilterView extends StatelessWidget {
                             _continuousValues = RangeValues(0.0, 10.0);
                           });
                         },
-                        text: '重置',
+                        child: Text('重置', style: TextStyle(fontSize: 18)),
                         halfRadius: true,
                         color: Theme.of(context).primaryColor,
                       ),

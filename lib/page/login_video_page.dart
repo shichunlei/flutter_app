@@ -64,7 +64,7 @@ class _LoginVideoPageState extends State<LoginVideoPage> {
               children: <Widget>[
                 Button(
                   width: 200,
-                  text: "微信登录",
+                  child: Text("微信登录", style: TextStyle(fontSize: 18)),
                   borderRadius: 60,
                   onPressed: () {},
                   color: Color(0xffFFDB2E),
@@ -74,7 +74,7 @@ class _LoginVideoPageState extends State<LoginVideoPage> {
                 Gaps.vGap20,
                 Button(
                   width: 200,
-                  text: "手机号登录",
+                  child: Text("手机号登录", style: TextStyle(fontSize: 18)),
                   borderRadius: 60,
                   onPressed: () {},
                   color: Color(0xff202326),

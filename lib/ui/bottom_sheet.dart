@@ -13,15 +13,16 @@ class BottomSheetView extends StatelessWidget {
   final Widget child;
   final AlignmentGeometry alignment;
 
-  BottomSheetView({Key key,
-    this.radius: 20.0,
-    this.backgroundColor: Colors.white,
-    this.showClose: false,
-    this.showButton: false,
-    this.hasAppBar: true,
-    this.closeOnTap,
-    this.alignment: Alignment.centerLeft,
-    @required this.child})
+  BottomSheetView(
+      {Key key,
+      this.radius: 20.0,
+      this.backgroundColor: Colors.white,
+      this.showClose: false,
+      this.showButton: false,
+      this.hasAppBar: true,
+      this.closeOnTap,
+      this.alignment: Alignment.centerLeft,
+      @required this.child})
       : assert(child != null),
         super(key: key);
 
@@ -53,18 +54,17 @@ class BottomSheetView extends StatelessWidget {
                           textColor: Colors.grey,
                           width: 80,
                           onPressed: closeOnTap,
-                          text: '${S
-                              .of(context)
-                              .cancel}',
+                          child: Text('${S.of(context).cancel}',
+                              style: TextStyle(fontSize: 18)),
                         ),
                         Button(
-                            color: Colors.transparent,
-                            textColor: Colors.blueAccent,
-                            width: 80,
-                            onPressed: () {},
-                            text: '${S
-                                .of(context)
-                                .sure}'),
+                          color: Colors.transparent,
+                          textColor: Colors.blueAccent,
+                          width: 80,
+                          onPressed: () {},
+                          child: Text('${S.of(context).sure}',
+                              style: TextStyle(fontSize: 18)),
+                        ),
                       ],
                     ),
                   ),

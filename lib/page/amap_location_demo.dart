@@ -38,20 +38,21 @@ class _AMapLocationDemoState extends State<AMapLocationDemo>
             children: <Widget>[
               Expanded(
                   child: Button(
-                      onPressed: () async {
-                        if (await PermissionsUtil.requestMapPermission()) {
-                          final location = await AmapLocation.fetchLocation();
-                          _result.add(location);
-                          setState(() {});
-                        } else {
-                          Scaffold.of(context)
-                              .showSnackBar(SnackBar(content: Text('权限不足')));
-                        }
-                      },
-                      text: '单次定位')),
+                onPressed: () async {
+                  if (await PermissionsUtil.requestMapPermission()) {
+                    final location = await AmapLocation.fetchLocation();
+                    _result.add(location);
+                    setState(() {});
+                  } else {
+                    Scaffold.of(context)
+                        .showSnackBar(SnackBar(content: Text('权限不足')));
+                  }
+                },
+                child: Text('单次定位'),
+              )),
               Expanded(
                   child: Button(
-                text: '连续定位',
+                child: Text('连续定位'),
                 onPressed: () async {
                   if (await PermissionsUtil.requestMapPermission()) {
                     await for (final location
@@ -67,7 +68,7 @@ class _AMapLocationDemoState extends State<AMapLocationDemo>
               )),
               Expanded(
                 child: Button(
-                  text: '停止定位',
+                  child: Text('停止定位'),
                   onPressed: () async {
                     await AmapLocation.stopLocation();
                   },

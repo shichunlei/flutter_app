@@ -109,7 +109,8 @@ class _LogonPageState extends State<LogonPage>
             onPressed: () {
               _flip(true);
             },
-            text: '${S.of(context).login}',
+            child:
+                Text('${S.of(context).login}', style: TextStyle(fontSize: 18)),
             textColor: Colors.lightBlue,
             color: Colors.white,
           ),
@@ -152,7 +153,8 @@ class _LogonPageState extends State<LogonPage>
               _flip(false);
             },
             buttonShape: ButtonShape.OUTLINE,
-            text: '${S.of(context).register}',
+            child: Text('${S.of(context).register}',
+                style: TextStyle(fontSize: 18)),
             textColor: Colors.white,
             color: Colors.transparent,
           ),

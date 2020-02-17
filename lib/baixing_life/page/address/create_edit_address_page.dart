@@ -145,9 +145,11 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
                     padding: const EdgeInsets.only(
                         left: 16.0, right: 16.0, bottom: 8.0),
                     child: Button(
-                        onPressed: _isClick ? () => _submit() : null,
-                        text: "${S.of(context).submit}",
-                        borderRadius: 0))
+                      onPressed: _isClick ? () => _submit() : null,
+                      borderRadius: 0,
+                      child: Text('${S.of(context).submit}',
+                          style: TextStyle(fontSize: 18)),
+                    ))
               ]),
             )));
   }

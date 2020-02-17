@@ -52,8 +52,7 @@ class SplashPage extends StatelessWidget {
                     child: Button(
                       onPressed: () =>
                           pushReplacement(context, JuZiMiHomePage()),
-                      text: '进入',
-                      textSize: 20,
+                      child: Text('进入', style: TextStyle(fontSize: 20)),
                       textColor: Colors.white,
                       borderRadius: 20,
                       width: Utils.width / 3,

@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                   ]),
                   Gaps.vGap10,
                   Button(
-                      text: '登录',
+                      child: Text("登录", style: TextStyle(fontSize: 18)),
                       color: readerMainColor,
                       height: 40,
                       borderRadius: 20,

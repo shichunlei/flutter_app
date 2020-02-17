@@ -4,7 +4,7 @@ import 'package:flutter_app/enum/enum.dart';
 class Button extends StatelessWidget {
   Button({
     Key key,
-    @required this.text,
+    @required this.child,
     @required this.onPressed,
     this.borderRadius: 5.0,
     this.color,
@@ -12,7 +12,6 @@ class Button extends StatelessWidget {
     this.textColor,
     this.disabledColor,
     this.highlightColor,
-    this.textSize: 18,
     this.disabledTextColor,
     this.width: double.infinity,
     this.disabledBorderColor,
@@ -24,14 +23,10 @@ class Button extends StatelessWidget {
     this.halfRadius: false,
   }) : super(key: key);
 
-  /// 按钮文字
-  final String text;
+  final Widget child;
 
   /// 圆角半径
   final double borderRadius;
-
-  /// 按钮文字大小
-  final double textSize;
 
   final Function onPressed;
 
@@ -104,13 +99,13 @@ class Button extends StatelessWidget {
               disabledColor: disabledColor ?? Color(0xFF96BBFA),
               highlightColor: highlightColor,
               shape: shape,
-              child: Text('$text', style: TextStyle(fontSize: textSize)),
+              child: child,
               materialTapTargetSize: MaterialTapTargetSize.padded,
             )
           : FlatButton.icon(
               onPressed: onPressed,
               icon: Icon(icon, size: 22),
-              label: Text('$text', style: TextStyle(fontSize: textSize)),
+              label: child,
               textColor: textColor ?? Colors.white,
               disabledTextColor: disabledTextColor ?? Color(0xFFD4E2FA),
               color: color ??

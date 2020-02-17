@@ -108,9 +108,11 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         hintText: "${S.of(context).input_password}"),
                     Gaps.vGap25,
                     Button(
-                        borderRadius: 0,
-                        onPressed: _isClick ? _reset : null,
-                        text: "${S.of(context).submit}")
+                      borderRadius: 0,
+                      onPressed: _isClick ? _reset : null,
+                      child: Text('${S.of(context).submit}',
+                          style: TextStyle(fontSize: 18)),
+                    )
                   ]))),
     );
   }

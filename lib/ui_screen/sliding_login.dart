@@ -167,7 +167,8 @@ class _SlidingLoginPageState extends State<SlidingLoginPage>
                   onPressed: () {
                     Toast.show(context, S.of(context).login);
                   },
-                  text: '${S.of(context).login}'.toUpperCase(),
+                  child: Text('${S.of(context).login}'.toUpperCase(),
+                      style: TextStyle(fontSize: 18)),
                   color: Colors.white,
                   textColor: Colors.black,
                   halfRadius: true,
@@ -220,7 +221,8 @@ class _SlidingLoginPageState extends State<SlidingLoginPage>
             onPressed: () {
               Toast.show(context, S.of(context).register);
             },
-            text: '${S.of(context).register}'.toUpperCase(),
+            child: Text('${S.of(context).register}'.toUpperCase(),
+                style: TextStyle(fontSize: 18)),
             textColor: Colors.white,
             color: Color(0xFF2A3ED7),
             halfRadius: true,

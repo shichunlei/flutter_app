@@ -87,7 +87,8 @@ class SignInTab extends StatelessWidget {
                   alignment: FractionalOffset.center,
                   child: Button(
                     width: 150,
-                    text: '${S.of(context).login}',
+                    child: Text("${S.of(context).login}",
+                        style: TextStyle(fontSize: 18)),
                     onPressed: onPressed,
                     color: Color(0xFFFE685F),
                   ),

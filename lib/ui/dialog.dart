@@ -208,7 +208,7 @@ class LoginDialog extends Dialog {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
                         Button(
-                          text: '账号登录',
+                          child: Text('账号登录', style: TextStyle(fontSize: 18)),
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
@@ -218,7 +218,8 @@ class LoginDialog extends Dialog {
                         Padding(
                           padding: EdgeInsets.only(top: 20, bottom: 15),
                           child: Button(
-                              text: '快速注册',
+                              child:
+                                  Text('快速注册', style: TextStyle(fontSize: 18)),
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },

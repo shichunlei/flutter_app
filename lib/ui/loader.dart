@@ -79,12 +79,12 @@ class _ClassicalErrorView extends StatelessWidget {
                     style: TextStyle(fontSize: 12.0, color: Colors.grey[400]))),
             Padding(padding: EdgeInsets.only(bottom: 10)),
             Button(
-                text: reloadText ?? "重新加载",
-                onPressed: onReload,
-                height: 30,
-                width: 110,
-                halfRadius: true,
-                textSize: 14)
+              onPressed: onReload,
+              height: 30,
+              width: 110,
+              halfRadius: true,
+              child: Text(reloadText ?? '重新加载', style: TextStyle(fontSize: 14)),
+            )
           ]));
 }
 
