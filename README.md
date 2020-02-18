@@ -1,7 +1,9 @@
+# FlutterApp
+
 ![](https://github.com/shichunlei/flutter_app/blob/master/FlutterApp.png)
 
-# FlutterApp
-  FLutter各种项目学习文档,帮助你快速构建一个Flutter项目及功能点
+
+
 
 ## Android APK 下载地址
 
@@ -14,10 +16,13 @@
 
 
 ## 联系我们
-### QQ群：691819454
+### QQ群：
 
 ![](https://github.com/shichunlei/flutter_app/blob/master/screenshots/QQ图片20200121110501.png)
-    
+   
+   
+### 个人联系方式：
+
     手机号码：18601952581（微信同号）
     QQ：1558053958
     邮箱：1558053958@qq.com
