@@ -313,7 +313,6 @@ __iOS__
 
 
 - [simplezhli/flutter_deer](https://github.com/simplezhli/flutter_deer)
-- [jsososo/QQMusicApi](https://github.com/jsososo/QQMusicApi)
 - [huanxsd/flutter_shuqi](https://github.com/huanxsd/flutter_shuqi)
 - [fluttercandies/NeteaseCloudMusic](https://github.com/fluttercandies/NeteaseCloudMusic)
 - [ditclear/tiktok_gestures](https://github.com/ditclear/tiktok_gestures)
