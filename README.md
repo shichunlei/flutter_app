@@ -18,16 +18,16 @@
 ## 联系我们
 ### QQ群：
 
-![](https://github.com/shichunlei/flutter_app/blob/master/screenshots/QQ图片20200121110501.png)
-   
-   
+![](https://github.com/shichunlei/flutter_app/blob/master/QQ20200121110501.png)
+
+
 ### 个人联系方式：
 
     手机号码：18601952581（微信同号）
     QQ：1558053958
     邮箱：1558053958@qq.com
-    
-    
+
+
 
 
 ## 本项目包括：

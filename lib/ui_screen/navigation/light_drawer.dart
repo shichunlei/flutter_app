@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/store/index.dart';
 
 import '../../page_index.dart';
 import 'oval_right_border_clipper.dart';
@@ -23,7 +24,7 @@ class LightDrawerPage extends StatelessWidget {
           },
         ),
       ),
-      drawer: _buildDrawer(),
+      drawer: _buildDrawer(context),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -57,73 +58,71 @@ class LightDrawerPage extends StatelessWidget {
     );
   }
 
-  _buildDrawer() {
+  _buildDrawer(context) {
+    var snapshot = Store.value<UserModel>(context);
     return ClipPath(
       clipper: OvalRightBorderClipper(),
       child: Drawer(
-        child: Container(
-          padding: const EdgeInsets.only(left: 16.0, right: 40),
-          decoration: BoxDecoration(
-              color: primary, boxShadow: [BoxShadow(color: Colors.black45)]),
-          width: 300,
-          child: SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.centerRight,
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.power_settings_new,
-                        color: active,
+        child: Material(
+          color: primary,
+          child: Container(
+            padding: const EdgeInsets.only(left: 16.0, right: 40),
+            decoration:
+                BoxDecoration(boxShadow: [BoxShadow(color: Colors.black45)]),
+            width: 300,
+            child: SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.power_settings_new,
+                          color: active,
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                       ),
-                      onPressed: () {},
                     ),
-                  ),
-                  Container(
-                    height: 90,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: LinearGradient(
-                            colors: [Colors.orange, Colors.deepOrange])),
-                    child: ImageLoadView(
-                      backgroundImage,
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(40.0)),
-                      height: 80.0,
-                      width: 80.0,
+                    Container(
+                      height: 90,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(
+                              colors: [Colors.pink, Colors.deepPurple])),
+                      child: ImageLoadView(snapshot.getAvatarPath(),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(40.0)),
+                          height: 80.0,
+                          width: 80.0),
                     ),
-                  ),
-                  SizedBox(height: 5.0),
-                  Text(
-                    "erika costell",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  Text(
-                    "@erika07",
-                    style: TextStyle(color: active, fontSize: 16.0),
-                  ),
-                  SizedBox(height: 30.0),
-                  _buildRow(Icons.home, "Home"),
-                  _buildDivider(),
-                  _buildRow(Icons.person_pin, "My profile"),
-                  _buildDivider(),
-                  _buildRow(Icons.message, "Messages", showBadge: true),
-                  _buildDivider(),
-                  _buildRow(Icons.notifications, "Notifications",
-                      showBadge: true),
-                  _buildDivider(),
-                  _buildRow(Icons.settings, "Settings"),
-                  _buildDivider(),
-                  _buildRow(Icons.email, "Contact us"),
-                  _buildDivider(),
-                  _buildRow(Icons.info_outline, "Help"),
-                  _buildDivider(),
-                ],
+                    SizedBox(height: 5.0),
+                    Text("${snapshot.getName()}",
+                        style: TextStyle(color: Colors.white, fontSize: 18.0)),
+                    Text("${snapshot.getEmail()}",
+                        style: TextStyle(color: active, fontSize: 16.0)),
+                    SizedBox(height: 30.0),
+                    _buildRow(context, Icons.home, "Home"),
+                    Divider(color: divider),
+                    _buildRow(context, Icons.person_pin, "My profile"),
+                    Divider(color: divider),
+                    _buildRow(context, Icons.message, "Messages",
+                        showBadge: true),
+                    Divider(color: divider),
+                    _buildRow(context, Icons.notifications, "Notifications",
+                        showBadge: true),
+                    Divider(color: divider),
+                    _buildRow(context, Icons.settings, "Settings"),
+                    Divider(color: divider),
+                    _buildRow(context, Icons.email, "Contact us"),
+                    Divider(color: divider),
+                    _buildRow(context, Icons.info_outline, "Help"),
+                    Divider(color: divider),
+                  ],
+                ),
               ),
             ),
           ),
@@ -132,51 +131,45 @@ class LightDrawerPage extends StatelessWidget {
     );
   }
 
-  Divider _buildDivider() {
-    return Divider(
-      color: divider,
-    );
-  }
-
-  Widget _buildRow(IconData icon, String title, {bool showBadge = false}) {
+  Widget _buildRow(context, IconData icon, String title,
+      {bool showBadge = false}) {
     final TextStyle tStyle = TextStyle(color: active, fontSize: 16.0);
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
-      child: Row(children: [
-        Icon(
-          icon,
-          color: active,
-        ),
-        SizedBox(width: 10.0),
-        Text(
-          title,
-          style: tStyle,
-        ),
-        Spacer(),
-        if (showBadge)
-          Material(
-            color: Colors.deepOrange,
-            elevation: 5.0,
-            shadowColor: Colors.red,
-            borderRadius: BorderRadius.circular(5.0),
-            child: Container(
-              width: 25,
-              height: 25,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.deepOrange,
-                borderRadius: BorderRadius.circular(5.0),
+    return ListTile(
+      leading: Icon(
+        icon,
+        color: active,
+      ),
+      title: Text(
+        title,
+        style: tStyle,
+      ),
+      trailing: showBadge
+          ? Material(
+              color: Colors.deepOrange,
+              elevation: 5.0,
+              shadowColor: Colors.red,
+              borderRadius: BorderRadius.circular(5.0),
+              child: Container(
+                width: 25,
+                height: 25,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.deepOrange,
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                child: Text(
+                  "10+",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
-              child: Text(
-                "10+",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-          )
-      ]),
+            )
+          : SizedBox(),
+      onTap: () {
+        Navigator.pop(context);
+      },
     );
   }
 }
