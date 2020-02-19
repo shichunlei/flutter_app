@@ -18,15 +18,11 @@ class PublishDynamicPage extends StatefulWidget {
 class _PublishDynamicPageState extends State<PublishDynamicPage> {
   List<Asset> _images = [];
 
-  int imageNum;
-
   @override
   void initState() {
     super.initState();
 
-    _images = widget.images;
-
-    imageNum = _images.length;
+    _images.addAll(widget.images);
   }
 
   @override
@@ -40,7 +36,6 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
             padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 10),
             child: RaisedButton(
                 onPressed: () {
-                  /// TODO
                   Navigator.of(context).pop();
                 },
                 child: Text('发表', style: TextStyle(color: Colors.white)),
@@ -55,7 +50,9 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
             Container(
               padding: EdgeInsets.all(10.0),
               height: 100,
-              child: Form(onWillPop: _onBackPressed, child: TextField()),
+              child: Form(
+                  onWillPop: _images.length > 0 ? _onBackPressed : null,
+                  child: TextField()),
             ),
             Line(color: Colors.grey),
             GridView.builder(
@@ -65,20 +62,44 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
                     crossAxisSpacing: 5.0,
                     mainAxisSpacing: 5.0,
                     childAspectRatio: 1.0),
-                itemBuilder: (context, index) => AssetThumb(
-                      asset:  _images[index],
-                      height: 300,
-                      width: 300,
-//                      onTap: () {
-//                        if (imageNum < widget.maxImages && index == imageNum) {
-//                          loadAssets();
-//                        }
-//
-//                        /// TODO 进入预览界面
-//                      },
-                    ),
-                itemCount:
-                    imageNum ,//< widget.maxImages ? imageNum + 1 : imageNum,
+                itemBuilder: (context, index) {
+                  if (_images.length < widget.maxImages &&
+                      index == _images.length) {
+                    return InkWell(
+                      child: Image.asset('images/add_image.png'),
+                      onTap: () {
+                        loadAssets();
+                      },
+                    );
+                  }
+                  return Stack(
+                    children: <Widget>[
+                      AssetThumb(
+                        asset: _images[index],
+                        height: 300,
+                        width: 300,
+                      ),
+                      Positioned(
+                          child: GestureDetector(
+                            onTap: () {
+                              _images.removeAt(index);
+                              setState(() {});
+                            },
+                            child: Container(
+                              width: 35,
+                              height: 35,
+                              child: Icon(Icons.cancel, size: 20),
+                            ),
+                          ),
+                          right: 0,
+                          top: 0),
+                    ],
+                  );
+                },
+                itemCount: _images.length < widget.maxImages
+                    ? _images.length + 1
+                    : _images.length,
+                //< widget.maxImages ? imageNum + 1 : imageNum,
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 primary: false),
@@ -133,25 +154,13 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
           selectionCharacter: "✓",
         ),
       );
-
-      for (var r in resultList) {
-        var t = r.name;
-        print(t);
-      }
     } on Exception catch (e) {
       debugPrint(e.toString());
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
+    _images = resultList;
 
-    setState(() {
-      _images = resultList;
-      imageNum = _images.length;
-      debugPrint(_images.toString());
-    });
+    if (mounted) setState(() {});
   }
 
   Future<bool> _onBackPressed() {
