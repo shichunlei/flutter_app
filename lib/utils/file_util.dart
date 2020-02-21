@@ -25,7 +25,7 @@ class FileUtil {
     String path = dir + folderPath;
     Directory directory = Directory(path);
     if (!directory.existsSync()) {
-      directory.createSync(recursive: true);
+      await directory.create(recursive: true);
     }
     return path;
   }
@@ -38,11 +38,13 @@ class FileUtil {
   ///
   Future<String> copyFile(
       String fileName, String oldPath, String newPath) async {
-    File file = File(oldPath + fileName);
-    if (file.existsSync()) {
-      file.copySync(newPath + fileName);
+    print("====old=======$oldPath$fileName");
+    File file = File("$oldPath$fileName");
+    if (await file.exists()) {
+      print("====new=======$newPath$fileName");
+      File newFile = await file.copy("$newPath$fileName");
 
-      return file.path;
+      return newFile.path;
     } else {
       return null;
     }

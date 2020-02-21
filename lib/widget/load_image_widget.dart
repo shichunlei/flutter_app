@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/page_index.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 
@@ -16,28 +17,44 @@ class LoadImageWidgetState extends State<LoadImageWidget> {
   VideoPlayerController _controller;
   VoidCallback listener;
 
-  void _onImageButtonPressed(ImageSource source) {
-    setState(() {
+  void _onImageButtonPressed(ImageSource source) async {
+    if (isVideo) {
       if (_controller != null) {
         _controller.removeListener(listener);
       }
-      if (isVideo) {
-        ImagePicker.pickVideo(source: source).then((File file) {
-          if (file != null && mounted) {
-            // 视频地址
-            print("视频地址==========:${file.path}");
-            _controller = VideoPlayerController.file(file)
-              ..addListener(listener)
-              ..initialize().then((_) {
-                _controller..setLooping(true);
-                setState(() {});
-              });
-          }
-        });
-      } else {
-        _imageFile = ImagePicker.pickImage(source: source);
+      File videoFile = await ImagePicker.pickVideo(source: source);
+      if (videoFile != null && mounted) {
+        String videoFilePath = videoFile.path;
+
+        // 视频地址
+        debugPrint("视频地址==========:$videoFilePath");
+
+        String filename = videoFilePath.substring(
+            videoFilePath.lastIndexOf("/") + 1, videoFilePath.length);
+        debugPrint(filename);
+
+        String videoFolderPath =
+            videoFilePath.substring(0, videoFilePath.lastIndexOf("/") + 1);
+
+        String newPath = await FileUtil.getInstance().getLocalPath() + "/";
+
+        String path = await FileUtil.getInstance()
+            .copyFile(filename, videoFolderPath, newPath);
+
+        debugPrint("path====$path");
+
+        _controller = VideoPlayerController.file(videoFile)
+          ..addListener(listener)
+          ..initialize().then((_) {
+            _controller..setLooping(true);
+            setState(() {});
+          });
       }
-    });
+    } else {
+      _imageFile = ImagePicker.pickImage(source: source);
+    }
+
+    setState(() {});
   }
 
   @override
