@@ -146,6 +146,7 @@ class ExpandStateBean {
       SubExpandBean('ScrollHeader', ScrollHeaderDemoPage()),
       SubExpandBean('QRCode', QRCodePage()),
       SubExpandBean('DemoHomePage', DemoHomePage()),
+      SubExpandBean('个人中心', PersonalCenterPage()),
     ]),
     ExpandStateBean(
         leading: Icons.filter_7,

@@ -7,7 +7,7 @@ packages:
       name: amap_core_fluttify
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.5.3+356f11c"
+    version: "0.5.5+008cc2f"
   amap_location_fluttify:
     dependency: "direct main"
     description:
@@ -168,7 +168,7 @@ packages:
       name: device_info
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.4.1+4"
+    version: "0.4.1+5"
   dio:
     dependency: "direct main"
     description:
@@ -257,21 +257,21 @@ packages:
       name: flutter_plugin_android_lifecycle
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.6"
   flutter_sound:
     dependency: "direct main"
     description:
       name: flutter_sound
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.4"
+    version: "2.1.0"
   flutter_spinkit:
     dependency: "direct main"
     description:
       name: flutter_spinkit
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.1.1+1"
+    version: "4.1.2"
   flutter_staggered_grid_view:
     dependency: "direct main"
     description:
@@ -316,7 +316,7 @@ packages:
       name: foundation_fluttify
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.4.6"
+    version: "0.4.8"
   html:
     dependency: transitive
     description:
@@ -365,7 +365,7 @@ packages:
       name: image_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.6.3+1"
+    version: "0.6.3+4"
   intl:
     dependency: transitive
     description:
@@ -428,7 +428,7 @@ packages:
       name: package_info
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.4.0+13"
+    version: "0.4.0+14"
   palette_generator:
     dependency: "direct main"
     description:
@@ -456,7 +456,7 @@ packages:
       name: path_provider
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.6.0"
+    version: "1.6.1"
   pedantic:
     dependency: transitive
     description:
@@ -498,7 +498,7 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   provider:
     dependency: "direct main"
     description:
@@ -547,35 +547,35 @@ packages:
       name: share
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.6.3+5"
+    version: "0.6.3+6"
   shared_preferences:
     dependency: "direct main"
     description:
       name: shared_preferences
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.5.6+1"
+    version: "0.5.6+2"
   shared_preferences_macos:
     dependency: transitive
     description:
       name: shared_preferences_macos
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.0.1+4"
+    version: "0.0.1+6"
   shared_preferences_platform_interface:
     dependency: transitive
     description:
       name: shared_preferences_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.3"
   shared_preferences_web:
     dependency: transitive
     description:
       name: shared_preferences_web
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.2+3"
+    version: "0.1.2+4"
   shimmer:
     dependency: "direct main"
     description:
@@ -601,7 +601,7 @@ packages:
       name: sqflite
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.2.0"
+    version: "1.2.1"
   stack_trace:
     dependency: transitive
     description:
@@ -623,6 +623,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.5"
+  syncfusion_flutter_charts:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_charts
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "17.4.50"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "17.4.50"
   synchronized:
     dependency: transitive
     description:
@@ -678,28 +692,35 @@ packages:
       name: url_launcher
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "5.4.1"
+    version: "5.4.2"
   url_launcher_macos:
     dependency: transitive
     description:
       name: url_launcher_macos
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.0.1+2"
+    version: "0.0.1+4"
   url_launcher_platform_interface:
     dependency: transitive
     description:
       name: url_launcher_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.6"
   url_launcher_web:
     dependency: transitive
     description:
       name: url_launcher_web
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.1"
+    version: "0.1.1+1"
+  utf:
+    dependency: transitive
+    description:
+      name: utf
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.9.0+5"
   uuid:
     dependency: transitive
     description:
@@ -720,21 +741,21 @@ packages:
       name: video_player
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.10.7"
+    version: "0.10.8+1"
   video_player_platform_interface:
     dependency: transitive
     description:
       name: video_player_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   video_player_web:
     dependency: transitive
     description:
       name: video_player_web
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.2"
+    version: "0.1.2+1"
   xml:
     dependency: transitive
     description:

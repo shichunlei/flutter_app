@@ -50,7 +50,7 @@ dependencies: # 应用或包依赖的其它包或插件
     path: custom_widgets/
 
   # 设备信息
-  device_info: ^0.4.1+4
+  device_info: ^0.4.1+5
 
   # 网络请求库
   dio: ^3.0.8
@@ -76,10 +76,10 @@ dependencies: # 应用或包依赖的其它包或插件
       url: https://github.com/shichunlei/flutter_jd_address_selector
 
   # https://github.com/dooboolab/flutter_sound
-  flutter_sound: ^2.0.4
+  flutter_sound: ^2.1.0
 
   # 加载提示组件
-  flutter_spinkit: ^4.1.1+1
+  flutter_spinkit: ^4.1.2
 
   # 瀑布流
   flutter_staggered_grid_view: ^0.3.0
@@ -107,7 +107,7 @@ dependencies: # 应用或包依赖的其它包或插件
   image_gallery_saver: ^1.2.2
 
   # 图片选择器
-  image_picker: ^0.6.3+1
+  image_picker: ^0.6.3+4
 
   # 引导页
   intro_slider: ^2.2.9
@@ -117,14 +117,14 @@ dependencies: # 应用或包依赖的其它包或插件
 
   multi_image_picker: ^4.6.1
 
-  package_info: ^0.4.0+13
+  package_info: ^0.4.0+14
 
   palette_generator: ^0.2.0
 
   # 滑动视差效果图片 https://github.com/pulyaevskiy/parallax-image
   parallax_image: ^0.3.1+1
 
-  path_provider: ^1.6.0
+  path_provider: ^1.6.1
 
   permission_handler: ^4.2.0+hotfix.3
 
@@ -140,16 +140,19 @@ dependencies: # 应用或包依赖的其它包或插件
   #
   rounded_letter: ^0.0.6
 
-  share: ^0.6.3+5
+  share: ^0.6.3+6
 
   # SP
-  shared_preferences: ^0.5.6+1
+  shared_preferences: ^0.5.6+2
 
   # 骨架屏
   shimmer: ^1.0.1
 
   # 数据库
-  sqflite: ^1.2.0
+  sqflite: ^1.2.1
+
+  # 图表
+  syncfusion_flutter_charts: ^17.4.50
 
   # 时间线 https://github.com/furkantektas/timeline_list
   timeline_list: ^0.0.5
@@ -157,10 +160,10 @@ dependencies: # 应用或包依赖的其它包或插件
   # 透明占位图片
   transparent_image: ^1.0.0
 
-  url_launcher: ^5.4.1
+  url_launcher: ^5.4.2
 
   # 视频播放器器
-  video_player: ^0.10.7
+  video_player: ^0.10.8+1
 
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:

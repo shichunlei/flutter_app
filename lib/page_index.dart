@@ -187,6 +187,7 @@ export 'ui_screen/guillotine_menu.dart';
 export 'ui_screen/bottom_menu.dart';
 export 'ui_screen/navigation/light_drawer.dart';
 export 'ui_screen/qrcode.dart';
+export 'ui_screen/personal_center.dart';
 
 export 'res/colors.dart';
 export 'res/dimens.dart';
