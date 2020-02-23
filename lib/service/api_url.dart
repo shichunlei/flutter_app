@@ -232,6 +232,33 @@ class ApiUrl {
   /// NBA最新动态
   static final NBA_NEWS = 'sports/nba_news';
 
+  /// 抗击疫情
+  static final NCOV_INDEX = "cnov/statistics";
+
+  /// 谣言鉴别
+  static final NCOV_RUMOUR = "cnov/rumour";
+
+  /// 肺炎同程查询
+  static final NCOV_SAME = "cnov/ncovsame";
+
+  /// 获取全国最新的新闻数据
+  static final NCOV_NEWS = "cnov/news";
+
+  /// 地区数据
+  static final NCOV_PROVINCE = "cnov/province";
+
+  /// 地区新闻
+  static final NCOV_PROVINCE_NEWS = "cnov/provincenews";
+
+  /// 新冠肺炎确诊病患活动轨迹
+  static final NCOV_TRAJECTORY = "cnov/trajectory";
+
+  /// 疫情分析
+  static final NCOV_ANALYZE = "cnov/analyze";
+
+  /// 预防手册
+  static final NCOV_PREVENT_MANUAL = "cnov/prevent_manual";
+
   /// 我的音乐
   static final MUSIC = "musics/list";
 }

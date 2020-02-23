@@ -152,6 +152,7 @@ class ExpandStateBean {
         leading: Icons.filter_7,
         title: 'Projects Example',
         children: [
+          SubExpandBean('战疫情', SARSCoVIndexPage()),
           SubExpandBean('仿追书神器', BookReaderHomePage()),
           SubExpandBean('仿好奇心日报', QDailySplashPage()),
           SubExpandBean('豆瓣电影', MovieHomePage()),
