@@ -11,7 +11,7 @@ class PersonalCenterPage extends StatefulWidget {
 }
 
 class _PersonalCenterPageState extends State<PersonalCenterPage> {
-  double bannerHeight, radius;
+  double bannerHeight, radius, padding;
 
   @override
   void initState() {
@@ -19,7 +19,9 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
 
     bannerHeight = Utils.width * 9.0 / 16.0;
 
-    radius = 40.0;
+    radius = 45.0;
+
+    padding = 8.0;
   }
 
   @override
@@ -30,6 +32,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: <Widget>[
           Container(
@@ -43,9 +46,10 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                     Container(
                         alignment: Alignment.bottomRight,
                         child: Container(
-                            margin: EdgeInsets.only(bottom: 20, right: 5),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 5),
+                            margin: EdgeInsets.only(bottom: 25, right: padding),
+                            padding:
+                                EdgeInsets.symmetric(
+                                    horizontal: padding, vertical: 5),
                             decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(20)),
@@ -57,13 +61,14 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
             ),
           ),
           Container(
+            padding: EdgeInsets.only(top: radius + padding + 15),
             margin: EdgeInsets.only(top: bannerHeight - 15),
             decoration: const BoxDecoration(
                 borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
                 ),
-                color: Color(0xFFFAFAFA),
+                color: Colors.white,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey,
@@ -71,195 +76,178 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                   )
                 ]),
             width: Utils.width,
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  child: Text('ID:234390'),
-                  left: Utils.width / 2.0 + radius + 8.0,
-                  right: 8.0,
-                  top: 8.0,
+            child: Column(
+              children: [
+                Row(
+                  children: <Widget>[
+                    Button(
+                      child: Text(
+                        'CONNECT',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      width: 110.0,
+                      onPressed: () {},
+                      height: 28,
+                      color: Color(0xFF7E6BF0),
+                      halfRadius: true,
+                    ),
+                    Button(
+                      child: Text(
+                        'FOLLOW',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      width: 110.0,
+                      onPressed: () {},
+                      height: 28,
+                      color: Color(0xFF52A56A),
+                      halfRadius: true,
+                    ),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 ),
-                Positioned(
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        FontAwesome.venus,
+                        color: Color(0xFFEC6657),
+                        size: 15,
+                      ),
+                      Gaps.hGap8,
+                      Text(
+                        'Amily',
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Gaps.hGap8,
+                      Icon(
+                        FontAwesome.edit,
+                        color: Color(0xFF606060),
+                        size: 15,
+                      ),
+                    ],
+                    mainAxisSize: MainAxisSize.min,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: padding),
+                  child: Text(
+                    'It`s a beatifull day today',
+                    style:
+                        const TextStyle(fontSize: 12, color: Color(0xFF525252)),
+                  ),
+                ),
+                Container(
+                  width: 180,
+                  height: 45,
+                  child: RaisedButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Message',
+                      style: const TextStyle(color: Color(0xFF63B296)),
+                    ),
+                    shape: const StadiumBorder(),
+                    elevation: 10.0,
+                    color: Colors.white,
+                  ),
+                ),
+                Container(
+                  width: Utils.width,
+                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                  child: Text(
+                    'Information',
+                    style: TextStyle(
+                      color: Color(0xFF50A479),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                Container(
                   child: Column(
                     children: [
                       Row(
                         children: <Widget>[
-                          Button(
+                          Expanded(
                             child: Text(
-                              'CONNECT',
-                              style: const TextStyle(color: Colors.white),
+                              'Name:',
+                              textAlign: TextAlign.end,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
                             ),
-                            width: 110.0,
-                            onPressed: () {},
-                            height: 28,
-                            color: Color(0xFF7E6BF0),
-                            halfRadius: true,
+                            flex: 1,
                           ),
-                          Button(
+                          Gaps.hGap20,
+                          Expanded(
                             child: Text(
-                              'FOLLOW',
-                              style: const TextStyle(color: Colors.white),
+                              'Amily-3562',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  color: Color(0xFF3D3D3D), fontSize: 16),
                             ),
-                            width: 110.0,
-                            onPressed: () {},
-                            height: 28,
-                            color: Color(0xFF52A56A),
-                            halfRadius: true,
+                            flex: 3,
                           ),
                         ],
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(
-                              FontAwesome.venus,
-                              color: Color(0xFFEC6657),
-                              size: 15,
-                            ),
-                            Gaps.hGap8,
-                            Text(
-                              'Amily',
-                              style: const TextStyle(
+                      Gaps.vGap10,
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Text(
+                              'Email:',
+                              textAlign: TextAlign.end,
+                              style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
                             ),
-                            Gaps.hGap8,
-                            Icon(
-                              FontAwesome.edit,
-                              color: Color(0xFF606060),
-                              size: 15,
-                            ),
-                          ],
-                          mainAxisSize: MainAxisSize.min,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Text(
-                          'It`s a beatifull day today',
-                          style: const TextStyle(
-                              fontSize: 12, color: Color(0xFF525252)),
-                        ),
-                      ),
-                      Container(
-                        width: 180,
-                        height: 45,
-                        child: RaisedButton(
-                          onPressed: () {},
-                          child: const Text(
-                            'Message',
-                            style: const TextStyle(color: Color(0xFF63B296)),
+                            flex: 1,
                           ),
-                          shape: const StadiumBorder(),
-                          elevation: 10.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Container(
-                        width: Utils.width,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-                        child: Text(
-                          'Information',
-                          style: TextStyle(
-                            color: Color(0xFF50A479),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                          Gaps.hGap20,
+                          Expanded(
+                            child: Text(
+                              'amily-smiths@gmail.com',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  color: Color(0xFF3D3D3D), fontSize: 16),
+                            ),
+                            flex: 3,
                           ),
-                        ),
+                        ],
                       ),
-                      Container(
-                        child: Column(
-                          children: [
-                            Row(
-                              children: <Widget>[
-                                Expanded(
-                                  child: Text(
-                                    'Name:',
-                                    textAlign: TextAlign.end,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  flex: 1,
-                                ),
-                                Gaps.hGap20,
-                                Expanded(
-                                  child: Text(
-                                    'Amily-3562',
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: Color(0xFF3D3D3D), fontSize: 16),
-                                  ),
-                                  flex: 3,
-                                ),
-                              ],
+                      Gaps.vGap10,
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Text(
+                              'Region:',
+                              textAlign: TextAlign.end,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
                             ),
-                            Gaps.vGap10,
-                            Row(
-                              children: <Widget>[
-                                Expanded(
-                                  child: Text(
-                                    'Email:',
-                                    textAlign: TextAlign.end,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  flex: 1,
-                                ),
-                                Gaps.hGap20,
-                                Expanded(
-                                  child: Text(
-                                    'amily-smiths@gmail.com',
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: Color(0xFF3D3D3D), fontSize: 16),
-                                  ),
-                                  flex: 3,
-                                ),
-                              ],
+                            flex: 1,
+                          ),
+                          Gaps.hGap20,
+                          Expanded(
+                            child: Text(
+                              'Sydney,NSW,Australia',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  color: Color(0xFF3D3D3D), fontSize: 16),
                             ),
-                            Gaps.vGap10,
-                            Row(
-                              children: <Widget>[
-                                Expanded(
-                                  child: Text(
-                                    'Region:',
-                                    textAlign: TextAlign.end,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  flex: 1,
-                                ),
-                                Gaps.hGap20,
-                                Expanded(
-                                  child: Text(
-                                    'Sydney,NSW,Australia',
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: Color(0xFF3D3D3D), fontSize: 16),
-                                  ),
-                                  flex: 3,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
+                            flex: 3,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                  left: 0.0,
-                  right: 0.0,
-                  top: radius + 8.0,
-                  bottom: 20,
                 )
               ],
             ),
@@ -274,15 +262,19 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
             left: Utils.width / 2 - radius,
             right: Utils.width / 2 - radius,
           ),
+          Positioned(
+            child: Text(
+              'ID:234390',
+              style: TextStyle(fontSize: 18),
+            ),
+            left: Utils.width / 2.0 + radius + padding,
+            right: padding,
+            top: bannerHeight,
+          ),
           Container(
             child: AppBar(
               elevation: 0.0,
               backgroundColor: Color.fromRGBO(34, 45, 56, 0.0),
-              leading: IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  }),
               actions: <Widget>[
                 IconButton(
                     icon: Icon(
@@ -291,7 +283,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                     onPressed: () {})
               ],
             ),
-            height: Utils.navigationBarHeight,
+            height: Utils.navigationBarHeight + Utils.topSafeHeight,
           ),
         ],
       ),

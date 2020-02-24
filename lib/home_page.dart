@@ -179,7 +179,8 @@ class HomeStatePage extends State<HomePage> {
       String province = await location?.province;
       debugPrint("-----------------------------$province");
       setState(() {});
-      if (city != null || city.isNotEmpty) {
+      if (city == null || city == "") {
+        city = "北京";
         getWeatherData(city);
       }
     } else {
