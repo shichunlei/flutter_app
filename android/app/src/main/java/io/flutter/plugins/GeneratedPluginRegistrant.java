@@ -4,7 +4,7 @@ import io.flutter.plugin.common.PluginRegistry;
 import me.yohom.amap_core_fluttify.AmapCoreFluttifyPlugin;
 import me.yohom.amap_location_fluttify.AmapLocationFluttifyPlugin;
 import xyz.luan.audioplayers.AudioplayersPlugin;
-import com.apptreesoftware.barcodescan.BarcodeScanPlugin;
+import de.mintware.barcode_scan.BarcodeScanPlugin;
 import net.goderbauer.flutter.contactpicker.ContactPickerPlugin;
 import io.flutter.plugins.deviceinfo.DeviceInfoPlugin;
 import com.chingsoft.flutter_jd_address_selector.FlutterJdAddressSelectorPlugin;
@@ -38,7 +38,7 @@ public final class GeneratedPluginRegistrant {
     AmapCoreFluttifyPlugin.registerWith(registry.registrarFor("me.yohom.amap_core_fluttify.AmapCoreFluttifyPlugin"));
     AmapLocationFluttifyPlugin.registerWith(registry.registrarFor("me.yohom.amap_location_fluttify.AmapLocationFluttifyPlugin"));
     AudioplayersPlugin.registerWith(registry.registrarFor("xyz.luan.audioplayers.AudioplayersPlugin"));
-    BarcodeScanPlugin.registerWith(registry.registrarFor("com.apptreesoftware.barcodescan.BarcodeScanPlugin"));
+    BarcodeScanPlugin.registerWith(registry.registrarFor("de.mintware.barcode_scan.BarcodeScanPlugin"));
     ContactPickerPlugin.registerWith(registry.registrarFor("net.goderbauer.flutter.contactpicker.ContactPickerPlugin"));
     DeviceInfoPlugin.registerWith(registry.registrarFor("io.flutter.plugins.deviceinfo.DeviceInfoPlugin"));
     FlutterJdAddressSelectorPlugin.registerWith(registry.registrarFor("com.chingsoft.flutter_jd_address_selector.FlutterJdAddressSelectorPlugin"));

@@ -373,7 +373,7 @@ class _InnerDrawerSampleState extends State<InnerDrawerSample> {
                                         child: ColorPicker(
                                             pickerColor: pickerColor,
                                             onColorChanged: changeColor,
-                                            enableLabel: false,
+                                            showLabel: false,
                                             enableAlpha: false,
                                             pickerAreaHeightPercent: 0.5)),
                                     pressed: () {

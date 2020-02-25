@@ -134,12 +134,10 @@ class _SettingPageState extends State<SettingPage> {
       context,
       title: Text(S.of(context).pick_a_color),
       content: SingleChildScrollView(
-          child: ColorPicker(
+          child: BlockPicker(
               pickerColor: Color(_value.theme),
               onColorChanged: (color) => setState(() => _pickerColor = color),
-              enableLabel: false,
-              enableAlpha: false,
-              pickerAreaHeightPercent: 0.5)),
+              availableColors: Colors.primaries)),
       pressed: () {
         if (_pickerColor != null) {
           _value.setTheme(_pickerColor.value);

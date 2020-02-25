@@ -3,6 +3,8 @@ import 'package:flutter_app/page_index.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
+import 'posts.dart';
+
 class PersonalCenterPage extends StatefulWidget {
   PersonalCenterPage({Key key}) : super(key: key);
 
@@ -86,7 +88,9 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                         style: const TextStyle(color: Colors.white),
                       ),
                       width: 110.0,
-                      onPressed: () {},
+                      onPressed: () {
+                        pushNewPage(context, PostsPage());
+                      },
                       height: 28,
                       color: Color(0xFF7E6BF0),
                       halfRadius: true,
@@ -124,7 +128,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                       ),
                       Gaps.hGap8,
                       Icon(
-                        FontAwesome.edit,
+                        Feather.edit,
                         color: Color(0xFF606060),
                         size: 15,
                       ),
