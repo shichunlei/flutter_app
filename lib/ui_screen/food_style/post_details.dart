@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import 'widgets/card_gridview.dart';
 import 'widgets/card_one.dart';
@@ -56,21 +55,24 @@ class _PostDetailsPageState extends State<PostDetailsPage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20.0, right: 10),
+                          padding: const EdgeInsets.only(
+                              left: 30.0, right: 20, top: 8, bottom: 8),
                           child: Row(
                             children: <Widget>[
-                              IconButton(
-                                  icon: Icon(Feather.thumbs_up),
-                                  onPressed: () {}),
-                              IconButton(
-                                  icon: Icon(Feather.thumbs_down),
-                                  onPressed: () {}),
+                              Image.asset(
+                                'images/thumbUp.png',
+                                width: 18,
+                              ),
+                              SizedBox(width: 20),
+                              Image.asset(
+                                'images/thumbDown.png',
+                                width: 18,
+                              ),
+                              SizedBox(width: 20),
                               Row(
                                 children: <Widget>[
-                                  IconButton(
-                                    icon: Icon(Icons.message),
-                                    onPressed: () {},
-                                  ),
+                                  Image.asset('images/comment.png'),
+                                  SizedBox(width: 5),
                                   Text(
                                     '5',
                                     style: TextStyle(
@@ -81,12 +83,9 @@ class _PostDetailsPageState extends State<PostDetailsPage> {
                                 mainAxisSize: MainAxisSize.min,
                               ),
                               Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  'VIEW REPLY',
-                                  style: TextStyle(color: Color(0xFF5FD2EF)),
-                                ),
+                              Text(
+                                'VIEW REPLY',
+                                style: TextStyle(color: Color(0xFF32C5FF)),
                               ),
                             ],
                           ),

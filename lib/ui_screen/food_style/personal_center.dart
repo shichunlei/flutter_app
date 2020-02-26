@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import 'posts.dart';
 
@@ -92,7 +91,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                         pushNewPage(context, PostsPage());
                       },
                       height: 28,
-                      color: Color(0xFF7E6BF0),
+                      color: Color(0xFF786FE9),
                       halfRadius: true,
                     ),
                     Button(
@@ -103,7 +102,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                       width: 110.0,
                       onPressed: () {},
                       height: 28,
-                      color: Color(0xFF52A56A),
+                      color: Color(0xFF26A06C),
                       halfRadius: true,
                     ),
                   ],
@@ -113,10 +112,9 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: Row(
                     children: <Widget>[
-                      Icon(
-                        FontAwesome.venus,
-                        color: Color(0xFFEC6657),
-                        size: 15,
+                      Image.asset(
+                        'images/femal.png',
+                        height: 15,
                       ),
                       Gaps.hGap8,
                       Text(
@@ -127,10 +125,11 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                             fontWeight: FontWeight.bold),
                       ),
                       Gaps.hGap8,
-                      Icon(
-                        Feather.edit,
+                      Image.asset(
+                        'images/write.png',
+                        width: 15,
+                        height: 15,
                         color: Color(0xFF606060),
-                        size: 15,
                       ),
                     ],
                     mainAxisSize: MainAxisSize.min,
@@ -154,7 +153,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                       style: const TextStyle(color: Color(0xFF63B296)),
                     ),
                     shape: const StadiumBorder(),
-                    elevation: 10.0,
+                    elevation: 5.0,
                     color: Colors.white,
                   ),
                 ),

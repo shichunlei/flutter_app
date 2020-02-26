@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class CardBottom extends StatelessWidget {
   CardBottom({Key key}) : super(key: key);
@@ -12,16 +11,16 @@ class CardBottom extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              IconButton(
-                  icon: Icon(
-                    Icons.thumb_up,
-                    color: Color(0xFF5BB59A),
-                  ),
-                  onPressed: () {}),
+              Image.asset(
+                'images/thumbUp.png',
+                width: 20,
+                height: 20,
+                color: Color(0xFF4FA16D),
+              ),
               Text(
                 '36',
                 style: TextStyle(
-                  color: Color(0xFF5A5A5A),
+                  color: Color(0xFF4FA16D),
                 ),
               )
             ],
@@ -29,28 +28,31 @@ class CardBottom extends StatelessWidget {
           ),
           SizedBox(width: 10),
           IconButton(
-              icon: Icon(
-                Icons.save,
-                color: Color(0xFF5BB59A),
+              icon: Image.asset(
+                'images/save.png',
+                color: Color(0xFF4FA16D),
+                width: 18,
+                height: 18,
               ),
               onPressed: () {}),
           IconButton(
-              icon: Icon(
-                Icons.share,
-                color: Color(0xFF5A5A5A),
+              icon: Image.asset(
+                'images/forward.png',
+                width: 20,
+                height: 20,
               ),
               onPressed: () {}),
           SizedBox(width: 40),
           Row(
             children: <Widget>[
-              IconButton(
-                  icon: Icon(
-                    Feather.message_circle,
-                    color: Color(0xFF5A5A5A),
-                  ),
-                  onPressed: () {}),
+              Image.asset(
+                'images/chat.png',
+                color: Color(0xFF4FA16D),
+                width: 20,
+                height: 20,
+              ),
               Text(
-                '36',
+                '5',
                 style: TextStyle(
                   color: Color(0xFF5A5A5A),
                 ),

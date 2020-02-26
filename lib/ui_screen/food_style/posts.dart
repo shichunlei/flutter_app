@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'post_details.dart';
 
 import 'widgets/card_gridview.dart';
@@ -30,7 +29,7 @@ class _PostsPageState extends State<PostsPage> {
                     value: 'NEW',
                     child: Row(
                       children: <Widget>[
-                        Icon(Feather.edit, color: Color(0xFF448F74), size: 20),
+                        Image.asset('images/write.png'),
                         SizedBox(width: 5),
                         Text('New Posts'),
                       ],
@@ -41,7 +40,7 @@ class _PostsPageState extends State<PostsPage> {
                     value: 'MY',
                     child: Row(
                       children: <Widget>[
-                        Icon(Feather.edit, color: Color(0xFFEE7F6D), size: 20),
+                        Image.asset('images/myfeed.png'),
                         SizedBox(width: 5),
                         Text('My Posts'),
                       ],
@@ -70,7 +69,7 @@ class _PostsPageState extends State<PostsPage> {
                 color: Colors.white,
                 margin: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
                 child: Container(
-                  height: 46,
+                  height: 40,
                   child: Row(
                     children: <Widget>[
                       Expanded(
@@ -83,18 +82,8 @@ class _PostsPageState extends State<PostsPage> {
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: Color(0xFFFDECBD)),
-                                    child: Icon(
-                                      EvilIcons.comment,
-                                      size: 20,
-                                      color: Color(0xFFEED571),
-                                    ),
-                                  ),
+//
+                                  Image.asset('images/msg.png'),
                                   SizedBox(width: 5),
                                   Text(
                                     'Messages',
@@ -116,18 +105,7 @@ class _PostsPageState extends State<PostsPage> {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                Container(
-                                  height: 30,
-                                  width: 30,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Color(0xFFEAFAF3)),
-                                  child: Icon(
-                                    Feather.users,
-                                    size: 20,
-                                    color: Color(0xFF69B28B),
-                                  ),
-                                ),
+                                Image.asset('images/followings.png'),
                                 SizedBox(width: 5),
                                 Text(
                                   'Followings',
@@ -149,18 +127,7 @@ class _PostsPageState extends State<PostsPage> {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                Container(
-                                  height: 30,
-                                  width: 30,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Color(0xFFFBE9F2)),
-                                  child: Icon(
-                                    Icons.group,
-                                    size: 20,
-                                    color: Color(0xFFDC7C9B),
-                                  ),
-                                ),
+                                Image.asset('images/fans.png'),
                                 SizedBox(width: 5),
                                 Text(
                                   'Fans',

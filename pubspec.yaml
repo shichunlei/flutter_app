@@ -152,7 +152,7 @@ dependencies: # 应用或包依赖的其它包或插件
   sqflite: ^1.2.1
 
   # 图表
-  syncfusion_flutter_charts: ^17.4.50
+  syncfusion_flutter_charts: ^17.4.51
 
   # 时间线 https://github.com/furkantektas/timeline_list
   timeline_list: ^0.0.5

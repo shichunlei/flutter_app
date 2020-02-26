@@ -629,14 +629,14 @@ packages:
       name: syncfusion_flutter_charts
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "17.4.50"
+    version: "17.4.51"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "17.4.50"
+    version: "17.4.51"
   synchronized:
     dependency: transitive
     description:
