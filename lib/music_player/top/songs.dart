@@ -189,13 +189,10 @@ class _TopSongsPageState extends State<TopSongsPage> {
                     ),
                   ],
                 ),
-                Positioned(
-                  child: SongPlayerBar(),
-                  bottom: 0.0,
-                ),
               ],
             ),
             loaderState: state),
+        bottomNavigationBar: SongPlayerBar(),
       ),
     );
   }

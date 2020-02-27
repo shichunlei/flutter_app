@@ -120,40 +120,32 @@ class _BookDetailPageState extends State<BookDetailPage> {
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: detailBean?.posts?.length ?? 0),
-
-                    SizedBox(
-                        height: Utils.navigationBarHeight - Utils.topSafeHeight)
                   ]),
                 ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: BottomAppbar(actions: <Widget>[
-              IconButton(
-                  icon: Badge(
-                      shape: BadgeShape.circle,
-                      badgeContent: Text('${post?.praiseCount ?? 0}',
-                          style: TextStyle(color: Colors.white, fontSize: 10)),
-                      child: Icon(Feather.heart)),
-                  onPressed: () {}),
-              IconButton(
-                  icon: Badge(
-                      shape: BadgeShape.circle,
-                      badgeContent: Text('${post?.commentCount ?? 0}',
-                          style: TextStyle(color: Colors.white, fontSize: 10)),
-                      child: Icon(Feather.message_square)),
-                  onPressed: () => pushNewPage(
-                      context,
-                      CommentPage(
-                          id: post?.id,
-                          dataType: '${post?.dataType}',
-                          commentCount: post?.commentCount))),
-              IconButton(icon: Icon(Feather.share), onPressed: () {})
-            ]),
-          ),
         ]),
       ),
+      bottomNavigationBar: BottomAppbar(actions: <Widget>[
+        IconButton(
+            icon: Badge(
+                shape: BadgeShape.circle,
+                badgeContent: Text('${post?.praiseCount ?? 0}',
+                    style: TextStyle(color: Colors.white, fontSize: 10)),
+                child: Icon(Feather.heart)),
+            onPressed: () {}),
+        IconButton(
+            icon: Badge(
+                shape: BadgeShape.circle,
+                badgeContent: Text('${post?.commentCount ?? 0}',
+                    style: TextStyle(color: Colors.white, fontSize: 10)),
+                child: Icon(Feather.message_square)),
+            onPressed: () => pushNewPage(
+                context,
+                CommentPage(
+                    id: post?.id,
+                    dataType: '${post?.dataType}',
+                    commentCount: post?.commentCount))),
+        IconButton(icon: Icon(Feather.share), onPressed: () {})
+      ]),
     );
   }
 

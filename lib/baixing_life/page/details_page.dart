@@ -78,26 +78,26 @@ class _DetailsPageState extends State<DetailsPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[200],
-        body: goods == null
-            ? LoadingWidget()
-            : Column(children: <Widget>[_buildBodyView(), _buildBottomView()]));
+      backgroundColor: Colors.grey[200],
+      body: _buildBodyView(),
+      bottomNavigationBar: _buildBottomView(),
+    );
   }
 
   Widget _buildBodyView() {
-    return Expanded(
-      child: CustomScrollView(controller: scrollController, slivers: <Widget>[
-        /// 头部banner
-        _buildSliverAppBar(goods.goodInfo.pics),
+    return goods == null
+        ? LoadingWidget()
+        : CustomScrollView(controller: scrollController, slivers: <Widget>[
+            /// 头部banner
+            _buildSliverAppBar(goods.goodInfo.pics),
 
-        /// 简介
-        _buildInfoView(goods.goodInfo),
+            /// 简介
+            _buildInfoView(goods.goodInfo),
 
-        _buildTabBar(),
+            _buildTabBar(),
 
-        _buildDetails()
-      ]),
-    );
+            _buildDetails()
+          ]);
   }
 
   Widget _buildBottomView() {

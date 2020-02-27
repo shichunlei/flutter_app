@@ -41,59 +41,47 @@ class _LabRatioPageState extends State<LabRatioPage>
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return WillPopScope(
         child: Scaffold(
           backgroundColor: Colors.grey[200],
-          body: Column(
-            children: <Widget>[
-              Expanded(
-                child: LoaderContainer(
-                  contentView: SingleChildScrollView(
-                    child: Column(children: <Widget>[
-                      LabInfoHeaderView(tag: widget.tag, post: widget.post),
-                      Gaps.vGap8,
-                      IndexedStack(index: currentPaper, children: <Widget>[
-                        LabRadioFirstView(
-                          genderQuestion: genderQuestion,
-                          slideQuestion: slideQuestion,
-                          callBack: (bool, choice, slider) {
-                            if (bool) setState(() => currentPaper = 1);
-                          },
-                        ),
-                        LabRatioPageView(
-                            questions: questions,
-                            callBack: (int value) =>
-                                setState(() => currentPage = value))
-                      ])
-                    ]),
+          body: LoaderContainer(
+            contentView: SingleChildScrollView(
+              child: Column(children: <Widget>[
+                LabInfoHeaderView(tag: widget.tag, post: widget.post),
+                Gaps.vGap8,
+                IndexedStack(index: currentPaper, children: <Widget>[
+                  LabRadioFirstView(
+                    genderQuestion: genderQuestion,
+                    slideQuestion: slideQuestion,
+                    callBack: (bool, choice, slider) {
+                      if (bool) setState(() => currentPaper = 1);
+                    },
                   ),
-                  loaderState: _status,
-                ),
-              ),
-              BottomAppbar(actions: <Widget>[
-                IconButton(
-                    icon: Badge(
-                        shape: BadgeShape.circle,
-                        badgeContent: Text('${widget.post.commentCount}',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 10)),
-                        child: Icon(Feather.message_square)),
-                    onPressed: () => pushNewPage(
-                        context,
-                        CommentPage(
-                            id: widget.post?.id,
-                            dataType: '${widget.post.dataType}',
-                            commentCount: widget.post.commentCount))),
-                IconButton(icon: Icon(Feather.share), onPressed: () {})
+                  LabRatioPageView(
+                      questions: questions,
+                      callBack: (int value) =>
+                          setState(() => currentPage = value))
+                ])
               ]),
-            ],
+            ),
+            loaderState: _status,
           ),
+          bottomNavigationBar: BottomAppbar(actions: <Widget>[
+            IconButton(
+                icon: Badge(
+                    shape: BadgeShape.circle,
+                    badgeContent: Text('${widget.post.commentCount}',
+                        style: TextStyle(color: Colors.white, fontSize: 10)),
+                    child: Icon(Feather.message_square)),
+                onPressed: () => pushNewPage(
+                    context,
+                    CommentPage(
+                        id: widget.post?.id,
+                        dataType: '${widget.post.dataType}',
+                        commentCount: widget.post.commentCount))),
+            IconButton(icon: Icon(Feather.share), onPressed: () {})
+          ]),
         ),
         onWillPop: _onBackPressed);
   }

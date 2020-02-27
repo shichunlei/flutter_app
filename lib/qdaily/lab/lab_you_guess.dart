@@ -65,24 +65,24 @@ class _LabYouGuessPageState extends State<LabYouGuessPage>
                   itemCount: list.length,
                   onPageChanged: (index) =>
                       setState(() => currentPage = index))),
-          BottomAppbar(actions: <Widget>[
-            IconButton(
-                icon: Badge(
-                    shape: BadgeShape.circle,
-                    badgeContent: Text('${widget.post.commentCount}',
-                        style: TextStyle(color: Colors.white, fontSize: 10)),
-                    child: Icon(Feather.message_square)),
-                onPressed: () => pushNewPage(
-                    context,
-                    CommentPage(
-                        id: widget.post.id,
-                        dataType: '${widget.post.dataType}',
-                        commentCount: widget.post.commentCount))),
-            IconButton(icon: Icon(Feather.share), onPressed: () {})
-          ]),
         ]),
         loaderState: _status,
       ),
+      bottomNavigationBar: BottomAppbar(actions: <Widget>[
+        IconButton(
+            icon: Badge(
+                shape: BadgeShape.circle,
+                badgeContent: Text('${widget.post.commentCount}',
+                    style: TextStyle(color: Colors.white, fontSize: 10)),
+                child: Icon(Feather.message_square)),
+            onPressed: () => pushNewPage(
+                context,
+                CommentPage(
+                    id: widget.post.id,
+                    dataType: '${widget.post.dataType}',
+                    commentCount: widget.post.commentCount))),
+        IconButton(icon: Icon(Feather.share), onPressed: () {})
+      ]),
     );
   }
 

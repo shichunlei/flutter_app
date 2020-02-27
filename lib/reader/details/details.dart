@@ -92,137 +92,124 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
   Widget build(BuildContext context) {
     return LightTheme(
       child: Scaffold(
-          backgroundColor: Colors.white,
-          body: Stack(children: <Widget>[
-            LoaderContainer(
-                contentView: EasyRefresh.custom(slivers: [
-                  SliverAppBar(
-                    title: Text('${book?.title}'),
-                    centerTitle: true,
-                    expandedHeight: 250,
-                    backgroundColor: pageTopColorStart,
-                    pinned: true,
-                    flexibleSpace: FlexibleSpaceBar(
-                      background: BookDetailsHeaderView(
-                          pageTopColorStart: pageTopColorStart,
-                          pageTopColorEnd: pageTopColorEnd,
-                          book: book),
+        backgroundColor: Colors.white,
+        body: Stack(children: <Widget>[
+          LoaderContainer(
+              contentView: EasyRefresh.custom(slivers: [
+                SliverAppBar(
+                  title: Text('${book?.title}'),
+                  centerTitle: true,
+                  expandedHeight: 250,
+                  backgroundColor: pageTopColorStart,
+                  pinned: true,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: BookDetailsHeaderView(
+                        pageTopColorStart: pageTopColorStart,
+                        pageTopColorEnd: pageTopColorEnd,
+                        book: book),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Column(children: <Widget>[
+                    /// 简介
+                    Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.all(15),
+                        child: Column(children: <Widget>[
+                          Text('简介',
+                              style:
+                                  TextStyle(fontSize: 22, color: grey3Color)),
+                          Gaps.vGap5,
+
+                          /// 标签
+                          Wrap(
+                            children: tags(),
+                            spacing: 5,
+                            runSpacing: 3,
+                          ),
+                          Gaps.vGap5,
+                          Text('${book?.longIntro}',
+                              style: TextStyles.textGrey14),
+                        ], crossAxisAlignment: CrossAxisAlignment.start)),
+
+                    /// 目录
+                    SelectTextItem(
+                        margin: EdgeInsets.symmetric(horizontal: 15),
+                        title: '目录\t\t\t\t',
+                        content:
+                            '[${book != null ? (book.isSerial ? "更新:${friendlyDateTime(book?.updated)}" : "完结") : ""}]\t${book?.lastChapter}',
+                        onTap: () {
+                          final state =
+                              Store.value<BookModel>(context, listen: false);
+                          state.setBook(book);
+                          pushNewPage(context, ChaptersPage(name: book?.title));
+                        }),
+
+                    Line(lineHeight: 5, color: Colors.grey[200]),
+
+                    /// 热门短评
+                    Visibility(
+                      visible: docs.length > 0,
+                      child: Column(
+                        children: [
+                          DetailsDocView(
+                              docs: docs, id: widget.id, onPressed: () {}),
+                          Line(lineHeight: 5, color: Colors.grey[200]),
+                        ],
+                        mainAxisSize: MainAxisSize.min,
+                      ),
                     ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Column(children: <Widget>[
-                      /// 简介
-                      Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.all(15),
-                          child: Column(children: <Widget>[
-                            Text('简介',
-                                style:
-                                    TextStyle(fontSize: 22, color: grey3Color)),
-                            Gaps.vGap5,
 
-                            /// 标签
-                            Wrap(
-                              children: tags(),
-                              spacing: 5,
-                              runSpacing: 3,
-                            ),
-                            Gaps.vGap5,
-                            Text('${book?.longIntro}',
-                                style: TextStyles.textGrey14),
-                          ], crossAxisAlignment: CrossAxisAlignment.start)),
-
-                      /// 目录
-                      SelectTextItem(
-                          margin: EdgeInsets.symmetric(horizontal: 15),
-                          title: '目录\t\t\t\t',
-                          content:
-                              '[${book != null ? (book.isSerial ? "更新:${friendlyDateTime(book?.updated)}" : "完结") : ""}]\t${book?.lastChapter}',
-                          onTap: () {
-                            final state =
-                                Store.value<BookModel>(context, listen: false);
-                            state.setBook(book);
-                            pushNewPage(
-                                context, ChaptersPage(name: book?.title));
-                          }),
-
-                      Line(lineHeight: 5, color: Colors.grey[200]),
-
-                      /// 热门短评
-                      Visibility(
-                        visible: docs.length > 0,
-                        child: Column(
-                          children: [
-                            DetailsDocView(
-                                docs: docs, id: widget.id, onPressed: () {}),
-                            Line(lineHeight: 5, color: Colors.grey[200]),
-                          ],
-                          mainAxisSize: MainAxisSize.min,
-                        ),
+                    /// 热门书评
+                    Visibility(
+                      visible: reviews.length > 0,
+                      child: Column(
+                        children: [
+                          DetailsReviewView(
+                              reviews: reviews,
+                              id: widget.id,
+                              reviewsCount: reviewsCount,
+                              onPressed: () {}),
+                          Line(lineHeight: 5, color: Colors.grey[200]),
+                        ],
+                        mainAxisSize: MainAxisSize.min,
                       ),
+                    ),
 
-                      /// 热门书评
-                      Visibility(
-                        visible: reviews.length > 0,
-                        child: Column(
-                          children: [
-                            DetailsReviewView(
-                                reviews: reviews,
-                                id: widget.id,
-                                reviewsCount: reviewsCount,
-                                onPressed: () {}),
-                            Line(lineHeight: 5, color: Colors.grey[200]),
-                          ],
-                          mainAxisSize: MainAxisSize.min,
-                        ),
-                      ),
+                    /// 你可能感兴趣的
+                    DetailsInterestedView(
+                        books: interestedBooks, onPressed: () {}),
 
-                      /// 你可能感兴趣的
-                      DetailsInterestedView(
-                          books: interestedBooks, onPressed: () {}),
+                    /// 包含本书的书单
 
-                      /// 包含本书的书单
+                    Line(lineHeight: 5, color: Colors.grey[200]),
 
-                      Line(lineHeight: 5, color: Colors.grey[200]),
-
-                      /// 版权声明
-                      Container(
-                          height: 50,
-                          width: double.infinity,
-                          alignment: Alignment.center,
-                          child: Text('${book?.copyrightDesc}',
-                              style: TextStyles.textGrey16)),
-
-                      Line(
-                          lineHeight: 50.0 + Utils.bottomSafeHeight,
-                          color: Colors.grey[200])
-                    ]),
-                  ),
-                ]),
-                loaderState: _status),
-
-            /// 底部
-            Positioned(
-              child: buildBottomView(),
-              bottom: 0.0,
-              left: 0.0,
-              right: 0.0,
-            )
-          ])),
+                    /// 版权声明
+                    Container(
+                        height: 50,
+                        width: double.infinity,
+                        alignment: Alignment.center,
+                        child: Text('${book?.copyrightDesc}',
+                            style: TextStyles.textGrey16)),
+                  ]),
+                ),
+              ]),
+              loaderState: _status),
+        ]),
+        bottomNavigationBar: buildBottomView(),
+      ),
     );
   }
 
   Widget buildBottomView() {
     return Store.connect<BookModel>(builder: (_, BookModel snapshot, __) {
       return Container(
-          color: Colors.white,
-          padding: EdgeInsets.only(bottom: Utils.bottomSafeHeight),
-          height: 50.0 + Utils.bottomSafeHeight,
+          height: 50.0,
           child: Row(children: <Widget>[
             /// 添加到书架/从暑假删除按钮
             Expanded(
                 child: Material(
-                    color: Colors.white,
+                    color: Colors.grey[200],
                     child: InkWell(
                         onTap: () {
                           if (snapshot.isExist) {
@@ -307,7 +294,7 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
             /// 下载按钮
             Expanded(
                 child: Material(
-                    color: Colors.white,
+                    color: Colors.grey[200],
                     child: InkWell(
                         onTap: () {
                           Toast.show(context, '下载');

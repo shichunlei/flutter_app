@@ -42,84 +42,80 @@ class _LabVotePageState extends State<LabVotePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      body: Column(children: <Widget>[
-        Expanded(
-          child: LoaderContainer(
-            onReload: () => getData(widget.post?.id),
-            contentView: ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                LabInfoHeaderView(post: widget.post, tag: widget.tag),
-                ListView.separated(
-                    padding: EdgeInsets.only(
-                        top: 10, left: 10, right: 10, bottom: 20),
-                    primary: false,
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => isResult
-                        ? ItemVoteOptions(option: result[index])
-                        : ItemOptionCheckbox(
-                            option: options[index],
-                            isChecked: choices.elementAt(index),
-                            onChecked: (value) {
-                              choices
-                                ..insert(index, value)
-                                ..removeAt(index + 1);
+      body: LoaderContainer(
+        onReload: () => getData(widget.post?.id),
+        contentView: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            LabInfoHeaderView(post: widget.post, tag: widget.tag),
+            ListView.separated(
+                padding:
+                    EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 20),
+                primary: false,
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) => isResult
+                    ? ItemVoteOptions(option: result[index])
+                    : ItemOptionCheckbox(
+                        option: options[index],
+                        isChecked: choices.elementAt(index),
+                        onChecked: (value) {
+                          choices
+                            ..insert(index, value)
+                            ..removeAt(index + 1);
 
-                              isClick = choices.contains(true);
+                          isClick = choices.contains(true);
 
-                              setState(() {});
-                            }),
-                    itemCount: isResult ? result.length : options.length,
-                    separatorBuilder: (BuildContext context, int index) =>
-                        Gaps.vGap5),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: isResult
-                      ? Button(
-                          onPressed: () {},
-                          child: Text("要玩更多测试", style: TextStyle(fontSize: 18)),
-                          textColor: Colors.black54,
-                          halfRadius: true,
-                          color: qdailyMajorColor,
-                          disabledColor: qdailyMinorColor)
-                      : Button(
-                          onPressed: isClick
-                              ? () {
-                                  setState(() {
-                                    _status = LoaderState.Loading;
-                                  });
+                          setState(() {});
+                        }),
+                itemCount: isResult ? result.length : options.length,
+                separatorBuilder: (BuildContext context, int index) =>
+                    Gaps.vGap5),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: isResult
+                  ? Button(
+                      onPressed: () {},
+                      child: Text("要玩更多测试", style: TextStyle(fontSize: 18)),
+                      textColor: Colors.black54,
+                      halfRadius: true,
+                      color: qdailyMajorColor,
+                      disabledColor: qdailyMinorColor)
+                  : Button(
+                      onPressed: isClick
+                          ? () {
+                              setState(() {
+                                _status = LoaderState.Loading;
+                              });
 
-                                  getResultData(widget.post?.id);
-                                }
-                              : null,
-                          child: Text("投票", style: TextStyle(fontSize: 18)),
-                          textColor: Colors.black54,
-                          halfRadius: true,
-                          color: qdailyMajorColor,
-                          disabledColor: qdailyMinorColor),
-                ),
-                Gaps.vGap20
-              ],
+                              getResultData(widget.post?.id);
+                            }
+                          : null,
+                      child: Text("投票", style: TextStyle(fontSize: 18)),
+                      textColor: Colors.black54,
+                      halfRadius: true,
+                      color: qdailyMajorColor,
+                      disabledColor: qdailyMinorColor),
             ),
-            loaderState: _status,
-          ),
+            Gaps.vGap20
+          ],
         ),
-        BottomAppbar(actions: <Widget>[
-          IconButton(
-              icon: Badge(
-                  shape: BadgeShape.circle,
-                  badgeContent: Text('${widget.post.commentCount}',
-                      style: TextStyle(color: Colors.white, fontSize: 10)),
-                  child: Icon(Feather.message_square)),
-              onPressed: () => pushNewPage(
-                  context,
-                  CommentPage(
-                      id: widget.post?.id,
-                      dataType: '${widget.post.dataType}',
-                      commentCount: widget.post.commentCount))),
-          IconButton(icon: Icon(Feather.share), onPressed: () {})
-        ])
+        loaderState: _status,
+      ),
+      bottomNavigationBar: BottomAppbar(actions: <Widget>[
+        IconButton(
+            icon: Badge(
+                shape: BadgeShape.circle,
+                badgeContent: Text('${widget.post.commentCount}',
+                    style: TextStyle(color: Colors.white, fontSize: 10)),
+                child: Icon(Feather.message_square)),
+            onPressed: () => pushNewPage(
+                context,
+                CommentPage(
+                    id: widget.post?.id,
+                    dataType: '${widget.post.dataType}',
+                    commentCount: widget.post.commentCount))),
+        IconButton(icon: Icon(Feather.share), onPressed: () {})
       ]),
     );
   }

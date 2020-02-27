@@ -47,65 +47,56 @@ class _LabISayPageState extends State<LabISayPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: LoaderContainer(
-              onReload: () => getData(widget.post.id, RefreshType.REFRESH),
-              contentView: EasyRefresh(
-                footer: BallPulseFooter(),
-                header: MaterialHeader(),
-                onLoad: isLoadComplete
-                    ? null
-                    : () async =>
-                        getData(widget.post.id, RefreshType.LOAD_MORE),
-                onRefresh: () async =>
-                    getData(widget.post.id, RefreshType.REFRESH),
-                child: ListView(
-                  padding: EdgeInsets.only(top: 0),
-                  children: <Widget>[
-                    LabInfoHeaderView(
-                      tag: widget.tag,
-                      post: widget.post,
-                    ),
-                    StaggeredGridView.countBuilder(
-                        padding: EdgeInsets.only(top: 5, left: 5, right: 5),
-                        primary: false,
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        crossAxisCount: 4,
-                        mainAxisSpacing: 4.0,
-                        crossAxisSpacing: 4.0,
-                        itemBuilder: (context, index) {
-                          if (options[index].image == null ||
-                              options[index].image.isEmpty) {
-                            return ItemOptionText(option: options[index]);
-                          } else {
-                            return ItemOptionImage(option: options[index]);
-                          }
-                        },
-                        staggeredTileBuilder: (index) => StaggeredTile.fit(2),
-                        itemCount: options.length),
-                    Visibility(
-                      visible: isLoadComplete,
-                      child: LineViewLine(
-                          child: Text('没有更多了',
-                              style: TextStyle(color: Colors.grey)),
-                          horizontalPadding: 80.0,
-                          verticalPadding: 40),
-                    )
-                  ],
-                ),
+      body: LoaderContainer(
+        onReload: () => getData(widget.post.id, RefreshType.REFRESH),
+        contentView: EasyRefresh(
+          footer: BallPulseFooter(),
+          header: MaterialHeader(),
+          onLoad: isLoadComplete
+              ? null
+              : () async => getData(widget.post.id, RefreshType.LOAD_MORE),
+          onRefresh: () async => getData(widget.post.id, RefreshType.REFRESH),
+          child: ListView(
+            padding: EdgeInsets.only(top: 0),
+            children: <Widget>[
+              LabInfoHeaderView(
+                tag: widget.tag,
+                post: widget.post,
               ),
-              loaderState: _status,
-            ),
+              StaggeredGridView.countBuilder(
+                  padding: EdgeInsets.only(top: 5, left: 5, right: 5),
+                  primary: false,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  crossAxisCount: 4,
+                  mainAxisSpacing: 4.0,
+                  crossAxisSpacing: 4.0,
+                  itemBuilder: (context, index) {
+                    if (options[index].image == null ||
+                        options[index].image.isEmpty) {
+                      return ItemOptionText(option: options[index]);
+                    } else {
+                      return ItemOptionImage(option: options[index]);
+                    }
+                  },
+                  staggeredTileBuilder: (index) => StaggeredTile.fit(2),
+                  itemCount: options.length),
+              Visibility(
+                visible: isLoadComplete,
+                child: LineViewLine(
+                    child: Text('没有更多了', style: TextStyle(color: Colors.grey)),
+                    horizontalPadding: 80.0,
+                    verticalPadding: 40),
+              )
+            ],
           ),
-          BottomAppbar(actions: <Widget>[
-            IconButton(icon: Icon(Feather.edit), onPressed: () {}),
-            IconButton(icon: Icon(Feather.share), onPressed: () {})
-          ]),
-        ],
+        ),
+        loaderState: _status,
       ),
+      bottomNavigationBar: BottomAppbar(actions: <Widget>[
+        IconButton(icon: Icon(Feather.edit), onPressed: () {}),
+        IconButton(icon: Icon(Feather.share), onPressed: () {})
+      ]),
     );
   }
 

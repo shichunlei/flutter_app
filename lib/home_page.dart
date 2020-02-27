@@ -109,19 +109,9 @@ class HomeStatePage extends State<HomePage> {
                       onPressed: () => getTestData(),
                       tooltip: "Tune")
                 ]),
-            body: Stack(
-              children: <Widget>[
-                ListView(
-                    padding:
-                        EdgeInsets.only(bottom: Utils.bottomSafeHeight + 60.0),
-                    physics: BouncingScrollPhysics(),
-                    children: _buildListBody()),
-                Positioned(
-                  child: SongPlayerBar(),
-                  bottom: 0.0,
-                ),
-              ],
-            ),
+            body: ListView(
+                physics: BouncingScrollPhysics(), children: _buildListBody()),
+            bottomNavigationBar: SongPlayerBar(),
             drawer: Drawer(child: HomeDrawable())));
   }
 
