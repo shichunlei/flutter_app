@@ -291,4 +291,69 @@ class Utils {
     }
     return mobile;
   }
+
+  /// 格式化歌词
+  ///
+  /// [lyricStr] 歌词
+  ///
+  static List<Lyric> formatLyric(String lyricStr) {
+    if (lyricStr == null) {
+      return [];
+    }
+
+    RegExp reg = RegExp(r"^\[\d{2}");
+
+    /// 1. 首先根据\n 来切割字符串
+    List<Lyric> result = lyricStr.split("\n").where(
+      (r) {
+        /// 2. 然后用正则挑选出所有带时间的行
+        return reg.hasMatch(r);
+      },
+    ).map((s) {
+      /// 3. 循环列表创建 Lyric 类，赋值当前文字和起始时间
+      String time = s.substring(0, s.indexOf(']')); // => [00:00.10]
+      String lyric = s.substring(s.indexOf(']') + 1);
+      time = s.substring(1, time.length - 1); // => 00:00.10
+      int hourSeparatorIndex = time.indexOf(":");
+      int minuteSeparatorIndex = time.indexOf(".");
+      return Lyric(
+        lyric,
+        startTime: Duration(
+          minutes: int.parse(
+            time.substring(0, hourSeparatorIndex),
+          ),
+          seconds: int.parse(
+            time.substring(hourSeparatorIndex + 1, minuteSeparatorIndex),
+          ),
+          milliseconds: int.parse(
+            time.substring(minuteSeparatorIndex + 1),
+          ),
+        ),
+      );
+    }).toList();
+
+    /// 4. 最后再循环一次，把下一个的起始时间赋值到当前行的结束时间中
+    for (int i = 0; i < result.length - 1; i++) {
+      result[i].endTime = result[i + 1].startTime;
+    }
+
+    /// 5. 最后一句歌词没有结束时间（应该是音乐的最后时间）默认设为1:00:00.00
+    result[result.length - 1].endTime = Duration(hours: 1);
+    return result;
+  }
+
+  /// 查找歌词位置
+  ///
+  /// [curTime] 当前时间
+  /// [lyrics] 歌词集合
+  ///
+  static int findLyricIndex(double curTime, List<Lyric> lyrics) {
+    for (int i = 0; i < lyrics.length; i++) {
+      if (curTime >= lyrics[i].startTime.inMilliseconds &&
+          curTime <= lyrics[i].endTime.inMilliseconds) {
+        return i;
+      }
+    }
+    return 0;
+  }
 }

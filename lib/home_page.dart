@@ -178,19 +178,20 @@ class HomeStatePage extends State<HomePage> {
       city = await location.district;
       String province = await location?.province;
       debugPrint("-----------------------------$province");
-      setState(() {});
+
       if (city == null || city == "") {
         city = "北京";
-        getWeatherData(city);
       }
+      if (mounted) setState(() {});
+      await getWeatherData(city);
     } else {
       Scaffold.of(context).showSnackBar(SnackBar(content: Text('权限不足')));
     }
   }
 
-  void getWeatherData(String city) async {
+  Future getWeatherData(String city) async {
     weather = await ApiService.getHeWeatherNow(city);
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   void getTestData() async {}
