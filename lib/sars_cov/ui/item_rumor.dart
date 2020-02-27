@@ -23,22 +23,17 @@ class ItemRumor extends StatelessWidget {
                 child: Container(
                   child: Stack(
                     children: <Widget>[
-                      Positioned(
-                        child: Image.asset(
-                          'images/lable.png',
-                          height: 50,
-                          width: 50,
-                        ),
-                        left: 0,
-                        top: 0,
+                      CustomPaint(
+                        size: Size(60, 60),
+                        painter: LabelViewPainter(),
                       ),
                       Positioned(
                         child: Text(
                           '$index',
                           style: TextStyle(color: Colors.white),
                         ),
-                        left: 10,
                         top: 10,
+                        left: 10,
                       ),
                       Positioned(
                         child: Image.asset(
@@ -110,5 +105,34 @@ class ItemRumor extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class LabelViewPainter extends CustomPainter {
+  Paint _paint;
+  Path path;
+
+  LabelViewPainter() {
+    _paint = Paint()
+      ..color = Colors.red
+      ..strokeCap = StrokeCap.round
+      ..isAntiAlias = true
+      ..style = PaintingStyle.fill;
+    path = Path();
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    path.moveTo(0, 0);
+    path.lineTo(0, size.height);
+    path.lineTo(size.width, 0);
+
+    path.close();
+    canvas.drawPath(path, _paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
   }
 }

@@ -33,7 +33,7 @@ dependencies: # 应用或包依赖的其它包或插件
   badges: ^1.1.0
 
   # 条形码
-  barcode_flutter: ^1.1.0
+  barcode_flutter: ^1.1.2
 
   # 扫描二维码
   barcode_scan: ^2.0.1
