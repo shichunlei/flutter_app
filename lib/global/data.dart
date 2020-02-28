@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/bars_demo/tabbar_demo.dart';
 import 'package:flutter_app/ui_screen/demo/home.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -58,6 +59,7 @@ class ExpandStateBean {
         title: 'NavigationBar Example',
         children: [
           SubExpandBean('TabBar', TabBarHomePage()),
+          SubExpandBean('TabBarDemo', TabBarDemoPage()),
           SubExpandBean('BottomNavigationBar', BottomNavigationBarHomePage()),
           SubExpandBean('NavigationBarShifting', NavigationBarShifting()),
           SubExpandBean('NavigationBarFixed', NavigationBarFixed()),
@@ -507,7 +509,8 @@ Map<SupportLocale, Locale> mapLocales = {
 };
 
 /// SupportLocale 对应的含义
-Map<SupportLocale, String> get mapSupportLocale => {
+Map<SupportLocale, String> get mapSupportLocale =>
+    {
       SupportLocale.FOLLOW_SYSTEM: "跟随系统",
       SupportLocale.SIMPLIFIED_CHINESE: "简体中文",
       SupportLocale.TRADITIONAL_CHINESE_TW: "繁體中文(臺灣)",

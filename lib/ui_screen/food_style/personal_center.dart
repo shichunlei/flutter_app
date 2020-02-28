@@ -118,7 +118,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                         'images/femal.png',
                         height: 15,
                       ),
-                      Gaps.hGap8,
+                      SizedBox(width: 8),
                       Text(
                         '$name',
                         style: const TextStyle(
@@ -126,7 +126,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                             fontSize: 16,
                             fontWeight: FontWeight.bold),
                       ),
-                      Gaps.hGap8,
+                      SizedBox(width: 8),
                       GestureDetector(
                         onTap: () {
                           pushNewPage(
@@ -202,7 +202,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                             ),
                             flex: 1,
                           ),
-                          Gaps.hGap20,
+                          SizedBox(width: 20),
                           Expanded(
                             child: Text(
                               'Amily-3562',
@@ -214,7 +214,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                           ),
                         ],
                       ),
-                      Gaps.vGap10,
+                      SizedBox(height: 10),
                       Row(
                         children: <Widget>[
                           Expanded(
@@ -228,7 +228,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                             ),
                             flex: 1,
                           ),
-                          Gaps.hGap20,
+                          SizedBox(width: 20),
                           Expanded(
                             child: Text(
                               'amily-smiths@gmail.com',
@@ -240,7 +240,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                           ),
                         ],
                       ),
-                      Gaps.vGap10,
+                      SizedBox(height: 10),
                       Row(
                         children: <Widget>[
                           Expanded(
@@ -254,7 +254,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                             ),
                             flex: 1,
                           ),
-                          Gaps.hGap20,
+                          SizedBox(width: 20),
                           Expanded(
                             child: Text(
                               'Sydney,NSW,Australia',

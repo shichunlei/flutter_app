@@ -82,7 +82,6 @@ class _PostsPageState extends State<PostsPage> {
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
-//
                                   Image.asset('images/msg.png'),
                                   SizedBox(width: 5),
                                   Text(

@@ -14,7 +14,7 @@ packages:
       name: amap_location_fluttify
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.8.6+356f11c"
+    version: "0.8.7+1053dca"
   animated_text_kit:
     dependency: "direct main"
     description:
@@ -63,7 +63,7 @@ packages:
       name: badges
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.1"
   barcode_flutter:
     dependency: "direct main"
     description:
