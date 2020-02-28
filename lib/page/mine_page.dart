@@ -132,13 +132,26 @@ class _MinePageState extends State<MinePage> {
                 ),
                 bgColor: Colors.transparent,
                 iconColor: Colors.white,
-                action: IconButton(
-                    icon: Text(
-                        isEdit
-                            ? "${S.of(context).complete}"
-                            : '${S.of(context).edit}',
-                        style: TextStyle(fontSize: 15, color: Colors.white)),
-                    onPressed: () => setState(() => isEdit = !isEdit)),
+                action: AnimatedSwitcher(
+                  duration: Duration(milliseconds: 300),
+                  transitionBuilder:
+                      (Widget child, Animation<double> animation) {
+                    return ScaleTransition(child: child, scale: animation);
+                  },
+                  child: isEdit
+                      ? IconButton(
+                          key: ValueKey(S.of(context).complete),
+                          icon: Text(S.of(context).complete,
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.white)),
+                          onPressed: () => setState(() => isEdit = !isEdit))
+                      : IconButton(
+                          key: ValueKey(S.of(context).edit),
+                          icon: Text('${S.of(context).edit}',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.white)),
+                          onPressed: () => setState(() => isEdit = !isEdit)),
+                ),
               ),
             ],
           ));

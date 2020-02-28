@@ -14,6 +14,8 @@ class PersonalCenterPage extends StatefulWidget {
 class _PersonalCenterPageState extends State<PersonalCenterPage> {
   double bannerHeight, radius, padding;
 
+  String name = "Amily";
+
   @override
   void initState() {
     super.initState();
@@ -118,18 +120,33 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                       ),
                       Gaps.hGap8,
                       Text(
-                        'Amily',
+                        '$name',
                         style: const TextStyle(
                             color: Colors.black,
                             fontSize: 16,
                             fontWeight: FontWeight.bold),
                       ),
                       Gaps.hGap8,
-                      Image.asset(
-                        'images/write.png',
-                        width: 15,
-                        height: 15,
-                        color: Color(0xFF606060),
+                      GestureDetector(
+                        onTap: () {
+                          pushNewPage(
+                              context,
+                              InputTextPage(
+                                title: '修改姓名',
+                                content: '$name',
+                                maxLines: 1,
+                              ), callBack: (value) {
+                            setState(() {
+                              name = value;
+                            });
+                          });
+                        },
+                        child: Image.asset(
+                          'images/write.png',
+                          width: 15,
+                          height: 15,
+                          color: Color(0xFF606060),
+                        ),
                       ),
                     ],
                     mainAxisSize: MainAxisSize.min,

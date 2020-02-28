@@ -204,7 +204,8 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
   Widget buildBottomView() {
     return Store.connect<BookModel>(builder: (_, BookModel snapshot, __) {
       return Container(
-          height: 50.0,
+          padding: EdgeInsets.only(bottom: Utils.bottomSafeHeight),
+          height: 50.0 + Utils.bottomSafeHeight,
           child: Row(children: <Widget>[
             /// 添加到书架/从暑假删除按钮
             Expanded(

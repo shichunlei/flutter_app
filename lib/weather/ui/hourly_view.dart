@@ -11,7 +11,7 @@ class HourlyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<double> data = [];
-    hourly.forEach((h) => data.add(double.parse(h.tmp)));
+    hourly.forEach((h) => data.add(h.tmp));
     return Container(
         margin: EdgeInsets.only(top: 10.0),
         width: double.infinity,

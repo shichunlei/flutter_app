@@ -267,7 +267,7 @@ class Hourly {
   String pop;
   String pres;
   String time;
-  String tmp;
+  double tmp;
   String wind_deg;
   String wind_dir;
   String wind_sc;
@@ -314,7 +314,7 @@ class Hourly {
     hourly.pop = map['pop'];
     hourly.pres = map['pres'];
     hourly.time = _time;
-    hourly.tmp = map['tmp'];
+    hourly.tmp = double.parse(map['tmp']);
     hourly.wind_deg = map['wind_deg'];
     hourly.wind_dir = map['wind_dir'];
     hourly.wind_sc = map['wind_sc'];

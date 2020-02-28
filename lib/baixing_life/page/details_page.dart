@@ -101,31 +101,34 @@ class _DetailsPageState extends State<DetailsPage>
   }
 
   Widget _buildBottomView() {
-    return Row(children: <Widget>[
-      Expanded(
-          child: GestureDetector(
-              onTap: () {
-                Toast.show(context, '加入购物车');
-                Store.value<ShoppingCartModel>(context, listen: false)
-                    .addGoodsToCart(goods.goodInfo);
-              },
-              child: Container(
-                  alignment: Alignment.center,
-                  height: 48.0,
-                  child: Text('加入购物车', style: TextStyle(color: Colors.white)),
-                  color: Colors.orange))),
-      Expanded(
-          child: GestureDetector(
-              onTap: () {
-                /// TODO 立即购买
-                Toast.show(context, '立即购买');
-              },
-              child: Container(
-                  height: 48.0,
-                  alignment: Alignment.center,
-                  child: Text('立即购买', style: TextStyle(color: Colors.white)),
-                  color: Colors.red)))
-    ]);
+    return Container(
+      padding: EdgeInsets.only(bottom: Utils.bottomSafeHeight),
+      child: Row(children: <Widget>[
+        Expanded(
+            child: GestureDetector(
+                onTap: () {
+                  Toast.show(context, '加入购物车');
+                  Store.value<ShoppingCartModel>(context, listen: false)
+                      .addGoodsToCart(goods.goodInfo);
+                },
+                child: Container(
+                    alignment: Alignment.center,
+                    height: 48.0,
+                    child: Text('加入购物车', style: TextStyle(color: Colors.white)),
+                    color: Colors.orange))),
+        Expanded(
+            child: GestureDetector(
+                onTap: () {
+                  /// TODO 立即购买
+                  Toast.show(context, '立即购买');
+                },
+                child: Container(
+                    height: 48.0,
+                    alignment: Alignment.center,
+                    child: Text('立即购买', style: TextStyle(color: Colors.white)),
+                    color: Colors.red)))
+      ]),
+    );
   }
 
   void getGoodsInfo() async {

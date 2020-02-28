@@ -16,7 +16,7 @@ class SongPlayerBar extends StatelessWidget {
         type: TransitionType.slide_top,
       ),
       child: Container(
-        height: 60.0,
+        height: 60.0 + Utils.bottomSafeHeight,
         width: Utils.width,
         child: Stack(
           children: <Widget>[
