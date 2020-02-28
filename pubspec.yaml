@@ -169,6 +169,12 @@ dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本�
   flutter_test:
     sdk: flutter
 
+  flutter_launcher_icons: ^0.7.4
+
+flutter_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "images/logo.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
