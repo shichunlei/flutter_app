@@ -147,10 +147,11 @@ class _MemberPageState extends State<MemberPage>
                   ),
                 )
               ])),
-          ChangeAppBar(
-              title: widget.title,
-              backgroundColor: Colors.green,
-              navAlpha: navAlpha)
+          ToolBar(
+            title: Text(widget.title),
+            backgroundColor: Color.fromRGBO(89, 175, 80, navAlpha),
+            automaticallyImplyLeading: false,
+          ),
         ]));
   }
 

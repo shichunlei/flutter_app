@@ -123,21 +123,23 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
                 )
               ]),
             ),
-            CustomAppBar(
-              iconColor: Colors.white,
-              bgColor: Color.fromARGB((navAlpha * 255).toInt(), 180, 180, 180),
+            ToolBar(
+              backgroundColor:
+                  Color.fromARGB((navAlpha * 255).toInt(), 180, 180, 180),
               title: Text(title,
                   style: TextStyle(
                       fontSize: 16.0,
                       color: Color.fromARGB(
                           (navAlpha * 255).toInt(), 255, 255, 255))),
-              action: IconButton(
-                icon: Icon(
-                  Icons.add_a_photo,
-                  color: Colors.white,
-                ),
-                onPressed: () => _showDialog(context),
-              ),
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.add_a_photo,
+                    color: Colors.white,
+                  ),
+                  onPressed: () => _showDialog(context),
+                )
+              ],
             ),
           ],
         ));

@@ -103,10 +103,7 @@ class WeatherPageState extends State<WeatherPage> {
       body: Stack(children: <Widget>[
         Image.asset(background, fit: BoxFit.fitHeight, height: double.infinity),
         _buildContentView(),
-        CustomAppBar(
-          iconColor: Colors.white,
-          bgColor: Color.fromARGB((navAlpha * 255 * 0.8).toInt(), barColor.red,
-              barColor.green, barColor.blue),
+        ToolBar(
           title: GestureDetector(
             child: Row(children: <Widget>[
               Text('$title',
@@ -129,14 +126,17 @@ class WeatherPageState extends State<WeatherPage> {
               },
             ),
           ),
-          centerTitle: false,
-          action: LikeButton(
-            size: 65,
-            normalColor: Colors.white,
-            onClicked: (bool isLiked) {
-              favorite = isLiked;
-            },
-          ),
+          actions: <Widget>[
+            LikeButton(
+              size: 65,
+              normalColor: Colors.white,
+              onClicked: (bool isLiked) {
+                favorite = isLiked;
+              },
+            ),
+          ],
+          backgroundColor: Color.fromARGB((navAlpha * 255 * 0.8).toInt(),
+              barColor.red, barColor.green, barColor.blue),
         ),
       ]),
     );

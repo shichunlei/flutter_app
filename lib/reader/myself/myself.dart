@@ -7,12 +7,11 @@ import '../index.dart';
 class MySelfPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.grey[200],
-        body: Stack(children: <Widget>[
-          AppBar(
-              brightness: Brightness.dark, backgroundColor: Colors.grey[200]),
-          SingleChildScrollView(
+    return Theme(
+      data: ThemeData(brightness: Brightness.dark),
+      child: Scaffold(
+          backgroundColor: Colors.grey[200],
+          body: SingleChildScrollView(
             child: Column(children: <Widget>[
               Material(
                   child: Container(
@@ -193,7 +192,7 @@ class MySelfPage extends StatelessWidget {
               ),
               Gaps.vGap8
             ]),
-          )
-        ]));
+          )),
+    );
   }
 }

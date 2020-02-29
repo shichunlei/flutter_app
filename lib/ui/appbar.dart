@@ -3,60 +3,66 @@ import 'package:flutter/services.dart';
 
 import '../page_index.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+class ToolBar extends StatelessWidget {
+  final Widget leading;
+
+  final bool automaticallyImplyLeading;
+
   final Widget title;
-  final bool centerTitle;
-  final Color bgColor;
-  final Color iconColor;
-  final VoidCallback onPressed;
-  final Widget action;
+
+  final List<Widget> actions;
+
+  final PreferredSizeWidget bottom;
+
+  final double elevation;
+
+  final Color backgroundColor;
+
   final Brightness brightness;
 
-  CustomAppBar({
+  final IconThemeData iconTheme;
+
+  final TextTheme textTheme;
+
+  final bool centerTitle;
+
+  ToolBar({
     Key key,
+    this.leading,
+    this.automaticallyImplyLeading: true,
     this.title,
-    this.centerTitle: true,
-    this.bgColor: Colors.white,
-    this.iconColor: Colors.black,
-    this.onPressed,
-    this.action,
-    this.brightness: Brightness.light,
+    this.actions,
+    this.bottom,
+    this.elevation: 0.0,
+    this.backgroundColor: Colors.transparent,
+    this.brightness,
+    this.iconTheme,
+    this.textTheme,
+    this.centerTitle,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: bgColor,
-      child: Container(
-        height: preferredSize.height,
-        padding: EdgeInsets.only(top: Utils.topSafeHeight),
-        child: Row(
-          children: <Widget>[
-            IconButton(
-                icon: Icon(
-                  Utils.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
-                  color: iconColor,
-                ),
-                onPressed: () => Navigator.pop(context)),
-            Expanded(
-              child: Container(
-                child: title,
-                alignment:
-                    centerTitle ? Alignment.center : Alignment.centerLeft,
-              ),
-            ),
-            SizedBox(
-              child: action,
-              width: Utils.navigationBarHeight - Utils.topSafeHeight,
-            ),
-          ],
+    return Container(
+      height: Utils.navigationBarHeight,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          elevation: elevation,
+          backgroundColor: backgroundColor,
+          actions: actions,
+          leading: leading,
+          title: title,
+          centerTitle: centerTitle,
+          textTheme: textTheme,
+          iconTheme: iconTheme,
+          brightness: brightness,
+          bottom: bottom,
+          automaticallyImplyLeading: automaticallyImplyLeading,
         ),
       ),
     );
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(Utils.navigationBarHeight);
 }
 
 class SearchBar extends StatefulWidget implements PreferredSizeWidget {

@@ -15,8 +15,6 @@ export 'ui/item_goods_grid.dart';
 export 'ui/empty_shop_cart.dart';
 export 'ui/item_cart_goods.dart';
 export 'ui/cart_amount_view.dart';
-export 'ui/change_appbar.dart';
-export 'ui/toolbar.dart';
 
 export '../bean/baixing.dart';
 export '../bean/address.dart';

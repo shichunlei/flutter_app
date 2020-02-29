@@ -125,33 +125,33 @@ class _MinePageState extends State<MinePage> {
                   Divider(),
                 ]),
               ),
-              CustomAppBar(
+              ToolBar(
                 title: Text(
                   '个人中心',
                   style: TextStyle(fontSize: 22, color: Colors.white),
                 ),
-                bgColor: Colors.transparent,
-                iconColor: Colors.white,
-                action: AnimatedSwitcher(
-                  duration: Duration(milliseconds: 300),
-                  transitionBuilder:
-                      (Widget child, Animation<double> animation) {
-                    return ScaleTransition(child: child, scale: animation);
-                  },
-                  child: isEdit
-                      ? IconButton(
-                          key: ValueKey(S.of(context).complete),
-                          icon: Text(S.of(context).complete,
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.white)),
-                          onPressed: () => setState(() => isEdit = !isEdit))
-                      : IconButton(
-                          key: ValueKey(S.of(context).edit),
-                          icon: Text('${S.of(context).edit}',
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.white)),
-                          onPressed: () => setState(() => isEdit = !isEdit)),
-                ),
+                actions: <Widget>[
+                  AnimatedSwitcher(
+                    duration: Duration(milliseconds: 300),
+                    transitionBuilder:
+                        (Widget child, Animation<double> animation) {
+                      return ScaleTransition(child: child, scale: animation);
+                    },
+                    child: isEdit
+                        ? IconButton(
+                            key: ValueKey(S.of(context).complete),
+                            icon: Text(S.of(context).complete,
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.white)),
+                            onPressed: () => setState(() => isEdit = !isEdit))
+                        : IconButton(
+                            key: ValueKey(S.of(context).edit),
+                            icon: Text('${S.of(context).edit}',
+                                style: TextStyle(
+                                    fontSize: 15, color: Colors.white)),
+                            onPressed: () => setState(() => isEdit = !isEdit)),
+                  )
+                ],
               ),
             ],
           ));
