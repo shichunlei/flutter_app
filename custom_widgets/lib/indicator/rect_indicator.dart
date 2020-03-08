@@ -5,31 +5,37 @@ class RectIndicator extends StatelessWidget {
   final int count;
   final Color color;
   final Color activeColor;
+  final double width;
+  final double activeWidth;
+  final double height;
 
   RectIndicator({
     Key key,
-    this.position,
-    this.count,
+    this.width: 50.0,
+    this.activeWidth: 50.0,
+    this.height: 4,
+    @required this.position,
+    @required this.count,
     this.color: Colors.white,
     this.activeColor: const Color(0xFF3E4750),
-  }) : super(key: key);
+  })  : assert(count != null && position != null),
+        super(key: key);
 
   _indicator(bool isActive) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4.0),
-      child: Container(
-        height: 4.0,
-        width: 50.0,
-        decoration: BoxDecoration(
-            color: isActive ? color : activeColor,
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black12,
-                  offset: Offset(0.0, 2.0),
-                  blurRadius: 2.0)
-            ],
-            borderRadius: BorderRadius.circular(2.0)),
-      ),
+    return AnimatedContainer(
+      margin: EdgeInsets.symmetric(horizontal: 8.0),
+      height: height,
+      width: isActive ? activeWidth : width,
+      decoration: BoxDecoration(
+          color: isActive ? color : activeColor,
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black12,
+                offset: Offset(0.0, 2.0),
+                blurRadius: 2.0)
+          ],
+          borderRadius: BorderRadius.circular(height / 2.0)),
+      duration: Duration(milliseconds: 150),
     );
   }
 
@@ -44,6 +50,7 @@ class RectIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: _buildPageIndicators(),
     );
   }

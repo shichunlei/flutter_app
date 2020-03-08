@@ -109,9 +109,6 @@ dependencies: # 应用或包依赖的其它包或插件
   # 图片选择器
   image_picker: ^0.6.3+4
 
-  # 引导页
-  intro_slider: ^2.2.9
-
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.9
 

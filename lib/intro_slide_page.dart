@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/login/page/login_page.dart';
-import 'package:intro_slider/intro_slider.dart';
-import 'package:intro_slider/slide_object.dart';
-import 'package:intro_slider/dot_animation_enum.dart';
-import 'package:flutter_app/utils/route_util.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_app/page_index.dart';
 
 class IntroSlidePage extends StatefulWidget {
   @override
@@ -11,90 +8,228 @@ class IntroSlidePage extends StatefulWidget {
 }
 
 class SliderScreenState extends State<IntroSlidePage> {
-  List<Slide> slides = [];
-
-  @override
-  void initState() {
-    super.initState();
-
-    slides.add(Slide(
-      title: "FLUTTER",
-      styleTitle: TextStyle(
-          color: Color(0xff3da4ab),
-          fontSize: 30.0,
-          fontWeight: FontWeight.bold),
-      description:
-          "Get Faster Development, Flexible UI & Access Native Features. Learn More! High-Quality Interfaces. Flexible UI. Fast Development.",
-      pathImage: "images/flutter.png",
-      backgroundColor: Colors.lightBlue,
-    ));
-    slides.add(Slide(
-      title: "DART",
-      styleTitle: TextStyle(
-          color: Color(0xff3da4ab),
-          fontSize: 30.0,
-          fontWeight: FontWeight.bold),
-      description:
-          "Developers at Google and elsewhere use Dart to create high-quality, mission-critical apps for iOS, Android, and the web. With features aimed at client-side development, Dart is a great fit for both mobile and web apps.",
-      pathImage: "images/dart.png",
-      backgroundColor: Colors.orangeAccent,
-    ));
-    slides.add(Slide(
-      title: "WELECOME",
-      styleTitle: TextStyle(
-          color: Color(0xff3da4ab),
-          fontSize: 30.0,
-          fontWeight: FontWeight.bold),
-      description: "开始你的app",
-      pathImage: "images/flutterlogo.png",
-      backgroundColor: Colors.redAccent,
-    ));
-  }
+  final int _numPages = 3;
+  final PageController _pageController = PageController(initialPage: 0);
+  int _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
-    return IntroSlider(
-      // List slides
-      slides: this.slides,
-
-      // Skip button
-      renderSkipBtn: this.renderSkipBtn(),
-      colorSkipBtn: Color(0x33ffcc5c),
-      highlightColorSkipBtn: Color(0xffffcc5c),
-
-      // Next button
-      renderNextBtn: this.renderNextBtn(),
-
-      // Done button
-      renderDoneBtn: this.renderDoneBtn(),
-      onDonePress: this.onDonePress,
-      colorDoneBtn: Color(0x33ffcc5c),
-      highlightColorDoneBtn: Color(0xffffcc5c),
-
-      // Dot indicator
-      colorDot: Color(0xffffcc5c),
-      sizeDot: 13.0,
-      typeDotAnimation: dotSliderAnimation.SIZE_TRANSITION,
-
-      // Show or hide status bar
-      shouldHideStatusBar: true,
+    return Scaffold(
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              stops: [0.1, 0.4, 0.7, 0.9],
+              colors: [
+                Color(0xFF3594DD),
+                Color(0xFF4563DB),
+                Color(0xFF5036D5),
+                Color(0xFF5B16D0),
+              ],
+            ),
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: FlatButton(
+                    onPressed: () => pushAndRemovePage(context, HomePage()),
+                    child: Text(
+                      'Skip',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 500.0,
+                  child: PageView(
+                    physics: ClampingScrollPhysics(),
+                    controller: _pageController,
+                    onPageChanged: (int page) {
+                      setState(() {
+                        _currentPage = page;
+                      });
+                    },
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.all(40.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Center(
+                              child: Image.asset(
+                                'images/onboarding0.png',
+                                height: 200.0,
+                                width: 200.0,
+                              ),
+                            ),
+                            SizedBox(height: 30.0),
+                            Text(
+                              'Connect people\naround the world',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 26.0,
+                                height: 1.5,
+                              ),
+                            ),
+                            SizedBox(height: 15.0),
+                            Text(
+                              'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                                height: 1.2,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(40.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Center(
+                              child: Image.asset(
+                                'images/onboarding1.png',
+                                height: 200.0,
+                                width: 200.0,
+                              ),
+                            ),
+                            SizedBox(height: 30.0),
+                            Text(
+                              'Live your life smarter\nwith us!',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 26.0,
+                                height: 1.5,
+                              ),
+                            ),
+                            SizedBox(height: 15.0),
+                            Text(
+                              'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                                height: 1.2,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(40.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Center(
+                              child: Image.asset(
+                                'images/onboarding2.png',
+                                height: 200.0,
+                                width: 200.0,
+                              ),
+                            ),
+                            SizedBox(height: 30.0),
+                            Text(
+                              'Get a new experience\nof imagination',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 26.0,
+                                height: 1.5,
+                              ),
+                            ),
+                            SizedBox(height: 15.0),
+                            Text(
+                              'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                                height: 1.2,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                RectIndicator(
+                  position: _currentPage,
+                  count: _numPages,
+                  activeColor: Color(0xFF7B51D3),
+                  width: 16.0,
+                  activeWidth: 24.0,
+                  height: 8.0,
+                ),
+                _currentPage != _numPages - 1
+                    ? Expanded(
+                        child: Align(
+                          alignment: FractionalOffset.bottomRight,
+                          child: FlatButton(
+                            color: Colors.red,
+                            onPressed: () {
+                              _pageController.nextPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.ease,
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Text(
+                                  'Next',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22.0,
+                                  ),
+                                ),
+                                SizedBox(width: 10.0),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                  size: 30.0,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    : SizedBox(),
+              ],
+            ),
+          ),
+        ),
+      ),
+      bottomSheet: _currentPage == _numPages - 1
+          ? GestureDetector(
+              onTap: () => pushAndRemovePage(context, HomePage()),
+              child: Container(
+                height: 100.0,
+                width: double.infinity,
+                color: Colors.white,
+                padding: EdgeInsets.only(bottom: 30.0),
+                alignment: Alignment.center,
+                child: Text(
+                  'Get started',
+                  style: TextStyle(
+                    color: Color(0xFF5B16D0),
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            )
+          : SizedBox(),
     );
-  }
-
-  void onDonePress() {
-    // Back to the first tab
-    pushAndRemovePage(context, LoginPage());
-  }
-
-  Widget renderNextBtn() {
-    return Icon(Icons.navigate_next, color: Color(0xffffcc5c), size: 35.0);
-  }
-
-  Widget renderDoneBtn() {
-    return Icon(Icons.done, color: Color(0xffffcc5c));
-  }
-
-  Widget renderSkipBtn() {
-    return Icon(Icons.skip_next, color: Color(0xffffcc5c));
   }
 }
