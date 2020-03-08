@@ -20,7 +20,7 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_localizations:
     sdk: flutter
 
-  amap_location_fluttify: ^0.8.7+1053dca
+  amap_location_fluttify: ^0.8.11+481e45c
 
   # https://github.com/aagarwal1012/Animated-Text-Kit
   animated_text_kit: ^2.0.0
@@ -76,7 +76,7 @@ dependencies: # 应用或包依赖的其它包或插件
       url: https://github.com/shichunlei/flutter_jd_address_selector
 
   # https://github.com/dooboolab/flutter_sound
-  flutter_sound: ^2.1.0
+  flutter_sound: ^2.1.1
 
   # 加载提示组件
   flutter_spinkit: ^4.1.2
@@ -115,7 +115,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.9
 
-  multi_image_picker: ^4.6.1
+  multi_image_picker: ^4.6.2
 
   package_info: ^0.4.0+14
 
@@ -124,9 +124,9 @@ dependencies: # 应用或包依赖的其它包或插件
   # 滑动视差效果图片 https://github.com/pulyaevskiy/parallax-image
   parallax_image: ^0.3.1+1
 
-  path_provider: ^1.6.1
+  path_provider: ^1.6.5
 
-  permission_handler: ^4.2.0+hotfix.3
+  permission_handler: ^4.4.0
 
   # PhotoView
   photo_view: ^0.9.2
@@ -146,10 +146,10 @@ dependencies: # 应用或包依赖的其它包或插件
   shared_preferences: ^0.5.6+2
 
   # 骨架屏
-  shimmer: ^1.0.1
+  shimmer: ^1.1.0
 
   # 数据库
-  sqflite: ^1.2.1
+  sqflite: ^1.2.2
 
   # 图表
   syncfusion_flutter_charts: ^17.4.51

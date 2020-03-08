@@ -129,6 +129,108 @@ class HomeStatePage extends State<HomePage> {
                   builder: SwiperPagination.fraction,
                   alignment: Alignment.bottomRight),
               autoplay: true)))
+      ..add(Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                  child: Container(
+                      height: 86,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.purple,
+                          boxShadow: [
+                            BoxShadow(
+                                offset: Offset(3, 3),
+                                color: Colors.black12,
+                                blurRadius: 5),
+                            BoxShadow(
+                                offset: Offset(-3, -3),
+                                color: Colors.black12,
+                                blurRadius: 5)
+                          ]),
+                      child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Stack(children: <Widget>[
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(
+                                      height: 42,
+                                      width: 42,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          color: Colors.purple,
+                                          boxShadow: [
+                                            BoxShadow(
+                                                offset: Offset(5, 5),
+                                                color: Colors.black12,
+                                                blurRadius: 5),
+                                            BoxShadow(
+                                                offset: Offset(-5, -5),
+                                                color: Colors.black12,
+                                                blurRadius: 5)
+                                          ]),
+                                      child: Icon(Icons.ac_unit,
+                                          size: 28, color: Colors.cyan)),
+                                  Text('未完成')
+                                ]),
+                            Positioned(top: 10, child: Text('100'), right: 0)
+                          ])))),
+              SizedBox(width: 8),
+              Expanded(
+                  child: Container(
+                      height: 86,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Theme.of(context).primaryColor,
+                        boxShadow: [
+                          BoxShadow(
+                              offset: Offset(3, 3),
+                              color: Colors.black12,
+                              blurRadius: 5),
+                          BoxShadow(
+                              offset: Offset(-3, -3),
+                              color: Colors.black12,
+                              blurRadius: 5)
+                        ],
+                      ),
+                      child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Stack(children: <Widget>[
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(
+                                      height: 42,
+                                      width: 42,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          color: Theme.of(context).primaryColor,
+                                          boxShadow: [
+                                            BoxShadow(
+                                                offset: Offset(5, 5),
+                                                color: Colors.black12,
+                                                blurRadius: 5),
+                                            BoxShadow(
+                                                offset: Offset(-5, -5),
+                                                color: Colors.black12,
+                                                blurRadius: 5)
+                                          ]),
+                                      child: Icon(Icons.ac_unit,
+                                          size: 28, color: Colors.cyan)),
+                                  Text('未完成')
+                                ]),
+                            Positioned(right: 0, top: 10, child: Text('100'))
+                          ]))))
+            ],
+          )))
       ..addAll(ExpandStateBean.expandStateList
           .map((value) => ExpansionTile(
               title: Text('${value.title}'),

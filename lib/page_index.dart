@@ -190,6 +190,7 @@ export 'ui_screen/bottom_menu.dart';
 export 'ui_screen/navigation/light_drawer.dart';
 export 'ui_screen/qrcode.dart';
 export 'ui_screen/food_style/personal_center.dart';
+export 'ui_screen/sign_in.dart';
 
 export 'res/colors.dart';
 export 'res/dimens.dart';
