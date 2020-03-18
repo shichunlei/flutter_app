@@ -40,7 +40,7 @@ dependencies: # 应用或包依赖的其它包或插件
 
   cached_network_image: ^2.0.0
 
-  chewie: ^0.9.8+1
+  chewie: ^0.9.10
 
   clippy_flutter: ^1.1.0
 
@@ -50,7 +50,7 @@ dependencies: # 应用或包依赖的其它包或插件
     path: custom_widgets/
 
   # 设备信息
-  device_info: ^0.4.1+5
+  device_info: ^0.4.2+1
 
   # 网络请求库
   dio: ^3.0.9
@@ -64,12 +64,12 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_colorpicker: ^0.3.2
 
   # 刷新加载控件
-  flutter_easyrefresh: ^2.0.9
+  flutter_easyrefresh: ^2.1.0
 
   flutter_html: ^0.11.1
 
   # 侧滑菜单
-  flutter_inner_drawer: ^0.5.4
+  flutter_inner_drawer: ^0.5.5
 
   flutter_jd_address_selector:
     git:
@@ -112,7 +112,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.9
 
-  multi_image_picker: ^4.6.2
+  multi_image_picker: ^4.6.3
 
   package_info: ^0.4.0+14
 
@@ -140,13 +140,13 @@ dependencies: # 应用或包依赖的其它包或插件
   share: ^0.6.3+6
 
   # SP
-  shared_preferences: ^0.5.6+2
+  shared_preferences: ^0.5.6+3
 
   # 骨架屏
   shimmer: ^1.1.0
 
   # 数据库
-  sqflite: ^1.2.2
+  sqflite: ^1.2.2+1
 
   # 图表
   syncfusion_flutter_charts: ^17.4.51

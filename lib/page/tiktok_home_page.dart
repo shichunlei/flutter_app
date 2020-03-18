@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_app/utils/utils.dart';
 
 /// 展示类似TikTok(抖音)的手势交互效果
@@ -9,7 +8,7 @@ class TikTokPage extends StatefulWidget {
   TikTokPage({Key key}) : super(key: key);
 
   @override
-  _TikTokPageState createState() => _TikTokPageState();
+  createState() => _TikTokPageState();
 }
 
 class _TikTokPageState extends State<TikTokPage> with TickerProviderStateMixin {
@@ -30,7 +29,6 @@ class _TikTokPageState extends State<TikTokPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([]);
     final screenWidth = Utils.width;
     final screenHeight = Utils.height;
 
@@ -148,9 +146,8 @@ class _TikTokPageState extends State<TikTokPage> with TickerProviderStateMixin {
     _controller = AnimationController(
         duration: Duration(milliseconds: offsetX.abs() * 1000 ~/ 500),
         vsync: this);
-    final curve =
-        CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic);
-    _animation = Tween(begin: offsetX, end: 0.0).animate(curve)
+    _animation = Tween(begin: offsetX, end: 0.0).animate(
+        CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic))
       ..addListener(() {
         setState(() {
           offsetX = _animation.value;
@@ -164,9 +161,8 @@ class _TikTokPageState extends State<TikTokPage> with TickerProviderStateMixin {
     _controller = AnimationController(
         duration: Duration(milliseconds: offsetX.abs() * 1000 ~/ 500),
         vsync: this);
-    final curve =
-        CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic);
-    _animation = Tween(begin: offsetX, end: screenWidth).animate(curve)
+    _animation = Tween(begin: offsetX, end: screenWidth).animate(
+        CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic))
       ..addListener(() {
         setState(() {
           offsetX = _animation.value;
@@ -180,9 +176,8 @@ class _TikTokPageState extends State<TikTokPage> with TickerProviderStateMixin {
     _controller = AnimationController(
         duration: Duration(milliseconds: offsetX.abs() * 1000 ~/ 500),
         vsync: this);
-    final curve =
-        CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic);
-    _animation = Tween(begin: offsetX, end: -screenWidth).animate(curve)
+    _animation = Tween(begin: offsetX, end: -screenWidth).animate(
+        CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic))
       ..addListener(() {
         setState(() {
           offsetX = _animation.value;

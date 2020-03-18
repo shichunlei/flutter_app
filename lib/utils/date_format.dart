@@ -451,8 +451,8 @@ int dayInYear(DateTime date) =>
 bool isToday(String dateStr) {
   DateTime dateTime = DateTime.parse(dateStr);
   String date = "${dateTime.year}-${dateTime.month}-${dateTime.day}";
-  String today =
-      '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}';
+  String today = formatDate(DateTime.now(),
+      formats: [yyyy, "-", mm, "-", dd]);
   return date == today;
 }
 

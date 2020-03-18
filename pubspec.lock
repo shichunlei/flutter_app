@@ -105,7 +105,7 @@ packages:
       name: chewie
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.9.8+1"
+    version: "0.9.10"
   clippy_flutter:
     dependency: "direct main"
     description:
@@ -168,7 +168,7 @@ packages:
       name: device_info
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.4.1+5"
+    version: "0.4.2+1"
   dio:
     dependency: "direct main"
     description:
@@ -215,7 +215,7 @@ packages:
       name: flutter_easyrefresh
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.9"
+    version: "2.1.0"
   flutter_html:
     dependency: "direct main"
     description:
@@ -229,7 +229,7 @@ packages:
       name: flutter_inner_drawer
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.5.4"
+    version: "0.5.5"
   flutter_jd_address_selector:
     dependency: "direct main"
     description:
@@ -407,7 +407,7 @@ packages:
       name: multi_image_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.6.2"
+    version: "4.6.3"
   nested:
     dependency: transitive
     description:
@@ -555,13 +555,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.0.6"
-  screen:
-    dependency: transitive
-    description:
-      name: screen
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.0.5"
   share:
     dependency: "direct main"
     description:
@@ -575,7 +568,7 @@ packages:
       name: shared_preferences
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.5.6+2"
+    version: "0.5.6+3"
   shared_preferences_macos:
     dependency: transitive
     description:
@@ -622,7 +615,7 @@ packages:
       name: sqflite
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.2.2"
+    version: "1.2.2+1"
   stack_trace:
     dependency: transitive
     description:
@@ -777,6 +770,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.2+1"
+  wakelock:
+    dependency: transitive
+    description:
+      name: wakelock
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.3+4"
   xml:
     dependency: transitive
     description:
@@ -793,4 +793,4 @@ packages:
     version: "2.2.0"
 sdks:
   dart: ">=2.6.0 <3.0.0"
-  flutter: ">=1.12.13+hotfix.4 <2.0.0"
+  flutter: ">=1.12.13+hotfix.5 <2.0.0"

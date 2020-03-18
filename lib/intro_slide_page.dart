@@ -1,6 +1,9 @@
+import 'package:custom_widgets/indicator/rect_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/page_index.dart';
+
+import 'login/page/login_page.dart';
+import 'utils/route_util.dart';
 
 class IntroSlidePage extends StatefulWidget {
   @override
@@ -39,7 +42,7 @@ class SliderScreenState extends State<IntroSlidePage> {
                 Container(
                   alignment: Alignment.centerRight,
                   child: FlatButton(
-                    onPressed: () => pushAndRemovePage(context, HomePage()),
+                    onPressed: () => pushAndRemovePage(context, LoginPage()),
                     child: Text(
                       'Skip',
                       style: TextStyle(
@@ -212,7 +215,7 @@ class SliderScreenState extends State<IntroSlidePage> {
       ),
       bottomSheet: _currentPage == _numPages - 1
           ? GestureDetector(
-              onTap: () => pushAndRemovePage(context, HomePage()),
+              onTap: () => pushAndRemovePage(context, LoginPage()),
               child: Container(
                 height: 100.0,
                 width: double.infinity,

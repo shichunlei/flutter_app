@@ -112,12 +112,6 @@
 @import rounded_letter;
 #endif
 
-#if __has_include(<screen/ScreenPlugin.h>)
-#import <screen/ScreenPlugin.h>
-#else
-@import screen;
-#endif
-
 #if __has_include(<share/FLTSharePlugin.h>)
 #import <share/FLTSharePlugin.h>
 #else
@@ -148,6 +142,12 @@
 @import video_player;
 #endif
 
+#if __has_include(<wakelock/WakelockPlugin.h>)
+#import <wakelock/WakelockPlugin.h>
+#else
+@import wakelock;
+#endif
+
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
@@ -169,12 +169,12 @@
   [FLTPathProviderPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPathProviderPlugin"]];
   [PermissionHandlerPlugin registerWithRegistrar:[registry registrarForPlugin:@"PermissionHandlerPlugin"]];
   [RoundedLetterPlugin registerWithRegistrar:[registry registrarForPlugin:@"RoundedLetterPlugin"]];
-  [ScreenPlugin registerWithRegistrar:[registry registrarForPlugin:@"ScreenPlugin"]];
   [FLTSharePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTSharePlugin"]];
   [FLTSharedPreferencesPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTSharedPreferencesPlugin"]];
   [SqflitePlugin registerWithRegistrar:[registry registrarForPlugin:@"SqflitePlugin"]];
   [FLTURLLauncherPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTURLLauncherPlugin"]];
   [FLTVideoPlayerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTVideoPlayerPlugin"]];
+  [WakelockPlugin registerWithRegistrar:[registry registrarForPlugin:@"WakelockPlugin"]];
 }
 
 @end
