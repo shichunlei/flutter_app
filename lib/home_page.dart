@@ -110,12 +110,13 @@ class HomeStatePage extends State<HomePage> {
                       tooltip: "Tune")
                 ]),
             body: ListView(
-                physics: BouncingScrollPhysics(), children: _buildListBody()),
+                physics: BouncingScrollPhysics(),
+                children: _buildListBody(context)),
             bottomNavigationBar: SongPlayerBar(),
             drawer: Drawer(child: HomeDrawable())));
   }
 
-  List<Widget> _buildListBody() {
+  List<Widget> _buildListBody(BuildContext context) {
     List<Widget> widgets = [];
 
     widgets
