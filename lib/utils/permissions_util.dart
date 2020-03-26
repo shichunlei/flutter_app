@@ -18,8 +18,10 @@ class PermissionsUtil {
 
   /// 请求通讯录权限
   static Future<bool> requestContactsPermission() async {
-    final permissions = await PermissionHandler()
-        .requestPermissions([PermissionGroup.contacts]);
+    // 申请权限
+    Map<PermissionGroup, PermissionStatus> permissions =
+        await PermissionHandler()
+            .requestPermissions([PermissionGroup.contacts]);
 
     if (permissions.values.any((status) => status == PermissionStatus.denied)) {
       return false;

@@ -261,4 +261,7 @@ class ApiUrl {
 
   /// 我的音乐
   static final MUSIC = "musics/list";
+
+  /// 抖音视频榜
+  static final DY_VIDEOS = "astros/dyvideohot";
 }

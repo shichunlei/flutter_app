@@ -2074,6 +2074,23 @@ class ApiService {
     }
   }
 
+  /// 抖音视频榜
+  ///
+  static Future<List<Song>> getTiktokVideos() async {
+    Response response = await HttpUtils().request(ApiUrl.MUSIC, data: null);
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Song.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
   /// 获取同程信息
   ///
   /// [no] 同程车次
