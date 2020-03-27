@@ -49,7 +49,7 @@ packages:
       name: audioplayers
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.14.1"
+    version: "0.14.2"
   azlistview:
     dependency: "direct main"
     description:
@@ -120,13 +120,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.14.11"
-  contact_picker:
-    dependency: "direct main"
-    description:
-      name: contact_picker
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.0.2"
   convert:
     dependency: transitive
     description:
@@ -176,6 +169,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.0.9"
+  easy_contact_picker:
+    dependency: "direct main"
+    description:
+      name: easy_contact_picker
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.2"
   english_words:
     dependency: "direct main"
     description:
@@ -202,6 +202,15 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.3"
+  flutter_charts:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: e9cfded6cd16188f2c7e988ae0beca51ac4db626
+      url: "https://github.com/shichunlei/flutter_charts"
+    source: git
+    version: "18.1.36"
   flutter_colorpicker:
     dependency: "direct main"
     description:
@@ -278,7 +287,7 @@ packages:
       name: flutter_spinkit
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.1.2"
+    version: "4.1.2+1"
   flutter_staggered_grid_view:
     dependency: "direct main"
     description:
@@ -407,7 +416,7 @@ packages:
       name: multi_image_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.6.3"
+    version: "4.6.4"
   nested:
     dependency: transitive
     description:
@@ -644,20 +653,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.5"
-  syncfusion_flutter_charts:
-    dependency: "direct main"
-    description:
-      name: syncfusion_flutter_charts
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "17.4.51"
-  syncfusion_flutter_core:
-    dependency: transitive
-    description:
-      name: syncfusion_flutter_core
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "17.4.51"
   synchronized:
     dependency: transitive
     description:
@@ -735,13 +730,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.1+1"
-  utf:
-    dependency: transitive
-    description:
-      name: utf
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.9.0+5"
   uuid:
     dependency: transitive
     description:

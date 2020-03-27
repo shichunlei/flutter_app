@@ -28,16 +28,22 @@
 @import barcode_scan;
 #endif
 
-#if __has_include(<contact_picker/ContactPickerPlugin.h>)
-#import <contact_picker/ContactPickerPlugin.h>
-#else
-@import contact_picker;
-#endif
-
 #if __has_include(<device_info/FLTDeviceInfoPlugin.h>)
 #import <device_info/FLTDeviceInfoPlugin.h>
 #else
 @import device_info;
+#endif
+
+#if __has_include(<easy_contact_picker/EasyContactPickerPlugin.h>)
+#import <easy_contact_picker/EasyContactPickerPlugin.h>
+#else
+@import easy_contact_picker;
+#endif
+
+#if __has_include(<flutter_charts/FlutterChartsPlugin.h>)
+#import <flutter_charts/FlutterChartsPlugin.h>
+#else
+@import flutter_charts;
 #endif
 
 #if __has_include(<flutter_jd_address_selector/FlutterJdAddressSelectorPlugin.h>)
@@ -155,8 +161,9 @@
   [AmapLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapLocationFluttifyPlugin"]];
   [AudioplayersPlugin registerWithRegistrar:[registry registrarForPlugin:@"AudioplayersPlugin"]];
   [BarcodeScanPlugin registerWithRegistrar:[registry registrarForPlugin:@"BarcodeScanPlugin"]];
-  [ContactPickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"ContactPickerPlugin"]];
   [FLTDeviceInfoPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTDeviceInfoPlugin"]];
+  [EasyContactPickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"EasyContactPickerPlugin"]];
+  [FlutterChartsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterChartsPlugin"]];
   [FlutterJdAddressSelectorPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterJdAddressSelectorPlugin"]];
   [FlutterSoundPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterSoundPlugin"]];
   [FlutterWebviewPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterWebviewPlugin"]];

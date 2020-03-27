@@ -44,8 +44,6 @@ dependencies: # 应用或包依赖的其它包或插件
 
   clippy_flutter: ^1.1.1
 
-  contact_picker: ^0.0.2
-
   custom_widgets:
     path: custom_widgets/
 
@@ -54,6 +52,8 @@ dependencies: # 应用或包依赖的其它包或插件
 
   # 网络请求库
   dio: ^3.0.9
+
+  easy_contact_picker: ^0.0.2
 
   # 英文单词库
   english_words: ^3.1.5
@@ -83,7 +83,7 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_sound: ^2.1.1
 
   # 加载提示组件
-  flutter_spinkit: ^4.1.2
+  flutter_spinkit: ^4.1.2+1
 
   # 瀑布流
   flutter_staggered_grid_view: ^0.3.0
