@@ -151,12 +151,17 @@ class AreaDataView extends StatelessWidget {
               width: double.infinity,
               padding: EdgeInsets.all(10.0),
               color: Colors.white,
-              height: 200,
+              height: 300,
               child: SfCartesianChart(
+                  legend: Legend(
+                    isVisible: true,
+                    position: LegendPosition.bottom,
+                  ),
                   primaryXAxis: CategoryAxis(),
+                  primaryYAxis: NumericAxis(),
                   tooltipBehavior: TooltipBehavior(enable: true),
                   series: <ChartSeries<HistoryBean, String>>[
-                    LineSeries<HistoryBean, String>(
+                    SplineSeries<HistoryBean, String>(
                       name: "确诊",
                       dataSource: history,
                       xValueMapper: (HistoryBean sales, _) => sales.date,
@@ -164,14 +169,14 @@ class AreaDataView extends StatelessWidget {
                           sales.confirmedCount,
                       color: Color(0xFFEE836C),
                     ),
-                    LineSeries<HistoryBean, String>(
+                    SplineSeries<HistoryBean, String>(
                       name: "死亡",
                       dataSource: history,
                       xValueMapper: (HistoryBean sales, _) => sales.date,
                       yValueMapper: (HistoryBean sales, _) => sales.deadCount,
                       color: Color(0xFF164F81),
                     ),
-                    LineSeries<HistoryBean, String>(
+                    SplineSeries<HistoryBean, String>(
                       name: "治愈",
                       dataSource: history,
                       xValueMapper: (HistoryBean sales, _) => sales.date,

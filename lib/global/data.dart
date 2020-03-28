@@ -386,88 +386,6 @@ List<Widget> loadingWidgets = [
   CircularProgressIndicator(backgroundColor: Colors.greenAccent),
 ];
 
-/// 类型
-const GenreList = [
-  '剧情',
-  '喜剧',
-  '动作',
-  '爱情',
-  '科幻',
-  '动画',
-  '纪录片',
-  '悬疑',
-  '惊悚',
-  '恐怖',
-  '犯罪',
-  '奇幻',
-  '冒险',
-  '灾难',
-  '武侠',
-  '音乐',
-  '歌舞',
-  '传记',
-  '历史',
-  '战争',
-  '同性',
-  '西部',
-  '情色'
-];
-
-/// 地区
-const RegionList = [
-  '中国大陆',
-  '美国',
-  '香港',
-  '日本',
-  '韩国',
-  '台湾',
-  '英国',
-  '法国',
-  '德国',
-  '意大利',
-  '西班牙',
-  '印度',
-  '泰国',
-  '俄罗斯',
-  '伊朗',
-  '加拿大',
-  '澳大利亚',
-  '爱尔兰',
-  '瑞典',
-  '巴西',
-  '丹麦'
-];
-
-/// 特色
-const FeatureList = [
-  '经典',
-  '青春',
-  '治愈',
-  '文艺',
-  '女性',
-  '小说改编',
-  '超级英雄',
-  '美食',
-  '宗教',
-  '励志',
-  '魔幻',
-  '黑帮',
-  '感人'
-];
-
-/// 年代
-const YearList = [
-  '2019',
-  '2018',
-  '2010年代',
-  '2000年代',
-  '90年代',
-  '80年代',
-  '70年代',
-  '60年代',
-  '更早'
-];
-
 /// 所有主题色列表
 final List<Color> themeColors = [
   Colors.blue,
@@ -510,8 +428,7 @@ Map<SupportLocale, Locale> mapLocales = {
 };
 
 /// SupportLocale 对应的含义
-Map<SupportLocale, String> get mapSupportLocale =>
-    {
+Map<SupportLocale, String> get mapSupportLocale => {
       SupportLocale.FOLLOW_SYSTEM: "跟随系统",
       SupportLocale.SIMPLIFIED_CHINESE: "简体中文",
       SupportLocale.TRADITIONAL_CHINESE_TW: "繁體中文(臺灣)",

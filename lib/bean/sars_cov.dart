@@ -81,13 +81,9 @@ class SARSCov {
   List<MarqueeBean> marquee;
   List<TrendChartBean> quanGuoTrendChart;
   List<TrendChartBean> hbFeiHbTrendChart;
-  List<TrendChartBean> foreignTrendChart;
-  List<TrendChartBean> importantForeignTrendChart;
-  List<TrendChartBean> foreignTrendChartGlobal;
-  List<TrendChartBean> importantForeignTrendChartGlobal;
-  ForeignStatistics foreignStatistics;
-  GlobalStatistics globalStatistics;
-  String globalOtherTrendChartData;
+  CountStatistics foreignStatistics;
+  CountStatistics globalStatistics;
+  List<GlobalOtherTrendChartData> globalOtherTrendChartData;
 
   List<Province> provinces;
   List<Continent> continents;
@@ -140,23 +136,12 @@ class SARSCov {
       ..addAll((map['hbFeiHbTrendChart'] as List ?? [])
           .map((o) => TrendChartBean.fromMap(o)));
 
-    bean.foreignTrendChart = List()
-      ..addAll((map['foreignTrendChart'] as List ?? [])
-          .map((o) => TrendChartBean.fromMap(o)));
-    bean.importantForeignTrendChart = List()
-      ..addAll((map['importantForeignTrendChart'] as List ?? [])
-          .map((o) => TrendChartBean.fromMap(o)));
-    bean.foreignTrendChartGlobal = List()
-      ..addAll((map['foreignTrendChartGlobal'] as List ?? [])
-          .map((o) => TrendChartBean.fromMap(o)));
-    bean.importantForeignTrendChartGlobal = List()
-      ..addAll((map['importantForeignTrendChartGlobal'] as List ?? [])
-          .map((o) => TrendChartBean.fromMap(o)));
+    bean.foreignStatistics = CountStatistics.fromMap(map['foreignStatistics']);
+    bean.globalStatistics = CountStatistics.fromMap(map['globalStatistics']);
 
-    bean.foreignStatistics =
-        ForeignStatistics.fromMap(map['foreignStatistics']);
-    bean.globalStatistics = GlobalStatistics.fromMap(map['globalStatistics']);
-    bean.globalOtherTrendChartData = map['globalOtherTrendChartData'];
+    bean.globalOtherTrendChartData = List()
+      ..addAll((map['globalOtherTrendChartData'] as List ?? [])
+          .map((o) => GlobalOtherTrendChartData.fromMap(o)));
 
     bean.provinces = List()
       ..addAll(
@@ -210,10 +195,6 @@ class SARSCov {
         "marquee": marquee,
         "quanguoTrendChart": quanGuoTrendChart,
         "hbFeiHbTrendChart": hbFeiHbTrendChart,
-        "foreignTrendChart": foreignTrendChart,
-        "importantForeignTrendChart": importantForeignTrendChart,
-        "foreignTrendChartGlobal": foreignTrendChartGlobal,
-        "importantForeignTrendChartGlobal": importantForeignTrendChartGlobal,
         "foreignStatistics": foreignStatistics,
         "globalStatistics": globalStatistics,
         "globalOtherTrendChartData": globalOtherTrendChartData,
@@ -225,32 +206,60 @@ class SARSCov {
       };
 }
 
-/// currentConfirmedCount : 328704
-/// confirmedCount : 462066
-/// curedCount : 112519
-/// deadCount : 20843
+/// confirmedCount : 4
+/// confirmedIncr : 4
+/// curedCount : 0
+/// curedIncr : 0
+/// currentConfirmedCount : 4
+/// currentConfirmedIncr : 4
+/// dateId : 20200121
+/// deadCount : 0
+/// deadIncr : 0
+/// suspectedCount : 0
+/// suspectedCountIncr : 0
 
-class GlobalStatistics {
-  int currentConfirmedCount;
+class GlobalOtherTrendChartData {
   int confirmedCount;
+  int confirmedIncr;
   int curedCount;
+  int curedIncr;
+  int currentConfirmedCount;
+  int currentConfirmedIncr;
+  int dateId;
   int deadCount;
+  int deadIncr;
+  int suspectedCount;
+  int suspectedCountIncr;
 
-  static GlobalStatistics fromMap(Map<String, dynamic> map) {
+  static GlobalOtherTrendChartData fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-    GlobalStatistics globalStatisticsBean = GlobalStatistics();
-    globalStatisticsBean.currentConfirmedCount = map['currentConfirmedCount'];
-    globalStatisticsBean.confirmedCount = map['confirmedCount'];
-    globalStatisticsBean.curedCount = map['curedCount'];
-    globalStatisticsBean.deadCount = map['deadCount'];
-    return globalStatisticsBean;
+    GlobalOtherTrendChartData bean = GlobalOtherTrendChartData();
+    bean.confirmedCount = map['confirmedCount'];
+    bean.confirmedIncr = map['confirmedIncr'];
+    bean.curedCount = map['curedCount'];
+    bean.curedIncr = map['curedIncr'];
+    bean.currentConfirmedCount = map['currentConfirmedCount'];
+    bean.currentConfirmedIncr = map['currentConfirmedIncr'];
+    bean.dateId = map['dateId'];
+    bean.deadCount = map['deadCount'];
+    bean.deadIncr = map['deadIncr'];
+    bean.suspectedCount = map['suspectedCount'];
+    bean.suspectedCountIncr = map['suspectedCountIncr'];
+    return bean;
   }
 
   Map toJson() => {
-        "currentConfirmedCount": currentConfirmedCount,
         "confirmedCount": confirmedCount,
+        "confirmedIncr": confirmedIncr,
         "curedCount": curedCount,
+        "curedIncr": curedIncr,
+        "currentConfirmedCount": currentConfirmedCount,
+        "currentConfirmedIncr": currentConfirmedIncr,
+        "dateId": dateId,
         "deadCount": deadCount,
+        "deadIncr": deadIncr,
+        "suspectedCount": suspectedCount,
+        "suspectedCountIncr": suspectedCountIncr,
       };
 }
 
@@ -260,22 +269,32 @@ class GlobalStatistics {
 /// curedCount : 38720
 /// deadCount : 17556
 
-class ForeignStatistics {
+class CountStatistics {
   int currentConfirmedCount;
   int confirmedCount;
   int suspectedCount;
   int curedCount;
   int deadCount;
+  int suspectedIncr;
+  int currentConfirmedIncr;
+  int confirmedIncr;
+  int curedIncr;
+  int deadIncr;
 
-  static ForeignStatistics fromMap(Map<String, dynamic> map) {
+  static CountStatistics fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-    ForeignStatistics foreignStatisticsBean = ForeignStatistics();
-    foreignStatisticsBean.currentConfirmedCount = map['currentConfirmedCount'];
-    foreignStatisticsBean.confirmedCount = map['confirmedCount'];
-    foreignStatisticsBean.suspectedCount = map['suspectedCount'];
-    foreignStatisticsBean.curedCount = map['curedCount'];
-    foreignStatisticsBean.deadCount = map['deadCount'];
-    return foreignStatisticsBean;
+    CountStatistics statistics = CountStatistics();
+    statistics.currentConfirmedCount = map['currentConfirmedCount'];
+    statistics.confirmedCount = map['confirmedCount'];
+    statistics.suspectedCount = map['suspectedCount'];
+    statistics.curedCount = map['curedCount'];
+    statistics.deadCount = map['deadCount'];
+    statistics.suspectedIncr = map['suspectedIncr'];
+    statistics.currentConfirmedIncr = map['currentConfirmedIncr'];
+    statistics.confirmedIncr = map['confirmedIncr'];
+    statistics.curedIncr = map['curedIncr'];
+    statistics.deadIncr = map['deadIncr'];
+    return statistics;
   }
 
   Map toJson() => {
@@ -284,6 +303,11 @@ class ForeignStatistics {
         "suspectedCount": suspectedCount,
         "curedCount": curedCount,
         "deadCount": deadCount,
+        "suspectedIncr": suspectedIncr,
+        "currentConfirmedIncr": currentConfirmedIncr,
+        "confirmedIncr": confirmedIncr,
+        "curedIncr": curedIncr,
+        "deadIncr": deadIncr,
       };
 }
 
@@ -1229,14 +1253,14 @@ class WikiListBean {
 
   static WikiListBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-    WikiListBean wiki_list = WikiListBean();
-    wiki_list.id = map['id'];
-    wiki_list.title = map['title'];
-    wiki_list.imgUrl = map['imgUrl'];
-    wiki_list.linkUrl = map['linkUrl'];
-    wiki_list.description = map['description'];
-    wiki_list.sort = map['sort'];
-    return wiki_list;
+    WikiListBean wikiList = WikiListBean();
+    wikiList.id = map['id'];
+    wikiList.title = map['title'];
+    wikiList.imgUrl = map['imgUrl'];
+    wikiList.linkUrl = map['linkUrl'];
+    wikiList.description = map['description'];
+    wikiList.sort = map['sort'];
+    return wikiList;
   }
 
   Map toJson() => {

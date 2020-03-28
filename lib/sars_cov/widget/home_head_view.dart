@@ -5,6 +5,7 @@ import 'package:lpinyin/lpinyin.dart';
 
 import '../../page_index.dart';
 import '../page/area/area.dart';
+import 'china_count_cardview.dart';
 
 class HomeHeadView extends StatelessWidget {
   final SARSCov data;
@@ -14,93 +15,69 @@ class HomeHeadView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
-      padding: EdgeInsets.symmetric(vertical: 8),
-      child: Column(
-        children: [
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(vertical: 8),
+        child: Column(children: [
           Container(
-            padding: EdgeInsets.all(10),
-            child: Row(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Container(
+              padding: EdgeInsets.all(10),
+              child: Row(children: <Widget>[
+                Row(children: <Widget>[
+                  Container(
                       color: Colors.blue,
                       width: 5.0,
                       height: 30,
-                      margin: EdgeInsets.only(right: 10),
-                    ),
-                    Text(
-                      '全国新冠肺炎疫情',
+                      margin: EdgeInsets.only(right: 10)),
+                  Text('全国新冠肺炎疫情',
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 22,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                  mainAxisSize: MainAxisSize.min,
-                ),
+                          fontWeight: FontWeight.bold))
+                ], mainAxisSize: MainAxisSize.min),
                 Button(
-                  width: 100.0,
-                  halfRadius: true,
-                  color: Color(0xFFF0F4FE),
-                  height: 35.0,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        Icons.location_on,
-                        size: 15,
-                        color: Color(0xFF3866FC),
-                      ),
-                      Text(
-                        '北京',
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: Color(0xFF3866FC),
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Icon(
-                        Icons.keyboard_arrow_right,
-                        size: 15,
-                        color: Color(0xFF3866FC),
-                      ),
-                    ],
-                    mainAxisSize: MainAxisSize.min,
-                  ),
-                  onPressed: () => pushNewPage(
-                      context,
-                      AreaPage(
-                          province:
-                              PinyinHelper.getPinyin('北京', separator: ''))),
-                ),
-              ],
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            ),
-            color: Colors.white,
-          ),
-          Row(
-            children: <Widget>[
-              Padding(
+                    width: 100.0,
+                    halfRadius: true,
+                    color: Color(0xFFF0F4FE),
+                    height: 35.0,
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(Icons.location_on,
+                              size: 15, color: Color(0xFF3866FC)),
+                          Text('北京',
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  color: Color(0xFF3866FC),
+                                  fontWeight: FontWeight.bold)),
+                          Icon(Icons.keyboard_arrow_right,
+                              size: 15, color: Color(0xFF3866FC))
+                        ],
+                        mainAxisSize: MainAxisSize.min),
+                    onPressed: () => pushNewPage(
+                        context,
+                        AreaPage(
+                            province:
+                                PinyinHelper.getPinyin('北京', separator: ''))))
+              ], mainAxisAlignment: MainAxisAlignment.spaceBetween),
+              color: Colors.white),
+          Row(children: <Widget>[
+            Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Text(
-                  data == null
-                      ? ""
-                      : '截止${formatDateByMs(data?.modifyTime, formats: [
-                          yyyy,
-                          '-',
-                          mm,
-                          '-',
-                          dd,
-                          ' ',
-                          HH,
-                          ':',
-                          nn
-                        ])}全国数据统计',
-                  style: TextStyle(color: Colors.grey[500], fontSize: 13),
-                ),
-              ),
-              GestureDetector(
+                    data == null
+                        ? ""
+                        : '截止${formatDateByMs(data?.modifyTime, formats: [
+                            yyyy,
+                            '-',
+                            mm,
+                            '-',
+                            dd,
+                            ' ',
+                            HH,
+                            ':',
+                            nn
+                          ])}全国数据统计',
+                    style: TextStyle(color: Colors.grey[500], fontSize: 13))),
+            GestureDetector(
                 onTap: () {
                   showDiffDialog(context,
                       content: SingleChildScrollView(
@@ -109,139 +86,24 @@ class HomeHeadView extends StatelessWidget {
                       ));
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
-                  decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(15.0),
-                          bottomLeft: Radius.circular(15.0))),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Icon(
-                        Icons.info_outline,
-                        size: 13,
-                      ),
-                      Gaps.hGap5,
-                      Text(
-                        '数据说明',
-                        style: TextStyle(color: Colors.grey[500], fontSize: 12),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          ),
-          Card(
-            elevation: 1.0,
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(14.0))),
-            margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
                     decoration: BoxDecoration(
                         color: Colors.grey[200],
-                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                    child: Text(
-                      '较昨日变化数据：待国家卫健委数据公布',
-                      style: TextStyle(color: Colors.grey[500], fontSize: 10),
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  ),
-                  Line(color: Colors.grey[500]),
-                  Row(
-                    children: <Widget>[
-                      buildCountView(
-                          Color(0xFFEA4333),
-                          data?.currentConfirmedCount,
-                          data?.currentConfirmedIncr,
-                          "现存确诊"),
-                      LineWidget(
-                        lineType: LineType.vertical,
-                        color: Color(0xFFE9E9E9),
-                        height: 50.0,
-                        width: 1,
-                      ),
-                      buildCountView(Color(0xFFEF8533), data?.suspectedCount,
-                          data?.suspectedIncr, "现存疑似"),
-                      LineWidget(
-                        lineType: LineType.vertical,
-                        color: Color(0xFFE9E9E9),
-                        height: 50.0,
-                        width: 1,
-                      ),
-                      buildCountView(Color(0xFF55B19D), data?.curedCount,
-                          data?.curedIncr, "累计治愈"),
-                    ],
-                  ),
-                  Gaps.vGap10,
-                  Row(
-                    children: <Widget>[
-                      buildCountView(Color(0xFFA12A35), data?.confirmedCount,
-                          data?.confirmedIncr, "累计确诊"),
-                      LineWidget(
-                        lineType: LineType.vertical,
-                        color: Color(0xFFE9E9E9),
-                        height: 50.0,
-                        width: 1,
-                      ),
-                      buildCountView(Color(0xFF985E53), data?.seriousCount,
-                          data?.seriousIncr, "现存重症"),
-                      LineWidget(
-                        lineType: LineType.vertical,
-                        color: Color(0xFFE9E9E9),
-                        height: 50.0,
-                        width: 1,
-                      ),
-                      buildCountView(Color(0xFF627387), data?.deadCount,
-                          data?.deadIncr, "累计死亡"),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildCountView(
-      Color textColor, int count, int addCount, String title) {
-    return Expanded(
-      child: Column(
-        children: [
-          RichText(
-              text: TextSpan(
-                  text: '较昨日:',
-                  style: TextStyle(color: Colors.black54, fontSize: 12.0),
-                  children: <TextSpan>[
-                TextSpan(
-                  text: addCount == null
-                      ? "待公布"
-                      : '${addCount > 0 ? "+$addCount" : addCount}',
-                  style: TextStyle(color: textColor, fontSize: 10.0),
-                ),
-              ])),
-          Text(
-            '$count',
-            style: TextStyle(
-                color: textColor, fontSize: 28.0, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            '$title',
-            style: TextStyle(color: Color(0xFF666666), fontSize: 14.0),
-          ),
-        ],
-        mainAxisSize: MainAxisSize.min,
-      ),
-    );
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(15.0),
+                            bottomLeft: Radius.circular(15.0))),
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Icon(Icons.info_outline, size: 13),
+                          Gaps.hGap5,
+                          Text('数据说明',
+                              style: TextStyle(
+                                  color: Colors.grey[500], fontSize: 12))
+                        ])))
+          ], mainAxisAlignment: MainAxisAlignment.spaceBetween),
+          ChinaCountCardView(data: data)
+        ]));
   }
 }

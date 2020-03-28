@@ -13,26 +13,19 @@ class RumorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Column(
-        children: [
-          TitleContainer(title: "辟谣"),
-          AspectRatio(
+      child: Column(children: [
+        TitleContainer(title: "辟谣"),
+        AspectRatio(
             aspectRatio: 0.8,
             child: Container(
-              child: Swiper(
-                itemCount: 10,
-                itemBuilder: (_, index) => ItemRumor(
-                  index: index + 1,
-                  rumour: rumour[index],
-                ),
-                viewportFraction: 0.85,
-                scale: 0.9,
-                autoplay: true,
-              ),
-            ),
-          ),
-        ],
-      ),
+                child: Swiper(
+                    itemCount: 10,
+                    itemBuilder: (_, index) =>
+                        ItemRumor(index: index + 1, rumour: rumour[index]),
+                    viewportFraction: 0.85,
+                    scale: 0.9,
+                    autoplay: true)))
+      ]),
     );
   }
 }

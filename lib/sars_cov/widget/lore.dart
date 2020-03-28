@@ -13,10 +13,9 @@ class LoreView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Column(
-        children: [
-          TitleContainer(title: "疾病知识"),
-          ListView.separated(
+      child: Column(children: [
+        TitleContainer(title: "疾病知识"),
+        ListView.separated(
             itemBuilder: (_, index) {
               return ItemLore(wiki: wikiList[index]);
             },
@@ -24,10 +23,8 @@ class LoreView extends StatelessWidget {
             itemCount: wikiList.length,
             shrinkWrap: true,
             primary: false,
-            padding: EdgeInsets.zero,
-          ),
-        ],
-      ),
+            padding: EdgeInsets.zero)
+      ]),
     );
   }
 }
