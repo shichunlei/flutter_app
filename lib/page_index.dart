@@ -50,7 +50,6 @@ export 'page/random_words.dart';
 export 'page/route_sample.dart';
 export 'page/swiper_sample.dart';
 export 'page/table_sample.dart';
-export 'page/tiktok_home_page.dart';
 export 'page/like_button_page.dart';
 export 'page/time_line.dart';
 export 'page/wave_sample.dart';
@@ -179,6 +178,8 @@ export 'tubitv/home.dart';
 export 'nba/index.dart';
 
 export 'sars_cov/index.dart';
+
+export 'tiktok/home.dart';
 
 export 'ui_screen/bank_screen.dart';
 export 'ui_screen/sliding_login.dart';

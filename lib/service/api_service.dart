@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_app/bean/sars_cov.dart';
+import 'package:flutter_app/bean/tiktok_video.dart';
 
 import '../bean/index.dart';
 
@@ -2076,8 +2077,8 @@ class ApiService {
 
   /// 抖音视频榜
   ///
-  static Future<List<Song>> getTiktokVideos() async {
-    Response response = await HttpUtils().request(ApiUrl.MUSIC, data: null);
+  static Future<List<TiktokVideo>> getTiktokVideos() async {
+    Response response = await HttpUtils().request(ApiUrl.DY_VIDEOS, data: null);
     if (response == null || response?.statusCode != 200) {
       return [];
     }
@@ -2085,7 +2086,8 @@ class ApiService {
 
     if (result.code == '0') {
       return List()
-        ..addAll((result.data as List ?? []).map((o) => Song.fromMap(o)));
+        ..addAll(
+            (result.data as List ?? []).map((o) => TiktokVideo.fromMap(o)));
     } else {
       return [];
     }
