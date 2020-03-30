@@ -80,7 +80,7 @@ dependencies: # 应用或包依赖的其它包或插件
       url: https://github.com/shichunlei/flutter_jd_address_selector
 
   # https://github.com/dooboolab/flutter_sound
-  flutter_sound: ^3.0.0
+  flutter_sound: ^2.1.1
 
   # 加载提示组件
   flutter_spinkit: ^4.1.2+1
@@ -127,6 +127,8 @@ dependencies: # 应用或包依赖的其它包或插件
 
   path_provider: ^1.6.5
 
+  permission_handler: ^4.4.0
+
   # PhotoView
   photo_view: ^0.9.2
 
@@ -164,13 +166,6 @@ dependencies: # 应用或包依赖的其它包或插件
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:
     sdk: flutter
-
-  flutter_launcher_icons: ^0.7.4
-
-flutter_icons:
-  android: "ic_launcher"
-  ios: true
-  image_path: "images/logo.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
