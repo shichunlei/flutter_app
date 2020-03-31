@@ -10,6 +10,7 @@ class HttpUtils {
   /// http request methods
   static const String GET = 'get';
   static const String POST = 'post';
+  static const String DELETE = 'delete';
 
   Dio _dio;
 
@@ -17,7 +18,7 @@ class HttpUtils {
 
   Dio get dio => _dio;
 
-  HttpUtils({String baseUrl: ApiUrl.BASE_URL}) {
+  HttpUtils({String baseUrl: ApiUrl.BASE_URL, Map<String, dynamic> headers}) {
     debugPrint('dio赋值=====$baseUrl');
 
     /// 或者通过传递一个 `options`来创建dio实例
@@ -35,10 +36,12 @@ class HttpUtils {
       responseType: ResponseType.plain,
 
       /// Http请求头.
-      headers: {
-        //do something
-        "version": "1.0.0"
-      },
+      headers: headers ??
+          {
+            //do something
+            "version": "1.0.0",
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
     );
 
     _dio = Dio(options);
@@ -86,7 +89,6 @@ class HttpUtils {
   /// [method] The request method.
   /// [path] The url path.
   /// [data] The request data
-  /// [options] The request options.
   ///
   /// String 返回 json data .
   Future<Response> request(
@@ -94,7 +96,6 @@ class HttpUtils {
     Map<String, dynamic> data,
     String method: GET,
     CancelToken cancelToken,
-    Options options,
   }) async {
     if (data != null) {
       /// restful 请求处理
@@ -118,7 +119,7 @@ class HttpUtils {
           path,
           data: data != null ? FormData.fromMap(data) : null,
           queryParameters: data,
-          options: _checkOptions(method, options),
+          options: Options(method: method),
           onReceiveProgress: (int count, int total) {
         debugPrint(
             'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
@@ -220,18 +221,6 @@ class HttpUtils {
     return response;
   }
 
-  /// check Options.
-  Options _checkOptions(method, options) {
-    if (options == null) {
-      options = Options(
-        contentType: "application/x-www-form-urlencoded",
-        headers: {"Content-Type": "application/x-www-form-urlencoded"},
-      );
-    }
-    options.method = method;
-    return options;
-  }
-
   /// error统一处理
   void formatError(DioError e) {
     if (e.type == DioErrorType.CONNECT_TIMEOUT) {
@@ -267,14 +256,12 @@ class HttpUtils {
     Function successCallBack, {
     Map<String, dynamic> params,
     CancelToken cancelToken,
-    Options options,
     Function(BaseResult error) errorCallBack,
   }) async {
     _requestHttp(path, successCallBack,
         method: GET,
         params: params,
         errorCallBack: errorCallBack,
-        options: options,
         cancelToken: cancelToken);
   }
 
@@ -283,23 +270,37 @@ class HttpUtils {
     Function successCallBack, {
     Map<String, dynamic> params,
     CancelToken cancelToken,
-    Options options,
     Function(BaseResult error) errorCallBack,
   }) async {
     _requestHttp(path, successCallBack,
         method: POST,
         params: params,
         errorCallBack: errorCallBack,
-        options: options,
         cancelToken: cancelToken);
   }
 
-  _requestHttp(String path, Function successCallBack,
-      {@required String method,
-      Map<String, dynamic> params,
-      Function(BaseResult error) errorCallBack,
-      CancelToken cancelToken,
-      Options options}) async {
+  delete(
+    String path,
+    Function successCallBack, {
+    Map<String, dynamic> params,
+    CancelToken cancelToken,
+    Function(BaseResult error) errorCallBack,
+  }) async {
+    _requestHttp(path, successCallBack,
+        method: DELETE,
+        params: params,
+        errorCallBack: errorCallBack,
+        cancelToken: cancelToken);
+  }
+
+  _requestHttp(
+    String path,
+    Function successCallBack, {
+    @required String method,
+    Map<String, dynamic> params,
+    Function(BaseResult error) errorCallBack,
+    CancelToken cancelToken,
+  }) async {
     debugPrint("请求地址：【$path】");
     debugPrint('请求参数：' + params.toString());
 
@@ -310,13 +311,11 @@ class HttpUtils {
           response = await dio.get(
             path,
             queryParameters: params,
-            options: _checkOptions(method, options),
             cancelToken: cancelToken,
           );
         } else {
           response = await dio.get(
             path,
-            options: _checkOptions(method, options),
             cancelToken: cancelToken,
           );
         }
@@ -324,11 +323,16 @@ class HttpUtils {
         response = await dio.post(
           path,
           data: params,
-          options: _checkOptions(method, options),
           onSendProgress: (int count, int total) {
             debugPrint(
                 'onSendProgress: ${(count / total * 100).toStringAsFixed(0)} %');
           },
+          cancelToken: cancelToken,
+        );
+      } else if (method == DELETE) {
+        response = await dio.delete(
+          path,
+          queryParameters: params,
           cancelToken: cancelToken,
         );
       }
