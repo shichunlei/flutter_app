@@ -232,13 +232,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
                           textColor: Colors.blueAccent,
                           color: Colors.transparent,
                           disabledTextColor: Colors.white,
-                          disabledColor: Color(0xFFcccccc),
+                          disabledColor: greyCColor,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(1.0),
                               side: BorderSide(
                                   color: snapshot.data.isClick
                                       ? Colors.blueAccent
-                                      : Color(0xFFcccccc),
+                                      : greyCColor,
                                   width: 0.8)),
                           child: Text(
                             snapshot.data.isClick

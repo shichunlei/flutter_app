@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/res/colors.dart';
 
 import '../index.dart';
 
@@ -44,7 +45,7 @@ class LeftMenuState extends State<LeftMenu> {
                               fontSize: index == currentItemIndex ? 16 : 14,
                               color: index == currentItemIndex
                                   ? Color.fromRGBO(132, 95, 63, 1.0)
-                                  : Color(0xFF666666)))),
+                                  : grey6Color))),
                   onTap: () {
                     currentItemIndex = index;
                     widget.rightKey.currentState

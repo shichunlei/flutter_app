@@ -107,7 +107,7 @@ class _GuillotineMenuPageState extends State<GuillotineMenuPage>
               Utils.topSafeHeight),
       alignment: Alignment.topLeft,
       child: Material(
-        color: Color(0xFF333333),
+        color: grey3Color,
         child: Stack(
           children: <Widget>[
             Padding(

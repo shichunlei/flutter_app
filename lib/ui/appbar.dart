@@ -145,15 +145,13 @@ class _SearchBarState extends State<SearchBar> {
                             border: InputBorder.none,
                             icon: Padding(
                                 padding: EdgeInsets.only(left: 10),
-                                child: Icon(Icons.search,
-                                    color: Color(0xFFcccccc))),
+                                child: Icon(Icons.search, color: greyCColor)),
                             hintText: "${widget.hintText}",
                             hintStyle: TextStyles.textGreyC14,
                             suffixIcon: !showClear
                                 ? SizedBox()
                                 : InkWell(
-                                    child: Icon(Icons.close,
-                                        color: Color(0xFFcccccc)),
+                                    child: Icon(Icons.close, color: greyCColor),
                                     onTap: () => _controller.text = "")))),
                 actions: <Widget>[
               Container(

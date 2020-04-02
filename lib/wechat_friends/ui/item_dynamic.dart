@@ -200,7 +200,7 @@ class ItemDynamic extends StatelessWidget {
             TextSpan(
               style: TextStyle(
                 fontSize: 15,
-                color: Color(0xFF333333),
+                color: grey3Color,
               ),
               children: [
                 TextSpan(

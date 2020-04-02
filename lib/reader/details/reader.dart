@@ -124,7 +124,7 @@ class _ReaderPageState extends State<ReaderPage>
                 Text('${chapterInfo?.title}',
                     style: TextStyle(
                         fontSize: (snapshot.textSize + 2),
-                        color: colorDarkGoldenrod3)),
+                        color: Color(0xFFCD950C))),
                 Gaps.vGap15,
                 Text('${chapterInfo?.cpContent}',
                     style: TextStyle(

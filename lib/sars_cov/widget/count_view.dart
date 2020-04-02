@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/res/colors.dart';
 
 class CountView extends StatelessWidget {
   final Color textColor;
@@ -27,8 +28,7 @@ class CountView extends StatelessWidget {
         Text('$count',
             style: TextStyle(
                 color: textColor, fontSize: 28.0, fontWeight: FontWeight.bold)),
-        Text('$title',
-            style: TextStyle(color: Color(0xFF666666), fontSize: 14.0))
+        Text('$title', style: TextStyle(color: grey6Color, fontSize: 14.0))
       ]),
     );
   }

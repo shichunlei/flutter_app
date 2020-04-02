@@ -252,7 +252,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
                 });
               },
               title: '选择地区',
-              unselectedColor: Color(0xFF333333));
+              unselectedColor: grey3Color);
         });
   }
 

@@ -12,26 +12,25 @@ class FriendsDynamic {
   List<String> praise;
 
   static FriendsDynamic fromMap(Map<String, dynamic> map) {
-    FriendsDynamic friends_dynamic = FriendsDynamic();
-    friends_dynamic.username = map['username'];
-    friends_dynamic.userAvatar = map['userAvatar'];
-    friends_dynamic.desc = map['desc'];
-    friends_dynamic.address = map['address'];
-    friends_dynamic.datetime = map['datetime'];
-    friends_dynamic.isSelf = map['isSelf'];
-    friends_dynamic.id = map['id'];
-    friends_dynamic.video =
+    FriendsDynamic dynamic = FriendsDynamic();
+    dynamic.username = map['username'];
+    dynamic.userAvatar = map['userAvatar'];
+    dynamic.desc = map['desc'];
+    dynamic.address = map['address'];
+    dynamic.datetime = map['datetime'];
+    dynamic.isSelf = map['isSelf'];
+    dynamic.id = map['id'];
+    dynamic.video =
         map['video'] == null ? null : VideoBean.fromMap(map['video']);
-    friends_dynamic.images = List()
+    dynamic.images = List()
       ..addAll(
           (map['images'] as List ?? []).map((o) => ImagesListBean.fromMap(o)));
-    friends_dynamic.comment = List()
+    dynamic.comment = List()
       ..addAll(
           (map['comment'] as List ?? []).map((o) => CommentBean.fromMap(o)));
-    friends_dynamic.praise = List()..addAll(
-        (map['praise'] as List ?? []).map((o) => o.toString())
-    );
-    return friends_dynamic;
+    dynamic.praise = List()
+      ..addAll((map['praise'] as List ?? []).map((o) => o.toString()));
+    return dynamic;
   }
 
   static List<FriendsDynamic> fromMapList(dynamic mapList) {

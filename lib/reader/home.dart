@@ -38,7 +38,7 @@ class _BookReaderHomePageState extends State<BookReaderHomePage> {
                   title: Text('我的', style: TextStyle(fontSize: 14)))
             ],
             backgroundColor: Colors.white,
-            inactiveColor: Color(0xff333333),
+            inactiveColor: grey3Color,
             activeColor: readerMainColor,
             currentIndex: _tabIndex,
             onTap: (index) => setState(() => _tabIndex = index)));

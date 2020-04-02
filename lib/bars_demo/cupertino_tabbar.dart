@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/res/colors.dart';
 
 import 'each_view.dart';
 
@@ -44,7 +45,7 @@ class CupertinoTabBarSample extends StatelessWidget {
               title: Text('我的', style: TextStyle(fontSize: 14)))
         ],
         backgroundColor: Colors.white,
-        inactiveColor: Color(0xff333333),
+        inactiveColor: grey3Color,
       ),
     );
   }
