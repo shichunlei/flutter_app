@@ -36,52 +36,54 @@ class HttpUtils {
       responseType: ResponseType.plain,
 
       /// Http请求头.
-      headers: headers ??
-          {
-            //do something
-            "version": "1.0.0",
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
+      headers: headers ?? {"Content-Type": "application/x-www-form-urlencoded"},
     );
 
     _dio = Dio(options);
 
     /// 添加拦截器
-    if (Config.DEBUG) {
-      _dio.interceptors
-        ..add(InterceptorsWrapper(
-          /// 请求时的处理
-          onRequest: (RequestOptions options) {
-            debugPrint("\n================== 请求数据 ==========================");
-            debugPrint("url = ${options.uri.toString()}");
-            debugPrint("headers = ${options.headers}");
-            debugPrint("params = ${options.data}");
-          },
+    _dio.interceptors
+      ..add(InterceptorsWrapper(
+        /// 请求时的处理
+        onRequest: (RequestOptions options) {
+          debugPrint("\n================== 请求数据 ==========================");
+          debugPrint("url = ${options.uri.toString()}");
+          debugPrint("data = ${options.data}");
+          debugPrint("queryParameters = ${options.queryParameters}");
+          debugPrint("method = ${options.method}");
 
-          /// 响应时的处理
-          onResponse: (Response response) {
-            debugPrint("\n================== 响应数据 ==========================");
-            debugPrint("code = ${response.statusCode}");
-            debugPrint("data = ${response.data}");
-            debugPrint("\n");
-          },
-          onError: (DioError e) {
-            debugPrint("\n================== 错误响应数据 ======================");
-            debugPrint("type = ${e.type}");
-            debugPrint("error = ${e.error}");
-            debugPrint("message = ${e.message}");
-            debugPrint("\n");
-          },
-        ))
+          options.headers
+            ..addAll({
+              "version": "1.0.0",
+              // 可以把token等放到这儿
+            });
 
-        /// 添加 LogInterceptor 拦截器来自动打印请求、响应日志
-        ..add(LogInterceptor(
-          request: false,
-          responseBody: true,
-          responseHeader: false,
-          requestHeader: false,
-        ));
-    }
+          debugPrint("headers = ${options.headers}");
+        },
+
+        /// 响应时的处理
+        onResponse: (Response response) {
+          debugPrint("\n================== 响应数据 ==========================");
+          debugPrint("code = ${response.statusCode}");
+          debugPrint("data = ${response.data}");
+          debugPrint("\n");
+        },
+        onError: (DioError e) {
+          debugPrint("\n================== 错误响应数据 ======================");
+          debugPrint("type = ${e.type}");
+          debugPrint("error = ${e.error}");
+          debugPrint("message = ${e.message}");
+          debugPrint("\n");
+        },
+      ))
+
+      /// 添加 LogInterceptor 拦截器来自动打印请求、响应日志
+      ..add(LogInterceptor(
+        request: false,
+        responseBody: true,
+        responseHeader: false,
+        requestHeader: false,
+      ));
   }
 
   /// Make http request with options.
@@ -108,9 +110,6 @@ class HttpUtils {
       });
     }
 
-    /// 打印请求相关信息：请求地址、请求方式、请求参数
-    debugPrint('请求地址：【' + method + '  ' + path + '】');
-    debugPrint('请求参数：' + data.toString());
     Response response;
     try {
       response = await dio.request(
@@ -127,18 +126,6 @@ class HttpUtils {
         debugPrint(
             'onSendProgress: ${(count / total * 100).toStringAsFixed(0)} %');
       }, cancelToken: cancelToken);
-
-      /// 响应数据，可能已经被转换了类型, 详情请参考Options中的[ResponseType].
-      debugPrint('$method请求成功!response.data：${response.data}');
-
-      /// 响应头
-      debugPrint('$method请求成功!response.headers：${response.headers}');
-
-      /// 本次请求信息
-      debugPrint('$method请求成功!response.request：${response.request}');
-
-      /// Http status code.
-      debugPrint('$method请求成功!response.statusCode：${response.statusCode}');
     } on DioError catch (e) {
       formatError(e);
 
@@ -274,7 +261,7 @@ class HttpUtils {
   }) async {
     _requestHttp(path, successCallBack,
         method: POST,
-        params: params,
+        params: params != null ? FormData.fromMap(params) : null,
         errorCallBack: errorCallBack,
         cancelToken: cancelToken);
   }
@@ -297,13 +284,10 @@ class HttpUtils {
     String path,
     Function successCallBack, {
     @required String method,
-    Map<String, dynamic> params,
+    dynamic params,
     Function(BaseResult error) errorCallBack,
     CancelToken cancelToken,
   }) async {
-    debugPrint("请求地址：【$path】");
-    debugPrint('请求参数：' + params.toString());
-
     Response response;
     try {
       if (method == GET) {
@@ -336,33 +320,10 @@ class HttpUtils {
           cancelToken: cancelToken,
         );
       }
-
-      /// debug模式才打印
-      if (Config.DEBUG) {
-        /// 响应数据，可能已经被转换了类型, 详情请参考Options中的[ResponseType].
-        debugPrint('$method请求成功!response.data：${response.data}');
-
-        /// 响应头
-        debugPrint('$method请求成功!response.headers：${response.headers}');
-
-        /// 本次请求信息
-        debugPrint('$method请求成功!response.request：${response.request}');
-
-        /// Http status code.
-        debugPrint('$method请求成功!response.statusCode：${response.statusCode}');
-      }
     } on DioError catch (error) {
       // 请求错误处理
       debugPrint(error.response.toString());
       formatError(error);
-
-      // debug模式才打印
-      if (Config.DEBUG) {
-        debugPrint('请求异常: ' + error.toString());
-        debugPrint('请求异常url: ' + path);
-        debugPrint('请求头: ' + dio.options.headers.toString());
-        debugPrint('method: $method');
-      }
       _error(
           errorCallBack,
           BaseResult(

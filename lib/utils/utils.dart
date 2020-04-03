@@ -292,6 +292,17 @@ class Utils {
     return mobile;
   }
 
+  static Future<void> readFont(String fontName, String path) async {
+    var fontLoader = FontLoader(fontName);
+    fontLoader.addFont(getCustomFont(path));
+    await fontLoader.load();
+  }
+
+  static Future<ByteData> getCustomFont(String path) async {
+    ByteData byteData = await rootBundle.load(path);
+    return byteData;
+  }
+
   /// 格式化歌词
   ///
   /// [lyricStr] 歌词

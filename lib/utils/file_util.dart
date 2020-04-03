@@ -15,6 +15,14 @@ class FileUtil {
 
   FileUtil._internal();
 
+  Future<bool> fileExists(String filePath) async {
+    File file = File(filePath);
+    if (await file.exists())
+      return true;
+    else
+      return false;
+  }
+
   /// 得到本地文件夹路径
   ///
   /// [folderPath] 文件夹

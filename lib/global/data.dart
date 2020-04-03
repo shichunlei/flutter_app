@@ -30,6 +30,7 @@ class ExpandStateBean {
           SubExpandBean('Chip', ChipWidget()),
           SubExpandBean('CheckSwitch', CheckSwitchWidget()),
           SubExpandBean('主题', ThemeSample()),
+          SubExpandBean('动态加载外部字体', FontLoaderPage()),
           SubExpandBean('ColorFiltered', ColorFilteredWidget()),
           SubExpandBean('ScrollNotification', ScrollNotificationDemo()),
           SubExpandBean(

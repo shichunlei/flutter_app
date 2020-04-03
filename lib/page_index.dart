@@ -38,6 +38,7 @@ export 'widget/text_widget.dart';
 export 'widget/textfield_widget.dart';
 export 'widget/toggle_buttons.dart';
 export 'widget/value_listenable_builder_widget.dart';
+export 'widget/font_loader.dart';
 
 export 'page/charts_widget.dart';
 export 'page/clippy_widget.dart';
