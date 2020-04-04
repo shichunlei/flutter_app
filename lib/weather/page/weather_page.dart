@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/he_weather.dart';
+import '../../bean/he_weather.dart';
 
 import '../../page_index.dart';
 
@@ -16,7 +16,7 @@ class WeatherPage extends StatefulWidget {
   WeatherPage(this.cityName, {Key key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => WeatherPageState();
+  createState() => WeatherPageState();
 }
 
 class WeatherPageState extends State<WeatherPage> {

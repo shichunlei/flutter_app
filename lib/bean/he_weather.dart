@@ -395,10 +395,10 @@ class DailyForecast {
   String ss;
 
   /// 最高温度
-  String tmp_max;
+  double tmp_max;
 
   /// 最低温度
-  String tmp_min;
+  double tmp_min;
 
   /// 紫外线强度指数
   String uv_index;
@@ -417,6 +417,8 @@ class DailyForecast {
 
   /// 风速
   String wind_spd;
+
+  DailyForecast({this.tmp_max, this.tmp_min});
 
   static DailyForecast fromMap(Map<String, dynamic> map) {
     DailyForecast daily_forecast = DailyForecast();
@@ -445,8 +447,10 @@ class DailyForecast {
     daily_forecast.pres = map['pres'];
     daily_forecast.sr = map['sr'];
     daily_forecast.ss = map['ss'];
-    daily_forecast.tmp_max = map['tmp_max'];
-    daily_forecast.tmp_min = map['tmp_min'];
+    daily_forecast.tmp_max =
+        map['tmp_max'] == null ? 0.0 : double.parse(map['tmp_max']);
+    daily_forecast.tmp_min =
+        map['tmp_min'] == null ? 0.0 : double.parse(map['tmp_min']);
     daily_forecast.uv_index = map['uv_index'];
     daily_forecast.vis = map['vis'];
     daily_forecast.wind_deg = map['wind_deg'];
