@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-import 'posts.dart';
-
 class PersonalCenterPage extends StatefulWidget {
   PersonalCenterPage({Key key}) : super(key: key);
 
@@ -89,9 +87,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                         style: const TextStyle(color: Colors.white),
                       ),
                       width: 110.0,
-                      onPressed: () {
-                        pushNewPage(context, PostsPage());
-                      },
+                      onPressed: () {},
                       height: 28,
                       color: Color(0xFF786FE9),
                       halfRadius: true,
