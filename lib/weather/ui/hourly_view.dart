@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/he_weather.dart';
 
+import '../../bean/he_weather.dart';
 import '../../page_index.dart';
 
 class HourlyView extends StatelessWidget {
@@ -51,7 +51,7 @@ class HourlyView extends StatelessWidget {
                   children: hourly.map((hour) {
                 return Expanded(
                     child: Center(
-                        child: Image.network(hour.cond_code,
+                        child: Image.network(hour.condCode,
                             width: 20.0, height: 20.0)));
               }).toList())
             ]));

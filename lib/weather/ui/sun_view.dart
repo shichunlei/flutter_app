@@ -78,7 +78,7 @@ class _SunViewState extends State<SunView>
     weather = await ApiService.getSunriseSunset(widget.cityName);
 
     setState(() {
-      sunriseSunset = weather.sunrise_sunset[0];
+      sunriseSunset = weather.sunriseSunset[0];
 
       String nowTime = formatDate(DateTime.now(), formats: [HH, ':', nn]);
 

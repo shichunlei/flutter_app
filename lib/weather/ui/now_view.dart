@@ -4,7 +4,7 @@ import 'package:flutter_app/global/custom_icon.dart';
 import 'package:flutter_app/ui/line.dart';
 
 class NowView extends StatelessWidget {
-  final NowBean now;
+  final NowWeather now;
   final DailyForecast dailyForecast;
   final Air air;
 
@@ -19,7 +19,7 @@ class NowView extends StatelessWidget {
       child: Column(children: <Widget>[
         Text(now?.tmp, style: TextStyle(color: Colors.white, fontSize: 80.0)),
         SizedBox(height: 10.0),
-        Text(now?.cond_txt,
+        Text(now?.condTxt,
             style: TextStyle(color: Colors.white, fontSize: 17.0)),
         air == null
             ? Container()
@@ -51,7 +51,7 @@ class NowView extends StatelessWidget {
                 children: <Widget>[
                   Icon(CustomIcon.wind, color: Colors.white, size: 20.0),
                   SizedBox(width: 5.0),
-                  Text('${now?.wind_dir}${now?.wind_sc}级',
+                  Text('${now?.windDir}${now?.windSc}级',
                       style: TextStyle(color: Colors.white))
                 ]),
           ),

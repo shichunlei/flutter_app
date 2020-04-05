@@ -1,7 +1,6 @@
 import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/he_weather.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:async';
@@ -13,6 +12,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import 'generated/i18n.dart';
+import 'store/index.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,9 +26,6 @@ class HomeStatePage extends State<HomePage> {
 
   /// 上次点击时间
   DateTime _lastPressedAt;
-
-  HeWeather weather;
-  String city = '正在定位...';
 
   @override
   void initState() {
@@ -68,6 +65,8 @@ class HomeStatePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Store.value<WeatherModel>(context);
+
     /**
      * 实现原理，使用WillPopScope组件，它会检测到子组件的Navigation的pop事件，并拦截下来。
      * 我们需要在它的onWillPop属性中返回一个新的组件（一般是一个Dialog）处理是否真的pop该页面。
@@ -81,19 +80,18 @@ class HomeStatePage extends State<HomePage> {
                 centerTitle: false,
                 title: InkWell(
                   onTap: () {
-                    if (city != '正在定位...') {
-                      SpUtil.setString("current_city", city);
-                      pushNewPage(context, WeatherPage(city));
-                    }
+                    if (provider.defaultCity != '')
+                      pushNewPage(context, WeatherPage(provider.defaultCity));
                   },
                   child: Column(
                       children: <Widget>[
                         Row(children: <Widget>[
-                          Text('$city', style: TextStyle(fontSize: 17.0)),
+                          Text('${provider.defaultCity}',
+                              style: TextStyle(fontSize: 17.0)),
                           Icon(Icons.keyboard_arrow_down)
                         ], mainAxisSize: MainAxisSize.min),
                         Text(
-                            '${weather?.now?.cond_txt ?? ''} ${weather?.now?.tmp ?? ''}',
+                            '${provider.defaultWeather?.now?.condTxt ?? ''} ${provider.defaultWeather?.now?.tmp ?? ''}',
                             style: TextStyle(fontSize: 13.0))
                       ],
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -268,23 +266,17 @@ class HomeStatePage extends State<HomePage> {
   Future<void> _location() async {
     if (await PermissionsUtil.requestMapPermission()) {
       location = await AmapLocation.fetchLocation();
-      city = await location.district;
+      String city = await location.district;
       String province = await location?.province;
       debugPrint("-----------------------------$province");
-
-      if (city == null || city == "") {
-        city = "北京";
+      if (city == null) {
+        city = SpUtil.getString('current_city', defValue: '北京');
       }
-      if (mounted) setState(() {});
-      await getWeatherData(city);
+      Store.value<WeatherModel>(context, listen: false)
+          .getDefaultCityWeather(city);
     } else {
       Scaffold.of(context).showSnackBar(SnackBar(content: Text('权限不足')));
     }
-  }
-
-  Future getWeatherData(String city) async {
-    weather = await ApiService.getHeWeatherNow(city);
-    if (mounted) setState(() {});
   }
 
   void getTestData() async {}

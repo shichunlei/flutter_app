@@ -20,6 +20,7 @@ class Store {
         ChangeNotifierProvider(create: (_) => SongListModel()),
         ChangeNotifierProvider(
             create: (_) => ShoppingCartModel()..refreshCartProducts()),
+        ChangeNotifierProvider(create: (BuildContext context) => WeatherModel())
       ],
       child: child,
     );

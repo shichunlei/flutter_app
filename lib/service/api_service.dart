@@ -510,15 +510,15 @@ class ApiService {
 
   /// 热门城市
   static Future<List<City>> getHotCities(
-      {String group: 'world', int number: 50}) async {
+      {String group: 'cn', int number: 50}) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.CITY_BASE_URL)
         .request(ApiUrl.CITY_TOP, data: {
-      "group": "world",
+      "group": group,
       "key": Config.HE_WEATHER_KEY,
-      "number": 50,
+      "number": number,
     });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     return City.fromMapList(
         json.decode(response.data)['HeWeather6'][0]['basic']);
@@ -537,7 +537,7 @@ class ApiService {
       // 查询方式（模糊检索 or 精准检索） 可选值: equal、match，默认：match
     });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     return City.fromMapList(
         json.decode(response.data)['HeWeather6'][0]['basic']);

@@ -13,15 +13,38 @@ class TempLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-        size: Size(width / 7 * tempList.length, 140),
-        painter: TemperatureLinePainter(tempList));
+        size: Size(width, 140), painter: TemperatureLinePainter(tempList));
   }
 }
 
 class TemperatureLinePainter extends CustomPainter {
   List<DailyForecast> tempList;
 
-  TemperatureLinePainter(this.tempList);
+  Paint maxLinePaint, minLinePaint, dotPaint;
+
+  Gradient gradient;
+
+  TemperatureLinePainter(this.tempList) {
+    maxLinePaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..color = Colors.white70
+      ..strokeWidth = 1;
+
+    minLinePaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..color = Colors.white38
+      ..strokeWidth = 1;
+
+    dotPaint = Paint()
+      ..style = PaintingStyle.fill
+      ..color = Colors.white;
+
+    gradient = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [Colors.white30, Colors.white10],
+    );
+  }
 
   int margin = 0;
 
@@ -31,26 +54,6 @@ class TemperatureLinePainter extends CustomPainter {
     double height = size.height;
 
     canvas.translate(0, height / 2);
-
-    Paint maxLinePaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..color = Colors.white70
-      ..strokeWidth = 1;
-
-    Paint minLinePaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..color = Colors.white38
-      ..strokeWidth = 1;
-
-    Paint dotPaint = Paint()
-      ..style = PaintingStyle.fill
-      ..color = Colors.white;
-
-    Gradient gradient = LinearGradient(
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-      colors: [Colors.white30, Colors.white10],
-    );
 
     Rect arcRect = Rect.fromLTRB(0, 0, 0, 140);
 

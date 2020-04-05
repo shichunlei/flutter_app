@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'city_manager.dart';
 import '../../bean/he_weather.dart';
 
 import '../../page_index.dart';
@@ -24,7 +25,7 @@ class WeatherPageState extends State<WeatherPage> {
   HeWeather airData;
 
   Air air;
-  NowBean now;
+  NowWeather now;
   List<DailyForecast> dailyForecast = [];
   List<Lifestyle> lifestyle = [];
   List<Hourly> hourly = [];
@@ -83,15 +84,15 @@ class WeatherPageState extends State<WeatherPage> {
     if (weather != null) {
       now = weather.now;
 
-      background = weatherBg(now?.cond_code);
+      background = weatherBg(now?.condCode);
       barColor = await Utils.getImageDominantColor(background, type: "asset");
 
-      dailyForecast = weather.daily_forecast;
+      dailyForecast = weather.dailyForecast;
       lifestyle = weather.lifestyle;
       hourly = weather.hourly;
     }
     if (airData != null) {
-      air = airData.air_now_city;
+      air = airData.airNowCity;
     }
 
     setState(() {});
@@ -104,40 +105,48 @@ class WeatherPageState extends State<WeatherPage> {
         Image.asset(background, fit: BoxFit.fitHeight, height: double.infinity),
         _buildContentView(),
         ToolBar(
-          title: GestureDetector(
-            child: Row(children: <Widget>[
-              Text('$title',
-                  style: TextStyle(fontSize: 18.0, color: Colors.white)),
-              Icon(Icons.keyboard_arrow_down, color: Colors.white)
-            ], mainAxisSize: MainAxisSize.min),
-            onTap: () => pushNewPage(
-              context,
-              CityPage(),
-              callBack: (value) {
-                if (value != null && title != value) {
-                  weather = null;
-                  airData = null;
+            title: GestureDetector(
+                child: Row(children: <Widget>[
+                  Text('$title',
+                      style: TextStyle(fontSize: 18.0, color: Colors.white)),
+                  Icon(Icons.keyboard_arrow_down, color: Colors.white)
+                ], mainAxisSize: MainAxisSize.min),
+                onTap: () =>
+                    pushNewPage(context, CityPage(), callBack: (value) {
+                      if (value != null && title != value) {
+                        weather = null;
+                        airData = null;
 
-                  setState(() {
-                    title = value;
-                  });
-                  _getWeather(title);
-                }
-              },
-            ),
-          ),
-          actions: <Widget>[
-            LikeButton(
-              size: 65,
-              normalColor: Colors.white,
-              onClicked: (bool isLiked) {
-                favorite = isLiked;
-              },
-            ),
-          ],
-          backgroundColor: Color.fromARGB((navAlpha * 255 * 0.8).toInt(),
-              barColor.red, barColor.green, barColor.blue),
-        ),
+                        setState(() {
+                          title = value;
+                        });
+                        _getWeather(title);
+                      }
+                    })),
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.domain),
+                  onPressed: () => pushNewPage(context, CityManagerPage(),
+                          callBack: (value) {
+                        if (value != null && title != value) {
+                          weather = null;
+                          airData = null;
+
+                          setState(() {
+                            title = value;
+                          });
+                          _getWeather(title);
+                        }
+                      })),
+              LikeButton(
+                  size: 65,
+                  normalColor: Colors.white,
+                  onClicked: (bool isLiked) {
+                    favorite = isLiked;
+                  })
+            ],
+            backgroundColor: Color.fromARGB((navAlpha * 255 * 0.8).toInt(),
+                barColor.red, barColor.green, barColor.blue))
       ]),
     );
   }

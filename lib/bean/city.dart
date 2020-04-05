@@ -2,30 +2,46 @@ import 'package:azlistview/azlistview.dart';
 import 'package:lpinyin/lpinyin.dart';
 
 class City extends ISuspensionBean {
+  /// 地区／城市ID
   String cid;
+
+  /// 地区／城市名称
   String location;
-  String tz;
-  String cnty;
-  String type;
-  String lon;
-  String lat;
+
+  /// 该地区／城市的上级城市
   String parentCity;
+
+  /// 该地区／城市所属行政区域
   String adminArea;
+
+  /// 该地区／城市所属国家名称
+  String cnty;
+
+  /// 地区／城市纬度
+  String lat;
+
+  /// 地区／城市经度
+  String lon;
+
+  /// 该地区／城市所在时区
+  String tz;
+
+  ///
+  String type;
 
   String firstLetter;
 
-  City({
-    this.cid,
-    this.location,
-    this.tz,
-    this.cnty,
-    this.type,
-    this.lon,
-    this.lat,
-    this.parentCity,
-    this.adminArea,
-    this.firstLetter,
-  });
+  City(
+      {this.cid,
+      this.location,
+      this.tz,
+      this.cnty,
+      this.type,
+      this.lon,
+      this.lat,
+      this.parentCity,
+      this.adminArea,
+      this.firstLetter});
 
   static City fromMap(Map<String, dynamic> map) {
     City city = City();

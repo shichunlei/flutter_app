@@ -445,14 +445,14 @@ const List<String> dayLongZH = const [
   '星期日'
 ];
 
-int dayInYear(DateTime date) =>
-    date.difference(DateTime(date.year, 1, 1)).inDays;
+int dayInYear(DateTime date) => date.difference(DateTime(date.year)).inDays;
 
 bool isToday(String dateStr) {
   DateTime dateTime = DateTime.parse(dateStr);
   String date = "${dateTime.year}-${dateTime.month}-${dateTime.day}";
-  String today = formatDate(DateTime.now(),
-      formats: [yyyy, "-", mm, "-", dd]);
+  String today = formatDate(DateTime.now(), formats: [yyyy, "-", m, "-", d]);
+
+  print(date + "------------" + today);
   return date == today;
 }
 
