@@ -74,7 +74,9 @@ class _SARSCoVIndexPageState extends State<SARSCoVIndexPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: LoaderContainer(
+      body: ColorFiltered(
+        colorFilter: ColorFilter.mode(Colors.white, BlendMode.color),
+        child: LoaderContainer(
             contentView: EasyRefresh
                 .custom(scrollController: controller, slivers: <Widget>[
               SliverAppBar(
@@ -213,7 +215,9 @@ class _SARSCoVIndexPageState extends State<SARSCoVIndexPage> {
               /// 预防手册
               ProtectView(),
             ]),
-            loaderState: state));
+            loaderState: state),
+      ),
+    );
   }
 
   Widget buildTitleRow() {
