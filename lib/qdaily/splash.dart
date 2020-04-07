@@ -50,9 +50,7 @@ class _QDailySplashPageState extends State<QDailySplashPage>
 
       if (isFirst) {
         /// 预先缓存图片，避免直接使用时因为首次加载造成闪动
-        guideList.forEach((image) {
-          precacheImage(AssetImage(image), context);
-        });
+        guideList.forEach((image) => precacheImage(AssetImage(image), context));
       }
     });
 
@@ -77,35 +75,38 @@ class _QDailySplashPageState extends State<QDailySplashPage>
                 return Transform.scale(
                     scale: _animation.value,
                     child: SafeArea(
-                      child: Stack(alignment: Alignment.topRight, children: <
-                          Widget>[
-                        Container(
-                            padding: EdgeInsets.only(top: 50, bottom: 50),
-                            alignment: Alignment.center,
-                            child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Image.asset('images/qdaily/qdaily_logo.jpeg'),
-                                  Text('「好奇驱动你的世界」',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20))
-                                ])),
-                        Visibility(
-                          visible: showTimer,
-                          child: CountdownWidget(
-                              seconds: 3,
-                              onCountdownFinishCallBack: (bool value) {
-                                if (value) {
-                                  if (isFirst) {
-                                    setState(() => showGuidePages = true);
-                                  } else {
-                                    pushReplacement(context, QDailyIndexPage());
-                                  }
-                                }
-                              }),
-                        )
-                      ]),
+                      child: Stack(
+                          alignment: Alignment.topRight,
+                          children: <Widget>[
+                            Container(
+                                padding: EdgeInsets.only(top: 50, bottom: 50),
+                                alignment: Alignment.center,
+                                child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Image.asset(
+                                          'images/qdaily/qdaily_logo.jpeg'),
+                                      Text('「好奇驱动你的世界」',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20))
+                                    ])),
+                            Visibility(
+                                visible: showTimer,
+                                child: CountdownWidget(
+                                    seconds: 3,
+                                    onCountdownFinishCallBack: (bool value) {
+                                      if (value) {
+                                        if (isFirst) {
+                                          setState(() => showGuidePages = true);
+                                        } else {
+                                          pushReplacement(
+                                              context, QDailyIndexPage());
+                                        }
+                                      }
+                                    }))
+                          ]),
                     ));
               }),
 
@@ -129,13 +130,12 @@ class _QDailySplashPageState extends State<QDailySplashPage>
               height: double.infinity),
           Container(
               child: Button(
-                borderRadius: 10,
-                onPressed: () {
-                  SpUtil.setBool('qdaily_isFirst', false);
-                  pushReplacement(context, QDailyIndexPage());
-                },
-                child: Text("立即体验", style: TextStyle(fontSize: 18)),
-              ),
+                  borderRadius: 10,
+                  onPressed: () {
+                    SpUtil.setBool('qdaily_isFirst', false);
+                    pushReplacement(context, QDailyIndexPage());
+                  },
+                  child: Text("立即体验", style: TextStyle(fontSize: 18))),
               width: 200,
               height: 48,
               margin: EdgeInsets.only(bottom: 30))

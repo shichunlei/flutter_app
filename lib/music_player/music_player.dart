@@ -34,10 +34,10 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
       }
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((callback) {
-      var value = Store.value<MusicModel>(context, listen: false);
-      if (value.allSongs.length == 0) {
-        value.getMusics();
+    Future.delayed(Duration.zero).then((_) {
+      var snapshot = Store.value<MusicModel>(context, listen: false);
+      if (snapshot.allSongs.length == 0) {
+        snapshot.getMusics();
       }
     });
   }

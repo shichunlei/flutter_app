@@ -44,7 +44,7 @@ class BubbleBottomBar extends StatefulWidget {
   final BubbleBottomBarFabLocation fabLocation;
 
   @override
-  _BottomNavigationBarState createState() => _BottomNavigationBarState();
+  createState() => _BottomNavigationBarState();
 }
 
 class _BottomNavigationTile extends StatelessWidget {

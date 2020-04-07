@@ -31,7 +31,7 @@ class HomeStatePage extends State<HomePage> {
   void initState() {
     super.initState();
 
-    SchedulerBinding.instance.addPostFrameCallback((Duration timestamp) {
+    SchedulerBinding.instance.addPostFrameCallback((callback) {
       // 设置EasyRefresh的默认样式
       EasyRefresh.defaultHeader = ClassicalHeader(
           enableInfiniteRefresh: false,
@@ -266,16 +266,17 @@ class HomeStatePage extends State<HomePage> {
   Future<void> _location() async {
     if (await PermissionsUtil.requestMapPermission()) {
       location = await AmapLocation.fetchLocation();
-      String city = await location.district;
-      String province = await location?.province;
+      String city = location?.district;
+      String province = location?.province;
       debugPrint("-----------------------------$province");
       if (city == null) {
         city = SpUtil.getString('current_city', defValue: '北京');
       }
-      Store.value<WeatherModel>(context, listen: false)
+      Store.value<WeatherModel>(_scaffoldKey.currentContext, listen: false)
           .getDefaultCityWeather(city);
     } else {
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text('权限不足')));
+      Scaffold.of(_scaffoldKey.currentContext)
+          .showSnackBar(SnackBar(content: Text('权限不足')));
     }
   }
 

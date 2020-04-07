@@ -7,14 +7,14 @@ packages:
       name: amap_core_fluttify
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.5.6+3ebdbdc"
+    version: "0.6.0+b2681d9"
   amap_location_fluttify:
     dependency: "direct main"
     description:
       name: amap_location_fluttify
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.8.11+481e45c"
+    version: "0.10.0+e74b91b"
   animated_text_kit:
     dependency: "direct main"
     description:
@@ -49,7 +49,7 @@ packages:
       name: audioplayers
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.14.2"
+    version: "0.15.0"
   azlistview:
     dependency: "direct main"
     description:
@@ -155,6 +155,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  dart_web_audio:
+    dependency: transitive
+    description:
+      name: dart_web_audio
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.2"
   device_info:
     dependency: "direct main"
     description:
@@ -325,7 +332,7 @@ packages:
       name: foundation_fluttify
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.4.14+2"
+    version: "0.5.1"
   html:
     dependency: transitive
     description:
@@ -382,6 +389,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.16.0"
+  js:
+    dependency: transitive
+    description:
+      name: js
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.6.1+1"
   lpinyin:
     dependency: "direct main"
     description:
@@ -598,7 +612,7 @@ packages:
       name: shimmer
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.1"
   sky_engine:
     dependency: transitive
     description: flutter

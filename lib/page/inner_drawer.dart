@@ -29,7 +29,7 @@ class _InnerDrawerSampleState extends State<InnerDrawerSample> {
 
   @override
   void initState() {
-    _getwidthContainer();
+    _getWidthContainer();
     super.initState();
   }
 
@@ -41,7 +41,7 @@ class _InnerDrawerSampleState extends State<InnerDrawerSample> {
     setState(() => pickerColor = color);
   }
 
-  void _getwidthContainer() {
+  void _getWidthContainer() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final keyContext = _keyRed.currentContext;
       if (keyContext != null) {
