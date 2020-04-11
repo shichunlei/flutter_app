@@ -146,6 +146,7 @@ export 'ui/bottom_sheet.dart';
 export 'ui/circle_button.dart';
 export 'ui/appbar.dart';
 export 'ui/input_view.dart';
+export 'ui/shimmer.dart';
 
 export 'qdaily/splash.dart';
 

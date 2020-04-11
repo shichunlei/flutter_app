@@ -25,6 +25,7 @@ import io.flutter.plugins.share.SharePlugin;
 import io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin;
 import com.tekartik.sqflite.SqflitePlugin;
 import io.flutter.plugins.urllauncher.UrlLauncherPlugin;
+import com.benjaminabel.vibration.VibrationPlugin;
 import io.flutter.plugins.videoplayer.VideoPlayerPlugin;
 import wakelock.wakelock.WakelockPlugin;
 
@@ -60,6 +61,7 @@ public final class GeneratedPluginRegistrant {
     SharedPreferencesPlugin.registerWith(registry.registrarFor("io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin"));
     SqflitePlugin.registerWith(registry.registrarFor("com.tekartik.sqflite.SqflitePlugin"));
     UrlLauncherPlugin.registerWith(registry.registrarFor("io.flutter.plugins.urllauncher.UrlLauncherPlugin"));
+    VibrationPlugin.registerWith(registry.registrarFor("com.benjaminabel.vibration.VibrationPlugin"));
     VideoPlayerPlugin.registerWith(registry.registrarFor("io.flutter.plugins.videoplayer.VideoPlayerPlugin"));
     WakelockPlugin.registerWith(registry.registrarFor("wakelock.wakelock.WakelockPlugin"));
   }
