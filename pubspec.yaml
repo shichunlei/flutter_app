@@ -20,7 +20,7 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_localizations:
     sdk: flutter
 
-  amap_location_fluttify: ^0.10.0+e74b91b
+  amap_all_fluttify: ^0.13.1+1
 
   # https://github.com/aagarwal1012/Animated-Text-Kit
   animated_text_kit: ^2.0.0

@@ -1,4 +1,4 @@
-import 'package:amap_location_fluttify/amap_location_fluttify.dart';
+import 'package:amap_all_fluttify/amap_all_fluttify.dart';
 import 'package:flutter/material.dart';
 
 import '../page_index.dart';
