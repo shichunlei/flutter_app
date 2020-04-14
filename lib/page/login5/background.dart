@@ -7,8 +7,7 @@ class Background extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var rect = Offset(0.0, 0.0) & Size(size.width, size.height);
-    var paint = Paint();
-    paint
+    var paint = Paint()
       ..color = Colors.orange
       ..strokeWidth = 2.0
       ..shader = LinearGradient(
@@ -33,9 +32,9 @@ class Background extends CustomPainter {
               tileMode: TileMode.clamp)
           .createShader(rect);
 
-    var path1 = Path();
-    path1.moveTo(size.width * 1, size.height);
-    path1.lineTo(size.width * 0, size.height);
+    var path1 = Path()
+      ..moveTo(size.width * 1, size.height)
+      ..lineTo(size.width * 0, size.height);
 
     var endPoint1 = Offset(5 * size.width / 4, 4 * size.height / 4);
     var ctlPoint1 = Offset(4.5 * size.width / 4, 2.5 * size.height / 4);
@@ -55,20 +54,20 @@ class Background extends CustomPainter {
               tileMode: TileMode.clamp)
           .createShader(rect);
 
-    var path = Path();
-    path.moveTo(size.width * 0, size.height);
-    path.lineTo(size.width, size.height);
+    var path = Path()
+      ..moveTo(size.width * 0, size.height)
+      ..lineTo(size.width, size.height);
     var endPoint = Offset(0 * size.width / 4, 4 * size.height / 4);
     var ctlPoint = Offset(0.2 * size.width / 4, 3 * size.height / 4);
     path.quadraticBezierTo(ctlPoint.dx, ctlPoint.dy, endPoint.dx, endPoint.dy);
 
     canvas.drawPath(path, paint);
 
-    var path2 = Path();
-    path2.moveTo(size.width, 0.0);
-    path2.lineTo(size.width, size.height);
-    path2.lineTo(0.0, size.height);
-    path2.lineTo(0.0, size.height + 5);
+    var path2 = Path()
+      ..moveTo(size.width, 0.0)
+      ..lineTo(size.width, size.height)
+      ..lineTo(0.0, size.height)
+      ..lineTo(0.0, size.height + 5);
     var secondControlPoint = Offset(size.width - (size.width / 6), size.height);
     var secondEndPoint = Offset(size.width, 0.0);
     path2.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,

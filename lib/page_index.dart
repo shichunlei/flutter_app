@@ -105,6 +105,7 @@ export 'bars_demo/bubble_bottom_bar.dart';
 export 'bars_demo/cupertino_tabbar.dart';
 export 'bars_demo/bottom_barview.dart';
 export 'bars_demo/titled_navigation_bar.dart';
+export 'bars_demo/tabbar_demo.dart';
 
 export 'utils/utils.dart';
 export 'utils/http_utils.dart';
@@ -194,6 +195,8 @@ export 'ui_screen/navigation/light_drawer.dart';
 export 'ui_screen/qrcode.dart';
 export 'ui_screen/personal_center.dart';
 export 'ui_screen/sign_in.dart';
+export 'ui_screen/demo/home.dart';
+export 'ui_screen/foldable.dart';
 
 export 'res/colors.dart';
 export 'res/dimens.dart';

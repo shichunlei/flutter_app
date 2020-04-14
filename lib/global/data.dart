@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bars_demo/tabbar_demo.dart';
-import 'package:flutter_app/ui_screen/demo/home.dart';
+import 'package:flutter_app/ui_screen/movies_concept.dart';
+
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../page_index.dart';
@@ -151,6 +151,8 @@ class ExpandStateBean {
       SubExpandBean('QRCode', QRCodePage()),
       SubExpandBean('DemoHomePage', DemoHomePage()),
       SubExpandBean('个人中心', PersonalCenterPage()),
+      SubExpandBean('可折叠的view', FoldablePage()),
+      SubExpandBean('Movies Concept', MoviesConceptPage()),
     ]),
     ExpandStateBean(
         leading: Icons.filter_7,

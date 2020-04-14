@@ -1,4 +1,9 @@
+import 'dart:ui';
+
+import 'package:custom_widgets/utils.dart';
 import 'package:flutter/material.dart';
+
+import 'package:quiver/iterables.dart';
 
 class CurvesDemo extends StatefulWidget {
   CurvesDemo({Key key}) : super(key: key);
@@ -72,129 +77,218 @@ class _CurvesDemoState extends State<CurvesDemo>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(title: Text('CurvesDemo'), actions: <Widget>[
-        PopupMenuButton(
-            itemBuilder: (BuildContext context) => <PopupMenuItem<Curve>>[
-                  PopupMenuItem<Curve>(
-                      value: Curves.bounceIn, child: Text('bounceIn')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.bounceInOut, child: Text('bounceInOut')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.bounceOut, child: Text('bounceOut')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.decelerate, child: Text('decelerate')),
-                  PopupMenuItem<Curve>(value: Curves.ease, child: Text('ease')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeIn, child: Text('easeIn')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInBack, child: Text('easeInBack')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInCirc, child: Text('easeInCirc')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInCubic, child: Text('easeInCubic')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInExpo, child: Text('easeInExpo')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInOut, child: Text('easeInOut')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInOutBack,
-                      child: Text('easeInOutBack')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInOutCirc,
-                      child: Text('easeInOutCirc')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInOutCubic,
-                      child: Text('easeInOutCubic')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInOutExpo,
-                      child: Text('easeInOutExpo')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInOutQuad,
-                      child: Text('easeInOutQuad')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInOutQuart,
-                      child: Text('easeInOutQuart')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInOutSine,
-                      child: Text('easeInOutSine')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInOutQuint,
-                      child: Text('easeInOutQuint')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInQuad, child: Text('easeInQuad')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInQuint, child: Text('easeInQuint')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInQuart, child: Text('easeInQuart')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInSine, child: Text('easeInSine')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.easeInToLinear,
-                      child: Text('easeInToLinear')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.slowMiddle, child: Text('slowMiddle')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.linear, child: Text('linear')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.linearToEaseOut,
-                      child: Text('linearToEaseOut')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.fastOutSlowIn,
-                      child: Text('fastOutSlowIn')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.fastLinearToSlowEaseIn,
-                      child: Text('fastLinearToSlowEaseIn')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.fastOutSlowIn,
-                      child: Text('fastOutSlowIn')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.elasticIn, child: Text('elasticIn')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.elasticInOut, child: Text('elasticInOut')),
-                  PopupMenuItem<Curve>(
-                      value: Curves.elasticOut, child: Text('elasticOut'))
-                ],
-            onSelected: (Curve value) {
-              setState(() {
-                _curve = value;
-              });
-              _curvedAnimation =
-                  CurvedAnimation(parent: _controller, curve: value);
-              _controller
-                ..reset()
-                ..forward();
-            })
-      ]),
-      body: Column(children: <Widget>[
-        Expanded(
-            child: Center(
-                child: FadeTransition(
-                    alwaysIncludeSemantics: true,
-                    opacity: _opacityTween.animate(_curvedAnimation),
+        backgroundColor: Colors.grey[200],
+        appBar: AppBar(title: Text('CurvesDemo'), actions: <Widget>[
+          PopupMenuButton(
+              itemBuilder: (BuildContext context) => <PopupMenuItem<Curve>>[
+                    PopupMenuItem<Curve>(
+                        value: Curves.bounceIn, child: Text('bounceIn')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.bounceInOut, child: Text('bounceInOut')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.bounceOut, child: Text('bounceOut')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.decelerate, child: Text('decelerate')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.ease, child: Text('ease')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeIn, child: Text('easeIn')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInBack, child: Text('easeInBack')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInCirc, child: Text('easeInCirc')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInCubic, child: Text('easeInCubic')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInExpo, child: Text('easeInExpo')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInOut, child: Text('easeInOut')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInOutBack,
+                        child: Text('easeInOutBack')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInOutCirc,
+                        child: Text('easeInOutCirc')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInOutCubic,
+                        child: Text('easeInOutCubic')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInOutExpo,
+                        child: Text('easeInOutExpo')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInOutQuad,
+                        child: Text('easeInOutQuad')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInOutQuart,
+                        child: Text('easeInOutQuart')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInOutSine,
+                        child: Text('easeInOutSine')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInOutQuint,
+                        child: Text('easeInOutQuint')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInQuad, child: Text('easeInQuad')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInQuint, child: Text('easeInQuint')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInQuart, child: Text('easeInQuart')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInSine, child: Text('easeInSine')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.easeInToLinear,
+                        child: Text('easeInToLinear')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.slowMiddle, child: Text('slowMiddle')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.linear, child: Text('linear')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.linearToEaseOut,
+                        child: Text('linearToEaseOut')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.fastOutSlowIn,
+                        child: Text('fastOutSlowIn')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.fastLinearToSlowEaseIn,
+                        child: Text('fastLinearToSlowEaseIn')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.fastOutSlowIn,
+                        child: Text('fastOutSlowIn')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.elasticIn, child: Text('elasticIn')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.elasticInOut,
+                        child: Text('elasticInOut')),
+                    PopupMenuItem<Curve>(
+                        value: Curves.elasticOut, child: Text('elasticOut'))
+                  ],
+              onSelected: (Curve value) {
+                setState(() {
+                  _curve = value;
+                });
+                _curvedAnimation =
+                    CurvedAnimation(parent: _controller, curve: value);
+                _controller
+                  ..reset()
+                  ..forward();
+              })
+        ]),
+        body: Column(children: <Widget>[
+          Expanded(
+              child: Center(
+                  child: Container(
+                      color: Colors.grey.shade200,
+                      padding: const EdgeInsets.all(12),
+                      constraints: BoxConstraints.expand(height: 200),
+                      child: CustomPaint(
+                          key: Key('curveGraph'),
+                          painter:
+                              CurvePainter(_controller, _curvedAnimation))))),
+          Row(children: <Widget>[
+            Expanded(
+                child: Center(
                     child: Container(
-                        width: 100, height: 100, color: Colors.red)))),
-        Expanded(
-            child: Center(
-                child: RotationTransition(
-                    // 设置动画的旋转中心
-                    alignment: Alignment.center,
-                    turns: _rotationTween.animate(_curvedAnimation),
+                        width: 50,
+                        height: 50,
+                        child: FadeTransition(
+                            alwaysIncludeSemantics: true,
+                            opacity: _opacityTween.animate(_curvedAnimation),
+                            child: Container(
+                                width: 50, height: 50, color: Colors.red))))),
+            Expanded(
+                child: Center(
                     child: Container(
-                        width: 100, height: 100, color: Colors.green)))),
-        Expanded(
-            child: Center(
-                child: ScaleTransition(
-                    scale: _scaleTween.animate(_curvedAnimation),
+                        width: 50,
+                        height: 50,
+                        child: RotationTransition(
+                            // 设置动画的旋转中心
+                            alignment: Alignment.center,
+                            turns: _rotationTween.animate(_curvedAnimation),
+                            child: Container(
+                                width: 50, height: 50, color: Colors.green)))))
+          ]),
+          SizedBox(height: 20),
+          Row(children: <Widget>[
+            Expanded(
+                child: Center(
                     child: Container(
-                        width: 100, height: 100, color: Colors.blue)))),
-        Expanded(
-            child: Center(
-                child: SlideTransition(
-                    position: _slideTween.animate(_curvedAnimation),
+                        width: 50,
+                        height: 50,
+                        child: ScaleTransition(
+                            scale: _scaleTween.animate(_curvedAnimation),
+                            child: Container(
+                                width: 50, height: 50, color: Colors.blue))))),
+            Expanded(
+                child: Center(
                     child: Container(
-                        width: 100, height: 100, color: Colors.orange)))),
-      ]),
+                        width: 50,
+                        height: 50,
+                        child: SlideTransition(
+                            position: _slideTween.animate(_curvedAnimation),
+                            child: Container(
+                                width: 50, height: 50, color: Colors.orange)))))
+          ]),
+          SizedBox(height: 20)
+        ]));
+  }
+}
+
+const divisions = 500;
+
+class CurvePainter extends CustomPainter {
+  Paint axisPaint;
+
+  CurvePainter(this.controller, this.anim) {
+    axisPaint = Paint()
+      ..color = Colors.grey.shade400
+      ..strokeWidth = 2;
+  }
+
+  final CurvedAnimation anim;
+
+  final AnimationController controller;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final points = List.generate(
+        divisions, (index) => 1 - anim.curve.transform(index / divisions));
+
+    _drawAxis(canvas, size);
+    _drawCurve(canvas, points, size);
+    _drawCurrentValueMarker(canvas, size, points);
+  }
+
+  void _drawCurrentValueMarker(Canvas canvas, Size size, List<double> points) {
+    canvas.drawCircle(
+      Offset(controller.value * size.width,
+          points[(controller.value * (divisions - 1)).floor()] * size.height),
+      5.0,
+      Paint()..color = Colors.pink,
     );
   }
+
+  void _drawCurve(Canvas canvas, List<double> points, Size size) {
+    canvas.drawPoints(
+        PointMode.polygon,
+        enumerate(points)
+            .map((y) =>
+                Offset(y.index / divisions * size.width, y.value * size.height))
+            .toList(),
+        Paint()
+          ..color = Colors.cyan
+          ..strokeWidth = 2);
+  }
+
+  void _drawAxis(Canvas canvas, Size size) {
+    drawText(canvas, 'time', Offset(size.width, size.height) - Offset(30, 18),
+        width: size.width);
+    drawText(canvas, 'value', Offset(10, 0), width: size.width);
+
+    canvas.drawLine(
+        Offset(0, size.height), Offset(size.width, size.height), axisPaint);
+    canvas.drawLine(Offset(0, 0), Offset(0, size.height), axisPaint);
+  }
+
+  @override
+  bool shouldRepaint(CurvePainter oldDelegate) => true;
 }
