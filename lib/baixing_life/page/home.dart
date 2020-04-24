@@ -51,36 +51,35 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
         backgroundColor: Colors.grey[200],
         body: LoaderContainer(
-          contentView: EasyRefresh.custom(
-              footer: BallPulseFooter(),
-              onLoad: () async {
-                page++;
-                getHotGoods(page);
-              },
-              slivers: <Widget>[
-                /// 头部banner
-                _buildSliverAppBar(data?.slides ?? []),
+            contentView: EasyRefresh.custom(
+                footer: BallPulseFooter(),
+                onLoad: () async {
+                  page++;
+                  getHotGoods(page);
+                },
+                slivers: <Widget>[
+                  /// 头部banner
+                  _buildSliverAppBar(data?.slides ?? []),
 
-                /// 分类
-                _buildSliverGridCategory(data?.category ?? []),
+                  /// 分类
+                  _buildSliverGridCategory(data?.category ?? []),
 
-                /// 广告
-                _buildSliverToBoxAdapterAds(
-                    data?.advertesPicture, data?.shopInfo, data?.ads),
+                  /// 广告
+                  _buildSliverToBoxAdapterAds(
+                      data?.advertesPicture, data?.shopInfo, data?.ads),
 
-                /// 商品推荐
-                _buildSliverToBoxAdapter('商品推荐'),
-                _buildSliverGridRecommend(data?.recommend ?? []),
+                  /// 商品推荐
+                  _buildSliverToBoxAdapter('商品推荐'),
+                  _buildSliverGridRecommend(data?.recommend ?? []),
 
-                /// floor
-                _buildFloorView(data?.floors ?? []),
+                  /// floor
+                  _buildFloorView(data?.floors ?? []),
 
-                /// 火爆专区
-                _buildHotGoodsTitle(),
-                _buildHotGoods()
-              ]),
-          loaderState: state,
-        ));
+                  /// 火爆专区
+                  _buildHotGoodsTitle(),
+                  _buildHotGoods()
+                ]),
+            loaderState: state));
   }
 
   void getHomeData() async {
@@ -116,29 +115,23 @@ class _HomePageState extends State<HomePage>
 
   Widget _buildSliverGridCategory(List<Category> category) {
     return SliverGrid(
-        delegate: SliverChildBuilderDelegate(
-          (BuildContext context, int index) {
-            return Material(
+        delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+          return Material(
               color: Colors.white,
               child: InkWell(
-                onTap: () => pushReplacement(context,
-                    IndexPage(index: 1, category: index, subCategory: 0)),
-                child: Container(
-                  padding: EdgeInsets.all(5.0),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        ImageLoadView('${category[index].image}',
-                            height: 40, width: 40),
-                        Gaps.vGap5,
-                        Text('${category[index].mallCategoryName}')
-                      ]),
-                ),
-              ),
-            );
-          },
-          childCount: 10,
-        ),
+                  onTap: () => pushReplacement(context,
+                      IndexPage(index: 1, category: index, subCategory: 0)),
+                  child: Container(
+                      padding: EdgeInsets.all(5.0),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            ImageLoadView('${category[index].image}',
+                                height: 40, width: 40),
+                            Gaps.vGap5,
+                            Text('${category[index].mallCategoryName}')
+                          ]))));
+        }, childCount: 10),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 5, childAspectRatio: 0.9));
   }
@@ -150,52 +143,50 @@ class _HomePageState extends State<HomePage>
 
     return SliverToBoxAdapter(
         child: Container(
-            child: Column(
-              children: <Widget>[
+            child: Column(children: <Widget>[
+              GestureDetector(
+                  child: ImageLoadView(
+                      '${advertesPicture?.pictureAddress ?? ""}',
+                      width: double.infinity,
+                      height: Utils.width * 67 / 750,
+                      fit: BoxFit.fitWidth),
+                  onTap: () {
+                    /// TODO
+                  }),
+              Gaps.vGap10,
+              GestureDetector(
+                  child: ImageLoadView(shopInfo?.leaderImage ?? "",
+                      width: double.infinity,
+                      fit: BoxFit.fitWidth,
+                      height: Utils.width * 23 / 75),
+                  onTap: () {
+                    /// TODO
+                  }),
+              Row(children: <Widget>[
+                GestureDetector(
+                    child: ImageLoadView('${ads?.first?.pictureAddress ?? ""}',
+                        width: width, height: height),
+                    onTap: () {
+                      /// TODO
+                    }),
                 GestureDetector(
                     child: ImageLoadView(
-                        '${advertesPicture?.pictureAddress ?? ""}',
-                        width: double.infinity,
-                        height: (Utils.width - 20) * 151 / 1125),
+                        '${ads?.elementAt(1)?.pictureAddress ?? ""}',
+                        width: width,
+                        height: height),
                     onTap: () {
                       /// TODO
                     }),
-                Gaps.vGap10,
                 GestureDetector(
-                    child: ImageLoadView(shopInfo?.leaderImage ?? "",
-                        width: double.infinity,
-                        height: (Utils.width - 20) * 239 / 750),
+                    child: ImageLoadView(
+                        '${ads?.elementAt(2)?.pictureAddress ?? ""}',
+                        width: width,
+                        height: height),
                     onTap: () {
                       /// TODO
-                    }),
-                Row(children: <Widget>[
-                  GestureDetector(
-                      child: ImageLoadView(
-                          '${ads?.first?.pictureAddress ?? ""}',
-                          width: width,
-                          height: height),
-                      onTap: () {
-                        /// TODO
-                      }),
-                  GestureDetector(
-                      child: ImageLoadView(
-                          '${ads?.elementAt(1)?.pictureAddress ?? ""}',
-                          width: width,
-                          height: height),
-                      onTap: () {
-                        /// TODO
-                      }),
-                  GestureDetector(
-                      child: ImageLoadView(
-                          '${ads?.elementAt(2)?.pictureAddress ?? ""}',
-                          width: width,
-                          height: height),
-                      onTap: () {
-                        /// TODO
-                      })
-                ])
-              ],
-            ),
+                    })
+              ])
+            ]),
             color: Colors.white,
             margin: EdgeInsets.only(top: 5.0),
             padding: EdgeInsets.all(10.0)));
@@ -203,37 +194,34 @@ class _HomePageState extends State<HomePage>
 
   Widget _buildSliverToBoxAdapter(title) {
     return SliverToBoxAdapter(
-      child: Container(
-        color: Colors.white,
-        margin: EdgeInsets.only(top: 5.0, bottom: 1.0),
-        padding: EdgeInsets.only(left: 10.0, bottom: 5, top: 5),
-        alignment: Alignment.centerLeft,
-        child:
-            Text(title, style: TextStyle(color: Colors.green, fontSize: 20.0)),
-      ),
-    );
+        child: Container(
+            color: Colors.white,
+            margin: EdgeInsets.only(top: 5.0, bottom: 1.0),
+            padding: EdgeInsets.only(left: 10.0, bottom: 5, top: 5),
+            alignment: Alignment.centerLeft,
+            child: Text(title,
+                style: TextStyle(color: Colors.green, fontSize: 20.0))));
   }
 
   Widget _buildSliverGridRecommend(List<Goods> recommend) {
-    return SliverGrid(
-        delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) => ItemGoodsGrid(recommend[index],
-                height: Utils.width / recommend.length * 2 / 1.45),
-            childCount: recommend.length),
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: Utils.width / recommend.length,
-            crossAxisSpacing: 1.0,
-            childAspectRatio: 1.45 / 2));
+    return SliverToBoxAdapter(
+        child: Container(
+            height: Utils.width / 3 * 2 / 1.45,
+            child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (_, index) => Container(
+                    width: Utils.width / 3,
+                    child: ItemGoodsGrid(recommend[index],
+                        height: Utils.width / 3 * 2 / 1.45)),
+                separatorBuilder: (_, index) => Gaps.hGap5,
+                itemCount: recommend.length)));
   }
 
   Widget _buildFloorView(List<FloorBean> floors) {
     return SliverList(
-      delegate: SliverChildBuilderDelegate(
-          (context, index) => ItemHomeFloor(
-                floor: floors[index],
-              ),
-          childCount: floors.length),
-    );
+        delegate: SliverChildBuilderDelegate(
+            (context, index) => ItemHomeFloor(floor: floors[index]),
+            childCount: floors.length));
   }
 
   Widget _buildHotGoodsTitle() {

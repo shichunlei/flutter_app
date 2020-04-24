@@ -48,20 +48,19 @@ class RightListViewState extends State<RightListView>
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: rightWidth,
-      child: Column(children: <Widget>[
-        TabBar(
-            indicatorColor: Colors.pinkAccent,
-            labelColor: Colors.pinkAccent,
-            unselectedLabelColor: Colors.grey,
-            controller: controller,
-            isScrollable: true,
-            tabs: subCategory.bxMallSubDto
-                .map((category) => Tab(text: "${category.mallSubName}"))
-                .toList()),
-        _buildGoodsListView()
-      ]),
-    );
+        width: rightWidth,
+        child: Column(children: <Widget>[
+          TabBar(
+              indicatorColor: Colors.pinkAccent,
+              labelColor: Colors.pinkAccent,
+              unselectedLabelColor: Colors.grey,
+              controller: controller,
+              isScrollable: true,
+              tabs: subCategory.bxMallSubDto
+                  .map((category) => Tab(text: "${category.mallSubName}"))
+                  .toList()),
+          _buildGoodsListView()
+        ]));
   }
 
   Widget _buildGoodsListView() {
