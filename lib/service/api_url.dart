@@ -58,7 +58,7 @@ class ApiUrl {
 
   /// 百姓生活
   static final String BAIXING_BASE_URL =
-      'http://v.jspang.com:8088/baixing/wxmini/';
+      'https://wxmini.baixingliangfan.cn/baixing/wxmini/';
 
   static final String BAIXING_HOME = 'homePageContent';
   static final String BAIXING_HOME_HOT = 'homePageBelowConten';

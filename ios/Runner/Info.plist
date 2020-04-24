@@ -66,10 +66,8 @@
 	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
-    /// 使用PlatformView的声明
     <key>io.flutter.embedded_views_preview</key>
     <string>YES</string>
-    /// 高德地图app白名单 打开高德地图时使用
     <key>LSApplicationQueriesSchemes</key>
     <array>
     	<string>iosamap</string>

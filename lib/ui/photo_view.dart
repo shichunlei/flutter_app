@@ -166,7 +166,9 @@ class _PhotoViewState extends State<PhotoView>
               setState(() => count = index + 1);
             },
             scrollPhysics: const BouncingScrollPhysics(),
-            loadingChild: LoadingWidget(),
+            loadingBuilder: (_, __) {
+              return LoadingWidget();
+            },
             pageController: widget.controller,
           ),
           Column(children: <Widget>[

@@ -1,11 +1,8 @@
 package io.flutter.plugins;
 
 import io.flutter.plugin.common.PluginRegistry;
-import me.yohom.amap_all_fluttify.AmapAllFluttifyPlugin;
 import me.yohom.amap_core_fluttify.AmapCoreFluttifyPlugin;
 import me.yohom.amap_location_fluttify.AmapLocationFluttifyPlugin;
-import me.yohom.amap_map_fluttify.AmapMapFluttifyPlugin;
-import me.yohom.amap_search_fluttify.AmapSearchFluttifyPlugin;
 import xyz.luan.audioplayers.AudioplayersPlugin;
 import de.mintware.barcode_scan.BarcodeScanPlugin;
 import io.flutter.plugins.deviceinfo.DeviceInfoPlugin;
@@ -40,11 +37,8 @@ public final class GeneratedPluginRegistrant {
     if (alreadyRegisteredWith(registry)) {
       return;
     }
-    AmapAllFluttifyPlugin.registerWith(registry.registrarFor("me.yohom.amap_all_fluttify.AmapAllFluttifyPlugin"));
     AmapCoreFluttifyPlugin.registerWith(registry.registrarFor("me.yohom.amap_core_fluttify.AmapCoreFluttifyPlugin"));
     AmapLocationFluttifyPlugin.registerWith(registry.registrarFor("me.yohom.amap_location_fluttify.AmapLocationFluttifyPlugin"));
-    AmapMapFluttifyPlugin.registerWith(registry.registrarFor("me.yohom.amap_map_fluttify.AmapMapFluttifyPlugin"));
-    AmapSearchFluttifyPlugin.registerWith(registry.registrarFor("me.yohom.amap_search_fluttify.AmapSearchFluttifyPlugin"));
     AudioplayersPlugin.registerWith(registry.registrarFor("xyz.luan.audioplayers.AudioplayersPlugin"));
     BarcodeScanPlugin.registerWith(registry.registrarFor("de.mintware.barcode_scan.BarcodeScanPlugin"));
     DeviceInfoPlugin.registerWith(registry.registrarFor("io.flutter.plugins.deviceinfo.DeviceInfoPlugin"));

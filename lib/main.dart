@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:amap_all_fluttify/amap_all_fluttify.dart';
+import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,15 +15,7 @@ void main() async {
   setCustomErrorPage();
   _setTargetPlatformForDesktop();
 
-  await SpUtil.getInstance();
-
-  await AmapService.init(
-    iosKey: Config.AMAP_KEY_IOS,
-    androidKey: Config.AMAP_KEY_ANDROID,
-  );
-
-  /// 如果你觉得引擎的日志太多, 可以关闭Fluttify引擎的日志
-  await enableFluttifyLog(false); // 关闭log
+  await AmapCore.init(Config.AMAP_KEY_IOS);
 
   runZoned(() {
     //强制横屏
