@@ -56,60 +56,35 @@ class _IndexPageState extends State<IndexPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: list[currentIndex],
-      bottomNavigationBar: BubbleBottomBar(
-        opacity: 0.2,
-        currentIndex: currentIndex,
-        onTap: changePage,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-        elevation: 8,
-        items: <BubbleBottomBarItem>[
-          BubbleBottomBarItem(
-              backgroundColor: Colors.red,
-              icon: Icon(
-                Icons.home,
-                color: Colors.black,
-              ),
-              activeIcon: Icon(
-                Icons.home,
-                color: Colors.red,
-              ),
-              title: Text("首页")),
-          BubbleBottomBarItem(
-              backgroundColor: Colors.deepPurple,
-              icon: Icon(
-                Icons.dashboard,
-                color: Colors.black,
-              ),
-              activeIcon: Icon(
-                Icons.dashboard,
-                color: Colors.deepPurple,
-              ),
-              title: Text("分类")),
-          BubbleBottomBarItem(
-              backgroundColor: Colors.indigo,
-              icon: Icon(
-                Icons.shopping_cart,
-                color: Colors.black,
-              ),
-              activeIcon: Icon(
-                Icons.shopping_cart,
-                color: Colors.indigo,
-              ),
-              title: Text("购物车")),
-          BubbleBottomBarItem(
-              backgroundColor: Colors.green,
-              icon: Icon(
-                CustomIcon.account_full,
-                color: Colors.black,
-              ),
-              activeIcon: Icon(
-                CustomIcon.account_full,
-                color: Colors.green,
-              ),
-              title: Text("会员"))
-        ],
-      ),
-    );
+        body: list[currentIndex],
+        bottomNavigationBar: BubbleBottomBar(
+            opacity: 0.2,
+            currentIndex: currentIndex,
+            onTap: changePage,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+            elevation: 8,
+            items: <BubbleBottomBarItem>[
+              BubbleBottomBarItem(
+                  backgroundColor: Colors.red,
+                  icon: Icon(Icons.home, color: Colors.black),
+                  activeIcon: Icon(Icons.home, color: Colors.red),
+                  title: Text("首页")),
+              BubbleBottomBarItem(
+                  backgroundColor: Colors.deepPurple,
+                  icon: Icon(Icons.dashboard, color: Colors.black),
+                  activeIcon: Icon(Icons.dashboard, color: Colors.deepPurple),
+                  title: Text("分类")),
+              BubbleBottomBarItem(
+                  backgroundColor: Colors.indigo,
+                  icon: Icon(Icons.shopping_cart, color: Colors.black),
+                  activeIcon: Icon(Icons.shopping_cart, color: Colors.indigo),
+                  title: Text("购物车")),
+              BubbleBottomBarItem(
+                  backgroundColor: Colors.green,
+                  icon: Icon(CustomIcon.account_full, color: Colors.black),
+                  activeIcon:
+                      Icon(CustomIcon.account_full, color: Colors.green),
+                  title: Text("会员"))
+            ]));
   }
 }

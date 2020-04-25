@@ -82,9 +82,7 @@ class ItemComment extends StatelessWidget {
   Widget _buildTopView(AuthorBean author, int publishTime) {
     return Row(children: <Widget>[
       ImageLoadView('${author?.avatar}',
-          width: 25,
-          height: 25,
-          borderRadius: BorderRadius.all(Radius.circular(20))),
+          width: 25, height: 25, shape: BoxShape.circle),
       Gaps.hGap8,
       Text('${author?.name}'),
       Gaps.hGap8,

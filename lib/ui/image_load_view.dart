@@ -9,6 +9,9 @@ class ImageLoadView extends StatelessWidget {
   /// 图片URL
   final String path;
 
+  /// 圆角半径
+  final double radius;
+
   /// 宽
   final double width;
 
@@ -20,9 +23,6 @@ class ImageLoadView extends StatelessWidget {
 
   /// 加载中图片
   final String placeholder;
-
-  /// 圆角
-  final BorderRadius borderRadius;
 
   ///
   final ImageType imageType;
@@ -39,16 +39,28 @@ class ImageLoadView extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry padding;
 
+  /// 图片外边框
+  final EdgeInsetsGeometry margin;
+
   /// 子控件位置
   final AlignmentGeometry alignment;
+
+  final double elevation;
+
+  final BoxShape shape;
+
+  final Color borderColor;
+
+  final double borderWidth;
 
   ImageLoadView(
     this.path, {
     Key key,
+    this.radius: 0.0,
     this.width,
     this.height,
+    this.margin: EdgeInsets.zero,
     this.fit: BoxFit.cover,
-    this.borderRadius: const BorderRadius.all(Radius.circular(0.0)),
     this.placeholder: "images/loading.png",
     this.imageType: ImageType.network,
     this.opacity: 1.0,
@@ -58,6 +70,10 @@ class ImageLoadView extends StatelessWidget {
     this.child,
     this.alignment: Alignment.center,
     this.padding: EdgeInsets.zero,
+    this.elevation: 0.0,
+    this.shape: BoxShape.rectangle,
+    this.borderColor,
+    this.borderWidth: 0.0,
   })  : assert(path != null),
         super(key: key);
 
@@ -68,11 +84,10 @@ class ImageLoadView extends StatelessWidget {
     switch (imageType) {
       case ImageType.network:
         imageWidget = CachedNetworkImage(
-          placeholder: (context, url) => Image.asset(placeholder),
-          imageUrl: path,
-          fit: fit,
-          errorWidget: (context, url, error) => Image.asset(placeholder),
-        );
+            placeholder: (context, url) => Image.asset(placeholder),
+            imageUrl: path,
+            fit: fit,
+            errorWidget: (context, url, error) => Image.asset(placeholder));
         break;
       case ImageType.assets:
         imageWidget = FadeInImage(
@@ -88,30 +103,43 @@ class ImageLoadView extends StatelessWidget {
         break;
     }
 
-    return Container(
-      height: height ?? double.infinity,
-      width: width ?? double.infinity,
-      child: ClipRRect(
-        borderRadius: borderRadius,
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            imageWidget,
-            BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: sigmaX, sigmaY: sigmaY),
-              child: Opacity(
-                opacity: opacity,
-                child: Container(
-                  color: filterColor,
-                  child: child ?? const SizedBox(),
-                  alignment: alignment,
-                  padding: padding,
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
+    return Card(
+        color: Colors.transparent,
+        shape: shape == BoxShape.circle
+            ? CircleBorder()
+            : RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(radius)),
+        clipBehavior: Clip.antiAlias,
+        elevation: elevation,
+        margin: margin,
+        child: Container(
+            height: height ?? double.infinity,
+            width: width ?? double.infinity,
+            child: Stack(children: <Widget>[
+              Positioned.fill(child: imageWidget),
+              Positioned.fill(
+                  child: Container(
+                      decoration: BoxDecoration(
+                          shape: shape,
+                          borderRadius: shape == BoxShape.circle
+                              ? null
+                              : BorderRadius.circular(radius),
+                          border: Border.all(
+                              color:
+                                  borderColor ?? Theme.of(context).primaryColor,
+                              width: borderWidth,
+                              style: borderWidth == 0.0
+                                  ? BorderStyle.none
+                                  : BorderStyle.solid)))),
+              BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: sigmaX, sigmaY: sigmaY),
+                  child: Opacity(
+                      opacity: opacity,
+                      child: Container(
+                          color: filterColor,
+                          child: child ?? const SizedBox(),
+                          alignment: alignment,
+                          padding: padding)))
+            ])));
   }
 }

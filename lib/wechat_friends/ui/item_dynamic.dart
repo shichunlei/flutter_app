@@ -29,9 +29,7 @@ class ItemDynamic extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             ImageLoadView('${this.dynamic.userAvatar}',
-                height: 50,
-                width: 50,
-                borderRadius: BorderRadius.circular(5.0)),
+                height: 50, width: 50, radius: 5),
             Expanded(
               child: Container(
                   padding: EdgeInsets.only(left: 10.0, top: 8),

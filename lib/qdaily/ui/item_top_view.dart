@@ -18,9 +18,7 @@ class ItemTopView extends StatelessWidget {
       child: Container(
           child: Row(children: <Widget>[
             ImageLoadView('$icon',
-                height: 25,
-                width: 25,
-                borderRadius: BorderRadius.all(Radius.circular(15))),
+                height: 25, width: 25, shape: BoxShape.circle),
             Gaps.hGap8,
             Text('$title'),
             Spacer(),

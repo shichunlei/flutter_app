@@ -9,9 +9,9 @@ class HomeDrawableHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Store.connect<UserModel>(
-      builder: (_, UserModel _data, __) {
-        return UserAccountsDrawerHeader(
+    return Store.connect<UserModel>(builder: (_, UserModel _data, __) {
+      return UserAccountsDrawerHeader(
+
           /// 姓名
           accountName: Text('${_data.getName()}'),
 
@@ -21,12 +21,12 @@ class HomeDrawableHeader extends StatelessWidget {
           /// 用户头像
           currentAccountPicture: InkWell(
               child: Hero(
-                child: ImageLoadView('${_data.getAvatarPath()}',
-                    borderRadius: BorderRadius.all(Radius.circular(40.0)),
-                    width: 80,
-                    height: 80),
-                tag: 'user_avatar',
-              ),
+                  child: ImageLoadView('${_data.getAvatarPath()}',
+                      shape: BoxShape.circle,
+                      width: 80,
+                      height: 80,
+                      elevation: 10.0),
+                  tag: 'user_avatar'),
               onTap: () {
                 if (_data.isLogin()) {
                   Navigator.pop(context);
@@ -38,15 +38,13 @@ class HomeDrawableHeader extends StatelessWidget {
           otherAccountsPictures: <Widget>[
             GestureDetector(
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g2qrft0upcj30u01hcwpa.jpg"),
-                ),
+                    backgroundImage: NetworkImage(
+                        "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g2qrft0upcj30u01hcwpa.jpg")),
                 onTap: () {}),
             GestureDetector(
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g2qrf51edvj30u01hbgse.jpg"),
-                ),
+                    backgroundImage: NetworkImage(
+                        "https://wx1.sinaimg.cn/bmiddle/0060lm7Tgy1g2qrf51edvj30u01hbgse.jpg")),
                 onTap: () {})
           ],
 
@@ -57,9 +55,7 @@ class HomeDrawableHeader extends StatelessWidget {
                     Colors.black.withOpacity(.2), BlendMode.multiply),
                 image: NetworkImage(backgroundImage),
                 fit: BoxFit.cover),
-          ),
-        );
-      },
-    );
+          ));
+    });
   }
 }

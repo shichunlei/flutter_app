@@ -65,6 +65,11 @@ class ApiUrl {
   static final String BAIXING_CATEGORY = 'getCategory';
   static final String BAIXING_GOODS = 'getMallGoods';
   static final String BAIXING_GOODS_DETAIL = 'getGoodDetailById';
+  static final String BAIXING_SHOPS = 'integralGoodsShops';
+  static final String BAIXING_SHOP_DETAIL = 'integralGoods';
+  static final String BAIXING_ORDERS = 'getMyOrders';
+  static final String BAIXING_SEARCH = 'searchGoods';
+  static final String BAIXING_HOME_AD = 'getHomePageTip';
 
   static final String RANDOMUSER_URL = 'https://randomuser.me/api/';
 

@@ -21,12 +21,8 @@ class ItemCover extends StatelessWidget {
     return GestureDetector(
       child: Container(
           child: Stack(children: <Widget>[
-            ImageLoadView(
-              url,
-              width: double.infinity,
-              height: double.infinity,
-              borderRadius: BorderRadius.circular(5.0),
-            ),
+            ImageLoadView(url,
+                width: double.infinity, height: double.infinity, radius: 5),
             Center(
                 child: Offstage(
                     offstage: offstage,

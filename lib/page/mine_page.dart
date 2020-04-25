@@ -84,8 +84,7 @@ class _MinePageState extends State<MinePage> {
                                       Hero(
                                         child: ImageLoadView(
                                             '${userModel.getAvatarPath()}',
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(40.0)),
+                                            shape: BoxShape.circle,
                                             width: 80,
                                             height: 80),
                                         tag: 'user_avatar',

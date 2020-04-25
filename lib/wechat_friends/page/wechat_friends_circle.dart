@@ -98,11 +98,10 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
                                         color: Colors.white, fontSize: 17)),
                               ),
                               ImageLoadView(
-                                'http://cdn.duitang.com/uploads/item/201409/18/20140918141220_N4Tic.thumb.700_0.jpeg',
-                                height: 70,
-                                width: 70,
-                                borderRadius: BorderRadius.circular(5.0),
-                              )
+                                  'http://cdn.duitang.com/uploads/item/201409/18/20140918141220_N4Tic.thumb.700_0.jpeg',
+                                  height: 70,
+                                  width: 70,
+                                  radius: 5)
                             ]),
                         margin: EdgeInsets.only(right: 10))
                   ],

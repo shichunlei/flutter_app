@@ -89,12 +89,10 @@ class _ItemSoonViewState extends State<ItemSoonView>
                           spacing: 5.0,
                           children: widget.movie.casts.map((cast) {
                             return ImageLoadView(
-                              cast?.avatars?.small ?? douBanDefaultImage,
-                              width: 44.0,
-                              height: 44.0,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(22.0)),
-                            );
+                                cast?.avatars?.small ?? douBanDefaultImage,
+                                width: 44.0,
+                                height: 44.0,
+                                shape: BoxShape.circle);
                           }).toList()),
                       Gaps.vGap8,
 

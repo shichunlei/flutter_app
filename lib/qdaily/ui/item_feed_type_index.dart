@@ -21,9 +21,7 @@ class ItemFeedTypeIndex extends StatelessWidget {
               children: <Widget>[
                 Row(children: <Widget>[
                   ImageLoadView('${feedsBean?.post?.column?.icon}',
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      width: 30,
-                      height: 30),
+                      shape: BoxShape.circle, width: 30, height: 30),
                   Gaps.hGap8,
                   Text('${feedsBean?.post?.column?.name}')
                 ]),

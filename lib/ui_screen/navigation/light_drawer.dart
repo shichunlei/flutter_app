@@ -94,10 +94,7 @@ class LightDrawerPage extends StatelessWidget {
                           gradient: LinearGradient(
                               colors: [Colors.pink, Colors.deepPurple])),
                       child: ImageLoadView(snapshot.getAvatarPath(),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(40.0)),
-                          height: 80.0,
-                          width: 80.0),
+                          shape: BoxShape.circle, height: 80.0, width: 80.0),
                     ),
                     SizedBox(height: 5.0),
                     Text("${snapshot.getName()}",

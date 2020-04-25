@@ -27,7 +27,7 @@ class RankingBanner extends StatelessWidget {
                   width: double.infinity,
                   opacity: 0.5,
                   filterColor: Colors.black,
-                  borderRadius: BorderRadius.all(Radius.circular(radius))),
+                  radius: radius),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[

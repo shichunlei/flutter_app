@@ -20,14 +20,12 @@ class MySelfPage extends StatelessWidget {
                       child: Column(children: <Widget>[
                         Row(children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.all(20),
-                            child: ImageLoadView(
-                                'http://hbimg.b0.upaiyun.com/63ddc018b96442eeb24c73f393f5ae066d58fb7e6607e-WScNBs_fw658',
-                                height: 56,
-                                width: 56,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(28.0))),
-                          ),
+                              padding: EdgeInsets.all(20),
+                              child: ImageLoadView(
+                                  'http://hbimg.b0.upaiyun.com/63ddc018b96442eeb24c73f393f5ae066d58fb7e6607e-WScNBs_fw658',
+                                  height: 56,
+                                  width: 56,
+                                  shape: BoxShape.circle)),
                           Text('书友q1558053958', style: TextStyles.textWhite16),
                           Spacer(),
                           IconButton(

@@ -21,42 +21,34 @@ Future<Null> showDiffDialog(BuildContext context,
     Function pressed,
     Function cancelPressed}) async {
   await showDialog(
-    context: context,
-    builder: (context) => Utils.isAndroid
-        ? AlertDialog(
-            title: title,
-            titlePadding: titlePadding,
-            content: content,
-            contentPadding: contentPadding,
-            actions: <Widget>[
-              FlatButton(
-                onPressed: cancelPressed ?? () => Navigator.pop(context),
-                child: Text(noText ??= S.of(context).cancel),
-              ),
-              FlatButton(
-                onPressed: () => pressed(),
-                child: Text(yesText ??= S.of(context).sure),
-              )
-            ],
-          )
-        : CupertinoAlertDialog(
-            title: title,
-            content: Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: content,
-            ),
-            actions: <Widget>[
-              CupertinoDialogAction(
-                onPressed: cancelPressed ?? () => Navigator.pop(context),
-                child: Text(noText ??= S.of(context).cancel),
-              ),
-              CupertinoDialogAction(
-                onPressed: () => pressed(),
-                child: Text(yesText ??= S.of(context).sure),
-              )
-            ],
-          ),
-  );
+      context: context,
+      builder: (context) => Utils.isAndroid
+          ? AlertDialog(
+              title: title,
+              titlePadding: titlePadding,
+              content: content,
+              contentPadding: contentPadding,
+              actions: <Widget>[
+                  FlatButton(
+                    onPressed: cancelPressed ?? () => Navigator.pop(context),
+                    child: Text(noText ??= S.of(context).cancel),
+                  ),
+                  FlatButton(
+                      onPressed: () => pressed(),
+                      child: Text(yesText ??= S.of(context).sure))
+                ])
+          : CupertinoAlertDialog(
+              title: title,
+              content: Padding(
+                  padding: const EdgeInsets.only(top: 20.0), child: content),
+              actions: <Widget>[
+                  CupertinoDialogAction(
+                      onPressed: cancelPressed ?? () => Navigator.pop(context),
+                      child: Text(noText ??= S.of(context).cancel)),
+                  CupertinoDialogAction(
+                      onPressed: () => pressed(),
+                      child: Text(yesText ??= S.of(context).sure))
+                ]));
 }
 
 /// 歌曲播放列表
@@ -65,79 +57,67 @@ Future<Null> showDiffDialog(BuildContext context,
 ///
 void showMusicListBottomSheet(BuildContext context) {
   showModalBottomSheet(
-    context: context,
-    isScrollControlled: true,
-    backgroundColor: Colors.white,
-    builder: (BuildContext context) => Store.connect<MusicModel>(
-      builder: (_, MusicModel snapshot, __) => Container(
-        height: Utils.height * 2 / 3,
-        child: Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                children: <Widget>[
-                  Icon(snapshot.modeIcon),
-                  Gaps.hGap10,
-                  RichText(
-                    textAlign: TextAlign.left,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                            text: snapshot.mode == 0
-                                ? '顺序播放'
-                                : snapshot.mode == 1 ? "随机播放" : "单曲循环",
-                            style: TextStyles.textBlue16),
-                        TextSpan(
-                            text: '（共${snapshot.allSongs.length}首）',
-                            style: TextStyles.textBlue14),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(height: 1, color: Colors.grey),
-            Expanded(
-              child: ListView.separated(
-                itemBuilder: (_, index) {
-                  bool isPlaying = snapshot.curIndex == index;
-                  return ListTile(
-                      leading: ImageLoadView(
-                          '${snapshot.allSongs[index].albumArtUrl}',
-                          width: isPlaying ? 50 : 40,
-                          height: isPlaying ? 50 : 40,
-                          borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                          child: isPlaying
-                              ? Container(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.white,
+      builder: (BuildContext context) => Store.connect<MusicModel>(
+          builder: (_, MusicModel snapshot, __) => Container(
+              height: Utils.height * 2 / 3,
+              child: Column(children: <Widget>[
+                Container(
+                    padding: EdgeInsets.all(10.0),
+                    child: Row(children: <Widget>[
+                      Icon(snapshot.modeIcon),
+                      Gaps.hGap10,
+                      RichText(
+                          textAlign: TextAlign.left,
+                          text: TextSpan(children: [
+                            TextSpan(
+                                text: snapshot.mode == 0
+                                    ? '顺序播放'
+                                    : snapshot.mode == 1 ? "随机播放" : "单曲循环",
+                                style: TextStyles.textBlue16),
+                            TextSpan(
+                                text: '（共${snapshot.allSongs.length}首）',
+                                style: TextStyles.textBlue14)
+                          ]))
+                    ])),
+                Container(height: 1, color: Colors.grey),
+                Expanded(
+                    child: ListView.separated(
+                        itemBuilder: (_, index) {
+                          bool isPlaying = snapshot.curIndex == index;
+                          return ListTile(
+                              leading: ImageLoadView(
+                                  '${snapshot.allSongs[index].albumArtUrl}',
                                   width: isPlaying ? 50 : 40,
                                   height: isPlaying ? 50 : 40,
-                                  child: CircularProgressIndicator(
-                                      value: snapshot.progress,
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          Colors.redAccent)),
-                                )
-                              : null),
-                      title: Text('${snapshot.allSongs[index].title}',
-                          maxLines: 1),
-                      subtitle: Text('${snapshot.allSongs[index].artists}',
-                          maxLines: 1),
-                      onTap: () {
-                        Navigator.pop(context);
-                        snapshot.playSongByIndex(index);
-                      },
-                      selected: isPlaying);
-                },
-                itemCount: snapshot.allSongs.length,
-                separatorBuilder: (BuildContext context, int index) =>
-                    Container(height: 0.1, color: Colors.grey),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
+                                  shape: BoxShape.circle,
+                                  child: isPlaying
+                                      ? Container(
+                                          width: isPlaying ? 50 : 40,
+                                          height: isPlaying ? 50 : 40,
+                                          child: CircularProgressIndicator(
+                                              value: snapshot.progress,
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                      Colors.redAccent)))
+                                      : null),
+                              title: Text('${snapshot.allSongs[index].title}',
+                                  maxLines: 1),
+                              subtitle: Text(
+                                  '${snapshot.allSongs[index].artists}',
+                                  maxLines: 1),
+                              onTap: () {
+                                Navigator.pop(context);
+                                snapshot.playSongByIndex(index);
+                              },
+                              selected: isPlaying);
+                        },
+                        itemCount: snapshot.allSongs.length,
+                        separatorBuilder: (BuildContext context, int index) =>
+                            Container(height: 0.1, color: Colors.grey)))
+              ]))));
 }
 
 showLoginDialog(BuildContext context) async {
@@ -190,9 +170,8 @@ class LoginDialog extends Dialog {
                                   Button(
                                       child: Text('账号登录',
                                           style: TextStyle(fontSize: 18)),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
                                       borderRadius: 5,
                                       color: Color(0xffff5d23)),
                                   Padding(
@@ -201,9 +180,8 @@ class LoginDialog extends Dialog {
                                       child: Button(
                                           child: Text('快速注册',
                                               style: TextStyle(fontSize: 18)),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
+                                          onPressed: () =>
+                                              Navigator.of(context).pop(),
                                           borderRadius: 5,
                                           borderColor: Color(0xffff5d23),
                                           textColor: Color(0xffff5d23),

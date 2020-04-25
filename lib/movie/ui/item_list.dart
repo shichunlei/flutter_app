@@ -13,7 +13,7 @@ class ItemList extends StatelessWidget {
   Widget build(BuildContext context) {
     /// 影片图片
     var movieImage = ImageLoadView(movie.images.medium,
-        borderRadius: BorderRadius.circular(4.0), height: 150.0, width: 100.0);
+        radius: 4, height: 150.0, width: 100.0);
 
     var casts = '';
     movie.casts.map((cast) {

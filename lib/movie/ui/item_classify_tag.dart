@@ -28,12 +28,8 @@ class _ItemClassifyTagState extends State<ItemClassifyTag>
     return BouncingView(
       child: Stack(
         children: <Widget>[
-          ImageLoadView(
-            cover,
-            width: double.infinity,
-            height: double.infinity,
-            borderRadius: BorderRadius.circular(3.0),
-          ),
+          ImageLoadView(cover,
+              width: double.infinity, height: double.infinity, radius: 3),
           Opacity(
             opacity: 0.5,
             child: Container(

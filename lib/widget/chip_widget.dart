@@ -75,8 +75,7 @@ class _ChipWidgetState extends State<ChipWidget> {
                           style: TextStyle(color: Colors.white)),
                       avatar: ImageLoadView(
                           'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1408166520,3304498136&fm=26&gp=0.jpg',
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(20.0))),
+                          radius: 20),
                       onPressed: () {},
                       backgroundColor: Utils.strToColor(language)))
                   .toList()),

@@ -21,12 +21,8 @@ class FirstMovieView extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(20))),
         child: Row(
           children: <Widget>[
-            ImageLoadView(
-              '${movie.images.medium}',
-              fit: BoxFit.cover,
-              width: 120,
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-            ),
+            ImageLoadView('${movie.images.medium}',
+                fit: BoxFit.cover, width: 120, radius: 8),
             Gaps.hGap8,
             Expanded(
               child: Column(
@@ -73,40 +69,40 @@ class FirstMovieView extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: <Widget>[
-                                  StarRate(
-                                      rating: 5.0,
-                                      starCount: 5,
-                                      rate: movie.rating.details.star5,
-                                      width: 70,
-                                      starColor: Colors.white),
-                                  StarRate(
-                                      rating: 4.0,
-                                      starCount: 4,
-                                      rate: movie.rating.details.star4,
-                                      width: 70,
-                                      starColor: Colors.white),
-                                  StarRate(
-                                      rating: 3.0,
-                                      starCount: 3,
-                                      rate: movie.rating.details.star3,
-                                      width: 70,
-                                      starColor: Colors.white),
-                                  StarRate(
-                                      rating: 2.0,
-                                      starCount: 2,
-                                      rate: movie.rating.details.star2,
-                                      width: 70,
-                                      starColor: Colors.white),
-                                  StarRate(
-                                      rating: 1.0,
-                                      starCount: 1,
-                                      rate: movie.rating.details.star1,
-                                      width: 70,
-                                      starColor: Colors.white),
-                                  Text('${movie.ratingsCount}人评分',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 12.0))
-                                ]))
+                              StarRate(
+                                  rating: 5.0,
+                                  starCount: 5,
+                                  rate: movie.rating.details.star5,
+                                  width: 70,
+                                  starColor: Colors.white),
+                              StarRate(
+                                  rating: 4.0,
+                                  starCount: 4,
+                                  rate: movie.rating.details.star4,
+                                  width: 70,
+                                  starColor: Colors.white),
+                              StarRate(
+                                  rating: 3.0,
+                                  starCount: 3,
+                                  rate: movie.rating.details.star3,
+                                  width: 70,
+                                  starColor: Colors.white),
+                              StarRate(
+                                  rating: 2.0,
+                                  starCount: 2,
+                                  rate: movie.rating.details.star2,
+                                  width: 70,
+                                  starColor: Colors.white),
+                              StarRate(
+                                  rating: 1.0,
+                                  starCount: 1,
+                                  rate: movie.rating.details.star1,
+                                  width: 70,
+                                  starColor: Colors.white),
+                              Text('${movie.ratingsCount}人评分',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 12.0))
+                            ]))
                       ],
                     ),
                   )

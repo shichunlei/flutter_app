@@ -49,7 +49,7 @@ class RadialSeekBarUI extends StatelessWidget {
                   child: ImageLoadView(
                       imageUrl ??
                           'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564830238704&di=11798dafaaad4d5f727bac5113ed9ba5&imgtype=0&src=http%3A%2F%2Fpic41.nipic.com%2F20140507%2F7160980_232207178322_2.jpg',
-                      borderRadius: BorderRadius.all(Radius.circular(75.0)),
+                      shape: BoxShape.circle,
                       width: 150,
                       height: 150),
                   turns: controller)

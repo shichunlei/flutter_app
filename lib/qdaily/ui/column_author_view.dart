@@ -17,7 +17,7 @@ class ColumnAuthorView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: Row(children: <Widget>[
                 ImageLoadView('${author.avatar}',
-                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    shape: BoxShape.circle,
                     width: 50,
                     height: 50),
                 Gaps.hGap5,

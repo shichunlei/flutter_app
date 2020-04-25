@@ -23,9 +23,7 @@ class ItemDoc extends StatelessWidget {
                 /// 作者
                 Row(children: <Widget>[
                   ImageLoadView('${doc?.author?.avatar}',
-                      height: 25,
-                      width: 25,
-                      borderRadius: BorderRadius.all(Radius.circular(12.5))),
+                      height: 25, width: 25, shape: BoxShape.circle),
                   Gaps.hGap5,
                   Text('${doc?.author?.nickname}',
                       style: TextStyles.textGrey14),

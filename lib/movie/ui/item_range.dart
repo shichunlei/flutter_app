@@ -21,9 +21,7 @@ class ItemRange extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             ImageLoadView('${info?.backgroundImg}',
-                width: double.infinity,
-                height: double.infinity,
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                width: double.infinity, height: double.infinity, radius: 10),
             Diagonal(
               clipHeight: 40.0,
               axis: Axis.vertical,

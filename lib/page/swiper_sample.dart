@@ -88,8 +88,7 @@ class SwiperSample extends StatelessWidget {
               child: Swiper(
                   itemBuilder: (BuildContext context, int index) =>
                       ImageLoadView(bannerImages[index],
-                          borderRadius: BorderRadius.circular(10.0),
-                          fit: BoxFit.cover),
+                          radius: 10, fit: BoxFit.cover),
                   itemCount: 4,
                   viewportFraction: 0.8,
                   scale: 0.9,
@@ -105,8 +104,7 @@ class SwiperSample extends StatelessWidget {
                   layout: SwiperLayout.STACK,
                   itemBuilder: (BuildContext context, int index) =>
                       ImageLoadView(bannerImages[index + 11],
-                          borderRadius: BorderRadius.circular(10.0),
-                          fit: BoxFit.cover))),
+                          radius: 10, fit: BoxFit.cover))),
           Gaps.vGap20,
           Container(
               height: 420,
@@ -118,9 +116,7 @@ class SwiperSample extends StatelessWidget {
                   itemCount: 5,
                   layout: SwiperLayout.TINDER,
                   itemBuilder: (BuildContext context, int index) =>
-                      ImageLoadView(bannerImages[index + 4],
-                          borderRadius: BorderRadius.circular(10.0),
-                          fit: BoxFit.cover))),
+                      ImageLoadView(bannerImages[index + 4], radius: 10))),
           Gaps.vGap20,
           Container(
             height: 340,

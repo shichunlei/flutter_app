@@ -16,18 +16,18 @@ class ItemCourse extends StatelessWidget {
             margin: EdgeInsets.only(top: 3),
             padding: EdgeInsets.all(10),
             child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text('${course.courseTitle}',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20)),
-                  Gaps.vGap3,
-                  Text(
-                      '${course.courseTime} | ${course.lessonNum.toInt() == course.lessonNum ? course.lessonNum.toInt() : course.lessonNum}课时',
-                      style: TextStyle(color: Colors.grey, fontSize: 15)),
-                  Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text('${course.courseTitle}',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20)),
+                Gaps.vGap3,
+                Text(
+                    '${course.courseTime} | ${course.lessonNum.toInt() == course.lessonNum ? course.lessonNum.toInt() : course.lessonNum}课时',
+                    style: TextStyle(color: Colors.grey, fontSize: 15)),
+                Row(
                     children: <Widget>[
                       Container(
                           width: 180,
@@ -44,18 +44,18 @@ class ItemCourse extends StatelessWidget {
                               itemBuilder: (context, index) => Container(
                                   width: 45,
                                   child: Column(
-                                    children: <Widget>[
-                                      ImageLoadView(
-                                          '${course.teacherList[index].imgUrl}',
-                                          width: 45,
-                                          height: 45,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(22.5))),
-                                      Text('${course.teacherList[index].name}',
-                                          maxLines: 1)
-                                    ],
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                  )))),
+                                      children: <Widget>[
+                                        ImageLoadView(
+                                            '${course.teacherList[index].imgUrl}',
+                                            width: 45,
+                                            height: 45,
+                                            shape: BoxShape.circle),
+                                        Text(
+                                            '${course.teacherList[index].name}',
+                                            maxLines: 1)
+                                      ],
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.end)))),
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
@@ -63,17 +63,17 @@ class ItemCourse extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: <Widget>[
                                   Offstage(
-                                    offstage: course.courseOriginalPrice == 0 ||
-                                        course.courseSalePrice ==
-                                            course.courseOriginalPrice,
-                                    child: Text(
-                                        '￥${course.courseOriginalPrice}',
-                                        style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 14,
-                                            decoration:
-                                                TextDecoration.lineThrough)),
-                                  ),
+                                      offstage:
+                                          course.courseOriginalPrice == 0 ||
+                                              course.courseSalePrice ==
+                                                  course.courseOriginalPrice,
+                                      child: Text(
+                                          '￥${course.courseOriginalPrice}',
+                                          style: TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 14,
+                                              decoration:
+                                                  TextDecoration.lineThrough))),
                                   Text(
                                       course.courseSalePrice == 0
                                           ? '免费'
@@ -88,9 +88,9 @@ class ItemCourse extends StatelessWidget {
                           ])
                     ],
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                  )
-                ])),
+                    crossAxisAlignment: CrossAxisAlignment.end)
+              ],
+            )),
         onTap: onPressed);
   }
 }

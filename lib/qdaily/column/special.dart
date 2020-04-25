@@ -130,8 +130,7 @@ class _SpecialPageState extends State<SpecialPage> {
                         return ImageLoadView('${subscriber.avatar}',
                             width: avatarSize,
                             height: avatarSize,
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(avatarSize / 2)));
+                            shape: BoxShape.circle);
                       }).toList()
                     : [])
           ])),

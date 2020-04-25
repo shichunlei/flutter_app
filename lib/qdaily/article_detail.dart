@@ -139,9 +139,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
             child: Column(children: <Widget>[
               Row(children: <Widget>[
                 ImageLoadView('${post.category.normal}',
-                    width: 20,
-                    height: 20,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                    width: 20, height: 20, shape: BoxShape.circle),
                 SizedBox(width: 5),
                 Text('${post.category.title}')
               ]),
@@ -150,9 +148,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
               SizedBox(height: 8),
               Row(children: <Widget>[
                 ImageLoadView('${author.avatar}',
-                    width: 25,
-                    height: 25,
-                    borderRadius: BorderRadius.all(Radius.circular(12.5))),
+                    width: 25, height: 25, shape: BoxShape.circle),
                 SizedBox(width: 5),
                 Text('${author.name}'),
                 Spacer(),
@@ -181,9 +177,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
                 child: Column(children: <Widget>[
                   Row(children: <Widget>[
                     ImageLoadView('${post.category.imageLab}',
-                        width: 20,
-                        height: 20,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                        width: 20, height: 20, shape: BoxShape.circle),
                     SizedBox(width: 5),
                     Text('${post.category.title}',
                         style: TextStyle(color: Colors.white))
@@ -194,9 +188,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
                   SizedBox(height: 8),
                   Row(children: <Widget>[
                     ImageLoadView('${author.avatar}',
-                        width: 25,
-                        height: 25,
-                        borderRadius: BorderRadius.all(Radius.circular(12.5))),
+                        width: 25, height: 25, shape: BoxShape.circle),
                     SizedBox(width: 5),
                     Text('${author.name}',
                         style: TextStyle(color: Colors.white)),

@@ -11,10 +11,7 @@ class ViewOptionAuthor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(children: <Widget>[
-      ImageLoadView('$avatar',
-          width: 20,
-          height: 20,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
+      ImageLoadView('$avatar', width: 20, height: 20, shape: BoxShape.circle),
       Gaps.hGap8,
       Expanded(
           child: Text('$name',

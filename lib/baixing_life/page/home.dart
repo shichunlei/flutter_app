@@ -99,6 +99,7 @@ class _HomePageState extends State<HomePage>
   Widget _buildSliverAppBar(List<Goods> slides) {
     return SliverAppBar(
         automaticallyImplyLeading: false,
+        pinned: true,
         backgroundColor: Colors.red,
         expandedHeight: headerHeight,
         title: Text('${widget.title}'),

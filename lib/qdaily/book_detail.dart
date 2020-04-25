@@ -46,27 +46,23 @@ class _BookDetailPageState extends State<BookDetailPage> {
               ? LoadingWidget()
               : SingleChildScrollView(
                   child: Column(children: <Widget>[
-                    Stack(children: <Widget>[
-                      ImageLoadView(
-                        '${post?.image}',
+                    ImageLoadView('${post?.image}',
                         fit: BoxFit.fitHeight,
                         height: Utils.height,
                         opacity: 0.7,
                         filterColor: Colors.white,
-                      ),
-                      Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                        ImageLoadView('${post?.image}',
-                            width: Utils.width / 2,
-                            height: Utils.width / 2 * 239 / 163),
-                        Html(
-                            data: '${detailBean?.desc}',
-                            defaultTextStyle: TextStyle(
-                                fontSize: 14, color: Color(0xFF363636)),
-                            padding: EdgeInsets.all(8.0),
-                            blockSpacing: 2.0,
-                            useRichText: true)
-                      ])
-                    ]),
+                        child: Column(children: <Widget>[
+                          ImageLoadView('${post?.image}',
+                              width: Utils.width / 2,
+                              height: Utils.width / 2 * 239 / 163),
+                          Html(
+                              data: '${detailBean?.desc}',
+                              defaultTextStyle: TextStyle(
+                                  fontSize: 14, color: Color(0xFF363636)),
+                              padding: EdgeInsets.all(8.0),
+                              blockSpacing: 2.0,
+                              useRichText: true)
+                        ])),
 
                     /// 文章简介
                     Offstage(

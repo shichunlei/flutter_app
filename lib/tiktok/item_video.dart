@@ -92,8 +92,7 @@ class _ItemVideoState extends State<ItemVideo> {
                                         '${widget.video.avatar}',
                                         width: 60,
                                         height: 60,
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(30.0))),
+                                        shape: BoxShape.circle),
                                     top: 0,
                                     left: 5,
                                     right: 5),

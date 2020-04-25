@@ -33,11 +33,7 @@ class AnimatedCDView extends AnimatedWidget {
                     radius: 100.0,
                     child: Stack(children: <Widget>[
                       ImageLoadView(imageUrl,
-                          height: 190,
-                          width: 190,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(150.0)),
-                      ),
+                          height: 190, width: 190, shape: BoxShape.circle),
                       CircleAvatar(
                           backgroundColor: Colors.white,
                           radius: 27.5,

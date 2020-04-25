@@ -70,10 +70,7 @@ class _BookListInfoPageState extends State<BookListInfoPage> {
                         Gaps.vGap5,
                         Row(children: <Widget>[
                           ImageLoadView('${booklist?.author?.avatar}',
-                              width: 35,
-                              height: 35,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0))),
+                              width: 35, height: 35, shape: BoxShape.circle),
                           Gaps.hGap5,
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
