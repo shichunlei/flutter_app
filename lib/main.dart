@@ -15,6 +15,8 @@ void main() async {
   setCustomErrorPage();
   _setTargetPlatformForDesktop();
 
+  await SpUtil.getInstance();
+
   await AmapCore.init(Config.AMAP_KEY_IOS);
 
   runZoned(() {
