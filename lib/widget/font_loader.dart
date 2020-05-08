@@ -26,7 +26,7 @@ class _FontLoaderPageState extends State<FontLoaderPage> {
   }
 
   void init() async {
-    savePath = await FileUtil.getInstance().getFolderPath("/fontDownloadDemo");
+    savePath = await FileUtil.getInstance().getFolderPath("fontDownloadDemo");
 
     fontPath = "$savePath/Montserrat-Light.ttf";
 

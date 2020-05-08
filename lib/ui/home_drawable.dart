@@ -33,7 +33,7 @@ class HomeDrawable extends StatelessWidget {
               trailing: Icon(Icons.chevron_right),
               onTap: () async {
                 var apkPath =
-                    await FileUtil.getInstance().getFolderPath('/apk/');
+                    await FileUtil.getInstance().getFolderPath('apk/');
 
                 Navigator.of(context).pop();
                 showDialog(

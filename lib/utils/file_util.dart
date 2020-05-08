@@ -115,7 +115,7 @@ class FileUtil {
     try {
       /// 文档目录，该目录用于存储只有自己可以访问的文件。只有当应用程序被卸载时，系统才会清除该目录。在iOS上，这对应于NSDocumentDirectory。在Android上，这是AppData目录。
       var appDocDir = await getApplicationDocumentsDirectory();
-      return appDocDir.path;
+      return appDocDir.path + "/";
     } catch (err) {
       print(err);
       return null;
@@ -128,7 +128,7 @@ class FileUtil {
     try {
       /// 临时目录, 系统可随时清除的临时目录（缓存）。在iOS上，这对应于NSTemporaryDirectory() 返回的值。在Android上，这是getCacheDir()返回的值。
       Directory tempDir = await getTemporaryDirectory();
-      return tempDir.path;
+      return tempDir.path + "/";
     } catch (err) {
       print(err);
       return null;
@@ -140,7 +140,7 @@ class FileUtil {
   Future<String> getSDCardPath() async {
     try {
       var sdDir = await getExternalStorageDirectory();
-      return sdDir.path;
+      return sdDir.path + "/";
     } catch (err) {
       print(err);
       return null;
@@ -154,12 +154,12 @@ class FileUtil {
   /// [isTemp] 是否临时路径
   ///
   Future<File> getPathFile(String fileName,
-      {String folderPath: '/', bool isTemp: true}) async {
+      {String folderPath: '', bool isTemp: true}) async {
     try {
       String path = await getFolderPath(folderPath, isTemp: isTemp);
       File file = File('$path/$fileName');
       if (!file.existsSync()) {
-        file.createSync();
+        file.createSync(recursive: true);
       }
       return file;
     } catch (err) {
@@ -214,7 +214,7 @@ class FileUtil {
   /// [isTemp] 文件路径是否是临时路径
   ///
   Future<File> writeDataToFile(String fileName, String data,
-      {String folderPath: '/', bool isTemp: true}) async {
+      {String folderPath, bool isTemp: true}) async {
     try {
       File file =
           await getPathFile(fileName, folderPath: folderPath, isTemp: isTemp);
@@ -235,7 +235,7 @@ class FileUtil {
   /// [isTemp] 文件路径是否是临时路径
   ///
   Future<String> readDataFromFile(String fileName,
-      {String folderPath: '/', bool isTemp: true}) async {
+      {String folderPath, bool isTemp: true}) async {
     try {
       File file =
           await getPathFile(fileName, folderPath: folderPath, isTemp: isTemp);

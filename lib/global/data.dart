@@ -151,6 +151,7 @@ class ExpandStateBean {
       SubExpandBean('个人中心', PersonalCenterPage()),
       SubExpandBean('可折叠的view', FoldablePage()),
       SubExpandBean('Movies Concept', MoviesConceptPage()),
+      SubExpandBean('签名画板', DrawingBoardPage()),
     ]),
     ExpandStateBean(
         leading: Icons.filter_7,
