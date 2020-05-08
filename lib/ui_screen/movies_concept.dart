@@ -1,33 +1,26 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/bean/movie.dart';
 import 'package:flutter_app/page_index.dart';
 
-class Movie {
-  final String url;
-  final String title;
-
-  const Movie({this.url, this.title});
-}
-
-const movies = [
-  const Movie(
+List<Movie> movies = [
+  Movie(
       url:
           'https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2617297214,2858371489&fm=58&app=83&f=JPEG?w=300&h=400&s=6CC1A946BEC900DE112908B30300D090',
       title: '宇宙尽头'),
-  const Movie(
+  Movie(
       url:
           'https://cdn.shopify.com/s/files/1/0057/3728/3618/products/5cae019e64c0ee10ead36a00e60f0137_eeb2d749-fdbe-46fd-978a-870cc7e0ddf7_500x.jpg?v=1573593942',
       title: 'Joker'),
-  const Movie(
+  Movie(
       url:
           'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2581346773.webp',
       title: '大红包'),
-  const Movie(
-    url:
-        'https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3401745210,3434810146&fm=58&app=83&f=JPEG?w=400&h=533&s=E8E2A144FAB1AE5D0CFD548403007082',
-    title: '小丑',
-  ),
+  Movie(
+      url:
+          'https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3401745210,3434810146&fm=58&app=83&f=JPEG?w=400&h=533&s=E8E2A144FAB1AE5D0CFD548403007082',
+      title: '小丑'),
 ];
 
 class MoviesConceptPage extends StatefulWidget {

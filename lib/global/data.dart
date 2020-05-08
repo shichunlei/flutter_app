@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/ui_screen/movies_concept.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -149,7 +148,6 @@ class ExpandStateBean {
       SubExpandBean('LightDrawer', LightDrawerPage()),
       SubExpandBean('ScrollHeader', ScrollHeaderDemoPage()),
       SubExpandBean('QRCode', QRCodePage()),
-      SubExpandBean('DemoHomePage', DemoHomePage()),
       SubExpandBean('个人中心', PersonalCenterPage()),
       SubExpandBean('可折叠的view', FoldablePage()),
       SubExpandBean('Movies Concept', MoviesConceptPage()),

@@ -191,12 +191,12 @@ export 'ui_screen/ticket/index.dart';
 export 'ui_screen/card_scroll_page.dart';
 export 'ui_screen/guillotine_menu.dart';
 export 'ui_screen/bottom_menu.dart';
-export 'ui_screen/navigation/light_drawer.dart';
+export 'ui_screen/light_drawer.dart';
 export 'ui_screen/qrcode.dart';
 export 'ui_screen/personal_center.dart';
 export 'ui_screen/sign_in.dart';
-export 'ui_screen/demo/home.dart';
 export 'ui_screen/foldable.dart';
+export 'ui_screen/movies_concept.dart';
 
 export 'res/colors.dart';
 export 'res/dimens.dart';

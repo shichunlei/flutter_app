@@ -27,7 +27,7 @@ import com.tekartik.sqflite.SqflitePlugin;
 import io.flutter.plugins.urllauncher.UrlLauncherPlugin;
 import com.benjaminabel.vibration.VibrationPlugin;
 import io.flutter.plugins.videoplayer.VideoPlayerPlugin;
-import wakelock.wakelock.WakelockPlugin;
+import creativecreatorormaybenot.wakelock.WakelockPlugin;
 
 /**
  * Generated file. Do not edit.
@@ -63,7 +63,7 @@ public final class GeneratedPluginRegistrant {
     UrlLauncherPlugin.registerWith(registry.registrarFor("io.flutter.plugins.urllauncher.UrlLauncherPlugin"));
     VibrationPlugin.registerWith(registry.registrarFor("com.benjaminabel.vibration.VibrationPlugin"));
     VideoPlayerPlugin.registerWith(registry.registrarFor("io.flutter.plugins.videoplayer.VideoPlayerPlugin"));
-    WakelockPlugin.registerWith(registry.registrarFor("wakelock.wakelock.WakelockPlugin"));
+    WakelockPlugin.registerWith(registry.registrarFor("creativecreatorormaybenot.wakelock.WakelockPlugin"));
   }
 
   private static boolean alreadyRegisteredWith(PluginRegistry registry) {

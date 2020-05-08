@@ -178,6 +178,8 @@ class Movie {
   /// 移动版条目页URL
   String mobileUrl;
 
+  String url;
+
   /// 兼容性数据，未来会去掉，大陆上映日期，如果条目类型是电影则为上映日期，如果是电视剧则为首播日期
   String pubDate;
 
@@ -326,6 +328,65 @@ class Movie {
 
   /// 可播放的
   bool playable;
+
+  Movie(
+      {this.originalTitle,
+      this.douBanSite,
+      this.year,
+      this.alt,
+      this.id,
+      this.mobileUrl,
+      this.pubDate,
+      this.title,
+      this.url,
+      this.shareUrl,
+      this.scheduleUrl,
+      this.website,
+      this.mainlandPubDate,
+      this.summary,
+      this.subtype,
+      this.hasVideo,
+      this.hasSchedule,
+      this.hasTicket,
+      this.rank,
+      this.delta,
+      this.box,
+      this.isNew,
+      this.doCount,
+      this.seasonsCount,
+      this.collection,
+      this.episodesCount,
+      this.currentSeason,
+      this.wishCount,
+      this.collectCount,
+      this.photosCount,
+      this.ratingsCount,
+      this.images,
+      this.rating,
+      this.aka,
+      this.countries,
+      this.durations,
+      this.genres,
+      this.languages,
+      this.pubDates,
+      this.tags,
+      this.roles,
+      this.trailers,
+      this.trailerUrls,
+      this.bloopers,
+      this.blooperUrls,
+      this.clips,
+      this.clipUrls,
+      this.photos,
+      this.commentsCount,
+      this.popularComments,
+      this.reviewsCount,
+      this.popularReviews,
+      this.videos,
+      this.directors,
+      this.casts,
+      this.writers,
+      this.playable});
 
   static Movie fromMap(Map<String, dynamic> map) {
     Movie movie = Movie();

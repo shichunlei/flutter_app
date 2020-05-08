@@ -4,8 +4,15 @@ import 'package:flutter_app/res/styles.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:barcode_flutter/barcode_flutter.dart';
 
-class QRCodePage extends StatelessWidget {
+class QRCodePage extends StatefulWidget {
   QRCodePage({Key key}) : super(key: key);
+
+  @override
+  createState() => _QRCodePageState();
+}
+
+class _QRCodePageState extends State<QRCodePage> {
+  String qrResult = 'https://baidu.com';
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +23,7 @@ class QRCodePage extends StatelessWidget {
             elevation: 0.0,
             title: Text('Payment'),
             actions: <Widget>[
-              IconButton(icon: Icon(Icons.aspect_ratio), onPressed: _scanQR)
+              IconButton(icon: Icon(Icons.crop_free), onPressed: _scanQR)
             ]),
         body: Column(children: <Widget>[
           Expanded(
@@ -78,7 +85,7 @@ class QRCodePage extends StatelessWidget {
                     Expanded(
                         child: QrImage(
                             padding: EdgeInsets.all(20.0),
-                            data: "https://baidu.com",
+                            data: qrResult,
                             foregroundColor: Color.fromARGB(255, 80, 93, 124),
                             embeddedImage:
                                 AssetImage('images/flutter_logo.png'),
@@ -100,7 +107,7 @@ class QRCodePage extends StatelessWidget {
                                 // Render with text label or not (default: false)
                                 onError: (error) {
                                   // Error handler
-                                  print('error = $error');
+                                  debugPrint('error = $error');
                                 })))
                   ]))),
           //Bottom text
@@ -125,8 +132,9 @@ class QRCodePage extends StatelessWidget {
 
   Future _scanQR() async {
     try {
-      String qrResult = await BarcodeScanner.scan();
-      debugPrint(qrResult);
+      qrResult = await BarcodeScanner.scan();
+      debugPrint("==================$qrResult");
+      setState(() {});
     } catch (ex) {
       debugPrint(ex.toString());
     }
