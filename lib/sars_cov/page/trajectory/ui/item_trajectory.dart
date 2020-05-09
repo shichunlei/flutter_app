@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/sars_cov.dart';
 import 'package:flutter_app/page_index.dart';
-import 'package:flutter_app/utils/date_format.dart';
 import 'package:timeline_list/timeline.dart';
 import 'package:timeline_list/timeline_model.dart';
 

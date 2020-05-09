@@ -1,12 +1,11 @@
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/qdaily.dart';
-import 'package:flutter_app/utils/date_format.dart';
 
 import '../../page_index.dart';
 
 class ItemComment extends StatelessWidget {
-  final CommentBean comment;
+  final QDailyComment comment;
 
   ItemComment({Key key, @required this.comment}) : super(key: key);
 

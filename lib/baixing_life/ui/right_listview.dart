@@ -6,7 +6,7 @@ import '../../page_index.dart';
 import '../index.dart';
 
 class RightListView extends StatefulWidget {
-  final Category subCategory;
+  final GoodsCategory subCategory;
   final int subCategoryIndex;
 
   RightListView({Key key, this.subCategory, this.subCategoryIndex})
@@ -29,7 +29,7 @@ class RightListViewState extends State<RightListView>
   bool isLoadComplete = false;
 
   int currentIndex;
-  Category subCategory;
+  GoodsCategory subCategory;
 
   @override
   void initState() {
@@ -101,7 +101,7 @@ class RightListViewState extends State<RightListView>
     if (mounted) setState(() {});
   }
 
-  void refreshView(int page, int currentIndex, Category subCategory) {
+  void refreshView(int page, int currentIndex, GoodsCategory subCategory) {
     this.page = page;
     this.currentIndex = currentIndex;
     this.subCategory = subCategory;

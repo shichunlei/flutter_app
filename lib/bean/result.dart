@@ -1,6 +1,4 @@
-import 'package:flutter_app/bean/contact.dart';
-import 'package:flutter_app/bean/he_weather.dart';
-import 'package:flutter_app/bean/image.dart';
+import 'package:flutter_app/bean/index.dart';
 
 class Result {
   String title;
@@ -12,7 +10,7 @@ class Result {
   List<HeWeather> heWeather;
 
   /// 联系人
-  List<Contact> contacts;
+  List<ContactBean> contacts;
 
   List<ImageModal> images;
 
@@ -23,7 +21,7 @@ class Result {
     result.start = map['start'];
     result.total = map['total'];
     result.contacts = List()
-      ..addAll((map['results'] as List ?? []).map((o) => Contact.fromMap(o)));
+      ..addAll((map['results'] as List ?? []).map((o) => ContactBean.fromMap(o)));
 
     result.heWeather = List()
       ..addAll(

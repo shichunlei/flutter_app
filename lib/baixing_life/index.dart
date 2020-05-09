@@ -16,8 +16,7 @@ export 'ui/empty_shop_cart.dart';
 export 'ui/item_cart_goods.dart';
 export 'ui/cart_amount_view.dart';
 
-export '../bean/baixing.dart';
-export '../bean/address.dart';
+export '../bean/index.dart';
 
 export 'page/address/address_page.dart';
 export 'page/address/create_edit_address_page.dart';

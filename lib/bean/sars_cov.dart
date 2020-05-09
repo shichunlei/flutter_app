@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/data.dart';
-import 'package:flutter_app/utils/date_format.dart';
+
+import '../page_index.dart';
 
 /// id : 1
 /// createTime : 1579537899000
@@ -956,7 +956,7 @@ class ProvinceNews {
   String modelID;
   String thumb;
   String media;
-  CommentBean comment;
+  Comment comment;
   String url;
   String expId;
   String reqId;
@@ -975,7 +975,7 @@ class ProvinceNews {
     bean.modelID = map['modelID'];
     bean.thumb = map['thumb'];
     bean.media = map['media'];
-    bean.comment = CommentBean.fromMap(map['comment']);
+    bean.comment = Comment.fromMap(map['comment']);
     bean.url = map['url'];
     bean.expId = map['expId'];
     bean.reqId = map['reqId'];
@@ -1010,7 +1010,7 @@ class ProvinceNews {
 /// groupid : "gn:comos-ihnzhfz9427973"
 /// channel : "gn"
 
-class CommentBean {
+class Comment {
   String title;
   String url;
   String origID;
@@ -1021,9 +1021,9 @@ class CommentBean {
   String groupId;
   String channel;
 
-  static CommentBean fromMap(Map<String, dynamic> map) {
+  static Comment fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-    CommentBean commentBean = CommentBean();
+    Comment commentBean = Comment();
     commentBean.title = map['title'];
     commentBean.url = map['URL'];
     commentBean.origID = map['origID'];

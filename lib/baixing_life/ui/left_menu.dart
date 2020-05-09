@@ -5,7 +5,7 @@ import '../index.dart';
 
 class LeftMenu extends StatefulWidget {
   final int index;
-  final List<Category> category;
+  final List<GoodsCategory> category;
   final GlobalKey<RightListViewState> rightKey;
 
   LeftMenu({Key key, @required this.category, this.index, this.rightKey})

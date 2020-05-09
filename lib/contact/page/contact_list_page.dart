@@ -28,9 +28,9 @@ class _ContactListPageState extends State<ContactListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text(S.of(context).contacts), elevation: 0.0),
-        body: FutureBuilder<List<Contact>>(
+        body: FutureBuilder<List<ContactBean>>(
             future: data,
-            builder: (_, AsyncSnapshot<List<Contact>> snapshot) {
+            builder: (_, AsyncSnapshot<List<ContactBean>> snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting:
                   debugPrint('waiting');
@@ -100,7 +100,7 @@ class _ContactListPageState extends State<ContactListPage> {
             }));
   }
 
-  Widget _buildListItem(Contact model) {
+  Widget _buildListItem(ContactBean model) {
     return Container(
       padding: const EdgeInsets.only(left: 16.0, right: 34.0),
       height: _itemHeight.toDouble(),
@@ -153,8 +153,8 @@ class _ContactListPageState extends State<ContactListPage> {
     );
   }
 
-  Future<List<Contact>> fetchData() async {
-    List<Contact> _contacts = await ApiService.getRandomUser();
+  Future<List<ContactBean>> fetchData() async {
+    List<ContactBean> _contacts = await ApiService.getRandomUser();
 
     /// 根据A-Z排序
     SuspensionUtil.sortListBySuspensionTag(_contacts);

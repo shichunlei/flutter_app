@@ -42,5 +42,4 @@ export 'page/movie_top250.dart';
 export 'page/movie_range.dart';
 export 'page/movie_range_detail.dart';
 
-export '../bean/movie.dart';
-export '../bean/news.dart';
+export '../bean/index.dart';

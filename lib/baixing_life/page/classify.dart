@@ -26,7 +26,7 @@ class _ClassifyPageState extends State<ClassifyPage>
   @override
   bool get wantKeepAlive => true;
 
-  List<Category> category = [];
+  List<GoodsCategory> category = [];
 
   int parentCategoryIndex;
   int subCategoryIndex;

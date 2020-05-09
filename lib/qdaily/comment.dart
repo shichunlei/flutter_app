@@ -24,7 +24,7 @@ class _CommentPageState extends State<CommentPage> {
 
   ResponseBean response;
 
-  List<CommentBean> comments = [];
+  List<QDailyComment> comments = [];
 
   bool isLoadComplete = false;
 

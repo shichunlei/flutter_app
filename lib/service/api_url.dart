@@ -53,9 +53,6 @@ class ApiUrl {
   static final String CITY_FIND = "/find";
   static final String CITY_TOP = "/top";
 
-  /// 煎蛋
-  static final String JIANDAN = "http://i.jandan.net";
-
   /// 百姓生活
   static final String BAIXING_BASE_URL =
       'https://wxmini.baixingliangfan.cn/baixing/wxmini/';

@@ -14,7 +14,7 @@ import 'package:lpinyin/lpinyin.dart';
 /// picture : {"large":"https://randomuser.me/api/portraits/men/36.jpg","medium":"https://randomuser.me/api/portraits/med/men/36.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/36.jpg"}
 /// nat : "US"
 
-class Contact extends ISuspensionBean {
+class ContactBean extends ISuspensionBean {
   String gender;
   NameBean name;
   LocationBean location;
@@ -31,9 +31,9 @@ class Contact extends ISuspensionBean {
   String fullName;
   String firstLetter;
 
-  static Contact fromMap(Map<String, dynamic> map) {
+  static ContactBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-    Contact contact = Contact();
+    ContactBean contact = ContactBean();
     contact.gender = map['gender'];
     contact.name = NameBean.fromMap(map['name']);
     contact.location = LocationBean.fromMap(map['location']);

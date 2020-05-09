@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_app/bean/sars_cov.dart';
-import 'package:flutter_app/bean/tiktok_video.dart';
 
 import '../bean/index.dart';
 
@@ -525,6 +523,9 @@ class ApiService {
   }
 
   /// 搜索城市
+  ///
+  /// [keyword] 关键词
+  ///
   static Future<List<City>> getSearchCities(String keyword) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.CITY_BASE_URL)
         .request(ApiUrl.CITY_FIND, data: {
@@ -543,19 +544,11 @@ class ApiService {
         json.decode(response.data)['HeWeather6'][0]['basic']);
   }
 
-  /// 煎蛋XXOO图
-  static Future<List<Comment>> getJiandan(int page) async {
-    Response response = await HttpUtils().request(ApiUrl.JIANDAN, data: {
-      "page": page,
-      'oxwlxojflwblxbsapi': 'jandan.get_ooxx_comments',
-    });
-    if (response.statusCode != 200) {
-      return null;
-    }
-    return Comment.fromMapList(json.decode(response.data)['comments']);
-  }
-
   /// 百姓生活首页数据接口
+  ///
+  /// [lon] 纬度
+  /// [lat] 经度
+  ///
   static Future<Baixing> getBaixingHomeData(String lon, String lat) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
         .request(ApiUrl.BAIXING_HOME,
@@ -597,7 +590,7 @@ class ApiService {
 
   /// 百姓生活分类数据接口
   ///
-  static Future<List<Category>> getBaixingCategoryData() async {
+  static Future<List<GoodsCategory>> getBaixingCategoryData() async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
         .request(ApiUrl.BAIXING_CATEGORY, method: HttpUtils.POST, data: null);
 
@@ -609,7 +602,8 @@ class ApiService {
 
     if (result.code == '0') {
       return List()
-        ..addAll((result.data as List ?? []).map((o) => Category.fromMap(o)));
+        ..addAll(
+            (result.data as List ?? []).map((o) => GoodsCategory.fromMap(o)));
     } else {
       return [];
     }
@@ -668,7 +662,35 @@ class ApiService {
     }
   }
 
-  static Future<List<Contact>> getRandomUser({
+  /// 订单
+  ///
+  /// [userId] 用户ID
+  /// [state] 状态；-1：所有，1：，401：已结算，
+  /// [page] 页码
+  ///
+  static Future<List<OrderBean>> getBaixingOrders(
+      {int page: 1,
+      String userId: "da290bbcbcff4c1dbd662e15d5808150",
+      int state: -1}) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
+        .request(ApiUrl.BAIXING_ORDERS,
+            data: {"currentPage": page, "userId": userId, "state": state},
+            method: HttpUtils.POST);
+    if (response == null || response.statusCode != 200) {
+      return [];
+    }
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => OrderBean.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  static Future<List<ContactBean>> getRandomUser({
     int page: 1,
     int results: 50,
     String gender: '',

@@ -200,7 +200,7 @@ const String SSS = 'SSS';
 ///     // => 99
 ///     formatDate(DateTime(1989, 02, 1, 15, 40, 10, 9), [SS]);
 ///     // => 9
-const String S = 'S';
+const String SS = 'S';
 
 /// Outputs microsecond as three digits
 ///
@@ -322,7 +322,7 @@ String formatDate(DateTime date, {List<String> formats}) {
       sb.write(date.second);
     } else if (format == SSS) {
       sb.write(_digits(date.millisecond, 3));
-    } else if (format == S) {
+    } else if (format == SS) {
       sb.write(date.second);
     } else if (format == uuu) {
       sb.write(_digits(date.microsecond, 2));

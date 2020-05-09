@@ -1,10 +1,11 @@
 import 'package:flutter_app/baixing_life/db/goods_provider.dart';
+import 'package:flutter_app/utils/date_format.dart';
 
 class Baixing {
   AdvertesPicture advertesPicture;
   ShopInfo shopInfo;
   AdvertesPicture toShareCode;
-  List<Category> category;
+  List<GoodsCategory> category;
   List<Goods> recommend;
   List<Goods> slides;
   List<Goods> reservationGoods;
@@ -22,7 +23,8 @@ class Baixing {
     baixing.shopInfo = ShopInfo.fromMap(map['shopInfo']);
     baixing.toShareCode = AdvertesPicture.fromMap(map['toShareCode']);
     baixing.category = List()
-      ..addAll((map['category'] as List ?? []).map((o) => Category.fromMap(o)));
+      ..addAll(
+          (map['category'] as List ?? []).map((o) => GoodsCategory.fromMap(o)));
 
     baixing.recommend = List()
       ..addAll((map['recommend'] as List ?? []).map((o) => Goods.fromMap(o)));
@@ -94,16 +96,28 @@ class FloorBean {
   }
 }
 
-/// leaderImage : "http://images.baixingliangfan.cn/leaderImage/20181121/20181121133310_65.jpg"
 /// leaderPhone : "03936188699"
+/// shopName : "理想城店"
+/// shopID : "2c9f6c946fffd4f301700348f15300df"
+/// shopAddress : "黄河路与盘锦路交叉口西北角"
+/// distance : 780031.0
+/// shopImage : "https://images.baixingliangfan.cn/common/20200202/20200202081818_2245.jpg"
 
 class ShopInfo {
-  String leaderImage;
   String leaderPhone;
+  String shopName;
+  String shopID;
+  String shopAddress;
+  double distance;
+  String shopImage;
 
   static ShopInfo fromMap(Map<String, dynamic> map) {
     ShopInfo shopInfoBean = ShopInfo();
-    shopInfoBean.leaderImage = map['leaderImage'];
+    shopInfoBean.shopName = map['shopName'];
+    shopInfoBean.shopID = map['shopID'];
+    shopInfoBean.shopAddress = map['shopAddress'];
+    shopInfoBean.distance = map['distance'];
+    shopInfoBean.shopImage = map['leaderImage'] ?? map['shopImage'];
     shopInfoBean.leaderPhone = map['leaderPhone'];
     return shopInfoBean;
   }
@@ -115,6 +129,15 @@ class ShopInfo {
     }
     return list;
   }
+
+  Map toJson() => {
+        "shopName": shopName,
+        "shopID": shopID,
+        "shopAddress": shopAddress,
+        "distance": distance,
+        "shopImage": shopImage,
+        "leaderPhone": leaderPhone,
+      };
 }
 
 class Goods {
@@ -281,24 +304,24 @@ class AdvertesPicture {
       };
 }
 
-class Category {
+class GoodsCategory {
   String mallCategoryId;
   String mallCategoryName;
   String image;
   String comments;
-  List<Category> bxMallSubDto;
+  List<GoodsCategory> bxMallSubDto;
 
   String mallSubId;
   String mallSubName;
 
-  static Category fromMap(Map<String, dynamic> map) {
+  static GoodsCategory fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-    Category categoryBean = Category();
+    GoodsCategory categoryBean = GoodsCategory();
     categoryBean.mallCategoryId = map['mallCategoryId'];
     categoryBean.mallCategoryName = map['mallCategoryName'];
     categoryBean.bxMallSubDto = List()
-      ..addAll(
-          (map['bxMallSubDto'] as List ?? []).map((o) => Category.fromMap(o)));
+      ..addAll((map['bxMallSubDto'] as List ?? [])
+          .map((o) => GoodsCategory.fromMap(o)));
     categoryBean.comments = map['comments'];
     categoryBean.image = map['image'];
     categoryBean.mallSubId = map['mallSubId'];
@@ -314,5 +337,148 @@ class Category {
         "image": image,
         "mallSubId": mallSubId,
         "mallSubName": mallSubName,
+      };
+}
+
+/// SETTLEMENT_WAY : 0
+/// SHOP_ID : "2c9f6c946164b6b8016165628cf2002f"
+/// record_state : null
+/// SHOP_NAME : "百姓量贩世龙店"
+/// subOrder : [{"PAYMENT":5.80,"subOrderId":32941,"BUY_NUM":1,"GOODS_ID":"4a7879ca61aa41b7a676c52b22ff9921","goodsNumber":"179883","IMAGE1":"https://images.baixingliangfan.cn/compressedPic/20191001103448_5895.jpg","state":0,"NAME":"唐小朵港式三文鱼丸36g/台式三文鱼丸36g（自由组合）"},{"PAYMENT":9.90,"subOrderId":32942,"BUY_NUM":1,"GOODS_ID":"5bb0d2aab1e54c078b212b884bc60c2a","goodsNumber":"177057","IMAGE1":"https://images.baixingliangfan.cn/compressedPic/20191001151109_8291.jpg","state":0,"NAME":"翾少爷椒麻粉130g"},{"PAYMENT":3.00,"subOrderId":32943,"BUY_NUM":1,"GOODS_ID":"c00a60c3b53f47f7a57558a0aeaa049e","goodsNumber":"114453","IMAGE1":"https://images.baixingliangfan.cn/compressedPic/20190928101613_8955.jpg","state":0,"NAME":"屈臣氏蒸馏水400ml/屈臣氏矿物质水400ml"}]
+/// STATE : 1
+/// SETTLEMENT_TIME : null
+/// refoundAble : 1
+/// type_price : null
+/// totalPayment : 18.70
+/// ORDER_ID : "201912042014405734"
+/// totalFee : 18.70
+/// DELIVERY_FEES : 0.0
+/// IS_SEND : 1
+/// refund_fee : 0.00
+/// sendPhone : null
+/// couponsFee : 0.00
+/// ORDER_TIME : 1575461680619
+/// refund_state : 0
+/// JIFEN_NUM : 0
+
+class OrderBean {
+  int settlementWay;
+  String shopId;
+  String recordState;
+  String shopName;
+  List<SubOrderBean> subOrder;
+  int state;
+  String settlementTime;
+  int refoundAble;
+  dynamic typePrice;
+  double totalPayment;
+  String orderId;
+  double totalFee;
+  double deliveryFees;
+  int isSend;
+  double refundFee;
+  String sendPhone;
+  double couponsFee;
+  String orderTime;
+  int refundState;
+  int jiFenNum;
+
+  static OrderBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    OrderBean order = OrderBean();
+    order.settlementWay = map['SETTLEMENT_WAY'];
+    order.shopId = map['SHOP_ID'];
+    order.recordState = map['record_state'];
+    order.shopName = map['SHOP_NAME'];
+    order.subOrder = List()
+      ..addAll(
+          (map['subOrder'] as List ?? []).map((o) => SubOrderBean.fromMap(o)));
+    order.state = map['STATE'];
+    order.settlementTime = map['SETTLEMENT_TIME'] == null
+        ? ""
+        : formatDateByMs(map['SETTLEMENT_TIME']);
+    order.refoundAble = map['refoundAble'];
+    order.typePrice = map['type_price'];
+    order.totalPayment = map['totalPayment'];
+    order.orderId = map['ORDER_ID'];
+    order.totalFee = map['totalFee'];
+    order.deliveryFees = map['DELIVERY_FEES'];
+    order.isSend = map['IS_SEND'];
+    order.refundFee = map['refund_fee'];
+    order.sendPhone = map['sendPhone'];
+    order.couponsFee = map['couponsFee'];
+    order.orderTime =
+        map['ORDER_TIME'] == null ? "" : formatDateByMs(map['ORDER_TIME']);
+    order.refundState = map['refund_state'];
+    order.jiFenNum = map['JIFEN_NUM'];
+    return order;
+  }
+
+  Map toJson() => {
+        "SETTLEMENT_WAY": settlementWay,
+        "SHOP_ID": shopId,
+        "record_state": recordState,
+        "SHOP_NAME": shopName,
+        "subOrder": subOrder,
+        "STATE": state,
+        "SETTLEMENT_TIME": settlementTime,
+        "refoundAble": refoundAble,
+        "type_price": typePrice,
+        "totalPayment": totalPayment,
+        "ORDER_ID": orderId,
+        "totalFee": totalFee,
+        "DELIVERY_FEES": deliveryFees,
+        "IS_SEND": isSend,
+        "refund_fee": refundFee,
+        "sendPhone": sendPhone,
+        "couponsFee": couponsFee,
+        "ORDER_TIME": orderTime,
+        "refund_state": refundState,
+        "JIFEN_NUM": jiFenNum,
+      };
+}
+
+/// PAYMENT : 5.80
+/// subOrderId : 32941
+/// BUY_NUM : 1
+/// GOODS_ID : "4a7879ca61aa41b7a676c52b22ff9921"
+/// goodsNumber : "179883"
+/// IMAGE1 : "https://images.baixingliangfan.cn/compressedPic/20191001103448_5895.jpg"
+/// state : 0
+/// NAME : "唐小朵港式三文鱼丸36g/台式三文鱼丸36g（自由组合）"
+
+class SubOrderBean {
+  double payment;
+  int subOrderId;
+  int buyNum;
+  String goodsId;
+  String goodsNumber;
+  String image;
+  int state;
+  String name;
+
+  static SubOrderBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    SubOrderBean subOrderBean = SubOrderBean();
+    subOrderBean.payment = map['PAYMENT'];
+    subOrderBean.subOrderId = map['subOrderId'];
+    subOrderBean.buyNum = map['BUY_NUM'];
+    subOrderBean.goodsId = map['GOODS_ID'];
+    subOrderBean.goodsNumber = map['goodsNumber'];
+    subOrderBean.image = map['IMAGE1'];
+    subOrderBean.state = map['state'];
+    subOrderBean.name = map['NAME'];
+    return subOrderBean;
+  }
+
+  Map toJson() => {
+        "PAYMENT": payment,
+        "subOrderId": subOrderId,
+        "BUY_NUM": buyNum,
+        "GOODS_ID": goodsId,
+        "goodsNumber": goodsNumber,
+        "IMAGE1": image,
+        "state": state,
+        "NAME": name,
       };
 }

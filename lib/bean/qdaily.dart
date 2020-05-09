@@ -43,7 +43,7 @@ class ResponseBean {
   bool isRecord;
 
   // 评论
-  List<CommentBean> comments;
+  List<QDailyComment> comments;
   int commentCount;
 
   AuthorBean author;
@@ -94,7 +94,7 @@ class ResponseBean {
 
     responseBean.comments = List()
       ..addAll(
-          (map['comments'] as List ?? []).map((o) => CommentBean.fromMap(o)));
+          (map['comments'] as List ?? []).map((o) => QDailyComment.fromMap(o)));
 
     responseBean.topics = List()
       ..addAll(
@@ -759,7 +759,7 @@ class ShareBean {
 /// author : {"id":1656439,"description":null,"avatar":"http://img.qdaily.com/user/face/20190527170417TUzZxIdquXF3RVL2.jpg?imageMogr2/auto-orient/thumbnail/!160x160r/gravity/Center/crop/160x160/quality/85/format/jpg/ignore-error/1","name":"*FanG","background_image":"http://app3.qdaily.com/default_images/missing_loading.jpg"}
 /// child_comments : [{"id":982753,"root_id":982612,"content":"恶毒的……","fake":false,"publish_time":1558960221,"comment_count":0,"praise_count":0,"parent_user":{"id":1656439,"description":null,"avatar":"http://img.qdaily.com/user/face/20190527170417TUzZxIdquXF3RVL2.jpg?imageMogr2/auto-orient/thumbnail/!160x160r/gravity/Center/crop/160x160/quality/85/format/jpg/ignore-error/1","name":"*FanG","background_image":"http://app3.qdaily.com/default_images/missing_loading.jpg"},"author":{"id":1301561,"description":null,"avatar":"http://img.qdaily.com/face/face/20170714144125FN5ASiJXxW2RqUMl.png?imageMogr2/auto-orient/thumbnail/!160x160r/gravity/Center/crop/160x160/quality/85/format/jpg/ignore-error/1","name":"疯狗先生","background_image":"http://app3.qdaily.com/default_images/missing_loading.jpg"}}]
 
-class CommentBean {
+class QDailyComment {
   int id;
   String type;
   int typeId;
@@ -770,12 +770,12 @@ class CommentBean {
   int praiseCount;
   AuthorBean author;
   AuthorBean parentUser;
-  List<CommentBean> childComments;
+  List<QDailyComment> childComments;
   int rootId;
 
-  static CommentBean fromMap(Map<String, dynamic> map) {
+  static QDailyComment fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-    CommentBean commentBeanBean = CommentBean();
+    QDailyComment commentBeanBean = QDailyComment();
     commentBeanBean.id = map['id'];
     commentBeanBean.rootId = map['root_id'];
     commentBeanBean.type = map['type'];
@@ -792,7 +792,7 @@ class CommentBean {
         : AuthorBean.fromMap(map['parent_user']);
     commentBeanBean.childComments = List()
       ..addAll((map['child_comments'] as List ?? [])
-          .map((o) => CommentBean.fromMap(o)));
+          .map((o) => QDailyComment.fromMap(o)));
     return commentBeanBean;
   }
 }

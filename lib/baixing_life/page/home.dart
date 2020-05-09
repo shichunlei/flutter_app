@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage>
                     pushNewPage(context, DetailsPage(slides[index].goodsId)))));
   }
 
-  Widget _buildSliverGridCategory(List<Category> category) {
+  Widget _buildSliverGridCategory(List<GoodsCategory> category) {
     return SliverGrid(
         delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
           return Material(
@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage>
                   }),
               Gaps.vGap10,
               GestureDetector(
-                  child: ImageLoadView(shopInfo?.leaderImage ?? "",
+                  child: ImageLoadView(shopInfo?.shopImage ?? "",
                       width: double.infinity,
                       fit: BoxFit.fitWidth,
                       height: Utils.width * 23 / 75),

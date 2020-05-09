@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/friends_dynamic.dart';
 import 'package:flutter_app/ui/popup_window.dart';
-import 'package:flutter_app/utils/date_format.dart';
 
 import '../../page_index.dart';
 

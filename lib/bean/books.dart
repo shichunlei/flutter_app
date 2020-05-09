@@ -1,7 +1,6 @@
 import 'package:flutter_app/global/config.dart';
 import 'package:flutter_app/reader/details/reader_page_agent.dart';
 import 'package:flutter_app/reader/index.dart';
-import 'package:flutter_app/utils/date_format.dart';
 
 import '../page_index.dart';
 

@@ -44,5 +44,4 @@ export 'widgets/player_career_body.dart';
 export 'widgets/item_cell.dart';
 export 'widgets/item_bar_chart.dart';
 
-export '../bean/sports.dart';
-export '../bean/news.dart';
+export '../bean/index.dart';
