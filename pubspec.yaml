@@ -161,7 +161,7 @@ dependencies: # 应用或包依赖的其它包或插件
   vibration: ^1.2.4
 
   # 视频播放器器
-  video_player: ^0.10.9+2
+  video_player: ^0.10.10
 
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:

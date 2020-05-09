@@ -134,6 +134,7 @@ class ExpandStateBean {
       SubExpandBean('登录页面6', OnboardingPage()),
       SubExpandBean('登录页面7', LoginScreen()),
       SubExpandBean('视频背景登录页面', LoginVideoPage()),
+      SubExpandBean('验证码验证登录', CodeInputViewPage()),
       SubExpandBean('Music Player', MusicPlayerPage()),
       SubExpandBean('Audio Player', AudioPlayersPage()),
       SubExpandBean('Flutter Sound', FlutterSoundPage()),
