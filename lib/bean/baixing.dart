@@ -102,6 +102,8 @@ class FloorBean {
 /// shopAddress : "黄河路与盘锦路交叉口西北角"
 /// distance : 780031.0
 /// shopImage : "https://images.baixingliangfan.cn/common/20200202/20200202081818_2245.jpg"
+/// goodsList : [{"SELL_MONEY":0.0,"PICTURE_COMPERSS_PATH":"https://images.baixingliangfan.cn/compressedPic/20200419100837_8840.jpg","NEED_INTEGRAL":50,"GOOD_ID":"60c0091884bc4ab98de5ce92dda940bc","NAME":"4.18百姓会员日感恩大回馈·减50积分送20元感恩礼券"}]
+/// activityInfo : {"ACTIVITY_NAME":"4.18会员感恩礼 · 减50积分送20元感恩礼券","BEGINTIME":1587052800000,"LIMIT_AMOUNT":1,"END_TIME":"2020-04-26","IMAGE":"https://images.baixingliangfan.cn/integralGoodsPicture/20200419/20200419101004_1888.jpg","BEGIN_TIME":"2020-04-17","PARTICIPATE_TIMES":3,"ENDTIME":1587916799000,"IS_SEND":0,"STATE":0,"ACTIVITY_ID":"2c9f6c94716184e101717c8b69681de9"}
 
 class ShopInfo {
   String leaderPhone;
@@ -111,15 +113,24 @@ class ShopInfo {
   double distance;
   String shopImage;
 
+  List<GoodsListBean> goodsList;
+  ActivityInfoBean activityInfo;
+
   static ShopInfo fromMap(Map<String, dynamic> map) {
-    ShopInfo shopInfoBean = ShopInfo();
-    shopInfoBean.shopName = map['shopName'];
-    shopInfoBean.shopID = map['shopID'];
-    shopInfoBean.shopAddress = map['shopAddress'];
-    shopInfoBean.distance = map['distance'];
-    shopInfoBean.shopImage = map['leaderImage'] ?? map['shopImage'];
-    shopInfoBean.leaderPhone = map['leaderPhone'];
-    return shopInfoBean;
+    ShopInfo shopInfo = ShopInfo();
+    shopInfo.shopName = map['shopName'];
+    shopInfo.shopID = map['shopID'];
+    shopInfo.shopAddress = map['shopAddress'];
+    shopInfo.distance = map['distance'];
+    shopInfo.shopImage = map['leaderImage'] ?? map['shopImage'] ?? "";
+    shopInfo.leaderPhone = map['leaderPhone'];
+    shopInfo.goodsList = List()
+      ..addAll((map['goodsList'] as List ?? [])
+          .map((o) => GoodsListBean.fromMap(o)));
+    shopInfo.activityInfo = map['activityInfo'] == null
+        ? null
+        : ActivityInfoBean.fromMap(map['activityInfo']);
+    return shopInfo;
   }
 
   static List<ShopInfo> fromMapList(dynamic mapList) {
@@ -137,6 +148,92 @@ class ShopInfo {
         "distance": distance,
         "shopImage": shopImage,
         "leaderPhone": leaderPhone,
+        "goodsList": goodsList,
+        "activityInfo": activityInfo,
+      };
+}
+
+/// ACTIVITY_NAME : "4.18会员感恩礼 · 减50积分送20元感恩礼券"
+/// BEGINTIME : 1587052800000
+/// LIMIT_AMOUNT : 1
+/// END_TIME : "2020-04-26"
+/// IMAGE : "https://images.baixingliangfan.cn/integralGoodsPicture/20200419/20200419101004_1888.jpg"
+/// BEGIN_TIME : "2020-04-17"
+/// PARTICIPATE_TIMES : 3
+/// ENDTIME : 1587916799000
+/// IS_SEND : 0
+/// STATE : 0
+/// ACTIVITY_ID : "2c9f6c94716184e101717c8b69681de9"
+
+class ActivityInfoBean {
+  String activityName;
+  int limitAmount;
+  String endTime;
+  String image;
+  String beginTime;
+  int participateTimes;
+  int isSend;
+  int state;
+  String activityId;
+
+  static ActivityInfoBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    ActivityInfoBean activity = ActivityInfoBean();
+    activity.activityName = map['ACTIVITY_NAME'];
+    activity.limitAmount = map['LIMIT_AMOUNT'];
+    activity.endTime = map['END_TIME'];
+    activity.image = map['IMAGE'];
+    activity.beginTime = map['BEGIN_TIME'];
+    activity.participateTimes = map['PARTICIPATE_TIMES'];
+    activity.isSend = map['IS_SEND'];
+    activity.state = map['STATE'];
+    activity.activityId = map['ACTIVITY_ID'];
+    return activity;
+  }
+
+  Map toJson() => {
+        "ACTIVITY_NAME": activityName,
+        "LIMIT_AMOUNT": limitAmount,
+        "END_TIME": endTime,
+        "IMAGE": image,
+        "BEGIN_TIME": beginTime,
+        "PARTICIPATE_TIMES": participateTimes,
+        "IS_SEND": isSend,
+        "STATE": state,
+        "ACTIVITY_ID": activityId,
+      };
+}
+
+/// SELL_MONEY : 0.0
+/// PICTURE_COMPERSS_PATH : "https://images.baixingliangfan.cn/compressedPic/20200419100837_8840.jpg"
+/// NEED_INTEGRAL : 50
+/// GOOD_ID : "60c0091884bc4ab98de5ce92dda940bc"
+/// NAME : "4.18百姓会员日感恩大回馈·减50积分送20元感恩礼券"
+
+class GoodsListBean {
+  double sellMoney;
+  String picture;
+  int needIntegral;
+  String goodId;
+  String name;
+
+  static GoodsListBean fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+    GoodsListBean goodsListBean = GoodsListBean();
+    goodsListBean.sellMoney = map['SELL_MONEY'];
+    goodsListBean.picture = map['PICTURE_COMPERSS_PATH'];
+    goodsListBean.needIntegral = map['NEED_INTEGRAL'];
+    goodsListBean.goodId = map['GOOD_ID'];
+    goodsListBean.name = map['NAME'];
+    return goodsListBean;
+  }
+
+  Map toJson() => {
+        "SELL_MONEY": sellMoney,
+        "PICTURE_COMPERSS_PATH": picture,
+        "NEED_INTEGRAL": needIntegral,
+        "GOOD_ID": goodId,
+        "NAME": name,
       };
 }
 

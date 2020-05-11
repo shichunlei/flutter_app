@@ -690,6 +690,50 @@ class ApiService {
     }
   }
 
+  /// 百姓生活门店列表
+  ///
+  /// [lon] 纬度
+  /// [lat] 经度
+  ///
+  static Future<List<ShopInfo>> getBaixingShops(
+      {String lat, String lon}) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
+        .request(ApiUrl.BAIXING_SHOPS,
+            data: {"lon": lon, "lat": lat}, method: HttpUtils.POST);
+    if (response == null || response.statusCode != 200) {
+      return [];
+    }
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => ShopInfo.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 百姓生活门店详情接口
+  ///
+  /// [id] 门店ID
+  ///
+  static Future<ShopInfo> getBaixingShopInfo(String id) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
+        .request(ApiUrl.BAIXING_SHOP_DETAIL,
+            data: {"shopId": id}, method: HttpUtils.POST);
+    if (response == null || response.statusCode != 200) {
+      return null;
+    }
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.code == '0') {
+      return ShopInfo.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
   static Future<List<ContactBean>> getRandomUser({
     int page: 1,
     int results: 50,

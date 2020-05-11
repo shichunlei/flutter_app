@@ -134,6 +134,12 @@ class _MemberPageState extends State<MemberPage>
                             ], mainAxisSize: MainAxisSize.min)),
                         Container(height: 0.5, color: Colors.grey[200]),
                         ListTile(
+                            title: Text('门店'),
+                            onTap: () => pushNewPage(context, ShopsPage()),
+                            leading: Icon(Icons.home),
+                            trailing: Icon(Icons.keyboard_arrow_right)),
+                        Container(height: 0.5, color: Colors.grey[200]),
+                        ListTile(
                             title: Text('关于商城'),
                             onTap: () {
                               pushNewPage(context, AboutPage());

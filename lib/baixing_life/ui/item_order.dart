@@ -18,7 +18,8 @@ class ItemOrder extends StatelessWidget {
           Material(
               type: MaterialType.transparency,
               child: InkWell(
-                  onTap: () {},
+                  onTap: () => pushNewPage(context,
+                      ShopInfoPage(id: order.shopId, name: order.shopName)),
                   child: Container(
                       padding: EdgeInsets.all(10.0),
                       child: Row(children: <Widget>[

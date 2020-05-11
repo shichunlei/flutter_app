@@ -5,6 +5,8 @@ export 'page/about.dart';
 export 'page/classify.dart';
 export 'page/home.dart';
 export 'page/member.dart';
+export 'page/shop_info.dart';
+export 'page/shops.dart';
 export 'page/shopping_cart.dart';
 export 'page/details_page.dart';
 export 'page/order_home_page.dart';
