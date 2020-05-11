@@ -10,4 +10,3 @@ test.dart
 .dart_tool
 Podfile.lock
 .flutter-plugins-dependencies
-pubspec.lock

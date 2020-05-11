@@ -42,7 +42,7 @@
 ```
 [✓] Flutter (Channel beta, v1.17.0, on Mac OS X 10.14.6 18G103, locale zh-Hans-CN)
     • Flutter version 1.17.0 at /Users/14cells/Android/flutter
-    • Framework revision e6b34c2b5c (8 days ago), 2020-05-02 11:39:18 -0700
+    • Framework revision e6b34c2b5c (9 days ago), 2020-05-02 11:39:18 -0700
     • Engine revision 540786dd51
     • Dart version 2.8.1
 
@@ -60,7 +60,7 @@
 
 [✓] Android Studio (version 3.5)
     • Android Studio at /Applications/Android Studio.app/Contents
-    • Flutter plugin version 43.0.1
+    • Flutter plugin version 44.0.1
     • Dart plugin version 191.8593
     • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
 
