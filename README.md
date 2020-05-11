@@ -73,14 +73,17 @@
 
 
 - 高德地图定位失败可能是key导致的，使用者可以自己到高德地图开发者平台申请一个key再次试一试。
+
 - Multi Image Picker 插件 ios 配置见[Multi Image Picker 使用](https://sh1d0w.github.io/multi_image_picker/#/gettingstarted)
 
+- 如果你还没有升级flutter版本到1.17.0，那么就把provider的版本改为4.0.5+1
 
 - 项目中某些接口为http url，Android 9.0/P和iOS禁止从非https网址加载，故需更改 App 的网络安全配置以允许此类连接
 
 __Android__
 
-在 res 下新增一个 xml 目录，创建[network_security_config.xml](https://github.com/shichunlei/flutter_app/blob/master/android/app/src/main/res/xml/network_security_config.xml)文件
+    在 res 下新增一个 xml 目录，创建[network_security_config.xml](https://github.com/shichunlei/flutter_app/blob/master/android/app/src/main/res/xml/network_security_config.xml)文件
+
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -89,21 +92,21 @@ __Android__
 </network-security-config>
 ```
 
-在[AndroidManifest.xml](https://github.com/shichunlei/flutter_app/blob/master/android/app/src/main/AndroidManifest.xml)文件下的application标签增加以下属性
+    在[AndroidManifest.xml](https://github.com/shichunlei/flutter_app/blob/master/android/app/src/main/AndroidManifest.xml)文件下的application标签增加以下属性
 
 ```xml
 <application
-
- android:networkSecurityConfig="@xml/network_security_config"
-
+    android:networkSecurityConfig="@xml/network_security_config"
 />
 ```
 
 __iOS__
 
+
 在[Info.plist](https://github.com/shichunlei/flutter_app/blob/master/ios/Runner/Info.plist)下编辑
 
-```
+
+```plist
 <key>NSAppTransportSecurity</key>
 <dict>
     <key>NSAllowsArbitraryLoads</key>
