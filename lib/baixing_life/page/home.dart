@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/ui/item_home_floor.dart';
+import 'package:flutter_app/store/index.dart';
 
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../../page_index.dart';
-import '../baixing_page.dart';
 import '../index.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,7 +14,7 @@ class HomePage extends StatefulWidget {
   HomePage(this.title, {Key key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage>
@@ -120,8 +119,11 @@ class _HomePageState extends State<HomePage>
           return Material(
               color: Colors.white,
               child: InkWell(
-                  onTap: () => pushReplacement(context,
-                      IndexPage(index: 1, category: index, subCategory: 0)),
+                  onTap: () {
+                    Store.value<BaixingModel>(context, listen: false)
+                      ..setPageIndex(1)
+                      ..setCategories(index, 0);
+                  },
                   child: Container(
                       padding: EdgeInsets.all(5.0),
                       child: Column(

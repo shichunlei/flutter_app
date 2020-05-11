@@ -5,6 +5,7 @@ export 'models/music_model.dart';
 export 'models/songlist_model.dart';
 export 'models/shopping_cart_model.dart';
 export 'models/weather_model.dart';
+export 'models/baixing_model.dart';
 
 export '../baixing_life/page/address/store/address_model.dart';
 

@@ -3,64 +3,43 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_app/global/custom_icon.dart';
+import 'package:flutter_app/store/index.dart';
 
 import 'index.dart';
 
 class IndexPage extends StatefulWidget {
-  final int index;
-  final int subCategory;
-  final int category;
-
-  IndexPage({
-    Key key,
-    this.index = 0,
-    this.category = 0,
-    this.subCategory = 0,
-  }) : super(key: key);
-
   @override
   createState() => _IndexPageState();
 }
 
 class _IndexPageState extends State<IndexPage>
     with SingleTickerProviderStateMixin {
-  int currentIndex;
-
   List<Widget> list = [];
 
   @override
   void initState() {
     super.initState();
 
-    currentIndex = widget.index;
-
     list
       ..add(HomePage('百姓生活+'))
-      ..add(ClassifyPage('分类',
-          categoryIndex: widget.category, subIndex: widget.subCategory))
+      ..add(ClassifyPage('分类'))
       ..add(ShoppingCartPage('购物车'))
       ..add(MemberPage('会员'));
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  void changePage(int index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    var store = Store.value<BaixingModel>(context);
+
     return Scaffold(
-        body: list[currentIndex],
+        body: list[store.currentPage],
         bottomNavigationBar: BubbleBottomBar(
             opacity: 0.2,
-            currentIndex: currentIndex,
-            onTap: changePage,
+            currentIndex: store.currentPage,
+            onTap: (int index) {
+              store.setPageIndex(index);
+              setState(() {});
+            },
             borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
             elevation: 8,
             items: <BubbleBottomBarItem>[

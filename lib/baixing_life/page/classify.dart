@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/store/index.dart';
 
 import '../../page_index.dart';
 import '../index.dart';
 
 class ClassifyPage extends StatefulWidget {
   final String title;
-  final int categoryIndex;
-  final int subIndex;
 
-  ClassifyPage(
-    this.title, {
-    Key key,
-    this.categoryIndex = 0,
-    this.subIndex = 0,
-  })  : assert(categoryIndex != null),
-        assert(subIndex != null),
-        super(key: key);
+  const ClassifyPage(this.title, {Key key}) : super(key: key);
 
   @override
-  _ClassifyPageState createState() => _ClassifyPageState();
+  createState() => _ClassifyPageState();
 }
 
 class _ClassifyPageState extends State<ClassifyPage>
@@ -28,17 +20,11 @@ class _ClassifyPageState extends State<ClassifyPage>
 
   List<GoodsCategory> category = [];
 
-  int parentCategoryIndex;
-  int subCategoryIndex;
-
   GlobalKey<RightListViewState> rightKey = GlobalKey<RightListViewState>();
 
   @override
   void initState() {
     super.initState();
-
-    parentCategoryIndex = widget.categoryIndex;
-    subCategoryIndex = widget.subIndex;
     getCategoryData();
   }
 
@@ -51,7 +37,7 @@ class _ClassifyPageState extends State<ClassifyPage>
             title: Text('${widget.title}'),
             backgroundColor: Colors.deepPurple),
         backgroundColor: Colors.grey[200],
-        body: category.isNotEmpty ? _buildBodyView() : LoadingWidget());
+        body: category.isNotEmpty ? _buildBodyView(context) : LoadingWidget());
   }
 
   void getCategoryData() async {
@@ -60,16 +46,16 @@ class _ClassifyPageState extends State<ClassifyPage>
     if (mounted) setState(() {});
   }
 
-  Widget _buildBodyView() {
+  Widget _buildBodyView(BuildContext context) {
+    var provider = Store.value<BaixingModel>(context, listen: false);
+
     return Row(children: <Widget>[
-      LeftMenu(
-          category: category, index: parentCategoryIndex, rightKey: rightKey),
+      LeftMenu(category: category, rightKey: rightKey),
       Container(height: double.infinity, color: Colors.grey[500], width: 0.5),
       RightListView(
-        key: rightKey,
-        subCategory: category[parentCategoryIndex],
-        subCategoryIndex: subCategoryIndex,
-      )
+          key: rightKey,
+          subCategory: category[provider.categoryIndex],
+          subCategoryIndex: 0)
     ]);
   }
 }

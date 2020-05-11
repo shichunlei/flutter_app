@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/ui/item_order.dart';
-import 'package:flutter_app/bean/baixing.dart';
+
 import 'package:flutter_app/page_index.dart';
+import 'package:flutter_app/store/index.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_easyrefresh/material_header.dart';
@@ -33,17 +34,21 @@ class _OrderPageState extends State<OrderPage>
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
         backgroundColor: Colors.grey[200],
         body: LoaderContainer(
             contentView: EasyRefresh(
+                emptyWidget: orders.length > 0
+                    ? null
+                    : EmptyPage(
+                        onPresses: () {
+                          Store.value<BaixingModel>(context, listen: false)
+                              .setPageIndex(0);
+                          Navigator.maybePop(context);
+                        },
+                        pressText: '随便逛逛'),
                 header: MaterialHeader(),
                 footer: BallPulseFooter(),
                 onRefresh: () async {
@@ -57,9 +62,7 @@ class _OrderPageState extends State<OrderPage>
                         getOrderData(widget.state, page, RefreshType.LOAD_MORE);
                       },
                 child: ListView.builder(
-                    itemBuilder: (_, index) {
-                      return ItemOrder(order: orders[index]);
-                    },
+                    itemBuilder: (_, index) => ItemOrder(order: orders[index]),
                     itemCount: orders.length)),
             loaderState: _state));
   }
@@ -72,19 +75,17 @@ class _OrderPageState extends State<OrderPage>
         await ApiService.getBaixingOrders(page: page, state: state);
 
     if (type == RefreshType.REFRESH || type == RefreshType.DEFAULT) {
-      if (list.length == 0) {
-        _state = LoaderState.NoData;
-      } else {
-        isLoadComplete = false;
-        orders.clear();
-      }
+      isLoadComplete = false;
+      orders.clear();
     }
 
     if (list.length > 0) {
       orders.addAll(list);
-      _state = LoaderState.Succeed;
     }
 
-    if (mounted) setState(() {});
+    if (mounted)
+      setState(() {
+        _state = LoaderState.Succeed;
+      });
   }
 }

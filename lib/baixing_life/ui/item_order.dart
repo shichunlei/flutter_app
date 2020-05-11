@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/baixing_life/index.dart';
 import 'package:flutter_app/page_index.dart';
 
-import 'item_order_goods.dart';
-
 class ItemOrder extends StatelessWidget {
   final OrderBean order;
 

@@ -102,33 +102,32 @@ class _DetailsPageState extends State<DetailsPage>
 
   Widget _buildBottomView() {
     return Container(
-      padding: EdgeInsets.only(bottom: Utils.bottomSafeHeight),
-      child: Row(children: <Widget>[
-        Expanded(
-            child: GestureDetector(
-                onTap: () {
-                  Toast.show(context, '加入购物车');
-                  Store.value<ShoppingCartModel>(context, listen: false)
-                      .addGoodsToCart(goods.goodInfo);
-                },
-                child: Container(
-                    alignment: Alignment.center,
-                    height: 48.0,
-                    child: Text('加入购物车', style: TextStyle(color: Colors.white)),
-                    color: Colors.orange))),
-        Expanded(
-            child: GestureDetector(
-                onTap: () {
-                  /// TODO 立即购买
-                  Toast.show(context, '立即购买');
-                },
-                child: Container(
-                    height: 48.0,
-                    alignment: Alignment.center,
-                    child: Text('立即购买', style: TextStyle(color: Colors.white)),
-                    color: Colors.red)))
-      ]),
-    );
+        padding: EdgeInsets.only(bottom: Utils.bottomSafeHeight),
+        child: Row(children: <Widget>[
+          Expanded(
+              child: Container(
+                  height: 48.0,
+                  child: FlatButton(
+                      child:
+                          Text('加入购物车', style: TextStyle(color: Colors.white)),
+                      color: Colors.orange,
+                      onPressed: () {
+                        Toast.show(context, '加入购物车');
+                        Store.value<ShoppingCartModel>(context, listen: false)
+                            .addGoodsToCart(goods.goodInfo);
+                      }))),
+          Expanded(
+              child: Container(
+                  height: 48.0,
+                  child: FlatButton(
+                      child:
+                          Text('立即购买', style: TextStyle(color: Colors.white)),
+                      color: Colors.red,
+                      onPressed: () {
+                        /// TODO 立即购买
+                        Toast.show(context, '立即购买');
+                      })))
+        ]));
   }
 
   void getGoodsInfo() async {
@@ -151,7 +150,11 @@ class _DetailsPageState extends State<DetailsPage>
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.shopping_cart, color: c),
-              onPressed: () => pushReplacementName(context, '/shopCart'))
+              onPressed: () {
+                Store.value<BaixingModel>(context, listen: false)
+                    .setPageIndex(2);
+                Navigator.maybePop(context);
+              })
         ],
         flexibleSpace: FlexibleSpaceBar(
             background: Swiper(
