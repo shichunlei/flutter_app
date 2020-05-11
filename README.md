@@ -82,7 +82,7 @@
 
 __Android__
 
-    在 res 下新增一个 xml 目录，创建[network_security_config.xml](https://github.com/shichunlei/flutter_app/blob/master/android/app/src/main/res/xml/network_security_config.xml)文件
+在 res 下新增一个 xml 目录，创建[network_security_config.xml](https://github.com/shichunlei/flutter_app/blob/master/android/app/src/main/res/xml/network_security_config.xml)文件
 
 
 ```xml
@@ -92,7 +92,7 @@ __Android__
 </network-security-config>
 ```
 
-    在[AndroidManifest.xml](https://github.com/shichunlei/flutter_app/blob/master/android/app/src/main/AndroidManifest.xml)文件下的application标签增加以下属性
+在[AndroidManifest.xml](https://github.com/shichunlei/flutter_app/blob/master/android/app/src/main/AndroidManifest.xml)文件下的application标签增加以下属性
 
 ```xml
 <application
