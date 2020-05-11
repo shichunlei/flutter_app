@@ -40,16 +40,15 @@
 ## 运行环境
 
 ```
-[✓] Flutter (Channel beta, v1.12.13+hotfix.6, on Mac OS X 10.14.5 18F132, locale zh-Hans-CN)
-    • Flutter version 1.12.13+hotfix.6 at /Users/14cells/Android/flutter
-    • Framework revision 18cd7a3601 (8 days ago), 2019-12-11 06:35:39 -0800
-    • Engine revision 2994f7e1e6
-    • Dart version 2.7.0
+[✓] Flutter (Channel beta, v1.17.0, on Mac OS X 10.14.6 18G103, locale zh-Hans-CN)
+    • Flutter version 1.17.0 at /Users/14cells/Android/flutter
+    • Framework revision e6b34c2b5c (8 days ago), 2020-05-02 11:39:18 -0700
+    • Engine revision 540786dd51
+    • Dart version 2.8.1
 
 [✓] Android toolchain - develop for Android devices (Android SDK version 29.0.2)
     • Android SDK at /Users/14cells/Android/SDK
-    • Android NDK location not configured (optional; useful for native profiling support)
-    • Platform android-29, build-tools 29.0.2
+    • Platform android-R, build-tools 29.0.2
     • Java binary at: /Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin/java
     • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
     • All Android licenses accepted.
@@ -61,7 +60,7 @@
 
 [✓] Android Studio (version 3.5)
     • Android Studio at /Applications/Android Studio.app/Contents
-    • Flutter plugin version 42.1.1
+    • Flutter plugin version 43.0.1
     • Dart plugin version 191.8593
     • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
 
