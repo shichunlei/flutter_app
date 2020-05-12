@@ -92,6 +92,7 @@ class ExpandStateBean {
           SubExpandBean('Tween', TweenDemo()),
           SubExpandBean('自定义动画', CustomAnimationDemo()),
           SubExpandBean('路由过渡动画', RouteSample()),
+          SubExpandBean('AnimatedWear', AnimatedWearDemo()),
         ]),
     ExpandStateBean(
         leading: Icons.filter_5,
