@@ -42,7 +42,7 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
 
     scrollController.addListener(() {
       var offset = scrollController.offset;
-      if (offset < 0) {
+      if (offset <= 0) {
         if (navAlpha != 0) {
           setState(() => navAlpha = 0);
         }

@@ -126,6 +126,7 @@ class ExpandStateBean {
           SubExpandBean('录音', SoundDemo()),
         ]),
     ExpandStateBean(leading: Icons.filter_6, title: 'Beautiful UI', children: [
+      SubExpandBean('携程首页', CtripHomePage()),
       SubExpandBean('Boarding Pass Cards', TicketFoldPage()),
       SubExpandBean('登录页面1', PasswordLoginPage()),
       SubExpandBean('登录页面2', LogonPage()),

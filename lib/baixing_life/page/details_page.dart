@@ -49,7 +49,7 @@ class _DetailsPageState extends State<DetailsPage>
 
     scrollController.addListener(() {
       var offset = scrollController.offset;
-      if (offset < 0) {
+      if (offset <= 0) {
         if (navAlpha != 0) {
           setState(() => navAlpha = 0);
         }

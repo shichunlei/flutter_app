@@ -39,7 +39,7 @@ class _TopSongsPageState extends State<TopSongsPage> {
     _controller.addListener(() {
       var offset = _controller.offset;
 
-      if (offset < 0) {
+      if (offset <= 0) {
         if (navAlpha != 0) {
           setState(() {
             top = 0;

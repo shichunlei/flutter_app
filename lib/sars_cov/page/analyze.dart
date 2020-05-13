@@ -34,7 +34,7 @@ class _AnalyzePageState extends State<AnalyzePage> {
 
     controller.addListener(() {
       var offset = controller.offset;
-      if (offset < 0) {
+      if (offset <= 0) {
         isShow = false;
         if (navAlpha != 0) setState(() => navAlpha = 0);
       } else if (offset < headerHeight && offset > 0) {

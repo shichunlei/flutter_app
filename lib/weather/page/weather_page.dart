@@ -50,7 +50,7 @@ class WeatherPageState extends State<WeatherPage> {
 
     scrollController.addListener(() {
       var offset = scrollController.offset;
-      if (offset < 0) {
+      if (offset <= 0) {
         if (navAlpha != 0) {
           setState(() {
             navAlpha = 0;

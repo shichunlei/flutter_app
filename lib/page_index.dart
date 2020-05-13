@@ -201,6 +201,7 @@ export 'ui_screen/foldable.dart';
 export 'ui_screen/movies_concept.dart';
 export 'ui_screen/drawing_board.dart';
 export 'ui_screen/code_input.dart';
+export 'ui_screen/ctrip.dart';
 
 export 'res/colors.dart';
 export 'res/dimens.dart';
