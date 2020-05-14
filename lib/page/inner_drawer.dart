@@ -63,7 +63,7 @@ class _InnerDrawerSampleState extends State<InnerDrawerSample> {
         leftOffset: _offset,
         rightOffset: _offset,
         swipe: _swipe,
-        colorTransition: currentColor,
+        colorTransitionChild: currentColor,
         leftAnimationType: _animationType,
         rightAnimationType: InnerDrawerAnimation.quadratic,
         leftChild: Material(

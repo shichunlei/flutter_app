@@ -48,7 +48,7 @@ dependencies: # 应用或包依赖的其它包或插件
     path: custom_widgets/
 
   # 设备信息
-  device_info: ^0.4.2+3
+  device_info: ^0.4.2+4
 
   # 网络请求库
   dio: ^3.0.9
@@ -73,7 +73,7 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_html: ^0.11.1
 
   # 侧滑菜单
-  flutter_inner_drawer: ^0.5.5+3
+  flutter_inner_drawer: ^0.5.6
 
   flutter_jd_address_selector:
     git:
@@ -106,7 +106,7 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_webview_plugin: ^0.3.11
 
   # 图片裁剪
-  image_cropper: ^1.2.1
+  image_cropper: ^1.2.2
 
   image_gallery_saver: ^1.2.2
 
@@ -118,7 +118,7 @@ dependencies: # 应用或包依赖的其它包或插件
 
   multi_image_picker: ^4.6.7
 
-  package_info: ^0.4.0+17
+  package_info: ^0.4.0+18
 
   palette_generator: ^0.2.2
 
@@ -141,10 +141,10 @@ dependencies: # 应用或包依赖的其它包或插件
   #
   rounded_letter: ^0.0.6
 
-  share: ^0.6.4+1
+  share: ^0.6.4+2
 
   # SP
-  shared_preferences: ^0.5.7+1
+  shared_preferences: ^0.5.7+2
 
   # 数据库
 #  sqflite: ^1.3.0+1
@@ -155,13 +155,13 @@ dependencies: # 应用或包依赖的其它包或插件
   # 透明占位图片
   transparent_image: ^1.0.0
 
-  url_launcher: ^5.4.5
+  url_launcher: ^5.4.7
 
   # 手机震动
   vibration: ^1.2.4
 
   # 视频播放器器
-  video_player: ^0.10.10
+  video_player: ^0.10.11
 
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:
