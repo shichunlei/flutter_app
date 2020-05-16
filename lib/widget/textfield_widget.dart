@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class TextFieldWidget extends StatefulWidget {
+class TextFieldWidgetDemo extends StatefulWidget {
   @override
-  createState() => TextFieldWidgetState();
+  createState() => TextFieldWidgetDemoState();
 }
 
-class TextFieldWidgetState extends State<TextFieldWidget> {
+class TextFieldWidgetDemoState extends State<TextFieldWidgetDemo> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   List<String> _colors = <String>['', 'red', 'green', 'blue', 'orange'];
   String _color = '';
