@@ -1,23 +1,11 @@
 class ImageModal {
-  /**
-   * id : "0d16718c0f0153349ad49484b1ee8b1e"
-   * src : "1"
-   * width : "1456"
-   * height : "1456"
-   * thumb : "https://p3.ssl.qhimgs1.com/t01f325126874820e13.jpg"
-   * grpcnt : "0"
-   * grpmd5 : false
-   * type : 0
-   * index : 0
-   */
-
   String id;
   String src;
   double width;
   double height;
   String thumb;
-  String grpcnt;
-  bool grpmd5;
+  String grpCnt;
+  bool grpMd5;
   int type;
   int index;
 
@@ -28,8 +16,8 @@ class ImageModal {
     image.width = double.parse(map['width']);
     image.height = double.parse(map['height']);
     image.thumb = map['thumb'];
-    image.grpcnt = map['grpcnt'];
-    image.grpmd5 = map['grpmd5'];
+    image.grpCnt = map['grpcnt'];
+    image.grpMd5 = map['grpmd5'];
     image.type = map['type'];
     image.index = map['index'];
     return image;

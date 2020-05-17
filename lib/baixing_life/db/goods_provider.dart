@@ -5,17 +5,17 @@ import 'package:quiver/strings.dart' as strings;
 
 class GoodsProvider extends BaseDBProvider {
   /// DataBase table name
-  static final String table_name = "products";
+  static const String table_name = "products";
 
-  static final String COLUMN_ID = "_id";
-  static final String COLUMN_IMAGE = "image";
-  static final String COLUMN_NAME = "name";
-  static final String COLUMN_PRICE = "price";
-  static final String COLUMN_ORI_PRICE = "ori_price";
-  static final String COLUMN_NUM = "number";
-  static final String COLUMN_GOODS_ID = "goods_id";
-  static final String COLUMN_SHOP_ID = "shop_id";
-  static final String COLUMN_IS_CHECK = "is_checked";
+  static const String COLUMN_ID = "_id";
+  static const String COLUMN_IMAGE = "image";
+  static const String COLUMN_NAME = "name";
+  static const String COLUMN_PRICE = "price";
+  static const String COLUMN_ORI_PRICE = "ori_price";
+  static const String COLUMN_NUM = "number";
+  static const String COLUMN_GOODS_ID = "goods_id";
+  static const String COLUMN_SHOP_ID = "shop_id";
+  static const String COLUMN_IS_CHECK = "is_checked";
 
   @override
   String createSql() =>

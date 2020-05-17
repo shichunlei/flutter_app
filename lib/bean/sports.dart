@@ -672,7 +672,6 @@ class Player {
         "logo": avatar,
         "isPicDefault": isPicDefault,
         "bodyPic": bodyPic,
-        "jerseyNum": jerseyNum,
         "seasonId": seasonId,
         "seasonType": seasonType,
         "teamName": teamName,

@@ -131,27 +131,25 @@ class NowWeather {
   }
 }
 
+// * 生活指数类型
+// * comf：舒适度指数
+// * cw：洗车指数
+// * drsg：穿衣指数
+// * flu：感冒指数
+// * sport：运动指数
+// * trav：旅游指数
+// * uv：紫外线指数
+// * air：空气污染扩散条件指数
+// * ac：空调开启指数
+// * ag：过敏指数
+// * gl：太阳镜指数
+// * mu：化妆指数
+// * airc：晾晒指数
+// * ptfc：交通指数
+// * fsh：钓鱼指数
+// * spi：防晒指数
+
 class Lifestyle {
-  /***
-   * 生活指数类型
-   *
-   * comf：舒适度指数
-   * cw：洗车指数
-   * drsg：穿衣指数
-   * flu：感冒指数
-   * sport：运动指数
-   * trav：旅游指数
-   * uv：紫外线指数
-   * air：空气污染扩散条件指数
-   * ac：空调开启指数
-   * ag：过敏指数
-   * gl：太阳镜指数
-   * mu：化妆指数
-   * airc：晾晒指数
-   * ptfc：交通指数
-   * fsh：钓鱼指数
-   * spi：防晒指数
-   */
   String type;
 
   /// 生活指数简介
@@ -226,23 +224,21 @@ class Lifestyle {
   }
 }
 
-class Hourly {
-  /**
-   * cloud : "25"
-   * cond_code : "100"
-   * cond_txt : "晴"
-   * dew : "-10"
-   * hum : "39"
-   * pop : "0"
-   * pres : "1012"
-   * time : "2019-03-04 13:00"
-   * tmp : "13"
-   * wind_deg : "69"
-   * wind_dir : "东北风"
-   * wind_sc : "1-2"
-   * wind_spd : "6"
-   */
+//* cloud : "25"
+//* cond_code : "100"
+//* cond_txt : "晴"
+//* dew : "-10"
+//* hum : "39"
+//* pop : "0"
+//* pres : "1012"
+//* time : "2019-03-04 13:00"
+//* tmp : "13"
+//* wind_deg : "69"
+//* wind_dir : "东北风"
+//* wind_sc : "1-2"
+//* wind_spd : "6"
 
+class Hourly {
   String cloud;
   String condCode;
   String cond_txt;
@@ -443,24 +439,22 @@ class DailyForecast {
   }
 }
 
-class Air {
-  /**
-   * air_sta : "万寿西宫"
-   * aqi : "82"
-   * asid : "CNA1001"
-   * co : "0.8"
-   * lat : "39.8673"
-   * lon : "116.366"
-   * main : "PM2.5"
-   * no2 : "31"
-   * o3 : "72"
-   * pm10 : "0"
-   * pm25 : "60"
-   * pub_time : "2019-03-04 12:00"
-   * qlty : "良"
-   * so2 : "6"
-   */
+//   * air_sta : "万寿西宫"
+//   * aqi : "82"
+//   * asid : "CNA1001"
+//   * co : "0.8"
+//   * lat : "39.8673"
+//   * lon : "116.366"
+//   * main : "PM2.5"
+//   * no2 : "31"
+//   * o3 : "72"
+//   * pm10 : "0"
+//   * pm25 : "60"
+//   * pub_time : "2019-03-04 12:00"
+//   * qlty : "良"
+//   * so2 : "6"
 
+class Air {
   String air_sta;
   String aqi;
   String asid;

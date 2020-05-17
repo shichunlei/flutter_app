@@ -122,7 +122,7 @@ class RadarViewPainter extends CustomPainter {
   Paint mPaint;
   Path mPath;
 
-  final double CIRCLE_ANGLE = 360;
+  static const double CIRCLE_ANGLE = 360;
 
   Paint mLayerPaint;
 

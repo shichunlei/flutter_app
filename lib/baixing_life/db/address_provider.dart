@@ -4,18 +4,18 @@ import 'package:sqflite/sqflite.dart';
 
 class AddressProvider extends BaseDBProvider {
   /// DataBase table name
-  static final String table_name = "address";
+  static const String table_name = "address";
 
-  static final String COLUMN_ID = "_id";
-  static final String COLUMN_NAME = "name";
-  static final String COLUMN_PHONE = "phone";
-  static final String COLUMN_ADDRESS = "address";
-  static final String COLUMN_CITY = "city";
-  static final String COLUMN_COUNTY = "county";
-  static final String COLUMN_PROVINCE = "province";
-  static final String COLUMN_IS_DEFAULT = "is_default";
-  static final String COLUMN_TAG = "tag";
-  static final String COLUMN_ZIPCODE = "zipcode";
+  static const String COLUMN_ID = "_id";
+  static const String COLUMN_NAME = "name";
+  static const String COLUMN_PHONE = "phone";
+  static const String COLUMN_ADDRESS = "address";
+  static const String COLUMN_CITY = "city";
+  static const String COLUMN_COUNTY = "county";
+  static const String COLUMN_PROVINCE = "province";
+  static const String COLUMN_IS_DEFAULT = "is_default";
+  static const String COLUMN_TAG = "tag";
+  static const String COLUMN_ZIPCODE = "zipcode";
 
   @override
   String createSql() =>

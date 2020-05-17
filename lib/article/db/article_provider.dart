@@ -7,7 +7,7 @@ import 'dart:async';
 
 class ArticleProvider extends BaseDBProvider {
   /// DataBase table name
-  static final String table_name = "article";
+  static const String table_name = "article";
 
   static final String columnId = "_id";
   static final String columnDate = "date";

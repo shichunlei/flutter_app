@@ -6,17 +6,17 @@ import '../../page_index.dart';
 
 class BookShelfDBHelper extends BaseDBProvider {
   /// DataBase table name
-  static final String table_name = "novel_bookshelf";
+  static const String table_name = "novel_bookshelf";
 
-  static final String COLUMN_ID = "_id";
-  static final String COLUMN_BOOK_ID = "bookId";
-  static final String COLUMN_TITLE = "title";
-  static final String COLUMN_CHAPTER_INDEX = "chaptersIndex";
-  static final String COLUMN_IMAGE = "image";
-  static final String COLUMN_LINK = "link";
-  static final String COLUMN_READ_PROGRESS = "progress";
-  static final String COLUMN_OFFSET = "offset";
-  static final String COLUMN_TOTAL_CHAPTER = "totalChapter";
+  static const String COLUMN_ID = "_id";
+  static const String COLUMN_BOOK_ID = "bookId";
+  static const String COLUMN_TITLE = "title";
+  static const String COLUMN_CHAPTER_INDEX = "chaptersIndex";
+  static const String COLUMN_IMAGE = "image";
+  static const String COLUMN_LINK = "link";
+  static const String COLUMN_READ_PROGRESS = "progress";
+  static const String COLUMN_OFFSET = "offset";
+  static const String COLUMN_TOTAL_CHAPTER = "totalChapter";
 
   @override
   String createSql() =>

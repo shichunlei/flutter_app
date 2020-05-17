@@ -203,7 +203,7 @@ class RulerBarWidget extends StatelessWidget {
   }
 
   void _getSmallBars() {
-    num = num + 1;
+    num += 1;
 
     _show = lowerLimit == num ||
         upperLimit == num ||

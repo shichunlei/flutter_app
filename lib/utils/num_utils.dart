@@ -3,7 +3,7 @@ class NumUtils {
   ///
   /// [num] 金额
   convertNumToChinese(double num) {
-    final List<String> CN_UPPER_NUMBER = [
+    const List<String> CN_UPPER_NUMBER = [
       "零",
       "壹",
       "贰",
@@ -15,7 +15,7 @@ class NumUtils {
       "捌",
       "玖"
     ];
-    final List<String> CN_UPPER_MONETRAY_UNIT = [
+    const List<String> CN_UPPER_MONETRAY_UNIT = [
       "分",
       "角",
       "圆",
@@ -35,9 +35,9 @@ class NumUtils {
       "佰",
       "仟"
     ];
-    final String CN_FULL = "整";
-    final String CN_NEGATIVE = "负";
-    final String CN_ZEOR_FULL = "零圆" + CN_FULL;
+    const String CN_FULL = "整";
+    const String CN_NEGATIVE = "负";
+    const String CN_ZEOR_FULL = "零圆" + CN_FULL;
     double sign = num.sign;
     if (sign == num) {
       return CN_ZEOR_FULL;
