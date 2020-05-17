@@ -333,7 +333,7 @@ class _InnerDrawerSampleState extends State<InnerDrawerSample> {
                                                   valueIndicatorTextStyle:
                                                       Theme.of(context)
                                                           .accentTextTheme
-                                                          .body2
+                                                          .bodyText1
                                                           .copyWith(
                                                               color: Colors
                                                                   .white)),

@@ -21,10 +21,6 @@ class _BottomSheetLoginPagePageState extends State<BottomSheetLoginPage> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _nameController = TextEditingController();
 
-  String _email;
-  String _password;
-  String _displayName;
-
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -184,15 +180,10 @@ class _BottomSheetLoginPagePageState extends State<BottomSheetLoginPage> {
   //login and register fuctions
 
   void _loginUser() {
-    _email = _emailController.text;
-    _password = _passwordController.text;
     closeBottomSheet();
   }
 
   void _registerUser() {
-    _email = _emailController.text;
-    _password = _passwordController.text;
-    _displayName = _nameController.text;
     closeBottomSheet();
   }
 

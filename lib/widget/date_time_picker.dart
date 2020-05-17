@@ -43,27 +43,17 @@ class _DateTimePickerState extends State<DateTimePicker> {
                   showModalBottomSheet(
                       context: context,
                       builder: (_) {
-                        /// selectedDate：选中的日期，选中的日期有圆形背景。
-                        /// currentDate：当前日期，文字高亮。
-                        /// onChanged：用户选择的日期发生变化时回调。
-                        /// firstDate：可选日期的开始值。
-                        /// lastDate：可选日期的结束值。
-                        /// displayedMonth：显示的月份
-                        return DayPicker(
-                            selectedDate: _selectedDate,
-                            currentDate: currentDate,
-                            onChanged: (date) {
+                        return CalendarDatePicker(
+                            onDateChanged: (DateTime value) {
                               setState(() {
-                                _selectedDate = date;
+                                _selectedDate = value;
                                 Navigator.pop(context);
                               });
                             },
+                            initialDate: DateTime.now(),
                             firstDate:
                                 DateTime(currentDate.year, currentDate.month),
-                            lastDate: DateTime(
-                                currentDate.year, currentDate.month, 30),
-                            displayedMonth:
-                                DateTime(currentDate.year, currentDate.month));
+                            lastDate: DateTime(currentDate.year, 12, 31));
                       });
                 },
                 child: Text('DayPicker')),
@@ -72,42 +62,17 @@ class _DateTimePickerState extends State<DateTimePicker> {
                   showModalBottomSheet(
                       context: context,
                       builder: (_) {
-                        /// selectedDate：选中的日期，选中的日期有圆形背景。
-                        /// onChanged：用户选择的日期发生变化时回调。
-                        /// firstDate：可选日期的开始值。
-                        /// lastDate：可选日期的结束值。
-                        return MonthPicker(
-                            selectedDate: _selectedDate,
-                            onChanged: (date) {
-                              setState(() {
-                                _selectedDate = date;
-                                Navigator.pop(context);
-                              });
-                            },
-                            firstDate: DateTime(currentDate.year),
-                            lastDate: DateTime(currentDate.year, 12));
-                      });
-                },
-                child: Text('MonthPicker')),
-            RaisedButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (_) {
-                        /// selectedDate：选中的日期，选中的日期有圆形背景。
-                        /// onChanged：用户选择的日期发生变化时回调。
-                        /// firstDate：可选日期的开始值。
-                        /// lastDate：可选日期的结束值。
-                        return YearPicker(
-                            selectedDate: _selectedDate,
-                            onChanged: (date) {
-                              setState(() {
-                                _selectedDate = date;
-                                Navigator.pop(context);
-                              });
-                            },
+                        return CalendarDatePicker(
                             firstDate: DateTime(2000),
-                            lastDate: DateTime(currentDate.year));
+                            lastDate: DateTime(currentDate.year, 12, 31),
+                            onDateChanged: (DateTime value) {
+                              setState(() {
+                                _selectedDate = value;
+                                Navigator.pop(context);
+                              });
+                            },
+                            initialCalendarMode: DatePickerMode.year,
+                            initialDate: DateTime.now());
                       });
                 },
                 child: Text('YearPicker')),
@@ -167,12 +132,11 @@ class _DateTimePickerState extends State<DateTimePicker> {
                         return Container(
                             height: 200,
                             child: CupertinoDatePicker(
-                              onDateTimeChanged: (date) {
-                                debugPrint("当前日期、时间 ${date.toString()}");
-                              },
-                              initialDateTime: DateTime(1994),
-                              use24hFormat: true,
-                            ));
+                                onDateTimeChanged: (date) {
+                                  debugPrint("当前日期、时间 ${date.toString()}");
+                                },
+                                initialDateTime: DateTime(1994),
+                                use24hFormat: true));
                       });
                 }),
             Gaps.vGap10,

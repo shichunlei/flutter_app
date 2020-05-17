@@ -66,7 +66,7 @@ class SignUpTab extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
                   child: Text(
                     "LOGO",
-                    style: textTheme.display1
+                    style: textTheme.headline4
                         .copyWith(color: Colors.black.withOpacity(0.6)),
                   ),
                 ),
@@ -105,11 +105,11 @@ class SignUpTab extends StatelessWidget {
   Widget _buildTextFormUsername(BuildContext context, TextTheme textTheme) {
     return TextFormField(
       style:
-          textTheme.title.copyWith(color: Colors.black87, letterSpacing: 1.2),
+          textTheme.headline6.copyWith(color: Colors.black87, letterSpacing: 1.2),
       decoration: InputDecoration(
         hintText: '${S.of(context).email}',
         hintStyle:
-            textTheme.subhead.copyWith(color: Colors.black.withOpacity(0.6)),
+            textTheme.subtitle1.copyWith(color: Colors.black.withOpacity(0.6)),
         suffixIcon: Icon(
           Icons.email,
           color: Colors.grey,
@@ -128,11 +128,11 @@ class SignUpTab extends StatelessWidget {
   Widget _buildTextFormPassword(BuildContext context, TextTheme textTheme) {
     return TextFormField(
       style:
-          textTheme.title.copyWith(color: Colors.black87, letterSpacing: 1.2),
+          textTheme.headline6.copyWith(color: Colors.black87, letterSpacing: 1.2),
       decoration: InputDecoration(
           hintText: '${S.of(context).password}',
           hintStyle:
-              textTheme.subhead.copyWith(color: Colors.black.withOpacity(0.6)),
+              textTheme.subtitle1.copyWith(color: Colors.black.withOpacity(0.6)),
           suffixIcon: Icon(Icons.lock, color: Colors.grey)),
       keyboardType: TextInputType.text,
       controller: passwordController,

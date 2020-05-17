@@ -38,20 +38,16 @@ class _AnimatedSwitcherSampleState extends State<AnimatedSwitcherSample> {
                   key: ValueKey<IconData>(_actionIcon)))
         ]),
         body: Center(
-          child: AnimatedSwitcher(
-            duration: Duration(milliseconds: 300),
-            transitionBuilder: (Widget child, Animation<double> animation) {
-              //执行缩放动画
-              return ScaleTransition(child: child, scale: animation);
-            },
-            child: Text(
-              '$_count',
-              //显示指定key，不同的key会被认为是不同的Text，这样才能执行动画
-              key: ValueKey<int>(_count),
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ),
-        ),
+            child: AnimatedSwitcher(
+                duration: Duration(milliseconds: 300),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  //执行缩放动画
+                  return ScaleTransition(child: child, scale: animation);
+                },
+                child: Text('$_count',
+                    //显示指定key，不同的key会被认为是不同的Text，这样才能执行动画
+                    key: ValueKey<int>(_count),
+                    style: Theme.of(context).textTheme.headline1))),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
               setState(() {

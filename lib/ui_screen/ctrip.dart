@@ -260,24 +260,29 @@ class _CtripHomePageState extends State<CtripHomePage> {
                         width: 79,
                         fit: BoxFit.fill,
                         height: 15),
-                    GestureDetector(
-                        child: Container(
+                    Material(
+                        child: Ink(
                             decoration: BoxDecoration(
                                 gradient: LinearGradient(colors: [
                                   Color(0xffff4e63),
                                   Color(0xffff6cc9)
                                 ]),
-                                borderRadius: BorderRadius.circular(30)),
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            height: 30,
-                            child: Text('获取更多福利 >',
-                                style: TextStyle(color: Colors.white)),
-                            alignment: Alignment.center),
-                        onTap: () => pushNewPage(
-                            context,
-                            WebViewPage(
-                                url:
-                                    "https://contents.ctrip.com/activitysetupapp/mkt/index/moreact?popup=close&from=https%3A%2F%2Fm.ctrip.com%2Fhtml5%2F&secondwakeup=true&from=https%3A%2F%2Fm.ctrip.com%2Fhtml5%2F")))
+                                borderRadius: BorderRadius.circular(20)),
+                            child: InkWell(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                child: Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10),
+                                    height: 30,
+                                    child: Text('获取更多福利 >',
+                                        style: TextStyle(color: Colors.white)),
+                                    alignment: Alignment.center),
+                                onTap: () => pushNewPage(
+                                    context,
+                                    WebViewPage(
+                                        url:
+                                            "https://contents.ctrip.com/activitysetupapp/mkt/index/moreact?popup=close&from=https%3A%2F%2Fm.ctrip.com%2Fhtml5%2F&secondwakeup=true&from=https%3A%2F%2Fm.ctrip.com%2Fhtml5%2F")))))
                   ], mainAxisAlignment: MainAxisAlignment.spaceBetween),
                   height: 45),
               Container(
@@ -367,23 +372,27 @@ class _CtripHomePageState extends State<CtripHomePage> {
                       automaticallyImplyLeading: false,
                       elevation: 0.0,
                       backgroundColor: Colors.transparent,
-                      title: GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 8),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50.0),
-                                  color: Colors.grey[200]),
-                              child: Row(children: <Widget>[
-                                Icon(Icons.search, color: Colors.grey),
-                                Gaps.hGap5,
-                                Expanded(
-                                    child: Text('目的地 | 酒店 | 景点 | 航班号',
-                                        style: TextStyle(
-                                            color: Colors.grey, fontSize: 16))),
-                                Icon(Icons.keyboard_voice, color: Colors.grey)
-                              ]))))))
+                      title: Ink(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50.0),
+                              color: Colors.grey[200]),
+                          child: InkWell(
+                              borderRadius: BorderRadius.circular(50.0),
+                              onTap: () {},
+                              child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 15.0, vertical: 8),
+                                  child: Row(children: <Widget>[
+                                    Icon(Icons.search, color: Colors.grey),
+                                    Gaps.hGap5,
+                                    Expanded(
+                                        child: Text('目的地 | 酒店 | 景点 | 航班号',
+                                            style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 16))),
+                                    Icon(Icons.keyboard_voice,
+                                        color: Colors.grey)
+                                  ])))))))
         ]));
   }
 }

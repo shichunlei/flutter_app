@@ -115,7 +115,7 @@ class _AppBarWidgetState extends State<AppBarWidget>
                   ),
                 ],
                 iconTheme: IconThemeData(color: Colors.black),
-                textTheme: TextTheme(title: TextStyle(color: Colors.black))),
+                textTheme: TextTheme(headline6: TextStyle(color: Colors.black))),
           ),
 
           /// App bar with the title and subtitle
@@ -160,7 +160,7 @@ class _AppBarWidgetState extends State<AppBarWidget>
                   IconButton(icon: Icon(Icons.search), onPressed: () {})
                 ],
                 iconTheme: IconThemeData(color: Colors.black),
-                textTheme: TextTheme(title: TextStyle(color: Colors.black))),
+                textTheme: TextTheme(headline6: TextStyle(color: Colors.black))),
           ),
 
           Container(

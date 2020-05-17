@@ -89,16 +89,15 @@ class ElementTile extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final tileText = <Widget>[
       Align(
-        alignment: AlignmentDirectional.centerStart,
-        child: Text('${element.number}',
-            style: TextStyle(fontSize: 10.0, color: Colors.white)),
-      ),
-      Text(element.symbol, style: Theme.of(context).primaryTextTheme.headline),
+          alignment: AlignmentDirectional.centerStart,
+          child: Text('${element.number}',
+              style: TextStyle(fontSize: 10.0, color: Colors.white))),
+      Text(element.symbol, style: Theme.of(context).primaryTextTheme.headline5),
       Text(element.name,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           textScaleFactor: isLarge ? 0.65 : 1,
-          style: Theme.of(context).primaryTextTheme.body1),
+          style: Theme.of(context).primaryTextTheme.bodyText2)
     ];
 
     final tile = Container(

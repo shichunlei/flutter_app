@@ -78,7 +78,7 @@ class _TimeLinePageState extends State<TimeLinePage>
                 Text(doodle.time, style: textTheme.caption),
                 Gaps.vGap8,
                 Text(doodle.name,
-                    style: textTheme.title, textAlign: TextAlign.center),
+                    style: textTheme.subtitle1, textAlign: TextAlign.center),
                 Gaps.vGap8,
               ],
             ),

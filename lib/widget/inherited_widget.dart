@@ -27,7 +27,7 @@ class InheritedContext extends InheritedWidget {
   }) : super(key: key, child: child);
 
   static InheritedContext of(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(InheritedContext);
+    return context.dependOnInheritedWidgetOfExactType(aspect: InheritedContext);
   }
 
   // 是否重建widget就取决于数据是否相同

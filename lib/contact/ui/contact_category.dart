@@ -17,7 +17,7 @@ class ContactCategory extends StatelessWidget {
         ),
       ),
       child: DefaultTextStyle(
-        style: Theme.of(context).textTheme.subhead,
+        style: Theme.of(context).textTheme.subtitle1,
         child: SafeArea(
           top: false,
           bottom: false,

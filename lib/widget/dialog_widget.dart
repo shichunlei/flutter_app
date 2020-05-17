@@ -29,7 +29,7 @@ class DialogWidgetState extends State<DialogWidget> {
     final _scaffoldKey = GlobalKey<ScaffoldState>();
     final ThemeData theme = Theme.of(context);
     final TextStyle dialogTextStyle =
-        theme.textTheme.subhead.copyWith(color: theme.textTheme.caption.color);
+        theme.textTheme.subtitle1.copyWith(color: theme.textTheme.caption.color);
 
     return Scaffold(
       key: _scaffoldKey,

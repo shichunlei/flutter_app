@@ -26,7 +26,7 @@ class DarkTheme extends StatelessWidget {
           appBarTheme: AppBarTheme(
               iconTheme: IconThemeData(color: Colors.white),
               textTheme: TextTheme(
-                  title: TextStyle(color: Colors.white, fontSize: 22)),
+                  headline6: TextStyle(color: Colors.white, fontSize: 22)),
               elevation: 0.0,
               brightness: Brightness.dark,
               color: Color(0xff26262d)),
