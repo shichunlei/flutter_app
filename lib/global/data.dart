@@ -54,6 +54,8 @@ class ExpandStateBean {
           SubExpandBean('AspectRatio', AspectRatioSample()),
           SubExpandBean('ButtonBar', ButtonBarDemo()),
           SubExpandBean('InheritedWidget', InheritedWidgetTestContainer()),
+          SubExpandBean('GridPaper', GridPaperWidget()),
+          SubExpandBean('Draggable', DraggableWidget()),
         ]),
     ExpandStateBean(
         leading: Icons.filter_3,
@@ -113,7 +115,6 @@ class ExpandStateBean {
           SubExpandBean('评分控件', StarRatingWidget()),
           SubExpandBean('Clippy', ClippyWidget()),
           SubExpandBean('设备信息', DeviceInfoPage()),
-          SubExpandBean('图表示例', ChartsWidget()),
           SubExpandBean('本地读取json数据', LoadingJsonPage()),
           SubExpandBean('侧滑菜单示例', InnerDrawerSample()),
           SubExpandBean('DropDown', DropDownSample()),

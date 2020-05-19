@@ -252,7 +252,7 @@ packages:
       name: flutter_inner_drawer
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.5.6"
+    version: "0.5.6+1"
   flutter_jd_address_selector:
     dependency: "direct main"
     description:
@@ -556,7 +556,7 @@ packages:
       name: provider
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.1.1"
+    version: "4.1.2"
   qr:
     dependency: transitive
     description:
@@ -591,7 +591,7 @@ packages:
       name: rxdart
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.24.0"
+    version: "0.24.1"
   share:
     dependency: "direct main"
     description:

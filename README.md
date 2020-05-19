@@ -42,7 +42,7 @@
 ```
 [✓] Flutter (Channel beta, v1.17.0, on Mac OS X 10.14.6 18G103, locale zh-Hans-CN)
     • Flutter version 1.17.0 at /Users/14cells/Android/flutter
-    • Framework revision e6b34c2b5c (9 days ago), 2020-05-02 11:39:18 -0700
+    • Framework revision e6b34c2b5c (2 weeks ago), 2020-05-02 11:39:18 -0700
     • Engine revision 540786dd51
     • Dart version 2.8.1
 
@@ -58,14 +58,19 @@
     • Xcode 11.2.1, Build version 11B500
     • CocoaPods version 1.8.4
 
+[✓] Chrome - develop for the web
+    • Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+
 [✓] Android Studio (version 3.5)
     • Android Studio at /Applications/Android Studio.app/Contents
     • Flutter plugin version 44.0.1
     • Dart plugin version 191.8593
     • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
 
-[✓] Connected device (1 available)
-    • MI 5X • 1c7664100104 • android-arm64 • Android 8.1.0 (API 27)
+[✓] Connected device (3 available)
+    • MI 5X      • 1c7664100104 • android-arm64  • Android 8.1.0 (API 27)
+    • Chrome     • chrome       • web-javascript • Google Chrome 81.0.4044.138
+    • Web Server • web-server   • web-javascript • Flutter Tools
     • iPhone 11 Pro Max • B366D105-9EEC-47E4-A0CE-94C43E9ACD2D • ios • com.apple.CoreSimulator.SimRuntime.iOS-13-2 (simulator)
 ```
 

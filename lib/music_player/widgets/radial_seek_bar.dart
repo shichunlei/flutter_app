@@ -8,7 +8,7 @@ class RadialSeekBarUI extends StatelessWidget {
   final Function(double percent) onDragEnd;
   final double thumbPercent;
 
-  final AnimationController controller;
+  final Animation<double> animation;
 
   final String imageUrl;
 
@@ -18,7 +18,7 @@ class RadialSeekBarUI extends StatelessWidget {
       this.thumbPercent,
       this.onDragEnd,
       this.onDragUpdate,
-      this.controller,
+      this.animation,
       this.imageUrl})
       : super(key: key);
 
@@ -52,7 +52,7 @@ class RadialSeekBarUI extends StatelessWidget {
                       shape: BoxShape.circle,
                       width: 150,
                       height: 150),
-                  turns: controller)
+                  turns: animation)
             ])));
   }
 }

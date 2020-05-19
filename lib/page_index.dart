@@ -40,8 +40,9 @@ export 'widget/toggle_buttons.dart';
 export 'widget/value_listenable_builder_widget.dart';
 export 'widget/font_loader.dart';
 export 'widget/reorderable_listview.dart';
+export 'widget/draggable_widget.dart';
+export 'widget/grid_paper.dart';
 
-export 'page/charts_widget.dart';
 export 'page/clippy_widget.dart';
 export 'page/device_info_page.dart';
 export 'page/dropdown_menu_sample.dart';

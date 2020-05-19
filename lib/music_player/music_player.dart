@@ -13,12 +13,14 @@ class MusicPlayerPage extends StatefulWidget {
 class _MusicPlayerPageState extends State<MusicPlayerPage>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
+  Animation<double> animation;
 
   @override
   void initState() {
     super.initState();
     _controller =
         AnimationController(vsync: this, duration: Duration(seconds: 5));
+    animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
 
     //动画开始、结束、向前移动或向后移动时会调用StatusListener
     _controller.addStatusListener((status) {
@@ -71,17 +73,14 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
           Expanded(
               child: RadialSeekBarUI(
                   imageUrl: snapshot.curSong?.albumArtUrl,
-                  controller: _controller,
+                  animation: animation,
                   thumbPercent: snapshot.progress,
                   onDragStart: (double percent) {
                     if (snapshot.isPlaying) snapshot.togglePlay();
                   },
-                  onDragEnd: (double percent) {
-                    snapshot.togglePlay();
-                  },
-                  onDragUpdate: (double percent) {
-                    snapshot.seekPlay(percent);
-                  })),
+                  onDragEnd: (double percent) => snapshot.togglePlay(),
+                  onDragUpdate: (double percent) =>
+                      snapshot.seekPlay(percent))),
 
           // Lyric
           Container(height: 125.0, width: double.infinity),
@@ -147,18 +146,21 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
 
   Widget _buildPlayPausedButton(MusicModel snapshot) {
     return CircleButton(
-      onPressedAction: () {
-        snapshot.togglePlay();
-      },
-      fillColor: Colors.white,
-      splashColor: lightAccentColor,
-      highlightColor: lightAccentColor.withOpacity(0.5),
-      elevation: 10.0,
-      highlightElevation: 5,
-      icon: snapshot.isPlaying ? Icons.pause : Icons.play_arrow,
-      iconSize: 35,
-      size: 50,
-      iconColor: darkAccentColor,
-    );
+        onPressedAction: () {
+          if (snapshot.isPlaying) {
+            _controller.stop();
+          } else
+            _controller.forward().orCancel;
+          snapshot.togglePlay();
+        },
+        fillColor: Colors.white,
+        splashColor: lightAccentColor,
+        highlightColor: lightAccentColor.withOpacity(0.5),
+        elevation: 10.0,
+        highlightElevation: 5,
+        icon: snapshot.isPlaying ? Icons.pause : Icons.play_arrow,
+        iconSize: 35,
+        size: 50,
+        iconColor: darkAccentColor);
   }
 }

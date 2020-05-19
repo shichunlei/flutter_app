@@ -9,7 +9,7 @@ class BottomDragWidgetDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      appBar: AppBar(title: Text('')),
+      appBar: AppBar(title: Text('BottomDrag')),
       body: BottomDragWidget(
         body: Container(),
         dragContainer: DragContainer(
