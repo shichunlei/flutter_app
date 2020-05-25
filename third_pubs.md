@@ -26,7 +26,7 @@
 | 图片裁剪 | [image_cropper](https://github.com/hnvn/flutter_image_cropper) |![](https://img.shields.io/pub/v/image_cropper.svg)|
 | 多图像选择器 | [Multi Image Picker](https://github.com/Sh1d0w/multi_image_picker) | ![](https://img.shields.io/pub/v/multi_image_picker.svg) | 
 | 文件保存 | [image_gallery_saver](https://github.com/hui-z/image_gallery_saver) | ![](https://img.shields.io/pub/v/image_gallery_saver.svg) | 
-| 侧滑菜单 | [flutter_inner_drawer](https://github.com/Dn-a/flutter_inner_drawer) | ![](https://img.shields.io/pub/v/flutter_inner_drawer.svg) | 
+| 列表悬停 | [StickyHeaders](https://github.com/fluttercommunity/flutter_sticky_headers) | ![](https://img.shields.io/pub/v/flutter_sticky_headers.svg) |
 | 字母索引、悬停 | [AZListView](https://github.com/flutterchina/azlistview) | ![](https://img.shields.io/pub/v/azlistview.svg) |
 | 状态管理 | [provider](https://github.com/rrousselGit/provider) | ![](https://img.shields.io/pub/v/provider.svg) |
 | 图表 | [fl_chart](https://github.com/imaNNeoFighT/fl_chart) | ![](https://img.shields.io/pub/v/fl_chart.svg) |
@@ -46,8 +46,7 @@
 | CupertinoRangeSlider | [cupertino_range_slider](https://github.com/mahmed8003/cupertino_range_slider) | ![](https://img.shields.io/pub/v/cupertino_range_slider.svg) |
 | FlutterCircularSlider | [flutter_circular_slider](https://github.com/davidanaya/flutter-circular-slider) | ![](https://img.shields.io/pub/v/flutter_circular_slider.svg) |
 | Range Slider | [range_slider](https://github.com/boeledi/RangeSlider) | ![](https://img.shields.io/pub/v/flutter_range_slider.svg) | 
-| 径向菜单 | [UnicornDialer](https://github.com/tiagojencmartins/unicornspeeddial) | ![](https://img.shields.io/pub/v/unicorndial.svg) | 
-| 下拉菜单 | [DropDownMenu](https://github.com/best-flutter/flutter_dropdown_menu) | ![](https://img.shields.io/pub/v/dropdown_menu.svg) | 
+| card settings | [CardSettings](https://github.com/codegrue/card_settings) | ![](https://img.shields.io/pub/v/card_settings.svg) | 
 | 音频播放 | [AudioPlayers](https://github.com/luanpotter/audioplayers) | ![](https://img.shields.io/pub/v/audioplayers.svg) | 
 | 音频播放与录制 | [FlutterSound](https://github.com/dooboolab/flutter_sound) | ![](https://img.shields.io/pub/v/flutter_sound.svg) | 
 | 音频播放（仅支持android） | [FluteMusicPlayer](https://github.com/iampawan/Flute-Music-Player) | ![](https://img.shields.io/pub/v/flute_music_player.svg) | 
@@ -56,9 +55,17 @@
 | 视频播放器 | [video_player](https://github.com/flutter/plugins/tree/master/packages/video_player) | ![](https://img.shields.io/pub/v/video_player.svg) | 
 | 瀑布流布局 | [flutter_staggered_grid_view](https://github.com/letsar/flutter_staggered_grid_view) | ![](https://img.shields.io/pub/v/flutter_staggered_grid_view.svg) | 
 | 骨架屏 | [Shimmer](https://github.com/hnvn/flutter_shimmer) | ![](https://img.shields.io/pub/v/shimmer.svg) | 
-| 类iOS侧滑 | [flutter_slidable](https://github.com/letsar/flutter_slidable) | ![](https://img.shields.io/pub/v/flutter_slidable.svg) | 
+| DragList | [DragList](https://github.com/tomwyr/drag-list) | ![](https://img.shields.io/pub/v/drag_list.svg) | 
 | 权限访问 | [permission_handler](https://github.com/BaseflowIT/flutter-permission-handler) | ![](https://img.shields.io/pub/v/permission_handler.svg) | 
 | 日历 | [FlutterCustomCalendar](https://github.com/fluttercandies/flutter_custom_calendar) |  | 
 | 跑马灯 | [MarqueeWidget](https://github.com/baoolong/MarqueeWidget) | ![](https://img.shields.io/pub/v/marquee_flutter.svg) | 
 | 手势密码锁 | [GestureRecognition](https://github.com/flutter-food/gesture_recognition) | ![](https://img.shields.io/pub/v/gesture_recognition.svg) | 
 | After Layout | [AfterLayout](https://github.com/fluttercommunity/flutter_after_layout) | ![](https://img.shields.io/pub/v/after_layout.svg) | 
+| 径向菜单 | [UnicornDialer](https://github.com/tiagojencmartins/unicornspeeddial) | ![](https://img.shields.io/pub/v/unicorndial.svg) | 
+| 下拉菜单 | [DropDownMenu](https://github.com/best-flutter/flutter_dropdown_menu) | ![](https://img.shields.io/pub/v/dropdown_menu.svg) | 
+| 类iOS侧滑 | [flutter_slidable](https://github.com/letsar/flutter_slidable) | ![](https://img.shields.io/pub/v/flutter_slidable.svg) | 
+| 侧滑菜单 | [foldable_sidebar](https://github.com/retroportalstudio/foldable_sidebar) | ![](https://img.shields.io/pub/v/foldable_sidebar.svg) | 
+| 侧滑菜单 | [flutter_inner_drawer](https://github.com/Dn-a/flutter_inner_drawer) | ![](https://img.shields.io/pub/v/flutter_inner_drawer.svg) | 
+| 极光推送 | [JPush](https://github.com/jpush/jpush-flutter-plugin) | ![](https://img.shields.io/pub/v/jpush_flutter.svg) | 
+| 极光IM | [JMessage](https://github.com/jpush/jmessage-flutter-plugin) | ![](https://img.shields.io/pub/v/jmessage_flutter.svg) | 
+
