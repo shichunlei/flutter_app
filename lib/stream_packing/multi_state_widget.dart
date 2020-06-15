@@ -68,8 +68,12 @@ class _MultiStateWidgetState<T> extends State<MultiStateWidget> {
               hideDialog();
               result = ErrorPage();
             } else if (snap.data is ShowDialogState) {
+                
+                 
               Future.microtask(() {
-                hideDialogCallBack = LoadingDialog.showDialog(context);
+                if(hideDialogCallBack == null){
+                    hideDialogCallBack = LoadingDialog.showDialog(context);
+                }
               });
 
               if (lastWidget != null) {
