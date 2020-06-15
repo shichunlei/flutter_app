@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/db/goods_provider.dart';
-import 'package:flutter_app/bean/goods.dart';
-import 'package:flutter_app/bean/goods_info.dart';
-import 'package:flutter_app/service/api_service.dart';
+import 'package:flutter_app/store/index.dart';
 
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../../page_index.dart';
+import '../index.dart';
 
 class DetailsPage extends StatefulWidget {
   final String id;
-  final GoodsProvider provider;
 
-  DetailsPage(this.id, {Key key, this.provider}) : super(key: key);
+  DetailsPage(this.id, {Key key}) : super(key: key);
 
   @override
   createState() => _DetailsPageState();
@@ -22,8 +19,6 @@ class DetailsPage extends StatefulWidget {
 class _DetailsPageState extends State<DetailsPage>
     with TickerProviderStateMixin {
   GoodsInfo goods;
-
-  int goods_number = 0;
 
   double navAlpha = 0;
   double headerHeight;
@@ -54,7 +49,7 @@ class _DetailsPageState extends State<DetailsPage>
 
     scrollController.addListener(() {
       var offset = scrollController.offset;
-      if (offset < 0) {
+      if (offset <= 0) {
         if (navAlpha != 0) {
           setState(() => navAlpha = 0);
         }
@@ -83,72 +78,62 @@ class _DetailsPageState extends State<DetailsPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[200],
-        body: goods == null
-            ? getLoadingWidget()
-            : Column(children: <Widget>[_buildBodyView(), _buildBottomView()]));
-  }
-
-  Widget _buildBodyView() {
-    return Expanded(
-      child: CustomScrollView(controller: scrollController, slivers: <Widget>[
-        /// 头部banner
-        _buildSliverAppBar(goods.goodInfo.pics),
-
-        /// 简介
-        _buildInfoView(goods.goodInfo),
-
-        _buildTabBar(),
-
-        _buildDetails()
-      ]),
+      backgroundColor: Colors.grey[200],
+      body: _buildBodyView(),
+      bottomNavigationBar: _buildBottomView(),
     );
   }
 
+  Widget _buildBodyView() {
+    return goods == null
+        ? LoadingWidget()
+        : CustomScrollView(controller: scrollController, slivers: <Widget>[
+            /// 头部banner
+            _buildSliverAppBar(goods.goodInfo.pics),
+
+            /// 简介
+            _buildInfoView(goods.goodInfo),
+
+            _buildTabBar(),
+
+            _buildDetails()
+          ]);
+  }
+
   Widget _buildBottomView() {
-    return Row(children: <Widget>[
-      Expanded(
-          child: GestureDetector(
-              onTap: () {
-                Toast.show('加入购物车', context);
-                addCart();
-              },
-              child: Container(
-                  alignment: Alignment.center,
-                  height: 48.0,
-                  child: Text('加入购物车', style: TextStyle(color: Colors.white)),
-                  color: Colors.orange))),
-      Expanded(
-          child: GestureDetector(
-              onTap: () {
-                /// TODO 立即购买
-                Toast.show('立即购买', context);
-              },
+    return Container(
+        padding: EdgeInsets.only(bottom: Utils.bottomSafeHeight),
+        child: Row(children: <Widget>[
+          Expanded(
               child: Container(
                   height: 48.0,
-                  alignment: Alignment.center,
-                  child: Text('立即购买', style: TextStyle(color: Colors.white)),
-                  color: Colors.red)))
-    ]);
+                  child: FlatButton(
+                      child:
+                          Text('加入购物车', style: TextStyle(color: Colors.white)),
+                      color: Colors.orange,
+                      onPressed: () {
+                        Toast.show(context, '加入购物车');
+                        Store.value<ShoppingCartModel>(context, listen: false)
+                            .addGoodsToCart(goods.goodInfo);
+                      }))),
+          Expanded(
+              child: Container(
+                  height: 48.0,
+                  child: FlatButton(
+                      child:
+                          Text('立即购买', style: TextStyle(color: Colors.white)),
+                      color: Colors.red,
+                      onPressed: () {
+                        /// TODO 立即购买
+                        Toast.show(context, '立即购买');
+                      })))
+        ]));
   }
 
   void getGoodsInfo() async {
     goods = await ApiService.getBaixingGoodsDetailData(widget.id);
 
-    bool isExist = await widget.provider?.isExist(widget.id);
-    if (isExist) {
-      goods_number = await widget.provider?.goodsAmount(widget.id);
-    }
-
-    setState(() {});
-  }
-
-  void addCart() async {
-    goods.goodInfo.isChecked = 0;
-    goods_number += 1;
-    goods.goodInfo.amount = goods_number;
-    setState(() {});
-    widget.provider?.insertOrReplaceToDB(goods.goodInfo);
+    if (mounted) setState(() {});
   }
 
   Widget _buildSliverAppBar(List<String> pics) {
@@ -165,7 +150,11 @@ class _DetailsPageState extends State<DetailsPage>
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.shopping_cart, color: c),
-              onPressed: () => pushReplacementName(context, '/shopCart'))
+              onPressed: () {
+                Store.value<BaixingModel>(context, listen: false)
+                    .setPageIndex(2);
+                Navigator.maybePop(context);
+              })
         ],
         flexibleSpace: FlexibleSpaceBar(
             background: Swiper(
@@ -240,8 +229,7 @@ class _DetailsPageState extends State<DetailsPage>
             data: goods.goodInfo.goodsDetail,
             defaultTextStyle: TextStyle(fontSize: 18.0),
             padding: EdgeInsets.all(8.0),
-            blockSpacing: 2.0,
-            useRichText: true))
+            blockSpacing: 2.0))
         ..add(adWidget);
     }
     if (currentIndex == 1) {

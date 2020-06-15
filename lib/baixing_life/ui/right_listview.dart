@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/db/goods_provider.dart';
-import 'package:flutter_app/baixing_life/ui/item_goods_grid.dart';
-import 'package:flutter_app/bean/category.dart';
-import 'package:flutter_app/bean/goods.dart';
-import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-class RightListView extends StatefulWidget {
-  final Category subCategory;
-  final int subCategoryIndex;
-  final GoodsProvider provider;
+import '../../page_index.dart';
+import '../index.dart';
 
-  RightListView(
-      {Key key, this.subCategory, this.subCategoryIndex, this.provider})
+class RightListView extends StatefulWidget {
+  final GoodsCategory subCategory;
+  final int subCategoryIndex;
+
+  RightListView({Key key, this.subCategory, this.subCategoryIndex})
       : super(key: key);
 
   @override
@@ -32,10 +28,8 @@ class RightListViewState extends State<RightListView>
 
   bool isLoadComplete = false;
 
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
-
   int currentIndex;
-  Category subCategory;
+  GoodsCategory subCategory;
 
   @override
   void initState() {
@@ -54,30 +48,27 @@ class RightListViewState extends State<RightListView>
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: rightWidth,
-      child: Column(children: <Widget>[
-        TabBar(
-            indicatorColor: Colors.pinkAccent,
-            labelColor: Colors.pinkAccent,
-            unselectedLabelColor: Colors.grey,
-            controller: controller,
-            isScrollable: true,
-            tabs: subCategory.bxMallSubDto
-                .map((category) => Tab(text: "${category.mallSubName}"))
-                .toList()),
-        _buildGoodsListView()
-      ]),
-    );
+        width: rightWidth,
+        child: Column(children: <Widget>[
+          TabBar(
+              indicatorColor: Colors.pinkAccent,
+              labelColor: Colors.pinkAccent,
+              unselectedLabelColor: Colors.grey,
+              controller: controller,
+              isScrollable: true,
+              tabs: subCategory.bxMallSubDto
+                  .map((category) => Tab(text: "${category.mallSubName}"))
+                  .toList()),
+          _buildGoodsListView()
+        ]));
   }
 
   Widget _buildGoodsListView() {
     return Expanded(
         child: EasyRefresh(
-            refreshFooter: BallPulseFooter(
-                key: _footerKey,
-                color: Colors.indigo,
-                backgroundColor: Colors.white),
-            loadMore: isLoadComplete
+            footer: BallPulseFooter(),
+            emptyWidget: goods.length > 0 ? null : EmptyPage(),
+            onLoad: isLoadComplete
                 ? null
                 : () async {
                     page++;
@@ -92,8 +83,10 @@ class RightListViewState extends State<RightListView>
                     crossAxisSpacing: 1.0,
                     mainAxisSpacing: 1.0,
                     childAspectRatio: 0.75),
-                itemBuilder: (BuildContext context, int index) =>
-                    ItemGoodsGrid(goods[index], provider: widget.provider))));
+                itemBuilder: (BuildContext context, int index) => ItemGoodsGrid(
+                      goods[index],
+                      height: rightWidth / 2 / 0.75,
+                    ))));
   }
 
   void getGoodsList(int page, String categoryId, String subId) async {
@@ -105,10 +98,10 @@ class RightListViewState extends State<RightListView>
       isLoadComplete = true;
     }
     goods.addAll(_goods);
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
-  void refreshView(int page, int currentIndex, Category subCategory) {
+  void refreshView(int page, int currentIndex, GoodsCategory subCategory) {
     this.page = page;
     this.currentIndex = currentIndex;
     this.subCategory = subCategory;
@@ -135,6 +128,6 @@ class RightListViewState extends State<RightListView>
     getGoodsList(this.page, this.subCategory.mallCategoryId,
         this.subCategory.bxMallSubDto[this.currentIndex].mallSubId);
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 }

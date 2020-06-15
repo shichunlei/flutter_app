@@ -7,7 +7,7 @@ import 'dart:async';
 
 class ArticleProvider extends BaseDBProvider {
   /// DataBase table name
-  static final String table_name = "article";
+  static const String table_name = "article";
 
   static final String columnId = "_id";
   static final String columnDate = "date";
@@ -69,7 +69,7 @@ class ArticleProvider extends BaseDBProvider {
     ]);
     if (maps.isNotEmpty) {
       for (Map<String, dynamic> map in maps) {
-        Article article = Article.fromJson(map);
+        Article article = Article.fromMap(map);
         articles.add(article);
       }
     }

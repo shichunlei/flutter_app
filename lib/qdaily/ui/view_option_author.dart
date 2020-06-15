@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
+
+import '../../page_index.dart';
 
 class ViewOptionAuthor extends StatelessWidget {
   final String avatar;
@@ -10,11 +11,8 @@ class ViewOptionAuthor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(children: <Widget>[
-      ImageLoadView('$avatar',
-          width: 20,
-          height: 20,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      SizedBox(width: 10),
+      ImageLoadView('$avatar', width: 20, height: 20, shape: BoxShape.circle),
+      Gaps.hGap8,
       Expanded(
           child: Text('$name',
               maxLines: 1,

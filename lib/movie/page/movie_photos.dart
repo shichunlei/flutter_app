@@ -1,36 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/photos.dart';
-import 'package:flutter_app/utils/toast.dart';
 
-import 'package:flutter_app/global/config.dart';
-import 'package:flutter_app/movie/page/movie_photo.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/movie/ui/item_photo.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
+import '../../page_index.dart';
+import '../index.dart';
 
 class MoviePhotosPage extends StatefulWidget {
   final String title;
-  final String url;
+  final String type;
   final String id;
 
-  MoviePhotosPage(this.title, this.url, this.id);
+  MoviePhotosPage(this.title, this.type, this.id);
 
   @override
-  _MoviePhotosPageState createState() => _MoviePhotosPageState();
+  createState() => _MoviePhotosPageState();
 }
 
 class _MoviePhotosPageState extends State<MoviePhotosPage> {
   List<Photos> photos = [];
+  List<String> images = [];
 
   int page = 1;
-  int pagesize = 20;
-
-  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
+  int pageSize = 20;
 
   bool isFirst = true;
 
@@ -40,13 +34,7 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
   void initState() {
     super.initState();
 
-    getPhotosList(widget.url, widget.id, (page - 1) * pagesize, page * pagesize,
-        RefreshType.DEFAULT);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+    getPhotosList(widget.type, widget.id, page, RefreshType.DEFAULT);
   }
 
   @override
@@ -61,53 +49,53 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
   }
 
   void getPhotosList(
-      String url, String id, int start, int count, RefreshType loadDataType) async {
+      String url, String id, int page, RefreshType loadDataType) async {
     List<Photos> _photos =
-        await ApiService.getPhotos(url, id, start: start, count: count);
+        await ApiService.getPhotos(url, id, page: page, limit: pageSize);
 
-    if (_photos.length < pagesize) {
-      Toast.show('数据加载完成...', context);
+    if (_photos.length < pageSize) {
+      Toast.show(context, '数据加载完成...');
       isLoadComplete = true;
     }
 
     photos.addAll(_photos);
+    _photos.forEach((f) {
+      images.add(f.image);
+    });
+
     if (isFirst) {
       isFirst = false;
     }
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   Widget _buildBodyView() {
     if (isFirst && photos.isEmpty) {
-      return getLoadingWidget();
+      return LoadingWidget();
     }
     return EasyRefresh(
-      key: _easyRefreshKey,
-      refreshFooter: BallPulseFooter(
-        key: _footerKey,
-        color: Colors.indigo,
-        backgroundColor: Colors.white,
-      ),
-      loadMore: isLoadComplete
-          ? null
-          : () async {
-              page++;
-              getPhotosList(widget.url, widget.id, (page - 1) * pagesize,
-                  page * pagesize, RefreshType.LOAD_MORE);
-            },
-      child: StaggeredGridView.countBuilder(
-        crossAxisCount: 4,
-        itemCount: photos.length,
-        physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return ItemPhoto(photos[index], onTap: () {
-            pushNewPage(context,
-                MoviePhotoPage(widget.title, photos: photos, index: index));
-          });
-        },
-        staggeredTileBuilder: (index) => StaggeredTile.fit(2),
-      ),
-      emptyWidget: Center(child: Text('没有数据！')),
-    );
+        footer: BallPulseFooter(),
+        onLoad: isLoadComplete
+            ? null
+            : () async {
+                page++;
+                getPhotosList(
+                    widget.type, widget.id, page, RefreshType.LOAD_MORE);
+              },
+        child: StaggeredGridView.countBuilder(
+            crossAxisCount: 4,
+            itemCount: photos?.length,
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, index) => ItemPhoto(photos[index],
+                onTap: () => pushNewPage(
+                    context,
+                    PhotoView(
+                      title: widget.title,
+                      photos: images,
+                      index: index,
+                      heroTag: photos[index]?.id,
+                    ))),
+            staggeredTileBuilder: (index) => StaggeredTile.fit(2)),
+        emptyWidget: photos.isEmpty ? EmptyPage(text: "没有数据！") : null);
   }
 }

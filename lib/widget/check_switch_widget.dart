@@ -15,13 +15,15 @@ class _CheckSwitchWidgetState extends State<CheckSwitchWidget> {
   var _isTitleOn = false;
   var _isOff = false;
 
+  String _newValue = '语文';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Check Switch Demo'),
       ),
-      body: Column(children: <Widget>[
+      body: ListView(children: <Widget>[
         Row(
           children: <Widget>[
             Checkbox(
@@ -88,6 +90,18 @@ class _CheckSwitchWidgetState extends State<CheckSwitchWidget> {
             setState(() => _isTitleChecked = checked);
           },
         ),
+        CheckboxListTile(
+          // 描述选项
+          title: Text(
+              'Make this item checked description description description description'),
+
+          // 和 checkbox 对立边的部件，例如 checkbox 在头部，则 secondary 在尾部
+          secondary: Image.asset('images/timg.gif', width: 90.0, height: 90.0),
+          value: _isTitleChecked,
+          onChanged: (checked) {
+            setState(() => _isTitleChecked = checked);
+          },
+        ),
         SwitchListTile(
             title: Text('Turn On this item'),
             subtitle: Text(
@@ -107,7 +121,119 @@ class _CheckSwitchWidgetState extends State<CheckSwitchWidget> {
               setState(() {
                 _isOff = value;
               });
-            })
+            }),
+        Row(
+          children: <Widget>[
+            Radio<String>(
+              value: "语文",
+              groupValue: _newValue,
+
+              /// 变化时回调
+              onChanged: (value) {
+                setState(() {
+                  _newValue = value;
+                });
+              },
+
+              /// 激活状态下颜色
+              activeColor: Colors.red,
+            ),
+            Radio<String>(
+              value: "数学",
+              groupValue: _newValue,
+              onChanged: (value) {
+                setState(() {
+                  _newValue = value;
+                });
+              },
+              activeColor: Colors.red,
+            ),
+            Radio<String>(
+              value: "英语",
+              groupValue: _newValue,
+              onChanged: (value) {
+                setState(() {
+                  _newValue = value;
+                });
+              },
+              activeColor: Colors.red,
+            ),
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Flexible(
+              child: RadioListTile<String>(
+                value: '语文',
+                title: Text('语文'),
+                groupValue: _newValue,
+                onChanged: (value) {
+                  setState(() {
+                    _newValue = value;
+                  });
+                },
+              ),
+            ),
+            Flexible(
+              child: RadioListTile<String>(
+                value: '数学',
+                title: Text('数学'),
+                groupValue: _newValue,
+                onChanged: (value) {
+                  setState(() {
+                    _newValue = value;
+                  });
+                },
+              ),
+            ),
+            Flexible(
+              child: RadioListTile<String>(
+                value: '英语',
+                title: Text('英语'),
+                groupValue: _newValue,
+                onChanged: (value) {
+                  setState(() {
+                    _newValue = value;
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
+        Column(
+          children: <Widget>[
+            RadioListTile<String>(
+              value: '语文',
+              title: Text('语文'),
+              groupValue: _newValue,
+              onChanged: (value) {
+                setState(() {
+                  _newValue = value;
+                });
+              },
+            ),
+            RadioListTile<String>(
+              value: '数学',
+              title: Text('数学'),
+              groupValue: _newValue,
+              onChanged: (value) {
+                setState(() {
+                  _newValue = value;
+                });
+              },
+            ),
+            RadioListTile<String>(
+              value: '英语',
+              title: Text('英语'),
+              groupValue: _newValue,
+              onChanged: (value) {
+                setState(() {
+                  _newValue = value;
+                });
+              },
+            ),
+          ],
+        ),
       ]),
     );
   }

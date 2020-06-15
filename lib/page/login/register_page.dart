@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/generated/i18n.dart';
 
 import '../../page_index.dart';
 
@@ -70,50 +71,51 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-            iconTheme: IconThemeData(color: Colors.black),
-            elevation: 0,
-            leading: BackButton(),
-            backgroundColor: Colors.white),
-        body: SingleChildScrollView(
-            padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 20.0),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("${AppLocalizations.$t('register')}",
-                      style: TextStyles.textBoldDark26),
-                  Gaps.vGap16,
-                  CustomTextField(
-                      focusNode: _nodePhone,
-                      nextFocusNode: _nodeVCode,
-                      controller: _phoneController,
-                      maxLength: 11,
-                      keyboardType: TextInputType.phone,
-                      hintText: "${AppLocalizations.$t('input_phone')}"),
-                  Gaps.vGap10,
-                  CustomTextField(
-                      focusNode: _nodeVCode,
-                      nextFocusNode: _nodePassword,
-                      controller: _vCodeController,
-                      keyboardType: TextInputType.number,
-                      getVCode: () {},
-                      maxLength: 6,
-                      hintText: "${AppLocalizations.$t('input_v_code')}"),
-                  Gaps.vGap10,
-                  CustomTextField(
-                      focusNode: _nodePassword,
-                      isInputPwd: true,
-                      controller: _passwordController,
-                      maxLength: 16,
-                      hintText: "${AppLocalizations.$t('input_password')}"),
-                  Gaps.vGap25,
-                  Button(
+    return LightTheme(
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(leading: BackButton()),
+          body: SingleChildScrollView(
+              padding:
+                  const EdgeInsets.only(left: 16.0, right: 16.0, top: 20.0),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("${S.of(context).register}",
+                        style: TextStyles.textBoldDark26),
+                    Gaps.vGap16,
+                    CustomTextField(
+                        focusNode: _nodePhone,
+                        nextFocusNode: _nodeVCode,
+                        controller: _phoneController,
+                        maxLength: 11,
+                        keyboardType: TextInputType.phone,
+                        hintText: "${S.of(context).input_phone}"),
+                    Gaps.vGap10,
+                    CustomTextField(
+                        focusNode: _nodeVCode,
+                        nextFocusNode: _nodePassword,
+                        controller: _vCodeController,
+                        keyboardType: TextInputType.number,
+                        getVCode: () {},
+                        maxLength: 6,
+                        hintText: "${S.of(context).input_v_code}"),
+                    Gaps.vGap10,
+                    CustomTextField(
+                        focusNode: _nodePassword,
+                        isInputPwd: true,
+                        controller: _passwordController,
+                        maxLength: 16,
+                        hintText: "${S.of(context).input_password}"),
+                    Gaps.vGap25,
+                    Button(
                       borderRadius: 0,
                       onPressed: _isClick ? _register : null,
-                      text: "${AppLocalizations.$t('submit')}")
-                ])));
+                      child: Text('${S.of(context).submit}',
+                          style: TextStyle(fontSize: 18)),
+                    )
+                  ]))),
+    );
   }
 
   void _register() {}

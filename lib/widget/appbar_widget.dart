@@ -1,6 +1,6 @@
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/ui/gradual_change_view.dart';
+
+import '../page_index.dart';
 
 class AppBarWidget extends StatefulWidget {
   AppBarWidget({Key key}) : super(key: key);
@@ -110,12 +110,12 @@ class _AppBarWidgetState extends State<AppBarWidget>
                     onPressed: () {},
                   ),
                   IconButton(
-                    icon: Icon(FeatherIcons.settings, color: Colors.white),
+                    icon: Icon(Icons.settings, color: Colors.white),
                     onPressed: () {},
                   ),
                 ],
                 iconTheme: IconThemeData(color: Colors.black),
-                textTheme: TextTheme(title: TextStyle(color: Colors.black))),
+                textTheme: TextTheme(headline6: TextStyle(color: Colors.black))),
           ),
 
           /// App bar with the title and subtitle
@@ -160,7 +160,7 @@ class _AppBarWidgetState extends State<AppBarWidget>
                   IconButton(icon: Icon(Icons.search), onPressed: () {})
                 ],
                 iconTheme: IconThemeData(color: Colors.black),
-                textTheme: TextTheme(title: TextStyle(color: Colors.black))),
+                textTheme: TextTheme(headline6: TextStyle(color: Colors.black))),
           ),
 
           Container(
@@ -169,7 +169,7 @@ class _AppBarWidgetState extends State<AppBarWidget>
                   title: Text('AppBar leading'),
                   elevation: 0.0,
                   leading: IconButton(
-                      icon: Icon(FeatherIcons.chevronLeft),
+                      icon: Icon(Icons.chevron_left),
                       onPressed: () => Navigator.of(context).pop()))),
         ]));
   }

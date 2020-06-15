@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/store/index.dart';
 
 import '../../page_index.dart';
 
@@ -19,11 +20,16 @@ class EmptyShopCart extends StatelessWidget {
           Gaps.vGap15,
           Text('购物车还空着，快去挑选商品吧'),
           Gaps.vGap15,
-          RaisedButton(
-              onPressed: () => pushReplacement(context, IndexPage()),
-              child: Text('随便逛逛', style: TextStyle(color: Colors.white)),
+          Button(
+              onPressed: () {
+                Store.value<BaixingModel>(context, listen: false)
+                    .setPageIndex(0);
+              },
+              child: Text('随便逛逛', style: TextStyle(fontSize: 18)),
               color: Colors.red,
-              shape: const StadiumBorder())
+              halfRadius: true,
+              width: 120,
+              height: 36)
         ]));
   }
 }

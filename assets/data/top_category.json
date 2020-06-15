@@ -1,0 +1,737 @@
+[
+  {
+    "title": "巅峰榜",
+    "list": [
+      {
+        "value": 4,
+        "id": 4,
+        "label": "流行指数榜",
+        "intro": "追踪全球音乐流行趋势，乐坛最热门歌曲，网络蹿红歌曲根据地。展示QQ音乐用户的关注热度，体现歌曲飙升程度的潮流音乐排行榜。<br><br>更新时间：每天更新<br>歌曲数量：100首<br>统计算法：QQ音乐库内全部歌曲，根据综合数据7天前的涨幅进行排序，取前100名<br>综合数据：登录用户在QQ音乐播放/分享/下载数据",
+        "period": "2019-12-24",
+        "update": "2019-12-24",
+        "list": [
+          {
+            "name": "别再对我好",
+            "artists": "Uu"
+          },
+          {
+            "name": "配合",
+            "artists": "薛之谦"
+          },
+          {
+            "name": "末日长河",
+            "artists": "易烊千玺"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000000oenB744P19H.jpg"
+      },
+      {
+        "value": 26,
+        "id": 26,
+        "label": "热歌榜",
+        "intro": "一周最具人气歌曲排行榜，旨在体现QQ音乐用户每周播放热度变更，为你展示当下热门优质有单曲循环价值的歌曲。<br><br>更新时间：每周四更新<br>排名数量：300首<br>统计算法：QQ音乐库内所有歌曲，根据综合数据7天前的涨幅进行排序，取前300名<br>综合数据：登录用户在QQ音乐播放/分享/下载数据",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "桥边姑娘",
+            "artists": "海伦"
+          },
+          {
+            "name": "我是如此相信",
+            "artists": "周杰伦"
+          },
+          {
+            "name": "麻雀",
+            "artists": "李荣浩"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002MVV0P4Gax0j.jpg"
+      },
+      {
+        "value": 27,
+        "id": 27,
+        "label": "新歌榜",
+        "intro": "集结30天内发行的优质歌曲，鼓励原创、着眼未来的乐坛风向标。根据每日综合数据进行排序，体现QQ音乐用户追新潮流，致力于打造最权威最有公信力的专业健康的新歌排行榜。<br><br>歌曲数量：100首<br>综合数据：登录用户在QQ音乐收听/分享/下载数据",
+        "period": "2019-12-24",
+        "update": "2019-12-24",
+        "list": [
+          {
+            "name": "火红的萨日朗",
+            "artists": "要不要买菜"
+          },
+          {
+            "name": "句号",
+            "artists": "G.E.M. 邓紫棋"
+          },
+          {
+            "name": "麻雀",
+            "artists": "李荣浩"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000001I5Jxg2cGAwD.jpg"
+      },
+      {
+        "value": 62,
+        "id": 62,
+        "label": "飙升榜",
+        "intro": "彰显火速窜红歌曲飙升趋势的音乐排行榜，强势展现QQ音乐用户每天歌曲播放量变化趋势。<br><br>更新时间：每天更新<br><br>歌曲数量：100首<br><br>统计算法：QQ音乐库内全部歌曲，根据完整播放数据对比前一日涨幅进行排序，取前100名",
+        "period": "2019-12-24",
+        "update": "2019-12-24",
+        "list": [
+          {
+            "name": "问情 (Live)",
+            "artists": "周华健/肖战"
+          },
+          {
+            "name": "勇气",
+            "artists": "棉子",
+            "singerMid": "000xbcRD1xjp1P"
+          },
+          {
+            "name": "Psycho",
+            "artists": "Red Velvet (레드벨벳)",
+            "singerMid": "004NfJdF0gn6Z1"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000003Xizcl4PK5lK.jpg"
+      },
+      {
+        "value": 67,
+        "id": 67,
+        "label": "听歌识曲榜",
+        "intro": "听歌识曲，用科技发现美好音乐生活，为你展现QQ音乐用户每日在大街小巷上用“听歌识曲”功能捕捉到的陌生好歌，第一时间传递流行趋势。<br><br>更新时间：每天更新<br>歌曲数量：100首<br>统计算法：QQ音乐库内全部歌曲，根据QQ音乐用户每天使用“听歌识曲”次数进行排序，取前100名。",
+        "period": "2019-12-24",
+        "update": "2019-12-24",
+        "list": [
+          {
+            "name": "清新的小女孩",
+            "artists": "ไทย"
+          },
+          {
+            "name": "你的答案",
+            "artists": "阿冗"
+          },
+          {
+            "name": "I Want You To Know (Hella x Pegato Remix)",
+            "artists": "Pegato/Zedd/Selena Gomez"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002DUd9u03RBsk.jpg"
+      },
+      {
+        "value": 201,
+        "id": 201,
+        "label": "MV榜",
+        "intro": "上榜规则：榜单中参与排名的MV范围必须是三个月内官方发行的MV，翻制版，预告版，花絮版，广告宣传片等不参与排名。<br><br>更新时间：榜单数据一小时更新一次<br>统计周期：一周（统计时间周一零点至周日24:00点）<br>统计算法：根据MV在一周内的有效播放、分享以及下载次数，由高到低取前20名。",
+        "period": "",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "Red Velvet《Psycho》MV",
+            "artists": "Red Velvet (레드벨벳)"
+          },
+          {
+            "name": "句号",
+            "artists": "G.E.M. 邓紫棋"
+          },
+          {
+            "name": "我是如此相信 (《天火》电影主题曲)",
+            "artists": "周杰伦"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002XLqnq0w2lr3.jpg"
+      }
+    ]
+  },
+  {
+    "title": "地区榜",
+    "list": [
+      {
+        "value": 5,
+        "id": 5,
+        "label": "内地榜",
+        "intro": "汇集优质前沿的内地音乐作品，彰显内地主流乐坛流行趋势。体现QQ音乐用户内地歌曲播放热度。<br><br>更新时间：每周四<br>排名数量：100首<br>统计算法：90天内正规发行的内地新歌，根据综合数据排序取前100名<br>综合数据：登录用户QQ音乐播放/分享/下载数据、艺人社会影响力指数、艺人社交媒体活跃指数综合得出",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "song": [
+          {
+            "name": "麻雀",
+            "artists": "李荣浩"
+          },
+          {
+            "name": "桥边姑娘",
+            "artists": "海伦"
+          },
+          {
+            "name": "陪你去流浪",
+            "artists": "薛之谦"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002ed1N636QT3d.jpg"
+      },
+      {
+        "value": 59,
+        "id": 59,
+        "label": "香港地区榜",
+        "intro": "汇集最新最优质的香港地区音乐作品，体现QQ音乐的香港地区歌曲播放热度。<br><br>更新时间：每周四<br>排名数量：100首<br>统计算法：180天内上线的香港地区新歌，根据综合数据排序取前100名<br>综合数据：登录用户在QQ音乐收听/分享/下载数据",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "song": [
+          {
+            "name": "句号",
+            "artists": "G.E.M. 邓紫棋"
+          },
+          {
+            "name": "摩天动物园",
+            "artists": "G.E.M. 邓紫棋"
+          },
+          {
+            "name": "平安夜",
+            "artists": "梁咏琪"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002XnHEO2uns1E.jpg"
+      },
+      {
+        "value": 61,
+        "id": 61,
+        "label": "台湾地区榜",
+        "intro": "汇集最新最优质的台湾地区音乐作品，体现QQ音乐的台湾地区歌曲播放热度。<br><br>更新时间：每周四<br>排名数量：100首<br>统计算法：90天内上线的台湾地区新歌，根据综合数据排序取前100名<br>综合数据：登录用户在QQ音乐收听/分享/下载数据",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "我是如此相信",
+            "artists": "周杰伦"
+          },
+          {
+            "name": "背光",
+            "artists": "杨宗纬"
+          },
+          {
+            "name": "亡羊",
+            "artists": "萧敬腾"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M0000048QeAu1NZB13.jpg"
+      },
+      {
+        "value": 3,
+        "id": 3,
+        "label": "欧美榜",
+        "intro": "汇集优质前沿的欧美音乐作品，体现QQ音乐用户欧美歌曲播放热度。<br><br>更新时间：每周四<br>排名数量：100首<br>统计算法：90天内正规发行的欧美新歌，根据综合数据排序取前100名<br>综合数据：登录用户在QQ音乐播放/分享/下载数据、艺人社会影响力指数、艺人社交媒体活跃指数综合得出",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "Christmas Tree Farm",
+            "artists": "Taylor Swift"
+          },
+          {
+            "name": "Ghost (Joe Stone Remix)",
+            "artists": "Au/Ra/Alan Walker"
+          },
+          {
+            "name": "Billboard",
+            "artists": "Jonas Blue/陈梓童"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000000ZB2ec2i0AtI.jpg"
+      },
+      {
+        "value": 16,
+        "id": 16,
+        "label": "韩国榜",
+        "intro": "汇集优质前沿的韩国音乐作品，体现QQ音乐用户韩国歌曲播放热度。<br><br>更新时间：每周四<br>排名数量：100首<br>统计算法：90天内正规发行的韩国乐坛新歌，根据综合数据排序取前100名<br>综合数据：登录用户QQ音乐播放/分享/下载数据、艺人社会影响力指数、艺人社交媒体活跃指数综合得出",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "Coming Home (Sung by 태일, 도영, 재현, 해찬)",
+            "artists": "NCT U (엔시티 유)/泰一 (태일)/道英 (도영)/재현 (在玹)/Haechan (해찬)"
+          },
+          {
+            "name": "우연인 듯 운명 (But it's Destiny)",
+            "artists": "10cm (십센치)"
+          },
+          {
+            "name": "첫눈 (with 산다라박) (初雪)",
+            "artists": "朴春 (박봄)/Dara (다라)"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000001JD2Zf4L0qy8.jpg"
+      },
+      {
+        "value": 17,
+        "id": 17,
+        "label": "日本榜",
+        "intro": "汇集优质前沿的日本音乐作品，体现QQ音乐用户日本歌曲播放热度。<br><br>更新时间：每周四<br>排名数量：100首<br>统计算法：180天内正规发行的日本乐坛新歌，根据综合数据排序取前100名<br>综合数据：登录用户QQ音乐播放/分享/下载数据、艺人社会影响力指数、艺人社交媒体活跃指数综合得出",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "GrandMaster",
+            "artists": "PRODUCE 101 JAPAN"
+          },
+          {
+            "name": "グリム (格林)",
+            "artists": "majiko (まじ娘)"
+          },
+          {
+            "name": "Innocent(from 'Castle in the Sky') (映画「天空の城ラピュタ」より)",
+            "artists": "久石让 (ひさいし じょう)"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002xbVrl2DtAsX.jpg"
+      }
+    ]
+  },
+  {
+    "title": "特色榜",
+    "list": [
+      {
+        "value": 60,
+        "id": 60,
+        "label": "抖音排行榜",
+        "intro": "汇集当下流行的抖音热歌，呈现具热度的网络流行<br><br>更新时间：每周四<br>排名数量：100首",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "火红的萨日朗",
+            "artists": "要不要买菜"
+          },
+          {
+            "name": "你说的都对",
+            "artists": "小凤九"
+          },
+          {
+            "name": "欧若拉 (完整版)",
+            "artists": "胜屿"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002Gz9Jc34ozCL.jpg"
+      },
+      {
+        "value": 28,
+        "id": 28,
+        "label": "网络歌曲榜",
+        "intro": "集结一周热门的网络音乐，体现QQ音乐用户网络歌曲收听趋势，打造包容具热度的网络音乐排行榜。<br><br>更新时间：每周四更新<br>排名数量：100首<br>统计算法：三个月内发行的网络歌曲，根据综合数据排序取前100名<br>综合数据：登录用户在QQ音乐播放/分享/下载数据",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "下山",
+            "artists": "要不要买菜"
+          },
+          {
+            "name": "火红的萨日朗",
+            "artists": "要不要买菜"
+          },
+          {
+            "name": "忘情牛肉面",
+            "artists": "马健涛"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000003qw7XU2IpSHW.jpg"
+      },
+      {
+        "value": 57,
+        "id": 57,
+        "label": "电音榜",
+        "intro": "汇集优质前沿的电音音乐作品，体现QQ音乐用户电音播放热度。<br><br>更新时间：每周四<br>排名数量：50首<br>统计算法：180天内正规发行的电音歌曲，根据综合数据排序取前50名<br>综合数据：根据登录用户QQ音乐播放/分享/下载数据综合得出",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "Ghost (Joe Stone Remix)",
+            "artists": "Au/Ra/Alan Walker"
+          },
+          {
+            "name": "Play",
+            "artists": "K-391/Alan Walker/Tungevaag/Mangoo"
+          },
+          {
+            "name": "Fades Away (Tribute Concert Version)",
+            "artists": "Avicii/MishCatt"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000001RnKhF1GViDT.jpg"
+      },
+      {
+        "value": 66,
+        "id": 66,
+        "label": "ACG新歌榜",
+        "intro": "集结每周颇具人气的ACG歌曲，紧跟ACG流行趋势，体现QQ音乐ACG新歌播放热度。<br>更新时间：每周四<br>排名数量：100首<br>统计算法：180天内正规发行的ACG新歌，根据综合数据排序取前100名<br>综合数据：登录用户在QQ音乐播放/分享/下载数据",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "涅槃 (Phoenix)",
+            "artists": "英雄联盟"
+          },
+          {
+            "name": "Into the Unknown",
+            "artists": "Idina Menzel/AURORA"
+          },
+          {
+            "name": "GIANTS",
+            "artists": "英雄联盟/True Damage/Becky G/Keke Palmer/DUCKWRTH/Thutmose/田小娟 (전소연)"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002lFcqr2rMGm0.jpg"
+      },
+      {
+        "value": 65,
+        "id": 65,
+        "label": "国风热歌榜",
+        "intro": "集结每周颇具人气的国风歌曲，强势追踪国风流行趋势，体现QQ音乐国风歌曲播放热度。<br>更新时间：每周四<br>排名数量：100首<br>统计算法：国风歌曲，根据综合数据排序取前100名<br>综合数据：登录用户在QQ音乐播放/分享/下载数据",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "下山",
+            "artists": "要不要买菜"
+          },
+          {
+            "name": "你说的都对",
+            "artists": "小凤九"
+          },
+          {
+            "name": "一生与你擦肩而过",
+            "artists": "阿悠悠"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000000bhHr51PYtsO.jpg"
+      },
+      {
+        "value": 64,
+        "id": 64,
+        "label": "综艺新歌榜",
+        "intro": "集结每周站内备受喜爱的综艺歌曲，紧跟音乐综艺流行趋势，体现QQ音乐综艺新歌播放热度。<br>更新时间：每周四<br>排名数量：100首<br>统计算法：180天内正规发行的综艺新歌，根据综合数据排序取前100名<br>综合数据：登录用户在QQ音乐播放/分享/下载数据",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "军港之夜 (Live)",
+            "artists": "那英/肖战"
+          },
+          {
+            "name": "我爱他 (Live)",
+            "artists": "许魏洲/周深"
+          },
+          {
+            "name": "你最珍贵 (Live)",
+            "artists": "陈立农/赵安妮/张鑫/江映蓉/李嘉格"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M0000042GvKs0u408j.jpg"
+      },
+      {
+        "value": 29,
+        "id": 29,
+        "label": "影视金曲榜",
+        "intro": "集结每周高人气的影视歌曲，紧跟电影电视流行趋势，体现QQ音乐用户影视歌曲播放热度。<br><br>更新时间：每周四<br>排名数量：100首<br>统计算法：90天内正规发行的影视新歌，根据综合数据排序取前100名<br>综合数据：登录用户在QQ音乐播放/分享/下载数据",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "我是如此相信",
+            "artists": "周杰伦"
+          },
+          {
+            "name": "余年",
+            "artists": "肖战"
+          },
+          {
+            "name": "fly",
+            "artists": "岑宁儿"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000003rIjyf1Lekx1.jpg"
+      },
+      {
+        "value": 52,
+        "id": 52,
+        "label": "腾讯音乐人原创榜",
+        "intro": "腾讯音乐人原创榜根据用户收听行为和腾讯音乐人计划星级评审团推荐生成，集结最新最热的腾讯音乐人原创作品。<br><br>更新时间：每周三<br>统计周期：自然周（上周一至上周日）<br>统计对象：三个月内发行的腾讯音乐人原创作品<br>排名数量：100首",
+        "period": "2019_50",
+        "update": "2019-12-18",
+        "list": [
+          {
+            "name": "这个星球我最喜欢你",
+            "artists": "黎子明/想飞的鱼"
+          },
+          {
+            "name": "像极了",
+            "artists": "永彬Ryan.B"
+          },
+          {
+            "name": "惊喜",
+            "artists": "徐畅SEN"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000001qwAfd3FN9S1.jpg"
+      },
+      {
+        "value": 36,
+        "id": 36,
+        "label": "K歌金曲榜",
+        "intro": "集结当下全民K歌热门的翻唱歌曲，为你带来最新鲜的K歌好声音。 <br>更新频率：每周四 <br>统计范围：全民K歌用户翻唱作品 <br>统计数量：50首 <br>统计算法：全民K歌榜单上兼具人气与动听的优质作品，及全民K歌小编挖掘的好声音均有机会进入推荐。",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "嚣张",
+            "artists": "en"
+          },
+          {
+            "name": "说好不哭（with 五月天阿信）",
+            "artists": "周杰伦"
+          },
+          {
+            "name": "体面",
+            "artists": "于文文"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000001N8GCC2zjgr5.jpg"
+      },
+      {
+        "value": 58,
+        "id": 58,
+        "label": "说唱榜",
+        "intro": "江小白YOLO说唱榜汇集优质前沿的中文说唱音乐作品，体现QQ音乐中文说唱歌曲播放热度。<br><br>更新时间：每周四<br>排名数量：50首<br>统计算法：180天内正规发行的说唱歌曲，根据综合数据排序取前50名<br>综合数据：根据登录用户QQ音乐播放/分享/下载数据综合得出",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "摩天动物园",
+            "artists": "G.E.M. 邓紫棋"
+          },
+          {
+            "name": "野狼Disco（feat.陈伟霆）",
+            "artists": "宝石Gem/陈伟霆"
+          },
+          {
+            "name": "FEEL GOOD",
+            "artists": "满舒克"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/common/upload/test_order_channel_hitlist_con/1383151.jpg"
+      }
+    ]
+  },
+  {
+    "title": "全球榜",
+    "list": [
+      {
+        "value": 108,
+        "id": 108,
+        "label": "美国公告牌榜",
+        "intro": "公告牌，即Billboard是美国1894年创办的音乐杂志，而其中最为人知的是Billboard排行榜，经过数十年的改善，如今形成专业、可靠的Hot 100单曲榜，成为如今主流界最著名的音乐类榜单。",
+        "period": "2019_51",
+        "update": "2019-12-17",
+        "list": [
+          {
+            "name": "All I Want for Christmas Is You",
+            "artists": "Mariah Carey"
+          },
+          {
+            "name": "Circles",
+            "artists": "Post Malone"
+          },
+          {
+            "name": "Rockin' Around The Christmas Tree(Single Version)",
+            "artists": "Brenda Lee"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000004ZKA1d0TqlX2.jpg"
+      },
+      {
+        "value": 123,
+        "id": 123,
+        "label": "美国iTunes榜",
+        "intro": "iTunes是美国苹果公司开发的音乐下载软件，iTunes单曲榜是结合了下载、收听和销售数据，进行的全美流行音乐综合排名，于每周一更新。",
+        "period": "2019_45",
+        "update": "2019-12-15",
+        "list": [
+          {
+            "name": "Nobody But You (Duet with Gwen Stefani)",
+            "artists": "Blake Shelton/Gwen Stefani"
+          },
+          {
+            "name": "Dance Monkey",
+            "artists": "Tones and I"
+          },
+          {
+            "name": "Memories",
+            "artists": "Maroon 5"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M0000034VXWA0cytOT.jpg"
+      },
+      {
+        "value": 129,
+        "id": 129,
+        "label": "韩国Melon榜",
+        "intro": "韩国Melon周榜，每周一更新。",
+        "period": "2019_51",
+        "update": "2019-12-23",
+        "list": [
+          {
+            "name": "아마두",
+            "artists": "YumDDa (염따)/Deepflow (딥플로우)/Paloalto (팔로알토)/The Quiett (더 콰이엇)/Simon Dominic (사이먼 도미닉)"
+          },
+          {
+            "name": "Square (2017)",
+            "artists": "白艺潾 (백예린)"
+          },
+          {
+            "name": "Blueming",
+            "artists": "IU (아이유)"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M0000047mUJT1iYwhQ.jpg"
+      },
+      {
+        "value": 107,
+        "id": 107,
+        "label": "英国UK榜",
+        "intro": "英国单曲排行榜（UK Singles Chart），是代表英国唱片工业的权威排行榜。排行榜的资讯会刊登在音乐周刊（Music Week）（前75名）、排行榜+（ChartsPlus）（前200名）等杂志上，并公布在各大网站上（通常只列出前40名）。由约6500家唱片零售商和英国网路影音下载业者负责提供销售资料。",
+        "period": "2019_50",
+        "update": "2019-12-20",
+        "list": [
+          {
+            "name": "I Love Sausage Rolls",
+            "artists": "LadBaby"
+          },
+          {
+            "name": "Own It (feat. Ed Sheeran & Burna Boy)",
+            "artists": "Stormzy/Ed Sheeran/Burna Boy"
+          },
+          {
+            "name": "Before You Go",
+            "artists": "Lewis Capaldi"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000000Rzivh2Xs3iQ.jpg"
+      },
+      {
+        "value": 105,
+        "id": 105,
+        "label": "日本公信榜",
+        "intro": "日本公信榜，也称为Oricon榜，是由1968年1月4日正式开始的日本最具知名度的音乐排行榜。合算榜结合了CD销售数量，数字下载数量和流媒体播放数量，每周三更新。",
+        "period": "2019_51",
+        "update": "2019-12-18",
+        "list": [
+          {
+            "name": "Try Again",
+            "artists": "MAG!C☆PRINCE (マジックプリンス)"
+          },
+          {
+            "name": "冬空",
+            "artists": "三代目 J SOUL BROTHERS from EXILE TRIBE (三代目 J SOUL BROTHERS from 放浪一族)"
+          },
+          {
+            "name": "unlasting",
+            "artists": "LiSA (織部里沙)"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000001yiBDK278bKH.jpg"
+      },
+      {
+        "value": 126,
+        "id": 126,
+        "label": "JOOX本地热播榜",
+        "intro": "JOOX本地热播榜，每周四更新。",
+        "period": "2019_50",
+        "update": "2019-12-19",
+        "list": [
+          {
+            "name": "嫁给爱情",
+            "artists": "杨千嬅"
+          },
+          {
+            "name": "让爱高飞",
+            "artists": "周柏豪"
+          },
+          {
+            "name": "忘记和记",
+            "artists": "黎明/麦浚龙"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M0000028ppU23zrh9T.jpg"
+      },
+      {
+        "value": 114,
+        "id": 114,
+        "label": "香港商台榜",
+        "intro": "香港商业电台是香港的一家商业广播电台，其榜单搜罗港台最新流行单曲。",
+        "period": "2019_50",
+        "update": "2019-12-21",
+        "list": [
+          {
+            "name": "一秒",
+            "artists": "林欣彤"
+          },
+          {
+            "name": "忘记和记",
+            "artists": "黎明/麦浚龙"
+          },
+          {
+            "name": "心之书",
+            "artists": "小尘埃"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000002DqyRV3AaIyy.jpg"
+      },
+      {
+        "value": 127,
+        "id": 127,
+        "label": "台湾KKBOX榜",
+        "intro": "台湾KKBOX华语新歌周榜，每周五更新。",
+        "period": "2019_50",
+        "update": "2019-12-20",
+        "list": [
+          {
+            "name": "句号",
+            "artists": "G.E.M. 邓紫棋"
+          },
+          {
+            "name": "全世界的朋友都让我失望",
+            "artists": "吴卓源"
+          },
+          {
+            "name": "摩天动物园",
+            "artists": "G.E.M. 邓紫棋"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M000003JhQ7e4E4Rg6.jpg"
+      },
+      {
+        "value": 128,
+        "id": 128,
+        "label": "YouTube音乐排行榜",
+        "intro": "YouTube是一个视频网站，YouTube热门音乐榜是根据歌曲每周在YouTube播放次数进行排名，每周一更新。",
+        "period": "2019_50",
+        "update": "2019-12-23",
+        "list": [
+          {
+            "name": "BOP (Explicit)",
+            "artists": "DaBaby"
+          },
+          {
+            "name": "Ballin' (Explicit)",
+            "artists": "Mustard/Roddy Ricch"
+          },
+          {
+            "name": "Bandit (Explicit)",
+            "artists": "Juice WRLD/Youngboy Never Broke Again"
+          }
+        ],
+        "picUrl": "http://y.gtimg.cn/music/photo_new/T003R500x500M0000007MbAB0ouAdX.jpg"
+      }
+    ]
+  }
+]

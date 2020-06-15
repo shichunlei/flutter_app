@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/toast.dart';
-import 'package:flutter_app/global/data.dart';
-import 'package:flutter_app/utils/utils.dart';
+
+import '../page_index.dart';
+
+const List<String> languages = <String>[
+  'Flutter',
+  'Android',
+  'iOS',
+  'Java',
+  'Object-C',
+  'JavaScript',
+  'Ruby',
+  'PHP',
+  'C++',
+  'C#',
+  'C语言',
+  'Dart',
+  'Kotlin',
+  'Swift'
+];
 
 class ChipWidget extends StatefulWidget {
   @override
-  _ChipWidgetState createState() => _ChipWidgetState();
+  createState() => _ChipWidgetState();
 }
 
 class _ChipWidgetState extends State<ChipWidget> {
@@ -13,7 +29,7 @@ class _ChipWidgetState extends State<ChipWidget> {
 
   List<String> _actions = [];
 
-  bool _isSelected = false;
+  List<String> _selected = [];
 
   @override
   void initState() {
@@ -24,106 +40,71 @@ class _ChipWidgetState extends State<ChipWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Chip Widget'),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(10.0),
-        child: ListView(
-          children: <Widget>[
-            Text('Chip'),
-            Wrap(
-              /// 主轴方向上的间距
+        appBar: AppBar(centerTitle: true, title: Text('Chip Widget')),
+        body: ListView(padding: EdgeInsets.all(10.0), children: <Widget>[
+          Text('Chip'),
+          Wrap(
               spacing: 10.0,
-              children: removeItem()
+              children: _actions
                   .map((language) => Chip(
-                        backgroundColor: Utils.strToColor(language),
-                        label: Text(language.toString(),
-                            style: TextStyle(color: Colors.white)),
-                        onDeleted: () {
-                          setState(() {
-                            removeItem(value: language.toString());
-                          });
-                        },
-                      ))
-                  .toList(),
-            ),
-            Text('ChoiceChip'),
-            Wrap(
+                      backgroundColor: Utils.strToColor(language),
+                      label: Text(language.toString(),
+                          style: TextStyle(color: Colors.white)),
+                      onDeleted: () =>
+                          setState(() => _actions.remove(language))))
+                  .toList()),
+          Text('ChoiceChip'),
+          Wrap(
               spacing: 10.0,
               children: languages
                   .map((language) => ChoiceChip(
-                        selected: _selectedMaterial == language,
-                        backgroundColor: Utils.strToColor(language),
-                        label: Text(language.toString(),
-                            style: TextStyle(color: Colors.white)),
-                        avatar: _selectedMaterial == language
-                            ? Icon(Icons.done)
-                            : null,
-                        selectedColor: Utils.strToColor(language),
-                        onSelected: (bool isCheck) {
-                          setState(() {
-                            _selectedMaterial = isCheck ? language : "";
-                          });
-                        },
-                      ))
-                  .toList(),
-            ),
-            Text('InputChip'),
-            Wrap(
+                      selected: _selectedMaterial == language,
+                      backgroundColor: Colors.grey,
+                      label: Text(language.toString(),
+                          style: TextStyle(color: Colors.white)),
+                      selectedColor: Utils.strToColor(language),
+                      onSelected: (bool isCheck) => setState(
+                          () => _selectedMaterial = isCheck ? language : "")))
+                  .toList()),
+          Text('InputChip'),
+          Wrap(
               spacing: 10.0,
               children: languages
                   .map((language) => InputChip(
-                        label: Text(language.toString(),
-                            style: TextStyle(color: Colors.white)),
-                        avatar: CircleAvatar(
-                          backgroundColor: Utils.strToColor(language),
-                          backgroundImage: NetworkImage(
-                            "http://i1.umei.cc/uploads/tu/201901/9999/rn71dec568c9.jpg",
-                          ),
-                        ),
-                        onPressed: () {},
-                      ))
-                  .toList(),
-            ),
-            Text('FilterChip'),
-            Wrap(
+                      label: Text(language.toString(),
+                          style: TextStyle(color: Colors.white)),
+                      avatar: ImageLoadView(
+                          'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1408166520,3304498136&fm=26&gp=0.jpg',
+                          radius: 20),
+                      onPressed: () {},
+                      backgroundColor: Utils.strToColor(language)))
+                  .toList()),
+          Text('FilterChip'),
+          Wrap(
               spacing: 10.0,
               children: languages
                   .map((language) => FilterChip(
                       backgroundColor: Utils.strToColor(language),
                       label: Text(language),
-                      selected: _isSelected,
-                      onSelected: (isSelected) {
-                        setState(() {
-                          _isSelected = isSelected;
-                        });
-                      },
+                      selected: _selected.contains(language),
+                      onSelected: (isSelected) => setState(() {
+                            if (_selected.contains(language)) {
+                              _selected.remove(language);
+                            } else {
+                              _selected.add(language);
+                            }
+                          }),
                       selectedColor: Utils.strToColor(language)))
-                  .toList(),
-            ),
-            Text('ActionChip'),
-            Wrap(
+                  .toList()),
+          Text('ActionChip'),
+          Wrap(
               spacing: 10.0,
               children: languages
                   .map((language) => ActionChip(
-                        backgroundColor: Utils.strToColor(language),
-                        label: Text(language),
-                        onPressed: () {
-                          Toast.show(language, context);
-                        },
-                      ))
-                  .toList(),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  List<String> removeItem({String value = ""}) {
-    _actions.remove(value);
-    return _actions;
+                      backgroundColor: Utils.strToColor(language),
+                      label: Text(language),
+                      onPressed: () => Toast.show(context, language)))
+                  .toList())
+        ]));
   }
 }

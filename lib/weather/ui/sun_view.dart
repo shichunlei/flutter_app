@@ -1,10 +1,9 @@
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/he_weather.dart';
-import 'package:flutter_app/custom_widgets/sunrise_sunset_view.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/line.dart';
-import 'package:flutter_app/utils/date_format.dart';
+
+import '../../page_index.dart';
+import 'sunrise_sunset_painter.dart';
 
 class SunView extends StatefulWidget {
   final String cityName;
@@ -35,6 +34,7 @@ class _SunViewState extends State<SunView>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
         margin: EdgeInsets.only(top: 10.0),
         color: Color(0x2a000000),
@@ -57,14 +57,14 @@ class _SunViewState extends State<SunView>
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Icon(FeatherIcons.sunrise, color: Colors.white),
+                      Icon(Feather.sunrise, color: Colors.white),
                       Text('日出${sunriseSunset?.sr}',
                           style: TextStyle(color: Colors.white))
                     ]),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Icon(FeatherIcons.sunset, color: Colors.white),
+                      Icon(Feather.sunset, color: Colors.white),
                       Text('日落${sunriseSunset?.ss}',
                           style: TextStyle(color: Colors.white))
                     ]),
@@ -76,9 +76,9 @@ class _SunViewState extends State<SunView>
     weather = await ApiService.getSunriseSunset(widget.cityName);
 
     setState(() {
-      sunriseSunset = weather.sunrise_sunset[0];
+      sunriseSunset = weather.sunriseSunset[0];
 
-      String nowTime = formatDate(DateTime.now(), [HH, ':', nn]);
+      String nowTime = formatDate(DateTime.now(), formats: [HH, ':', nn]);
 
       /// 当前时间
       int currentHour = int.parse('${nowTime.substring(0, 2)}');

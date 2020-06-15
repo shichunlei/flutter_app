@@ -22,67 +22,52 @@ class ClippyWidget extends StatelessWidget {
                   clipHeight: 20.0,
                   axis: Axis.horizontal,
                   position: DiagonalPosition.BOTTOM_LEFT,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      color: Utils.strToColor("Diagonal"),
-                      width: 100.0,
-                      height: 80.0,
-                      child: Center(child: Text('Diagonal')),
-                    ),
+                  child: Container(
+                    color: Utils.strToColor("Diagonal"),
+                    width: 100.0,
+                    height: 80.0,
+                    child: Center(child: Text('Diagonal')),
                   ),
                 ),
                 Gaps.vGap8,
                 Chevron(
                   triangleHeight: 50.0,
                   edge: Edge.RIGHT,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      color: Utils.strToColor("Chevron"),
-                      width: 70.0,
-                      height: 100.0,
-                      child: Center(child: Text('Chevron')),
-                    ),
+                  child: Container(
+                    color: Utils.strToColor("Chevron"),
+                    width: 70.0,
+                    height: 100.0,
+                    child: Center(child: Text('Chevron')),
                   ),
                 ),
                 Gaps.vGap8,
                 Ticket(
                   radius: 10.0,
-                  child: GestureDetector(
-                    onTap: () => {},
-                    child: Container(
-                      color: Utils.strToColor("Ticket"),
-                      width: 100.0,
-                      height: 50.0,
-                      child: Center(child: Text('Ticket')),
-                    ),
+                  child: Container(
+                    color: Utils.strToColor("Ticket"),
+                    width: 100.0,
+                    height: 50.0,
+                    child: Center(child: Text('Ticket')),
                   ),
                 ),
                 Gaps.vGap8,
                 ButtCheek(
                   height: 10.0,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      color: Utils.strToColor("ButtCheek"),
-                      width: 100.0,
-                      height: 100.0,
-                      child: Center(child: Text('ButtCheek')),
-                    ),
+                  child: Container(
+                    color: Utils.strToColor("ButtCheek"),
+                    width: 100.0,
+                    height: 100.0,
+                    child: Center(child: Text('ButtCheek')),
                   ),
                 ),
                 Gaps.vGap8,
                 Triangle.isosceles(
                   edge: Edge.TOP,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      color: Utils.strToColor("Triangle"),
-                      width: 100.0,
-                      height: 100.0,
-                      child: Center(child: Text('Triangle')),
-                    ),
+                  child: Container(
+                    color: Utils.strToColor("Triangle"),
+                    width: 100.0,
+                    height: 100.0,
+                    child: Center(child: Text('Triangle')),
                   ),
                 ),
                 Gaps.vGap8,
@@ -90,30 +75,24 @@ class ClippyWidget extends StatelessWidget {
                   triangleHeight: 30.0,
                   rectangleClipHeight: 10.0,
                   edge: Edge.RIGHT,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      color: Utils.strToColor("Arrow"),
-                      width: 100.0,
-                      height: 50.0,
-                      child: Center(child: Text('Arrow')),
-                    ),
+                  child: Container(
+                    color: Utils.strToColor("Arrow"),
+                    width: 100.0,
+                    height: 50.0,
+                    child: Center(child: Text('Arrow')),
                   ),
                 ),
                 Gaps.vGap8,
                 Message(
-                  child: GestureDetector(
-                    onTap: () => {},
-                    child: Container(
-                      color: Utils.strToColor("Message"),
-                      width: 100.0,
-                      height: 100.0,
-                      child: Center(
-                          child: Padding(
-                        padding: const EdgeInsets.only(bottom: 20.0),
-                        child: Text('Message'),
-                      )),
-                    ),
+                  child: Container(
+                    color: Utils.strToColor("Message"),
+                    width: 100.0,
+                    height: 100.0,
+                    child: Center(
+                        child: Padding(
+                      padding: const EdgeInsets.only(bottom: 20.0),
+                      child: Text('Message'),
+                    )),
                   ),
                   triangleX1: 60.0,
                   triangleX2: 80.0,
@@ -124,14 +103,11 @@ class ClippyWidget extends StatelessWidget {
                 Trapezoid(
                   cutLength: 15.0,
                   edge: Edge.TOP,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      color: Utils.strToColor("Trapezoid"),
-                      width: 100.0,
-                      height: 100.0,
-                      child: Center(child: Text('Trapezoid')),
-                    ),
+                  child: Container(
+                    color: Utils.strToColor("Trapezoid"),
+                    width: 100.0,
+                    height: 100.0,
+                    child: Center(child: Text('Trapezoid')),
                   ),
                 ),
                 Gaps.vGap8,
@@ -139,27 +115,21 @@ class ClippyWidget extends StatelessWidget {
                   edge: Edge.BOTTOM,
                   arcType: ArcType.CONVEX,
                   height: 20.0,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      color: Utils.strToColor("Arc"),
-                      width: 100.0,
-                      height: 50.0,
-                      child: Center(child: Text('Arc')),
-                    ),
+                  child: Container(
+                    color: Utils.strToColor("Arc"),
+                    width: 100.0,
+                    height: 50.0,
+                    child: Center(child: Text('Arc')),
                   ),
                 ),
                 Gaps.vGap8,
                 Bevel(
                   cutLength: 10.0,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      color: Utils.strToColor("Bevel"),
-                      width: 100.0,
-                      height: 100.0,
-                      child: Center(child: Text('Bevel')),
-                    ),
+                  child: Container(
+                    color: Utils.strToColor("Bevel"),
+                    width: 100.0,
+                    height: 100.0,
+                    child: Center(child: Text('Bevel')),
                   ),
                 ),
                 Gaps.vGap8,

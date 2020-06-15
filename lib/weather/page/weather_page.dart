@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/he_weather.dart';
-import 'package:flutter_app/service/api_service.dart';
+import 'city_manager.dart';
+import '../../bean/he_weather.dart';
 
 import '../../page_index.dart';
-import '../page/city_page.dart';
+
 import '../ui/air_view.dart';
 import '../ui/hourly_view.dart';
 import '../ui/lifestyle_view.dart';
@@ -11,30 +11,22 @@ import '../ui/now_view.dart';
 import '../ui/sun_view.dart';
 import '../ui/weekly_view.dart';
 
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_easyrefresh/material_header.dart';
-
 class WeatherPage extends StatefulWidget {
-  final String cityname;
+  final String cityName;
 
-  WeatherPage(this.cityname, {Key key}) : super(key: key);
+  WeatherPage(this.cityName, {Key key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => WeatherPageState();
+  createState() => WeatherPageState();
 }
 
 class WeatherPageState extends State<WeatherPage> {
-  GlobalKey<EasyRefreshState> _easyRefreshKey =
-      new GlobalKey<EasyRefreshState>();
-  GlobalKey<RefreshHeaderState> _headerKey =
-      new GlobalKey<RefreshHeaderState>();
-
   HeWeather weather;
-  HeWeather air;
+  HeWeather airData;
 
-  AirNowCity air_now_city;
-  NowBean now;
-  List<DailyForecast> daily_forecast = [];
+  Air air;
+  NowWeather now;
+  List<DailyForecast> dailyForecast = [];
   List<Lifestyle> lifestyle = [];
   List<Hourly> hourly = [];
 
@@ -46,12 +38,19 @@ class WeatherPageState extends State<WeatherPage> {
 
   Color barColor = Colors.transparent;
 
+  bool favorite = false;
+
+  String title;
+
   @override
   void initState() {
     super.initState();
+
+    title = widget.cityName;
+
     scrollController.addListener(() {
       var offset = scrollController.offset;
-      if (offset < 0) {
+      if (offset <= 0) {
         if (navAlpha != 0) {
           setState(() {
             navAlpha = 0;
@@ -68,7 +67,7 @@ class WeatherPageState extends State<WeatherPage> {
       }
     });
 
-    _getWeather(widget.cityname);
+    _getWeather(title);
   }
 
   @override
@@ -78,26 +77,25 @@ class WeatherPageState extends State<WeatherPage> {
   }
 
   /// 根据城市名查询该城市天气预报
-  _getWeather(String cityname) async {
-    air = await ApiService.getAir(cityname);
-    weather = await ApiService.getHeWeather(cityname);
+  _getWeather(String cityName) async {
+    airData = await ApiService.getAir(cityName);
+    weather = await ApiService.getHeWeather(cityName);
 
-    background = weatherBg(now?.cond_code);
+    if (weather != null) {
+      now = weather.now;
 
-    barColor = await Utils.getImageDominantColor(background, type: "asset");
+      background = weatherBg(now?.condCode);
+      barColor = await Utils.getImageDominantColor(background, type: "asset");
 
-    setState(() {
-      if (weather != null) {
-        now = weather.now;
-        background = weatherBg(now?.cond_code);
-        daily_forecast = weather.daily_forecast;
-        lifestyle = weather.lifestyle;
-        hourly = weather.hourly;
-      }
-      if (air != null) {
-        air_now_city = air.air_now_city;
-      }
-    });
+      dailyForecast = weather.dailyForecast;
+      lifestyle = weather.lifestyle;
+      hourly = weather.hourly;
+    }
+    if (airData != null) {
+      air = airData.airNowCity;
+    }
+
+    setState(() {});
   }
 
   @override
@@ -106,44 +104,69 @@ class WeatherPageState extends State<WeatherPage> {
       body: Stack(children: <Widget>[
         Image.asset(background, fit: BoxFit.fitHeight, height: double.infinity),
         _buildContentView(),
-        Container(
-            height: Utils.navigationBarHeight,
-            child: AppBar(
-                centerTitle: true,
-                title: Text('${widget.cityname}'),
-                elevation: 0.0,
-                backgroundColor: Color.fromARGB((navAlpha * 255).toInt(),
-                    barColor.red, barColor.green, barColor.blue),
-                actions: <Widget>[
-                  IconButton(
-                      icon: Icon(Icons.blur_on, color: Colors.white),
-                      onPressed: () => pushNewPage(context, CityPage()))
-                ]))
+        ToolBar(
+            title: GestureDetector(
+                child: Row(children: <Widget>[
+                  Text('$title',
+                      style: TextStyle(fontSize: 18.0, color: Colors.white)),
+                  Icon(Icons.keyboard_arrow_down, color: Colors.white)
+                ], mainAxisSize: MainAxisSize.min),
+                onTap: () =>
+                    pushNewPage(context, CityPage(), callBack: (value) {
+                      if (value != null && title != value) {
+                        weather = null;
+                        airData = null;
+
+                        setState(() {
+                          title = value;
+                        });
+                        _getWeather(title);
+                      }
+                    })),
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.domain),
+                  onPressed: () => pushNewPage(context, CityManagerPage(),
+                          callBack: (value) {
+                        if (value != null && title != value) {
+                          weather = null;
+                          airData = null;
+
+                          setState(() {
+                            title = value;
+                          });
+                          _getWeather(title);
+                        }
+                      })),
+              LikeButton(
+                  size: 65,
+                  normalColor: Colors.white,
+                  onClicked: (bool isLiked) {
+                    favorite = isLiked;
+                  })
+            ],
+            backgroundColor: Color.fromARGB((navAlpha * 255 * 0.8).toInt(),
+                barColor.red, barColor.green, barColor.blue))
       ]),
     );
   }
 
   Widget _buildContentView() {
-    if (null == weather) {
-      return getLoadingWidget();
+    if (null == weather || airData == null) {
+      return LoadingWidget();
     }
-    return EasyRefresh(
-        key: _easyRefreshKey,
-        refreshHeader: MaterialHeader(
-          key: _headerKey,
-        ),
+    return RefreshIndicator(
         child: SingleChildScrollView(
+            padding: EdgeInsets.zero,
             controller: scrollController,
             child: Column(children: <Widget>[
-              NowView(now,
-                  daily_forecast: daily_forecast[0],
-                  air_now_city: air_now_city),
-              AirView(air_now_city),
+              NowView(now, dailyForecast: dailyForecast?.first, air: air),
+              air == null ? Container() : AirView(air),
               HourlyView(hourly),
-              WeeklyView(daily_forecast),
-              LifestyleView(lifestyle),
-              SunView(this.widget.cityname)
+              WeeklyView(dailyForecast),
+              lifestyle.length == 0 ? Container() : LifestyleView(lifestyle),
+              SunView(this.widget.cityName)
             ])),
-        onRefresh: () => _getWeather(widget.cityname));
+        onRefresh: () => _getWeather(widget.cityName));
   }
 }

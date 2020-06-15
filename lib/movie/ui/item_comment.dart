@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/reviews.dart';
-import 'package:flutter_app/custom_widgets/smooth_star_rating.dart';
+import 'package:flutter_app/bean/movie.dart';
+
+import '../../page_index.dart';
 
 class ItemComment extends StatelessWidget {
   final Reviews comment;
@@ -9,7 +10,7 @@ class ItemComment extends StatelessWidget {
   const ItemComment({
     Key key,
     this.comment,
-    this.background = Colors.blue,
+    this.background = Colors.grey,
   }) : super(key: key);
 
   @override
@@ -28,7 +29,7 @@ class ItemComment extends StatelessWidget {
                 backgroundImage: NetworkImage(comment.author.avatar),
                 radius: 16.0,
               ),
-              SizedBox(width: 10),
+              Gaps.hGap10,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -40,7 +41,7 @@ class ItemComment extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  SizedBox(height: 3),
+                  Gaps.vGap3,
                   Row(
                     children: <Widget>[
                       SmoothStarRating(
@@ -50,9 +51,9 @@ class ItemComment extends StatelessWidget {
                         size: 20,
                         allowHalfRating: false,
                       ),
-                      SizedBox(width: 10),
+                      Gaps.hGap10,
                       Text(
-                        comment.created_at,
+                        comment.createdAt,
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
@@ -65,12 +66,12 @@ class ItemComment extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 8),
+          Gaps.vGap8,
           Text(
             comment.content,
             style: TextStyle(fontSize: 14, color: Colors.white),
           ),
-          SizedBox(height: 8),
+          Gaps.vGap8,
           Row(
             children: <Widget>[
               Icon(
@@ -78,14 +79,14 @@ class ItemComment extends StatelessWidget {
                 color: Colors.white,
                 size: 12,
               ),
-              SizedBox(width: 5),
+              Gaps.hGap5,
               Text(
-                '${comment.useful_count}',
+                '${comment.usefulCount}',
                 style: TextStyle(
                   fontSize: 12,
                   color: Colors.white,
                 ),
-              ),
+              )
             ],
           ),
         ],

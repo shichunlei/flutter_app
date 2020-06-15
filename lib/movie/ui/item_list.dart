@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/custom_widgets/smooth_star_rating.dart';
+
+import '../../page_index.dart';
 
 class ItemList extends StatelessWidget {
   final VoidCallback onTap;
@@ -13,7 +13,7 @@ class ItemList extends StatelessWidget {
   Widget build(BuildContext context) {
     /// 影片图片
     var movieImage = ImageLoadView(movie.images.medium,
-        borderRadius: BorderRadius.circular(4.0), height: 150.0, width: 100.0);
+        radius: 4, height: 150.0, width: 100.0);
 
     var casts = '';
     movie.casts.map((cast) {
@@ -77,24 +77,13 @@ class ItemList extends StatelessWidget {
               ),
             ],
           ),
-
-          /// 看过人数
-          Row(
-            children: <Widget>[
-              Text(
-                movie.collect_count.toString(),
-                style: TextStyle(fontSize: 14.0, color: Colors.orange),
-              ),
-              Text("人看过"),
-            ],
-          ),
         ],
       ),
     );
 
-    return GestureDetector(
+    return BouncingView(
       //点击事件
-      onTap: onTap,
+      onPressed: onTap,
 
       child: Card(
         child: Row(

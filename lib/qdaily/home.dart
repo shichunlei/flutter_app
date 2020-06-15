@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/bean_index.dart';
-import 'package:flutter_app/qdaily/ui/banner_view.dart';
-import 'package:flutter_app/service/api_service.dart';
+import 'package:flutter_app/enum/enum.dart';
+
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import '../page_index.dart';
-import 'article_detail.dart';
-import 'lab/lab_i_say.dart';
-import 'lab/lab_ratio.dart';
-import 'lab/lab_vote.dart';
-import 'lab/lab_you_guess.dart';
-import 'ui/item_column_type.dart';
-import 'ui/item_feed_type_index.dart';
-import 'ui/item_feed_type_one.dart';
-import 'ui/item_feed_type_two.dart';
-import 'ui/item_feed_type_zero.dart';
+import 'index.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+class QHomePage extends StatefulWidget {
+  QHomePage({Key key}) : super(key: key);
 
   @override
   createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
+class _HomePageState extends State<QHomePage>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
@@ -32,15 +22,13 @@ class _HomePageState extends State<HomePage>
   String lastKey = '0';
 
   ResponseBean responseBean;
-  List<FeedsBean> feeds = [];
   List<BannersBean> banners = [];
-  List<ColumnBean> columns = [];
-
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
 
   bool isLoadComplete = false;
 
   List<Widget> list = [];
+
+  LoaderState state = LoaderState.Loading;
 
   @override
   void initState() {
@@ -51,29 +39,41 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
-        body: feeds.length == 0 ? getLoadingWidget() : _buildBodyView());
+        backgroundColor: Colors.grey[200],
+        body: LoaderContainer(
+          loaderState: state,
+          contentView: EasyRefresh(
+              footer: BallPulseFooter(),
+              onLoad: isLoadComplete ? null : () async => getHomeData(lastKey),
+              child: ListView.separated(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  separatorBuilder: (BuildContext context, int index) =>
+                      Gaps.vGap5,
+                  itemBuilder: (BuildContext context, int index) => list[index],
+                  itemCount: list.length)),
+        ));
   }
 
   void getHomeData(String lastKey) async {
-    responseBean = await ApiService.getQdailyHomeData(lastKey);
+    responseBean = await ApiService.getQDailyHomeData(lastKey);
 
     if (responseBean == null) {
       // 请求失败
+      state = LoaderState.Failed;
     } else {
       List<Widget> _list = [];
 
       this.lastKey = responseBean?.lastKey;
       isLoadComplete = !responseBean.hasMore;
 
-      banners.addAll(responseBean.banners);
+      banners.addAll(responseBean?.banners);
       if (responseBean.banners.isNotEmpty)
         _list..add(BannerView(banners: banners));
 
       if (responseBean.feeds.isNotEmpty) {
-        feeds.addAll(responseBean?.feeds);
-
-        responseBean.feeds.forEach((feed) {
+        responseBean?.feeds?.forEach((feed) {
           Widget view;
           if (feed.type == 1) {
             if (feed.newsList.isNotEmpty) {
@@ -97,36 +97,39 @@ class _HomePageState extends State<HomePage>
           if (feed.type == 0) {
             view = ItemFeedTypeZero(
                 feedsBean: feed,
+                showTop: true,
                 onTap: () {
-                  if (feed?.post?.category?.id == 2 // 我说
-                          ||
-                          feed?.post?.category?.id == 3 // 焦点小组
-                      ) {
+                  String tag =
+                      'labs-${feed?.post?.id}-${feed?.post?.category?.id}';
+
+                  if (feed?.post?.category?.id == 1) {
+                    // 投票
                     pushNewPage(
-                        context,
-                        LabISayPage(
-                            id: feed?.post?.id,
-                            tag:
-                                'labs-${feed?.post?.id}-${feed?.post?.category?.id}',
-                            post: feed?.post));
-                  } else if (feed?.post?.category?.id == 1) // 投票
-                  {
+                        context, LabVotePage(tag: tag, post: feed?.post));
+                  }
+                  if (feed?.post?.category?.id == 2) {
+                    // 我说
                     pushNewPage(
-                        context,
-                        LabVotePage(
-                            id: feed?.post?.id,
-                            tag:
-                                'labs-${feed?.post?.id}-${feed?.post?.category?.id}',
-                            post: feed?.post));
-                  } else if (feed?.post?.category?.id == 6 // 你谁啊
-                          ||
-                          feed?.post?.category?.id == 5 // 你猜
-                      ) //
-                  {
-                    pushNewPage(context, LabYouGuessPage(post: feed?.post));
-                  } else if (feed?.post?.category?.id == 4) // 42%
-                  {
-                    pushNewPage(context, LabRatioPage(id: feed?.post?.id));
+                        context, LabISayPage(tag: tag, post: feed?.post));
+                  }
+                  if (feed?.post?.category?.id == 3) {
+                    // 焦点小组
+                    // pushNewPage(context, LabISayPage(tag: tag, post: feed?.post));
+                  }
+                  if (feed?.post?.category?.id == 4) {
+                    // 42%
+                    pushNewPage(
+                        context, LabRatioPage(post: feed?.post, tag: tag));
+                  }
+                  if (feed?.post?.category?.id == 5) {
+                    //你猜
+                    pushNewPage(
+                        context, LabYouGuessPage(post: feed?.post, tag: tag));
+                  }
+                  if (feed?.post?.category?.id == 6) {
+                    // 你谁啊
+                    pushNewPage(
+                        context, LabWhoPage(post: feed?.post, tag: tag));
                   }
                 },
                 tag: 'labs-${feed?.post?.id}');
@@ -136,8 +139,6 @@ class _HomePageState extends State<HomePage>
       }
 
       if (responseBean.columns.isNotEmpty) {
-        columns.addAll(responseBean.columns);
-
         responseBean.columns.forEach((column) {
           Widget view = ItemColumnTypeView(
               id: column.id,
@@ -152,20 +153,9 @@ class _HomePageState extends State<HomePage>
       list.addAll(_list);
       debugPrint(
           '${this.lastKey}=============$isLoadComplete===============${list.length}');
-      setState(() {});
-    }
-  }
 
-  Widget _buildBodyView() {
-    return EasyRefresh(
-        refreshFooter: BallPulseFooter(
-            key: _footerKey, color: Colors.red, backgroundColor: Colors.white),
-        loadMore: isLoadComplete ? null : () async => getHomeData(lastKey),
-        child: ListView.separated(
-            physics: const AlwaysScrollableScrollPhysics(),
-            separatorBuilder: (BuildContext context, int index) =>
-                Container(height: 5, color: Colors.grey[200]),
-            itemBuilder: (BuildContext context, int index) => list[index],
-            itemCount: list.length));
+      state = LoaderState.Succeed;
+    }
+    setState(() {});
   }
 }

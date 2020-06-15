@@ -1,22 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/movie/ui/classify_section_view.dart';
 
-class MovieClassifyPage extends StatefulWidget {
-  @override
-  _MovieClassifyPageState createState() => _MovieClassifyPageState();
-}
-
-class _MovieClassifyPageState extends State<MovieClassifyPage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+class MovieClassifyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

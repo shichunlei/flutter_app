@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/movie/page/movie_ranking_sub_page.dart';
+
 import 'package:flutter_app/service/api_url.dart';
+
+import '../index.dart';
 
 class MovieRakingHome extends StatefulWidget {
   final int index;
+  final List<Movie> movies;
 
-  MovieRakingHome({Key key, this.index = 0}) : super(key: key);
+  MovieRakingHome({Key key, this.index = 0, this.movies}) : super(key: key);
 
   @override
-  _MovieRakingHomeState createState() => _MovieRakingHomeState();
+  createState() => _MovieRakingHomeState();
 }
 
 class _MovieRakingHomeState extends State<MovieRakingHome>
@@ -19,15 +22,13 @@ class _MovieRakingHomeState extends State<MovieRakingHome>
   void initState() {
     super.initState();
 
-    // Initialize the Tab Controller
     controller =
         TabController(length: 3, initialIndex: widget.index, vsync: this);
   }
 
   @override
-  void dispost() {
-    // Dispost of the Tab Controller
-    controller.dispose();
+  void dispose() {
+    controller?.dispose();
 
     super.dispose();
   }
@@ -54,8 +55,8 @@ class _MovieRakingHomeState extends State<MovieRakingHome>
         ),
       ),
       body: _tabBarView(<Widget>[
-        MovieRankingSubPage(ApiUrl.NEW_MOVIES_URL),
         MovieRankingSubPage(ApiUrl.WEEKLY_MOVIES_URL),
+        MovieRankingSubPage(ApiUrl.NEW_MOVIES_URL),
         MovieRankingSubPage(ApiUrl.US_MOVIES_URL),
       ]),
     );
@@ -65,8 +66,8 @@ class _MovieRakingHomeState extends State<MovieRakingHome>
     return TabBar(
       isScrollable: true,
       tabs: <Tab>[
-        Tab(text: "新片榜"),
         Tab(text: "口碑榜"),
+        Tab(text: "新片榜"),
         Tab(text: "北美票房榜"),
       ],
       // setup the controller

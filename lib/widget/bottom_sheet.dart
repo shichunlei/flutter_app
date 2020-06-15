@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../page_index.dart';
 
 class BottomSheetWidget extends StatefulWidget {
   BottomSheetWidget({Key key}) : super(key: key);
@@ -46,24 +49,20 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                 },
                 child: Text("Persistent 1"),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-              ),
+              Gaps.vGap10,
               Builder(
                 builder: (context) => RaisedButton(
-                      onPressed: () {
-                        showBottomSheet(
-                            context: context,
-                            builder: (builder) {
-                              return _bottomSheetItem(context);
-                            }).closed.whenComplete(() {});
-                      },
-                      child: Text("Persistent 2"),
-                    ),
+                  onPressed: () {
+                    showBottomSheet(
+                        context: context,
+                        builder: (builder) {
+                          return _bottomSheetItem(context);
+                        }).closed.whenComplete(() {});
+                  },
+                  child: Text("Persistent 2"),
+                ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-              ),
+              Gaps.vGap10,
               RaisedButton(
                 onPressed: () {
                   showModalBottomSheet(
@@ -73,6 +72,28 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                       });
                 },
                 child: Text("Modal"),
+              ),
+              Gaps.vGap10,
+              RaisedButton(
+                onPressed: () {
+                  var names = ['魏祖', '蓝二', '江姐', '江舅', '瑶妹'];
+                  showCupertinoModalPopup(
+                      context: context,
+                      builder: (cxt) {
+                        return Container(
+                          height: 200,
+                          child: CupertinoPicker(
+                              itemExtent: 40,
+                              onSelectedItemChanged: (position) {
+                                print('The position is ${names[position]}');
+                              },
+                              children: names.map((e) {
+                                return Text(e);
+                              }).toList()),
+                        );
+                      });
+                },
+                child: Text("CupertinoPicker"),
               ),
             ],
           ),
@@ -87,16 +108,16 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
       children: List.generate(
         20,
         (index) => ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.blue,
-                child: Text('${index + 1}'),
-              ),
-              title: Text('Item ${index + 1}'),
-              onTap: () {
-                print('tapped item ${index + 1}');
-                Navigator.pop(context);
-              },
-            ),
+          leading: CircleAvatar(
+            backgroundColor: Colors.blue,
+            child: Text('${index + 1}'),
+          ),
+          title: Text('Item ${index + 1}'),
+          onTap: () {
+            print('tapped item ${index + 1}');
+            Navigator.pop(context);
+          },
+        ),
       ),
     );
   }

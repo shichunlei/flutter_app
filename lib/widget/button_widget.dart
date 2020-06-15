@@ -7,70 +7,134 @@ class ButtonWidget extends StatefulWidget {
 }
 
 class ButtonWidgetState extends State<ButtonWidget> {
-  Widget _buttonType;
+  String _buttonType;
 
   /// add line
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  @override
-  void initState() {
-    super.initState();
-    _buttonType = buildRaisedButton();
-  }
+  bool mini = false;
+  bool extended = false;
 
   @override
   Widget build(BuildContext context) {
+    Widget bodyView;
+
+    switch (_buttonType) {
+      case 'CUPERTINO':
+        bodyView = buildCupertinoButton();
+        break;
+      case 'ICON':
+        bodyView = buildIconButton();
+        break;
+      case 'ACTION':
+        bodyView = buildFAButton();
+        break;
+      case 'DROPDOWN':
+        bodyView = buildDropdownButton();
+        break;
+      case 'OUTLINE':
+        bodyView = buildOutlineButton();
+        break;
+      case 'FLAT':
+        bodyView = buildFlatButton();
+        break;
+      case 'MATERIAL':
+        bodyView = buildMaterialButton();
+        break;
+      default:
+        bodyView = buildRaisedButton();
+        break;
+    }
+
     return Scaffold(
       /// add line
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text("Button Widget"),
         actions: <Widget>[
-          PopupMenuButton<Widget>(
-            onSelected: (Widget value) {
+          PopupMenuButton<String>(
+            onSelected: (String value) {
               setState(() {
                 _buttonType = value;
               });
             },
-            itemBuilder: (BuildContext context) => <PopupMenuItem<Widget>>[
-                  PopupMenuItem<Widget>(
-                    value: buildRaisedButton(),
-                    child: Text('RAISED BUTTON'),
-                  ),
-                  PopupMenuItem<Widget>(
-                    value: buildFlatButton(),
-                    child: Text('FLAT BUTTON'),
-                  ),
-                  PopupMenuItem<Widget>(
-                    value: buildOutlineButton(),
-                    child: Text('OUTLINE BUTTON'),
-                  ),
-                  PopupMenuItem<Widget>(
-                    value: buildIconButton(),
-                    child: Text('ICON BUTTON'),
-                  ),
-                  PopupMenuItem<Widget>(
-                    value: buildActionButton(),
-                    child: Text('ACTION BUTTON'),
-                  ),
-                  PopupMenuItem<Widget>(
-                    value: buildDropdownButton(),
-                    child: Text('DROPDOWN BUTTON'),
-                  ),
-                  PopupMenuItem<Widget>(
-                    value: buildCupertinoButton(),
-                    child: Text('CUPERTINO BUTTON'),
-                  ),
-                ],
+            itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
+              PopupMenuItem<String>(
+                value: 'MATERIAL',
+                child: Text('MaterialButton'),
+              ),
+              PopupMenuItem<String>(
+                value: 'RAISED',
+                child: Text('RAISED BUTTON'),
+              ),
+              PopupMenuItem<String>(
+                value: 'FLAT',
+                child: Text('FLAT BUTTON'),
+              ),
+              PopupMenuItem<String>(
+                value: 'OUTLINE',
+                child: Text('OUTLINE BUTTON'),
+              ),
+              PopupMenuItem<String>(
+                value: 'ICON',
+                child: Text('ICON BUTTON'),
+              ),
+              PopupMenuItem<String>(
+                value: 'ACTION',
+                child: Text('FloatingActionButton'),
+              ),
+              PopupMenuItem<String>(
+                value: 'DROPDOWN',
+                child: Text('DROPDOWN BUTTON'),
+              ),
+              PopupMenuItem<String>(
+                value: 'CUPERTINO',
+                child: Text('CUPERTINO BUTTON'),
+              ),
+            ],
           )
         ],
       ),
-      body: Center(
-        child: _buttonType,
-      ),
+      body: Center(child: bodyView),
+      floatingActionButton: _buttonType == 'ACTION'
+          ? extended
+              ? FloatingActionButton.extended(
+                  onPressed: () {
+                    setState(() {
+                      extended = false;
+                    });
+                  },
+                  icon: Icon(Icons.android),
+                  label: Text('Android'))
+              : FloatingActionButton(
+                  onPressed: () {
+                    setState(() {
+                      extended = true;
+                    });
+                  },
+                  child: Icon(Icons.android),
+                  tooltip: 'FloatingActionButton ToolTip',
+                )
+          : null,
     );
   }
 
+  //  ButtonTextTheme textTheme,          // 按钮文字主题
+  //      Color textColor,                    // 子元素颜色
+  //  Color disabledTextColor,            // 不可点击时子元素颜色
+  //      Color color,                        // 按钮背景色
+  //  Color disabledColor,                // 不可点击时按钮背景色
+  //      Color highlightColor,               // 点击高亮时按钮背景色
+  //  Color splashColor,                  // 水波纹颜色
+  //      Brightness colorBrightness,         // 颜色对比度
+  //  double elevation,                   // 阴影高度
+  //      double highlightElevation,          // 高亮时阴影高度
+  //  double disabledElevation,           // 不可点击时阴影高度
+  //      EdgeInsetsGeometry padding,         // 子元素周围边距
+  //  ShapeBorder shape,                  // 按钮样式
+  //      Clip clipBehavior,      // 抗锯齿剪切效果
+  //  MaterialTapTargetSize materialTapTargetSize,
+  //      Duration animationDuration,         // 动画时长
   Widget buildRaisedButton() {
     return Align(
       alignment: const Alignment(0.0, -0.2),
@@ -93,6 +157,23 @@ class ButtonWidgetState extends State<ButtonWidget> {
                 child: Text('DISABLED', semanticsLabel: 'DISABLED BUTTON 1'),
                 onPressed: null,
               ),
+            ],
+          ),
+          ButtonBar(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              RaisedButton(
+                  child: Text('R.nomal'),
+                  textTheme: ButtonTextTheme.normal,
+                  onPressed: () {}),
+              RaisedButton(
+                  child: Text('R.primary'),
+                  textTheme: ButtonTextTheme.primary,
+                  onPressed: () {}),
+              RaisedButton(
+                  child: Text('R.accent'),
+                  textTheme: ButtonTextTheme.accent,
+                  onPressed: () {})
             ],
           ),
           ButtonBar(
@@ -121,6 +202,17 @@ class ButtonWidgetState extends State<ButtonWidget> {
     );
   }
 
+  //  ButtonTextTheme textTheme,          // 按钮文字主题
+  //      Color textColor,                    // 子元素颜色
+  //  Color disabledTextColor,            // 不可点击时子元素颜色
+  //      Color color,                        // 按钮背景色
+  //  Color disabledColor,                // 不可点击时按钮背景色
+  //      Color highlightColor,               // 点击高亮时按钮背景色
+  //  Color splashColor,                  // 水波纹颜色
+  //      Brightness colorBrightness,         // 颜色对比度
+  //  EdgeInsetsGeometry padding,         // 子元素周围边距
+  //      ShapeBorder shape,                  // 按钮样式
+  //  Clip clipBehavior = Clip.none,      // 抗锯齿剪切效果
   Widget buildFlatButton() {
     return Align(
       alignment: const Alignment(0.0, -0.2),
@@ -151,6 +243,23 @@ class ButtonWidgetState extends State<ButtonWidget> {
           ButtonBar(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
+              FlatButton(
+                  child: Text('F.nomal'),
+                  textTheme: ButtonTextTheme.normal,
+                  onPressed: () {}),
+              FlatButton(
+                  child: Text('F.primary'),
+                  textTheme: ButtonTextTheme.primary,
+                  onPressed: () {}),
+              FlatButton(
+                  child: Text('F.accent'),
+                  textTheme: ButtonTextTheme.accent,
+                  onPressed: () {}),
+            ],
+          ),
+          ButtonBar(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
               FlatButton.icon(
                 icon: const Icon(Icons.add_circle_outline, size: 18.0),
                 label:
@@ -173,100 +282,166 @@ class ButtonWidgetState extends State<ButtonWidget> {
     );
   }
 
+  //  ButtonTextTheme textTheme,          // 按钮文字主题
+  //      Color textColor,                    // 文字颜色
+  //  Color disabledTextColor,            // 不可点击时文字颜色
+  //      Color color,                        // 按钮背景色
+  //  Color highlightColor,               // 高亮时颜色
+  //      Color splashColor,                  // 水波纹颜色
+  //  double highlightElevation,          // 高亮时阴影高度
+  //  this.borderSide,                    // 边框样式
+  //  this.disabledBorderColor,           // 不可点击时边框颜色
+  //  this.highlightedBorderColor,        // 高亮时边框颜色
+  //  EdgeInsetsGeometry padding,         // 内容周围边距
+  //      ShapeBorder shape,                  // 按钮样式
+  //  Clip clipBehavior = Clip.none,      // 抗锯齿剪切效果
   Widget buildOutlineButton() {
-    return Align(
-      alignment: const Alignment(0.0, -0.2),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ButtonBar(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              OutlineButton(
-                child: const Text('OUTLINE BUTTON',
-                    semanticsLabel: 'OUTLINE BUTTON 1'),
-                onPressed: () {
-                  // Perform some action
-                },
-                shape: const StadiumBorder(),
-              ),
-              OutlineButton(
-                child: Text('DISABLED', semanticsLabel: 'DISABLED BUTTON 5'),
-                onPressed: null,
-              ),
-            ],
-          ),
-          ButtonBar(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              OutlineButton.icon(
-                icon: const Icon(Icons.add, size: 18.0),
-                label: const Text('OUTLINE BUTTON',
-                    semanticsLabel: 'OUTLINE BUTTON 2'),
-                onPressed: () {
-                  // Perform some action
-                },
-              ),
-              OutlineButton.icon(
-                icon: const Icon(Icons.add, size: 18.0),
-                label:
-                    const Text('DISABLED', semanticsLabel: 'DISABLED BUTTON 6'),
-                onPressed: null,
-                shape: const StadiumBorder(),
-              ),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        ButtonBar(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            OutlineButton(
+              child: const Text('OUTLINE BUTTON',
+                  semanticsLabel: 'OUTLINE BUTTON 1'),
+              onPressed: () {
+                // Perform some action
+              },
+              shape: const StadiumBorder(),
+            ),
+            OutlineButton(
+              child: Text('DISABLED', semanticsLabel: 'DISABLED BUTTON 5'),
+              onPressed: null,
+            ),
+          ],
+        ),
+        ButtonBar(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            OutlineButton(
+                child: Text('O.nomal'),
+                textTheme: ButtonTextTheme.normal,
+                onPressed: () {}),
+            OutlineButton(
+                child: Text('O.primary'),
+                textTheme: ButtonTextTheme.primary,
+                onPressed: () {}),
+            OutlineButton(
+                child: Text('O.accent'),
+                textTheme: ButtonTextTheme.accent,
+                onPressed: () {})
+          ],
+        ),
+        ButtonBar(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            OutlineButton.icon(
+              icon: const Icon(Icons.add, size: 18.0),
+              label: const Text('OUTLINE BUTTON',
+                  semanticsLabel: 'OUTLINE BUTTON 2'),
+              onPressed: () {
+                // Perform some action
+              },
+            ),
+            OutlineButton.icon(
+              icon: const Icon(Icons.add, size: 18.0),
+              label:
+                  const Text('DISABLED', semanticsLabel: 'DISABLED BUTTON 6'),
+              onPressed: null,
+              shape: const StadiumBorder(),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
-  bool iconButtonToggle = false;
-
+  //  iconSize,   // 图标大小
+  //  padding,   // 图标周围间距
+  //  alignment,          // 图标位置
+  //  icon,    // 图标资源
+  //  color,             // 图标颜色
+  //  highlightColor,    // 点击高亮颜色
+  //  splashColor,       // 水波纹颜色
+  //  disabledColor,     // 不可点击时高亮颜色
+  //  tooltip            // 长按提示
   Widget buildIconButton() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Row(children: <Widget>[
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        ButtonBar(
+          children: <Widget>[
             IconButton(
-                icon: const Icon(Icons.thumb_up, semanticLabel: 'Thumbs up'),
-                onPressed: () {
-                  setState(() => iconButtonToggle = !iconButtonToggle);
-                },
-                color:
-                    iconButtonToggle ? Theme.of(context).primaryColor : null),
+              icon: const Icon(Icons.thumb_up, semanticLabel: 'Thumbs up'),
+              // 图标大小
+              iconSize: 48,
+              // 图标周围间距
+              padding: EdgeInsets.all(10),
+              onPressed: () {},
+              // 图标颜色
+              color: Colors.redAccent,
+              // 点击高亮颜色
+              highlightColor: Colors.green,
+              // 水波纹颜色
+              splashColor: Colors.pinkAccent,
+              // 长按提示
+              tooltip: '赞👍',
+            ),
             const IconButton(
-                icon: Icon(Icons.thumb_up, semanticLabel: 'Thumbs not up'),
-                onPressed: null)
-          ], mainAxisAlignment: MainAxisAlignment.center),
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-              children: <Widget>[CloseButton(), BackButton()],
-              mainAxisAlignment: MainAxisAlignment.center)
-        ],
-      ),
+              icon: Icon(Icons.thumb_up, semanticLabel: 'Thumbs not up'),
+              onPressed: null,
+              // 不可点击时高亮颜色
+              disabledColor: Colors.orange,
+            )
+          ],
+          mainAxisSize: MainAxisSize.min,
+        ),
+        ButtonBar(mainAxisSize: MainAxisSize.min, children: <Widget>[
+          CloseButton(),
+          BackButton(),
+          BackButton(
+            color: Colors.redAccent,
+          )
+        ]),
+      ],
     );
   }
 
-  Widget buildActionButton() {
-    return Align(
-      alignment: const Alignment(0.0, -0.2),
-      child: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          // Perform some action
-          _displaySnackBar();
-        },
-        tooltip: 'floating action button',
-      ),
+  //    this.tooltip,                           // 长按提醒
+  //    this.foregroundColor,                   // 按钮上子元素颜色
+  //    this.backgroundColor,                   // 背景色
+  //    this.heroTag, // Hero 动画标签
+  //    this.elevation,                   // 阴影
+  //    this.highlightElevation,         // 高亮时阴影
+  //    this.mini,                      // 尺寸大小，分为 mini 和 default
+  //    this.shape,      // 样式形状
+  //    this.clipBehavior,          // 抗锯齿剪切效果
+  //    this.materialTapTargetSize,             // 点击目标的最小尺寸
+  //    this.isExtended,                // 是否采用 .extended 方式
+  Widget buildFAButton() {
+    return FloatingActionButton(
+      mini: mini,
+      onPressed: () {
+        setState(() {
+          mini = !mini;
+        });
+      },
+      child: Icon(Icons.android),
+      tooltip: 'FloatingActionButton ToolTip',
+      foregroundColor: Colors.redAccent.withOpacity(0.7),
+      backgroundColor: Colors.green.withOpacity(0.4),
+      elevation: 0.0,
+      highlightElevation: 10.0,
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(14.0))),
+      clipBehavior: Clip.antiAlias,
+      heroTag: 'FloatingActionButton',
     );
   }
 
-  // https://en.wikipedia.org/wiki/Free_Four
-  String dropdown1Value = 'Free';
+  String dropdown1Value = 'Three';
   String dropdown2Value;
   String dropdown3Value = 'Four';
 
@@ -285,7 +460,7 @@ class ButtonWidgetState extends State<ButtonWidget> {
                   dropdown1Value = newValue;
                 });
               },
-              items: <String>['One', 'Two', 'Free', 'Four']
+              items: <String>['One', 'Two', 'Three', 'Four']
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
@@ -307,7 +482,7 @@ class ButtonWidgetState extends State<ButtonWidget> {
                   dropdown2Value = newValue;
                 });
               },
-              items: <String>['One', 'Two', 'Free', 'Four']
+              items: <String>['One', 'Two', 'Three', 'Four']
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
@@ -331,7 +506,7 @@ class ButtonWidgetState extends State<ButtonWidget> {
               items: <String>[
                 'One',
                 'Two',
-                'Free',
+                'Three',
                 'Four',
                 'Can',
                 'I',
@@ -420,6 +595,38 @@ class ButtonWidgetState extends State<ButtonWidget> {
           },
         ),
       ),
+    );
+  }
+
+  //  onHighlightChanged,        // 高亮变化的回调
+  //  textTheme,                 // 文字主题
+  //  textColor,                 // 文字颜色
+  //  disabledTextColor,         // 不可点击时文字颜色
+  //  color,                     // 背景色
+  //  disabledColor,             // 不可点击时背景色
+  //  highlightColor,            // 点击高亮时背景色
+  //  splashColor,               // 水波纹颜色
+  //  colorBrightness,
+  //  elevation,                 // 阴影高度
+  //  highlightElevation,        // 高亮时阴影高度
+  //  disabledElevation,         // 不可点击时阴影高度
+  //  padding,                   // 内容周围边距
+  //  shape,                     // 按钮样式
+  //  clipBehavior,  // 抗锯齿剪切效果
+  //  materialTapTargetSize,     // 点击目标的最小尺寸
+  //  animationDuration,         // 动画效果持续时长
+  //  minWidth,                  // 最小宽度
+  //  height,                    // 按钮高度
+  Widget buildMaterialButton() {
+    return MaterialButton(
+      color: Colors.teal.withOpacity(0.4),
+      height: 60.0,
+      padding: EdgeInsets.symmetric(horizontal: 40),
+      child: Text('MaterialButton'),
+      onPressed: () {},
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(50.0))),
+      clipBehavior: Clip.none,
     );
   }
 }

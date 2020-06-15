@@ -1,132 +1,163 @@
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/contact.dart';
-import 'package:flutter_app/contact/page/contact_page.dart';
-import 'package:flutter_app/contact/ui/contact_list_header.dart';
-import 'package:flutter_app/ui/suspension_tag.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:lpinyin/lpinyin.dart';
+
 import 'package:azlistview/azlistview.dart';
+import 'package:flutter_app/generated/i18n.dart';
+
+import '../../page_index.dart';
+import '../index.dart';
 
 class ContactListPage extends StatefulWidget {
   @override
-  _ContactListPageState createState() => _ContactListPageState();
+  createState() => _ContactListPageState();
 }
 
 class _ContactListPageState extends State<ContactListPage> {
-  List<Contact> _contacts = [];
-
-  int _suspensionHeight = 40;
   int _itemHeight = 70;
+
+  var data;
 
   @override
   void initState() {
     super.initState();
-    getContacts();
+
+    data = fetchData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("通讯录"), elevation: 0.0),
-        body: _contacts.isNotEmpty
-            ? AzListView(
-                data: _contacts,
-                itemBuilder: (context, model) => _buildListItem(model),
-                header: AzListViewHeader(
-                  height: 220,
-                  builder: (context) => Diagonal(
-                        axis: Axis.horizontal,
-                        position: DiagonalPosition.BOTTOM_LEFT,
-                        clipHeight: 50.0,
-                        child: ContactListHeader(
-                            name: "SCL", phone: "18601952581"),
-                      ),
-                ),
-                isUseRealIndex: true,
-                itemHeight: _itemHeight,
-                suspensionHeight: _suspensionHeight,
-                indexBarBuilder: (BuildContext context, List<String> tags,
-                    IndexBarTouchCallback onTouch) {
-                  return Container(
-                      margin:
-                          EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-                      decoration: BoxDecoration(
-                          color: Colors.grey[50],
-                          borderRadius: BorderRadius.circular(20.0),
-                          border:
-                              Border.all(color: Colors.grey[300], width: .5)),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: IndexBar(
-                              data: tags,
-                              itemHeight: 20,
-                              onTouch: (details) {
-                                onTouch(details);
-                              })));
-                },
-                indexHintBuilder: (context, hint) {
-                  return Container(
-                    alignment: Alignment.center,
-                    width: 60.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                        color: Colors.blue[700].withAlpha(200),
-                        shape: BoxShape.circle),
-                    child: Text(hint,
-                        style: TextStyle(color: Colors.white, fontSize: 30.0)),
-                  );
-                })
-            : getLoadingWidget());
+        appBar: AppBar(title: Text(S.of(context).contacts), elevation: 0.0),
+        body: FutureBuilder<List<ContactBean>>(
+            future: data,
+            builder: (_, AsyncSnapshot<List<ContactBean>> snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  debugPrint('waiting');
+                  return LoadingWidget();
+                case ConnectionState.done:
+                  debugPrint('done');
+                  if (snapshot.hasError) {
+                    debugPrint(snapshot.error.toString());
+                    return ErrorPage(text: '网络请求错误');
+                  } else {
+                    ///debugPrint('${snapshot.data.length}');
+                    if (snapshot.data.length > 0) {
+                      return AzListView(
+                          data: snapshot.data,
+                          itemBuilder: (context, model) =>
+                              _buildListItem(model),
+                          header: AzListViewHeader(
+                            height: 220,
+                            builder: (context) => Diagonal(
+                              axis: Axis.horizontal,
+                              position: DiagonalPosition.BOTTOM_LEFT,
+                              clipHeight: 50.0,
+                              child: ContactListHeader(
+                                  name: "SCL", phone: "18601952581"),
+                            ),
+                          ),
+                          isUseRealIndex: true,
+                          itemHeight: _itemHeight,
+                          indexBarBuilder: (BuildContext context,
+                              List<String> tags,
+                              IndexBarTouchCallback onTouch) {
+                            return Container(
+                                margin: EdgeInsets.symmetric(
+                                    vertical: 16.0, horizontal: 8.0),
+                                decoration: BoxDecoration(
+                                    color: Colors.grey[50],
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    border: Border.all(
+                                        color: Colors.grey[300], width: .5)),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    child: IndexBar(
+                                        data: tags,
+                                        itemHeight: 20,
+                                        onTouch: (details) =>
+                                            onTouch(details))));
+                          },
+                          indexHintBuilder: (_, String hint) => Container(
+                                alignment: Alignment.center,
+                                width: 60.0,
+                                height: 60.0,
+                                decoration: BoxDecoration(
+                                    color: Colors.blue[700].withAlpha(200),
+                                    shape: BoxShape.circle),
+                                child: Text(hint,
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 30.0)),
+                              ));
+                    }
+                    return EmptyPage(
+                        text: '暂无数据', imageAsset: 'images/empty.jpeg');
+                  }
+                  break;
+                default:
+                  return null;
+              }
+            }));
   }
 
-  void getContacts() async {
-    _contacts = await ApiService.getRandomUser();
-
-    _handleList(_contacts);
-    setState(() {});
+  Widget _buildListItem(ContactBean model) {
+    return Container(
+      padding: const EdgeInsets.only(left: 16.0, right: 34.0),
+      height: _itemHeight.toDouble(),
+      child: Container(
+        decoration: BoxDecoration(
+            border: (model.isShowSuspension)
+                ? Border(
+                    top: Divider.createBorderSide(context,
+                        color: Colors.grey, width: 0.6),
+                  )
+                : null),
+        child: Row(
+          children: <Widget>[
+            Opacity(
+                opacity: model.isShowSuspension ? 1 : 0,
+                child: SizedBox(
+                  width: 28.0,
+                  child: Text(model.firstLetter, style: TextStyles.textDark14),
+                )),
+            Expanded(
+              child: ListTile(
+                  leading: Hero(
+                    tag: '${model.fullName}',
+                    child: model?.picture?.medium == ""
+                        ? CircleAvatar(child: Text(model?.fullName[0]))
+                        : CircleAvatar(
+                            backgroundImage:
+                                NetworkImage(model?.picture?.medium),
+                          ),
+                  ),
+                  title: Text(model.fullName),
+                  subtitle: Text(model.email),
+                  onTap: () => pushNewPage(
+                      context,
+                      ContactPage(
+                          name: model.fullName,
+                          phone: model.phone,
+                          avatar: model?.picture?.large,
+                          email: model?.email,
+                          cell: model?.cell,
+                          address:
+                              "${model?.location?.street?.number} ${model?.location?.street?.name}",
+                          area:
+                              "${model?.location?.city}, ${model?.location?.state}",
+                          birthday: model?.dob?.date))),
+            )
+          ],
+        ),
+      ),
+    );
   }
 
-  void _handleList(List<Contact> contacts) {
-    if (contacts == null || contacts.isEmpty) return;
-    for (int i = 0, length = contacts.length; i < length; i++) {
-      String pinyin = PinyinHelper.getPinyinE(contacts[i].fullName);
-      String tag = pinyin[0].toUpperCase();
-      if (RegExp("[A-Z]").hasMatch(tag)) {
-        contacts[i].tagIndex = tag;
-      } else {
-        contacts[i].tagIndex = "#";
-      }
-    }
-    //根据A-Z排序
+  Future<List<ContactBean>> fetchData() async {
+    List<ContactBean> _contacts = await ApiService.getRandomUser();
+
+    /// 根据A-Z排序
     SuspensionUtil.sortListBySuspensionTag(_contacts);
-  }
-
-  Widget _buildListItem(Contact model) {
-    String susTag = model.getSuspensionTag();
-    return Column(children: <Widget>[
-      Offstage(
-          offstage: model.isShowSuspension != true,
-          child: SuspensionTag(susTag: susTag, susHeight: _suspensionHeight)),
-      SizedBox(
-          height: _itemHeight.toDouble(),
-          child: ListTile(
-              leading: model?.picture?.medium == ""
-                  ? CircleAvatar(child: Text(model?.fullName[0]))
-                  : CircleAvatar(
-                      backgroundImage: NetworkImage(model?.picture?.medium),
-                    ),
-              title: Text(model.fullName),
-              subtitle: Text(model.email),
-              onTap: () => pushNewPage(
-                  context,
-                  ContactPage(
-                    name: model.fullName,
-                    phone: model.phone,
-                    avatar: model?.picture?.large,
-                  )))),
-    ]);
+    return _contacts;
   }
 }

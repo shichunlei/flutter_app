@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/login/ui/identity_code_view.dart';
 import 'package:flutter_app/login/ui/submit_button.dart';
-import 'package:flutter_app/ui/gradual_change_view.dart';
-import 'package:flutter_app/utils/toast.dart';
+
+import '../../page_index.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   ForgotPasswordPage({Key key}) : super(key: key);
 
   @override
-  _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
+  createState() => _ForgotPasswordPageState();
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
@@ -16,11 +17,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   var _codeController = TextEditingController();
 
   FocusNode codeFocusNode = FocusNode();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -32,6 +28,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: true,
       body: Stack(
         children: <Widget>[
           GradualChangeView(
@@ -49,8 +46,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     /// 上面图片
                     Hero(
                         tag: 'login_logo',
-                        child: Image.asset('images/login_logo.png',
-                            width: 157, height: 120)),
+                        child: Image.network(
+                            'https://github.com/huextrat/TheGorgeousLogin/blob/master/assets/img/login_logo.png?raw=true',
+                            width: 157,
+                            height: 120)),
                     Padding(
                         padding: const EdgeInsets.only(top: 53),
                         child: Container(
@@ -61,8 +60,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               /// 登录按钮
                               Padding(
                                   padding: const EdgeInsets.only(top: 48.0),
-                                  child:
-                                      SubmitButton(title: "提交", onTap: () {}))
+                                  child: SubmitButton(
+                                      title: "${S.of(context).submit}",
+                                      onTap: () {}))
                             ],
                           ),
                         ))
@@ -129,7 +129,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     seconds: 10,
                     available: true,
                     onTapCallback: () {
-                      Toast.show('获取验证码', context);
+                      Toast.show(context, '获取验证码');
                     },
                   ),
                 ),

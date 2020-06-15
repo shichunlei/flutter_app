@@ -1,5 +1,5 @@
+import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/wave.dart';
 
 class WavePage extends StatefulWidget {
   WavePage({Key key}) : super(key: key);
@@ -87,7 +87,7 @@ class _WavePageState extends State<WavePage> {
         ));
   }
 
-  _buildCard({Config config, Color backgroundColor = Colors.transparent}) {
+  _buildCard({CConfig config, Color backgroundColor = Colors.transparent}) {
     return Container(
       height: 152.0,
       width: double.infinity,

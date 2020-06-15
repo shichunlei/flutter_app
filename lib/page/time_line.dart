@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/data.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
+import 'package:flutter_app/bean/doodle.dart';
+import 'package:flutter_app/page_index.dart';
 import 'package:timeline_list/timeline.dart';
 import 'package:timeline_list/timeline_model.dart';
 
 class TimeLinePage extends StatefulWidget {
   @override
-  _TimeLinePageState createState() => _TimeLinePageState();
+  createState() => _TimeLinePageState();
 }
 
 class _TimeLinePageState extends State<TimeLinePage>
@@ -52,11 +52,11 @@ class _TimeLinePageState extends State<TimeLinePage>
 
   timelineModel(TimelinePosition position) => Timeline.builder(
       itemBuilder: centerTimelineBuilder,
-      itemCount: Doodle.doodles.length,
+      itemCount: doodles.length,
       position: position);
 
   TimelineModel centerTimelineBuilder(BuildContext context, int i) {
-    final doodle = Doodle.doodles[i];
+    final doodle = doodles[i];
     final textTheme = Theme.of(context).textTheme;
     return TimelineModel(
         Card(
@@ -69,13 +69,17 @@ class _TimeLinePageState extends State<TimeLinePage>
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                ImageLoadView(doodle.doodle),
-                const SizedBox(height: 8.0),
+                ImageLoadView(
+                  doodle.doodle,
+                  height: 150.0,
+                  fit: BoxFit.cover,
+                ),
+                Gaps.vGap8,
                 Text(doodle.time, style: textTheme.caption),
-                const SizedBox(height: 8.0),
+                Gaps.vGap8,
                 Text(doodle.name,
-                    style: textTheme.title, textAlign: TextAlign.center),
-                const SizedBox(height: 8.0),
+                    style: textTheme.subtitle1, textAlign: TextAlign.center),
+                Gaps.vGap8,
               ],
             ),
           ),
@@ -83,7 +87,7 @@ class _TimeLinePageState extends State<TimeLinePage>
         position:
             i % 2 == 0 ? TimelineItemPosition.right : TimelineItemPosition.left,
         isFirst: i == 0,
-        isLast: i == Doodle.doodles.length,
+        isLast: i == doodles.length,
         iconBackground: doodle.iconBackground,
         icon: doodle.icon);
   }

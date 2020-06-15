@@ -7,7 +7,7 @@ class LoadingJsonPage extends StatefulWidget {
   LoadingJsonPage({Key key}) : super(key: key);
 
   @override
-  _LoadingJsonPageState createState() => _LoadingJsonPageState();
+  createState() => _LoadingJsonPageState();
 }
 
 class _LoadingJsonPageState extends State<LoadingJsonPage> {
@@ -37,7 +37,7 @@ class _LoadingJsonPageState extends State<LoadingJsonPage> {
   }
 
   void getJsonData() async {
-    rootBundle.loadString('assets/data/contacts.json').then((value) {
+    rootBundle.loadString('assets/data/elements.json').then((value) {
       List list = json.decode(value);
 
       setState(() {

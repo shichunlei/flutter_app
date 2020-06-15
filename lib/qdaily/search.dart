@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/bean_index.dart';
-import 'package:flutter_app/service/api_service.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import '../page_index.dart';
-import 'lab/lab_i_say.dart';
-import 'lab/lab_ratio.dart';
-import 'lab/lab_vote.dart';
-import 'lab/lab_you_guess.dart';
-import 'ui/item_feed_type_index.dart';
-import 'ui/item_feed_type_one.dart';
-import 'ui/item_feed_type_two.dart';
-import 'ui/item_feed_type_zero.dart';
+import 'index.dart';
 
 class SearchPage extends StatefulWidget {
   final String query;
@@ -27,10 +18,8 @@ class _SearchPageState extends State<SearchPage> {
   var keywords;
   String lastKey = '0';
 
-  DataBean data;
+  ResponseBean data;
   List<FeedsBean> feeds = [];
-
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
 
   bool isLoadComplete = false;
 
@@ -47,7 +36,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: feeds.length == 0 ? getLoadingWidget() : _buildBodyView());
+        body: feeds.length == 0 ? LoadingWidget() : _buildBodyView());
   }
 
   Future<void> getSearchData(String keywords, String lastKey) async {
@@ -65,9 +54,8 @@ class _SearchPageState extends State<SearchPage> {
 
   Widget _buildBodyView() {
     return EasyRefresh(
-        refreshFooter: BallPulseFooter(
-            key: _footerKey, color: Colors.red, backgroundColor: Colors.white),
-        loadMore: isLoadComplete
+        footer: BallPulseFooter(),
+        onLoad: isLoadComplete
             ? null
             : () async => getSearchData(keywords, lastKey),
         child: ListView.separated(
@@ -98,34 +86,39 @@ class _SearchPageState extends State<SearchPage> {
                 view = ItemFeedTypeZero(
                     feedsBean: feed,
                     onTap: () {
-                      if (feed?.post?.category?.id == 2 // 我说
-                              ||
-                              feed?.post?.category?.id == 3 // 焦点小组
-                          ) {
+                      String tag =
+                          'labs-${feeds[index]?.post?.id}-${feeds[index]?.post?.category?.id}';
+
+                      if (feeds[index]?.post?.category?.id == 1) {
+                        // 投票
+                        pushNewPage(context,
+                            LabVotePage(tag: tag, post: feeds[index]?.post));
+                      }
+                      if (feeds[index]?.post?.category?.id == 2) {
+                        // 我说
+                        pushNewPage(context,
+                            LabISayPage(tag: tag, post: feeds[index]?.post));
+                      }
+                      if (feeds[index]?.post?.category?.id == 3) {
+                        // 焦点小组
+                        // pushNewPage(context, LabISayPage(tag: tag, post: feed?.post));
+                      }
+                      if (feeds[index]?.post?.category?.id == 4) {
+                        // 42%
+                        pushNewPage(context,
+                            LabRatioPage(post: feeds[index]?.post, tag: tag));
+                      }
+                      if (feeds[index]?.post?.category?.id == 5) {
+                        //你猜
                         pushNewPage(
                             context,
-                            LabISayPage(
-                                id: feed?.post?.id,
-                                tag:
-                                    'labs-${feed?.post?.id}-${feed?.post?.category?.id}',
-                                post: feed?.post));
-                      } else if (feed?.post?.category?.id == 1) // 投票
-                      {
-                        pushNewPage(
-                            context,
-                            LabVotePage(
-                                id: feed?.post?.id,
-                                tag:
-                                    'labs-${feed?.post?.id}-${feed?.post?.category?.id}',
-                                post: feed?.post));
-                      } else if (feed?.post?.category?.id == 6 // 你谁啊
-                              ||
-                              feed?.post?.category?.id == 5 // 你猜
-                          ) {
-                        pushNewPage(context, LabYouGuessPage(post: feed?.post));
-                      } else if (feed?.post?.category?.id == 4) // 42%
-                      {
-                        pushNewPage(context, LabRatioPage(id: feed?.post?.id));
+                            LabYouGuessPage(
+                                post: feeds[index]?.post, tag: tag));
+                      }
+                      if (feeds[index]?.post?.category?.id == 6) {
+                        // 你谁啊
+                        pushNewPage(context,
+                            LabWhoPage(post: feeds[index]?.post, tag: tag));
                       }
                     },
                     tag: 'labs-${feed?.post?.id}');

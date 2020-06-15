@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/db/address_provider.dart';
-import 'package:flutter_app/bean/address.dart';
-import 'package:flutter_app/store/models/address_model.dart';
+import 'package:flutter_app/generated/i18n.dart';
+import 'package:flutter_app/store/index.dart';
 
 import '../../../page_index.dart';
-import 'create_edit_address_page.dart';
-import 'menu_reveal.dart';
+import '../../index.dart';
 
 class ItemAddress extends StatefulWidget {
   final Address address;
-  final AddressProvider addressProvider;
 
-  ItemAddress({Key key, @required this.address, this.addressProvider})
-      : super(key: key);
+  ItemAddress({Key key, @required this.address}) : super(key: key);
 
   @override
   createState() => _ItemAddressState();
@@ -97,7 +93,7 @@ class _ItemAddressState extends State<ItemAddress>
                             padding: EdgeInsets.all(2),
                             width: 20.0,
                             height: 20.0,
-                            child: Icon(CustomIcon.more)),
+                            child: Icon(Icons.more_horiz)),
                         onTap: () {
                           /// 开始执行动画
                           _controller.forward(from: 0.0);
@@ -146,13 +142,10 @@ class _ItemAddressState extends State<ItemAddress>
                                 pushNewPage(
                                     context,
                                     CreateEditAddressPage(
-                                        title:
-                                            '${AppLocalizations.$t('update_address')}',
-                                        id: widget.address.id,
-                                        addressProvider:
-                                            widget.addressProvider));
+                                        title: '${S.of(context).eidt_address}',
+                                        id: widget.address.id));
                               },
-                              child: Text('${AppLocalizations.$t('edit')}',
+                              child: Text('${S.of(context).edit}',
                                   style: TextStyles.textBlue14)),
                           FlatButton(
                               color: Colors.white,
@@ -162,7 +155,7 @@ class _ItemAddressState extends State<ItemAddress>
 
                                 _showDeleteBottomSheet(widget.address?.id);
                               },
-                              child: Text('${AppLocalizations.$t('delete')}',
+                              child: Text('${S.of(context).delete}',
                                   style: TextStyles.textRed14)),
                           FlatButton(
                               color: Colors.white,
@@ -171,25 +164,16 @@ class _ItemAddressState extends State<ItemAddress>
                                 _isCheck = false;
 
                                 if (!widget.address.isDefault) {
-                                  _updateAddressDefault(widget.address?.id);
+                                  Store.value<AddressModel>(context,
+                                          listen: false)
+                                      .updateAddressDefault(
+                                          context, widget.address?.id, true);
                                 }
                               },
                               child:
-                                  Text('设为默认', style: TextStyles.textGray14)),
+                                  Text('设为默认', style: TextStyles.textGrey14)),
                           Gaps.hGap8
                         ])))));
-  }
-
-  void _updateAddressDefault(int id) async {
-    bool success = await widget.addressProvider.updateAddressDefault(id, true);
-
-    if (success) {
-      Toast.show('设置成功', context);
-      Store.value<AddressModel>(context)
-          .$changeAddresses(widget.addressProvider);
-    } else {
-      Toast.show('设置失败', context);
-    }
   }
 
   _showDeleteBottomSheet(int id) async {
@@ -215,36 +199,20 @@ class _ItemAddressState extends State<ItemAddress>
                                 textColor: Colors.red,
                                 child:
                                     Text("确认删除", style: TextStyles.textRed16),
-                                onPressed: () {
-                                  _deleteAddress(id);
-                                })),
+                                onPressed: () => Store.value<AddressModel>(
+                                        context,
+                                        listen: false)
+                                    .deleteAddress(context, id))),
                         Gaps.line,
                         Container(
                             height: 54.0,
                             width: double.infinity,
                             child: FlatButton(
                                 textColor: Colors.grey,
-                                child: Text("${AppLocalizations.$t('cancel')}",
-                                    style: TextStyles.textGray16),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                }))
+                                child: Text("${S.of(context).cancel}",
+                                    style: TextStyles.textGrey16),
+                                onPressed: () => Navigator.of(context).pop()))
                       ]))));
         });
-  }
-
-  void _deleteAddress(int id) async {
-    int success = await widget.addressProvider.deleteAddress(id);
-
-    if (success == 1) {
-      Toast.show('删除成功', context);
-
-      Store.value<AddressModel>(context)
-          .$changeAddresses(widget.addressProvider);
-    } else {
-      Toast.show('删除失败', context);
-    }
-
-    Navigator.of(context).pop();
   }
 }

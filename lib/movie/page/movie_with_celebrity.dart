@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/toast.dart';
-import 'package:flutter_app/global/config.dart';
-import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_detail.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/movie/ui/item_list.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
+
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+import '../../page_index.dart';
+import '../index.dart';
 
 class MovieWithCelebrityPage extends StatefulWidget {
   final String celebrityId;
@@ -18,15 +14,12 @@ class MovieWithCelebrityPage extends StatefulWidget {
       : super(key: key);
 
   @override
-  _MovieWithCelebrityPageState createState() => _MovieWithCelebrityPageState();
+  createState() => _MovieWithCelebrityPageState();
 }
 
 class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
   int page = 1;
-  int pagesize = 30;
-
-  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
+  int pageSize = 30;
 
   bool isFirst = true;
 
@@ -38,7 +31,7 @@ class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
   void initState() {
     super.initState();
 
-    getMovieList(widget.celebrityId, page, pagesize, RefreshType.DEFAULT);
+    getMovieList(widget.celebrityId, page, pageSize, RefreshType.DEFAULT);
   }
 
   @override
@@ -55,42 +48,35 @@ class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
   }
 
   void getMovieList(
-      String celebrityId, int page, int pagesize, RefreshType type) async {
+      String celebrityId, int page, int pageSize, RefreshType type) async {
     List<Movie> list = await ApiService.getActorMovies(celebrityId,
-        start: (page - 1) * pagesize, count: pagesize);
+        start: (page - 1) * pageSize, count: pageSize);
     if (type == RefreshType.DEFAULT) {
       movies.addAll(list);
       isFirst = false;
     } else if (type == RefreshType.LOAD_MORE) {
       movies.addAll(list);
       if (list.isEmpty) {
-        Toast.show("加载完...", context,
-            duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+        Toast.show(context, "加载完...");
         isLoadComplete = true;
       }
     }
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   Widget builderPageView() {
     if (isFirst && movies.isEmpty) {
-      return getLoadingWidget();
+      return LoadingWidget();
     }
     return EasyRefresh(
-      key: _easyRefreshKey,
-      autoControl: true,
-      refreshFooter: BallPulseFooter(
-        key: _footerKey,
-        color: Colors.indigo,
-        backgroundColor: Colors.white,
-      ),
-      loadMore: isLoadComplete
+      footer: BallPulseFooter(),
+      onLoad: isLoadComplete
           ? null
           : () async {
               page++;
               getMovieList(
-                  widget.celebrityId, page, pagesize, RefreshType.LOAD_MORE);
+                  widget.celebrityId, page, pageSize, RefreshType.LOAD_MORE);
             },
       child: ListView.builder(
         itemBuilder: (context, index) {

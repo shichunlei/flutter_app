@@ -200,7 +200,7 @@ const String SSS = 'SSS';
 ///     // => 99
 ///     formatDate(DateTime(1989, 02, 1, 15, 40, 10, 9), [SS]);
 ///     // => 9
-const String S = 'S';
+const String SS = 'S';
 
 /// Outputs microsecond as three digits
 ///
@@ -249,17 +249,20 @@ const String am_ZH = 'am_ZH';
 const String z = 'z';
 const String Z = 'Z';
 
-String formatDateByMs(int microseconds, List<String> formats) {
-  return formatDate(DateTime.fromMillisecondsSinceEpoch(microseconds), formats);
+String formatDateByMs(int microseconds, {List<String> formats}) {
+  return formatDate(DateTime.fromMillisecondsSinceEpoch(microseconds),
+      formats: formats);
 }
 
-String formatDateByStr(String datetimeStr, List<String> formats) {
-  return formatDate(DateTime.parse(datetimeStr), formats);
+String formatDateByStr(String datetimeStr, {List<String> formats}) {
+  return formatDate(DateTime.parse(datetimeStr), formats: formats);
 }
 
-String formatDate(DateTime date, List<String> formats) {
+String formatDate(DateTime date, {List<String> formats}) {
   final sb = StringBuffer();
-
+  if (null == formats) {
+    formats = [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss];
+  }
   for (String format in formats) {
     if (format == yyyy) {
       sb.write(_digits(date.year, 4));
@@ -272,7 +275,7 @@ String formatDate(DateTime date, List<String> formats) {
     } else if (format == MM) {
       sb.write(monthLong[date.month - 1]);
     } else if (format == MM_ZH) {
-      sb.write(monthLongZH[date.month - 1]);
+      sb.write(monthZH[date.month - 1]);
     } else if (format == M) {
       sb.write(monthShort[date.month - 1]);
     } else if (format == dd) {
@@ -319,7 +322,7 @@ String formatDate(DateTime date, List<String> formats) {
       sb.write(date.second);
     } else if (format == SSS) {
       sb.write(_digits(date.millisecond, 3));
-    } else if (format == S) {
+    } else if (format == SS) {
       sb.write(date.second);
     } else if (format == uuu) {
       sb.write(_digits(date.microsecond, 2));
@@ -387,7 +390,7 @@ const List<String> monthLong = const <String>[
   'December'
 ];
 
-const List<String> monthLongZH = const <String>[
+const List<String> monthZH = const <String>[
   '正月',
   '二月',
   '三月',
@@ -442,14 +445,14 @@ const List<String> dayLongZH = const [
   '星期日'
 ];
 
-int dayInYear(DateTime date) =>
-    date.difference(DateTime(date.year, 1, 1)).inDays;
+int dayInYear(DateTime date) => date.difference(DateTime(date.year)).inDays;
 
 bool isToday(String dateStr) {
-  String date =
-      "${DateTime.parse(dateStr).year}-${DateTime.parse(dateStr).month}-${DateTime.parse(dateStr).day}";
-  String today =
-      '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}';
+  DateTime dateTime = DateTime.parse(dateStr);
+  String date = "${dateTime.year}-${dateTime.month}-${dateTime.day}";
+  String today = formatDate(DateTime.now(), formats: [yyyy, "-", m, "-", d]);
+
+  print(date + "------------" + today);
   return date == today;
 }
 
@@ -467,4 +470,75 @@ bool isLeapYear({String dateStr: ''}) {
     }
   }
   return (_year % 4 == 0 && _year % 100 != 0) || _year % 400 == 0;
+}
+
+/// 友好式时间展示
+/// [datetime]
+///
+String friendlyDateTime(String datetime) {
+  String friendly = '';
+  String agoOrAfter = '之前';
+
+  int _dateTime = DateTime.parse(datetime).millisecondsSinceEpoch;
+  int _now = DateTime.now().millisecondsSinceEpoch;
+
+  if (_now < _dateTime) {
+    agoOrAfter = '之后';
+  }
+
+  int elapsed = (_now - _dateTime).abs();
+
+  final int seconds = elapsed ~/ 1000;
+  final int minutes = seconds ~/ 60;
+  final int hours = minutes ~/ 60;
+  final int days = hours ~/ 24;
+  final int weeks = days ~/ 7;
+  final int mounts = days ~/ 30;
+
+  if (seconds < 60) {
+    friendly = agoOrAfter == '之后' ? '马上' : '刚刚';
+  } else if (seconds >= 60 && seconds < 60 * 60) {
+    friendly = '$minutes分钟$agoOrAfter';
+  } else if (seconds >= 60 * 60 && seconds < 60 * 60 * 24) {
+    friendly = '$hours小时$agoOrAfter';
+  } else if (seconds >= 60 * 60 * 24 && seconds < 60 * 60 * 24 * 2) {
+    friendly = agoOrAfter == '之后' ? '明天' : '昨天';
+  } else if (seconds >= 60 * 60 * 24 * 2 && seconds < 60 * 60 * 24 * 3) {
+    friendly = agoOrAfter == '之后' ? '后天' : '前天';
+  } else if (seconds >= 60 * 60 * 24 * 3 && seconds < 60 * 60 * 24 * 7) {
+    friendly = '$days天$agoOrAfter';
+  } else if (seconds >= 60 * 60 * 24 * 7 && seconds < 60 * 60 * 24 * 30) {
+    friendly = '$weeks周$agoOrAfter';
+  } else if (seconds >= 60 * 60 * 24 * 30 && seconds < 60 * 60 * 24 * 30 * 6) {
+    friendly = '$mounts月$agoOrAfter';
+  } else if (seconds >= 60 * 60 * 24 * 30 * 6 &&
+      seconds < 60 * 60 * 24 * 30 * 12) {
+    friendly = '半年$agoOrAfter';
+  } else {
+    friendly = formatDateByStr(datetime, formats: [yyyy, '-', mm, '-', dd]);
+  }
+
+  return friendly;
+}
+
+/// 根据生日计算年龄
+///
+/// [birthday] 生日
+///
+int getAge(String birthday) {
+  DateTime date = DateTime.parse(birthday);
+
+  DateTime today = DateTime.now();
+
+  int age = today.year - date.year;
+
+  if (today.month == date.month) {
+    if (today.day < date.day) {
+      age = age - 1;
+    }
+  } else if (today.month < date.month) {
+    age = age - 1;
+  }
+
+  return age;
 }

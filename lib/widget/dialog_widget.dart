@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/dialog/asset_giffy_dialog.dart';
-import 'package:flutter_app/custom_widgets/dialog/network_giffy_dialog.dart';
-import 'package:flutter_app/custom_widgets/dialog/rich_alert_dialog.dart';
+import 'package:package_info/package_info.dart';
+
+import '../page_index.dart';
 
 class DialogWidget extends StatefulWidget {
   @override
@@ -10,26 +12,28 @@ class DialogWidget extends StatefulWidget {
 }
 
 class DialogWidgetState extends State<DialogWidget> {
+  String appName;
+  String packageName;
+  String version;
+  String buildNumber;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _initPackageInfo();
+  }
+
   @override
   Widget build(BuildContext context) {
     final _scaffoldKey = GlobalKey<ScaffoldState>();
     final ThemeData theme = Theme.of(context);
     final TextStyle dialogTextStyle =
-        theme.textTheme.subhead.copyWith(color: theme.textTheme.caption.color);
+        theme.textTheme.subtitle1.copyWith(color: theme.textTheme.caption.color);
 
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(title: Text("Dialog Widget")),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () => showDialog(
-              context: context,
-              builder: (context) => RichAlertDialog(
-                  title: richTitle("Alert title"),
-                  subtitle: richSubtitle("Subtitle"),
-                  type: RichAlertType.ERROR,
-                  actions: <Widget>[Text("hello"), Text("its me")])),
-          backgroundColor: Colors.redAccent,
-          child: const Icon(Icons.add, semanticLabel: 'Add')),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 22.0),
         children: <Widget>[
@@ -170,61 +174,16 @@ class DialogWidgetState extends State<DialogWidget> {
           Divider(),
           RaisedButton(
             onPressed: () {
-              showDatePicker(
-                context: context,
-                initialDate: DateTime.parse("20181209"),
-                // 初始选中日期
-                firstDate: DateTime.parse("20181109"),
-                // 可选日期范围第一个日期
-                lastDate: DateTime.parse("20190109"),
-                // 可选日期范围最后一个日期
-                selectableDayPredicate: (dateTime) {
-                  //通过此方法可以过滤掉可选范围内不可选的特定日期
-                  if (dateTime.day == 10 ||
-                      dateTime.day == 20 ||
-                      dateTime.day == 30) {
-                    //此处表示10号、20号、30号不可选
-                    return false;
-                  }
-                  return true;
-                },
-                initialDatePickerMode: DatePickerMode.day, //初始化选择模式，有day和year两种
-              ).then((dateTime) {
-                //选择日期后点击OK拿到的日期结果
-                print(
-                    '当前选择了：${dateTime.year}年${dateTime.month}月${dateTime.day}日');
-              });
-            },
-            child: Text("DatePicker"),
-          ),
-          Divider(),
-          RaisedButton(
-            onPressed: () {
-              showTimePicker(
-                context: context,
-                initialTime: TimeOfDay.now(), //初始化显示时间
-              ).then((timeOfDay) {
-                //选择时间后点击OK拿到的时间结果
-                if (timeOfDay == null) {
-                  return;
-                }
-                print('当前选择了：${timeOfDay.hour}时${timeOfDay.minute}分');
-              });
-            },
-            child: Text("TimePicker"),
-          ),
-          Divider(),
-          RaisedButton(
-            onPressed: () {
               showDialog(
                   context: context,
                   // 设置点击 dialog 外部不取消 dialog，默认能够取消
                   barrierDismissible: false,
                   builder: (context) {
                     return AboutDialog(
-                      applicationName: 'Flutter App',
-                      applicationIcon: Icon(Icons.add),
-                      applicationVersion: '1.0',
+                      applicationName: '$appName',
+                      applicationIcon: Image.asset('images/flutter_logo.png',
+                          width: 60.0, height: 60.0),
+                      applicationVersion: '$version',
                       //版本号，默认为空
                       applicationLegalese: '版权所有：SCL',
                       children: <Widget>[
@@ -237,16 +196,39 @@ class DialogWidgetState extends State<DialogWidget> {
             child: Text("AboutDialog"),
           ),
           Divider(),
+          AboutListTile(
+              icon: CircleAvatar(
+                  child: Icon(Icons.update, color: Colors.white, size: 20.0),
+                  maxRadius: 15),
+              child: Text('AboutListTile'),
+              applicationName: '$appName',
+              applicationIcon: Image.asset('images/flutter_logo.png',
+                  width: 60.0, height: 60.0),
+              applicationVersion: '$version',
+              //版本号，默认为空
+              applicationLegalese: '版权所有：SCL',
+              aboutBoxChildren: <Widget>[
+                Text("BoxChildren"),
+                Text("box child 2")
+              ]),
+          Divider(),
+          RaisedButton(
+            onPressed: () {
+              _showStatefulWidgetDialog(context);
+            },
+            child: Text('ProgressDialog'),
+          ),
+          Divider(),
           Builder(
             builder: (context) => RaisedButton(
-                  onPressed: () {
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                        content: Text('收藏成功'),
-                        action: SnackBarAction(label: '撤销', onPressed: () {}),
-                        duration: Duration(milliseconds: 2000)));
-                  },
-                  child: Text('SnackBar'),
-                ),
+              onPressed: () {
+                Scaffold.of(context).showSnackBar(SnackBar(
+                    content: Text('收藏成功'),
+                    action: SnackBarAction(label: '撤销', onPressed: () {}),
+                    duration: Duration(milliseconds: 2000)));
+              },
+              child: Text('SnackBar'),
+            ),
           ),
           Divider(),
           CupertinoButton(
@@ -295,28 +277,28 @@ class DialogWidgetState extends State<DialogWidget> {
               showDialog(
                 context: context,
                 builder: (context) => CupertinoAlertDialog(
-                      title: Text(
-                          'Allow "Maps" to access your location while you are using the app?',
-                          style: dialogTextStyle),
-                      content: Text(
-                          'Your current location will be displayed on the map and used '
-                          'for directions, nearby search results, and estimated travel times.',
-                          style: dialogTextStyle),
-                      actions: <Widget>[
-                        CupertinoDialogAction(
-                          child: Text('Don\'t Allow'),
-                          onPressed: () {
-                            Navigator.pop(context, 'Disallow');
-                          },
-                        ),
-                        CupertinoDialogAction(
-                          child: Text('Allow'),
-                          onPressed: () {
-                            Navigator.pop(context, 'Allow');
-                          },
-                        ),
-                      ],
+                  title: Text(
+                      'Allow "Maps" to access your location while you are using the app?',
+                      style: dialogTextStyle),
+                  content: Text(
+                      'Your current location will be displayed on the map and used '
+                      'for directions, nearby search results, and estimated travel times.',
+                      style: dialogTextStyle),
+                  actions: <Widget>[
+                    CupertinoDialogAction(
+                      child: Text('Don\'t Allow'),
+                      onPressed: () {
+                        Navigator.pop(context, 'Disallow');
+                      },
                     ),
+                    CupertinoDialogAction(
+                      child: Text('Allow'),
+                      onPressed: () {
+                        Navigator.pop(context, 'Allow');
+                      },
+                    ),
+                  ],
+                ),
               );
             },
           ),
@@ -440,5 +422,75 @@ class DialogWidgetState extends State<DialogWidget> {
           onPressed: () => Navigator.pop(context, 'Cancel'))
     ];
     return widgets;
+  }
+
+  _showStatefulWidgetDialog(BuildContext context) {
+    var progress = 0.0;
+    StateSetter stateSetter;
+
+    Timer.periodic(Duration(milliseconds: 200), (timer) {
+      // 计时器模拟进度增加
+      progress += 0.01;
+      if (stateSetter != null) {
+        stateSetter(() {});
+      }
+      if (progress >= 1) {
+        timer.cancel();
+        stateSetter = null;
+        Navigator.of(context).pop();
+      }
+    });
+
+    var statefulBuilder = StatefulBuilder(
+      builder: (ctx, state) {
+        stateSetter = state;
+        return Center(
+          child: SizedBox(
+            width: 150,
+            height: 150,
+            child: Card(
+              elevation: 24.0,
+              color: Colors.blue.withAlpha(240),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation(Colors.white),
+                    value: progress,
+                  ),
+                  Gaps.vGap20,
+                  Text(
+                    "Loading...",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Gaps.vGap5,
+                  Text(
+                    "done ${((progress) * 100).toStringAsFixed(1)}%",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+    showDialog(context: context, builder: (ctx) => statefulBuilder);
+  }
+
+  Future<void> _initPackageInfo() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+    setState(() {
+      appName = packageInfo.appName;
+      packageName = packageInfo.packageName;
+      version = packageInfo.version;
+      buildNumber = packageInfo.buildNumber;
+    });
+
+    debugPrint(
+        'APP名称：$appName-====包名：$packageName=====版本名：$version======版本号：$buildNumber');
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:flutter_app/generated/i18n.dart';
 
 import '../../page_index.dart';
 import 'quickly_login_page.dart';
@@ -22,25 +21,6 @@ class _LoginPageState extends State<PasswordLoginPage> {
   final FocusNode _nodePassword = FocusNode();
 
   bool _isClick = false;
-
-  KeyboardActionsConfig _buildConfig(BuildContext context) {
-    return KeyboardActionsConfig(
-        keyboardActionsPlatform: KeyboardActionsPlatform.IOS,
-        keyboardBarColor: Colors.grey[200],
-        nextFocus: true,
-        actions: [
-          KeyboardAction(
-              focusNode: _nodePhone,
-              closeWidget: Padding(
-                  padding: EdgeInsets.all(5.0),
-                  child: Text("${AppLocalizations.$t('close')}"))),
-          KeyboardAction(
-              focusNode: _nodePassword,
-              closeWidget: Padding(
-                  padding: EdgeInsets.all(5.0),
-                  child: Text("${AppLocalizations.$t('close')}")))
-        ]);
-  }
 
   @override
   void initState() {
@@ -83,25 +63,25 @@ class _LoginPageState extends State<PasswordLoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-            iconTheme: IconThemeData(color: Colors.black),
-            backgroundColor: Colors.white,
-            elevation: 0,
-            leading: CloseButton(),
-            actions: <Widget>[
-              InkWell(
-                  child: Container(
-                      child: Text('${AppLocalizations.$t('quickly_login')}',
-                          style: TextStyles.textDark14),
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.only(left: 10, right: 10)),
-                  onTap: () => pushReplacement(context, QuicklyLoginPage()))
-            ]),
-        body: Utils.isIOS
-            ? FormKeyboardActions(child: _buildBodyView())
-            : SingleChildScrollView(child: _buildBodyView()));
+    return LightTheme(
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(leading: CloseButton(), actions: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 10, 10, 10),
+              child: FlatButton(
+                child: Text(
+                  "${S.of(context).quickly_login}",
+                  style: TextStyles.textDark14,
+                ),
+                onPressed: () => pushReplacement(context, QuicklyLoginPage()),
+                highlightColor: Colors.black26,
+                shape: StadiumBorder(),
+              ),
+            )
+          ]),
+          body: SingleChildScrollView(child: _buildBodyView())),
+    );
   }
 
   Widget _buildBodyView() {
@@ -110,7 +90,7 @@ class _LoginPageState extends State<PasswordLoginPage> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(AppLocalizations.$t('password_login'),
+              Text(S.of(context).password_login,
                   style: TextStyles.textBoldDark26),
               Gaps.vGap16,
               CustomTextField(
@@ -119,28 +99,27 @@ class _LoginPageState extends State<PasswordLoginPage> {
                   maxLength: 11,
                   nextFocusNode: _nodePassword,
                   keyboardType: TextInputType.phone,
-                  hintText: "${AppLocalizations.$t('input_phone')}"),
+                  hintText: "${S.of(context).input_phone}"),
               Gaps.vGap10,
               CustomTextField(
                   focusNode: _nodePassword,
-                  config: _buildConfig(context),
                   isInputPwd: true,
                   controller: _passwordController,
                   maxLength: 16,
-                  hintText: "${AppLocalizations.$t('input_password')}"),
+                  hintText: "${S.of(context).input_password}"),
               Gaps.vGap25,
               Button(
                   onPressed: _isClick ? _login : null,
-                  text: "${AppLocalizations.$t('login')}",
+                  child: Text('${S.of(context).login}',
+                      style: TextStyle(fontSize: 18)),
                   borderRadius: 0),
               Gaps.vGap16,
               Container(
                   alignment: Alignment.centerRight,
                   child: InkWell(
                       child: Padding(
-                          child: Text(
-                              '${AppLocalizations.$t('forgot_password')}',
-                              style: TextStyles.textGray14),
+                          child: Text('${S.of(context).forgot_password}',
+                              style: TextStyles.textGrey14),
                           padding: EdgeInsets.all(10)),
                       onTap: () => pushNewPage(context, ResetPasswordPage()))),
               Gaps.vGap6,
@@ -148,7 +127,7 @@ class _LoginPageState extends State<PasswordLoginPage> {
                   alignment: Alignment.center,
                   child: InkWell(
                       child: Padding(
-                          child: Text('${AppLocalizations.$t('go_register')}',
+                          child: Text('${S.of(context).go_register}',
                               style: TextStyles.textBlue16),
                           padding: EdgeInsets.all(10)),
                       onTap: () => pushNewPage(context, RegisterPage())))

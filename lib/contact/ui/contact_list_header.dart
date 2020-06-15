@@ -13,14 +13,14 @@ class ContactListHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
+      color: Theme.of(context).primaryColor,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ClipOval(
-              child: Image.asset(
-                'images/login_logo.png',
+              child: Image.network(
+                'https://github.com/huextrat/TheGorgeousLogin/blob/master/assets/img/login_logo.png?raw=true',
                 width: 80.0,
               ),
             ),

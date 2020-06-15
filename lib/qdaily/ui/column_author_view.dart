@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/bean_index.dart';
 
 import '../../page_index.dart';
+import '../index.dart';
 
 class ColumnAuthorView extends StatelessWidget {
   final AuthorBean author;
@@ -17,7 +17,7 @@ class ColumnAuthorView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: Row(children: <Widget>[
                 ImageLoadView('${author.avatar}',
-                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    shape: BoxShape.circle,
                     width: 50,
                     height: 50),
                 Gaps.hGap5,

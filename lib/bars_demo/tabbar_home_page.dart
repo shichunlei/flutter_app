@@ -3,9 +3,7 @@ import 'package:flutter_app/bars_demo/keep_alive.dart';
 
 class TabBarHomePage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return TabBarHomeStatePage();
-  }
+  createState() => TabBarHomeStatePage();
 }
 
 // SingleTickerProviderStateMixin is used for animation
@@ -62,9 +60,8 @@ class TabBarHomeStatePage extends State<TabBarHomePage>
   }
 
   @override
-  void dispost() {
-    /// Dispost of the Tab Controller
-    controller.dispose();
+  void dispose() {
+    controller?.dispose();
 
     super.dispose();
   }

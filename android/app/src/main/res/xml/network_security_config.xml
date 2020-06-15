@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 该文件是因为Android P 要求用 HTTPS -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>

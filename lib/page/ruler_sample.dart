@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/ruler.dart';
+import 'package:custom_widgets/custom_widgets.dart';
 
 class RulerSample extends StatefulWidget {
   RulerSample({Key key}) : super(key: key);
@@ -21,7 +21,7 @@ class _RulerSampleState extends State<RulerSample> {
                     child: Column(mainAxisSize: MainAxisSize.min, children: <
                         Widget>[
                       Text('Normal Scale',
-                          style: Theme.of(context).textTheme.title),
+                          style: Theme.of(context).textTheme.headline6),
                       Container(
                           margin: const EdgeInsets.only(top: 8.0),
                           child: RulerWidget(
@@ -36,7 +36,7 @@ class _RulerSampleState extends State<RulerSample> {
                       Padding(
                           padding: const EdgeInsets.only(top: 20.0),
                           child: Text('In and Out Range Scale',
-                              style: Theme.of(context).textTheme.title)),
+                              style: Theme.of(context).textTheme.headline6)),
                       Container(
                           margin: const EdgeInsets.only(top: 8.0),
                           child: RulerWidget(
@@ -58,7 +58,7 @@ class _RulerSampleState extends State<RulerSample> {
                       Padding(
                           padding: const EdgeInsets.only(top: 20.0),
                           child: Text('In,Out,Mid Range Scale',
-                              style: Theme.of(context).textTheme.title)),
+                              style: Theme.of(context).textTheme.headline6)),
                       Container(
                           margin: const EdgeInsets.only(top: 8.0),
                           child: RulerWidget(
@@ -80,7 +80,7 @@ class _RulerSampleState extends State<RulerSample> {
                         padding: const EdgeInsets.only(top: 20.0),
                         child: Text(
                           'Custom Marker Scale',
-                          style: Theme.of(context).textTheme.title,
+                          style: Theme.of(context).textTheme.headline6,
                         ),
                       ),
                       Container(
@@ -103,7 +103,7 @@ class _RulerSampleState extends State<RulerSample> {
                       Padding(
                           padding: const EdgeInsets.only(top: 20.0),
                           child: Text('Horizontal Scale',
-                              style: Theme.of(context).textTheme.title)),
+                              style: Theme.of(context).textTheme.headline6)),
                       Container(
                           margin: const EdgeInsets.only(top: 8.0),
                           alignment: Alignment.centerLeft,

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/he_weather.dart';
 
-import 'package:flutter_app/custom_widgets/sparkline.dart';
-import 'package:flutter_app/ui/line.dart';
+import '../../bean/he_weather.dart';
+import '../../page_index.dart';
 
 class HourlyView extends StatelessWidget {
   final List<Hourly> hourly;
@@ -12,7 +11,7 @@ class HourlyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<double> data = [];
-    hourly.forEach((h) => data.add(double.parse(h.tmp)));
+    hourly.forEach((h) => data.add(h.tmp));
     return Container(
         margin: EdgeInsets.only(top: 10.0),
         width: double.infinity,
@@ -27,7 +26,7 @@ class HourlyView extends StatelessWidget {
                   height: 80.0,
                   padding: EdgeInsets.symmetric(vertical: 10.0),
                   alignment: Alignment.center,
-                  child: Sparkline(
+                  child: SparkLine(
                       data: data,
                       pointsMode: PointsMode.all,
                       showValue: true,
@@ -52,7 +51,7 @@ class HourlyView extends StatelessWidget {
                   children: hourly.map((hour) {
                 return Expanded(
                     child: Center(
-                        child: Image.network(hour.cond_code,
+                        child: Image.network(hour.condCode,
                             width: 20.0, height: 20.0)));
               }).toList())
             ]));

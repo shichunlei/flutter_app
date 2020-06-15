@@ -15,7 +15,7 @@ class Address {
   String name;
   String phone;
   bool isDefault;
-  String zipcode;
+  String zipCode;
   String tag;
   String address;
   String province;
@@ -27,7 +27,7 @@ class Address {
       this.name,
       this.phone,
       this.isDefault,
-      this.zipcode,
+      this.zipCode,
       this.tag,
       this.address,
       this.province,
@@ -41,7 +41,7 @@ class Address {
     addressBean.name = map[AddressProvider.COLUMN_NAME];
     addressBean.phone = map[AddressProvider.COLUMN_PHONE];
     addressBean.isDefault = map[AddressProvider.COLUMN_IS_DEFAULT] == 1;
-    addressBean.zipcode = map[AddressProvider.COLUMN_ZIPCODE];
+    addressBean.zipCode = map[AddressProvider.COLUMN_ZIPCODE];
     addressBean.tag = map[AddressProvider.COLUMN_TAG];
     addressBean.address = map[AddressProvider.COLUMN_ADDRESS];
     addressBean.province = map[AddressProvider.COLUMN_PROVINCE];
@@ -59,11 +59,11 @@ class Address {
         '${AddressProvider.COLUMN_ADDRESS}': address,
         '${AddressProvider.COLUMN_COUNTY}': county,
         '${AddressProvider.COLUMN_IS_DEFAULT}': isDefault ? 1 : 0,
-        '${AddressProvider.COLUMN_ZIPCODE}': zipcode,
+        '${AddressProvider.COLUMN_ZIPCODE}': zipCode,
       };
 
   @override
   String toString() {
-    return '{id: $id, name: $name, phone: $phone, isDefault: $isDefault, zipcode: $zipcode, tag: $tag, address: $address, province: $province, city: $city, county: $county}';
+    return '{id: $id, name: $name, phone: $phone, isDefault: $isDefault, zipcode: $zipCode, tag: $tag, address: $address, province: $province, city: $city, county: $county}';
   }
 }

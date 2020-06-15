@@ -12,19 +12,23 @@ class BottomAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-      Container(color: Colors.grey[100], height: 1),
-      Container(
-          color: backgroundColor,
-          height: Utils.navigationBarHeight - Utils.topSafeHeight,
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                BackButton(),
-                Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: actions.isEmpty ? [] : actions)
-              ]))
-    ]);
+    return Material(
+      elevation: 16,
+      color: backgroundColor,
+      child: Container(
+        height: Utils.navigationBarHeight -
+            Utils.topSafeHeight +
+            Utils.bottomSafeHeight,
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              BackButton(),
+              Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: actions.isEmpty ? [] : actions)
+            ]),
+        padding: EdgeInsets.only(bottom: Utils.bottomSafeHeight),
+      ),
+    );
   }
 }

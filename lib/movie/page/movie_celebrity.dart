@@ -1,19 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/celebrity.dart';
-import 'package:flutter_app/bean/movie.dart';
-import '../page/movie_photo.dart';
-import '../page/movie_photos.dart';
-import '../page/movie_with_celebrity.dart';
-import 'package:flutter_app/service/api_service.dart';
-import '../ui/cover_section_view.dart';
-import '../ui/expandable_text.dart';
-import '../ui/home_section_view.dart';
-import '../ui/movie_celebrity_header.dart';
-import '../ui/movie_grid_view.dart';
 
 import '../../page_index.dart';
+import '../index.dart';
 
 class MovieCelebrityPage extends StatefulWidget {
   final String id;
@@ -21,7 +11,7 @@ class MovieCelebrityPage extends StatefulWidget {
 
   MovieCelebrityPage({
     Key key,
-    this.id,
+    @required this.id,
     this.name,
   }) : super(key: key);
 
@@ -36,9 +26,6 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
 
   bool isSummaryUnfold = false;
 
-  String defaultBgImageUrl =
-      'http://pic36.nipic.com/20131206/15190732_161014639124_2.png';
-
   @override
   void initState() {
     super.initState();
@@ -47,23 +34,14 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     if (null == celebrity) {
       return Scaffold(
         backgroundColor: pageColor,
-        body: getLoadingWidget(),
+        body: LoadingWidget(),
       );
     } else {
-      List<Movie> movies = [];
-
-      celebrity.works.map((work) {
-        movies.add(work.subject);
-      }).toList();
+      List<Movie> movies = celebrity.subjects;
 
       double width = (Utils.width - 6 * 2 - 5 * 2) / 3;
       double height = width * 383 / 270 + 50;
@@ -71,9 +49,9 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
       String desc = celebrity.summary;
       desc +=
           '\n\n星座：${celebrity.constellation.isEmpty ? '未知' : celebrity.constellation}';
-      desc += '\n${celebrity.birthday}生于${celebrity.born_place}';
+      desc += '\n${celebrity.birthday}生于${celebrity.bornPlace}';
 
-      celebrity.aka_en.map((aka) {
+      celebrity.akaEn.map((aka) {
         desc += '\n$aka';
       }).toList();
 
@@ -82,9 +60,9 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
         body: CustomScrollView(slivers: <Widget>[
           MovieCelebrityHeader(
             widget.name,
-            backgroundImageUrl: celebrity.photos.isEmpty
-                ? defaultBgImageUrl
-                : celebrity.photos[0].cover,
+            backgroundImageUrl: celebrity.photos.length > 0
+                ? celebrity?.photos?.first?.cover
+                : backgroundImage,
             pageColor: pageColor,
             avatarUrl: celebrity.avatars.medium.toString(),
             gender:
@@ -93,22 +71,23 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
           SliverList(
             delegate: SliverChildListDelegate(
               <Widget>[
-                HomeSectionView("简介",
-                    hiddenMore: true,
-                    backgroundColor: pageColor,
-                    textColor: Colors.white),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(top: 10.0, left: 10, right: 10),
-                  child: ExpandableText(
-                    desc,
-                    textColor: Colors.white,
-                    iconColor: Colors.white,
-                    iconTextColor: Colors.white,
-                    alignment: MainAxisAlignment.center,
-                    fontSize: 15.0,
-                    isShow: isSummaryUnfold,
-                    onPressed: () => changeSummaryMaxLines(),
+                SectionView(
+                  "简介",
+                  hiddenMore: true,
+                  textColor: Colors.white,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 10.0, left: 10, right: 10),
+                    child: ExpandableText(
+                      desc,
+                      textColor: Colors.white,
+                      iconColor: Colors.white,
+                      iconTextColor: Colors.white,
+                      alignment: MainAxisAlignment.center,
+                      fontSize: 15.0,
+                      isShow: isSummaryUnfold,
+                      onPressed: () => changeSummaryMaxLines(),
+                    ),
                   ),
                 ),
                 CoverSectionView(
@@ -147,20 +126,34 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                     scrollDirection: Axis.horizontal,
                     itemCount: celebrity.photos.length,
                     itemBuilder: (context, index) {
-                      return Padding(
+                      List<String> images = [];
+                      celebrity.photos.forEach((f) {
+                        images.add(f.image);
+                      });
+
+                      return Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6.0)),
                         padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                        child: Hero(
-                            tag: celebrity.photos[index].id,
-                            child: ImageLoadView(celebrity.photos[index].cover,
-                                borderRadius: BorderRadius.circular(6.0),
+                        child: GestureDetector(
+                          onTap: () => pushNewPage(
+                              context,
+                              PhotoView(
+                                title: widget.name,
+                                photos: images,
+                                index: index,
+                                heroTag: celebrity.photos[index].id,
+                              )),
+                          child: Hero(
+                              tag: celebrity.photos[index].id,
+                              child: Image.network(
+                                celebrity.photos[index].cover,
+                                // borderRadius: BorderRadius.circular(6.0),
                                 fit: BoxFit.cover,
                                 height: height,
                                 width: height,
-                                onPressed: () => pushNewPage(
-                                    context,
-                                    MoviePhotoPage(widget.name,
-                                        photos: celebrity.photos,
-                                        index: index)))),
+                              )),
+                        ),
                       );
                     },
                   ),
@@ -180,10 +173,11 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
     if (celebrity.photos.isNotEmpty) {
       pageColor = await Utils.getImageDominantColor(celebrity.photos[0].cover);
     } else {
-      pageColor = await Utils.getImageDominantColor(celebrity.avatars.small);
+      pageColor = await Utils.getImageDominantColor(
+          celebrity?.avatars?.small ?? douBanDefaultImage);
     }
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   /// 展开 or 收起

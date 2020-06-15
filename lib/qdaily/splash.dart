@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../page_index.dart';
+import 'index.dart';
 
-class QdailySplashPage extends StatefulWidget {
-  QdailySplashPage({Key key}) : super(key: key);
+class QDailySplashPage extends StatefulWidget {
+  QDailySplashPage({Key key}) : super(key: key);
 
   @override
-  createState() => _QdailySplashPageState();
+  createState() => _QDailySplashPageState();
 }
 
-class _QdailySplashPageState extends State<QdailySplashPage>
+class _QDailySplashPageState extends State<QDailySplashPage>
     with SingleTickerProviderStateMixin {
   String logoUrl =
       'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1830402097,3777822172&fm=58&s=21D47F829AD9C49A91BDA5D2010010B3&bpow=121&bpoh=75';
@@ -25,24 +26,31 @@ class _QdailySplashPageState extends State<QdailySplashPage>
   bool showGuidePages = false;
   bool isFirst = true;
 
-  List<Widget> _bannerList = new List();
+  List<Widget> _bannerList = [];
 
   @override
   void initState() {
     super.initState();
-    isFirst = SpUtil.getBool('qdaily_isFirst', defValue: true);
-    debugPrint('===================$isFirst');
 
-    _controller = AnimationController(
-        vsync: this, duration: Duration(seconds: 3, milliseconds: 500));
-    _animation = Tween(begin: 0.0, end: 1.0)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          showTimer = true;
+          setState(() {});
+        }
+      });
 
     _controller.forward();
-    _animation.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        showTimer = true;
-        setState(() {});
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      isFirst = SpUtil.getBool('qdaily_isFirst', defValue: true);
+      debugPrint('===================$isFirst');
+
+      if (isFirst) {
+        /// 预先缓存图片，避免直接使用时因为首次加载造成闪动
+        guideList.forEach((image) => precacheImage(AssetImage(image), context));
       }
     });
 
@@ -84,8 +92,9 @@ class _QdailySplashPageState extends State<QdailySplashPage>
                                               color: Colors.white,
                                               fontSize: 20))
                                     ])),
-                            showTimer
-                                ? CountdownWidget(
+                            Visibility(
+                                visible: showTimer,
+                                child: CountdownWidget(
                                     seconds: 3,
                                     onCountdownFinishCallBack: (bool value) {
                                       if (value) {
@@ -96,8 +105,7 @@ class _QdailySplashPageState extends State<QdailySplashPage>
                                               context, QDailyIndexPage());
                                         }
                                       }
-                                    })
-                                : SizedBox()
+                                    }))
                           ]),
                     ));
               }),
@@ -117,7 +125,7 @@ class _QdailySplashPageState extends State<QdailySplashPage>
       if (i == length - 1) {
         _bannerList.add(Stack(children: <Widget>[
           Image.asset(guideList[i],
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity),
           Container(
@@ -127,7 +135,7 @@ class _QdailySplashPageState extends State<QdailySplashPage>
                     SpUtil.setBool('qdaily_isFirst', false);
                     pushReplacement(context, QDailyIndexPage());
                   },
-                  text: '立即体验'),
+                  child: Text("立即体验", style: TextStyle(fontSize: 18))),
               width: 200,
               height: 48,
               margin: EdgeInsets.only(bottom: 30))

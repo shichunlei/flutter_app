@@ -20,142 +20,159 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_localizations:
     sdk: flutter
 
+  # 地图定位
+  amap_location_fluttify: ^0.11.0
+
+  # https://github.com/aagarwal1012/Animated-Text-Kit
+  animated_text_kit: ^2.0.1
+
+  # 音频播放
+  audioplayers: ^0.15.1
+
   # AzListView，Flutter 城市列表，联系人列表，自定义Header，索引，悬停效果。
   azlistview: ^0.1.2
 
-  badges: ^1.1.0
+  badges: ^1.1.1
+
+  # 条形码
+  barcode_flutter: ^1.1.2
 
   # 扫描二维码
-  barcode_scan: ^1.0.0
+  barcode_scan: ^2.0.2
 
-  # 图表
-  charts_flutter: ^0.6.0
+  # 带缓存的图片
+  cached_network_image: ^2.2.0+1
 
-  chewie: ^0.9.7
+  chewie: ^0.9.10
 
-  city_picker: ^0.1.3
+  clippy_flutter: ^1.1.1
 
-  city_pickers: ^0.1.20
-
-  clippy_flutter:
-    git:
-      url: https://github.com/figengungor/clippy_flutter
-
-  contact_picker: ^0.0.2
-
-  crypto: ^2.0.6
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
+  custom_widgets:
+    path: custom_widgets/
 
   # 设备信息
-  device_info: ^0.4.0+2
+  device_info: ^0.4.2+4
 
   # 网络请求库
-  dio: ^2.1.13
+  dio: ^3.0.9
+
+  easy_contact_picker: ^0.0.2
 
   # 英文单词库
   english_words: ^3.1.5
 
   fancy_bottom_navigation: ^0.3.2
 
-  # 图标库地址：https://feathericons.com/
-  feather_icons_flutter: ^4.7.4
+  flutter_charts:
+    git:
+      url: https://github.com/shichunlei/flutter_charts
 
   # 颜色选择器
-  flutter_colorpicker: ^0.2.5
+  flutter_colorpicker: ^0.3.4
 
   # 刷新加载控件
-  flutter_easyrefresh: ^1.2.7
+  flutter_easyrefresh: ^2.1.1
 
-  flutter_gallery_assets: 0.1.9+2
-
-  flutter_html: ^0.10.4
+  flutter_html: ^0.11.1
 
   # 侧滑菜单
-  flutter_inner_drawer: ^0.3.0
+  flutter_inner_drawer: ^0.5.6+1
 
+  # 仿京东地址选择器
   flutter_jd_address_selector:
     git:
       url: https://github.com/shichunlei/flutter_jd_address_selector
 
+  # https://github.com/dooboolab/flutter_sound
+  flutter_sound: ^2.1.1
+
   # 加载提示组件
-  flutter_spinkit: ^2.1.0
+  flutter_spinkit: ^4.1.2+1
 
   # 瀑布流
-  flutter_staggered_grid_view: ^0.2.7
+  flutter_staggered_grid_view: ^0.3.0
 
   # banner
   flutter_swiper: ^1.1.6
 
-  flutter_webview_plugin: ^0.3.5
+  # 集成图标库
+  # FontAwesome 地址：http://www.fontawesome.com.cn/
+  # Feather 地址：https://feathericons.com/
+  # EvilIcons 地址：https://evil-icons.io/
+  # AntDesign 地址：https://ant.design/components/icon/
+  # Ionicons 地址：https://ionicons.com
+  # Fontisto 地址：https://fontisto.com/icons
+  # Foundation 地址：https://zurb.com/playground/foundation-icon-fonts-3
+  # Octicons 地址：https://octicons.github.com/
+  # SimpleLineIcons 地址：https://simplelineicons.github.io/
+  flutter_vector_icons: ^0.2.1
 
-  # 图标库中文地址：http://www.fontawesome.com.cn/
-  font_awesome_flutter: ^8.4.0
+  # webview
+  flutter_webview_plugin: ^0.3.11
 
-  # 解析html
-  html: ^0.14.0+2
+  # 图片裁剪
+  image_cropper: ^1.2.2
 
-  http: ^0.12.0+2
+  # 图片保存
+  image_gallery_saver: ^1.2.2
 
   # 图片选择器
-  image_picker: ^0.6.0+15
-
-  # 保存图片
-  image_picker_saver: ^0.3.0
-
-  # 引导页
-  intro_slider: ^1.2.0
-
-  # 处理键盘事件 https://github.com/diegoveloper/flutter_keyboard_actions
-  keyboard_actions: ^2.1.1+1
+  image_picker: ^0.6.6+1
 
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
-  lpinyin: ^1.0.7
+  lpinyin: ^1.0.9
 
-  package_info: ^0.4.0+4
+  multi_image_picker: ^4.6.7
 
-#  palette_generator: ^0.1.1
+  package_info: ^0.4.0+18
+
+  palette_generator: ^0.2.2
+
+  # 滑动视差效果图片 https://github.com/pulyaevskiy/parallax-image
+  parallax_image: ^0.3.1+1
+
+  # path_provider: ^1.6.7
+
+  # 权限管理
+  permission_handler: ^4.4.0
 
   # PhotoView
-  photo_view: ^0.4.0
+  photo_view: ^0.9.2
 
   # 数据管理层
-  provide: ^1.0.2
+  provider: ^4.1.2
 
   # flutter 生成二维码
-  qr_flutter: ^2.1.0+55
+  qr_flutter: ^3.2.0
 
   #
   rounded_letter: ^0.0.6
 
-  # https://github.com/ReactiveX/rxdart
-  rxdart: ^0.22.0
-
-  share: ^0.6.1+1
+  share: ^0.6.4+2
 
   # SP
-  shared_preferences: ^0.5.3+2
+  shared_preferences: ^0.5.7+2
 
   # 数据库
-  sqflite: ^1.1.6+1
+  # sqflite: ^1.3.0+1
 
   # 时间线 https://github.com/furkantektas/timeline_list
-  timeline_list: ^0.0.4
+  timeline_list: ^0.0.5
 
   # 透明占位图片
-  transparent_image: ^0.1.0
+  transparent_image: ^1.0.0
 
-  url_launcher: ^5.0.5
+  url_launcher: ^5.4.7
+
+  # 手机震动
+  vibration: ^1.2.4
 
   # 视频播放器器
-  video_player: ^0.10.1+3
+  video_player: ^0.10.11
 
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:
     sdk: flutter
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
@@ -173,9 +190,9 @@ flutter:
     - images/
     - images/weather_backgrounds/
     - images/qdaily/
+    - images/reader/
+    - images/tag_icons/
     - assets/data/
-    - packages/flutter_gallery_assets/people/ali_landscape.png
-    - local/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
@@ -189,16 +206,19 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Pacifico
-      fonts:
-        - asset: assets/fonts/Pacifico-Regular.ttf
-          style: italic
-          weight: 700
-
     - family: CustomIcon
       fonts:
         - asset: assets/fonts/custom/iconfont.ttf
-          weight: 400
+
+    - family: Aleo
+      fonts:
+        - asset: assets/fonts/Aleo-Regular.ttf
+        - asset: assets/fonts/Aleo-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Aleo-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Aleo-Light.ttf
+          weight: 300
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages

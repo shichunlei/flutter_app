@@ -20,7 +20,7 @@ class BottomNavigationBarHomesTatePage
   }
 
   @override
-  void dispost() {
+  void dispose() {
     controller.dispose();
 
     super.dispose();

@@ -4,18 +4,18 @@ import 'package:sqflite/sqflite.dart';
 
 class AddressProvider extends BaseDBProvider {
   /// DataBase table name
-  static final String table_name = "address";
+  static const String table_name = "address";
 
-  static final String COLUMN_ID = "_id";
-  static final String COLUMN_NAME = "name";
-  static final String COLUMN_PHONE = "phone";
-  static final String COLUMN_ADDRESS = "address";
-  static final String COLUMN_CITY = "city";
-  static final String COLUMN_COUNTY = "county";
-  static final String COLUMN_PROVINCE = "province";
-  static final String COLUMN_IS_DEFAULT = "is_default";
-  static final String COLUMN_TAG = "tag";
-  static final String COLUMN_ZIPCODE = "zipcode";
+  static const String COLUMN_ID = "_id";
+  static const String COLUMN_NAME = "name";
+  static const String COLUMN_PHONE = "phone";
+  static const String COLUMN_ADDRESS = "address";
+  static const String COLUMN_CITY = "city";
+  static const String COLUMN_COUNTY = "county";
+  static const String COLUMN_PROVINCE = "province";
+  static const String COLUMN_IS_DEFAULT = "is_default";
+  static const String COLUMN_TAG = "tag";
+  static const String COLUMN_ZIPCODE = "zipcode";
 
   @override
   String createSql() =>
@@ -29,7 +29,7 @@ class AddressProvider extends BaseDBProvider {
        $COLUMN_TAG TEXT not null,
        $COLUMN_COUNTY TEXT not null,
        $COLUMN_CITY TEXT not null,
-        $COLUMN_PROVINCE TEXT not null)
+       $COLUMN_PROVINCE TEXT not null)
       ''';
 
   @override
@@ -37,16 +37,16 @@ class AddressProvider extends BaseDBProvider {
 
   Future<int> insertOrReplaceToDB(Address address) async {
     if (address == null) return -1;
+    if (address.id != -1) return await updateAddress(address);
     Database db = await getDB();
     Map<String, dynamic> map = address.toMap();
-    if (address.id != null) return await updateAddress(address);
-    int successId = await db.insert(table_name, map);
+    int addressId = await db.insert(table_name, map);
     if (address.isDefault) {
-      return await updateAddressDefault(successId, address.isDefault)
-          ? successId
+      return await updateAddressDefault(addressId, address.isDefault)
+          ? addressId
           : -1;
     } else {
-      return successId;
+      return addressId;
     }
   }
 
@@ -56,8 +56,8 @@ class AddressProvider extends BaseDBProvider {
     List<Map<String, dynamic>> maps = await db.query(table_name);
     if (maps.isNotEmpty) {
       for (Map<String, dynamic> map in maps) {
-        Address goods = Address.fromMap(map);
-        addresses.add(goods);
+        Address address = Address.fromMap(map);
+        addresses.add(address);
       }
     }
     return addresses;
@@ -77,8 +77,11 @@ class AddressProvider extends BaseDBProvider {
         Address address = Address.fromMap(map);
         addresses.add(address);
       }
+
+      return addresses[0];
     }
-    return addresses[0];
+
+    return null;
   }
 
   Future<int> deleteAddress(int id) async {
@@ -140,7 +143,7 @@ class AddressProvider extends BaseDBProvider {
 
     List<Address> addresses = List();
 
-    if (maps.isNotEmpty) {
+    if (maps.length > 0) {
       for (Map<String, dynamic> map in maps) {
         Address address = Address.fromMap(map);
         addresses.add(address);

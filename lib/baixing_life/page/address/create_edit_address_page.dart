@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/db/address_provider.dart';
-import 'package:flutter_app/bean/address.dart';
-import 'package:flutter_app/store/models/address_model.dart';
-import 'package:flutter_app/ui/select_text_item.dart';
 import 'package:flutter_jd_address_selector/flutter_jd_address_selector.dart';
-import 'package:keyboard_actions/keyboard_actions.dart';
+
+import '../../../generated/i18n.dart';
+import '../../../store/index.dart';
 
 import '../../../page_index.dart';
+import '../../index.dart';
 
 class CreateEditAddressPage extends StatefulWidget {
   final String title;
   final int id;
-  final AddressProvider addressProvider;
 
-  CreateEditAddressPage(
-      {Key key, @required this.title, this.id, @required this.addressProvider})
+  CreateEditAddressPage({Key key, @required this.title, this.id: -1})
       : super(key: key);
 
   @override
@@ -28,7 +25,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
   String _address = '';
   String _name = '';
   String _phone = '';
-  String _zipcode = '';
+  String _zipCode = '';
 
   String area = '请选择';
 
@@ -36,32 +33,37 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
 
   String _tag = '';
 
-  List<String> tags = ["家", "公司", "学校"];
+  List<String> tags = ["家", "公司", "学校", '蜂巢柜'];
 
-  Address address;
+  var _nameController = TextEditingController();
+  var _phoneController = TextEditingController();
+  var _addressController = TextEditingController();
+  var _zipCodeController = TextEditingController();
 
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
-  TextEditingController _addressController = TextEditingController();
-  TextEditingController _zipcodeController = TextEditingController();
-
-  final FocusNode _nodeName = FocusNode();
-  final FocusNode _nodePhone = FocusNode();
-  final FocusNode _nodeAddress = FocusNode();
-  final FocusNode _nodeZipcode = FocusNode();
+  final _nodeName = FocusNode();
+  final _nodePhone = FocusNode();
+  final _nodeAddress = FocusNode();
+  final _nodeZipCode = FocusNode();
 
   bool _isClick = false;
+
+  LoaderState _status = LoaderState.NoAction;
+
+  AddressProvider addressProvider;
 
   @override
   void initState() {
     super.initState();
 
+    addressProvider = AddressProvider();
+
     _nameController.addListener(_verify);
     _phoneController.addListener(_verify);
     _addressController.addListener(_verify);
-    _zipcodeController.addListener(_verify);
+    _zipCodeController.addListener(_verify);
 
-    if (widget.id != null) {
+    if (widget.id != -1) {
+      _status = LoaderState.Loading;
       getAddressData(widget.id);
     }
   }
@@ -69,13 +71,13 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
   void _verify() {
     _name = _nameController.text;
     _address = _addressController.text;
-    _zipcode = _zipcodeController.text;
+    _zipCode = _zipCodeController.text;
     _phone = _phoneController.text;
     if (_phone.isEmpty || _phone.length < 11) {
       setState(() => _isClick = false);
       return;
     }
-    if (_zipcode.isNotEmpty && _zipcode.length < 6) {
+    if (_zipCode.isNotEmpty && _zipCode.length < 6) {
       setState(() => _isClick = false);
       return;
     }
@@ -87,7 +89,10 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
       setState(() => _isClick = false);
       return;
     }
-    if (area.isEmpty || area == '请选择') {
+    if (_province.isEmpty ||
+        _city.isEmpty ||
+        _county.isEmpty ||
+        area == '请选择') {
       setState(() => _isClick = false);
       return;
     }
@@ -99,28 +104,31 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
   void dispose() {
     _addressController?.dispose();
     _nameController?.dispose();
-    _zipcodeController?.dispose();
+    _zipCodeController?.dispose();
     _phoneController?.dispose();
     super.dispose();
   }
 
-  void getAddressData(int id) async {
-    address = await widget.addressProvider.getAddress(id);
+  getAddressData(int id) async {
+    await addressProvider.getAddress(id).then((address) {
+      _tag = address?.tag ?? '';
+      _isDefault = address?.isDefault ?? false;
 
-    _tag = address?.tag;
-    _isDefault = address?.isDefault;
+      _province = address?.province ?? '';
+      _city = address?.city ?? '';
+      _county = address?.county ?? '';
+      area = "$_province" + " $_city" + " $_county";
+      _addressController.text = address?.address;
+      _nameController.text = address?.name;
+      _phoneController.text = address?.phone;
+      _zipCodeController.text = address?.zipCode;
 
-    _province = address?.province;
-    _city = address?.city;
-    _county = address?.county;
-    area = '$_province $_city $_county';
-    _address = _addressController.text = address?.address;
-    _name = _nameController.text = address?.name;
-    _phone = _phoneController.text = address?.phone;
-    _zipcode = _zipcodeController.text = address?.zipcode;
-    _verify();
+      _verify();
 
-    setState(() {});
+      setState(() {
+        _status = LoaderState.Succeed;
+      });
+    });
   }
 
   @override
@@ -128,21 +136,22 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(title: Text('${widget.title}'), elevation: 0),
-        body: SafeArea(
-          child: Column(children: <Widget>[
-            Expanded(
-                child: Utils.isIOS
-                    ? FormKeyboardActions(child: _buildBody())
-                    : SingleChildScrollView(child: _buildBody())),
-            Padding(
-                padding:
-                    const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8.0),
-                child: Button(
-                    onPressed: _isClick ? () => _submit() : null,
-                    text: "${AppLocalizations.$t('submit')}",
-                    borderRadius: 0))
-          ]),
-        ));
+        body: LoaderContainer(
+            loaderState: _status,
+            contentView: SafeArea(
+              child: Column(children: <Widget>[
+                Expanded(child: SingleChildScrollView(child: _buildBody())),
+                Padding(
+                    padding: const EdgeInsets.only(
+                        left: 16.0, right: 16.0, bottom: 8.0),
+                    child: Button(
+                      onPressed: _isClick ? () => _submit() : null,
+                      borderRadius: 0,
+                      child: Text('${S.of(context).submit}',
+                          style: TextStyle(fontSize: 18)),
+                    ))
+              ]),
+            )));
   }
 
   Widget _buildBody() {
@@ -156,6 +165,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
                   hintText: "请输入收货人姓名",
                   controller: _nameController,
                   focusNode: _nodeName,
+                  maxLength: 4,
                   nextFocusNode: _nodePhone),
               Gaps.line,
               TextFieldItem(
@@ -169,6 +179,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
               SelectTextItem(
                   title: '所在地区',
                   content: '$area',
+                  margin: EdgeInsets.only(left: 16.0, right: 8),
                   onTap: () => _choiceArea(),
                   textAlign: TextAlign.right),
               Gaps.line,
@@ -178,15 +189,15 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
                   maxLines: 3,
                   controller: _addressController,
                   focusNode: _nodeAddress,
-                  nextFocusNode: _nodeZipcode),
+                  nextFocusNode: _nodeZipCode),
               Gaps.line,
               TextFieldItem(
                   title: "邮政编码",
                   hintText: "请输入邮政编码",
                   keyboardType: TextInputType.number,
                   maxLength: 6,
-                  controller: _zipcodeController,
-                  focusNode: _nodeZipcode),
+                  controller: _zipCodeController,
+                  focusNode: _nodeZipCode),
               Gaps.line,
               InkWell(
                   child: Container(
@@ -208,7 +219,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
                   margin: const EdgeInsets.only(left: 16.0, right: 16),
                   width: double.infinity,
                   child: Row(children: <Widget>[
-                    Text('标        签', style: TextStyles.textDark14),
+                    Text('标 \t       签', style: TextStyles.textDark14),
                     Gaps.hGap16,
                     Wrap(
                         spacing: 10,
@@ -241,7 +252,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
                 });
               },
               title: '选择地区',
-              unselectedColor: Color(0xFF333333));
+              unselectedColor: grey3Color);
         });
   }
 
@@ -250,7 +261,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
         id: widget.id,
         name: _nameController.text,
         phone: _phoneController.text,
-        zipcode: _zipcodeController.text ?? '',
+        zipCode: _zipCodeController.text ?? '',
         address: _addressController.text,
         tag: _tag,
         isDefault: _isDefault,
@@ -258,16 +269,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
         city: _city,
         county: _county);
 
-    int success = await widget.addressProvider.insertOrReplaceToDB(address);
-
-    if (success > 0) {
-      Toast.show('${widget.title}${AppLocalizations.$t('success')}！', context);
-
-      Store.value<AddressModel>(context)
-          .$changeAddresses(widget.addressProvider);
-      Navigator.of(context).pop();
-    } else {
-      Toast.show('${widget.title}${AppLocalizations.$t('fail')}！', context);
-    }
+    await Store.value<AddressModel>(context, listen: false)
+        .insertOrReplaceAddress(context, address, widget.title);
   }
 }

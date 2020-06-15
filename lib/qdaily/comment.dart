@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily.dart';
-import 'package:flutter_app/bean/qdaily_app.dart';
-import 'package:flutter_app/qdaily/ui/item_comment.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/empty.dart';
-import 'package:flutter_app/utils/loading_util.dart';
+
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+
+import '../page_index.dart';
+import 'index.dart';
 
 class CommentPage extends StatefulWidget {
   final int id;
@@ -26,11 +24,9 @@ class _CommentPageState extends State<CommentPage> {
 
   ResponseBean response;
 
-  List<CommentBean> comments = [];
+  List<QDailyComment> comments = [];
 
   bool isLoadComplete = false;
-
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
 
   @override
   void initState() {
@@ -49,12 +45,12 @@ class _CommentPageState extends State<CommentPage> {
           AppBar(title: Text('${widget.commentCount}条评论'), centerTitle: true),
       body: widget.commentCount == 0
           ? EmptyPage(text: '暂无评论', imageAsset: 'images/empty.jpeg')
-          : comments.isEmpty ? getLoadingWidget() : _buildBodyView(),
+          : comments.isEmpty ? LoadingWidget() : _buildBodyView(),
     );
   }
 
   void getCommentData(int id, String lastKey) async {
-    response = await ApiService.getQdailyCommentData(id,
+    response = await ApiService.getQDailyCommentData(id,
         lastKey: lastKey, dataType: widget.dataType);
     if (response == null) {
       // 请求失败
@@ -70,14 +66,14 @@ class _CommentPageState extends State<CommentPage> {
 
   Widget _buildBodyView() {
     return EasyRefresh(
-        refreshFooter: BallPulseFooter(
-            key: _footerKey, color: Colors.red, backgroundColor: Colors.white),
-        loadMore: isLoadComplete
+        footer: BallPulseFooter(),
+        onLoad: isLoadComplete
             ? null
             : () async => getCommentData(widget.id, lastKey),
-        child: ListView.builder(
+        child: ListView.separated(
             itemBuilder: (context, index) =>
                 ItemComment(comment: comments[index]),
-            itemCount: comments.length));
+            itemCount: comments.length,
+            separatorBuilder: (BuildContext context, int index) => Gaps.vGap5));
   }
 }

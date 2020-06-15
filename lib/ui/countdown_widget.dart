@@ -2,15 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../page_index.dart';
-
 /// 倒计时控件
 class CountdownWidget extends StatefulWidget {
   final onCountdownFinishCallBack;
   final int seconds;
 
   CountdownWidget(
-      {Key key, @required this.onCountdownFinishCallBack, this.seconds})
+      {Key key, @required this.onCountdownFinishCallBack, this.seconds: 5})
       : super(key: key);
 
   @override
@@ -24,7 +22,7 @@ class _CountdownWidgetState extends State<CountdownWidget> {
   @override
   void initState() {
     super.initState();
-    _seconds = widget.seconds ?? 5;
+    _seconds = widget.seconds;
     _startTimer();
   }
 
@@ -44,7 +42,7 @@ class _CountdownWidgetState extends State<CountdownWidget> {
           '$_seconds',
           style: TextStyle(fontSize: 17.0, color: Colors.white),
         ),
-        margin: EdgeInsets.only(top: Utils.topSafeHeight + 10, right: 10),
+        margin: EdgeInsets.only(right: 10),
         padding: EdgeInsets.all(10));
   }
 

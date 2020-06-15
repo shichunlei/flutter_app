@@ -1,75 +1,15 @@
-import 'package:flutter/material.dart';
-import 'models/config_state_model.dart';
-import 'package:provide/provide.dart'
-    show
-        Provider,
-        Provide,
-        ProviderNode,
-        Providers,
-        ProvideMulti,
-        ProviderScope;
+export 'models/config_model.dart';
+export 'provider_store.dart';
+export 'models/user_model.dart';
+export 'models/music_model.dart';
+export 'models/songlist_model.dart';
+export 'models/shopping_cart_model.dart';
+export 'models/weather_model.dart';
+export 'models/baixing_model.dart';
 
-import 'models/address_model.dart';
+export '../baixing_life/page/address/store/address_model.dart';
 
-class Store {
-  static dynamic storeCtx;
-  static dynamic widgetCtx;
+export '../article/store/article_model.dart';
 
-  static init({model, child, dispose = true}) {
-    final providers = Providers()
-      ..provide(Provider.value(ConfigModel()))
-      ..provide(Provider.value(AddressModel()));
-
-    return ProviderNode(child: child, providers: providers, dispose: dispose);
-  }
-
-  /// 设置数据层上下文
-  static setStoreCtx(context) {
-    storeCtx = context;
-  }
-
-  /// 设置Widget上下文
-  static setWidgetCtx(context) {
-    widgetCtx = context;
-  }
-
-  /// 获取
-  static T valueNotCtx<T>() {
-    return Provide.value<T>(storeCtx);
-  }
-
-  /// 根据 Context 获取
-  static T value<T>(context, {scope}) {
-    return Provide.value<T>(context, scope: scope);
-  }
-
-  /// 监听
-  static connect<T>({builder, child, scope}) {
-    return Provide<T>(
-      builder: builder,
-      child: child,
-      scope: scope,
-    );
-  }
-
-  /// 通过流的方式 监听
-  static stream<T>({builder, model, context}) {
-    return StreamBuilder<T>(
-        initialData: model,
-        stream: Provide.stream<T>(context),
-        builder: builder);
-  }
-
-  /// 链接多个类型
-  static multi(
-      {builder,
-      child,
-      List<Type> requestedValues,
-      Map<ProviderScope, List<Type>> requestedScopedValues}) {
-    return ProvideMulti(
-        builder: builder,
-        child: child,
-        requestedValues: requestedValues,
-        requestedScopedValues: requestedScopedValues);
-  }
-}
+export 'package:flutter_app/reader/store/book_model.dart';
+export 'package:flutter_app/reader/store/setting_model.dart';

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
-        <!-- Show a splash screen on the activity. Automatically removed when
-             Flutter draws its first frame -->
+        <!-- 是否全屏显示 -->
+        <!-- <item name="android:windowFullscreen">true</item> -->
+        <!-- 设置启动背景 引入启动页 xml -->
         <item name="android:windowBackground">@drawable/launch_background</item>
+        <!-- 启动时状态栏状态是否透明 -->
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 </resources>

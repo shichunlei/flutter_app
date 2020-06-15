@@ -1,12 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import '../page/order_home_page.dart';
-import '../ui/IconText.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 import '../../page_index.dart';
-import 'address/address_page.dart';
+import '../index.dart';
 
 class MemberPage extends StatefulWidget {
   final String title;
@@ -39,7 +36,7 @@ class _MemberPageState extends State<MemberPage>
 
     scrollController.addListener(() {
       var offset = scrollController.offset;
-      if (offset < 0) {
+      if (offset <= 0) {
         if (navAlpha != 0) {
           setState(() {
             navAlpha = 0;
@@ -65,6 +62,7 @@ class _MemberPageState extends State<MemberPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
         backgroundColor: Colors.grey[200],
         body: Stack(children: <Widget>[
@@ -73,19 +71,18 @@ class _MemberPageState extends State<MemberPage>
               controller: scrollController,
               child: Column(children: <Widget>[
                 _buildHeader(),
-                Container(
-                    margin: EdgeInsets.only(top: 10.0),
+                Gaps.vGap10,
+                Material(
                     color: Colors.white,
-                    child: Column(children: <Widget>[
-                      ListTile(
-                        title: Text('我的订单'),
-                        onTap: () => pushNewPage(context, OrderHomePage()),
-                        leading: Icon(CustomIcon.order),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                      ),
-                      Container(height: 0.5, color: Colors.grey[200]),
-                      Row(
-                        children: orderTitles.map((title) {
+                    child: Container(
+                      child: Column(children: <Widget>[
+                        ListTile(
+                            title: Text('我的订单'),
+                            onTap: () => pushNewPage(context, OrderHomePage()),
+                            leading: Icon(CustomIcon.order),
+                            trailing: Icon(Icons.keyboard_arrow_right)),
+                        Row(
+                            children: orderTitles.map((title) {
                           int index = orderTitles.indexOf(title);
                           if (index > 0) {
                             return Expanded(
@@ -93,61 +90,69 @@ class _MemberPageState extends State<MemberPage>
                                     onPressed: () => pushNewPage(
                                         context, OrderHomePage(index: index)),
                                     text: '${title['title']}',
-                                    icon: title['icon']));
+                                    icon: Icon(title['icon'])));
                           }
                           return Container();
-                        }).toList(),
-                      )
-                    ])),
-                Container(
-                    margin: EdgeInsets.only(top: 10.0),
+                        }).toList())
+                      ]),
+                    )),
+                Gaps.vGap10,
+                Material(
                     color: Colors.white,
-                    child: Column(children: <Widget>[
-                      ListTile(
-                        title: Text('优惠券'),
-                        onTap: () {
-                          Toast.show('优惠券', context);
+                    child: Container(
+                      child: Column(children: <Widget>[
+                        ListTile(
+                            title: Text('优惠券'),
+                            onTap: () {
+                              Toast.show(context, '优惠券');
 
-                          /// TODO
-                        },
-                        leading: Icon(CustomIcon.coupon),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                      ),
-                      Container(height: 0.5, color: Colors.grey[200]),
-                      ListTile(
-                          title: Text('收货地址'),
-                          onTap: () => pushNewPage(context, AddressPage()),
-                          leading: Icon(CustomIcon.address),
-                          trailing: Icon(Icons.keyboard_arrow_right))
-                    ])),
-                Container(
-                    margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                              /// TODO
+                            },
+                            leading: Icon(CustomIcon.coupon),
+                            trailing: Icon(Icons.keyboard_arrow_right)),
+                        Container(height: 0.5, color: Colors.grey[200]),
+                        ListTile(
+                            title: Text('收货地址'),
+                            onTap: () => pushNewPage(context, AddressPage()),
+                            leading: Icon(CustomIcon.address),
+                            trailing: Icon(Icons.keyboard_arrow_right))
+                      ]),
+                    )),
+                Gaps.vGap10,
+                Material(
                     color: Colors.white,
-                    child: Column(children: <Widget>[
-                      ListTile(
-                          title: Text('客服电话'),
-                          onTap: () => Utils.launchURL('tel:$_phone'),
-                          leading: Icon(CustomIcon.custom_service),
-                          trailing: Row(children: <Widget>[
-                            Text(_phone),
-                            SizedBox(width: 10.0),
-                            Icon(Icons.keyboard_arrow_right)
-                          ], mainAxisSize: MainAxisSize.min)),
-                      Container(height: 0.5, color: Colors.grey[200]),
-                      ListTile(
-                          title: Text('关于商城'),
-                          onTap: () {
-                            /// TODO
-                            Toast.show('关于商城', context);
-                          },
-                          leading: Icon(CustomIcon.about),
-                          trailing: Icon(Icons.keyboard_arrow_right))
-                    ]))
+                    child: Container(
+                      child: Column(children: <Widget>[
+                        ListTile(
+                            title: Text('客服电话'),
+                            onTap: () => Utils.launchURL('tel:$_phone'),
+                            leading: Icon(CustomIcon.custom_service),
+                            trailing: Row(children: <Widget>[
+                              Text(_phone),
+                              SizedBox(width: 10.0),
+                              Icon(Icons.keyboard_arrow_right)
+                            ], mainAxisSize: MainAxisSize.min)),
+                        Container(height: 0.5, color: Colors.grey[200]),
+                        ListTile(
+                            title: Text('门店'),
+                            onTap: () => pushNewPage(context, ShopsPage()),
+                            leading: Icon(Icons.home),
+                            trailing: Icon(Icons.keyboard_arrow_right)),
+                        Container(height: 0.5, color: Colors.grey[200]),
+                        ListTile(
+                            title: Text('关于商城'),
+                            onTap: () {
+                              pushNewPage(context, AboutPage());
+                            },
+                            leading: Icon(CustomIcon.about),
+                            trailing: Icon(Icons.keyboard_arrow_right))
+                      ]),
+                    ))
               ])),
-          ChangeAppBar(
-              title: widget.title,
-              backgroundColor: Colors.green,
-              navAlpha: navAlpha)
+          ToolBar(
+              title: Text(widget.title),
+              backgroundColor: Color.fromRGBO(89, 175, 80, navAlpha),
+              automaticallyImplyLeading: false)
         ]));
   }
 
@@ -156,7 +161,6 @@ class _MemberPageState extends State<MemberPage>
         height: headerHeight + Utils.navigationBarHeight,
         child: Stack(children: <Widget>[
           ImageLoadView(backgroundImage,
-              placeholder: kTransparentImage,
               fit: BoxFit.fill,
               height: headerHeight + Utils.navigationBarHeight,
               width: Utils.width),

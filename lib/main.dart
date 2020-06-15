@@ -1,29 +1,40 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import './store/provider_store.dart';
 
 import 'page_index.dart';
 
-import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   setCustomErrorPage();
   _setTargetPlatformForDesktop();
+
   await SpUtil.getInstance();
+
+  await AmapCore.init(Config.AMAP_KEY_IOS);
+
   runZoned(() {
+    //强制横屏
+    // SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+
     /// 强制竖屏
     SystemChrome.setPreferredOrientations(
             [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp])
         .then((_) {
+      Utils.statusBarEnable(true);
       runApp(Store.init(child: MyApp()));
 
       if (Platform.isAndroid) {
         // 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
-        // SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
-        // SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+        SystemUiOverlayStyle systemUiOverlayStyle =
+            SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+        SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
       }
     });
   }, onError: (Object error, StackTrace stack) {
@@ -35,7 +46,7 @@ void main() async {
 void setCustomErrorPage() {
   ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) {
     debugPrint(flutterErrorDetails.toString());
-    return Center(child: Text("Flutter 走神了"));
+    return Center(child: Text("${flutterErrorDetails.toString()}"));
   };
 }
 
@@ -51,80 +62,5 @@ void _setTargetPlatformForDesktop() {
   }
   if (targetPlatform != null) {
     debugDefaultTargetPlatformOverride = targetPlatform;
-  }
-}
-
-class MyApp extends StatefulWidget {
-  MyApp({Key key}) : super(key: key);
-
-  @override
-  createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  // 定义全局 语言代理
-  AppLocalizationsDelegate _delegate;
-
-  @override
-  void initState() {
-    super.initState();
-    _delegate = AppLocalizationsDelegate();
-    Store.setStoreCtx(context); // 初始化数据层
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Store.value<ConfigModel>(context).$getTheme();
-
-    return Store.connect<ConfigModel>(builder: (context, child, model) {
-      return MaterialApp(
-        /// 任务管理器显示的标题
-        title: "Flutter Demo",
-
-        /// 您可以通过配置ThemeData类轻松更改应用程序的主题
-        theme: AppTheme.getThemeData(model.theme),
-
-        /// 右上角显示一个debug的图标
-        debugShowCheckedModeBanner: false,
-
-        /// 主页
-        home: SplashScreenPage(),
-
-        /// locale: Locale('zh', 'CH'),
-        localeResolutionCallback: (deviceLocale, supportedLocal) {
-          debugPrint(
-              '当前设备语种 deviceLocale: $deviceLocale, 支持语种 supportedLocale: $supportedLocal}');
-          // 判断传入语言是否支持
-          Locale _locale = supportedLocal.contains(deviceLocale)
-              ? deviceLocale
-              : Locale('zh', 'CH');
-          return _locale;
-        },
-        onGenerateTitle: (context) {
-          // 设置多语言代理
-          AppLocalizations.setProxy(setState, _delegate);
-          return 'flutter';
-        },
-
-        /// localizationsDelegates 列表中的元素时生成本地化集合的工厂
-        localizationsDelegates: [
-          // 为Material Components库提供本地化的字符串和其他值
-          GlobalMaterialLocalizations.delegate,
-
-          // 定义widget默认的文本方向，从左往右或从右往左
-          GlobalWidgetsLocalizations.delegate,
-
-          _delegate,
-
-          /// 解决 ‘使用CupertinoAlertDialog 报 'alertDialogLabel' was called on null’ 的BUG
-          const FallbackCupertinoLocalisationsDelegate(),
-        ],
-        supportedLocales: LanguageConfig.supportedLocales,
-
-        routes: <String, WidgetBuilder>{
-          '/shopCart': (BuildContext context) => IndexPage(index: 2)
-        },
-      );
-    });
   }
 }

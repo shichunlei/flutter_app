@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/toast.dart';
-import 'package:flutter_app/global/config.dart';
-import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_detail.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/movie/ui/item_ranking_movie.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
+
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
+import '../../page_index.dart';
+import '../index.dart';
+
 class MovieTop250 extends StatefulWidget {
   @override
-  _MovieTop250State createState() => _MovieTop250State();
+  createState() => _MovieTop250State();
 }
 
 class _MovieTop250State extends State<MovieTop250> {
   int page = 1;
-  int pagesize = 30;
-
-  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
+  int pageSize = 30;
 
   bool isFirst = true;
 
@@ -36,30 +29,26 @@ class _MovieTop250State extends State<MovieTop250> {
   void initState() {
     super.initState();
 
-    getMovieTop250List(page, pagesize, RefreshType.DEFAULT);
+    getMovieTop250List(page, pageSize, RefreshType.DEFAULT);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('豆瓣排行前250电影'),
-      ),
-      body: _builderPageView(movies),
-    );
+        appBar: AppBar(centerTitle: true, title: Text('豆瓣排行前250电影')),
+        body: _builderPageView(movies));
   }
 
   Widget _builderPageView(List<Movie> movies) {
     if (isFirst && movies.isEmpty) {
-      return getLoadingWidget();
+      return LoadingWidget();
     } else {
       if (loadError) {
         return Center(
           child: RaisedButton(
             onPressed: () {
               page = 1;
-              getMovieTop250List(page, pagesize, RefreshType.DEFAULT);
+              getMovieTop250List(page, pageSize, RefreshType.DEFAULT);
             },
             child: Text("加载失败"),
           ),
@@ -74,49 +63,32 @@ class _MovieTop250State extends State<MovieTop250> {
 
   Widget _builderGridView(List<Movie> movies) {
     return EasyRefresh(
-      key: _easyRefreshKey,
+        footer: BallPulseFooter(),
 
-      /// 自动控制(刷新和加载完成)
-      autoControl: true,
-
-      /// 底部视图
-      refreshFooter: BallPulseFooter(
-        key: _footerKey,
-        color: Colors.indigo,
-        backgroundColor: Colors.white,
-      ),
-
-      ///加载回调方法
-      loadMore: isLoadComplete
-          ? null
-          : () async {
-              page++;
-              getMovieTop250List(page, pagesize, RefreshType.LOAD_MORE);
-            },
-
-      emptyWidget: Center(child: Text(text)),
-
-      /// 子部件 内容视图
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return ItemRankingMovie(
-            movies[index],
-            index: index,
-            onTap: () {
-              pushNewPage(context, MovieDetail(movies[index].id));
-            },
-          );
+        ///加载回调方法
+        onLoad: isLoadComplete
+            ? null
+            : () async {
+          page++;
+          getMovieTop250List(page, pageSize, RefreshType.LOAD_MORE);
         },
-        itemCount: movies.length,
-        physics: const BouncingScrollPhysics(),
-        padding: EdgeInsets.all(5.0),
-      ),
-    );
+        emptyWidget: movies.length > 0 ? null : Center(child: Text(text)),
+
+        /// 子部件 内容视图
+        child: ListView.builder(
+            itemBuilder: (context, index) =>
+                ItemRankingMovie(movies[index],
+                    index: index,
+                    onTap: () =>
+                        pushNewPage(context, MovieDetail(movies[index].id))),
+            itemCount: movies.length,
+            physics: const BouncingScrollPhysics(),
+            padding: EdgeInsets.all(5.0)));
   }
 
-  void getMovieTop250List(int page, int pagesize, RefreshType type) async {
-    List<Movie> list = await ApiService.getTop250List(
-        start: (page - 1) * pagesize, count: pagesize);
+  void getMovieTop250List(int page, int pageSize, RefreshType type) async {
+    List<Movie> list =
+    await ApiService.getTop250List(page: page, limit: pageSize);
     if (type == RefreshType.DEFAULT) {
       movies.addAll(list);
       if (isFirst && movies.isEmpty) {
@@ -127,8 +99,7 @@ class _MovieTop250State extends State<MovieTop250> {
     } else if (type == RefreshType.LOAD_MORE) {
       movies.addAll(list);
       if (list.isEmpty) {
-        Toast.show("加载完...", context,
-            duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+        Toast.show(context, "加载完...");
         isLoadComplete = true;
       }
     }
@@ -138,6 +109,6 @@ class _MovieTop250State extends State<MovieTop250> {
       isFirst = false;
     }
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 }

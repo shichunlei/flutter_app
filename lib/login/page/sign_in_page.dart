@@ -1,21 +1,18 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/global/custom_icon.dart';
-import 'package:flutter_app/home_page.dart';
-import 'package:flutter_app/login/page/forgot_password_page.dart';
-import 'package:flutter_app/login/ui/submit_button.dart';
-import 'package:flutter_app/login/ui/third_login_button.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/sp_util.dart';
-import 'package:flutter_app/utils/toast.dart';
-import 'package:flutter_app/utils/utils.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_app/bean/user.dart';
+import 'package:flutter_app/generated/i18n.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+
+import '../../page_index.dart';
+import 'forgot_password_page.dart';
+import '../ui/submit_button.dart';
+import '../../store/index.dart';
 
 class SignInPage extends StatefulWidget {
   @override
-  _SignInPageState createState() => _SignInPageState();
+  createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> {
@@ -25,118 +22,112 @@ class _SignInPageState extends State<SignInPage> {
   var _emailController = TextEditingController();
   var _pwdController = TextEditingController();
 
-  Timer timer;
-
-  /**
-   * 利用FocusNode和FocusScopeNode来控制焦点
-   * 可以通过FocusNode.of(context)来获取widget树中默认的FocusScopeNode
-   */
+  /// 利用FocusNode和FocusScopeNode来控制焦点,
+  ///
+  /// 可以通过FocusNode.of(context)来获取widget树中默认的FocusScopeNode
   FocusNode passwordFocusNode = FocusNode();
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.only(top: 23),
-      child: Container(
-        child: Stack(
-          /// 注意这里要设置溢出如何处理，设置为visible的话，可以看到孩子，设置为clip的话，若溢出会进行裁剪
-          overflow: Overflow.visible,
-          alignment: Alignment.topCenter,
-          children: <Widget>[
-            Column(children: <Widget>[
-              /// 创建表单
-              _buildLoginTextForm(),
+      child: Stack(
+        /// 注意这里要设置溢出如何处理，设置为visible的话，可以看到孩子，设置为clip的话，若溢出会进行裁剪
+        overflow: Overflow.visible,
+        alignment: Alignment.topCenter,
+        children: <Widget>[
+          Column(children: <Widget>[
+            /// 创建表单
+            _buildLoginTextForm(),
 
-              /// 忘记密码
-              Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: FlatButton(
-                      color: Color(0x00000000),
-                      shape: const StadiumBorder(),
-                      onPressed: () {
-                        pushNewPage(context, ForgotPasswordPage());
-                      },
-                      child: Text("忘记密码？",
-                          style: TextStyle(
-                              fontSize: 16.0,
-                              color: Colors.white,
-                              decoration: TextDecoration.underline)))),
-
-              /// Or 横线
-              Padding(
-                  padding: const EdgeInsets.only(top: 5.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                            width: 100.0,
-                            height: 1.0,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  colors: [Colors.white10, Colors.white]),
-                            )),
-                        Padding(
-                            padding:
-                                const EdgeInsets.only(left: 15.0, right: 15.0),
-                            child: Text('Or',
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.white))),
-                        Container(
-                            width: 100.0,
-                            height: 1.0,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  colors: [Colors.white, Colors.white10]),
-                            ))
-                      ])),
-
-              /// 第三方登录按钮
-              Padding(
-                  padding: const EdgeInsets.only(top: 5.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        ThirdLoginButton(
-                            onPressed: () {
-                              Toast.show("微信", context);
-                            },
-                            icon: FontAwesomeIcons.weixin),
-                        SizedBox(width: 40.0),
-                        ThirdLoginButton(
-                            onPressed: () {
-                              Toast.show("QQ", context);
-                            },
-                            icon: FontAwesomeIcons.qq)
-                      ]))
-            ]),
-
-            /// 登录按钮
+            /// 忘记密码
             Padding(
-                padding: const EdgeInsets.only(top: 148.0),
-                child: SubmitButton(
-                    title: "登录",
-                    onTap: () {
-                      if (_emailController.text.isEmpty) {
-                        Toast.show("邮箱不能为空", context);
-                      } else if (!Utils.isEmail(_emailController.text)) {
-                        Toast.show("邮箱格式不正确", context);
-                      } else if (_pwdController.text.isEmpty) {
-                        Toast.show("密码不能为空", context);
-                      } else if (_pwdController.text.length < 6) {
-                        Toast.show("密码长度不能小于6位！", context);
-                      } else {
-                        getLoadingWidget();
-                        isShowLoading = true;
-                        _login();
-                      }
-                    }))
-          ],
-        ),
+                padding: const EdgeInsets.only(top: 20.0),
+                child: FlatButton(
+                    color: Color(0x00000000),
+                    shape: const StadiumBorder(),
+                    onPressed: () {
+                      pushNewPage(context, ForgotPasswordPage());
+                    },
+                    child: Text("忘记密码？",
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.white,
+                            decoration: TextDecoration.underline)))),
+
+            /// Or 横线
+            Padding(
+                padding: const EdgeInsets.only(top: 5.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                          width: 100.0,
+                          height: 1.0,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                colors: [Colors.white10, Colors.white]),
+                          )),
+                      Padding(
+                          padding:
+                              const EdgeInsets.only(left: 15.0, right: 15.0),
+                          child: Text('Or',
+                              style: TextStyle(
+                                  fontSize: 16, color: Colors.white))),
+                      Container(
+                          width: 100.0,
+                          height: 1.0,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                colors: [Colors.white, Colors.white10]),
+                          ))
+                    ])),
+
+            /// 第三方登录按钮
+            Padding(
+                padding: const EdgeInsets.only(top: 5.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      CircleButton(
+                        icon: FontAwesome.weixin,
+                        onPressedAction: () {
+                          Toast.show(context, "微信");
+                        },
+                        iconSize: 25.0,
+                      ),
+                      SizedBox(width: 40.0),
+                      CircleButton(
+                        icon: FontAwesome.qq,
+                        onPressedAction: () {
+                          Toast.show(context, "QQ");
+                        },
+                        iconSize: 25.0,
+                      ),
+                    ]))
+          ]),
+
+          /// 登录按钮
+          Padding(
+              padding: const EdgeInsets.only(top: 148.0),
+              child: SubmitButton(
+                  title: "${S.of(context).login}",
+                  onTap: () {
+                    if (_emailController.text.isEmpty) {
+                      Toast.show(context, "邮箱不能为空");
+                    } else if (!Utils.isEmail(_emailController.text)) {
+                      Toast.show(context, "邮箱格式不正确");
+                    } else if (_pwdController.text.isEmpty) {
+                      Toast.show(context, "密码不能为空");
+                    } else if (_pwdController.text.length < 6) {
+                      Toast.show(context, "密码长度不能小于6位！");
+                    } else {
+                      showLoadingDialog(context, '登录中...');
+                      isShowLoading = true;
+                      _login();
+                    }
+                  }))
+        ],
       ),
     );
   }
@@ -203,7 +194,7 @@ class _SignInPageState extends State<SignInPage> {
             FocusScope.of(context).requestFocus(passwordFocusNode),
         decoration: InputDecoration(
           icon: Icon(Icons.email, color: Colors.black),
-          hintText: "请输入邮箱",
+          hintText: "${S.of(context).email}",
           border: InputBorder.none,
         ),
 
@@ -226,7 +217,7 @@ class _SignInPageState extends State<SignInPage> {
         /// 装饰器
         decoration: InputDecoration(
           icon: Icon(Icons.lock, color: Colors.black),
-          hintText: "请输入密码",
+          hintText: "${S.of(context).password}",
           border: InputBorder.none,
           suffixIcon: IconButton(
             color: Theme.of(context).primaryColor,
@@ -261,20 +252,57 @@ class _SignInPageState extends State<SignInPage> {
     });
   }
 
-  void _login() async {
-    SpUtil.setBool("isLogin", true);
-    timer = Timer(Duration(seconds: 1), () {
-      if (isShowLoading) {
-        Navigator.of(context).pop();
-      }
-      pushAndRemovePage(context, HomePage());
-    });
-  }
+  Future<void> _login() async {
+//    User user = await ApiService.login(
+//        _emailController.text.toString(), _pwdController.text.toString());
+//
+//    if (user != null) {
+//      Store.value<UserModel>(context, listen: false)
+//        ..setUser(
+//          id: user.id,
+//          email: '${user?.email}',
+//          name: '${user.name}',
+//          avatarPath: user.avatarUrl,
+//          login: true,
+//          mobile: user.mobile,
+//        );
+//      if (isShowLoading) {
+//        Navigator.of(context).pop();
+//      }
+//      pushAndRemovePage(context, HomePage());
+//    } else {
+//      Toast.show(context, '登录失败');
+//    }
 
-  @override
-  void dispose() {
-    timer?.cancel();
-    timer = null;
-    super.dispose();
+    await HttpUtils().post(
+        ApiUrl.LOGIN,
+        (data) {
+          User user = User.fromMap(data);
+
+          Store.value<UserModel>(context, listen: false)
+            ..setUser(
+              id: user.id,
+              email: '${user?.email}',
+              name: '${user.name}',
+              avatarPath: user.avatarUrl,
+              login: true,
+              mobile: user.mobile,
+            );
+          if (isShowLoading) {
+            Navigator.of(context).pop();
+          }
+          pushAndRemovePage(context, HomePage());
+        },
+        params: {
+          'email': _emailController.text.toString(),
+          'password': _pwdController.text.toString()
+        },
+        errorCallBack: (error) {
+          print(error);
+          if (isShowLoading) {
+            Navigator.of(context).pop();
+          }
+          Toast.show(context, error.message);
+        });
   }
 }

@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_search_page.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/route_util.dart';
+import '../../page_index.dart';
+import '../index.dart';
 
 class ItemClassifyTag extends StatefulWidget {
   final String tag;
 
-  const ItemClassifyTag({Key key, this.tag}) : super(key: key);
+  ItemClassifyTag({Key key, this.tag}) : super(key: key);
 
   @override
-  _ItemClassifyTagState createState() => _ItemClassifyTagState();
+  createState() => _ItemClassifyTagState();
 }
 
-class _ItemClassifyTagState extends State<ItemClassifyTag> {
-  String cover =
-      "https://ws2.sinaimg.cn/large/006tKfTcgy1g1bt7w7w9mj306e03kmx0.jpg";
+class _ItemClassifyTagState extends State<ItemClassifyTag>
+    with AutomaticKeepAliveClientMixin<ItemClassifyTag> {
+  String cover = backgroundImage;
 
   @override
   void initState() {
@@ -26,22 +23,13 @@ class _ItemClassifyTagState extends State<ItemClassifyTag> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    super.build(context);
+    return BouncingView(
       child: Stack(
         children: <Widget>[
-          ImageLoadView(
-            cover,
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-            borderRadius: BorderRadius.circular(3.0),
-          ),
+          ImageLoadView(cover,
+              width: double.infinity, height: double.infinity, radius: 3),
           Opacity(
             opacity: 0.5,
             child: Container(
@@ -58,23 +46,22 @@ class _ItemClassifyTagState extends State<ItemClassifyTag> {
           ),
         ],
       ),
-      onTap: () => pushNewPage(
-          context,
-          MovieSearchPage(
-            tag: widget.tag,
-          )),
+      onPressed: () => pushNewPage(context, MovieTagListView(widget.tag)),
     );
   }
 
   void searchMovieByTag(String tag) async {
     List<Movie> movies =
-        await ApiService.getSearchListByTag(tag: tag, start: 0, count: 1);
+        await ApiService.getSearchListByTag(tag, page: 0, limit: 1);
 
     if (movies != null && movies.isNotEmpty) {
       setState(() {
-        cover = movies[0].images.small.toString();
+        cover = movies?.first?.images?.small.toString();
         print(cover);
       });
     }
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

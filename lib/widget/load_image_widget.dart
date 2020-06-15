@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/page_index.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 
@@ -16,66 +17,85 @@ class LoadImageWidgetState extends State<LoadImageWidget> {
   VideoPlayerController _controller;
   VoidCallback listener;
 
-  void _onImageButtonPressed(ImageSource source) {
-    setState(() {
+  void _onImageButtonPressed(ImageSource source) async {
+    if (isVideo) {
       if (_controller != null) {
-        _controller.setVolume(0.0);
         _controller.removeListener(listener);
       }
-      if (isVideo) {
-        ImagePicker.pickVideo(source: source).then((File file) {
-          if (file != null && mounted) {
-            setState(() {
-              _controller = VideoPlayerController.file(file)
-                ..addListener(listener)
-                ..setVolume(1.0)
-                ..initialize()
-                ..setLooping(true)
-                ..play();
-            });
-          }
-        });
-      } else {
-        _imageFile = ImagePicker.pickImage(source: source);
+      File videoFile = await ImagePicker.pickVideo(source: source);
+      if (videoFile != null && mounted) {
+        String videoFilePath = videoFile.path;
+
+        // 视频地址
+        debugPrint("视频地址==========:$videoFilePath");
+
+        String filename = videoFilePath.substring(
+            videoFilePath.lastIndexOf("/") + 1, videoFilePath.length);
+        debugPrint(filename);
+
+        String videoFolderPath =
+            videoFilePath.substring(0, videoFilePath.lastIndexOf("/") + 1);
+
+        String newPath = await FileUtil.getInstance().getLocalPath() + "/";
+
+        String path = await FileUtil.getInstance()
+            .copyFile(filename, videoFolderPath, newPath);
+
+        debugPrint("path====$path");
+
+        _controller = VideoPlayerController.file(videoFile)
+          ..addListener(listener)
+          ..initialize().then((_) {
+            _controller..setLooping(true);
+            setState(() {});
+          });
       }
-    });
+    } else {
+      _imageFile = ImagePicker.pickImage(source: source);
+    }
+
+    setState(() {});
   }
 
   @override
   void deactivate() {
-    if (_controller != null) {
-      _controller.setVolume(0.0);
-      _controller.removeListener(listener);
-    }
+    _controller?.removeListener(listener);
     super.deactivate();
   }
 
   @override
   void dispose() {
-    if (_controller != null) {
-      _controller.dispose();
-    }
+    _controller?.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    listener = () {
-      setState(() {});
-    };
+    listener = () {};
   }
 
-  Widget _previewVideo(VideoPlayerController controller) {
-    if (controller == null) {
+  Widget _previewVideo() {
+    if (_controller == null) {
       return const Text(
         'You have not yet picked a video',
         textAlign: TextAlign.center,
       );
-    } else if (controller.value.initialized) {
-      return Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: AspectRatioVideo(controller),
+    } else if (_controller.value.initialized) {
+      return Container(
+        child: GestureDetector(
+          onTap: () {
+            if (_controller.value.isPlaying) {
+              _controller.pause();
+            } else {
+              _controller.play();
+            }
+          },
+          child: AspectRatio(
+            aspectRatio: _controller.value.aspectRatio, // 按照视频比例展示视频
+            child: VideoPlayer(_controller),
+          ),
+        ),
       );
     } else {
       return const Text(
@@ -113,7 +133,7 @@ class LoadImageWidgetState extends State<LoadImageWidget> {
         title: Text("Image Or Video Picker"),
       ),
       body: Center(
-        child: isVideo ? _previewVideo(_controller) : _previewImage(),
+        child: isVideo ? _previewVideo() : _previewImage(),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -168,51 +188,5 @@ class LoadImageWidgetState extends State<LoadImageWidget> {
         ],
       ),
     );
-  }
-}
-
-class AspectRatioVideo extends StatefulWidget {
-  AspectRatioVideo(this.controller);
-
-  final VideoPlayerController controller;
-
-  @override
-  AspectRatioVideoState createState() => AspectRatioVideoState();
-}
-
-class AspectRatioVideoState extends State<AspectRatioVideo> {
-  VideoPlayerController get controller => widget.controller;
-  bool initialized = false;
-
-  VoidCallback listener;
-
-  @override
-  void initState() {
-    super.initState();
-    listener = () {
-      if (!mounted) {
-        return;
-      }
-      if (initialized != controller.value.initialized) {
-        initialized = controller.value.initialized;
-        setState(() {});
-      }
-    };
-    controller.addListener(listener);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (initialized) {
-      final Size size = controller.value.size;
-      return Center(
-        child: AspectRatio(
-          aspectRatio: size.width / size.height,
-          child: VideoPlayer(controller),
-        ),
-      );
-    } else {
-      return Container();
-    }
   }
 }

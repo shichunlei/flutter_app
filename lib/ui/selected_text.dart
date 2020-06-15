@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/res/colors.dart';
 
 class SelectedText extends StatelessWidget {
   final String text;
@@ -12,7 +13,7 @@ class SelectedText extends StatelessWidget {
       {Key key,
       this.fontSize: 14.0,
       this.selected: false,
-      this.unSelectedTextColor: const Color(0xFF333333),
+      this.unSelectedTextColor: grey3Color,
       this.enable: true,
       this.onTap})
       : super(key: key);
@@ -47,14 +48,11 @@ class SelectedText extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(text,
-                      style:
-                          TextStyle(color: getTextColor(), fontSize: fontSize))
+                      style: TextStyle(color: textColor(), fontSize: fontSize))
                 ])));
   }
 
-  getTextColor() {
-    return enable
-        ? (selected ? Colors.white : unSelectedTextColor)
-        : Color(0xFFCCCCCC);
-  }
+  textColor() => enable
+      ? (selected ? Colors.white : unSelectedTextColor)
+      : greyCColor;
 }

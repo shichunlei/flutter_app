@@ -1,9 +1,9 @@
+import 'package:custom_widgets/flip_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/flip_card.dart';
 
 class FlipperWidget extends StatefulWidget {
   @override
-  _FlipperWidgetState createState() => _FlipperWidgetState();
+  createState() => _FlipperWidgetState();
 }
 
 class _FlipperWidgetState extends State<FlipperWidget> {

@@ -2,378 +2,386 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
-import '../bean/bean_index.dart';
-import '../service/api_url.dart';
+import '../bean/index.dart';
 
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' show parse;
-import 'package:http/http.dart' as http;
 
 import '../page_index.dart';
 
 class ApiService {
-  /// 获取豆瓣电影首页热门新闻文章
-  static Future<List<News>> getNewsList() async {
-    List<News> news = [];
+  /// 登录
+  ///
+  /// [email] 邮箱
+  /// [password] 密码
+  ///
+  static Future<User> login(String email, String password) async {
+    Response response = await HttpUtils().request(ApiUrl.LOGIN,
+        data: {'email': email, 'password': password}, method: HttpUtils.POST);
+    if (response != null &&
+        response.statusCode >= 200 &&
+        response.statusCode < 300) {
+      BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    await http.get(ApiUrl.DOUBAN_WEB_URL).then((http.Response response) {
-      var document = parse(response.body.toString());
-      List<dom.Element> items =
-          document.getElementsByClassName('gallery-frame');
-      items.forEach((item) {
-        String cover =
-            item.getElementsByTagName('img')[0].attributes['src'].toString();
-        String link =
-            item.getElementsByTagName('a')[0].attributes['href'].toString();
-        String title =
-            item.getElementsByTagName('h3')[0].text.toString().trim();
-        String summary =
-            item.getElementsByTagName('p')[0].text.toString().trim();
-        news.add(News(title, cover, summary, link));
-      });
-    });
+      if (result.code == '0') {
+        return User.fromMap(result.data);
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
 
-    print(news.toString());
+  /// 修改头像
+  ///
+  /// [data] 数据
+  ///
+  static Future<User> updateAvatar(FormData data) async {
+    Response response =
+        await HttpUtils().uploadFile(ApiUrl.UPDATE_AVATAR, data: data);
 
-    return news;
+    if (response != null &&
+        response.statusCode >= 200 &&
+        response.statusCode < 300) {
+      BaseResult result = BaseResult.fromMap(response.data);
+
+      if (result.code == '0') {
+        return User.fromMap(result.data);
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  /// 豆瓣电影首页数据
+  static Future<MovieHomeData> getMovieHomeData({String city}) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_HOME_URL, data: {'city': city});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return MovieHomeData.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 豆瓣电影年度榜单
+  ///
+  /// [year] 年份
+  ///
+  static Future<RangesData> getMovieRanges(int year) async {
+    String data = await FileUtil.getInstance()
+        .readDataFromFile('rank_$year.json', folderPath: '/movie/json/');
+
+    if (data != null && data != "") {
+      BaseResult result = BaseResult.fromMap(json.decode(data));
+      return RangesData.fromMap(result.data);
+    }
+
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_RANGE_URL, data: {'year': year});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      await FileUtil.getInstance().writeDataToFile(
+          'rank_$year.json', response.data.toString(),
+          folderPath: '/movie/json/');
+      return RangesData.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 获取正在热映电影
   static Future<List<Movie>> getNowPlayingList(
-      {String city, int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get(ApiUrl.MOVIE_LIST_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'city': city,
-      'start': start,
-      'count': count,
-    });
+      {String city, int page = 1, int limit = 20}) async {
+    Response response = await HttpUtils().request(ApiUrl.MOVIE_LIST_URL,
+        data: {'city': city, 'page': page, 'limit': limit});
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    return result.subjects;
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 获取即将上映电影
   static Future<List<Movie>> getComingList(
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get(ApiUrl.MOVIE_SOON_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      "start": start,
-      'count': count,
-    });
+      {int page = 1, int limit = 20}) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.MOVIE_SOON_URL, data: {"page": page, 'limit': limit});
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    return result.subjects;
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 获取排行榜电影
   static Future<List<Movie>> getRankingList(String url,
       {int start = 0, int count = 20}) async {
-    Response response =
-        await HttpUtils(queryParameters: {'apikey': Config.DOUBAN_MOVIE_KEY})
-            .get(url, data: {
-      'start': start,
-      'count': count,
-    });
+    Response response = await HttpUtils().request(url, data: null);
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    return result.subjects;
-  }
-
-  /// 获取本周口碑榜电影
-  static Future<List<Movie>> getWeeklyList() async {
-    Response response =
-        await HttpUtils(queryParameters: {'apikey': Config.DOUBAN_MOVIE_KEY})
-            .get(ApiUrl.WEEKLY_MOVIES_URL);
-    if (response.statusCode != 200) {
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
+    } else {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
-
-    List<Movie> movies = [];
-    result.subjects.map((m) {
-      movies.add(m.subject);
-    }).toList();
-
-    return movies;
-  }
-
-  /// 获取新片榜电影
-  static Future<List<Movie>> getNewMoviesList() async {
-    Response response =
-        await HttpUtils(queryParameters: {'apikey': Config.DOUBAN_MOVIE_KEY})
-            .get(ApiUrl.NEW_MOVIES_URL);
-    if (response.statusCode != 200) {
-      return [];
-    }
-    Result result = Result.fromMap(json.decode(response.data));
-
-    return result.subjects;
-  }
-
-  /// 获取北美票房榜电影
-  static Future<List<Movie>> getUsBoxList() async {
-    Response response =
-        await HttpUtils(queryParameters: {'apikey': Config.DOUBAN_MOVIE_KEY})
-            .get(ApiUrl.US_MOVIES_URL);
-    if (response.statusCode != 200) {
-      return [];
-    }
-    Result result = Result.fromMap(json.decode(response.data));
-
-    List<Movie> movies = [];
-    result.subjects.map((m) {
-      movies.add(m.subject);
-    }).toList();
-
-    return movies;
   }
 
   /// 获取 top250 榜单
   static Future<List<Movie>> getTop250List(
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get(ApiUrl.MOVIE_TOP250_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'start': start,
-      'count': count
-    });
+      {int page = 1, int limit = 20}) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.MOVIE_TOP250_URL, data: {'page': page, 'limit': limit});
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    return result.subjects;
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 根据标签搜索
-  static Future<List<Movie>> getSearchListByTag(
-      {String tag, int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get(ApiUrl.MOVIE_SEARCH_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'tag': tag,
-      'start': start,
-      'count': count
-    });
-    if (response.statusCode != 200) {
+  static Future<List<Movie>> getSearchListByTag(String tag,
+      {int page = 1, int limit = 20, String type = "movie"}) async {
+    Response response = await HttpUtils().request(
+        ApiUrl.MOVIE_SEARCH_BY_TAG_URL,
+        data: {'tag': tag, 'page': page, 'limit': limit, 'type': type});
+    if (response == null || response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    return result.subjects;
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
-  /// 根据关键字搜索
-  static Future<List<Movie>> getSearchListByKey(
-      {String key, int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get(ApiUrl.MOVIE_SEARCH_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'q': key,
-      'start': start,
-      'count': count
+  /// 找电影
+  static Future<List<Movie>> getFilterList(
+      {int page: 1,
+      String range: "1,10",
+      bool playable: false,
+      bool unwatched: false,
+      String yearRange,
+      String countries,
+      String genres,
+      String sort,
+      String type,
+      String feature}) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_FILTER_URL, data: {
+      'page': page,
+      'playable': playable ? 1 : null,
+      "range": range,
+      "unwatched": unwatched ? 1 : null,
+      "year_range": yearRange,
+      "countries": countries,
+      "genres": genres,
+      "sort": sort,
+      "type": type,
+      "feature": feature
     });
-    if (response.statusCode != 200) {
+    if (response == null || response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    return result.subjects;
-  }
-
-  /// 搜索电影
-  static Future<List<Movie>> getSearchList(
-      {String key, String tag, int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get(ApiUrl.MOVIE_SEARCH_URL, data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'q': key,
-      'tag': tag,
-      'start': start,
-      'count': count
-    });
-    if (response.statusCode != 200) {
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
+    } else {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
-
-    return result.subjects;
   }
 
   /// 获取电影详情
-  static Future<Movie> getMovieDetail(String movieId) async {
-    Response response = await HttpUtils().get('/subject/$movieId', data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-    });
-    if (response.statusCode != 200) {
+  static Future<Movie> getMovieDetail(String id) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.MOVIE_DETAIL_URL, data: {'id': id});
+    if (response == null || response.statusCode != 200) {
       return null;
     }
-    return Movie.fromMap(json.decode(response.data));
-  }
-
-  /// 影片剧照
-  static Future<List<Photos>> getMovieAlbum(String movieId,
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get('/subject/$movieId/photos',
-        data: {
-          'apikey': Config.DOUBAN_MOVIE_KEY,
-          'start': start,
-          'count': count
-        });
-    if (response.statusCode != 200) {
-      return [];
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.code == '0') {
+      return Movie.fromMap(result.data);
+    } else {
+      return null;
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.photos;
   }
 
   /// 影人详细信息
   static Future<Celebrity> getActorDetail(String actorId) async {
-    Response response = await HttpUtils().get('/celebrity/$actorId', data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-    });
+    Response response = await HttpUtils()
+        .request(ApiUrl.MOVIE_CELEBRITY_URL, data: {'id': actorId});
     if (response.statusCode != 200) {
       return null;
     }
-    return Celebrity.fromMap(json.decode(response.data));
-  }
-
-  /// 影人相片
-  static Future<List<Photos>> getActorPhotos(String actorId,
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get('/celebrity/$actorId/photos',
-        data: {
-          'apikey': Config.DOUBAN_MOVIE_KEY,
-          'start': start,
-          'count': count
-        });
-    if (response.statusCode != 200) {
-      return [];
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.code == '0') {
+      return Celebrity.fromMap(result.data);
+    } else {
+      return null;
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.photos;
   }
 
   /// 剧照
-  static Future<List<Photos>> getPhotos(String url, String id,
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get('/$url/$id/photos', data: {
-      'apikey': Config.DOUBAN_MOVIE_KEY,
-      'start': start,
-      'count': count
-    });
+  static Future<List<Photos>> getPhotos(String type, String id,
+      {int page = 1, int limit = 20}) async {
+    Response response = await HttpUtils().request(ApiUrl.MOVIE_PHOTOS_URL,
+        data: {'page': page, 'limit': limit, 'type': type, 'id': id});
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.photos;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Photos.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 影人作品
   static Future<List<Movie>> getActorMovies(String actorId,
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get('/celebrity/$actorId/works',
-        data: {
-          'apikey': Config.DOUBAN_MOVIE_KEY,
-          'start': start,
-          'count': count
-        });
+      {int start = 1, int count = 20}) async {
+    Response response = await HttpUtils().request(
+        ApiUrl.MOVIE_CELEBRITY_WORKS_URL,
+        data: {'page': start, 'limit': count, 'id': actorId});
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    List<Movie> movies = [];
-    result.works.map((work) {
-      movies.add(work.subject);
-    }).toList();
-    return movies;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 短评
-  static Future<List<Reviews>> getComments(String movieId,
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get('/subject/$movieId/comments',
-        data: {
-          'apikey': Config.DOUBAN_MOVIE_KEY,
-          'start': start,
-          'count': count
-        });
+  static Future<List<Reviews>> getComments(String id,
+      {int page = 1, int limit = 20}) async {
+    Response response = await HttpUtils().request(ApiUrl.MOVIE_COMMENTS_URL,
+        data: {'page': page, 'limit': limit, 'id': id});
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.comments;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Reviews.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 影评
-  static Future<List<Reviews>> getReviews(String movieId,
-      {int start = 0, int count = 20}) async {
-    Response response = await HttpUtils().get('/subject/$movieId/reviews',
-        data: {
-          'apikey': Config.DOUBAN_MOVIE_KEY,
-          'start': start,
-          'count': count
-        });
+  static Future<List<Reviews>> getReviews(String id,
+      {int page = 1, int limit = 20}) async {
+    Response response = await HttpUtils().request(ApiUrl.MOVIE_REVIEWS_URL,
+        data: {'page': page, 'limit': limit, 'id': id});
     if (response.statusCode != 200) {
       return [];
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.reviews;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Reviews.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 每日一文
   static Future<Article> getTodayArticle() async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.ARTICLE_BASE_URL)
-        .get(ApiUrl.ARTICLE_TODAY_URL, data: {'dev': 1});
+    Response response =
+        await HttpUtils().request(ApiUrl.ARTICLE_TODAY_URL, data: null);
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.article;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.code == '0') {
+      return Article.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 特定日期文章
   static Future<Article> getDayArticle(String date) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.ARTICLE_BASE_URL)
-        .get(ApiUrl.ARTICLE_DAY_URL, data: {'dev': 1, 'date': date});
+    Response response =
+        await HttpUtils().request(ApiUrl.ARTICLE_DAY_URL, data: {'date': date});
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.article;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.code == '0') {
+      return Article.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 随机文章
   static Future<Article> getRandomArticle() async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.ARTICLE_BASE_URL)
-        .get(ApiUrl.ARTICLE_RANDOM_URL, data: {'dev': 1});
+    Response response =
+        await HttpUtils().request(ApiUrl.ARTICLE_RANDOM_URL, data: null);
     if (response.statusCode != 200) {
       return null;
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.article;
-  }
-
-  /// 随机诗词
-  static Future<Poetry> getRecommendPoetry() async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.API_OPEN_BASE_URL)
-        .get(ApiUrl.RECOMMEND_POETRY, data: null);
-    if (response.statusCode != 200) {
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.code == '0') {
+      return Article.fromMap(result.data);
+    } else {
       return null;
     }
-    Result result = Result.fromMap(json.decode(response.data));
-    return result.poetry;
   }
 
   /// 得到实况天气
   static Future<HeWeather> getHeWeatherNow(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.WEATHER_NOW, data: {
+        .request(ApiUrl.WEATHER_NOW, data: {
       "location": city,
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -383,13 +391,13 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 得到逐小时天气
   static Future<HeWeather> getHeWeatherHourly(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.WEATHER_HOURLY, data: {
+        .request(ApiUrl.WEATHER_HOURLY, data: {
       "location": city,
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -399,13 +407,13 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 得到3-10天天气
   static Future<HeWeather> getHeWeatherForecast(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.WEATHER_FORECAST, data: {
+        .request(ApiUrl.WEATHER_FORECAST, data: {
       "location": city,
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -415,13 +423,13 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 常规天气数据集合
   static Future<HeWeather> getHeWeather(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.WEATHER, data: {
+        .request(ApiUrl.WEATHER, data: {
       "location": city,
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -431,13 +439,13 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 日出日落
   static Future<HeWeather> getSunriseSunset(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.SUNRISE_SUNSET, data: {
+        .request(ApiUrl.SUNRISE_SUNSET, data: {
       "location": city,
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -447,13 +455,13 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 空气质量数据集合
   static Future<HeWeather> getAir(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.AIR, data: {
+        .request(ApiUrl.AIR, data: {
       "location": city, // 所查询地区的纬度 纬度采用十进制格式，北纬为正，南纬为负
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -463,13 +471,13 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 空气质量实况
   static Future<HeWeather> getAirNow(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.AIR_NOW, data: {
+        .request(ApiUrl.AIR_NOW, data: {
       "location": city, // 所查询地区的纬度 纬度采用十进制格式，北纬为正，南纬为负
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -479,13 +487,13 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 生活指数
   static Future<HeWeather> getLifeStyle(String city) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.WEATHER_BASE_URL)
-        .get(ApiUrl.LIFESTYLE, data: {
+        .request(ApiUrl.LIFESTYLE, data: {
       "location": city, // 所查询地区的纬度 纬度采用十进制格式，北纬为正，南纬为负
       "key": Config.HE_WEATHER_KEY,
       'unit': 'm', // 单位选择，公制（m）或英制（i），默认为公制单位
@@ -495,28 +503,32 @@ class ApiService {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
-    return result.heWeather[0];
+    return result.heWeather?.first;
   }
 
   /// 热门城市
-  static Future<List<City>> getHotCitys() async {
+  static Future<List<City>> getHotCities(
+      {String group: 'cn', int number: 50}) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.CITY_BASE_URL)
-        .get(ApiUrl.CITY_TOP, data: {
-      "group": "cn",
+        .request(ApiUrl.CITY_TOP, data: {
+      "group": group,
       "key": Config.HE_WEATHER_KEY,
-      "number": 50,
+      "number": number,
     });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     return City.fromMapList(
         json.decode(response.data)['HeWeather6'][0]['basic']);
   }
 
   /// 搜索城市
-  static Future<List<City>> getSeacherCitys(String keyword) async {
+  ///
+  /// [keyword] 关键词
+  ///
+  static Future<List<City>> getSearchCities(String keyword) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.CITY_BASE_URL)
-        .get(ApiUrl.CITY_FIND, data: {
+        .request(ApiUrl.CITY_FIND, data: {
       "location": keyword,
       "group": "cn",
       // group=world 查询全球城市（默认值）;group=cn 仅查询中国城市;group=us,scenic 查询美国城市和中国景点地区;group=cn,us,ru 查询中国、美国和俄罗斯城市
@@ -526,640 +538,284 @@ class ApiService {
       // 查询方式（模糊检索 or 精准检索） 可选值: equal、match，默认：match
     });
     if (response.statusCode != 200) {
-      return null;
+      return [];
     }
     return City.fromMapList(
         json.decode(response.data)['HeWeather6'][0]['basic']);
   }
 
-  /// 煎蛋XXOO图
-  static Future<List<Comment>> getJiandan(int page) async {
-    Response response = await HttpUtils().get(ApiUrl.JIANDAN, data: {
-      "page": page,
-      'oxwlxojflwblxbsapi': 'jandan.get_ooxx_comments',
-    });
-    if (response.statusCode != 200) {
-      return null;
-    }
-    return Comment.fromMapList(json.decode(response.data)['comments']);
-  }
-
   /// 百姓生活首页数据接口
+  ///
+  /// [lon] 纬度
+  /// [lat] 经度
+  ///
   static Future<Baixing> getBaixingHomeData(String lon, String lat) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
-        .post(ApiUrl.BAIXING_HOME, data: {
-      "lon": lon,
-      'lat': lat,
-    });
-    if (response.statusCode != 200) {
+        .request(ApiUrl.BAIXING_HOME,
+            data: {"lon": lon, 'lat': lat}, method: HttpUtils.POST);
+    if (response == null || response.statusCode != 200) {
       return null;
     }
-    if (json.decode(response.data)['code'] == '0') {
-      return Baixing.fromMap(json.decode(response.data)['data']);
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.code == '0') {
+      return Baixing.fromMap(result.data);
     } else {
       return null;
     }
   }
 
   /// 百姓生活首页火爆专区商品数据接口
+  ///
+  /// [page] 页码
+  ///
   static Future<List<Goods>> getBaixingHomeHotData(int page) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
-        .post(ApiUrl.BAIXING_HOME_HOT, data: {
-      "page": page,
-    });
-    if (response.statusCode != 200) {
-      return null;
+        .request(ApiUrl.BAIXING_HOME_HOT,
+            data: {"page": page}, method: HttpUtils.POST);
+
+    if (response == null || response.statusCode != 200) {
+      return [];
     }
-    if (json.decode(response.data)['code'] == '0' &&
-        json.decode(response.data)['data'] != null) {
-      return Goods.fromMapList(json.decode(response.data)['data']);
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Goods.fromMap(o)));
     } else {
       return [];
     }
   }
 
   /// 百姓生活分类数据接口
-  static Future<List<Category>> getBaixingCategoryData() async {
+  ///
+  static Future<List<GoodsCategory>> getBaixingCategoryData() async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
-        .post(ApiUrl.BAIXING_CATEGORY);
-    if (response.statusCode != 200) {
-      return null;
+        .request(ApiUrl.BAIXING_CATEGORY, method: HttpUtils.POST, data: null);
+
+    if (response == null || response.statusCode != 200) {
+      return [];
     }
-    if (json.decode(response.data)['code'] == '0' &&
-        json.decode(response.data)['data'] != null) {
-      return Category.fromMapList(json.decode(response.data)['data']);
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll(
+            (result.data as List ?? []).map((o) => GoodsCategory.fromMap(o)));
     } else {
       return [];
     }
   }
 
   /// 百姓生活分类商品数据接口
+  ///
+  /// [page] 页码
+  /// [categoryId] 类别
+  /// [categorySubId] 子类别
+  ///
   static Future<List<Goods>> getBaixingGoodsData(
     int page,
     String categoryId,
     String categorySubId,
   ) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
-        .post(ApiUrl.BAIXING_GOODS, data: {
-      "page": page,
-      "categoryId": categoryId,
-      "categorySubId": categorySubId,
-    });
-    if (response.statusCode != 200) {
-      return null;
+        .request(ApiUrl.BAIXING_GOODS,
+            data: {
+              "page": page,
+              "categoryId": categoryId,
+              "categorySubId": categorySubId
+            },
+            method: HttpUtils.POST);
+    if (response == null || response.statusCode != 200) {
+      return [];
     }
-    if (json.decode(response.data)['code'] == '0' &&
-        json.decode(response.data)['data'] != null) {
-      return Goods.fromMapList(json.decode(response.data)['data']);
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Goods.fromMap(o)));
     } else {
       return [];
     }
   }
 
-  /// 百姓生活分类商品数据接口
+  /// 百姓生活商品详情接口
+  ///
+  /// [goodId] 商品ID
+  ///
   static Future<GoodsInfo> getBaixingGoodsDetailData(String goodId) async {
     Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
-        .post(ApiUrl.BAIXING_GOODS_DETAIL, data: {
-      "goodId": goodId,
-    });
-    if (response.statusCode != 200) {
+        .request(ApiUrl.BAIXING_GOODS_DETAIL,
+            data: {"goodId": goodId}, method: HttpUtils.POST);
+    if (response == null || response.statusCode != 200) {
       return null;
     }
-    if (json.decode(response.data)['code'] == '0' &&
-        json.decode(response.data)['data'] != null) {
-      return GoodsInfo.fromMap(json.decode(response.data)['data']);
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.code == '0') {
+      return GoodsInfo.fromMap(result.data);
     } else {
       return null;
     }
   }
 
-  static Future<List<Contact>> getRandomUser({
-    int page = 1,
-    int results = 50,
-    String gender,
-    String format = 'json',
-    String nat,
+  /// 订单
+  ///
+  /// [userId] 用户ID
+  /// [state] 状态；-1：所有，1：，401：已结算，
+  /// [page] 页码
+  ///
+  static Future<List<OrderBean>> getBaixingOrders(
+      {int page: 1,
+      String userId: "da290bbcbcff4c1dbd662e15d5808150",
+      int state: -1}) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
+        .request(ApiUrl.BAIXING_ORDERS,
+            data: {"currentPage": page, "userId": userId, "state": state},
+            method: HttpUtils.POST);
+    if (response == null || response.statusCode != 200) {
+      return [];
+    }
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => OrderBean.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 百姓生活门店列表
+  ///
+  /// [lon] 纬度
+  /// [lat] 经度
+  ///
+  static Future<List<ShopInfo>> getBaixingShops(
+      {String lat, String lon}) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
+        .request(ApiUrl.BAIXING_SHOPS,
+            data: {"lon": lon, "lat": lat}, method: HttpUtils.POST);
+    if (response == null || response.statusCode != 200) {
+      return [];
+    }
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => ShopInfo.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 百姓生活门店详情接口
+  ///
+  /// [id] 门店ID
+  ///
+  static Future<ShopInfo> getBaixingShopInfo(String id) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BAIXING_BASE_URL)
+        .request(ApiUrl.BAIXING_SHOP_DETAIL,
+            data: {"shopId": id}, method: HttpUtils.POST);
+    if (response == null || response.statusCode != 200) {
+      return null;
+    }
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    if (result.code == '0') {
+      return ShopInfo.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<List<ContactBean>> getRandomUser({
+    int page: 1,
+    int results: 50,
+    String gender: '',
+    String format: 'json',
+    String nat: '',
   }) async {
     Response response =
-        await HttpUtils(baseUrl: ApiUrl.RANDOMUSER_URL).get('', data: {
+        await HttpUtils(baseUrl: ApiUrl.RANDOMUSER_URL).request('', data: {
       "page": page,
       "results": results,
       "gender": gender,
       "format": format,
       "nat": nat,
     });
-    if (response.statusCode != 200) {
+    if (response == null || response.statusCode != 200) {
       return null;
     }
     Result result = Result.fromMap(json.decode(response.data));
     return result.contacts;
   }
 
-  /// 获取句子迷上美图美句数据
-  static Future<JuzimiResult> getMeiTuMeiJu(int page) async {
-    JuzimiResult result;
-    await http
-        .get(
-            ApiUrl.JUZIMI_URL + 'meitumeiju' + (page == 0 ? '?page=$page' : ''))
-        .then((http.Response response) {
-      var document = parse(response.body.toString());
-
-      dom.Element pager = document
-          .getElementsByClassName('item-list')
-          .first
-          .getElementsByClassName('pager')
-          .first;
-
-      List<dom.Element> pages = pager.querySelectorAll('li');
-
-      int currentPage =
-          int.parse(pager.getElementsByClassName('pager-current').first.text);
-
-      int totalPage;
-
-      List<dom.Element> nextPage = pager.getElementsByClassName('pager-next');
-      if (nextPage.isEmpty) {
-        totalPage = currentPage;
-      } else {
-        totalPage = int.parse(pages[pages.length - 3].text);
-      }
-
-      final List<MeiTuMeiJu> data = [];
-
-      dom.Element content =
-          document.getElementsByClassName('view-content').first;
-
-      List<dom.Element> items = content.getElementsByClassName("views-row");
-
-      items.forEach((item) {
-        dom.Element field =
-            item.getElementsByClassName('views-field-phpcode').first;
-
-        String image = field
-            .getElementsByClassName('views-field-phpcode')
-            .first
-            .querySelector('a')
-            .querySelector('img')
-            .attributes['src'];
-
-        print('http:$image');
-
-        String desc = field
-            .getElementsByClassName('views-field-phpcode-1')
-            .first
-            .querySelector('a')
-            .text;
-
-        print('$desc');
-
-        String author = field
-            .getElementsByClassName('views-field-name')
-            .first
-            .getElementsByClassName('views-field-xqname')
-            .first
-            .querySelector('a')
-            .text;
-
-        print('$author');
-
-        String like = field
-            .getElementsByClassName('views-field-ops')
-            .first
-            .querySelector('a')
-            .text
-            .replaceAll(')', '')
-            .replaceAll('(', '');
-
-        print('$like');
-
-        data.add(MeiTuMeiJu(
-            image: 'http:$image', like: like, desc: desc, author: author));
-      });
-
-      result = JuzimiResult(totalPage, currentPage, meijus: data);
-    });
-
-    print('${result.toString()}');
-
-    return result;
-  }
-
-  /// 获取句子迷上美图美句数据
-  /// category = shouxiemeiju、jingdianduibai
-  static Future<JuzimiResult> getMeiTuMeiJuImages(
-      String category, int page) async {
-    JuzimiResult result;
-
-    await http
-        .get(ApiUrl.JUZIMI_URL +
-            'meitumeiju/$category' +
-            (page == 0 ? '?page=$page' : ''))
-        .then((http.Response response) {
-      var document = parse(response.body.toString());
-
-      dom.Element pager = document
-          .getElementsByClassName('item-list')
-          .first
-          .getElementsByClassName('pager')
-          .first;
-
-      List<dom.Element> pages = pager.querySelectorAll('li');
-
-      int currentPage =
-          int.parse(pager.getElementsByClassName('pager-current').first.text);
-
-      int totalPage;
-
-      List<dom.Element> nextPage = pager.getElementsByClassName('pager-next');
-      if (nextPage.isEmpty) {
-        totalPage = currentPage;
-      } else {
-        totalPage = int.parse(pages[pages.length - 3].text);
-      }
-
-      final List<MeiTuMeiJu> data = [];
-
-      dom.Element content =
-          document.getElementsByClassName('view-content').first;
-
-      List<dom.Element> items = content.getElementsByClassName("views-row");
-
-      items.forEach((item) {
-        String image = item
-            .getElementsByClassName('views-field-phpcode')
-            .first
-            .querySelector('a')
-            .querySelector('img')
-            .attributes['src'];
-
-        print('http:$image');
-
-        data.add(MeiTuMeiJu(image: image));
-      });
-
-      result = JuzimiResult(totalPage, currentPage, meijus: data);
-    });
-
-    print('${result.toString()}');
-
-    return result;
-  }
-
-  /// 获取句子迷上名人名句类别
-  static Future<List<MingjuClassify>> getMingrenmingjuType() async {
-    final List<MingjuClassify> data = [];
-    await http
-        .get(ApiUrl.JUZIMI_URL + '/writers')
-        .then((http.Response response) {
-      var document = parse(response.body.toString());
-
-      dom.Element content = document
-          .getElementById('block-block-20')
-          .getElementsByClassName('block-inner')
-          .first
-          .getElementsByClassName('content')
-          .first
-          .getElementsByClassName('contentin')
-          .first;
-
-      print('${content.toString()}');
-
-      List<dom.Element> itemsTitle = content.getElementsByClassName("wrtitle");
-      List<dom.Element> items = content.getElementsByClassName("wrlist");
-
-      itemsTitle.forEach((item) {
-        int index = itemsTitle.indexOf(item);
-
-        String title = item.text.replaceAll('：', '');
-
-        List<dom.Element> _items =
-            items[index].getElementsByClassName('writersal');
-
-        List<MingjuClassify> subData = [];
-        _items.forEach((item) {
-          String tag = item.attributes['href'];
-          String subTitle = item.text;
-
-          subData.add(MingjuClassify(tag: tag, title: subTitle));
-        });
-
-        data.add(MingjuClassify(title: '$title', classify: subData));
-      });
-    });
-
-    /// 精选句集
-    List<MingjuClassify> _subData = [];
-    _subData
-      ..add(MingjuClassify(title: '精选句集', tag: 'albums'))
-      ..add(MingjuClassify(title: '最新句集', tag: 'newalbums'));
-    data.add(MingjuClassify(title: '精选句集', classify: _subData));
-
-    /// 原创
-    List<MingjuClassify> subData = [];
-    subData
-      ..add(MingjuClassify(title: '本周热门原创', tag: 'original/week'))
-      ..add(MingjuClassify(title: '最新原创句子', tag: 'original/ju'))
-      ..add(MingjuClassify(title: '推荐原创句子', tag: 'original/recommend'));
-    data.add(MingjuClassify(title: '原创句子', classify: subData));
-
-    print('${data.toString()}');
-
-    return data;
-  }
-
-  /// 根据类别获取名人列表
-  static Future<JuzimiResult> getCelebrityList(
-      String category, int page) async {
-    print('${ApiUrl.JUZIMI_URL}$category?page=$page');
-
-    JuzimiResult result;
-
-    Response response = await HttpUtils(
-      baseUrl: ApiUrl.JUZIMI_URL,
-    ).get(category, data: page == 0 ? null : {"page": page});
-
-    var document = parse(response.data.toString());
-
-    dom.Element pager = document
-        .getElementsByClassName('item-list')
-        .first
-        .getElementsByClassName('pager')
-        .first;
-
-    List<dom.Element> pages = pager.querySelectorAll('li');
-
-    int currentPage =
-        int.parse(pager.getElementsByClassName('pager-current').first.text);
-
-    int totalPage;
-
-    List<dom.Element> nextPage =
-        pager.getElementsByClassName('pager-next last');
-    if (nextPage.isEmpty) {
-      totalPage = currentPage;
-    } else {
-      totalPage = int.parse(pages[pages.length - 2].text);
+  /// 句子迷详情
+  ///
+  static Future<JuZiMi> getJuZiMiDetails(int id, String type) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.JUZIMI_DETAILS_URL, data: {"id": id, "type": type});
+    if (response == null || response.statusCode != 200) {
+      return null;
     }
 
-    print('$totalPage======================$currentPage');
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-    final List<JuzimiCelebrity> data = [];
-
-    dom.Element content = document.getElementsByClassName('view-content').first;
-
-    List<dom.Element> items = content.getElementsByClassName("views-row");
-
-    items.forEach((item) {
-      dom.Element img = item
-          .getElementsByClassName('views-field-tid')
-          .first
-          .querySelector('a')
-          .querySelector('img');
-
-      String imgUrl =
-          'http://img0.imgtn.bdimg.com/it/u=462445641,233137983&fm=26&gp=0.jpg';
-      if (img != null) {
-        imgUrl = img.attributes['src'];
-      }
-
-      String name = item
-          .getElementsByClassName('views-field-name')
-          .first
-          .querySelector('a')
-          .text;
-
-      String desc = item
-          .getElementsByClassName('views-field-phpcode')
-          .first
-          .getElementsByClassName('wridesccon')
-          .first
-          .getElementsByClassName('xqagepawirdesc')
-          .first
-          .text;
-
-      data.add(
-          JuzimiCelebrity(name: '$name', image: 'http:$imgUrl', desc: desc));
-    });
-
-    result = JuzimiResult(totalPage, currentPage, celebrity: data);
-
-//    print('${result.toString()}');
-
-    return result;
+    if (result.code == '0') {
+      return JuZiMi.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
-  /// 根据类别获取书籍等列表
-  static Future<JuzimiResult> getBookList(String category, int page) async {
-    print(ApiUrl.JUZIMI_URL + '$category?page=$page');
-    JuzimiResult result;
+  /// 根据类别得到句子迷列表
+  ///
+  static Future<List<JuZiMi>> getJuZiMiListByType(String type, int page) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.JUZIMI_LIST_URL, data: {"type": type, "page": page});
+    if (response == null || response.statusCode != 200) {
+      return [];
+    }
 
-    await http
-        .get(ApiUrl.JUZIMI_URL + '$category' + (page == 0 ? '?page=$page' : ''))
-        .then((http.Response response) {
-      var document = parse(response.body.toString());
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-      dom.Element pager = document
-          .getElementsByClassName('item-list')
-          .first
-          .getElementsByClassName('pager')
-          .first;
-
-      List<dom.Element> pages = pager.querySelectorAll('li');
-
-      int currentPage =
-          int.parse(pager.getElementsByClassName('pager-current').first.text);
-
-      int totalPage;
-
-      List<dom.Element> nextPage =
-          pager.getElementsByClassName('pager-next last');
-      if (nextPage.isEmpty) {
-        totalPage = currentPage;
-      } else {
-        totalPage = int.parse(pages[pages.length - 2].text);
-      }
-
-      final List<JuzimiBook> data = [];
-
-      dom.Element content =
-          document.getElementsByClassName('view-content').first;
-
-      List<dom.Element> items = content.getElementsByClassName("views-row");
-
-      items.forEach((item) {
-        dom.Element img = item
-            .getElementsByClassName('views-field-tid')
-            .first
-            .querySelector('a')
-            .querySelector('img');
-        String imgUrl =
-            'http://img0.imgtn.bdimg.com/it/u=462445641,233137983&fm=26&gp=0.jpg';
-        if (img != null) {
-          imgUrl = img.attributes['src'];
-        }
-
-        dom.Element field =
-            item.getElementsByClassName('views-field-phpcode').first;
-
-        String name = field
-            .getElementsByClassName('xqallarticletilelinkspan')
-            .first
-            .querySelector('a')
-            .text;
-
-        String desc = field
-            .getElementsByClassName('wridesccon')
-            .first
-            .getElementsByClassName('xqagepawirdesc')
-            .first
-            .text;
-
-        String author = '';
-        dom.Element a = field.querySelectorAll('a')[1];
-        if (a != null) {
-          author = field.querySelectorAll('a')[1].text;
-        }
-
-        String id = field
-            .querySelector('a')
-            .attributes['href']
-            .replaceAll('/article/', '');
-
-        data.add(JuzimiBook(
-            name: '$name',
-            image: 'http:$imgUrl',
-            desc: desc,
-            author: author,
-            id: id));
-      });
-
-      result = JuzimiResult(totalPage, currentPage, books: data);
-    });
-
-    print('${result.toString()}');
-
-    return result;
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => JuZiMi.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
-  /// 获取名言/美句列表
-  static Future<JuzimiResult> getAlbumList(String category, int page) async {
-    print(ApiUrl.JUZIMI_URL + '$category?page=$page');
-    JuzimiResult result;
+  /// 根据标签得到句子迷列表
+  ///
+  static Future<List<JuZiMi>> getJuZiMiListByTag(int id, int page) async {
+    Response response = await HttpUtils().request(ApiUrl.JUZIMI_TAG_LIST_URL,
+        data: {"page": page, "tag_id": id});
+    if (response == null || response.statusCode != 200) {
+      return [];
+    }
 
-    await http
-        .get(ApiUrl.JUZIMI_URL + '$category' + (page == 0 ? '?page=$page' : ''))
-        .then((http.Response response) {
-      var document = parse(response.body.toString());
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
-      dom.Element pager = document
-          .getElementsByClassName('item-list')
-          .first
-          .getElementsByClassName('pager')
-          .first;
-
-      List<dom.Element> pages = pager.querySelectorAll('li');
-
-      int currentPage =
-          int.parse(pager.getElementsByClassName('pager-current').first.text);
-
-      int totalPage;
-
-      List<dom.Element> nextPage = pager.getElementsByClassName('pager-next');
-      if (nextPage.isEmpty) {
-        totalPage = currentPage;
-      } else {
-        totalPage = int.parse(pages[pages.length - 3].text);
-      }
-
-      final List<MeiTuMeiJu> data = [];
-
-      dom.Element content =
-          document.getElementsByClassName('view-content').first;
-
-      List<dom.Element> items = content.getElementsByClassName("views-row");
-
-      items.forEach((item) {
-        dom.Element field =
-            item.getElementsByClassName('views-field-phpcode').first;
-
-        dom.Element phpcode_1 = field
-            .getElementsByClassName('views-field-phpcode-1')
-            .first
-            .querySelector('a');
-
-        String id = phpcode_1.attributes['href'].replaceAll('/ju/', '');
-
-        String desc = phpcode_1.text;
-
-        List<dom.Element> elements =
-            field.getElementsByClassName('xqjulistwafo');
-
-        String author = '';
-        String source = '';
-        if (elements.isNotEmpty) {
-          dom.Element authorElement = elements.first.querySelector('a');
-          if (authorElement != null) {
-            // 作者
-            author = authorElement.text;
-          }
-
-          List<dom.Element> elementAuthor =
-              elements.first.getElementsByClassName('xqjulistori');
-
-          if (elementAuthor.isNotEmpty) {
-            // 原创
-            author = elementAuthor.first
-                .getElementsByClassName('xqfulunvis')
-                .first
-                .text;
-          }
-
-          List<dom.Element> elementSource = elements.first
-              .getElementsByClassName('views-field-field-oriarticle-value');
-
-          if (elementSource.isNotEmpty) {
-            // 出处
-            source = elementSource.first.querySelector('a').text;
-          }
-        }
-
-        String publisher = field
-            .getElementsByClassName('views-field-name')
-            .first
-            .getElementsByClassName('views-field-xqname')
-            .first
-            .querySelector('a')
-            .text;
-
-        String like = field
-            .getElementsByClassName('views-field-ops')
-            .first
-            .querySelector('a')
-            .text
-            .replaceAll('喜欢(', '')
-            .replaceAll(')', '');
-
-        data.add(MeiTuMeiJu(
-            desc: desc,
-            author: author,
-            id: id,
-            publisher: publisher,
-            like: like,
-            source: source));
-      });
-
-      result = JuzimiResult(totalPage, currentPage, meijus: data);
-    });
-
-    print('${result.toString()}');
-
-    return result;
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => JuZiMi.fromMap(o)));
+    } else {
+      return [];
+    }
   }
 
   /// 360壁纸
   static Future<List<ImageModal>> getImagesData(String key) async {
     Response response =
-        await HttpUtils(baseUrl: ApiUrl.MEIZITU_URL).get('j', data: {
+        await HttpUtils(baseUrl: ApiUrl.MEIZITU_URL).request('j', data: {
       "src": 'imageonebox',
       "q": key,
       "obx_type": "360pic_meinv",
@@ -1168,136 +824,293 @@ class ApiService {
       "kn": 50,
       "cn": 0
     });
-    if (response.statusCode != 200) {
-      return null;
+    if (response == null || response?.statusCode != 200) {
+      return [];
     }
     Result result = Result.fromMap(json.decode(response.data));
     return result.images;
   }
 
   /// 获取全部新闻(首页)
-  static Future<ResponseBean> getQdailyHomeData(String lastKey) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .get("${ApiUrl.QDAILY_HOME_DATA}$lastKey.json", data: null);
-    if (response.statusCode != 200) {
+  static Future<ResponseBean> getQDailyHomeData(String lastKey) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_HOME_DATA, data: {"last_key": lastKey});
+    if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 获取某分类下的新闻
-  static Future<ResponseBean> getQdailyNewsDataByCategory(
+  static Future<ResponseBean> getQDailyNewsDataByCategory(
       int tagId, String lastKey) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .get(ApiUrl.QDAILY_CATEGORY_DATA + "$tagId/$lastKey.json", data: null);
-    if (response.statusCode != 200) {
+    Response response = await HttpUtils().request(ApiUrl.QDAILY_CATEGORY_DATA,
+        data: {"last_key": lastKey, "tag_id": tagId});
+    if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 获取文章/新闻评论
-  static Future<ResponseBean> getQdailyCommentData(int id,
+  static Future<ResponseBean> getQDailyCommentData(int id,
       {String dataType = 'article', String lastKey = '0'}) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).get(
-        "${ApiUrl.QDAILY_COMMENT_DATA}$dataType/$id/$lastKey.json",
-        data: null);
-    if (response.statusCode != 200) {
+    Response response = await HttpUtils().request(ApiUrl.QDAILY_COMMENT_DATA,
+        data: {"last_key": lastKey, "datatype": dataType, "id": id});
+    if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 栏目列表
-  static Future<DataBean> getQdailyColumnList(String lastKey) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_WEB_URL)
-        .get("${ApiUrl.QDAILY_COLUMN_LIST_DATA}$lastKey.json", data: null);
-    if (response.statusCode != 200) {
+  static Future<ResponseBean> getQDailyColumnList(String lastKey) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_COLUMN_LIST, data: {"last_key": lastKey});
+    if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyResult result = QdailyResult.fromMap(json.decode(response.data));
-    return result.data;
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 栏目信息
-  static Future<ResponseBean> getQdailyColumnInfo(int columnId) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .get("${ApiUrl.QDAILY_COLUMN_INFO_DATA}$columnId.json", data: null);
-    if (response.statusCode != 200) {
+  static Future<ResponseBean> getQDailyColumnInfo(int columnId) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_COLUMN_INFO, data: {'column_id': columnId});
+    if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 栏目新闻
-  static Future<ResponseBean> getQdailyColumnIndex(
+  static Future<ResponseBean> getQDailyColumnIndex(
       int columnId, String lastKey) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL).get(
-        "${ApiUrl.QDAILY_COLUMN_INDEX_DATA}$columnId/$lastKey.json",
-        data: null);
-    if (response.statusCode != 200) {
+    Response response = await HttpUtils().request(ApiUrl.QDAILY_COLUMN_NEWS,
+        data: {'last_key': lastKey, 'column_id': columnId});
+    if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 好奇心研究所
-  static Future<ResponseBean> getQdailyLabsData(String lastKey) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .get("${ApiUrl.QDAILY_LAB_INDEX_DATA}$lastKey.json", data: null);
-    if (response.statusCode != 200) {
+  static Future<ResponseBean> getQDailyLabsData(String lastKey) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_LABS_URL, data: {'last_key': lastKey});
+    if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 好奇心研究所详情
-  static Future<ResponseBean> getQdailyLabsDetailData(int labId) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .get("${ApiUrl.QDAILY_LAB_DETAIL_DATA}$labId.json", data: null);
-    if (response.statusCode != 200) {
+  static Future<ResponseBean> getQDailyLabsDetailData(int id) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_LAB_DETAIL, data: {'paper_id': id});
+    if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
-  /// 获取文章/新闻简介
-  static Future<ResponseBean> getQDailyArticleInfoData(int articleId) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_APP_URL)
-        .get("${ApiUrl.QDAILY_ARTICLE_INFO_URL}$articleId.json", data: null);
-    if (response.statusCode != 200) {
+  /// 我说
+  static Future<ResponseBean> getQDailyISay(int id, String lastKey) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_ISAY_URL, data: {'id': id, "last_key": lastKey});
+    if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyAppResult result =
-        QdailyAppResult.fromMap(json.decode(response.data));
-    return result.response;
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 投票详情
+  static Future<ResponseBean> getQDailyVote(int id) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_VOTE_URL, data: {'paper_id': id});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 投票结果
+  static Future<ResponseBean> getQDailyVoteResult(int id) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_VOTE_RESULT, data: {'paper_id': id});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 42%详情
+  static Future<ResponseBean> getQDailyTots(int id) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.QDAILY_TOTS_URL, data: {'id': id});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 你谁啊
+  static Future<ResponseBean> getQDailyWho(int id) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.QDAILY_WHO_URL, data: {'id': id});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 你猜
+  static Future<ResponseBean> getQDailyChoices(int id) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.QDAILY_CHOICE_URL, data: {'id': id});
+
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 获取文章/新闻详情
+  static Future<ResponseBean> getQDailyArticleInfoData(int articleId) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.QDAILY_ARTICLE_DETAIL, data: {'id': articleId});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// Topics新闻/文章
+  static Future<ResponseBean> getQDailyTopicNews(int id, String lastKey) async {
+    Response response = await HttpUtils().request(ApiUrl.QDAILY_TOPIC_NEWS_URL,
+        data: {'topic_id': id, 'last_key': lastKey});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 搜索
-  static Future<DataBean> getQDailySearchData(
-      String keywords, String last_key) async {
-    Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_WEB_URL).get(
-        ApiUrl.QDAILY_SEARCH_WEB_DATA,
-        data: {"last_key": last_key, "key": keywords});
-    if (response.statusCode != 200) {
+  static Future<ResponseBean> getQDailySearchData(
+      String keywords, String lastKey) async {
+    Response response = await HttpUtils().request(ApiUrl.QDAILY_SEARCH_WEB,
+        data: {"last_key": lastKey, "keyword": keywords});
+    if (response == null || response?.statusCode != 200) {
       return null;
     }
-    QdailyResult result = QdailyResult.fromMap(json.decode(response.data));
-    return result.data;
+
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ResponseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 
   /// 获取文章/新闻详情
@@ -1310,7 +1123,7 @@ class ApiService {
     String image = '';
 
     Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_ARTICLE_URL)
-        .get("$articleId", data: null);
+        .request(":articleId", data: {'articleId': articleId});
 
     var document = parse(response.data.toString());
 
@@ -1437,7 +1250,7 @@ class ApiService {
     String detail = '';
 
     Response response = await HttpUtils(baseUrl: ApiUrl.QDAILY_ARTICLE_URL)
-        .get("$articleId", data: null);
+        .request(":articleId", data: {'articleId': articleId});
 
     var document = parse(response.data.toString());
 
@@ -1527,5 +1340,1030 @@ class ApiService {
     print(bookDetail.toString());
 
     return bookDetail;
+  }
+
+  /// 有道精品课首页上面部分数据
+  static Future<YouDaoData> getYouDaoHomeHead(int t) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.YOUDAO_BASE_URL)
+        .request(ApiUrl.YOUDAO_HOME_URL, data: {"t": t});
+    if (response.statusCode != 200) {
+      return null;
+    }
+    YoudaoResult result = YoudaoResult.fromMap(json.decode(response.data));
+    return result.data;
+  }
+
+  /// 有道精品课所有分类及部分课程列表数据
+  static Future<YouDaoData> getYouDaoHomeTags(List tags, int t) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.YOUDAO_BASE_URL)
+        .request(ApiUrl.YOUDAO_HOME_LIST_URL,
+            data: {"tagIds": tags.toString(), "t": t});
+    if (response.statusCode != 200) {
+      return null;
+    }
+    YoudaoResult result = YoudaoResult.fromMap(json.decode(response.data));
+    return result.data;
+  }
+
+  /// 有道精品分组详情
+  static Future<YouDaoData> getYouDaoGroupDetails(int tag) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.YOUDAO_BASE_URL)
+        .request(ApiUrl.YOUDAO_GROUP_DETAILS_URL, data: {"tag": tag});
+    if (response.statusCode != 200) {
+      return null;
+    }
+    YoudaoResult result = YoudaoResult.fromMap(json.decode(response.data));
+    return result.data;
+  }
+
+  /// 有道精品分组所有课程列表
+  static Future<List<CoursesBean>> getYouDaoGroupCourseList(
+      int tag, int rank, int time) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.YOUDAO_BASE_URL)
+        .request(ApiUrl.YOUDAO_GROUP_ALL_COURSE_URL,
+            data: {"tag": tag, "rank": rank, "time": time});
+    if (response?.statusCode != 200) {
+      return null;
+    }
+    YoudaoResult result = YoudaoResult.fromMap(json.decode(response.data));
+    return result.data.course;
+  }
+
+  /// 根据分类得到小说列表
+  /// [gender] 性别 男生:mael 女生:female 出版:press
+  /// [major] 大类别
+  /// [minor] 小类别
+  /// [type] 热门:hot 新书:new 好评:repulation 完结:over 包月: month
+  /// [start] 分页位置，从0开始
+  /// [limit] 分页条数
+  ///
+  static Future<List<Books>> getBookByCategories(String gender, String major,
+      {int start: 0,
+      int limit: 20,
+      String minor: '',
+      String type: 'hot'}) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
+        .request(ApiUrl.BOOKS_BY_CATEGORY_URL, data: {
+      "gender": gender,
+      "major": major,
+      'type': type,
+      "start": start,
+      "limit": limit,
+      "minor": minor
+    });
+    if (response?.statusCode != 200) {
+      return [];
+    }
+
+    BookResult result = BookResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result.books;
+    } else {
+      return [];
+    }
+  }
+
+  /// 小说详情
+  static Future<Books> getBookDetails(String id) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
+        .request(ApiUrl.BOOK_DETAILS_URL, data: {"id": id});
+    if (response?.statusCode != 200) {
+      return null;
+    }
+
+    Books book = Books.fromJson(json.decode(response.data));
+    return book;
+  }
+
+  /// 相关推荐
+  static Future<List<Books>> getBookByRecommend(String id) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
+        .request(ApiUrl.BOOK_RECOMMEND_URL, data: {"id": id});
+    if (response?.statusCode != 200) {
+      return [];
+    }
+
+    BookResult result = BookResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result.books;
+    } else {
+      return [];
+    }
+  }
+
+  /// 小说书评列表
+  static Future<BookResult> getBookReview(String id,
+      {String sort: 'updated', int start: 0, int limit: 20}) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL).request(
+        ApiUrl.BOOK_REVIEW_URL,
+        data: {"book": id, "sort": sort, "start": start, "limit": limit});
+    if (response?.statusCode != 200) {
+      return null;
+    }
+
+    BookResult result = BookResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result;
+    } else {
+      return null;
+    }
+  }
+
+  /// 小说短评列表
+  static Future<List<DocsBean>> getBookShortReview(String id,
+      {String sort: 'updated', int start: 0, int limit: 20}) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL).request(
+        ApiUrl.BOOK_SHORT_REVIEW_URL,
+        data: {"book": id, "sort": sort, "start": start, "limit": limit});
+    if (response?.statusCode != 200) {
+      return [];
+    }
+
+    BookResult result = BookResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result.docs;
+    } else {
+      return [];
+    }
+  }
+
+  /// 小说讨论列表
+  static Future<List<Post>> getBookTalks(String id,
+      {String sort: 'updated',
+      int start: 1,
+      int limit: 20,
+      String type: 'normal'}) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
+        .request(ApiUrl.BOOK_TALK_URL, data: {
+      "book": id,
+      "sort": sort,
+      "start": start,
+      "limit": limit,
+      "type": type
+    });
+    if (response?.statusCode != 200) {
+      return [];
+    }
+
+    BookResult result = BookResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result.posts;
+    } else {
+      return [];
+    }
+  }
+
+  /// 获取小说正版源
+  static Future<BtocResult> getBookBtocSource(String bookId) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL).request(
+        ApiUrl.BOOK_BTOC_URL,
+        data: {"book": bookId, 'view': 'summary'});
+    if (response?.statusCode != 200) {
+      return null;
+    }
+
+    List<BtocResult> result = List()
+      ..addAll((json.decode(response.data) as List ?? [])
+          .map((o) => BtocResult.fromMap(o)));
+
+    if (result.length > 0) {
+      return result.first;
+    } else {
+      return null;
+    }
+  }
+
+  /// 小说章节目录
+  static Future<List<Chapters>> getBookChapters(String sourceId) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL).request(
+        ApiUrl.BOOK_ATOC_URL,
+        data: {"sourceId": sourceId, 'view': 'chapters'});
+    if (response?.statusCode != 200) {
+      return [];
+    }
+
+    ChapterResult result = ChapterResult.fromMap(json.decode(response.data));
+    if (result.chapters.length > 0) {
+      return result.chapters;
+    } else {
+      return [];
+    }
+  }
+
+  /// 小说章节详情
+  static Future<ChapterInfo> getBookChapterInfo(String link) async {
+    Response response = await HttpUtils().request(link, data: null);
+    if (response?.statusCode != 200) {
+      return null;
+    }
+
+    BookResult result = BookResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result.chapter;
+    } else {
+      return null;
+    }
+  }
+
+  /// 获取所有排行榜
+  static Future<RankingResult> getBookRankings() async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
+        .request(ApiUrl.BOOK_RANKING_URL, data: null);
+    if (response?.statusCode != 200) {
+      return null;
+    }
+
+    RankingResult result = RankingResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result;
+    } else {
+      return null;
+    }
+  }
+
+  /// 获取单一排行榜
+  static Future<Ranking> getRankingBooks(String rankingId) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
+        .request(ApiUrl.BOOK_RANKING_INFO_URL, data: {"rankingId": rankingId});
+    if (response?.statusCode != 200) {
+      return null;
+    }
+
+    RankingResult result = RankingResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result.ranking;
+    } else {
+      return null;
+    }
+  }
+
+  /// 获取分类
+  static Future<StatisticsResult> getBookStatistics() async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
+        .request(ApiUrl.BOOK_STATISTICS_URL, data: null);
+    if (response?.statusCode != 200) {
+      return null;
+    }
+
+    StatisticsResult result =
+        StatisticsResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result;
+    } else {
+      return null;
+    }
+  }
+
+  /// 获取二级分类
+  static Future<CategoryResult> getBookCategory() async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
+        .request(ApiUrl.BOOK_CATEGORY_URL, data: null);
+    if (response?.statusCode != 200) {
+      return null;
+    }
+
+    CategoryResult result = CategoryResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result;
+    } else {
+      return null;
+    }
+  }
+
+  /// 关键字搜索返回小说列表
+  /// [query] 搜索关键字
+  /// [start] 开始位置（从1开始）
+  /// [limit] 每页条数
+  ///
+  static Future<List<Books>> getSearchBook(String query,
+      {int start: 1, limit: 20}) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL).request(
+        ApiUrl.BOOK_SEARCH_URL,
+        data: {"query": query, "start": start, "limit": limit});
+    if (response?.statusCode != 200) {
+      return [];
+    }
+
+    BookResult result = BookResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result.books;
+    } else {
+      return [];
+    }
+  }
+
+  /// 搜索热词列表
+  ///
+  static Future<List<String>> getSearchHotWords() async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
+        .request(ApiUrl.BOOK_HOT_WORDS_URL, data: null);
+    if (response?.statusCode != 200) {
+      return [];
+    }
+
+    BookResult result = BookResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result.hotWords;
+    } else {
+      return [];
+    }
+  }
+
+  /// 书单列表
+  ///
+  static Future<List<BookList>> getBookLists(String gender,
+      {int start: 0,
+      int limit: 20,
+      String duration: 'all',
+      String sort: 'collectorCount',
+      String tag: ''}) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
+        .request(ApiUrl.BOOK_LIST_URL, data: {
+      "gender": gender,
+      "duration": duration,
+      "sort": sort,
+      "tag": tag,
+      "start": start,
+      "limit": limit
+    });
+    if (response?.statusCode != 200) {
+      return [];
+    }
+
+    BookResult result = BookResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result.bookLists;
+    } else {
+      return [];
+    }
+  }
+
+  /// 书单详情
+  ///
+  static Future<BookList> getBookListInfo(String booklistId) async {
+    Response response = await HttpUtils(baseUrl: ApiUrl.BOOK_URL)
+        .request(ApiUrl.BOOK_LIST_INFO_URL, data: {"booklistId": booklistId});
+    if (response?.statusCode != 200) {
+      return null;
+    }
+
+    BookResult result = BookResult.fromMap(json.decode(response.data));
+    if (result.ok) {
+      return result.bookList;
+    } else {
+      return null;
+    }
+  }
+
+  /// 一言
+  ///
+  static Future<Hitokoto> hitokoto() async {
+    Response response =
+        await HttpUtils(baseUrl: ApiUrl.HITOKOTO_URL).request('', data: null);
+    if (response?.statusCode != 200) {
+      return null;
+    }
+
+    Hitokoto result = Hitokoto.fromMap(json.decode(response.data));
+    return result;
+  }
+
+  /// tubi TV 首页数据
+  ///
+  static Future<List<TubiCategory>> getTubiTVHomeData(
+      {String deviceId, String platform}) async {
+    Response response = await HttpUtils().request(ApiUrl.TUBITV_HOME,
+        data: {'platform': platform, 'device_id': deviceId});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll(
+            (result.data as List ?? []).map((o) => TubiCategory.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// tubi TV 分类列表
+  ///
+  static Future<List<TuBiTV>> getTubiTVByCategory(
+      {int limit, int page, String category}) async {
+    Response response = await HttpUtils().request(ApiUrl.TUBITV_LIST,
+        data: {'page': page, 'category': category, 'limit': limit});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => TuBiTV.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// tubi TV 搜索
+  ///
+  static Future<List<TuBiTV>> getTubiTVSearchData(
+      {String deviceId, String platform, String key}) async {
+    Response response = await HttpUtils().request(ApiUrl.TUBITV_SEARCH,
+        data: {'platform': platform, 'device_id': deviceId, 'key': key});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => TuBiTV.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// tubi TV 详情
+  ///
+  static Future<TuBiTV> getTubiTVDetails(
+      {String deviceId, String platform, String id}) async {
+    Response response = await HttpUtils().request(ApiUrl.TUBITV_DETAIL,
+        data: {'platform': platform, 'device_id': deviceId, 'id': id});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return TuBiTV.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// NBA赛季赛程
+  ///
+  /// [startTime] 开始日期
+  /// [endTime] 结束日期
+  ///
+  static Future<List<Schedule>> getNBASchedule(
+      {String startTime, String endTime}) async {
+    Response response = await HttpUtils().request(ApiUrl.NBA_SCHEDULE,
+        data: {'startTime': startTime, 'endTime': endTime});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Schedule.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// NBA球队赛季赛程
+  ///
+  /// [id] 球队ID
+  ///
+  static Future<List<Schedule>> getTeamSchedule({String id}) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.TEAM_SCHEDULE, data: {'id': id});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Schedule.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// NBA球队赛季阵容
+  ///
+  /// [id] 球队ID
+  ///
+  static Future<List<Player>> getTeamRoster({String id}) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.TEAM_ROSTER, data: {'id': id});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Player.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 球队赛季排名
+  ///
+  static Future<List<RankBase>> getTeamRank() async {
+    Response response = await HttpUtils().request(ApiUrl.TEAM_RANK, data: null);
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => RankBase.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 球员赛季数据排行前N（）
+  ///
+  /// [year] 赛季
+  /// [type] 类型 1:常规赛;2:季后赛;0:季前赛
+  /// [limit] 返回前多少名
+  ///
+  static Future<PlayerSeasonRank> getPlayerRankTopN(
+      {int year: 2019, int type: 1, int limit: 10}) async {
+    Response response = await HttpUtils().request(ApiUrl.PLAYER_RANNGE,
+        data: {'year': year, 'type': type, 'limit': limit});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return PlayerSeasonRank.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 球员赛季数据排行(全)
+  ///
+  /// [year] 赛季
+  /// [type] 类型 1:常规赛;2:季后赛;0:季前赛
+  /// [page] 页码
+  /// [limit] 每页条数
+  /// [sort] 排序方式 得分 t70；出手数 t83；命中率 t79；三分出手 t85；三分命中率 t80；罚球次数 t87；发球命中率 t81；篮板 t71；前场篮板 t77；后场篮板 t76；助攻 t68；抢断 t72；盖帽 t69；失误 t74；犯规 t73；场次 t5；上场时间 t78
+  ///
+  static Future<List<SeasonDataStat>> getPlayerRankAll(
+      {int year: 2019,
+      int type: 1,
+      int page: 1,
+      int limit: 50,
+      String sort: 't70'}) async {
+    Response response = await HttpUtils().request(ApiUrl.PLAYER_RANNGE_ALL,
+        data: {
+          'year': year,
+          'type': type,
+          'page': page,
+          'limit': limit,
+          'sort': sort
+        });
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll(
+            (result.data as List ?? []).map((o) => SeasonDataStat.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 球员详情
+  ///
+  /// [id] 球员ID
+  ///
+  static Future<StatsBase> getPlayerDetails({String id}) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.PLAYER_DETAIL, data: {'id': id, 'year': 2019});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return StatsBase.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 球员详情
+  ///
+  /// [id] 球员ID
+  ///
+  static Future<StatsBase> getPlayerInfo({String id}) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.PLAYER_INFO, data: {'id': id});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return StatsBase.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 球队赛季数据排行(全)
+  ///
+  /// [year] 赛季
+  /// [type] 类型 1:常规赛;2:季后赛;0:季前赛
+  ///
+  static Future<List<SeasonDataStat>> getTeamRankAll(
+      {int year: 2019, int type: 1}) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.TEAM_RANNGE_ALL, data: {'year': year, 'type': type});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll(
+            (result.data as List ?? []).map((o) => SeasonDataStat.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 球员职业生涯赛季数据统计（包括季前赛、常规赛、季后赛）
+  ///
+  /// [id] 球员ID
+  ///
+  static Future<List<SeasonDataStat>> getPlayerCareer(String id) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.PLAYER_CAREER, data: {'id': id});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll(
+            (result.data as List ?? []).map((o) => SeasonDataStat.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 球员赛季每场比赛数据统计（包括季前赛、常规赛、季后赛）
+  ///
+  /// [id] 球员ID
+  /// [year] 赛季
+  /// [type] 类型 1:常规赛;2:季后赛;0:季前赛
+  ///
+  static Future<List<PlayerMatch>> getPlayerMatch(String id,
+      {int year: 2019, int type: 1}) async {
+    Response response = await HttpUtils().request(ApiUrl.PLAYER_MATCH,
+        data: {'year': year, 'type': type, 'id': id});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll(
+            (result.data as List ?? []).map((o) => PlayerMatch.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// NBA最新动态
+  ///
+  /// [name] 球员名字or球队名称
+  ///
+  static Future<List<NBANews>> getNBANews(String name) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.NBA_NEWS, data: {'name': name});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => NBANews.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 球队详情
+  ///
+  /// [id] 球队ID
+  ///
+  static Future<Team> getTeamInfo(String id) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.TEAM_INFO, data: {'id': id});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return Team.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 比赛数据统计详情
+  ///
+  /// [mid] 球队ID
+  ///
+  static Future<MatchBaseBean> getMatchStats(String mid) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.MATCH_STATS, data: {'mid': mid});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return MatchBaseBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 球队数据概况
+  ///
+  /// [id] 球队ID
+  ///
+  static Future<StatsBase> getTeamStats({String id}) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.TEAM_STATS, data: {'id': id});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return StatsBase.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 音乐列表
+  ///
+  static Future<List<Song>> getMusics() async {
+    Response response = await HttpUtils().request(ApiUrl.MUSIC, data: null);
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Song.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 抖音视频榜
+  ///
+  static Future<List<TiktokVideo>> getTiktokVideos() async {
+    Response response = await HttpUtils().request(ApiUrl.DY_VIDEOS, data: null);
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll(
+            (result.data as List ?? []).map((o) => TiktokVideo.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 获取同程信息
+  ///
+  /// [no] 同程车次
+  /// [type] 交通类型
+  /// [arrive] 到达地点
+  /// [date] 时间
+  /// [page] 页码
+  /// [num] 每页返回条数
+  ///
+  static Future<List<SameRide>> getSameRideData({
+    String no,
+    String type = "1",
+    String arrive,
+    String date,
+    int page = 1,
+    int num = 20,
+  }) async {
+    Response response = await HttpUtils().request(ApiUrl.NCOV_SAME, data: {
+      "date": date,
+      "no": no,
+      "type": type,
+      "arrive": arrive,
+      "page": page,
+      "num": num,
+    });
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => SameRide.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 谣言鉴别
+  ///
+  /// [page] 页码
+  ///
+  static Future<List<Rumour>> getRumourData({
+    int page = 1,
+  }) async {
+    Response response =
+        await HttpUtils().request(ApiUrl.NCOV_RUMOUR, data: {"page": page});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Rumour.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 疫情实时新闻
+  ///
+  static Future<List<CovNews>> getSARSCovNewsData() async {
+    Response response = await HttpUtils().request(ApiUrl.NCOV_NEWS, data: null);
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => CovNews.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 抗击疫情
+  ///
+  static Future<SARSCov> getSARSCovIndexData() async {
+    Response response =
+        await HttpUtils().request(ApiUrl.NCOV_INDEX, data: null);
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return SARSCov.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 地区疫情情况
+  ///
+  /// [province] 省份拼音
+  ///
+  static Future<ProvinceDataBean> getSARSCovProvinceData(
+      String province) async {
+    Response response = await HttpUtils()
+        .request(ApiUrl.NCOV_PROVINCE, data: {'province': province});
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return ProvinceDataBean.fromMap(result.data);
+    } else {
+      return null;
+    }
+  }
+
+  /// 地区疫情新闻
+  ///
+  /// [province] 省份拼音
+  /// [page] 页码
+  /// [num] 每页返回条数
+  ///
+  static Future<List<ProvinceNews>> getSARSCovProvinceNewsData(String province,
+      {int page: 1, int num: 10}) async {
+    Response response = await HttpUtils().request(ApiUrl.NCOV_PROVINCE_NEWS,
+        data: {"province": province, "page": page, "num": num});
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll(
+            (result.data as List ?? []).map((o) => ProvinceNews.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 疫情分析
+  ///
+  static Future<List<Analyze>> getSARSCovAnalyzeData() async {
+    Response response =
+        await HttpUtils().request(ApiUrl.NCOV_ANALYZE, data: null);
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Analyze.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 新冠肺炎确诊病患活动轨迹
+  ///
+  /// [province] 省份
+  /// [city] 市/区
+  /// [county] 区/县
+  /// [page] 页码
+  /// [num] 每页返回条数
+  ///
+  static Future<List<Trajectory>> getSARSCovTrajectoryData(
+      {String province,
+      String city,
+      String county,
+      int page: 1,
+      int num: 10}) async {
+    Response response = await HttpUtils().request(ApiUrl.NCOV_TRAJECTORY,
+        data: {
+          "province": province,
+          "city": city,
+          "county": county,
+          "page": page,
+          "num": num
+        });
+    if (response == null || response?.statusCode != 200) {
+      return [];
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return List()
+        ..addAll((result.data as List ?? []).map((o) => Trajectory.fromMap(o)));
+    } else {
+      return [];
+    }
+  }
+
+  /// 预防手册
+  ///
+  static Future<PreventManualBase> getSARSCovPreventManualData() async {
+    Response response =
+        await HttpUtils().request(ApiUrl.NCOV_PREVENT_MANUAL, data: null);
+    if (response == null || response?.statusCode != 200) {
+      return null;
+    }
+    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    if (result.code == '0') {
+      return PreventManualBase.fromMap(result.data);
+    } else {
+      return null;
+    }
   }
 }

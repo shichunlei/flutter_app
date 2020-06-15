@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bars_demo/each_view.dart';
 import 'package:flutter_app/utils/route_util.dart';
 
-class BottomAppbar extends StatefulWidget {
+class BottomAppbarSample extends StatefulWidget {
   @override
   _BottomAppbarState createState() => _BottomAppbarState();
 }
 
-class _BottomAppbarState extends State<BottomAppbar> {
+class _BottomAppbarState extends State<BottomAppbarSample> {
   List<Widget> list = [];
 
   int index = 0;

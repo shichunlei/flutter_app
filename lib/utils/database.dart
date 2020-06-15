@@ -37,8 +37,16 @@ class DBHelper {
         print(e);
       }
     }
-    _db = await openDatabase(path,
-        version: _VERSION, onCreate: (Database db, int version) async {});
+    _db = await openDatabase(
+      path,
+      version: _VERSION,
+      onCreate: (Database db, int version) async {
+        /// 表格创建等初始化操作
+      },
+      onUpgrade: (Database db, int oldVersion, int newVersion) {
+        /// 数据库升级
+      },
+    );
   }
 
   Future<bool> isTableExits(String tableName) async {

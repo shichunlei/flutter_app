@@ -1,56 +1,43 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_app/contact/ui/contact_image_text.dart';
-import 'package:flutter_app/contact/ui/line_widget.dart';
+import '../../page_index.dart';
+import 'package:flutter_app/generated/i18n.dart';
 
 class BuildRowView extends StatefulWidget {
   @override
-  _BuildRowViewState createState() => _BuildRowViewState();
+  createState() => _BuildRowViewState();
 }
 
 class _BuildRowViewState extends State<BuildRowView> {
+  bool isFavorite = false;
+
+  StreamController<bool> _streamController;
+
   @override
   void initState() {
     super.initState();
+    _streamController = StreamController<bool>.broadcast();
   }
 
   @override
   void dispose() {
+    _streamController.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    bool isFavorite = false;
-    IconData favoriteIcon = Icons.favorite_border;
-    Color favoriteColor = Colors.grey;
-    String favoriteText = "收藏";
-
-    void _toggleFavorite() {
-      setState(() {
-        if (isFavorite) {
-          isFavorite = false;
-          favoriteIcon = Icons.favorite_border;
-          favoriteColor = Colors.grey;
-          favoriteText = "收藏";
-        } else {
-          isFavorite = true;
-          favoriteIcon = Icons.favorite;
-          favoriteColor = Colors.redAccent;
-          favoriteText = "取消收藏";
-        }
-      });
-    }
-    
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        ContactImageText(
+        IconText(
           icon: Icon(
             Icons.share,
             color: Colors.grey,
           ),
-          text: Text("分享"),
+          text: "${S.of(context).share}",
           onPressed: () {},
         ),
         LineWidget(
@@ -58,12 +45,12 @@ class _BuildRowViewState extends State<BuildRowView> {
           width: 1.0,
           lineType: LineType.vertical,
         ),
-        ContactImageText(
+        IconText(
           icon: Icon(
             Icons.history,
             color: Colors.grey,
           ),
-          text: Text("通话记录"),
+          text: "${S.of(context).call_history}",
           onPressed: () {},
         ),
         LineWidget(
@@ -71,15 +58,26 @@ class _BuildRowViewState extends State<BuildRowView> {
           width: 1.0,
           lineType: LineType.vertical,
         ),
-        ContactImageText(
-          icon: Icon(
-            favoriteIcon,
-            color: favoriteColor,
-          ),
-          text: Text(favoriteText),
-          onPressed: () => _toggleFavorite(),
-        ),
+        StreamBuilder<bool>(
+            stream: _streamController.stream, //数据流
+            initialData: false, //初始值
+            builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+              isFavorite = snapshot.data;
+              return IconText(
+                icon: Icon(
+                    snapshot.data ? Icons.favorite : Icons.favorite_border,
+                    color: snapshot.data ? Colors.redAccent : Colors.grey),
+                text: snapshot.data
+                    ? "${S.of(context).cancel_collect}"
+                    : "${S.of(context).collect}",
+                onPressed: () => _toggleFavorite(),
+              );
+            }),
       ],
     );
+  }
+
+  void _toggleFavorite() async {
+    _streamController.sink.add(!isFavorite);
   }
 }

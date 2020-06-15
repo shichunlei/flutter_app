@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/contact/ui/contact_category.dart';
-import 'package:flutter_app/contact/ui/contact_item.dart';
+import '../index.dart';
 
 class BuildEmailView extends StatelessWidget {
+  final String email;
+
+  BuildEmailView({Key key, this.email}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ContactCategory(
@@ -12,20 +15,20 @@ class BuildEmailView extends StatelessWidget {
           icon: Icons.email,
           tooltip: "Send personal e-mail",
           onPressed: () {},
-          lines: const <String>[
-            '1558053958@qq.com',
+          lines: <String>[
+            '$email',
             'Personal',
           ],
         ),
-        ContactItem(
-          icon: Icons.email,
-          tooltip: 'Send work e-mail',
-          onPressed: () {},
-          lines: const <String>[
-            'scl@chingsoft.com',
-            'Work',
-          ],
-        ),
+//        ContactItem(
+//          icon: Icons.email,
+//          tooltip: 'Send work e-mail',
+//          onPressed: () {},
+//          lines: <String>[
+//            '$email',
+//            'Work',
+//          ],
+//        ),
       ],
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/custom_widgets/smooth_star_rating.dart';
 
 import '../../page_index.dart';
 
@@ -48,27 +47,22 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    super.build(context);
     String desc = '${widget.movie.year}\n';
     widget.movie.genres.map((genre) {
       desc += genre;
       desc += ' ';
     }).toList();
 
-    widget.movie.pubdates.map((date) {
+    widget.movie.pubDates.map((date) {
       desc += '\n';
       desc += '$date上映';
     }).toList();
 
-    desc +=
-        '\n${widget.movie.durations.isNotEmpty ? "${widget.movie.durations[0]}" : ""}';
+    desc += "\n${widget.movie?.durations?.first ?? ''}";
 
-    return GestureDetector(
+    return BouncingView(
         child: Card(
           color: cardBackgroundColor,
           child: Container(
@@ -182,6 +176,6 @@ class _ItemRankingMovieState extends State<ItemRankingMovie>
             ]),
           ),
         ),
-        onTap: widget.onTap);
+        onPressed: widget.onTap);
   }
 }

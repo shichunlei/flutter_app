@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/custom_widgets/dropdown_menu/dropdown_header.dart';
-import 'package:flutter_app/custom_widgets/dropdown_menu/dropdown_menu.dart';
-import 'package:flutter_app/custom_widgets/dropdown_menu/dropdown_menu_controller.dart';
+import 'package:flutter_app/bean/condition.dart';
+import 'package:flutter_app/movie/ui/filter_listview.dart';
+
+import '../page_index.dart';
 
 class DropDownSample extends StatefulWidget {
   DropDownSample({Key key}) : super(key: key);
@@ -12,42 +13,21 @@ class DropDownSample extends StatefulWidget {
 
 class _DropDownSampleState extends State<DropDownSample> {
   List<String> _dropDownHeaderItemStrings = ['全城', '品牌', '价格低', '筛选'];
-  List<SortCondition> _brandSortConditions = [];
-  List<SortCondition> _distanceSortConditions = [];
-  SortCondition _selectBrandSortCondition;
-  SortCondition _selectDistanceSortCondition;
+
+  Condition _selectBrandSortCondition;
+  Condition _selectDistanceSortCondition;
   DropdownMenuController _dropdownMenuController = DropdownMenuController();
 
-  var _scaffoldKey = new GlobalKey<ScaffoldState>();
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
   GlobalKey _stackKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
 
-    _brandSortConditions.add(SortCondition(name: '全部', isSelected: true));
-    _brandSortConditions.add(SortCondition(name: '金逸影城', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '中影国际城', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '星美国际城', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '博纳国际城', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '大地影院', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '嘉禾影城', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '太平洋影城', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城1', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城2', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城3', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城4', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城5', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城6', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城7', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城8', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城9', isSelected: false));
-    _selectBrandSortCondition = _brandSortConditions[0];
+    _selectBrandSortCondition = brandSortConditions?.first;
 
-    _distanceSortConditions.add(SortCondition(name: '距离近', isSelected: true));
-    _distanceSortConditions.add(SortCondition(name: '价格低', isSelected: false));
-    _selectDistanceSortCondition = _distanceSortConditions[0];
+    _selectDistanceSortCondition = distanceSortConditions?.first;
   }
 
   @override
@@ -60,14 +40,10 @@ class _DropDownSampleState extends State<DropDownSample> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-          elevation: 0,
-          title: Text('仿美团电影下拉筛选菜单',
-              style: TextStyle(fontSize: 16, color: Colors.white))),
+      appBar: AppBar(elevation: 0, title: Text('仿美团电影下拉筛选菜单')),
       backgroundColor: Colors.white,
       endDrawer: Container(
-          margin: EdgeInsets.only(
-              left: MediaQuery.of(context).size.width / 4, top: 0),
+          margin: EdgeInsets.only(left: Utils.width / 4, top: 0),
           color: Colors.white),
       body: Stack(key: _stackKey, children: <Widget>[
         Column(children: <Widget>[
@@ -75,7 +51,7 @@ class _DropDownSampleState extends State<DropDownSample> {
           DropDownHeader(
             // 下拉的头部项，目前每一项，只能自定义显示的文字、图标、图标大小修改
             items: [
-              DropDownHeaderItem(_dropDownHeaderItemStrings[0]),
+              DropDownHeaderItem(_dropDownHeaderItemStrings?.first),
               DropDownHeaderItem(_dropDownHeaderItemStrings[1]),
               DropDownHeaderItem(_dropDownHeaderItemStrings[2]),
               DropDownHeaderItem(_dropDownHeaderItemStrings[3],
@@ -139,32 +115,34 @@ class _DropDownSampleState extends State<DropDownSample> {
               DropdownMenuBuilder(
                   dropDownHeight: 40 * 8.0,
                   dropDownWidget: _buildQuanChengWidget((selectValue) {
-                    _dropDownHeaderItemStrings[0] = selectValue;
+                    _dropDownHeaderItemStrings.first = selectValue;
                     _dropdownMenuController.hide();
                     setState(() {});
                   })),
               DropdownMenuBuilder(
                   dropDownHeight: 40 * 8.0,
-                  dropDownWidget:
-                      _buildConditionListWidget(_brandSortConditions, (value) {
-                    _selectBrandSortCondition = value;
-                    _dropDownHeaderItemStrings[1] =
-                        _selectBrandSortCondition.name == '全部'
-                            ? '品牌'
-                            : _selectBrandSortCondition.name;
-                    _dropdownMenuController.hide();
-                    setState(() {});
-                  })),
+                  dropDownWidget: FilterListView(
+                      items: brandSortConditions,
+                      itemOnTap: (value) {
+                        _selectBrandSortCondition = value;
+                        _dropDownHeaderItemStrings[1] =
+                            _selectBrandSortCondition.title == '全部'
+                                ? '品牌'
+                                : _selectBrandSortCondition.title;
+                        _dropdownMenuController.hide();
+                        setState(() {});
+                      })),
               DropdownMenuBuilder(
-                  dropDownHeight: 60.0 * _distanceSortConditions.length,
-                  dropDownWidget: _buildConditionListWidget(
-                      _distanceSortConditions, (value) {
-                    _dropDownHeaderItemStrings[2] =
-                        _selectDistanceSortCondition.name;
-                    _selectDistanceSortCondition = value;
-                    _dropdownMenuController.hide();
-                    setState(() {});
-                  })),
+                  dropDownHeight: 60.0 * distanceSortConditions.length,
+                  dropDownWidget: FilterListView(
+                      items: distanceSortConditions,
+                      itemOnTap: (value) {
+                        _dropDownHeaderItemStrings[2] =
+                            _selectDistanceSortCondition.title;
+                        _selectDistanceSortCondition = value;
+                        _dropdownMenuController.hide();
+                        setState(() {});
+                      })),
             ]),
       ]),
     );
@@ -176,15 +154,15 @@ class _DropDownSampleState extends State<DropDownSample> {
   int _selectSecondLevelIndex = -1;
 
   _buildQuanChengWidget(void itemOnTap(String selectValue)) {
-//    List firstLevels = new List<int>.filled(15, 0);
-    List firstLevels = new List<String>.generate(15, (int index) {
+//    List firstLevels = List<int>.filled(15, 0);
+    List firstLevels = List<String>.generate(15, (int index) {
       if (index == 0) {
         return '全部';
       }
       return '$index区';
     });
 
-    List secondtLevels = new List<String>.generate(15, (int index) {
+    List secondLevels = List<String>.generate(15, (int index) {
       if (index == 0) {
         return '全部';
       }
@@ -230,8 +208,8 @@ class _DropDownSampleState extends State<DropDownSample> {
           child: _selectTempFirstLevelIndex == 0
               ? Container()
               : ListView(
-                  children: secondtLevels.map((item) {
-                    int index = secondtLevels.indexOf(item);
+                  children: secondLevels.map((item) {
+                    int index = secondLevels.indexOf(item);
                     return GestureDetector(
                         onTap: () {
                           _selectSecondLevelIndex = index;
@@ -260,56 +238,4 @@ class _DropDownSampleState extends State<DropDownSample> {
       )
     ]);
   }
-
-  _buildConditionListWidget(
-      items, void itemOnTap(SortCondition goodsSortCondition)) {
-    return ListView.separated(
-      shrinkWrap: true,
-      scrollDirection: Axis.vertical,
-      itemCount: items.length,
-      // item 的个数
-      separatorBuilder: (BuildContext context, int index) =>
-          Divider(height: 1.0),
-      // 添加分割线
-      itemBuilder: (BuildContext context, int index) {
-        SortCondition goodsSortCondition = items[index];
-        return GestureDetector(
-          onTap: () {
-            for (var value in items) {
-              value.isSelected = false;
-            }
-            goodsSortCondition.isSelected = true;
-
-            itemOnTap(goodsSortCondition);
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            height: 60,
-            child: Row(children: <Widget>[
-              Expanded(
-                child: Text(
-                  goodsSortCondition.name,
-                  style: TextStyle(
-                      color: goodsSortCondition.isSelected
-                          ? Theme.of(context).primaryColor
-                          : Colors.black),
-                ),
-              ),
-              goodsSortCondition.isSelected
-                  ? Icon(Icons.check,
-                      color: Theme.of(context).primaryColor, size: 16)
-                  : SizedBox(),
-            ]),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class SortCondition {
-  String name;
-  bool isSelected;
-
-  SortCondition({this.name, this.isSelected}) {}
 }

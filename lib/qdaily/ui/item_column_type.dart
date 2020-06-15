@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/bean_index.dart';
 import 'package:flutter_app/service/api_service.dart';
 
 import '../../page_index.dart';
-import 'item_feed_type_book.dart';
-import 'item_feed_type_two.dart';
-import 'item_top_view.dart';
+import '../index.dart';
 
 class ItemColumnTypeView extends StatefulWidget {
   final int id;
@@ -28,7 +25,7 @@ class ItemColumnTypeView extends StatefulWidget {
 }
 
 class _ItemColumnTypeViewState extends State<ItemColumnTypeView> {
-  final ScrollController _scrollController = new ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   ResponseBean responseBean;
 
@@ -54,13 +51,13 @@ class _ItemColumnTypeViewState extends State<ItemColumnTypeView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 310,
+      height: 305,
       child: Column(children: <Widget>[
         ItemTopView(icon: widget.icon, title: widget.title, onPressed: () {}),
         Flexible(
             child: ListView.separated(
                 controller: _scrollController,
-                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                padding: EdgeInsets.zero,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => widget.showType == 1
                     ? ItemFeedTypeTwo(
@@ -74,7 +71,7 @@ class _ItemColumnTypeViewState extends State<ItemColumnTypeView> {
                             BookDetailPage(id: feeds[index]?.post?.id)),
                         width: (Utils.width - 15) / 2),
                 separatorBuilder: (context, index) =>
-                    Container(width: 8, color: Colors.grey[200]),
+                    Container(width: 5, color: Colors.grey[200]),
                 itemCount: feeds.length))
       ]),
     );
@@ -82,7 +79,7 @@ class _ItemColumnTypeViewState extends State<ItemColumnTypeView> {
 
   void getColumnItems(int id) async {
     ResponseBean responseBean =
-        await ApiService.getQdailyColumnIndex(id, lastKey);
+        await ApiService.getQDailyColumnIndex(id, lastKey);
 
     if (responseBean == null) {
       // 请求失败
@@ -94,7 +91,7 @@ class _ItemColumnTypeViewState extends State<ItemColumnTypeView> {
 
       debugPrint(
           'ItemColumnTypeOne===========${this.lastKey}=============$isLoadComplete');
-      setState(() {});
+      if (mounted) setState(() {});
     }
   }
 }

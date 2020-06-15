@@ -1,37 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/db/address_provider.dart';
-import 'package:flutter_app/store/models/address_model.dart';
-import 'package:provide/provide.dart';
+import 'package:flutter_app/store/index.dart';
+import 'package:flutter_app/generated/i18n.dart';
 
 import '../../../page_index.dart';
-import 'create_edit_address_page.dart';
-import 'item_address.dart';
+import '../../index.dart';
 
-class AddressPage extends StatefulWidget {
+class AddressPage extends StatelessWidget {
   AddressPage({Key key}) : super(key: key);
-
-  @override
-  createState() => _AddressPageState();
-}
-
-class _AddressPageState extends State<AddressPage> {
-  AddressProvider addressProvider;
-
-  bool isEmpty = false;
-
-  @override
-  void initState() {
-    super.initState();
-
-    addressProvider = AddressProvider();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
-            title: Text('${AppLocalizations.$t('address')}'),
+            title: Text('${S.of(context).address}'),
             elevation: 0,
             actions: <Widget>[
               IconButton(
@@ -39,50 +21,40 @@ class _AddressPageState extends State<AddressPage> {
                   onPressed: () => pushNewPage(
                       context,
                       CreateEditAddressPage(
-                          title: '${AppLocalizations.$t('create_address')}',
-                          addressProvider: addressProvider)))
+                          title: '${S.of(context).create_address}')))
             ]),
-        body: _builderBodyView());
-  }
+        body: FutureBuilder(
+          future: Store.value<AddressModel>(context).getAddresses(),
+          builder: (_, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                return Text('Press button to start.');
+              case ConnectionState.active:
+              case ConnectionState.waiting:
+                return Center(child: LoadingWidget());
+              case ConnectionState.done:
+                if (snapshot.hasError) {
+                  debugPrint(snapshot.error);
+                  return ErrorPage();
+                }
 
-  Future _getAddresses(BuildContext context) async {
-    await Store.value<AddressModel>(context).$getAddresses(addressProvider);
+                List<Address> items = snapshot.data;
 
-    return '${AppLocalizations.$t('success')}';
-  }
+                if (items == null || items.length == 0) {
+                  return EmptyPage();
+                }
 
-  Widget _builderBodyView() {
-    return FutureBuilder(
-        future: _getAddresses(context),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Provide<AddressModel>(builder: (context, child, value) {
-              List addresses = Store.value<AddressModel>(context).addresses;
-
-              if (addresses.length > 0) {
-                isEmpty = false;
-              } else {
-                isEmpty = true;
-              }
-
-              return addresses.length > 0
-                  ? ListView.separated(
-                      physics: BouncingScrollPhysics(),
-                      padding: EdgeInsets.only(top: 8, bottom: 8),
-                      itemBuilder: (context, index) => ItemAddress(
-                          address: addresses[index],
-                          addressProvider: addressProvider),
-                      separatorBuilder: (BuildContext context, int index) =>
-                          Container(height: 5, color: Colors.grey[200]),
-                      itemCount: addresses.length)
-                  : isEmpty
-                      ? EmptyPage(
-                          text: '暂无收货地址', imageAsset: 'images/empty.jpeg')
-                      : getLoadingWidget();
-            });
-          } else {
-            return EmptyPage(text: '暂无收货地址', imageAsset: 'images/empty.jpeg');
-          }
-        });
+                return ListView.separated(
+                    physics: BouncingScrollPhysics(),
+                    padding: EdgeInsets.only(top: 8, bottom: 8),
+                    itemBuilder: (context, index) =>
+                        ItemAddress(address: items[index]),
+                    separatorBuilder: (_, int index) =>
+                        Container(height: 5, color: Colors.grey[200]),
+                    itemCount: items.length);
+            }
+            return null;
+          },
+        ));
   }
 }

@@ -1,21 +1,12 @@
 import 'dart:ui';
 
 import 'package:badges/badges.dart';
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily.dart';
-import 'package:flutter_app/bean/qdaily_app.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/loading_util.dart';
-import 'package:flutter_app/utils/route_util.dart';
-import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_html/flutter_html.dart';
 
-import 'article_detail.dart';
-import 'comment.dart';
-import 'ui/bottom_appbar.dart';
-import 'ui/item_feed_type_recommend.dart';
+import '../page_index.dart';
+import 'index.dart';
 
 class BookDetailPage extends StatefulWidget {
   final int id;
@@ -50,36 +41,33 @@ class _BookDetailPageState extends State<BookDetailPage> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: Container(
-        height: Utils.height,
-        child: Stack(alignment: Alignment.bottomCenter, children: <Widget>[
+        child: Stack(fit: StackFit.expand, children: <Widget>[
           responseBean == null || detailBean == null
-              ? getLoadingWidget()
+              ? LoadingWidget()
               : SingleChildScrollView(
                   child: Column(children: <Widget>[
-                    Stack(children: <Widget>[
-                      ImageLoadView('${post.image}',
-                          fit: BoxFit.fitHeight, height: Utils.height),
-                      Container(
-                          color: Color.fromRGBO(255, 255, 255, 0.7),
-                          height: Utils.height),
-                      Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                        ImageLoadView('${post.image}',
-                            width: Utils.width / 2,
-                            height: Utils.width / 2 * 239 / 163),
-                        Html(
-                            data: '${detailBean.desc}',
-                            defaultTextStyle: TextStyle(
-                                fontSize: 14, color: Color(0xFF363636)),
-                            padding: EdgeInsets.all(8.0),
-                            blockSpacing: 2.0,
-                            useRichText: true)
-                      ])
-                    ]),
+                    ImageLoadView('${post?.image}',
+                        fit: BoxFit.fitHeight,
+                        height: Utils.height,
+                        opacity: 0.7,
+                        filterColor: Colors.white,
+                        child: Column(children: <Widget>[
+                          ImageLoadView('${post?.image}',
+                              width: Utils.width / 2,
+                              height: Utils.width / 2 * 239 / 163),
+                          Html(
+                              data: '${detailBean?.desc}',
+                              defaultTextStyle: TextStyle(
+                                  fontSize: 14, color: Color(0xFF363636)),
+                              padding: EdgeInsets.all(8.0),
+                              blockSpacing: 2.0,
+                              useRichText: true)
+                        ])),
 
                     /// 文章简介
                     Offstage(
                         offstage: post?.description?.length == 0 ||
-                            post.description == null,
+                            post?.description == null,
                         child: Column(children: <Widget>[
                           Container(
                             child: Text('${post?.description}',
@@ -96,7 +84,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
 
                     /// 文章内容
                     Html(
-                        data: '${detailBean.detail}',
+                        data: '${detailBean?.detail}',
                         defaultTextStyle: TextStyle(fontSize: 18),
                         padding: EdgeInsets.all(8.0),
                         blockSpacing: 2.0,
@@ -118,44 +106,49 @@ class _BookDetailPageState extends State<BookDetailPage> {
                     /// 推荐
                     ListView.builder(
                         itemBuilder: (context, index) => ItemFeedTypeRecommend(
-                            post: detailBean.posts[index],
-                            onTap: () => pushReplacement(context,
-                                ArticleDetail(id: detailBean.posts[index].id))),
+                            post: detailBean?.posts[index],
+                            onTap: () => pushReplacement(
+                                context,
+                                ArticleDetail(
+                                    id: detailBean?.posts[index]?.id))),
                         padding: EdgeInsets.only(top: 0),
                         primary: false,
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: detailBean.posts.length),
-
-                    SizedBox(
-                        height: Utils.navigationBarHeight - Utils.topSafeHeight)
+                        itemCount: detailBean?.posts?.length ?? 0),
                   ]),
                 ),
-          BottomAppbar(actions: <Widget>[
-            IconButton(icon: Icon(FeatherIcons.heart), onPressed: () {}),
-            IconButton(
-                icon: Badge(
-                    shape: BadgeShape.circle,
-                    badgeContent: Text('${post.commentCount}',
-                        style: TextStyle(color: Colors.white, fontSize: 10)),
-                    child: Icon(FeatherIcons.messageSquare)),
-                onPressed: () => pushNewPage(
-                    context,
-                    CommentPage(
-                        id: post.id,
-                        dataType: '${post.dataType}',
-                        commentCount: post.commentCount))),
-            IconButton(icon: Icon(FeatherIcons.share), onPressed: () {})
-          ]),
         ]),
       ),
+      bottomNavigationBar: BottomAppbar(actions: <Widget>[
+        IconButton(
+            icon: Badge(
+                shape: BadgeShape.circle,
+                badgeContent: Text('${post?.praiseCount ?? 0}',
+                    style: TextStyle(color: Colors.white, fontSize: 10)),
+                child: Icon(Feather.heart)),
+            onPressed: () {}),
+        IconButton(
+            icon: Badge(
+                shape: BadgeShape.circle,
+                badgeContent: Text('${post?.commentCount ?? 0}',
+                    style: TextStyle(color: Colors.white, fontSize: 10)),
+                child: Icon(Feather.message_square)),
+            onPressed: () => pushNewPage(
+                context,
+                CommentPage(
+                    id: post?.id,
+                    dataType: '${post?.dataType}',
+                    commentCount: post?.commentCount))),
+        IconButton(icon: Icon(Feather.share), onPressed: () {})
+      ]),
     );
   }
 
   void getBookInfo(int id) async {
     responseBean = await ApiService.getQDailyArticleInfoData(id);
-    post = responseBean.post;
-    author = responseBean.author;
+    post = responseBean?.post;
+    author = responseBean?.author;
 
     detailBean = await ApiService.getQDailyBookData(id);
 

@@ -1,28 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/db/goods_provider.dart';
-import 'package:flutter_app/baixing_life/index.dart';
-import 'package:flutter_app/baixing_life/page/details_page.dart';
-import 'package:flutter_app/baixing_life/ui/item_floor_goods.dart';
-import 'package:flutter_app/baixing_life/ui/item_goods_grid.dart';
-import 'package:flutter_app/bean/advertes_picture.dart';
-import 'package:flutter_app/bean/baixing.dart';
-import 'package:flutter_app/bean/category.dart';
-import 'package:flutter_app/bean/goods.dart';
-import 'package:flutter_app/service/api_service.dart';
+import 'package:flutter_app/store/index.dart';
+
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../../page_index.dart';
+import '../index.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
-  final GoodsProvider provider;
 
-  HomePage(this.title, this.provider, {Key key}) : super(key: key);
+  HomePage(this.title, {Key key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage>
@@ -34,14 +26,11 @@ class _HomePageState extends State<HomePage>
 
   List<Goods> goods = [];
 
-  double navAlpha = 0;
   double headerHeight;
-  ScrollController scrollController = ScrollController();
 
   int page;
 
-  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
-  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
+  LoaderState state = LoaderState.Loading;
 
   @override
   void initState() {
@@ -51,145 +40,101 @@ class _HomePageState extends State<HomePage>
 
     headerHeight = Utils.width * 20 / 49;
 
-    scrollController.addListener(() {
-      var offset = scrollController.offset;
-      if (offset < 0) {
-        if (navAlpha != 0) {
-          setState(() {
-            navAlpha = 0;
-          });
-        }
-      } else if (offset < headerHeight) {
-        setState(() {
-          navAlpha = 1 - (headerHeight - offset) / headerHeight;
-        });
-      } else if (navAlpha != 1) {
-        setState(() {
-          navAlpha = 1;
-        });
-      }
-    });
-
     page = 1;
     getHotGoods(page);
   }
 
   @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return _buildBodyView();
+    super.build(context);
+    return Scaffold(
+        backgroundColor: Colors.grey[200],
+        body: LoaderContainer(
+            contentView: EasyRefresh.custom(
+                footer: BallPulseFooter(),
+                onLoad: () async {
+                  page++;
+                  getHotGoods(page);
+                },
+                slivers: <Widget>[
+                  /// 头部banner
+                  _buildSliverAppBar(data?.slides ?? []),
+
+                  /// 分类
+                  _buildSliverGridCategory(data?.category ?? []),
+
+                  /// 广告
+                  _buildSliverToBoxAdapterAds(
+                      data?.advertesPicture, data?.shopInfo, data?.ads),
+
+                  /// 商品推荐
+                  _buildSliverToBoxAdapter('商品推荐'),
+                  _buildSliverGridRecommend(data?.recommend ?? []),
+
+                  /// floor
+                  _buildFloorView(data?.floors ?? []),
+
+                  /// 火爆专区
+                  _buildHotGoodsTitle(),
+                  _buildHotGoods()
+                ]),
+            loaderState: state));
   }
 
   void getHomeData() async {
     data = await ApiService.getBaixingHomeData('115.02932', '35.76189');
 
-    setState(() {});
-  }
-
-  Widget _buildBodyView() {
-    if (data == null) {
-      return Scaffold(
-        backgroundColor: Colors.grey[200],
-        body: Column(children: <Widget>[
-          ToolBar(
-              title: '${widget.title}', backgroundColor: Colors.transparent),
-          Expanded(child: Container(child: getLoadingWidget()))
-        ]),
-      );
+    if (data != null) {
+      state = LoaderState.Succeed;
+    } else {
+      state = LoaderState.NoAction;
     }
 
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      body: Stack(
-        children: <Widget>[
-          EasyRefresh(
-              key: _easyRefreshKey,
-              refreshFooter: BallPulseFooter(
-                  key: _footerKey,
-                  color: Colors.indigo,
-                  backgroundColor: Colors.white),
-              loadMore: () async {
-                page++;
-                getHotGoods(page);
-              },
-              child: CustomScrollView(
-                  controller: scrollController,
-                  slivers: <Widget>[
-                    /// 头部banner
-                    _buildSliverAppBar(data.slides),
-
-                    /// 分类
-                    _buildSliverGridCategory(data.category),
-
-                    /// 广告
-                    _buildSliverToBoxAdapterAds(
-                        data.advertesPicture, data.shopInfo, data.ads),
-
-                    /// 商品推荐
-                    _buildSliverToBoxAdapter('商品推荐'),
-                    _buildSliverGridRecommend(data.recommend),
-
-                    /// floor
-                    _buildFloorView(data.floors),
-
-                    /// 火爆专区
-                    _buildHotGoodsTitle(),
-                    _buildHotGoods()
-                  ])),
-          ChangeAppBar(
-              title: widget.title,
-              backgroundColor: Colors.red,
-              navAlpha: navAlpha)
-        ],
-      ),
-    );
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   Widget _buildSliverAppBar(List<Goods> slides) {
     return SliverAppBar(
+        automaticallyImplyLeading: false,
+        pinned: true,
         backgroundColor: Colors.red,
         expandedHeight: headerHeight,
+        title: Text('${widget.title}'),
         flexibleSpace: Container(
             child: Swiper(
                 autoplay: true,
                 itemCount: slides.length,
-                itemBuilder: (BuildContext context, int index) => Hero(
-                    tag: slides[index].goodsId,
-                    child: ImageLoadView('${slides[index].comPic}')),
-                onTap: (int index) => pushNewPage(
-                    context,
-                    DetailsPage(slides[index].goodsId,
-                        provider: widget.provider)))));
+                itemBuilder: (BuildContext context, int index) => ImageLoadView(
+                    '${slides[index].comPic}',
+                    height: headerHeight),
+                onTap: (int index) =>
+                    pushNewPage(context, DetailsPage(slides[index].goodsId)))));
   }
 
-  Widget _buildSliverGridCategory(List<Category> category) {
+  Widget _buildSliverGridCategory(List<GoodsCategory> category) {
     return SliverGrid(
-        delegate: SliverChildBuilderDelegate(
-          (BuildContext context, int index) {
-            return GestureDetector(
-              onTap: () => pushReplacement(context,
-                  IndexPage(index: 1, category: index, subCategory: 0)),
-              child: Container(
-                color: Colors.white,
-                padding: EdgeInsets.all(5.0),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      ImageLoadView('${category[index].image}',
-                          height: 40, width: 40),
-                      Gaps.vGap5,
-                      Text('${category[index].mallCategoryName}')
-                    ]),
-              ),
-            );
-          },
-          childCount: 10,
-        ),
+        delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+          return Material(
+              color: Colors.white,
+              child: InkWell(
+                  onTap: () {
+                    Store.value<BaixingModel>(context, listen: false)
+                      ..setPageIndex(1)
+                      ..setCategories(index, 0);
+                  },
+                  child: Container(
+                      padding: EdgeInsets.all(5.0),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            ImageLoadView('${category[index].image}',
+                                height: 40, width: 40),
+                            Gaps.vGap5,
+                            Text('${category[index].mallCategoryName}')
+                          ]))));
+        }, childCount: 10),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 5, childAspectRatio: 0.9));
   }
@@ -201,41 +146,50 @@ class _HomePageState extends State<HomePage>
 
     return SliverToBoxAdapter(
         child: Container(
-            child: Column(
-              children: <Widget>[
+            child: Column(children: <Widget>[
+              GestureDetector(
+                  child: ImageLoadView(
+                      '${advertesPicture?.pictureAddress ?? ""}',
+                      width: double.infinity,
+                      height: Utils.width * 67 / 750,
+                      fit: BoxFit.fitWidth),
+                  onTap: () {
+                    /// TODO
+                  }),
+              Gaps.vGap10,
+              GestureDetector(
+                  child: ImageLoadView(shopInfo?.shopImage ?? "",
+                      width: double.infinity,
+                      fit: BoxFit.fitWidth,
+                      height: Utils.width * 23 / 75),
+                  onTap: () {
+                    /// TODO
+                  }),
+              Row(children: <Widget>[
                 GestureDetector(
-                    child: ImageLoadView('${advertesPicture.pictureAddress}'),
+                    child: ImageLoadView('${ads?.first?.pictureAddress ?? ""}',
+                        width: width, height: height),
                     onTap: () {
                       /// TODO
                     }),
-                SizedBox(height: 10),
                 GestureDetector(
-                    child: ImageLoadView(shopInfo.leaderImage),
+                    child: ImageLoadView(
+                        '${ads?.elementAt(1)?.pictureAddress ?? ""}',
+                        width: width,
+                        height: height),
                     onTap: () {
                       /// TODO
                     }),
-                Row(children: <Widget>[
-                  GestureDetector(
-                      child: ImageLoadView('${ads[0].pictureAddress}',
-                          width: width, height: height),
-                      onTap: () {
-                        /// TODO
-                      }),
-                  GestureDetector(
-                      child: ImageLoadView('${ads[1].pictureAddress}',
-                          width: width, height: height),
-                      onTap: () {
-                        /// TODO
-                      }),
-                  GestureDetector(
-                      child: ImageLoadView('${ads[2].pictureAddress}',
-                          width: width, height: height),
-                      onTap: () {
-                        /// TODO
-                      })
-                ])
-              ],
-            ),
+                GestureDetector(
+                    child: ImageLoadView(
+                        '${ads?.elementAt(2)?.pictureAddress ?? ""}',
+                        width: width,
+                        height: height),
+                    onTap: () {
+                      /// TODO
+                    })
+              ])
+            ]),
             color: Colors.white,
             margin: EdgeInsets.only(top: 5.0),
             padding: EdgeInsets.all(10.0)));
@@ -243,84 +197,34 @@ class _HomePageState extends State<HomePage>
 
   Widget _buildSliverToBoxAdapter(title) {
     return SliverToBoxAdapter(
-      child: Column(children: <Widget>[
-        Container(
+        child: Container(
             color: Colors.white,
             margin: EdgeInsets.only(top: 5.0, bottom: 1.0),
-            padding: EdgeInsets.only(left: 10.0),
+            padding: EdgeInsets.only(left: 10.0, bottom: 5, top: 5),
             alignment: Alignment.centerLeft,
             child: Text(title,
-                style: TextStyle(color: Colors.green, fontSize: 20.0)),
-            height: 40.0),
-        Container(color: Colors.white, height: 5.0)
-      ]),
-    );
+                style: TextStyle(color: Colors.green, fontSize: 20.0))));
   }
 
   Widget _buildSliverGridRecommend(List<Goods> recommend) {
-    return SliverGrid(
-        delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) =>
-                ItemGoodsGrid(recommend[index], provider: widget.provider),
-            childCount: recommend.length),
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: Utils.width / recommend.length,
-            crossAxisSpacing: 1.0,
-            childAspectRatio: 1.45 / 2));
+    return SliverToBoxAdapter(
+        child: Container(
+            height: Utils.width / 3 * 2 / 1.45,
+            child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (_, index) => Container(
+                    width: Utils.width / 3,
+                    child: ItemGoodsGrid(recommend[index],
+                        height: Utils.width / 3 * 2 / 1.45)),
+                separatorBuilder: (_, index) => Gaps.hGap5,
+                itemCount: recommend.length)));
   }
 
   Widget _buildFloorView(List<FloorBean> floors) {
     return SliverList(
-      delegate: SliverChildBuilderDelegate((context, index) {
-        return Container(
-          child: Column(children: <Widget>[
-            _buildFloorHeader(floors[index]),
-            _buildFloorGoods(floors[index])
-          ]),
-        );
-      }, childCount: floors.length),
-    );
-  }
-
-  Widget _buildFloorHeader(FloorBean floor) {
-    return Container(
-        padding: EdgeInsets.all(10.0),
-        child: GestureDetector(
-            onTap: () {
-              /// TODO 跳转商品列表页？
-            },
-            child: ImageLoadView('${floor.floorPic.pictureAddress}')));
-  }
-
-  Widget _buildFloorGoods(FloorBean floor) {
-    return Container(
-        child: Column(children: <Widget>[
-          Container(
-              height: Utils.width / 2,
-              child: Row(children: <Widget>[
-                ItemFloorGoods(floor.floor[0].goodsId, floor.floor[0].comPic,
-                    width: Utils.width / 2, provider: widget.provider),
-                Container(
-                    width: Utils.width / 2,
-                    child: Column(children: <Widget>[
-                      ItemFloorGoods(
-                          floor.floor[1].goodsId, floor.floor[1].comPic,
-                          height: Utils.width / 4, provider: widget.provider),
-                      ItemFloorGoods(
-                          floor.floor[2].goodsId, floor.floor[2].comPic,
-                          height: Utils.width / 4, provider: widget.provider)
-                    ]))
-              ])),
-          Container(
-              height: Utils.width / 4,
-              child: Row(children: <Widget>[
-                ItemFloorGoods(floor.floor[3].goodsId, floor.floor[3].comPic,
-                    width: Utils.width / 2, provider: widget.provider),
-                ItemFloorGoods(floor.floor[4].goodsId, floor.floor[4].comPic,
-                    width: Utils.width / 2, provider: widget.provider)
-              ]))
-        ]),
-        color: Colors.white);
+        delegate: SliverChildBuilderDelegate(
+            (context, index) => ItemHomeFloor(floor: floors[index]),
+            childCount: floors.length));
   }
 
   Widget _buildHotGoodsTitle() {
@@ -340,8 +244,10 @@ class _HomePageState extends State<HomePage>
   Widget _buildHotGoods() {
     return SliverGrid(
         delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) =>
-                ItemGoodsGrid(goods[index], provider: widget.provider),
+            (BuildContext context, int index) => ItemGoodsGrid(
+                  goods[index],
+                  height: Utils.width / 1.6,
+                ),
             childCount: goods.length),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: Utils.width / 2,

@@ -1,21 +1,21 @@
-import 'package:flutter_app/bean/goods.dart';
+import 'package:flutter_app/bean/baixing.dart';
 import 'package:flutter_app/utils/database.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:quiver/strings.dart' as strings;
 
 class GoodsProvider extends BaseDBProvider {
   /// DataBase table name
-  static final String table_name = "products";
+  static const String table_name = "products";
 
-  static final String COLUMN_ID = "_id";
-  static final String COLUMN_IMAGE = "image";
-  static final String COLUMN_NAME = "name";
-  static final String COLUMN_PRICE = "price";
-  static final String COLUMN_ORI_PRICE = "ori_price";
-  static final String COLUMN_NUM = "number";
-  static final String COLUMN_GOODS_ID = "goods_id";
-  static final String COLUMN_SHOP_ID = "shop_id";
-  static final String COLUMN_IS_CHECK = "is_checked";
+  static const String COLUMN_ID = "_id";
+  static const String COLUMN_IMAGE = "image";
+  static const String COLUMN_NAME = "name";
+  static const String COLUMN_PRICE = "price";
+  static const String COLUMN_ORI_PRICE = "ori_price";
+  static const String COLUMN_NUM = "number";
+  static const String COLUMN_GOODS_ID = "goods_id";
+  static const String COLUMN_SHOP_ID = "shop_id";
+  static const String COLUMN_IS_CHECK = "is_checked";
 
   @override
   String createSql() =>
@@ -47,6 +47,23 @@ class GoodsProvider extends BaseDBProvider {
     return products;
   }
 
+  Future<Goods> getGoods(String goodsId) async {
+    if (!await isExist(goodsId)) {
+      return null;
+    }
+    List<Goods> products = List();
+    Database db = await getDB();
+    List<Map<String, dynamic>> maps = await db
+        .query(table_name, where: "$COLUMN_GOODS_ID = ?", whereArgs: [goodsId]);
+    if (maps.isNotEmpty) {
+      for (Map<String, dynamic> map in maps) {
+        Goods goods = Goods.fromJson(map);
+        products.add(goods);
+      }
+    }
+    return products[0];
+  }
+
   Future<List<Goods>> getCheckedGoodsList() async {
     List<Goods> products = List();
     Database db = await getDB();
@@ -65,9 +82,8 @@ class GoodsProvider extends BaseDBProvider {
     String goodsId = goods?.goodsId;
     if (goods == null || strings.isEmpty(goodsId) == null) return null;
     Database db = await getDB();
-    bool is_exist = await isExist(goodsId);
     Map<String, dynamic> map = goods.toMap();
-    if (is_exist) {
+    if (await isExist(goodsId)) {
       return await db.update(table_name, map,
           where: "$COLUMN_GOODS_ID = ?", whereArgs: [goodsId]);
     }
@@ -82,24 +98,9 @@ class GoodsProvider extends BaseDBProvider {
     return maps.isNotEmpty;
   }
 
-  Future<int> goodsAmount(String goodsId) async {
-    if (goodsId == null) return 0;
-    bool is_exist = await isExist(goodsId);
-    if (is_exist) {
-      Database db = await getDB();
-      List<Map<String, dynamic>> maps = await db.query(table_name,
-          where: "$COLUMN_GOODS_ID = ?", whereArgs: [goodsId]);
-
-      return maps[0]['$COLUMN_NUM'];
-    }
-
-    return 0;
-  }
-
   Future<void> deleteGoods(String goodsId) async {
-    bool is_exist = await isExist(goodsId);
     Database db = await getDB();
-    if (is_exist) {
+    if (await isExist(goodsId)) {
       db.delete(table_name,
           where: "$COLUMN_GOODS_ID = ?", whereArgs: [goodsId]);
     }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/movie.dart';
-import 'package:flutter_app/movie/page/movie_detail.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
-import 'package:flutter_app/utils/route_util.dart';
+
+import '../../page_index.dart';
+import '../index.dart';
 
 class ItemGridView extends StatelessWidget {
   final List<Movie> movies;
@@ -33,9 +32,9 @@ class ItemGridView extends StatelessWidget {
 
       /// 其值为一个函数：Widget Function(BuildContext context, int index)，实现该函数用于创建每个网格对应的Widget。
       itemBuilder: (context, index) {
-        return GestureDetector(
+        return BouncingView(
           //点击事件
-          onTap: () => pushNewPage(context, MovieDetail(movies[index].id)),
+          onPressed: () => pushNewPage(context, MovieDetail(movies[index].id)),
           child: ImageLoadView(movies[index].images.medium.toString()),
         );
       },
