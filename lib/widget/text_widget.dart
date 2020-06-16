@@ -7,7 +7,8 @@ class TextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("Text Widget")),
-        body: Column(children: builderTextWidget(context)));
+        body: SingleChildScrollView(
+            child: Column(children: builderTextWidget(context))));
   }
 
   /// 其中Text的相关属性：
@@ -167,7 +168,21 @@ class TextWidget extends StatelessWidget {
             child: Text('BBB',
                 style: TextStyle(
                     fontSize: 32.0, textBaseline: TextBaseline.alphabetic)))
-      ])
+      ]),
+      RichText(
+          text: TextSpan(children: [
+        TextSpan(
+            text: '  GIFT  ',
+            style: TextStyle(background: paint, color: Colors.red)),
+        TextSpan(
+            text: "   测试用测试用测试用测试用测试用测试用测试用测试用测试用测试用测试用测试用测试用测试用",
+            style: TextStyle(color: Colors.black))
+      ])),
     ];
   }
+
+  final Paint paint = Paint()
+    ..color = Colors.red
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 0.5;
 }

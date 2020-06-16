@@ -5,6 +5,7 @@ import me.yohom.amap_core_fluttify.AmapCoreFluttifyPlugin;
 import me.yohom.amap_location_fluttify.AmapLocationFluttifyPlugin;
 import xyz.luan.audioplayers.AudioplayersPlugin;
 import de.mintware.barcode_scan.BarcodeScanPlugin;
+import me.yohom.core_location_fluttify.CoreLocationFluttifyPlugin;
 import io.flutter.plugins.deviceinfo.DeviceInfoPlugin;
 import com.liuwei.easy_contact_picker.EasyContactPickerPlugin;
 import com.example.flutter_charts.FlutterChartsPlugin;
@@ -41,6 +42,7 @@ public final class GeneratedPluginRegistrant {
     AmapLocationFluttifyPlugin.registerWith(registry.registrarFor("me.yohom.amap_location_fluttify.AmapLocationFluttifyPlugin"));
     AudioplayersPlugin.registerWith(registry.registrarFor("xyz.luan.audioplayers.AudioplayersPlugin"));
     BarcodeScanPlugin.registerWith(registry.registrarFor("de.mintware.barcode_scan.BarcodeScanPlugin"));
+    CoreLocationFluttifyPlugin.registerWith(registry.registrarFor("me.yohom.core_location_fluttify.CoreLocationFluttifyPlugin"));
     DeviceInfoPlugin.registerWith(registry.registrarFor("io.flutter.plugins.deviceinfo.DeviceInfoPlugin"));
     EasyContactPickerPlugin.registerWith(registry.registrarFor("com.liuwei.easy_contact_picker.EasyContactPickerPlugin"));
     FlutterChartsPlugin.registerWith(registry.registrarFor("com.example.flutter_charts.FlutterChartsPlugin"));

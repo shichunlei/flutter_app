@@ -28,6 +28,12 @@
 @import barcode_scan;
 #endif
 
+#if __has_include(<core_location_fluttify/CoreLocationFluttifyPlugin.h>)
+#import <core_location_fluttify/CoreLocationFluttifyPlugin.h>
+#else
+@import core_location_fluttify;
+#endif
+
 #if __has_include(<device_info/FLTDeviceInfoPlugin.h>)
 #import <device_info/FLTDeviceInfoPlugin.h>
 #else
@@ -167,6 +173,7 @@
   [AmapLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapLocationFluttifyPlugin"]];
   [AudioplayersPlugin registerWithRegistrar:[registry registrarForPlugin:@"AudioplayersPlugin"]];
   [BarcodeScanPlugin registerWithRegistrar:[registry registrarForPlugin:@"BarcodeScanPlugin"]];
+  [CoreLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"CoreLocationFluttifyPlugin"]];
   [FLTDeviceInfoPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTDeviceInfoPlugin"]];
   [EasyContactPickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"EasyContactPickerPlugin"]];
   [FlutterChartsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterChartsPlugin"]];

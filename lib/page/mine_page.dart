@@ -25,7 +25,7 @@ class _MinePageState extends State<MinePage> {
   bool isEdit = false;
   bool isShowLoading = false;
 
-  File _imageFile;
+  PickedFile _imageFile;
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +178,7 @@ class _MinePageState extends State<MinePage> {
   fromCamera() async {
     Navigator.of(context).pop();
     try {
-      var image = await ImagePicker.pickImage(source: ImageSource.camera);
+      var image = await ImagePicker().getImage(source: ImageSource.camera);
 
       _cropImage(image);
     } catch (e) {
@@ -190,14 +190,14 @@ class _MinePageState extends State<MinePage> {
   fromGallery() async {
     Navigator.of(context).pop();
     try {
-      var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+      var image = await ImagePicker().getImage(source: ImageSource.gallery);
       _cropImage(image);
     } catch (e) {
       print(e);
     }
   }
 
-  setImgPath(File file) async {
+  setImgPath(PickedFile file) async {
     debugPrint("setImgPath()====$file");
     setState(() {
       _imageFile = file;
@@ -207,7 +207,7 @@ class _MinePageState extends State<MinePage> {
   }
 
   /// 裁剪
-  Future<Null> _cropImage(File imageFile) async {
+  Future<Null> _cropImage(PickedFile imageFile) async {
     assert(imageFile != null);
     File croppedFile = await ImageCropper.cropImage(
       /// 图像文件的绝对路径。

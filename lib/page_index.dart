@@ -42,6 +42,7 @@ export 'widget/font_loader.dart';
 export 'widget/reorderable_listview.dart';
 export 'widget/draggable_widget.dart';
 export 'widget/grid_paper.dart';
+export 'widget/keyboard_state.dart';
 
 export 'page/clippy_widget.dart';
 export 'page/device_info_page.dart';

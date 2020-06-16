@@ -56,6 +56,7 @@ class ExpandStateBean {
           SubExpandBean('InheritedWidget', InheritedWidgetTestContainer()),
           SubExpandBean('GridPaper', GridPaperWidget()),
           SubExpandBean('Draggable', DraggableWidget()),
+          SubExpandBean('键盘监听', KeyboardStatePage()),
         ]),
     ExpandStateBean(
         leading: Icons.filter_3,
