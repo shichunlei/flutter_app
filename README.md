@@ -143,6 +143,8 @@ __iOS__
 ## 运行截图
 
 
+### [仿微信APP](https://github.com/shichunlei/flutter_chat)
+
 
 ### 仿腾讯体育NBA板块
 

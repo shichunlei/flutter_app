@@ -236,9 +236,13 @@ class _DetailsPageState extends State<DetailsPage>
       if (goods.goodComments.isNotEmpty) {
         goods.goodComments.forEach((comment) {
           children.add(Container(
-              child: Text('${comment.toString()}'),
-              alignment: Alignment.center,
-              height: 100.0));
+              child: Column(children: <Widget>[
+                Text('${comment.comments}'),
+                Text('${comment.discussTime}'),
+                Container(
+                    width: double.infinity, height: .5, color: Colors.grey)
+              ]),
+              padding: EdgeInsets.all(20)));
         });
       } else {
         children.add(Container(

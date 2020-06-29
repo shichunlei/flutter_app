@@ -49,12 +49,33 @@ android {
             storeFile file('key/sign.jks')
             storePassword 'android'
         }
+        debug {
+            keyAlias 'sign'
+            keyPassword 'android'
+            storeFile file('key/sign.jks')
+            storePassword 'android'
+        }
     }
 
     buildTypes {
         release {
-            // Signing with the debug keys for now, so `flutter run --release` works.
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
             signingConfig signingConfigs.release
+
+            ndk {
+                abiFilters 'armeabi-v7a'
+            }
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+            signingConfig signingConfigs.debug
+
+            ndk {
+                // 选择要添加的对应 cpu 类型的 .so 库。
+                abiFilters 'armeabi', 'armeabi-v7a', 'x86', 'x86_64', 'mips', 'mips64', 'arm64-v8a'
+            }
         }
     }
 }

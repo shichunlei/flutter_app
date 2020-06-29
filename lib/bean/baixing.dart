@@ -378,6 +378,11 @@ class GoodComment {
     comment.discussTime = map['discussTime'];
     return comment;
   }
+
+  @override
+  String toString() {
+    return 'GoodComment{score: $score, comments: $comments, userName: $userName, discussTime: $discussTime}';
+  }
 }
 
 /// PICTURE_ADDRESS : "http://images.baixingliangfan.cn/advertesPicture/20190131/20190131165032_5788.png"
