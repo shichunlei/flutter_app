@@ -28,8 +28,8 @@ class DialogWidgetState extends State<DialogWidget> {
   Widget build(BuildContext context) {
     final _scaffoldKey = GlobalKey<ScaffoldState>();
     final ThemeData theme = Theme.of(context);
-    final TextStyle dialogTextStyle =
-        theme.textTheme.subtitle1.copyWith(color: theme.textTheme.caption.color);
+    final TextStyle dialogTextStyle = theme.textTheme.subtitle1
+        .copyWith(color: theme.textTheme.caption.color);
 
     return Scaffold(
       key: _scaffoldKey,
@@ -91,6 +91,8 @@ class DialogWidgetState extends State<DialogWidget> {
                 context: context,
                 builder: (context) {
                   return AlertDialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
                     title: Text('提示'),
                     //标题
                     titlePadding: EdgeInsets.all(20),
@@ -218,6 +220,202 @@ class DialogWidgetState extends State<DialogWidget> {
             },
             child: Text('ProgressDialog'),
           ),
+          Divider(),
+          RaisedButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return BaseDialog(
+                          Column(children: <Widget>[
+                            Container(
+                                margin: EdgeInsets.only(top: 20),
+                                alignment: Alignment.center,
+                                child: Text("自定义Dialog",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        letterSpacing: 2,
+                                        color:
+                                            Theme.of(context).primaryColor))),
+                            Expanded(
+                                child: Container(
+                                    alignment: Alignment.center,
+                                    margin: EdgeInsets.only(top: 20),
+                                    child: Text("Hello 自定义Dialog"))),
+                            Container(
+                                height: 50,
+                                width: double.infinity,
+                                margin: EdgeInsets.only(top: 10),
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      InkWell(
+                                          onTap: () {
+                                            Navigator.of(context).pop(this);
+                                          },
+                                          child: Container(
+                                              margin:
+                                                  EdgeInsets.only(bottom: 20),
+                                              alignment: Alignment.center,
+                                              width: 100,
+                                              height: 30,
+                                              decoration: BoxDecoration(
+                                                  gradient: LinearGradient(
+                                                      colors: [
+                                                        Theme.of(context)
+                                                            .primaryColor
+                                                            .withOpacity(0.4),
+                                                        Theme.of(context)
+                                                            .primaryColor
+                                                      ]),
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                  color: Theme.of(context)
+                                                      .primaryColor),
+                                              child: Text("关闭",
+                                                  style: TextStyle(
+                                                      letterSpacing: 3,
+                                                      color: Colors.white))))
+                                    ]))
+                          ]),
+                          140,
+                          MediaQuery.of(context).size.width * .6);
+                    });
+              },
+              child: Text('自定义Dialog')),
+          Divider(),
+          RaisedButton(
+              onPressed: () {
+                showGeneralDialog(
+                    context: context,
+                    pageBuilder: (context, anim1, anim2) {
+                      return;
+                    },
+                    // Dialog 的背景色
+                    barrierColor: Colors.grey.withOpacity(.4),
+                    // 控制 Dialog 是否消失
+                    barrierDismissible: true,
+                    barrierLabel: "",
+                    // Dialog 显示或者消失的时间，也就是动画的时间
+                    transitionDuration: Duration(milliseconds: 400),
+                    // RouteTransitionsBuilder 类型的构建方法，定义了 Dialog 的动画。
+                    transitionBuilder: (context, anim1, anim2, child) {
+                      return Transform.rotate(
+                          angle: anim1.value * 360,
+                          child: AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20))),
+                              title: Text("Dialog"),
+                              content: Text("Hello world")));
+                    });
+              },
+              child: Text('旋转动画Dialog')),
+          Divider(),
+          RaisedButton(
+              onPressed: () {
+                showGeneralDialog(
+                    context: context,
+                    barrierColor: Colors.grey.withOpacity(.4),
+                    barrierDismissible: true,
+                    barrierLabel: "",
+                    transitionDuration: Duration(milliseconds: 400),
+                    transitionBuilder: (context, anim1, anim2, child) {
+                      return Transform.scale(
+                          scale: anim1.value,
+                          child: AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20))),
+                              title: Text("Dialog"),
+                              content: Text("Hello world")));
+                    },
+                    pageBuilder: (BuildContext context,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation) {
+                      return;
+                    });
+              },
+              child: Text('缩放动画Dialog')),
+          Divider(),
+          RaisedButton(
+              onPressed: () {
+                showGeneralDialog(
+                    context: context,
+                    pageBuilder: (context, anim1, anim2) {},
+                    barrierColor: Colors.grey.withOpacity(.4),
+                    barrierDismissible: true,
+                    barrierLabel: "",
+                    transitionDuration: Duration(milliseconds: 400),
+                    transitionBuilder: (context, anim1, anim2, child) {
+                      return Transform.rotate(
+                          angle: anim1.value * 360,
+                          child: Opacity(
+                              opacity: anim1.value,
+                              child: AlertDialog(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  title: Text("Dialog"),
+                                  content: Text("Hello world"))));
+                    });
+              },
+              child: Text('旋转+渐变动画Dialog')),
+          Divider(),
+          RaisedButton(
+              onPressed: () {
+                showGeneralDialog(
+                    context: context,
+                    pageBuilder: (context, anim1, anim2) {},
+                    barrierColor: Colors.grey.withOpacity(.4),
+                    barrierDismissible: true,
+                    barrierLabel: "",
+                    transitionDuration: Duration(milliseconds: 400),
+                    transitionBuilder: (context, anim1, anim2, child) {
+                      return Transform.scale(
+                          scale: anim1.value,
+                          child: Opacity(
+                            opacity: anim1.value,
+                            child: AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20))),
+                              title: Text("Dialog"),
+                              content: Text("Hello world"),
+                            ),
+                          ));
+                    });
+              },
+              child: Text('缩放+渐变动画Dialog')),
+          Divider(),
+          RaisedButton(
+              onPressed: () {
+                showGeneralDialog(
+                    context: context,
+                    pageBuilder: (context, anim1, anim2) {},
+                    barrierColor: Colors.grey.withOpacity(.4),
+                    barrierDismissible: true,
+                    barrierLabel: "",
+                    transitionDuration: Duration(milliseconds: 400),
+                    transitionBuilder: (context, anim1, anim2, child) {
+                      final curvedValue =
+                          Curves.easeInOutBack.transform(anim1.value) - 1.0;
+                      return Transform(
+                          transform: Matrix4.translationValues(
+                              0.0, curvedValue * 200, 0.0),
+                          child: Opacity(
+                            opacity: anim1.value,
+                            child: AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20))),
+                              title: Text("Dialog"),
+                              content: Text("Hello world"),
+                            ),
+                          ));
+                    });
+              },
+              child: Text('曲线变换动画Dialog')),
           Divider(),
           Builder(
             builder: (context) => RaisedButton(
@@ -441,43 +639,37 @@ class DialogWidgetState extends State<DialogWidget> {
       }
     });
 
-    var statefulBuilder = StatefulBuilder(
-      builder: (ctx, state) {
-        stateSetter = state;
-        return Center(
-          child: SizedBox(
-            width: 150,
-            height: 150,
-            child: Card(
-              elevation: 24.0,
-              color: Colors.blue.withAlpha(240),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation(Colors.white),
-                    value: progress,
-                  ),
-                  Gaps.vGap20,
-                  Text(
-                    "Loading...",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Gaps.vGap5,
-                  Text(
-                    "done ${((progress) * 100).toStringAsFixed(1)}%",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-    showDialog(context: context, builder: (ctx) => statefulBuilder);
+    showDialog(
+        context: context,
+        builder: (ctx) => StatefulBuilder(builder: (ctx, state) {
+              stateSetter = state;
+              return Center(
+                  child: SizedBox(
+                      width: 150,
+                      height: 150,
+                      child: Card(
+                          elevation: 24.0,
+                          color: Colors.blue.withAlpha(240),
+                          child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                CircularProgressIndicator(
+                                    valueColor:
+                                        AlwaysStoppedAnimation(Colors.white),
+                                    value: progress),
+                                Gaps.vGap20,
+                                Text("Loading...",
+                                    style: TextStyle(color: Colors.white)),
+                                Gaps.vGap5,
+                                Text(
+                                    "done ${((progress) * 100).toStringAsFixed(1)}%",
+                                    style: TextStyle(color: Colors.white))
+                              ]))));
+            }),
+        // 点击dialog之外是否关闭dialog
+        barrierDismissible: false);
   }
 
   Future<void> _initPackageInfo() async {
@@ -492,5 +684,36 @@ class DialogWidgetState extends State<DialogWidget> {
 
     debugPrint(
         'APP名称：$appName-====包名：$packageName=====版本名：$version======版本号：$buildNumber');
+  }
+}
+
+class BaseDialog extends Dialog {
+  //子控件
+  final Widget widget;
+
+  // 高
+  final double height;
+
+  //宽
+  final double width;
+
+  BaseDialog(this.widget, this.height, this.width, {Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Center(
+        child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: new Material(
+                type: MaterialType.transparency,
+                child: new Container(
+                    height: this.height,
+                    width: this.width,
+                    decoration: ShapeDecoration(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)))),
+                    child: this.widget))));
   }
 }

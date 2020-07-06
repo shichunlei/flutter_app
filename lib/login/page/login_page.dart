@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/enum/enum.dart';
 import 'package:flutter_app/generated/i18n.dart';
-import 'package:flutter_app/login/page/sign_in_page.dart';
-import 'package:flutter_app/login/page/sign_up_page.dart';
+
 import 'package:flutter_app/ui/button.dart';
 import 'package:flutter_app/ui/gradual_change_view.dart';
+
+import 'sign_in_page.dart';
+import 'sign_up_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/i18n.dart';
-import 'package:flutter_app/login/ui/submit_button.dart';
+import '../ui/submit_button.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
@@ -89,22 +89,22 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: SubmitButton(
                       title: "${S.of(context).register}",
                       onTap: () {
-                        if (_userInfo['username'].isEmpty) {
-                          Toast.show(context, "用户名不能为空");
-                        } else if (_userInfo['email'].isEmpty) {
-                          Toast.show(context, "邮箱不能为空");
-                        } else if (!Utils.isEmail(_userInfo['email'])) {
-                          Toast.show(context, "邮箱格式不正确");
-                        } else if (_userInfo['password'].isEmpty) {
-                          Toast.show(context, "密码不能为空");
-                        } else if (_userInfo['password'].length < 6) {
-                          Toast.show(context, "密码长度不能小于6位！");
-                        } else if (_userInfo['repassword'].toString() !=
-                            _userInfo['password'].toString()) {
-                          Toast.show(context, "两次密码不一致");
-                        } else {
-                          _register();
-                        }
+//                        if (_userInfo['username'].isEmpty) {
+//                          Toast.show(context, "用户名不能为空");
+//                        } else if (_userInfo['email'].isEmpty) {
+//                          Toast.show(context, "邮箱不能为空");
+//                        } else if (!Utils.isEmail(_userInfo['email'])) {
+//                          Toast.show(context, "邮箱格式不正确");
+//                        } else if (_userInfo['password'].isEmpty) {
+//                          Toast.show(context, "密码不能为空");
+//                        } else if (_userInfo['password'].length < 6) {
+//                          Toast.show(context, "密码长度不能小于6位！");
+//                        } else if (_userInfo['repassword'].toString() !=
+//                            _userInfo['password'].toString()) {
+//                          Toast.show(context, "两次密码不一致");
+//                        } else {
+                        _register();
+//                        }
                       }))
             ])));
   }
