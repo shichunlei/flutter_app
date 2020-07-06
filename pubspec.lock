@@ -7,14 +7,14 @@ packages:
       name: amap_core_fluttify
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.9.1"
+    version: "0.9.5"
   amap_location_fluttify:
     dependency: "direct main"
     description:
       name: amap_location_fluttify
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.13.0"
+    version: "0.13.1"
   animated_text_kit:
     dependency: "direct main"
     description:
@@ -140,7 +140,7 @@ packages:
       name: core_location_fluttify
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.0"
+    version: "0.2.3"
   crypto:
     dependency: transitive
     description:
@@ -211,6 +211,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "5.1.0"
+  flare_dart:
+    dependency: transitive
+    description:
+      name: flare_dart
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.3.4"
+  flare_flutter:
+    dependency: "direct main"
+    description:
+      name: flare_flutter
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.4"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -346,7 +360,7 @@ packages:
       name: foundation_fluttify
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.8.0"
+    version: "0.8.10"
   html:
     dependency: transitive
     description:
@@ -381,7 +395,7 @@ packages:
       name: image_cropper
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.2.2"
+    version: "1.2.3"
   image_gallery_saver:
     dependency: "direct main"
     description:
@@ -417,6 +431,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.6.1+1"
+  latlng:
+    dependency: transitive
+    description:
+      name: latlng
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.2"
   lpinyin:
     dependency: "direct main"
     description:
@@ -563,7 +584,7 @@ packages:
       name: provider
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.1.2"
+    version: "4.1.3+1"
   qr:
     dependency: transitive
     description:
@@ -639,6 +660,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  smart_flare:
+    dependency: "direct main"
+    description:
+      name: smart_flare
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.2.9+1"
   source_span:
     dependency: transitive
     description:
@@ -785,7 +813,7 @@ packages:
       name: video_player
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.10.11+1"
+    version: "0.10.11+2"
   video_player_platform_interface:
     dependency: transitive
     description:

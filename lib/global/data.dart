@@ -44,7 +44,8 @@ class ExpandStateBean {
           SubExpandBean('Sliver 家族控件基本使用', SliverWidget()),
           SubExpandBean('Sliver NestedScrollView使用', SliverPage()),
           SubExpandBean('Sliver 高级用法', SliverDemo()),
-          SubExpandBean('拖拽排序 ReorderableListView', ReorderableListViewWidget()),
+          SubExpandBean(
+              '拖拽排序 ReorderableListView', ReorderableListViewWidget()),
           SubExpandBean('Table', TablePage()),
           SubExpandBean('日期时间选择', DateTimePicker()),
           SubExpandBean('BottomSheet', BottomSheetWidget()),
@@ -138,6 +139,7 @@ class ExpandStateBean {
       SubExpandBean('登录页面5', BottomSheetLoginPage()),
       SubExpandBean('登录页面6', OnboardingPage()),
       SubExpandBean('登录页面7', LoginScreen()),
+      SubExpandBean('Flare登录页面', FlareLoginPage()),
       SubExpandBean('视频背景登录页面', LoginVideoPage()),
       SubExpandBean('验证码验证登录', CodeInputViewPage()),
       SubExpandBean('Music Player', MusicPlayerPage()),
