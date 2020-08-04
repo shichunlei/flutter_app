@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../page_index.dart';
@@ -50,6 +49,7 @@ class ExpandStateBean {
           SubExpandBean('日期时间选择', DateTimePicker()),
           SubExpandBean('BottomSheet', BottomSheetWidget()),
           SubExpandBean('滑动删除', DismissibleWidget()),
+          SubExpandBean('自定义滑动删除', SlideMenuItemDemoPage()),
           SubExpandBean('毛玻璃', FrostingWidget()),
           SubExpandBean('Stepper', StepperWidget()),
           SubExpandBean('AspectRatio', AspectRatioSample()),

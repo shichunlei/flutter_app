@@ -78,6 +78,7 @@ export 'page/backdrop.dart';
 export 'page/sound_demo.dart';
 export 'page/horizontal_picker_demo.dart';
 export 'page/bottom_drag.dart';
+export 'page/slide_menu_item_demo.dart';
 
 export 'animation/curves_demo.dart';
 export 'animation/animated_opacity.dart';

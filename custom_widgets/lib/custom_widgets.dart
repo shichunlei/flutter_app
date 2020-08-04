@@ -20,6 +20,7 @@ export 'radar.dart';
 export 'ruler.dart';
 export 'skip_down_time_progress.dart';
 export 'slide_button.dart';
+export 'slide_menu_item.dart';
 export 'sliding_up_panel.dart';
 export 'smooth_star_rating.dart';
 export 'sparkline.dart';

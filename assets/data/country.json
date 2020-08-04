@@ -1,0 +1,1613 @@
+[
+  {
+    "py_full": "gelunbiya",
+    "zone_phone": "57",
+    "py_index": "G",
+    "zone_time": 0,
+    "py_short": "glby",
+    "name_en": "Colombia",
+    "name": "哥伦比亚"
+  },
+  {
+    "py_full": "gangguo",
+    "zone_phone": "242",
+    "py_index": "G",
+    "zone_time": -7,
+    "py_short": "gg",
+    "name_en": "Congo",
+    "name": "刚果"
+  },
+  {
+    "py_full": "gesidalijia",
+    "zone_phone": "506",
+    "py_index": "G",
+    "zone_time": -14,
+    "py_short": "gsdlj",
+    "name_en": "CostaRica",
+    "name": "哥斯达黎加"
+  },
+  {
+    "py_full": "guba",
+    "zone_phone": "53",
+    "py_index": "G",
+    "zone_time": -13,
+    "py_short": "gb",
+    "name_en": "Cuba",
+    "name": "古巴"
+  },
+  {
+    "py_full": "gangbiya",
+    "zone_phone": "220",
+    "py_index": "G",
+    "zone_time": -8,
+    "py_short": "gby",
+    "name_en": "Gambia",
+    "name": "冈比亚"
+  },
+  {
+    "py_full": "gelujiya",
+    "zone_phone": "995",
+    "py_index": "G",
+    "zone_time": 0,
+    "py_short": "gljy",
+    "name_en": "Georgia",
+    "name": "格鲁吉亚"
+  },
+  {
+    "py_full": "gelinnada",
+    "zone_phone": "1809",
+    "py_index": "G",
+    "zone_time": -14,
+    "py_short": "glnd",
+    "name_en": "Grenada",
+    "name": "格林纳达"
+  },
+  {
+    "py_full": "guandao",
+    "zone_phone": "1671",
+    "py_index": "G",
+    "zone_time": 2,
+    "py_short": "gd",
+    "name_en": "Guam",
+    "name": "关岛"
+  },
+  {
+    "py_full": "guiyanei",
+    "zone_phone": "592",
+    "py_index": "G",
+    "zone_time": -11,
+    "py_short": "gyn",
+    "name_en": "Guyana",
+    "name": "圭亚那"
+  },
+  {
+    "py_full": "haidi",
+    "zone_phone": "509",
+    "py_index": "H",
+    "zone_time": -13,
+    "py_short": "hd",
+    "name_en": "Haiti",
+    "name": "海地"
+  },
+  {
+    "py_full": "hongdoulasi",
+    "zone_phone": "504",
+    "py_index": "H",
+    "zone_time": -14,
+    "py_short": "hdls",
+    "name_en": "Honduras",
+    "name": "洪都拉斯"
+  },
+  {
+    "py_full": "hasakesitan",
+    "zone_phone": "327",
+    "py_index": "H",
+    "zone_time": -5,
+    "py_short": "hskst",
+    "name_en": "Kazakstan",
+    "name": "哈萨克斯坦"
+  },
+  {
+    "py_full": "hanguo",
+    "zone_phone": "82",
+    "py_index": "H",
+    "zone_time": 1,
+    "py_short": "hg",
+    "name_en": "Korea",
+    "name": "韩国"
+  },
+  {
+    "py_full": "heshuandeliesi",
+    "zone_phone": "599",
+    "py_index": "H",
+    "zone_time": -12,
+    "py_short": "hsadls",
+    "name_en": "NetheriandsAntilles",
+    "name": "荷属安的列斯"
+  },
+  {
+    "py_full": "helan",
+    "zone_phone": "31",
+    "py_index": "H",
+    "zone_time": -7,
+    "py_short": "hl",
+    "name_en": "Netherlands",
+    "name": "荷兰"
+  },
+  {
+    "py_full": "wenlai",
+    "zone_phone": "673",
+    "py_index": "W",
+    "zone_time": 0,
+    "py_short": "wl",
+    "name_en": "Brunei",
+    "name": "文莱"
+  },
+  {
+    "py_full": "weidimala",
+    "zone_phone": "502",
+    "py_index": "W",
+    "zone_time": -14,
+    "py_short": "wdml",
+    "name_en": "Guatemala",
+    "name": "危地马拉"
+  },
+  {
+    "py_full": "wuganda",
+    "zone_phone": "256",
+    "py_index": "W",
+    "zone_time": -5,
+    "py_short": "wgd",
+    "name_en": "Uganda",
+    "name": "乌干达"
+  },
+  {
+    "py_full": "wukelan",
+    "zone_phone": "380",
+    "py_index": "W",
+    "zone_time": -5,
+    "py_short": "wkl",
+    "name_en": "Ukraine",
+    "name": "乌克兰"
+  },
+  {
+    "py_full": "wuzibiekesitan",
+    "zone_phone": "233",
+    "py_index": "W",
+    "zone_time": -5,
+    "py_short": "wzbkst",
+    "name_en": "Uzbekistan",
+    "name": "乌兹别克斯坦"
+  },
+  {
+    "py_full": "jianada",
+    "zone_phone": "1",
+    "py_index": "J",
+    "zone_time": -13,
+    "py_short": "jnd",
+    "name_en": "Canada",
+    "name": "加拿大"
+  },
+  {
+    "py_full": "jieke",
+    "zone_phone": "420",
+    "py_index": "J",
+    "zone_time": -7,
+    "py_short": "jk",
+    "name_en": "CzechRepublic",
+    "name": "捷克"
+  },
+  {
+    "py_full": "jibuti",
+    "zone_phone": "253",
+    "py_index": "J",
+    "zone_time": -5,
+    "py_short": "jbt",
+    "name_en": "Djibouti",
+    "name": "吉布提"
+  },
+  {
+    "py_full": "jiapeng",
+    "zone_phone": "241",
+    "py_index": "J",
+    "zone_time": -7,
+    "py_short": "jp",
+    "name_en": "Gabon",
+    "name": "加蓬"
+  },
+  {
+    "py_full": "jiana",
+    "zone_phone": "233",
+    "py_index": "J",
+    "zone_time": -8,
+    "py_short": "jn",
+    "name_en": "Ghana",
+    "name": "加纳"
+  },
+  {
+    "py_full": "jineiya",
+    "zone_phone": "224",
+    "py_index": "J",
+    "zone_time": -8,
+    "py_short": "jny",
+    "name_en": "Guinea",
+    "name": "几内亚"
+  },
+  {
+    "py_full": "jianpuzhai",
+    "zone_phone": "855",
+    "py_index": "J",
+    "zone_time": -1,
+    "py_short": "jpz",
+    "name_en": "Kampuchea(Cambodia)",
+    "name": "柬埔寨"
+  },
+  {
+    "py_full": "jierjisitan",
+    "zone_phone": "331",
+    "py_index": "J",
+    "zone_time": -5,
+    "py_short": "jejst",
+    "name_en": "Kyrgyzstan",
+    "name": "吉尔吉斯坦"
+  },
+  {
+    "py_full": "jinbabuwei",
+    "zone_phone": "263",
+    "py_index": "J",
+    "zone_time": -6,
+    "py_short": "jbbw",
+    "name_en": "Zimbabwe",
+    "name": "津巴布韦"
+  },
+  {
+    "py_full": "xila",
+    "zone_phone": "30",
+    "py_index": "X",
+    "zone_time": -6,
+    "py_short": "xl",
+    "name_en": "Greece",
+    "name": "希腊"
+  },
+  {
+    "py_full": "xianggang",
+    "zone_phone": "852",
+    "py_index": "X",
+    "zone_time": 0,
+    "py_short": "xg",
+    "name_en": "Hongkong",
+    "name": "香港"
+  },
+  {
+    "py_full": "xiongyali",
+    "zone_phone": "36",
+    "py_index": "X",
+    "zone_time": -7,
+    "py_short": "xyl",
+    "name_en": "Hungary",
+    "name": "匈牙利"
+  },
+  {
+    "py_full": "xinxilan",
+    "zone_phone": "64",
+    "py_index": "X",
+    "zone_time": 4,
+    "py_short": "xxl",
+    "name_en": "NewZealand",
+    "name": "新西兰"
+  },
+  {
+    "py_full": "xisamoya",
+    "zone_phone": "685",
+    "py_index": "X",
+    "zone_time": -19,
+    "py_short": "xsmy",
+    "name_en": "SamoaWestern",
+    "name": "西萨摩亚"
+  },
+  {
+    "py_full": "xibanya",
+    "zone_phone": "34",
+    "py_index": "X",
+    "zone_time": -8,
+    "py_short": "xby",
+    "name_en": "Spain",
+    "name": "西班牙"
+  },
+  {
+    "py_full": "xuliya",
+    "zone_phone": "963",
+    "py_index": "X",
+    "zone_time": -6,
+    "py_short": "xly",
+    "name_en": "Syria",
+    "name": "叙利亚"
+  },
+  {
+    "py_full": "kamailong",
+    "zone_phone": "237",
+    "py_index": "K",
+    "zone_time": -7,
+    "py_short": "kml",
+    "name_en": "Cameroon",
+    "name": "喀麦隆"
+  },
+  {
+    "py_full": "kaimanqundao",
+    "zone_phone": "1345",
+    "py_index": "K",
+    "zone_time": -13,
+    "py_short": "kmqd",
+    "name_en": "CaymanIs.",
+    "name": "开曼群岛"
+  },
+  {
+    "py_full": "ketediwa",
+    "zone_phone": "225",
+    "py_index": "K",
+    "zone_time": -6,
+    "py_short": "ktdw",
+    "name_en": "IvoryCoast",
+    "name": "科特迪瓦"
+  },
+  {
+    "py_full": "kenniya",
+    "zone_phone": "254",
+    "py_index": "K",
+    "zone_time": -5,
+    "py_short": "kny",
+    "name_en": "Kenya",
+    "name": "肯尼亚"
+  },
+  {
+    "py_full": "keweite",
+    "zone_phone": "965",
+    "py_index": "K",
+    "zone_time": -5,
+    "py_short": "kwt",
+    "name_en": "Kuwait",
+    "name": "科威特"
+  },
+  {
+    "py_full": "kataer",
+    "zone_phone": "974",
+    "py_index": "K",
+    "zone_time": -5,
+    "py_short": "kte",
+    "name_en": "Qatar",
+    "name": "卡塔尔"
+  },
+  {
+    "py_full": "yameiniya",
+    "zone_phone": "374",
+    "py_index": "Y",
+    "zone_time": -6,
+    "py_short": "ymny",
+    "name_en": "Armenia",
+    "name": "亚美尼亚"
+  },
+  {
+    "py_full": "yilake",
+    "zone_phone": "964",
+    "py_index": "Y",
+    "zone_time": -5,
+    "py_short": "ylk",
+    "name_en": "Iraq",
+    "name": "伊拉克"
+  },
+  {
+    "py_full": "yiselie",
+    "zone_phone": "972",
+    "py_index": "Y",
+    "zone_time": -6,
+    "py_short": "ysl",
+    "name_en": "Israel",
+    "name": "以色列"
+  },
+  {
+    "py_full": "yidali",
+    "zone_phone": "39",
+    "py_index": "Y",
+    "zone_time": -7,
+    "py_short": "ydl",
+    "name_en": "Italy",
+    "name": "意大利"
+  },
+  {
+    "py_full": "yamaijia",
+    "zone_phone": "1876",
+    "py_index": "Y",
+    "zone_time": -12,
+    "py_short": "ymj",
+    "name_en": "Jamaica",
+    "name": "牙买加"
+  },
+  {
+    "py_full": "yuedan",
+    "zone_phone": "962",
+    "py_index": "Y",
+    "zone_time": -6,
+    "py_short": "yd",
+    "name_en": "Jordan",
+    "name": "约旦"
+  },
+  {
+    "py_full": "yingguo",
+    "zone_phone": "44",
+    "py_index": "Y",
+    "zone_time": -8,
+    "py_short": "yg",
+    "name_en": "UnitedKiongdom",
+    "name": "英国"
+  },
+  {
+    "py_full": "yuenan",
+    "zone_phone": "84",
+    "py_index": "Y",
+    "zone_time": -1,
+    "py_short": "yn",
+    "name_en": "Vietnam",
+    "name": "越南"
+  },
+  {
+    "py_full": "yemen",
+    "zone_phone": "967",
+    "py_index": "Y",
+    "zone_time": -5,
+    "py_short": "ym",
+    "name_en": "Yemen",
+    "name": "也门"
+  },
+  {
+    "py_full": "laowo",
+    "zone_phone": "856",
+    "py_index": "L",
+    "zone_time": -1,
+    "py_short": "lw",
+    "name_en": "Laos",
+    "name": "老挝"
+  },
+  {
+    "py_full": "latuoweiya",
+    "zone_phone": "371",
+    "py_index": "L",
+    "zone_time": -5,
+    "py_short": "ltwy",
+    "name_en": "Latvia",
+    "name": "拉脱维亚"
+  },
+  {
+    "py_full": "libanen",
+    "zone_phone": "961",
+    "py_index": "L",
+    "zone_time": -6,
+    "py_short": "lbn",
+    "name_en": "Lebanon",
+    "name": "黎巴嫩"
+  },
+  {
+    "py_full": "laisuotuo",
+    "zone_phone": "266",
+    "py_index": "L",
+    "zone_time": -6,
+    "py_short": "lst",
+    "name_en": "Lesotho",
+    "name": "莱索托"
+  },
+  {
+    "py_full": "libiliya",
+    "zone_phone": "231",
+    "py_index": "L",
+    "zone_time": -8,
+    "py_short": "lbly",
+    "name_en": "Liberia",
+    "name": "利比里亚"
+  },
+  {
+    "py_full": "libiya",
+    "zone_phone": "218",
+    "py_index": "L",
+    "zone_time": -6,
+    "py_short": "lby",
+    "name_en": "Libya",
+    "name": "利比亚"
+  },
+  {
+    "py_full": "liezhidunshideng",
+    "zone_phone": "423",
+    "py_index": "L",
+    "zone_time": -7,
+    "py_short": "lzdsd",
+    "name_en": "Liechtenstein",
+    "name": "列支敦士登"
+  },
+  {
+    "py_full": "litaowan",
+    "zone_phone": "370",
+    "py_index": "L",
+    "zone_time": -5,
+    "py_short": "ltw",
+    "name_en": "Lithuania",
+    "name": "立陶宛"
+  },
+  {
+    "py_full": "lusenbao",
+    "zone_phone": "352",
+    "py_index": "L",
+    "zone_time": -7,
+    "py_short": "lsb",
+    "name_en": "Luxembourg",
+    "name": "卢森堡"
+  },
+  {
+    "py_full": "liuniwang",
+    "zone_phone": "262",
+    "py_index": "L",
+    "zone_time": -4,
+    "py_short": "lnw",
+    "name_en": "Reunio",
+    "name": "留尼旺"
+  },
+  {
+    "py_full": "luomaniya",
+    "zone_phone": "40",
+    "py_index": "L",
+    "zone_time": -6,
+    "py_short": "lmny",
+    "name_en": "Romania",
+    "name": "罗马尼亚"
+  },
+  {
+    "py_full": "zhongfeigongheguo",
+    "zone_phone": "236",
+    "py_index": "Z",
+    "zone_time": -7,
+    "py_short": "zfghg",
+    "name_en": "CentralAfricanRepublic",
+    "name": "中非共和国"
+  },
+  {
+    "py_full": "zhade",
+    "zone_phone": "235",
+    "py_index": "Z",
+    "zone_time": -7,
+    "py_short": "zd",
+    "name_en": "Chad",
+    "name": "乍得"
+  },
+  {
+    "py_full": "zhili",
+    "zone_phone": "56",
+    "py_index": "Z",
+    "zone_time": -13,
+    "py_short": "zl",
+    "name_en": "Chile",
+    "name": "智利"
+  },
+  {
+    "py_full": "zhongguo",
+    "zone_phone": "86",
+    "py_index": "Z",
+    "zone_time": 0,
+    "py_short": "zg",
+    "name_en": "China",
+    "name": "中国"
+  },
+  {
+    "py_full": "zhibuluotuo",
+    "zone_phone": "350",
+    "py_index": "Z",
+    "zone_time": -8,
+    "py_short": "zblt",
+    "name_en": "Gibraltar",
+    "name": "直布罗陀"
+  },
+  {
+    "py_full": "zhayier",
+    "zone_phone": "243",
+    "py_index": "Z",
+    "zone_time": -7,
+    "py_short": "zye",
+    "name_en": "Zaire",
+    "name": "扎伊尔"
+  },
+  {
+    "py_full": "zanbiya",
+    "zone_phone": "260",
+    "py_index": "Z",
+    "zone_time": -6,
+    "py_short": "zby",
+    "name_en": "Zambia",
+    "name": "赞比亚"
+  },
+  {
+    "py_full": "mengjialaguo",
+    "zone_phone": "880",
+    "py_index": "M",
+    "zone_time": -2,
+    "py_short": "mjlg",
+    "name_en": "Bangladesh",
+    "name": "孟加拉国"
+  },
+  {
+    "py_full": "madajiasijia",
+    "zone_phone": "261",
+    "py_index": "M",
+    "zone_time": -5,
+    "py_short": "mdjsj",
+    "name_en": "Madagascar",
+    "name": "马达加斯加"
+  },
+  {
+    "py_full": "malawei",
+    "zone_phone": "265",
+    "py_index": "M",
+    "zone_time": -6,
+    "py_short": "mlw",
+    "name_en": "Malawi",
+    "name": "马拉维"
+  },
+  {
+    "py_full": "maerdaifu",
+    "zone_phone": "960",
+    "py_index": "M",
+    "zone_time": -7,
+    "py_short": "medf",
+    "name_en": "Maldives",
+    "name": "马尔代夫"
+  },
+  {
+    "py_full": "mali",
+    "zone_phone": "223",
+    "py_index": "M",
+    "zone_time": -8,
+    "py_short": "ml",
+    "name_en": "Mali",
+    "name": "马里"
+  },
+  {
+    "py_full": "maerta",
+    "zone_phone": "356",
+    "py_index": "M",
+    "zone_time": -7,
+    "py_short": "met",
+    "name_en": "Malta",
+    "name": "马耳他"
+  },
+  {
+    "py_full": "maliyaneiqundao",
+    "zone_phone": "1670",
+    "py_index": "M",
+    "zone_time": 1,
+    "py_short": "mlynqd",
+    "name_en": "MarianaIs",
+    "name": "马里亚那群岛"
+  },
+  {
+    "py_full": "matinike",
+    "zone_phone": "596",
+    "py_index": "M",
+    "zone_time": -12,
+    "py_short": "mtnk",
+    "name_en": "Martinique",
+    "name": "马提尼克"
+  },
+  {
+    "py_full": "maoliqiusi",
+    "zone_phone": "230",
+    "py_index": "M",
+    "zone_time": -4,
+    "py_short": "mlqs",
+    "name_en": "Mauritius",
+    "name": "毛里求斯"
+  },
+  {
+    "py_full": "moxige",
+    "zone_phone": "52",
+    "py_index": "M",
+    "zone_time": -15,
+    "py_short": "mxg",
+    "name_en": "Mexico",
+    "name": "墨西哥"
+  },
+  {
+    "py_full": "moerduowa",
+    "zone_phone": "373",
+    "py_index": "M",
+    "zone_time": -5,
+    "py_short": "medw",
+    "name_en": "MoldovaRepublicof",
+    "name": "摩尔多瓦"
+  },
+  {
+    "py_full": "monage",
+    "zone_phone": "377",
+    "py_index": "M",
+    "zone_time": -7,
+    "py_short": "mng",
+    "name_en": "Monaco",
+    "name": "摩纳哥"
+  },
+  {
+    "py_full": "menggu",
+    "zone_phone": "976",
+    "py_index": "M",
+    "zone_time": 0,
+    "py_short": "mg",
+    "name_en": "Mongolia",
+    "name": "蒙古"
+  },
+  {
+    "py_full": "mengtesailatedao",
+    "zone_phone": "1664",
+    "py_index": "M",
+    "zone_time": -12,
+    "py_short": "mtsltd",
+    "name_en": "MontserratIs",
+    "name": "蒙特塞拉特岛"
+  },
+  {
+    "py_full": "moluoge",
+    "zone_phone": "212",
+    "py_index": "M",
+    "zone_time": -6,
+    "py_short": "mlg",
+    "name_en": "Morocco",
+    "name": "摩洛哥"
+  },
+  {
+    "py_full": "mosangbike",
+    "zone_phone": "258",
+    "py_index": "M",
+    "zone_time": -6,
+    "py_short": "msbk",
+    "name_en": "Mozambique",
+    "name": "莫桑比克"
+  },
+  {
+    "py_full": "milu",
+    "zone_phone": "51",
+    "py_index": "M",
+    "zone_time": -13,
+    "py_short": "ml",
+    "name_en": "Peru",
+    "name": "秘鲁"
+  },
+  {
+    "py_full": "meiguo",
+    "zone_phone": "1",
+    "py_index": "M",
+    "zone_time": -13,
+    "py_short": "mg",
+    "name_en": "UnitedStatesofAmerica",
+    "name": "美国"
+  },
+  {
+    "py_full": "namibiya",
+    "zone_phone": "264",
+    "py_index": "N",
+    "zone_time": -7,
+    "py_short": "nmby",
+    "name_en": "Namibia",
+    "name": "纳米比亚"
+  },
+  {
+    "py_full": "naolu",
+    "zone_phone": "674",
+    "py_index": "N",
+    "zone_time": 4,
+    "py_short": "nl",
+    "name_en": "Nauru",
+    "name": "瑙鲁"
+  },
+  {
+    "py_full": "nijialagua",
+    "zone_phone": "505",
+    "py_index": "N",
+    "zone_time": -14,
+    "py_short": "njlg",
+    "name_en": "Nicaragua",
+    "name": "尼加拉瓜"
+  },
+  {
+    "py_full": "nirier",
+    "zone_phone": "227",
+    "py_index": "N",
+    "zone_time": -8,
+    "py_short": "nre",
+    "name_en": "Niger",
+    "name": "尼日尔"
+  },
+  {
+    "py_full": "niriliya",
+    "zone_phone": "234",
+    "py_index": "N",
+    "zone_time": -7,
+    "py_short": "nrly",
+    "name_en": "Nigeria",
+    "name": "尼日利亚"
+  },
+  {
+    "py_full": "nuowei",
+    "zone_phone": "47",
+    "py_index": "N",
+    "zone_time": -7,
+    "py_short": "nw",
+    "name_en": "Norway",
+    "name": "挪威"
+  },
+  {
+    "py_full": "nanfei",
+    "zone_phone": "27",
+    "py_index": "N",
+    "zone_time": -6,
+    "py_short": "nf",
+    "name_en": "SouthAfrica",
+    "name": "南非"
+  },
+  {
+    "py_full": "nansilafu",
+    "zone_phone": "381",
+    "py_index": "N",
+    "zone_time": -7,
+    "py_short": "nslf",
+    "name_en": "Yugoslavia",
+    "name": "南斯拉夫"
+  },
+  {
+    "py_full": "angela",
+    "zone_phone": "244",
+    "py_index": "A",
+    "zone_time": -7,
+    "py_short": "agl",
+    "name_en": "Angola",
+    "name": "安哥拉"
+  },
+  {
+    "py_full": "afuhan",
+    "zone_phone": "93",
+    "py_index": "A",
+    "zone_time": 0,
+    "py_short": "afh",
+    "name_en": "Afghanistan",
+    "name": "阿富汗"
+  },
+  {
+    "py_full": "aerbaniya",
+    "zone_phone": "355",
+    "py_index": "A",
+    "zone_time": -7,
+    "py_short": "aebny",
+    "name_en": "Albania",
+    "name": "阿尔巴尼亚"
+  },
+  {
+    "py_full": "aerjiliya",
+    "zone_phone": "213",
+    "py_index": "A",
+    "zone_time": -8,
+    "py_short": "aejly",
+    "name_en": "Algeria",
+    "name": "阿尔及利亚"
+  },
+  {
+    "py_full": "andaoergongheguo",
+    "zone_phone": "376",
+    "py_index": "A",
+    "zone_time": -8,
+    "py_short": "adeghg",
+    "name_en": "Andorra",
+    "name": "安道尔共和国"
+  },
+  {
+    "py_full": "anguiladao",
+    "zone_phone": "1264",
+    "py_index": "A",
+    "zone_time": -12,
+    "py_short": "agld",
+    "name_en": "Anguilla",
+    "name": "安圭拉岛"
+  },
+  {
+    "py_full": "antiguahebabuda",
+    "zone_phone": "1268",
+    "py_index": "A",
+    "zone_time": -12,
+    "py_short": "atghbbd",
+    "name_en": "AntiguaandBarbuda",
+    "name": "安提瓜和巴布达"
+  },
+  {
+    "py_full": "agenting",
+    "zone_phone": "54",
+    "py_index": "A",
+    "zone_time": -11,
+    "py_short": "agt",
+    "name_en": "Argentina",
+    "name": "阿根廷"
+  },
+  {
+    "py_full": "asensong",
+    "zone_phone": "247",
+    "py_index": "A",
+    "zone_time": -8,
+    "py_short": "ass",
+    "name_en": "Ascension",
+    "name": "阿森松"
+  },
+  {
+    "py_full": "aodaliya",
+    "zone_phone": "61",
+    "py_index": "A",
+    "zone_time": 2,
+    "py_short": "adly",
+    "name_en": "Australia",
+    "name": "澳大利亚"
+  },
+  {
+    "py_full": "aodili",
+    "zone_phone": "43",
+    "py_index": "A",
+    "zone_time": -7,
+    "py_short": "adl",
+    "name_en": "Austria",
+    "name": "奥地利"
+  },
+  {
+    "py_full": "asaibaijiang",
+    "zone_phone": "994",
+    "py_index": "A",
+    "zone_time": -5,
+    "py_short": "asbj",
+    "name_en": "Azerbaijan",
+    "name": "阿塞拜疆"
+  },
+  {
+    "py_full": "aiji",
+    "zone_phone": "20",
+    "py_index": "A",
+    "zone_time": -6,
+    "py_short": "aj",
+    "name_en": "Egypt",
+    "name": "埃及"
+  },
+  {
+    "py_full": "aishaniya",
+    "zone_phone": "372",
+    "py_index": "A",
+    "zone_time": -5,
+    "py_short": "asny",
+    "name_en": "Estonia",
+    "name": "爱沙尼亚"
+  },
+  {
+    "py_full": "aisaiebiya",
+    "zone_phone": "251",
+    "py_index": "A",
+    "zone_time": -5,
+    "py_short": "aseby",
+    "name_en": "Ethiopia",
+    "name": "埃塞俄比亚"
+  },
+  {
+    "py_full": "aomen",
+    "zone_phone": "853",
+    "py_index": "A",
+    "zone_time": 0,
+    "py_short": "am",
+    "name_en": "Macao",
+    "name": "澳门"
+  },
+  {
+    "py_full": "aman",
+    "zone_phone": "968",
+    "py_index": "A",
+    "zone_time": -4,
+    "py_short": "am",
+    "name_en": "Oman",
+    "name": "阿曼"
+  },
+  {
+    "py_full": "alabolianheqiuzhangguo",
+    "zone_phone": "971",
+    "py_index": "A",
+    "zone_time": -4,
+    "py_short": "alblhqzg",
+    "name_en": "UnitedArabEmirates",
+    "name": "阿拉伯联合酋长国"
+  },
+  {
+    "py_full": "bahama",
+    "zone_phone": "1242",
+    "py_index": "B",
+    "zone_time": -13,
+    "py_short": "bhm",
+    "name_en": "Bahamas",
+    "name": "巴哈马"
+  },
+  {
+    "py_full": "balin",
+    "zone_phone": "973",
+    "py_index": "B",
+    "zone_time": -5,
+    "py_short": "bl",
+    "name_en": "Bahrain",
+    "name": "巴林"
+  },
+  {
+    "py_full": "babaduosi",
+    "zone_phone": "1246",
+    "py_index": "B",
+    "zone_time": -12,
+    "py_short": "bbds",
+    "name_en": "Barbados",
+    "name": "巴巴多斯"
+  },
+  {
+    "py_full": "baieluosi",
+    "zone_phone": "375",
+    "py_index": "B",
+    "zone_time": -6,
+    "py_short": "bels",
+    "name_en": "Belarus",
+    "name": "白俄罗斯"
+  },
+  {
+    "py_full": "bilishi",
+    "zone_phone": "32",
+    "py_index": "B",
+    "zone_time": -7,
+    "py_short": "bls",
+    "name_en": "Belgium",
+    "name": "比利时"
+  },
+  {
+    "py_full": "bolizi",
+    "zone_phone": "501",
+    "py_index": "B",
+    "zone_time": -14,
+    "py_short": "blz",
+    "name_en": "Belize",
+    "name": "伯利兹"
+  },
+  {
+    "py_full": "beining",
+    "zone_phone": "229",
+    "py_index": "B",
+    "zone_time": -7,
+    "py_short": "bn",
+    "name_en": "Benin",
+    "name": "贝宁"
+  },
+  {
+    "py_full": "baimudaqundao",
+    "zone_phone": "1441",
+    "py_index": "B",
+    "zone_time": -12,
+    "py_short": "bmdqd",
+    "name_en": "BermudaIs.",
+    "name": "百慕大群岛"
+  },
+  {
+    "py_full": "boliweiya",
+    "zone_phone": "591",
+    "py_index": "B",
+    "zone_time": -12,
+    "py_short": "blwy",
+    "name_en": "Bolivia",
+    "name": "玻利维亚"
+  },
+  {
+    "py_full": "bociwana",
+    "zone_phone": "267",
+    "py_index": "B",
+    "zone_time": -6,
+    "py_short": "bcwn",
+    "name_en": "Botswana",
+    "name": "博茨瓦纳"
+  },
+  {
+    "py_full": "baxi",
+    "zone_phone": "55",
+    "py_index": "B",
+    "zone_time": -11,
+    "py_short": "bx",
+    "name_en": "Brazil",
+    "name": "巴西"
+  },
+  {
+    "py_full": "baojialiya",
+    "zone_phone": "359",
+    "py_index": "B",
+    "zone_time": -6,
+    "py_short": "bjly",
+    "name_en": "Bulgaria",
+    "name": "保加利亚"
+  },
+  {
+    "py_full": "bujinafasuo",
+    "zone_phone": "226",
+    "py_index": "B",
+    "zone_time": -8,
+    "py_short": "bjnfs",
+    "name_en": "Burkina-faso",
+    "name": "布基纳法索"
+  },
+  {
+    "py_full": "bulongdi",
+    "zone_phone": "257",
+    "py_index": "B",
+    "zone_time": -6,
+    "py_short": "bld",
+    "name_en": "Burundi",
+    "name": "布隆迪"
+  },
+  {
+    "py_full": "bingdao",
+    "zone_phone": "354",
+    "py_index": "B",
+    "zone_time": -9,
+    "py_short": "bd",
+    "name_en": "Iceland",
+    "name": "冰岛"
+  },
+  {
+    "py_full": "banama",
+    "zone_phone": "507",
+    "py_index": "B",
+    "zone_time": -13,
+    "py_short": "bnm",
+    "name_en": "Panama",
+    "name": "巴拿马"
+  },
+  {
+    "py_full": "babuyaxinjineiya",
+    "zone_phone": "675",
+    "py_index": "B",
+    "zone_time": 2,
+    "py_short": "bbyxjny",
+    "name_en": "PapuaNewCuinea",
+    "name": "巴布亚新几内亚"
+  },
+  {
+    "py_full": "balagui",
+    "zone_phone": "595",
+    "py_index": "B",
+    "zone_time": -12,
+    "py_short": "blg",
+    "name_en": "Paraguay",
+    "name": "巴拉圭"
+  },
+  {
+    "py_full": "bolan",
+    "zone_phone": "48",
+    "py_index": "B",
+    "zone_time": -7,
+    "py_short": "bl",
+    "name_en": "Poland",
+    "name": "波兰"
+  },
+  {
+    "py_full": "boduolige",
+    "zone_phone": "1787",
+    "py_index": "B",
+    "zone_time": -12,
+    "py_short": "bdlg",
+    "name_en": "PuertoRico",
+    "name": "波多黎各"
+  },
+  {
+    "py_full": "putaoya",
+    "zone_phone": "351",
+    "py_index": "P",
+    "zone_time": -8,
+    "py_short": "pty",
+    "name_en": "Portugal",
+    "name": "葡萄牙"
+  },
+  {
+    "py_full": "chaoxian",
+    "zone_phone": "850",
+    "py_index": "C",
+    "zone_time": 1,
+    "py_short": "cx",
+    "name_en": "NorthKorea",
+    "name": "朝鲜"
+  },
+  {
+    "py_full": "danmai",
+    "zone_phone": "45",
+    "py_index": "D",
+    "zone_time": -7,
+    "py_short": "dm",
+    "name_en": "Denmark",
+    "name": "丹麦"
+  },
+  {
+    "py_full": "duominijiagongheguo",
+    "zone_phone": "1890",
+    "py_index": "D",
+    "zone_time": -13,
+    "py_short": "dmnjghg",
+    "name_en": "DominicaRep.",
+    "name": "多米尼加共和国"
+  },
+  {
+    "py_full": "deguo",
+    "zone_phone": "49",
+    "py_index": "D",
+    "zone_time": -7,
+    "py_short": "dg",
+    "name_en": "Germany",
+    "name": "德国"
+  },
+  {
+    "py_full": "dongsamoya(mei)",
+    "zone_phone": "684",
+    "py_index": "D",
+    "zone_time": -19,
+    "py_short": "dsmy(m)",
+    "name_en": "SamoaEastern",
+    "name": "东萨摩亚(美)"
+  },
+  {
+    "py_full": "duoge",
+    "zone_phone": "228",
+    "py_index": "D",
+    "zone_time": -8,
+    "py_short": "dg",
+    "name_en": "Togo",
+    "name": "多哥"
+  },
+  {
+    "py_full": "riben",
+    "zone_phone": "81",
+    "py_index": "R",
+    "zone_time": 1,
+    "py_short": "rb",
+    "name_en": "Japan",
+    "name": "日本"
+  },
+  {
+    "py_full": "ruidian",
+    "zone_phone": "46",
+    "py_index": "R",
+    "zone_time": -7,
+    "py_short": "rd",
+    "name_en": "Sweden",
+    "name": "瑞典"
+  },
+  {
+    "py_full": "ruishi",
+    "zone_phone": "41",
+    "py_index": "R",
+    "zone_time": -7,
+    "py_short": "rs",
+    "name_en": "Switzerland",
+    "name": "瑞士"
+  },
+  {
+    "py_full": "eguaduoer",
+    "zone_phone": "593",
+    "py_index": "E",
+    "zone_time": -13,
+    "py_short": "egde",
+    "name_en": "Ecuador",
+    "name": "厄瓜多尔"
+  },
+  {
+    "py_full": "eluosi",
+    "zone_phone": "7",
+    "py_index": "E",
+    "zone_time": -5,
+    "py_short": "els",
+    "name_en": "Russia",
+    "name": "俄罗斯"
+  },
+  {
+    "py_full": "saipulusi",
+    "zone_phone": "357",
+    "py_index": "S",
+    "zone_time": -6,
+    "py_short": "spls",
+    "name_en": "Cyprus",
+    "name": "塞浦路斯"
+  },
+  {
+    "py_full": "saerwaduo",
+    "zone_phone": "503",
+    "py_index": "S",
+    "zone_time": -14,
+    "py_short": "sewd",
+    "name_en": "EISalvador",
+    "name": "萨尔瓦多"
+  },
+  {
+    "py_full": "shengluxiya",
+    "zone_phone": "1758",
+    "py_index": "S",
+    "zone_time": -12,
+    "py_short": "slxy",
+    "name_en": "SaintLueia",
+    "name": "圣卢西亚"
+  },
+  {
+    "py_full": "shengwensentedao",
+    "zone_phone": "1784",
+    "py_index": "S",
+    "zone_time": -12,
+    "py_short": "swstd",
+    "name_en": "SaintVincent",
+    "name": "圣文森特岛"
+  },
+  {
+    "py_full": "shengmalinuo",
+    "zone_phone": "378",
+    "py_index": "S",
+    "zone_time": -7,
+    "py_short": "smln",
+    "name_en": "SanMarino",
+    "name": "圣马力诺"
+  },
+  {
+    "py_full": "shengduomeihepulinxibi",
+    "zone_phone": "239",
+    "py_index": "S",
+    "zone_time": -8,
+    "py_short": "sdmhplxb",
+    "name_en": "SaoTomeandPrincipe",
+    "name": "圣多美和普林西比"
+  },
+  {
+    "py_full": "shatealabo",
+    "zone_phone": "966",
+    "py_index": "S",
+    "zone_time": -5,
+    "py_short": "stalb",
+    "name_en": "SaudiArabia",
+    "name": "沙特阿拉伯"
+  },
+  {
+    "py_full": "saineijiaer",
+    "zone_phone": "221",
+    "py_index": "S",
+    "zone_time": -8,
+    "py_short": "snje",
+    "name_en": "Senegal",
+    "name": "塞内加尔"
+  },
+  {
+    "py_full": "saisheer",
+    "zone_phone": "248",
+    "py_index": "S",
+    "zone_time": -4,
+    "py_short": "sse",
+    "name_en": "Seychelles",
+    "name": "塞舌尔"
+  },
+  {
+    "py_full": "sailaliang",
+    "zone_phone": "232",
+    "py_index": "S",
+    "zone_time": -8,
+    "py_short": "slla",
+    "name_en": "SierraLeone",
+    "name": "塞拉利昂"
+  },
+  {
+    "py_full": "siluofake",
+    "zone_phone": "421",
+    "py_index": "S",
+    "zone_time": -7,
+    "py_short": "slfk",
+    "name_en": "Slovakia",
+    "name": "斯洛伐克"
+  },
+  {
+    "py_full": "siluowenniya",
+    "zone_phone": "386",
+    "py_index": "S",
+    "zone_time": -7,
+    "py_short": "slwny",
+    "name_en": "Slovenia",
+    "name": "斯洛文尼亚"
+  },
+  {
+    "py_full": "suoluomenqundao",
+    "zone_phone": "677",
+    "py_index": "S",
+    "zone_time": 3,
+    "py_short": "slmqd",
+    "name_en": "SolomonIs",
+    "name": "所罗门群岛"
+  },
+  {
+    "py_full": "suomali",
+    "zone_phone": "252",
+    "py_index": "S",
+    "zone_time": -5,
+    "py_short": "sml",
+    "name_en": "Somali",
+    "name": "索马里"
+  },
+  {
+    "py_full": "sililanka",
+    "zone_phone": "94",
+    "py_index": "S",
+    "zone_time": 0,
+    "py_short": "sllk",
+    "name_en": "SriLanka",
+    "name": "斯里兰卡"
+  },
+  {
+    "py_full": "shengluxiya",
+    "zone_phone": "1758",
+    "py_index": "S",
+    "zone_time": -12,
+    "py_short": "slxy",
+    "name_en": "St.Lucia",
+    "name": "圣卢西亚"
+  },
+  {
+    "py_full": "shengwensente",
+    "zone_phone": "1784",
+    "py_index": "S",
+    "zone_time": -12,
+    "py_short": "swst",
+    "name_en": "St.Vincent",
+    "name": "圣文森特"
+  },
+  {
+    "py_full": "sudan",
+    "zone_phone": "249",
+    "py_index": "S",
+    "zone_time": -6,
+    "py_short": "sd",
+    "name_en": "Sudan",
+    "name": "苏丹"
+  },
+  {
+    "py_full": "siweishilan",
+    "zone_phone": "268",
+    "py_index": "S",
+    "zone_time": -6,
+    "py_short": "swsl",
+    "name_en": "Swaziland",
+    "name": "斯威士兰"
+  },
+  {
+    "py_full": "feiji",
+    "zone_phone": "679",
+    "py_index": "F",
+    "zone_time": 4,
+    "py_short": "fj",
+    "name_en": "Fiji",
+    "name": "斐济"
+  },
+  {
+    "py_full": "fenlan",
+    "zone_phone": "358",
+    "py_index": "F",
+    "zone_time": -6,
+    "py_short": "fl",
+    "name_en": "Finland",
+    "name": "芬兰"
+  },
+  {
+    "py_full": "faguo",
+    "zone_phone": "33",
+    "py_index": "F",
+    "zone_time": -8,
+    "py_short": "fg",
+    "name_en": "France",
+    "name": "法国"
+  },
+  {
+    "py_full": "fashuguiyanei",
+    "zone_phone": "594",
+    "py_index": "F",
+    "zone_time": -12,
+    "py_short": "fsgyn",
+    "name_en": "FrenchGuiana",
+    "name": "法属圭亚那"
+  },
+  {
+    "py_full": "feilubin",
+    "zone_phone": "63",
+    "py_index": "F",
+    "zone_time": 0,
+    "py_short": "flb",
+    "name_en": "Philippines",
+    "name": "菲律宾"
+  },
+  {
+    "py_full": "fashubolinixiya",
+    "zone_phone": "689",
+    "py_index": "F",
+    "zone_time": 3,
+    "py_short": "fsblnxy",
+    "name_en": "FrenchPolynesia",
+    "name": "法属玻利尼西亚"
+  },
+  {
+    "py_full": "taiwansheng",
+    "zone_phone": "886",
+    "py_index": "T",
+    "zone_time": 0,
+    "py_short": "tws",
+    "name_en": "Taiwan",
+    "name": "台湾省"
+  },
+  {
+    "py_full": "tajikesitan",
+    "zone_phone": "992",
+    "py_index": "T",
+    "zone_time": -5,
+    "py_short": "tjkst",
+    "name_en": "Tajikstan",
+    "name": "塔吉克斯坦"
+  },
+  {
+    "py_full": "tansangniya",
+    "zone_phone": "255",
+    "py_index": "T",
+    "zone_time": -5,
+    "py_short": "tsny",
+    "name_en": "Tanzania",
+    "name": "坦桑尼亚"
+  },
+  {
+    "py_full": "taiguo",
+    "zone_phone": "66",
+    "py_index": "T",
+    "zone_time": -1,
+    "py_short": "tg",
+    "name_en": "Thailand",
+    "name": "泰国"
+  },
+  {
+    "py_full": "tangjia",
+    "zone_phone": "676",
+    "py_index": "T",
+    "zone_time": 4,
+    "py_short": "tj",
+    "name_en": "Tonga",
+    "name": "汤加"
+  },
+  {
+    "py_full": "telinidaheduobage",
+    "zone_phone": "1809",
+    "py_index": "T",
+    "zone_time": -12,
+    "py_short": "tlndhdbg",
+    "name_en": "TrinidadandTobago",
+    "name": "特立尼达和多巴哥"
+  },
+  {
+    "py_full": "tunisi",
+    "zone_phone": "216",
+    "py_index": "T",
+    "zone_time": -7,
+    "py_short": "tns",
+    "name_en": "Tunisia",
+    "name": "突尼斯"
+  },
+  {
+    "py_full": "tuerqi",
+    "zone_phone": "90",
+    "py_index": "T",
+    "zone_time": -6,
+    "py_short": "teq",
+    "name_en": "Turkey",
+    "name": "土耳其"
+  },
+  {
+    "py_full": "tukumansitan",
+    "zone_phone": "993",
+    "py_index": "T",
+    "zone_time": -5,
+    "py_short": "tkmst",
+    "name_en": "Turkmenistan",
+    "name": "土库曼斯坦"
+  }
+]
