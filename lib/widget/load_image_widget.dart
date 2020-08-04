@@ -12,7 +12,7 @@ class LoadImageWidget extends StatefulWidget {
 }
 
 class LoadImageWidgetState extends State<LoadImageWidget> {
-  Future<File> _imageFile;
+  Future<PickedFile> _imageFile;
   bool isVideo = false;
   VideoPlayerController _controller;
   VoidCallback listener;
@@ -22,7 +22,7 @@ class LoadImageWidgetState extends State<LoadImageWidget> {
       if (_controller != null) {
         _controller.removeListener(listener);
       }
-      File videoFile = await ImagePicker.pickVideo(source: source);
+      PickedFile videoFile = await ImagePicker().getVideo(source: source);
       if (videoFile != null && mounted) {
         String videoFilePath = videoFile.path;
 
@@ -43,7 +43,7 @@ class LoadImageWidgetState extends State<LoadImageWidget> {
 
         debugPrint("path====$path");
 
-        _controller = VideoPlayerController.file(videoFile)
+        _controller = VideoPlayerController.file(File(videoFile.path))
           ..addListener(listener)
           ..initialize().then((_) {
             _controller..setLooping(true);
@@ -51,7 +51,7 @@ class LoadImageWidgetState extends State<LoadImageWidget> {
           });
       }
     } else {
-      _imageFile = ImagePicker.pickImage(source: source);
+      _imageFile = ImagePicker().getImage(source: source);
     }
 
     setState(() {});
@@ -106,12 +106,12 @@ class LoadImageWidgetState extends State<LoadImageWidget> {
   }
 
   Widget _previewImage() {
-    return FutureBuilder<File>(
+    return FutureBuilder<PickedFile>(
         future: _imageFile,
-        builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<PickedFile> snapshot) {
           if (snapshot.connectionState == ConnectionState.done &&
               snapshot.data != null) {
-            return Image.file(snapshot.data);
+            return Image.file(File(snapshot.data.path));
           } else if (snapshot.error != null) {
             return const Text(
               'Error picking image.',

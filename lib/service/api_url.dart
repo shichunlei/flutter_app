@@ -1,5 +1,6 @@
 class ApiUrl {
-  static const String BASE_URL = 'http://data.chingsoft.com/api/v1/';
+//  static const String BASE_URL = 'http://data.chingsoft.com/api/v1/';
+  static const String BASE_URL = 'http://101.200.174.126:8898/api/v1/';
 
   static const String LOGIN = 'users/login';
 

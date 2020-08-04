@@ -342,7 +342,9 @@ class DialogWidgetState extends State<DialogWidget> {
               onPressed: () {
                 showGeneralDialog(
                     context: context,
-                    pageBuilder: (context, anim1, anim2) {},
+                    pageBuilder: (context, anim1, anim2) {
+                      return;
+                    },
                     barrierColor: Colors.grey.withOpacity(.4),
                     barrierDismissible: true,
                     barrierLabel: "",
@@ -366,7 +368,9 @@ class DialogWidgetState extends State<DialogWidget> {
               onPressed: () {
                 showGeneralDialog(
                     context: context,
-                    pageBuilder: (context, anim1, anim2) {},
+                    pageBuilder: (context, anim1, anim2) {
+                      return;
+                    },
                     barrierColor: Colors.grey.withOpacity(.4),
                     barrierDismissible: true,
                     barrierLabel: "",
@@ -392,7 +396,9 @@ class DialogWidgetState extends State<DialogWidget> {
               onPressed: () {
                 showGeneralDialog(
                     context: context,
-                    pageBuilder: (context, anim1, anim2) {},
+                    pageBuilder: (context, anim1, anim2) {
+                      return;
+                    },
                     barrierColor: Colors.grey.withOpacity(.4),
                     barrierDismissible: true,
                     barrierLabel: "",
