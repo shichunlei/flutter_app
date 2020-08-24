@@ -14,6 +14,7 @@ export 'gradient_text.dart';
 export 'horizontal_number_picker.dart';
 export 'horizontal_picker.dart';
 export 'like_button.dart';
+export 'line_bar_visualizer.dart';
 export 'marquee.dart';
 export 'progress_button.dart';
 export 'radar.dart';
