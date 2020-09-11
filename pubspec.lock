@@ -56,7 +56,7 @@ packages:
       name: azlistview
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.2"
+    version: "1.0.1"
   badges:
     dependency: "direct main"
     description:
@@ -655,6 +655,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.24.1"
+  scrollable_positioned_list:
+    dependency: transitive
+    description:
+      name: scrollable_positioned_list
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.7"
   share:
     dependency: "direct main"
     description:

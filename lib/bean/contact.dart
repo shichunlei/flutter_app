@@ -31,6 +31,22 @@ class ContactBean extends ISuspensionBean {
   String fullName;
   String firstLetter;
 
+  ContactBean(
+      {this.gender,
+      this.name,
+      this.location,
+      this.email,
+      this.login,
+      this.dob,
+      this.registered,
+      this.phone,
+      this.cell,
+      this.id,
+      this.picture,
+      this.nat,
+      this.fullName,
+      this.firstLetter});
+
   static ContactBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     ContactBean contact = ContactBean();

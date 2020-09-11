@@ -1,8 +1,6 @@
 import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_app/bean/city.dart';
-
 import 'package:rounded_letter/rounded_letter.dart';
 
 import '../../page_index.dart';
@@ -18,7 +16,6 @@ class CityPageState extends State<CityPage> {
 
   int _suspensionHeight = 40;
   int _itemHeight = 58;
-  String _suspensionTag = "";
 
   LoaderState _status = LoaderState.Loading;
 
@@ -36,43 +33,39 @@ class CityPageState extends State<CityPage> {
     return Scaffold(
         appBar: AppBar(title: Text('城市列表')),
         body: LoaderContainer(
-          loaderState: _status,
-          loadingView: LoadingWidget(),
-          contentView: AzListView(
-              data: _cityList,
-              topData: _hotCityList,
-              itemBuilder: (context, cityBean) => _buildCityItems(cityBean),
-              suspensionWidget: SuspensionTag(
-                  susTag: _suspensionTag, susHeight: _suspensionHeight),
-              isUseRealIndex: true,
-              itemHeight: _itemHeight,
-              suspensionHeight: _suspensionHeight,
-              indexBarBuilder: (context, list, onTouch) => IndexBar(
-                  onTouch: onTouch,
-                  data: list,
-                  touchDownColor: Colors.transparent,
-                  textStyle: TextStyles.textGrey12),
-              onSusTagChanged: (value) =>
-                  setState(() => _suspensionTag = value)),
-        ));
+            loaderState: _status,
+            loadingView: LoadingWidget(),
+            contentView: AzListView(
+                data: _cityList,
+                itemCount: _cityList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return _buildCityItems(_cityList[index]);
+                },
+                padding: EdgeInsets.zero,
+                indexBarData: ['定', '常', '★', ...kIndexBarData])));
   }
 
   void getCityListData() async {
-    _hotCityList.add(City(location: "$currentCity", firstLetter: "定位"));
-    _hotCityList.add(City(location: "$currentCity", firstLetter: "常用"));
-    _hotCityList.add(City(location: "北京", firstLetter: "常用"));
-    _hotCityList.add(City(location: "广州", firstLetter: "热门"));
-    _hotCityList.add(City(location: "成都", firstLetter: "热门"));
-    _hotCityList.add(City(location: "深圳", firstLetter: "热门"));
-    _hotCityList.add(City(location: "杭州", firstLetter: "热门"));
-    _hotCityList.add(City(location: "上海", firstLetter: "热门"));
+    _hotCityList.add(City(location: "$currentCity", firstLetter: "定"));
+    _hotCityList.add(City(location: "$currentCity", firstLetter: "常"));
+    _hotCityList.add(City(location: "北京", firstLetter: "常"));
+    _hotCityList.add(City(location: "广州", firstLetter: "★"));
+    _hotCityList.add(City(location: "成都", firstLetter: "★"));
+    _hotCityList.add(City(location: "深圳", firstLetter: "★"));
+    _hotCityList.add(City(location: "杭州", firstLetter: "★"));
+    _hotCityList.add(City(location: "上海", firstLetter: "★"));
 
-    _cityList = await ApiService.getHotCities();
+    List<City> __cityList = await ApiService.getHotCities();
+
+    _cityList.addAll(__cityList);
 
     /// 根据A-Z排序
     SuspensionUtil.sortListBySuspensionTag(_cityList);
 
-    _suspensionTag = _hotCityList?.first?.getSuspensionTag();
+    _cityList.insertAll(0, _hotCityList);
+
+    // show sus tag.
+    SuspensionUtil.setShowSuspensionStatus(_cityList);
 
     setState(() {
       _status = LoaderState.Succeed;
@@ -82,7 +75,9 @@ class CityPageState extends State<CityPage> {
   /// 构建列表 item Widget.
   _buildCityItems(City model) {
     String susTag = model.getSuspensionTag();
-    susTag = (susTag == "★" ? "热门城市" : susTag);
+    susTag = (susTag == "★"
+        ? "★ 热门城市"
+        : susTag == "定" ? "当前定位" : susTag == "常" ? "常用地址" : susTag);
     return Column(children: <Widget>[
       Offstage(
           offstage: !(model.isShowSuspension == true),
