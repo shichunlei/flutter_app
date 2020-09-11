@@ -1,9 +1,8 @@
-import 'package:flutter_app/utils/database.dart';
-import 'package:flutter_app/bean/article.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:quiver/strings.dart' as strings;
-
 import 'dart:async';
+
+import 'package:flutter_app/bean/article.dart';
+import 'package:flutter_app/utils/database.dart';
+import 'package:sqflite/sqflite.dart';
 
 class ArticleProvider extends BaseDBProvider {
   /// DataBase table name
@@ -46,7 +45,7 @@ class ArticleProvider extends BaseDBProvider {
 
   Future<int> insertOrReplaceToDB(Article article) async {
     String date = article?.curr;
-    if (article == null || strings.isEmpty(date) == null) return null;
+    if (article == null || date.isEmpty) return null;
     Database db = await getDB();
     bool provider = await isCollection(date);
     Map<String, dynamic> map = article.toMap();

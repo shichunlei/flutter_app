@@ -1,7 +1,6 @@
 import 'package:flutter_app/bean/baixing.dart';
 import 'package:flutter_app/utils/database.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:quiver/strings.dart' as strings;
 
 class GoodsProvider extends BaseDBProvider {
   /// DataBase table name
@@ -80,7 +79,7 @@ class GoodsProvider extends BaseDBProvider {
 
   Future<int> insertOrReplaceToDB(Goods goods) async {
     String goodsId = goods?.goodsId;
-    if (goods == null || strings.isEmpty(goodsId) == null) return null;
+    if (goods == null || goodsId.isEmpty) return null;
     Database db = await getDB();
     Map<String, dynamic> map = goods.toMap();
     if (await isExist(goodsId)) {
