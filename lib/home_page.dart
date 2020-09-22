@@ -1,17 +1,15 @@
+import 'dart:async';
+
 import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'dart:async';
-
-import 'music_player/widgets/song_player_bar.dart';
-import 'page_index.dart';
-
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 import 'generated/i18n.dart';
+import 'music_player/widgets/song_player_bar.dart';
+import 'page_index.dart';
 import 'store/index.dart';
 
 class HomePage extends StatefulWidget {
@@ -58,7 +56,7 @@ class HomeStatePage extends State<HomePage> {
 
   @override
   void dispose() {
-    AmapLocation.stopLocation();
+    AmapLocation.instance.stopLocation();
 
     super.dispose();
   }
@@ -76,40 +74,47 @@ class HomeStatePage extends State<HomePage> {
         child: Scaffold(
             backgroundColor: Colors.grey[200],
             key: _scaffoldKey,
-            appBar: AppBar(
-                centerTitle: false,
-                title: InkWell(
-                  onTap: () {
-                    if (provider.defaultCity != '')
-                      pushNewPage(context, WeatherPage(provider.defaultCity));
-                  },
-                  child: Column(
-                      children: <Widget>[
-                        Row(children: <Widget>[
-                          Text('${provider.defaultCity}',
-                              style: TextStyle(fontSize: 17.0)),
-                          Icon(Icons.keyboard_arrow_down)
-                        ], mainAxisSize: MainAxisSize.min),
-                        Text(
-                            '${provider.defaultWeather?.now?.condTxt ?? ''} ${provider.defaultWeather?.now?.tmp ?? ''}',
-                            style: TextStyle(fontSize: 13.0))
-                      ],
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center),
-                ),
-                elevation: 4.0,
-                leading: IconButton(
-                    icon: Icon(Icons.menu),
-                    onPressed: () => _scaffoldKey.currentState.openDrawer()),
-                actions: <Widget>[
-                  IconButton(
-                      icon: Icon(Icons.refresh, semanticLabel: "refresh"),
-                      onPressed: () => getTestData(),
-                      tooltip: "Tune")
-                ]),
-            body: ListView(
-                physics: BouncingScrollPhysics(),
-                children: _buildListBody(context)),
+            body: Stack(children: [
+              ListView(
+                  padding: EdgeInsets.zero,
+                  physics: BouncingScrollPhysics(),
+                  children: _buildListBody(context)),
+              Container(
+                  child: AppBar(
+                      backgroundColor: Colors.transparent,
+                      centerTitle: false,
+                      title: InkWell(
+                          onTap: () {
+                            if (provider.defaultCity != '')
+                              pushNewPage(
+                                  context, WeatherPage(provider.defaultCity));
+                          },
+                          child: Column(
+                              children: <Widget>[
+                                Row(children: <Widget>[
+                                  Text('${provider.defaultCity}',
+                                      style: TextStyle(fontSize: 17.0)),
+                                  Icon(Icons.keyboard_arrow_down)
+                                ], mainAxisSize: MainAxisSize.min),
+                                Text(
+                                    '${provider.defaultWeather?.now?.condTxt ?? ''} ${provider.defaultWeather?.now?.tmp ?? ''}',
+                                    style: TextStyle(fontSize: 13.0))
+                              ],
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center)),
+                      elevation: .0,
+                      leading: IconButton(
+                          icon: Icon(Icons.menu),
+                          onPressed: () =>
+                              _scaffoldKey.currentState.openDrawer()),
+                      actions: <Widget>[
+                        IconButton(
+                            icon: Icon(Icons.refresh, semanticLabel: "refresh"),
+                            onPressed: () => getTestData(),
+                            tooltip: "Tune")
+                      ]),
+                  height: Utils.navigationBarHeight)
+            ]),
             bottomNavigationBar: SongPlayerBar(),
             drawer: Drawer(child: HomeDrawable())));
   }
@@ -119,7 +124,7 @@ class HomeStatePage extends State<HomePage> {
 
     widgets
       ..add(AspectRatio(
-          aspectRatio: 108 / 72,
+          aspectRatio: 16 / 9,
           child: Swiper(
               itemBuilder: (context, index) =>
                   ImageLoadView(bannerImages[index]),
@@ -163,7 +168,7 @@ class HomeStatePage extends State<HomePage> {
 
   Future<void> _location() async {
     if (await PermissionsUtil.requestMapPermission()) {
-      location = await AmapLocation.fetchLocation();
+      location = await AmapLocation.instance.fetchLocation();
       String city = location?.district;
       String province = location?.province;
       debugPrint("-----------------------------$province");

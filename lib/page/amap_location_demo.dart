@@ -18,7 +18,7 @@ class _AMapLocationDemoState extends State<AMapLocationDemo>
 
   @override
   void dispose() {
-    AmapLocation.stopLocation();
+    AmapLocation.instance.stopLocation();
 
     super.dispose();
   }
@@ -37,7 +37,8 @@ class _AMapLocationDemoState extends State<AMapLocationDemo>
               child: Button(
                   onPressed: () async {
                     if (await PermissionsUtil.requestMapPermission()) {
-                      final location = await AmapLocation.fetchLocation();
+                      final location =
+                          await AmapLocation.instance.fetchLocation();
 
                       map = {
                         "time": DateTime.now().toIso8601String(),
@@ -70,7 +71,7 @@ class _AMapLocationDemoState extends State<AMapLocationDemo>
                   onPressed: () async {
                     if (await PermissionsUtil.requestMapPermission()) {
                       await for (final location
-                          in AmapLocation.listenLocation()) {
+                          in AmapLocation.instance.listenLocation()) {
                         map = {
                           "time": DateTime.now().toIso8601String(),
                           "country": location.country,
@@ -100,7 +101,7 @@ class _AMapLocationDemoState extends State<AMapLocationDemo>
               child: Button(
                   child: Text('停止定位'),
                   onPressed: () async {
-                    await AmapLocation.stopLocation();
+                    await AmapLocation.instance.stopLocation();
                   }))
         ])
       ]),

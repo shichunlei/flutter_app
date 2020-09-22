@@ -120,7 +120,7 @@ class _CodeInputTextState extends State<CodeInputText> {
               opacity: 0,
               child: TextField(
                 controller: _controller,
-                inputFormatters: [WhitelistingTextInputFormatter(pattern)],
+                inputFormatters: [FilteringTextInputFormatter.allow(pattern)],
                 maxLength: widget.length,
                 autofocus: true,
                 keyboardType: widget.keyboardType == KeyboardType.number

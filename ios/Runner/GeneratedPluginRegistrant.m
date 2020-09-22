@@ -4,6 +4,18 @@
 
 #import "GeneratedPluginRegistrant.h"
 
+#if __has_include(<flutter_charts/FlutterChartsPlugin.h>)
+#import <flutter_charts/FlutterChartsPlugin.h>
+#else
+@import flutter_charts;
+#endif
+
+#if __has_include(<flutter_jd_address_selector/FlutterJdAddressSelectorPlugin.h>)
+#import <flutter_jd_address_selector/FlutterJdAddressSelectorPlugin.h>
+#else
+@import flutter_jd_address_selector;
+#endif
+
 #if __has_include(<amap_core_fluttify/AmapCoreFluttifyPlugin.h>)
 #import <amap_core_fluttify/AmapCoreFluttifyPlugin.h>
 #else
@@ -44,18 +56,6 @@
 #import <easy_contact_picker/EasyContactPickerPlugin.h>
 #else
 @import easy_contact_picker;
-#endif
-
-#if __has_include(<flutter_charts/FlutterChartsPlugin.h>)
-#import <flutter_charts/FlutterChartsPlugin.h>
-#else
-@import flutter_charts;
-#endif
-
-#if __has_include(<flutter_jd_address_selector/FlutterJdAddressSelectorPlugin.h>)
-#import <flutter_jd_address_selector/FlutterJdAddressSelectorPlugin.h>
-#else
-@import flutter_jd_address_selector;
 #endif
 
 #if __has_include(<flutter_sound/FlutterSoundPlugin.h>)
@@ -169,6 +169,8 @@
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
+  [FlutterChartsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterChartsPlugin"]];
+  [FlutterJdAddressSelectorPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterJdAddressSelectorPlugin"]];
   [AmapCoreFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapCoreFluttifyPlugin"]];
   [AmapLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapLocationFluttifyPlugin"]];
   [AudioplayersPlugin registerWithRegistrar:[registry registrarForPlugin:@"AudioplayersPlugin"]];
@@ -176,8 +178,6 @@
   [CoreLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"CoreLocationFluttifyPlugin"]];
   [FLTDeviceInfoPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTDeviceInfoPlugin"]];
   [EasyContactPickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"EasyContactPickerPlugin"]];
-  [FlutterChartsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterChartsPlugin"]];
-  [FlutterJdAddressSelectorPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterJdAddressSelectorPlugin"]];
   [FlutterSoundPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterSoundPlugin"]];
   [FlutterWebviewPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterWebviewPlugin"]];
   [FoundationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"FoundationFluttifyPlugin"]];

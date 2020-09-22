@@ -1,6 +1,8 @@
 package io.flutter.plugins;
 
 import io.flutter.plugin.common.PluginRegistry;
+import com.example.flutter_charts.FlutterChartsPlugin;
+import com.chingsoft.flutter_jd_address_selector.FlutterJdAddressSelectorPlugin;
 import me.yohom.amap_core_fluttify.AmapCoreFluttifyPlugin;
 import me.yohom.amap_location_fluttify.AmapLocationFluttifyPlugin;
 import xyz.luan.audioplayers.AudioplayersPlugin;
@@ -8,8 +10,6 @@ import de.mintware.barcode_scan.BarcodeScanPlugin;
 import me.yohom.core_location_fluttify.CoreLocationFluttifyPlugin;
 import io.flutter.plugins.deviceinfo.DeviceInfoPlugin;
 import com.liuwei.easy_contact_picker.EasyContactPickerPlugin;
-import com.example.flutter_charts.FlutterChartsPlugin;
-import com.chingsoft.flutter_jd_address_selector.FlutterJdAddressSelectorPlugin;
 import io.flutter.plugins.flutter_plugin_android_lifecycle.FlutterAndroidLifecyclePlugin;
 import com.dooboolab.fluttersound.FlutterSoundPlugin;
 import com.flutter_webview_plugin.FlutterWebviewPlugin;
@@ -38,6 +38,8 @@ public final class GeneratedPluginRegistrant {
     if (alreadyRegisteredWith(registry)) {
       return;
     }
+    FlutterChartsPlugin.registerWith(registry.registrarFor("com.example.flutter_charts.FlutterChartsPlugin"));
+    FlutterJdAddressSelectorPlugin.registerWith(registry.registrarFor("com.chingsoft.flutter_jd_address_selector.FlutterJdAddressSelectorPlugin"));
     AmapCoreFluttifyPlugin.registerWith(registry.registrarFor("me.yohom.amap_core_fluttify.AmapCoreFluttifyPlugin"));
     AmapLocationFluttifyPlugin.registerWith(registry.registrarFor("me.yohom.amap_location_fluttify.AmapLocationFluttifyPlugin"));
     AudioplayersPlugin.registerWith(registry.registrarFor("xyz.luan.audioplayers.AudioplayersPlugin"));
@@ -45,8 +47,6 @@ public final class GeneratedPluginRegistrant {
     CoreLocationFluttifyPlugin.registerWith(registry.registrarFor("me.yohom.core_location_fluttify.CoreLocationFluttifyPlugin"));
     DeviceInfoPlugin.registerWith(registry.registrarFor("io.flutter.plugins.deviceinfo.DeviceInfoPlugin"));
     EasyContactPickerPlugin.registerWith(registry.registrarFor("com.liuwei.easy_contact_picker.EasyContactPickerPlugin"));
-    FlutterChartsPlugin.registerWith(registry.registrarFor("com.example.flutter_charts.FlutterChartsPlugin"));
-    FlutterJdAddressSelectorPlugin.registerWith(registry.registrarFor("com.chingsoft.flutter_jd_address_selector.FlutterJdAddressSelectorPlugin"));
     FlutterAndroidLifecyclePlugin.registerWith(registry.registrarFor("io.flutter.plugins.flutter_plugin_android_lifecycle.FlutterAndroidLifecyclePlugin"));
     FlutterSoundPlugin.registerWith(registry.registrarFor("com.dooboolab.fluttersound.FlutterSoundPlugin"));
     FlutterWebviewPlugin.registerWith(registry.registrarFor("com.flutter_webview_plugin.FlutterWebviewPlugin"));

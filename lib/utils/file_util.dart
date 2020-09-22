@@ -269,7 +269,7 @@ class FileUtil {
     return _data;
   }
 
-   Future<Uint8List> readFileByte(String filePath) async {
+  Future<Uint8List> readFileByte(String filePath) async {
     Uri myUri = Uri.parse(filePath);
     File file = new File.fromUri(myUri);
     Uint8List bytes;
@@ -277,9 +277,19 @@ class FileUtil {
       bytes = Uint8List.fromList(value);
       print('reading of bytes is completed');
     }).catchError((onError) {
-      print('Exception Error while reading audio from path:' +
-          onError.toString());
+      print(onError.toString());
     });
     return bytes;
+  }
+
+  /// 将Uint8List写入本地文件
+  Future<String> writeByteToFile(Uint8List bytes, {String fileName}) async {
+    File file = await getPathFile(
+        fileName ?? "${DateTime.now().millisecondsSinceEpoch}.png");
+
+    file.writeAsBytes(bytes).catchError((onError) {
+      print(onError.toString());
+    });
+    return file.path;
   }
 }

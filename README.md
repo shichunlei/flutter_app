@@ -40,38 +40,36 @@
 ## 运行环境
 
 ```
-[✓] Flutter (Channel stable, v1.17.5, on Mac OS X 10.15.4 19E287, locale zh-Hans-CN)
-    • Flutter version 1.17.5 at /System/Volumes/Data/workspace/flutter
-    • Framework • revision 8af6b2f038 (2 个月前) • 2020-06-30 12:53:55 -0700
-    • Engine revision ee76268252
-    • Dart version 2.8.4
+[✓] Flutter (Channel stable, 1.20.3, on Mac OS X 10.15.4 19E287, locale zh-Hans-CN)
+    • Flutter version 1.20.3 at /***/flutter
+    • Framework revision 216dee60c0 (2 周前), 2020-09-01 12:24:47 -0700
+    • Engine revision d1bc06f032
+    • Dart version 2.9.2
+    • Pub download mirror https://pub.flutter-io.cn
+    • Flutter download mirror https://storage.flutter-io.cn
 
 [✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
-    • Android SDK at /Users/14cells/Android/SDK
-    • Platform android-R, build-tools 30.0.2
+    • Android SDK at /Users/developer/Library/Android/sdk
+    • Platform android-30, build-tools 30.0.2
     • Java binary at: /Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin/java
-    • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
+    • Java version OpenJDK Runtime Environment (build 1.8.0_212-release-1586-b4-5784211)
     • All Android licenses accepted.
 
 [✓] Xcode - develop for iOS and macOS (Xcode 11.7)
     • Xcode at /Applications/Xcode.app/Contents/Developer
-    • Xcode 11.7, Build version 11B500
-    • CocoaPods version 1.8.4
-
-[✓] Chrome - develop for the web
-    • Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+    • Xcode 11.7, Build version 11E801a
+    • CocoaPods version 1.9.1
 
 [✓] Android Studio (version 3.6)
     • Android Studio at /Applications/Android Studio.app/Contents
-    • Flutter plugin version 44.0.1
-    • Dart plugin version 191.8593
-    • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
+    • Flutter plugin version 49.0.1
+    • Dart plugin version 192.8052
+    • Java version OpenJDK Runtime Environment (build 1.8.0_212-release-1586-b4-5784211)
 
 [✓] Connected device (3 available)
     • MI 5X      • 1c7664100104 • android-arm64  • Android 8.1.0 (API 27)
-    • Chrome     • chrome       • web-javascript • Google Chrome 81.0.4044.138
-    • Web Server • web-server   • web-javascript • Flutter Tools
     • iPhone 11 Pro Max • B366D105-9EEC-47E4-A0CE-94C43E9ACD2D • ios • com.apple.CoreSimulator.SimRuntime.iOS-13-2 (simulator)
+    • SCL的 iPhone (mobile) • c8d772b25c3f412f630906165970b0871bb527aa • ios • iOS 13.7
 ```
 
 ## 注意事项
