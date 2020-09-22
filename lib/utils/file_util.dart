@@ -1,8 +1,11 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
+
+import 'log_util.dart';
 
 class FileUtil {
   static FileUtil _instance;
@@ -47,10 +50,10 @@ class FileUtil {
   ///
   Future<String> copyFile(
       String fileName, String oldPath, String newPath) async {
-    print("====old=======$oldPath$fileName");
+    Log.d("====old=======$oldPath$fileName");
     File file = File("$oldPath$fileName");
     if (await file.exists()) {
-      print("====new=======$newPath$fileName");
+      Log.d("====new=======$newPath$fileName");
       File newFile = await file.copy("$newPath$fileName");
 
       return newFile.path;
@@ -81,7 +84,7 @@ class FileUtil {
       }
     }
 
-    print(pathList.toString());
+    Log.d(pathList.toString());
 
     return pathList;
   }
@@ -118,7 +121,7 @@ class FileUtil {
       var appDocDir = await getApplicationDocumentsDirectory();
       return appDocDir.path + "/";
     } catch (err) {
-      print(err);
+      Log.e(err.toString());
       return null;
     }
   }
@@ -131,7 +134,7 @@ class FileUtil {
       Directory tempDir = await getTemporaryDirectory();
       return tempDir.path + "/";
     } catch (err) {
-      print(err);
+      Log.e(err.toString());
       return null;
     }
   }
@@ -143,7 +146,7 @@ class FileUtil {
       var sdDir = await getExternalStorageDirectory();
       return sdDir.path + "/";
     } catch (err) {
-      print(err);
+      Log.e(err.toString());
       return null;
     }
   }
@@ -164,7 +167,7 @@ class FileUtil {
       }
       return file;
     } catch (err) {
-      print(err);
+      Log.e(err.toString());
       return null;
     }
   }
@@ -179,12 +182,12 @@ class FileUtil {
       await Directory(folderPath)
           .delete(recursive: true)
           .then((FileSystemEntity fileSystemEntity) {
-        print('删除path' + fileSystemEntity.path);
+        Log.d('删除path' + fileSystemEntity.path);
       });
 
       return true;
     } catch (e) {
-      print(e);
+      Log.e(e.toString());
       return false;
     }
   }
@@ -202,7 +205,7 @@ class FileUtil {
 
       return true;
     } catch (e) {
-      print(e);
+      Log.e(e.toString());
       return false;
     }
   }
@@ -224,7 +227,7 @@ class FileUtil {
 
       return file;
     } catch (e) {
-      print(e);
+      Log.e(e.toString());
       return null;
     }
   }
@@ -243,11 +246,11 @@ class FileUtil {
 
       String data = file.readAsStringSync();
 
-      print(data);
+      Log.d(data);
 
       return data;
     } catch (e) {
-      print(e);
+      Log.e(e.toString());
       return null;
     }
   }
@@ -262,23 +265,15 @@ class FileUtil {
     String _data = await rootBundle
         .loadString(assetsPath + assetsName)
         .then((String data) {
-      print(data);
+      Log.d(data);
       return data;
     });
 
     return _data;
   }
 
-  Future<Uint8List> readFileByte(String filePath) async {
-    Uri myUri = Uri.parse(filePath);
-    File file = new File.fromUri(myUri);
-    Uint8List bytes;
-    await file.readAsBytes().then((value) {
-      bytes = Uint8List.fromList(value);
-      print('reading of bytes is completed');
-    }).catchError((onError) {
-      print(onError.toString());
-    });
+  static Uint8List convert(ByteData data) {
+    var bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
     return bytes;
   }
 
@@ -288,8 +283,40 @@ class FileUtil {
         fileName ?? "${DateTime.now().millisecondsSinceEpoch}.png");
 
     file.writeAsBytes(bytes).catchError((onError) {
-      print(onError.toString());
+      Log.d(onError.toString());
     });
     return file.path;
+  }
+
+  Future<Uint8List> readFileByte(String filePath) async {
+    Uri myUri = Uri.parse(filePath);
+    File file = File.fromUri(myUri);
+    Uint8List bytes;
+    await file.readAsBytes().then((value) {
+      bytes = Uint8List.fromList(value);
+      Log.d('reading of bytes is completed');
+    }).catchError((onError) {
+      Log.d(onError.toString());
+    });
+    return bytes;
+  }
+
+  /// 将文件转换为List<int>
+  ///
+  /// [path] 路径
+  /// [isLocal] 是否为本地路径
+  ///
+  Future<List<int>> fileToUint8List(String path, {bool isLocal: false}) async {
+    Uint8List bytes;
+
+    if (isLocal) {
+      bytes = await readFileByte(path);
+    } else {
+      var response = await Dio()
+          .get(path, options: Options(responseType: ResponseType.bytes));
+      bytes = Uint8List.fromList(response.data);
+    }
+
+    return bytes;
   }
 }

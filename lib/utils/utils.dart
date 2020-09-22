@@ -1,12 +1,10 @@
 import 'dart:io';
 import 'dart:math';
-
-import 'package:flutter/material.dart';
 import 'dart:ui' as ui show window;
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/bean/music.dart';
-
 import 'package:palette_generator/palette_generator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -280,6 +278,8 @@ class Utils {
 
   /// 🔥格式化手机号为344
   ///
+  /// [mobile] 手机号码
+  ///
   static String formatMobile344(String mobile) {
     if (isEmptyString(mobile)) return '';
     mobile = mobile?.replaceAllMapped(new RegExp(r"(^\d{3}|\d{4}\B)"),
@@ -366,5 +366,24 @@ class Utils {
       }
     }
     return 0;
+  }
+
+  /// 取[fractionDigits]位小数 不要四舍五入
+  ///
+  /// [num] 原始数据
+  /// [fractionDigits] 保留的小数位数
+  ///
+  String formatNum(double num, int fractionDigits) {
+    if ((num.toString().length - num.toString().lastIndexOf(".") - 1) <
+        fractionDigits) {
+      //小数点后有几位小数
+      return num.toStringAsFixed(fractionDigits)
+          .substring(0, num.toString().lastIndexOf(".") + fractionDigits + 1)
+          .toString();
+    } else {
+      return num.toString()
+          .substring(0, num.toString().lastIndexOf(".") + fractionDigits + 1)
+          .toString();
+    }
   }
 }
