@@ -18,6 +18,7 @@ class ProviderWidget<T extends BaseModel> extends StatefulWidget {
   final bool showLoading;
   final bool isLight;
   final Color bgColor;
+  final bool showError;
 
   ProviderWidget(
       {Key key,
@@ -30,6 +31,7 @@ class ProviderWidget<T extends BaseModel> extends StatefulWidget {
       this.showLoading: false,
       this.isLight: true,
       this.bgColor,
+      this.showError: true,
       this.onRetry})
       : super(key: key);
 
@@ -59,13 +61,11 @@ class _ProviderWidgetState<T extends BaseModel>
     return ChangeNotifierProvider<T>.value(
         value: model,
         child: Consumer<T>(
-            builder: (BuildContext context, T value, Widget child) {
-              if (value.busy && widget.showLoading) {
-                return LoadingView();
-              }
-              if ((value.empty || value.error) && widget.showEmpty)
-                return EmptyPage();
-              return widget.builder(context, value, child);
+            builder: (BuildContext context, T model, Widget child) {
+              if (model.busy && widget.showLoading) return LoadingView();
+              if (model.empty && widget.showEmpty) return EmptyPage();
+              if (model.error && widget.showError) return EmptyPage();
+              return widget.builder(context, model, child);
             },
             child: widget.child));
   }

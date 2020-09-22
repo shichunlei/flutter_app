@@ -7,9 +7,6 @@ abstract class BaseObjectModel<T> extends BaseModel {
 
   EasyRefreshController get easyRefreshController => _easyRefreshController;
 
-  int pageNumber = 0;
-  int pageSize = 10;
-
   initData() async {
     setBusy();
     await refresh(init: true);
@@ -23,7 +20,6 @@ abstract class BaseObjectModel<T> extends BaseModel {
   /// false: Error时,不需要跳转页面,直接给出提示
   Future<T> refresh({bool init = false}) async {
     try {
-      pageNumber = 0;
       var res = await loadData();
       if (res == null) {
         easyRefreshController.resetLoadState();
@@ -50,28 +46,8 @@ abstract class BaseObjectModel<T> extends BaseModel {
     }
   }
 
-  /// 上拉加载更多
-  Future<T> loadMore() async {
-    try {
-      pageNumber = pageNumber + 1;
-      var res = await loadData();
-      onLoadDone(res);
-      notifyListeners();
-      return res;
-    } catch (e, s) {
-      pageNumber = pageNumber - 1;
-      easyRefreshController.finishLoad(success: false);
-      setError(e, s);
-      return null;
-    }
-  }
-
   // 加载数据
   Future<T> loadData();
-
-  String getKey() {
-    return '';
-  }
 
   onLoadDone(T data) {}
 

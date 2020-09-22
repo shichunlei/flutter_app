@@ -8,7 +8,8 @@ class BaseModel with ChangeNotifier {
 
   /// 当前的页面状态,默认为busy,可在viewModel的构造方法中指定;
   ViewState _viewState;
-  ScrollController scrollController;
+
+  ScrollController scrollController = ScrollController();
 
   /// 根据状态构造
   /// 子类可以在构造函数指定需要的页面状态
@@ -35,6 +36,7 @@ class BaseModel with ChangeNotifier {
   }
 
   void initDataWithContext() {}
+
   ViewStateError _viewStateError;
 
   ViewStateError get viewStateError => _viewStateError;
@@ -127,10 +129,6 @@ class BaseModel with ChangeNotifier {
 /// [e]为错误类型 :可能为 Error , Exception ,String
 /// [s]为堆栈信息
 printErrorStack(e, s) {
-//  print('''
-//<-----↓↓↓↓↓↓↓↓↓↓-----error-----↓↓↓↓↓↓↓↓↓↓----->
-//$e
-//<-----↑↑↑↑↑↑↑↑↑↑-----error-----↑↑↑↑↑↑↑↑↑↑----->''');
   if (s != null) print('''
 <-----↓↓↓↓↓↓↓↓↓↓-----trace-----↓↓↓↓↓↓↓↓↓↓----->
 $s
