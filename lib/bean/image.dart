@@ -4,7 +4,7 @@ class ImageModal {
   double width;
   double height;
   String thumb;
-  String grpCnt;
+//  String grpCnt;
   bool grpMd5;
   int type;
   int index;
@@ -16,7 +16,7 @@ class ImageModal {
     image.width = double.parse(map['width']);
     image.height = double.parse(map['height']);
     image.thumb = map['thumb'];
-    image.grpCnt = map['grpcnt'];
+//    image.grpCnt = map['grpcnt'];
     image.grpMd5 = map['grpmd5'];
     image.type = map['type'];
     image.index = map['index'];
