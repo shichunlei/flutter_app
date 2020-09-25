@@ -1,4 +1,4 @@
-# custom_widgets
+# flutter_libs
 
 A new Flutter package.
 

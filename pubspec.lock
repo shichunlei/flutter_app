@@ -155,13 +155,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.3"
-  custom_widgets:
-    dependency: "direct main"
-    description:
-      path: custom_widgets
-      relative: true
-    source: path
-    version: "0.0.1"
   device_info:
     dependency: "direct main"
     description:
@@ -303,6 +296,13 @@ packages:
       resolved-ref: d3949588da59ad8fa9ee8c3711eee4f8154cc937
       url: "https://github.com/shichunlei/flutter_jd_address_selector"
     source: git
+    version: "0.0.1"
+  flutter_libs:
+    dependency: "direct main"
+    description:
+      path: flutter_libs
+      relative: true
+    source: path
     version: "0.0.1"
   flutter_localizations:
     dependency: "direct main"

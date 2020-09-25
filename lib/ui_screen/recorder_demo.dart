@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:custom_widgets/custom_widgets.dart';
+import 'package:flutter_libs/flutter_libs.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/file_util.dart';

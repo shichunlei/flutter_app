@@ -1,4 +1,4 @@
-import 'package:custom_widgets/bottom_bar_view.dart';
+import 'package:flutter_libs/bottom_bar_view.dart';
 import 'package:flutter/material.dart';
 
 class BottomBarViewDemo extends StatefulWidget {

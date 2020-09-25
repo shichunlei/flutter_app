@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:custom_widgets/custom_widgets.dart';
+import 'package:flutter_libs/flutter_libs.dart';
 
 class FlipViewCustom extends StatefulWidget {
   FlipViewCustom({Key key}) : super(key: key);

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-// https://github.com/apgapg/avatar_glow
+/// https://github.com/apgapg/avatar_glow
 class AvatarGlow extends StatefulWidget {
   final bool repeat;
   final Duration duration;

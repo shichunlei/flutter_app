@@ -1,9 +1,9 @@
 import 'dart:ui';
 
-import 'package:custom_widgets/utils.dart';
 import 'package:flutter/material.dart';
-
 import 'package:quiver/iterables.dart';
+
+import '../page_index.dart';
 
 class CurvesDemo extends StatefulWidget {
   CurvesDemo({Key key}) : super(key: key);

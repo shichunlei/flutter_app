@@ -8,7 +8,7 @@ const double _kActiveFontSize = 14.0;
 const double _kBottomMargin = 8.0;
 enum BubbleBottomBarFabLocation { end, center }
 
-// https://github.com/westdabestdb/bubble_bottom_bar
+/// https://github.com/westdabestdb/bubble_bottom_bar
 // ignore: must_be_immutable
 class BubbleBottomBar extends StatefulWidget {
   BubbleBottomBar(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bars_demo/each_view.dart';
-import 'package:custom_widgets/custom_widgets.dart';
+import 'package:flutter_libs/flutter_libs.dart';
 
 class CurvedNavigationBarSample extends StatefulWidget {
   CurvedNavigationBarSample({Key key}) : super(key: key);

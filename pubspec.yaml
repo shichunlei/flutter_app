@@ -47,9 +47,6 @@ dependencies: # 应用或包依赖的其它包或插件
 
   clippy_flutter: ^1.1.1
 
-  custom_widgets:
-    path: custom_widgets/
-
   # 设备信息
   device_info: ^0.4.2+7
 
@@ -85,6 +82,9 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_jd_address_selector:
     git:
       url: https://github.com/shichunlei/flutter_jd_address_selector
+
+  flutter_libs:
+    path: flutter_libs/
 
   # https://github.com/dooboolab/flutter_sound
   flutter_sound: ^2.1.1

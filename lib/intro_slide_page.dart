@@ -1,4 +1,3 @@
-import 'package:custom_widgets/indicator/rect_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/page_index.dart';

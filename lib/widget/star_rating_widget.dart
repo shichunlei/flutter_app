@@ -1,4 +1,4 @@
-import 'package:custom_widgets/smooth_star_rating.dart';
+import 'package:flutter_libs/smooth_star_rating.dart';
 import 'package:flutter/material.dart';
 
 class StarRatingWidget extends StatefulWidget {

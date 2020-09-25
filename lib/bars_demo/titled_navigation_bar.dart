@@ -1,4 +1,4 @@
-import 'package:custom_widgets/titled_navigation_bar.dart';
+import 'package:flutter_libs/titled_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class TitledNavigationBarDemo extends StatefulWidget {

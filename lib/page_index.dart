@@ -1,4 +1,4 @@
-export 'package:custom_widgets/custom_widgets.dart';
+export 'package:flutter_libs/flutter_libs.dart';
 
 export 'animation/animated_align.dart';
 export 'animation/animated_builder.dart';

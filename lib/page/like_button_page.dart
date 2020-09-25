@@ -1,4 +1,4 @@
-import 'package:custom_widgets/custom_widgets.dart';
+import 'package:flutter_libs/flutter_libs.dart';
 import 'package:flutter/material.dart';
 
 class LikeButtonPage extends StatelessWidget {

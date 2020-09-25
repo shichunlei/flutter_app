@@ -1,4 +1,4 @@
-import 'package:custom_widgets/bubble_bottom_bar.dart';
+import 'package:flutter_libs/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bars_demo/each_view.dart';
 

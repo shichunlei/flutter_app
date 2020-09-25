@@ -1,4 +1,4 @@
-library custom_widgets;
+library flutter_libs;
 
 export 'avatar_glow.dart';
 export 'bottom_bar_view.dart';

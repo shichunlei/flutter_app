@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:custom_widgets/utils.dart';
+import 'package:flutter_libs/utils.dart';
 import 'package:flutter/material.dart';
 
 class SunriseSunsetView extends StatefulWidget {
