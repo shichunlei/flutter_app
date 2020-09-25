@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'city_manager.dart';
+import 'package:flutter_weather_bg/flutter_weather_bg.dart';
+
 import '../../bean/he_weather.dart';
-
 import '../../page_index.dart';
-
 import '../ui/air_view.dart';
 import '../ui/hourly_view.dart';
 import '../ui/lifestyle_view.dart';
 import '../ui/now_view.dart';
 import '../ui/sun_view.dart';
 import '../ui/weekly_view.dart';
+import 'city_manager.dart';
 
 class WeatherPage extends StatefulWidget {
   final String cityName;
@@ -30,13 +30,13 @@ class WeatherPageState extends State<WeatherPage> {
   List<Lifestyle> lifestyle = [];
   List<Hourly> hourly = [];
 
-  String background = 'images/weather_backgrounds/back_100d.jpg';
+  WeatherType weatherType = WeatherType.sunny;
 
   ScrollController scrollController = ScrollController();
   double navAlpha = 0;
   double headerHeight = 200;
 
-  Color barColor = Colors.transparent;
+  Color barColor = Colors.lightBlueAccent;
 
   bool favorite = false;
 
@@ -84,9 +84,7 @@ class WeatherPageState extends State<WeatherPage> {
     if (weather != null) {
       now = weather.now;
 
-      background = weatherBg(now?.condCode);
-      barColor = await Utils.getImageDominantColor(background, type: "asset");
-
+      weatherType = weatherBg(now?.condCode);
       dailyForecast = weather.dailyForecast;
       lifestyle = weather.lifestyle;
       hourly = weather.hourly;
@@ -102,7 +100,8 @@ class WeatherPageState extends State<WeatherPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: <Widget>[
-        Image.asset(background, fit: BoxFit.fitHeight, height: double.infinity),
+        WeatherBg(
+            width: Utils.width, height: Utils.height, weatherType: weatherType),
         _buildContentView(),
         ToolBar(
             title: GestureDetector(

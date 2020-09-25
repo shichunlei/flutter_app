@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
@@ -318,5 +319,13 @@ class FileUtil {
     }
 
     return bytes;
+  }
+
+  /// 绘制时需要用到 ui.Image 的对象，通过此方法进行转换
+  Future<ui.Image> getImage(String asset) async {
+    ByteData data = await rootBundle.load("packages/flutter_weather_bg/$asset");
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List());
+    ui.FrameInfo fi = await codec.getNextFrame();
+    return fi.image;
   }
 }

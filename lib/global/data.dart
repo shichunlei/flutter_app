@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_weather_bg/utils/weather_type.dart';
 
 import '../page_index.dart';
 
@@ -238,104 +239,111 @@ var backgroundImage =
 var douBanDefaultImage =
     "https://img1.doubanio.com/f/movie/ca527386eb8c4e325611e22dfcb04cc116d6b423/pics/movie/celebrity-default-small.png";
 
-String weatherBg(String condCode) {
-  String bgImage = '';
+WeatherType weatherBg(String condCode) {
+  WeatherType weatherType;
   switch (condCode) {
-    case '100':
-    case '200':
-    case '201':
-    case '202':
-    case '203':
-    case '204':
-    case '205':
-    case '206':
-    case '207':
-    case '208':
-    case '209':
-    case '210':
-    case '211':
-    case '212':
-    case '213':
-    case '999':
-      bgImage = 'images/weather_backgrounds/back_100d.jpg';
+    case '100': // 晴（日间）
+    case '999': // 未知
+      weatherType = WeatherType.sunny;
       break;
-    case '101':
-    case '102':
-    case '103':
-      bgImage = 'images/weather_backgrounds/back_101d.jpg';
+    case '150': // 晴（夜间）
+      weatherType = WeatherType.sunnyNight;
       break;
-    case '104':
-      bgImage = 'images/weather_backgrounds/back_104d.jpg';
+    case '153': // 晴间多云（夜间）
       break;
-    case '300':
-    case '301':
-    case '305':
-    case '306':
-    case '307':
-    case '308':
-    case '309':
-    case '310':
-    case '311':
-    case '312':
-    case '313':
-    case '314':
-    case '315':
-    case '316':
-    case '317':
-    case '318':
-    case '399':
-      bgImage = 'images/weather_backgrounds/back_300d.jpg';
+    case '154': // 阴（夜间）
       break;
-    case '302':
-    case '303':
-    case '304':
-      bgImage = 'images/weather_backgrounds/back_302d.jpg';
+    case '101': // 多云
+    case '102': // 少云
+    case '103': // 晴间多云（日间）
+      weatherType = WeatherType.cloudy;
       break;
-    case '400':
-    case '401':
-    case '402':
-    case '403':
-    case '404':
-    case '405':
-    case '406':
-    case '407':
-    case '408':
-    case '409':
-    case '410':
-    case '499':
-      bgImage = 'images/weather_backgrounds/back_400d.jpg';
+    case '104': // 阴（日间）
+      weatherType = WeatherType.overcast;
       break;
-    case '500':
-    case '501':
-    case '509':
-    case '510':
-    case '514':
-    case '515':
-      bgImage = 'images/weather_backgrounds/back_500d.jpg';
+    case '309': // 毛毛雨/细雨
+    case '305': // 小雨
+    case '314': // 小到中雨
+    case '399': // 雨
+      weatherType = WeatherType.lightRainy;
       break;
-    case '502':
-    case '511':
-    case '512':
-    case '513':
-      bgImage = 'images/weather_backgrounds/back_502d.jpg';
+    case '306': // 中雨
+    case '315': // 中到大雨
+    case '350': // 阵雨（夜间）
+    case '300': // 阵雨（日间）
+      weatherType = WeatherType.middleRainy;
       break;
-    case '503':
-    case '504':
-    case '507':
-    case '508':
-      bgImage = 'images/weather_backgrounds/back_503d.jpg';
+    case '307': // 大雨
+    case '316': // 大到暴雨
+    case '317': // 暴雨到大暴雨
+    case '318': // 大暴雨到特大暴雨
+    case '310': // 暴雨
+    case '311': // 大暴雨
+    case '312': // 特大暴雨
+    case '301': // 强阵雨（日间）
+    case '351': // 强阵雨（夜间）
+    case '308': // 极端降雨
+    case '313': // 冻雨
+      weatherType = WeatherType.heavyRainy;
       break;
-    case '900':
-      bgImage = 'images/weather_backgrounds/back_900d.jpg';
+    case '302': // 雷阵雨
+    case '303': // 强雷阵雨
+    case '304': // 雷阵雨伴有冰雹
+      weatherType = WeatherType.thunder;
       break;
-    case '901':
-      bgImage = 'images/weather_backgrounds/back_901d.jpg';
+    case '400': // 小雪
+    case '408': // 小到中雪
+    case '499': // 雪
+      weatherType = WeatherType.lightSnow;
+      break;
+    case '401': // 中雪
+    case '409': // 中到大雪
+    case '407': // 阵雪（日间）
+    case '457': // 阵雪（夜间）
+      weatherType = WeatherType.middleSnow;
+      break;
+    case '402': // 大雪
+    case '410': // 大到暴雪
+    case '403': // 暴雪
+      weatherType = WeatherType.heavySnow;
+      break;
+    case '404': // 雨夹雪
+    case '405': // 雨雪天气
+    case '406': // 阵雨夹雪（日间）
+    case '456': // 阵雨夹雪（夜间）
+
+      break;
+    case '500': // 薄雾
+    case '501': // 雾
+    case '509': // 浓雾
+    case '510': // 强浓雾
+    case '514': // 大雾
+    case '515': // 特强浓雾
+      weatherType = WeatherType.foggy;
+      break;
+    case '502': // 霾
+    case '511': // 中度霾
+    case '512': // 重度霾
+    case '513': // 严重霾
+      weatherType = WeatherType.hazy;
+      break;
+    case '503': // 扬沙
+    case '504': // 浮尘
+    case '507': // 沙尘暴
+    case '508': // 强沙尘暴
+      weatherType = WeatherType.dusty;
+      break;
+    case '900': // 冷
+
+      break;
+    case '901': // 热
+
       break;
     default:
-      bgImage = 'images/weather_backgrounds/back_100d.jpg';
+      weatherType = WeatherType.sunny;
       break;
   }
-  return bgImage;
+  return weatherType;
 }
 
 const List<String> QDailyKeys = <String>[

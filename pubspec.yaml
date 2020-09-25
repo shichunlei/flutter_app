@@ -110,6 +110,9 @@ dependencies: # 应用或包依赖的其它包或插件
   # SimpleLineIcons 地址：https://simplelineicons.github.io/
   flutter_vector_icons: ^0.2.1
 
+  # 天气背景
+  flutter_weather_bg: ^2.6.0
+
   # webview
   flutter_webview_plugin: ^0.3.11
 

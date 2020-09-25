@@ -363,6 +363,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.2.1"
+  flutter_weather_bg:
+    dependency: "direct main"
+    description:
+      name: flutter_weather_bg
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.6.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
