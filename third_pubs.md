@@ -68,4 +68,8 @@
 | 侧滑菜单 | [flutter_inner_drawer](https://github.com/Dn-a/flutter_inner_drawer) | ![](https://img.shields.io/pub/v/flutter_inner_drawer.svg) | 
 | 极光推送 | [JPush](https://github.com/jpush/jpush-flutter-plugin) | ![](https://img.shields.io/pub/v/jpush_flutter.svg) | 
 | 极光IM | [JMessage](https://github.com/jpush/jmessage-flutter-plugin) | ![](https://img.shields.io/pub/v/jmessage_flutter.svg) | 
-
+| 弹窗 | [kumi_popup_window](https://github.com/q876625596/kumi_popup_window) | ![](https://img.shields.io/pub/v/kumi_popup_window.svg) |
+| 加载弹窗 | [easyloading](https://github.com/huangjianke/flutter_easyloading) | ![](https://img.shields.io/pub/v/flutter_easyloading.svg) |
+| 底部弹窗 | [bottom_sheet](https://github.com/jamesblasco/modal_bottom_sheet) | ![](https://img.shields.io/pub/v/modal_bottom_sheet.svg) |
+| 底部弹窗 | [sliding_up_panel](https://github.com/akshathjain/sliding_up_panel) | ![](https://img.shields.io/pub/v/sliding_up_panel.svg) |
+| 彩带动画 | [pimp_my_button](https://github.com/Norbert515/pimp_my_button) | ![](https://img.shields.io/pub/v/pimp_my_button.svg) |

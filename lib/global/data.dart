@@ -169,7 +169,7 @@ class ExpandStateBean {
           SubExpandBean('战疫情', SARSCoVIndexPage()),
           SubExpandBean('仿追书神器', BookReaderHomePage()),
           SubExpandBean('仿好奇心日报', QDailySplashPage()),
-          SubExpandBean('豆瓣电影', MovieHomePage()),
+          // SubExpandBean('豆瓣电影', MovieHomePage()),
           SubExpandBean('tubi TV', TubiTVHomePage()),
           SubExpandBean('NBA Sports', NBAHomePage()),
           SubExpandBean('百姓生活+', OnBoardingPage()),

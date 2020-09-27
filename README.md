@@ -191,7 +191,7 @@ __iOS__
 | 阅读 | 阅读设置 | 搜索 | 搜索结果 |
 
 
-### [豆瓣电影](https://github.com/shichunlei/douban_movie)
+### [豆瓣电影(豆瓣电影API服务已停止，故该APP暂下架豆瓣电影版块)](https://github.com/shichunlei/douban_movie)
 
 |![1](https://github.com/shichunlei/project_image/blob/master/screenshots/Screenshot_2019-03-31-09-16-35-569.jpg)|![2](https://github.com/shichunlei/project_image/blob/master/screenshots/Screenshot_2019-03-31-09-16-49-010.jpg)|![3](https://github.com/shichunlei/project_image/blob/master/screenshots/Screenshot_2019-03-31-09-16-58-888.jpg)|![4](https://github.com/shichunlei/project_image/blob/master/screenshots/Screenshot_2019-01-30-15-13-51-495.jpg)|
 | :--: | :--: | :--: | :--: |
