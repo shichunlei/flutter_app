@@ -1,5 +1,6 @@
 library flutter_libs;
 
+export 'animated_icon_button.dart';
 export 'avatar_glow.dart';
 export 'bottom_bar_view.dart';
 export 'bottom_drag_widget.dart';

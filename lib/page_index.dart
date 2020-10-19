@@ -201,6 +201,7 @@ export 'widget/contact_picker_widget.dart';
 export 'widget/date_time_picker.dart';
 export 'widget/dialog_widget.dart';
 export 'widget/dismissible_widget.dart';
+export 'widget/draggable_grid_page.dart';
 export 'widget/draggable_widget.dart';
 export 'widget/floating_touch.dart';
 export 'widget/font_loader.dart';
