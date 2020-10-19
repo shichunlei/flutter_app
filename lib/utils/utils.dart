@@ -386,4 +386,11 @@ class Utils {
           .toString();
     }
   }
+
+  static void showSnackBar(BuildContext context, String msg) {
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(msg),
+      duration: Duration(seconds: 2),
+    ));
+  }
 }

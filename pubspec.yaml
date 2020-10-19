@@ -12,7 +12,8 @@ author: 师春雷 <1558053958@qq.com>
 homepage: https://github.com/shichunlei/flutter_app
 
 environment:
-  sdk: ">=2.2.2 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.17.0 <2.0.0"
 
 dependencies: # 应用或包依赖的其它包或插件
   flutter:
@@ -32,7 +33,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # AzListView，Flutter 城市列表，联系人列表，自定义Header，索引，悬停效果。
   azlistview: ^1.0.1
 
-  badges: ^1.1.1
+  badges: ^1.1.3
 
   # 条形码
   barcode_flutter: ^1.1.2
@@ -48,7 +49,7 @@ dependencies: # 应用或包依赖的其它包或插件
   clippy_flutter: ^1.1.1
 
   # 设备信息
-  device_info: ^0.4.2+7
+  device_info: ^0.4.2+8
 
   # 网络请求库
   dio: ^3.0.10
@@ -111,7 +112,7 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_vector_icons: ^0.2.1
 
   # 天气背景
-  flutter_weather_bg: ^2.6.0
+  flutter_weather_bg: ^2.8.1
 
   # webview
   flutter_webview_plugin: ^0.3.11
@@ -123,7 +124,7 @@ dependencies: # 应用或包依赖的其它包或插件
   image_gallery_saver: ^1.5.0
 
   # 图片选择器
-  image_picker: ^0.6.7+10
+  image_picker: ^0.6.7+11
 
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.9
@@ -156,10 +157,10 @@ dependencies: # 应用或包依赖的其它包或插件
   #
   rounded_letter: ^0.0.6
 
-  share: ^0.6.5+1
+  share: ^0.6.5+2
 
   # SP
-  shared_preferences: ^0.5.10
+  shared_preferences: ^0.5.12
 
   # 对 flare API进行封装的插件，使用少量的代码即可实现交互动画
   smart_flare: ^0.2.9+1
@@ -173,13 +174,13 @@ dependencies: # 应用或包依赖的其它包或插件
   # 透明占位图片
   transparent_image: ^1.0.0
 
-  url_launcher: ^5.7.0
+  url_launcher: ^5.7.2
 
   # 手机震动
-  vibration: ^1.5.0
+  vibration: ^1.6.1
 
   # 视频播放器器
-  video_player: ^0.10.12+3
+  video_player: ^0.10.12+5
 
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:

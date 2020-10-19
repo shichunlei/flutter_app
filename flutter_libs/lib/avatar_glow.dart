@@ -80,45 +80,34 @@ class _AvatarGlowState extends State<AvatarGlow>
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.endRadius * 2,
-      width: widget.endRadius * 2,
-      child: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
+        height: widget.endRadius * 2,
+        width: widget.endRadius * 2,
+        child: Stack(alignment: Alignment.center, children: <Widget>[
           Container(
-            height: bigDiscAnimation.value,
-            width: bigDiscAnimation.value,
-            child: SizedBox(),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: (widget.glowColor ?? Colors.white)
-                  .withOpacity(alphaAnimation.value),
-            ),
-          ),
-          widget.showTwoGlows
-              ? Container(
+              height: bigDiscAnimation.value,
+              width: bigDiscAnimation.value,
+              child: SizedBox(),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: (widget.glowColor ?? Colors.white)
+                      .withOpacity(alphaAnimation.value))),
+          Visibility(
+              visible: widget.showTwoGlows,
+              child: Container(
                   height: smallDiscAnimation.value,
                   width: smallDiscAnimation.value,
                   child: SizedBox(),
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: (widget.glowColor ?? Colors.white)
-                        .withOpacity(alphaAnimation.value),
-                  ),
-                )
-              : SizedBox(
-                  height: 0.0,
-                  width: 0.0,
-                ),
-          widget.child,
-        ],
-      ),
-    );
+                      shape: BoxShape.circle,
+                      color: (widget.glowColor ?? Colors.white)
+                          .withOpacity(alphaAnimation.value)))),
+          widget.child
+        ]));
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    controller?.dispose();
     super.dispose();
   }
 }
