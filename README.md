@@ -305,8 +305,6 @@ __iOS__
 |AspectRatio|BottomSheet|TextField|Check Switch Radio|
 |![0](https://github.com/pedromassango/my_flutter_challenges/raw/master/screenshots/titled_bottom_bar.gif)|![1](https://github.com/shichunlei/project_image/blob/master/screenshots/Screenshot_2019-09-11-18-32-17-902.png)|![2](https://upload-images.jianshu.io/upload_images/2751425-97c660350b81701b.gif)|![3](https://camo.githubusercontent.com/b79ad4c61b9964a67cd6da9d46b38a8fda1df64c/68747470733a2f2f7468756d62732e6766796361742e636f6d2f426c696e64436f6f6b65644963746572696e65776172626c65722d73697a655f726573747269637465642e676966)|
 |Titled Bottom Navigation Bar|Slider|InheritedWidget|backdrop|
-|![0](https://upload-images.jianshu.io/upload_images/3884536-82df82dfe14af0f5.gif?imageMogr2/auto-orient/strip|imageView2/2/w/302/format/webp)|![1](https://github.com/shichunlei/project_image/blob/master/screenshots/2701589587332.jpg)|![2]()|![3]()|
-|拖拽控件|携程首页|XXXX|XXX|
 
 
 |![0](https://github.com/rafalbednarczuk/curved_navigation_bar/blob/master/example.gif)|![1](https://github.com/tunitowen/fancy_bottom_navigation/blob/master/fancy_gif.gif)|![2](https://camo.githubusercontent.com/6bdfb12848c7fcac62da5fa8c65c8c24f536d824/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f744b394c6866484a357154373164376c59612f67697068792e676966)|
