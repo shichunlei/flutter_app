@@ -40,11 +40,11 @@
 ## 运行环境
 
 ```
-[✓] Flutter (Channel stable, 1.20.3, on Mac OS X 10.15.4 19E287, locale zh-Hans-CN)
-    • Flutter version 1.20.3 at /***/flutter
-    • Framework revision 216dee60c0 (2 周前), 2020-09-01 12:24:47 -0700
-    • Engine revision d1bc06f032
-    • Dart version 2.9.2
+[✓] Flutter (Channel stable, 1.22.1, on Mac OS X 10.15.4 19E287, locale zh-Hans-CN)
+    • Flutter version 1.22.1 at /***/flutter
+    • Framework revision f30b7f4db9 (3 周前), 2020-10-08 10:06:30 -0700
+    • Engine revision 75bef9f6c8
+    • Dart version 2.10.1
     • Pub download mirror https://pub.flutter-io.cn
     • Flutter download mirror https://storage.flutter-io.cn
 
