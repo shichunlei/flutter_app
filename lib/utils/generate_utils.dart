@@ -1,5 +1,6 @@
 import 'dart:convert' as convert;
 import 'dart:io';
+
 import 'package:convert/convert.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ String generateMd5(String data) {
 /// Base64加密
 ///
 String base64Encode(String data) {
+  if (data == null) throw ArgumentError("The argument is null");
   var content = convert.utf8.encode(data);
   var digest = convert.base64Encode(content);
   return digest;
@@ -24,6 +26,7 @@ String base64Encode(String data) {
 /// Base64解密
 ///
 String base64Decode(String data) {
+  if (data == null) throw new ArgumentError("encodedString is null");
   List<int> bytes = convert.base64Decode(data);
 // 网上找的很多都是String.fromCharCodes，这个中文会乱码
 //String txt1 = String.fromCharCodes(bytes);

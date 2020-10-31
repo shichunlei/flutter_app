@@ -164,8 +164,8 @@ class WeatherPageState extends State<WeatherPage> {
               HourlyView(hourly),
               WeeklyView(dailyForecast),
               lifestyle.length == 0 ? Container() : LifestyleView(lifestyle),
-              SunView(this.widget.cityName)
+              SunView(title)
             ])),
-        onRefresh: () => _getWeather(widget.cityName));
+        onRefresh: () => _getWeather(title));
   }
 }

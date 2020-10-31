@@ -25,7 +25,7 @@ dependencies: # 应用或包依赖的其它包或插件
   amap_location_fluttify: ^0.17.0
 
   # https://github.com/aagarwal1012/Animated-Text-Kit
-  animated_text_kit: ^2.4.0
+  animated_text_kit: ^2.5.1
 
   # 音频播放
   audioplayers: ^0.15.1
@@ -33,7 +33,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # AzListView，Flutter 城市列表，联系人列表，自定义Header，索引，悬停效果。
   azlistview: ^1.0.1
 
-  badges: ^1.1.3
+  badges: ^1.1.4
 
   # 条形码
   barcode_flutter: ^1.1.2
@@ -121,7 +121,7 @@ dependencies: # 应用或包依赖的其它包或插件
   image_cropper: ^1.3.1
 
   # 图片保存
-  image_gallery_saver: ^1.5.0
+  image_gallery_saver: ^1.6.1
 
   # 图片选择器
   image_picker: ^0.6.7+12
@@ -152,7 +152,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # flutter 生成二维码
   qr_flutter: ^3.2.0
 
-  quiver: ^2.1.3
+  quiver: ^2.1.4+1
 
   #
   rounded_letter: ^0.0.6
@@ -174,10 +174,10 @@ dependencies: # 应用或包依赖的其它包或插件
   # 透明占位图片
   transparent_image: ^1.0.0
 
-  url_launcher: ^5.7.5
+  url_launcher: ^5.7.8
 
   # 手机震动
-  vibration: ^1.6.1
+  vibration: ^1.7.1
 
   # 视频播放器器
   video_player: ^0.10.12+5

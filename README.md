@@ -40,31 +40,32 @@
 ## 运行环境
 
 ```
-[✓] Flutter (Channel stable, 1.20.3, on Mac OS X 10.15.4 19E287, locale zh-Hans-CN)
-    • Flutter version 1.20.3 at /***/flutter
-    • Framework revision 216dee60c0 (2 周前), 2020-09-01 12:24:47 -0700
-    • Engine revision d1bc06f032
-    • Dart version 2.9.2
+[✓] Flutter (Channel stable, 1.22.3, on Mac OS X 10.15.6 19G2021, locale
+    zh-Hans-CN)
+    • Flutter version 1.22.3 at /System/Volumes/Data/workspace/flutter
+    • Framework revision 8874f21e79 (28 hours ago), 2020-10-29 14:14:35 -0700
+    • Engine revision a1440ca392
+    • Dart version 2.10.3
     • Pub download mirror https://pub.flutter-io.cn
     • Flutter download mirror https://storage.flutter-io.cn
 
 [✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
-    • Android SDK at /Users/developer/Library/Android/sdk
+    • Android SDK at /Users/dev/Library/Android/sdk
     • Platform android-30, build-tools 30.0.2
     • Java binary at: /Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin/java
-    • Java version OpenJDK Runtime Environment (build 1.8.0_212-release-1586-b4-5784211)
+    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b3-6222593)
     • All Android licenses accepted.
 
 [✓] Xcode - develop for iOS and macOS (Xcode 11.7)
     • Xcode at /Applications/Xcode.app/Contents/Developer
     • Xcode 11.7, Build version 11E801a
-    • CocoaPods version 1.9.1
+    • CocoaPods version 1.10.0.beta.2
 
-[✓] Android Studio (version 3.6)
+[✓] Android Studio (version 4.0)
     • Android Studio at /Applications/Android Studio.app/Contents
-    • Flutter plugin version 49.0.1
-    • Dart plugin version 192.8052
-    • Java version OpenJDK Runtime Environment (build 1.8.0_212-release-1586-b4-5784211)
+    • Flutter plugin version 50.0.1
+    • Dart plugin version 193.7547
+    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b3-6222593)
 
 [✓] Connected device (3 available)
     • MI 5X      • 1c7664100104 • android-arm64  • Android 8.1.0 (API 27)
@@ -305,8 +306,6 @@ __iOS__
 |AspectRatio|BottomSheet|TextField|Check Switch Radio|
 |![0](https://github.com/pedromassango/my_flutter_challenges/raw/master/screenshots/titled_bottom_bar.gif)|![1](https://github.com/shichunlei/project_image/blob/master/screenshots/Screenshot_2019-09-11-18-32-17-902.png)|![2](https://upload-images.jianshu.io/upload_images/2751425-97c660350b81701b.gif)|![3](https://camo.githubusercontent.com/b79ad4c61b9964a67cd6da9d46b38a8fda1df64c/68747470733a2f2f7468756d62732e6766796361742e636f6d2f426c696e64436f6f6b65644963746572696e65776172626c65722d73697a655f726573747269637465642e676966)|
 |Titled Bottom Navigation Bar|Slider|InheritedWidget|backdrop|
-|![0](https://upload-images.jianshu.io/upload_images/3884536-82df82dfe14af0f5.gif?imageMogr2/auto-orient/strip|imageView2/2/w/302/format/webp)|![1](https://github.com/shichunlei/project_image/blob/master/screenshots/2701589587332.jpg)|![2]()|![3]()|
-|拖拽控件|携程首页|XXXX|XXX|
 
 
 |![0](https://github.com/rafalbednarczuk/curved_navigation_bar/blob/master/example.gif)|![1](https://github.com/tunitowen/fancy_bottom_navigation/blob/master/fancy_gif.gif)|![2](https://camo.githubusercontent.com/6bdfb12848c7fcac62da5fa8c65c8c24f536d824/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f744b394c6866484a357154373164376c59612f67697068792e676966)|
