@@ -25,7 +25,7 @@ dependencies: # 应用或包依赖的其它包或插件
   amap_location_fluttify: ^0.17.0
 
   # https://github.com/aagarwal1012/Animated-Text-Kit
-  animated_text_kit: ^2.2.0
+  animated_text_kit: ^2.4.0
 
   # 音频播放
   audioplayers: ^0.15.1
@@ -42,14 +42,14 @@ dependencies: # 应用或包依赖的其它包或插件
   barcode_scan: ^2.0.2
 
   # 带缓存的图片
-  cached_network_image: ^2.3.2+1
+  cached_network_image: ^2.3.3
 
   chewie: ^0.9.10
 
   clippy_flutter: ^1.1.1
 
   # 设备信息
-  device_info: ^0.4.2+8
+  device_info: ^0.4.2+9
 
   # 网络请求库
   dio: ^3.0.10
@@ -72,12 +72,12 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_colorpicker: ^0.3.4
 
   # 刷新加载控件
-  flutter_easyrefresh: ^2.1.5
+  flutter_easyrefresh: ^2.1.6
 
   flutter_html: ^0.11.1
 
   # 侧滑菜单
-  flutter_inner_drawer: ^0.5.7+1
+  flutter_inner_drawer: 0.5.7+1
 
   # 仿京东地址选择器
   flutter_jd_address_selector:
@@ -112,7 +112,7 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_vector_icons: ^0.2.1
 
   # 天气背景
-  flutter_weather_bg: ^2.8.1
+  flutter_weather_bg: ^2.8.2
 
   # webview
   flutter_webview_plugin: ^0.3.11
@@ -124,7 +124,7 @@ dependencies: # 应用或包依赖的其它包或插件
   image_gallery_saver: ^1.5.0
 
   # 图片选择器
-  image_picker: ^0.6.7+11
+  image_picker: ^0.6.7+12
 
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^1.0.9
@@ -157,10 +157,10 @@ dependencies: # 应用或包依赖的其它包或插件
   #
   rounded_letter: ^0.0.6
 
-  share: ^0.6.5+2
+  share: ^0.6.5+3
 
   # SP
-  shared_preferences: ^0.5.12
+  shared_preferences: ^0.5.12+2
 
   # 对 flare API进行封装的插件，使用少量的代码即可实现交互动画
   smart_flare: ^0.2.9+1
@@ -174,7 +174,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # 透明占位图片
   transparent_image: ^1.0.0
 
-  url_launcher: ^5.7.2
+  url_launcher: ^5.7.5
 
   # 手机震动
   vibration: ^1.6.1
