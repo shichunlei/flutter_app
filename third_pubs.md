@@ -28,7 +28,7 @@
 | 图片裁剪 | [image_cropper](https://github.com/hnvn/flutter_image_cropper) |![](https://img.shields.io/pub/v/image_cropper.svg)|
 | 多图像选择器 | [Multi Image Picker](https://github.com/Sh1d0w/multi_image_picker) | ![](https://img.shields.io/pub/v/multi_image_picker.svg) | 
 | 仿微信图片选择器 | [wechat_assets_picker](https://github.com/fluttercandies/flutter_wechat_assets_picker) | ![](https://img.shields.io/pub/v/wechat_assets_picker.svg) |
-| 仿微信拍摄 | [wechat_camera_picker](flutter_wechat_camera_picker) | ![](https://img.shields.io/pub/v/wechat_camera_picker.svg) |
+| 仿微信拍摄 | [wechat_camera_picker](https://github.com/fluttercandies/flutter_wechat_camera_picker) | ![](https://img.shields.io/pub/v/wechat_camera_picker.svg) |
 | 文件保存 | [image_gallery_saver](https://github.com/hui-z/image_gallery_saver) | ![](https://img.shields.io/pub/v/image_gallery_saver.svg) |
 | 列表悬停 | [StickyHeaders](https://github.com/fluttercommunity/flutter_sticky_headers) | ![](https://img.shields.io/pub/v/flutter_sticky_headers.svg) |
 | 字母索引、悬停 | [AZListView](https://github.com/flutterchina/azlistview) | ![](https://img.shields.io/pub/v/azlistview.svg) |
@@ -79,7 +79,8 @@
 | 类iOS侧滑 | [flutter_slidable](https://github.com/letsar/flutter_slidable) | ![](https://img.shields.io/pub/v/flutter_slidable.svg) |
 | 侧滑菜单 | [foldable_sidebar](https://github.com/retroportalstudio/foldable_sidebar) | ![](https://img.shields.io/pub/v/foldable_sidebar.svg) | 
 | 侧滑菜单 | [flutter_inner_drawer](https://github.com/Dn-a/flutter_inner_drawer) | ![](https://img.shields.io/pub/v/flutter_inner_drawer.svg) | 
-| 极光推送 | [JPush](https://github.com/jpush/jpush-flutter-plugin) | ![](https://img.shields.io/pub/v/jpush_flutter.svg) | 
+| 侧滑菜单 | [foldable_sidebar](https://github.com/retroportalstudio/foldable_sidebar) | ![](https://img.shields.io/pub/v/foldable_sidebar.svg) |
+| 极光推送 | [JPush](https://github.com/jpush/jpush-flutter-plugin) | ![](https://img.shields.io/pub/v/jpush_flutter.svg) |
 | 极光IM | [JMessage](https://github.com/jpush/jmessage-flutter-plugin) | ![](https://img.shields.io/pub/v/jmessage_flutter.svg) | 
 | 弹窗 | [kumi_popup_window](https://github.com/q876625596/kumi_popup_window) | ![](https://img.shields.io/pub/v/kumi_popup_window.svg) |
 | 加载弹窗 | [easyloading](https://github.com/huangjianke/flutter_easyloading) | ![](https://img.shields.io/pub/v/flutter_easyloading.svg) |
@@ -88,6 +89,7 @@
 | 底部弹窗 | [solid_bottom_sheet](https://github.com/dbenitez-bcn/solid_bottom_sheet) | ![](https://img.shields.io/pub/v/solid_bottom_sheet.svg) |
 | 底部弹窗 | [rubber](https://github.com/mcrovero/rubber) | ![](https://img.shields.io/pub/v/rubber.svg) |
 | 底部弹窗 | [sliding_sheet](https://github.com/bnxm/sliding_sheet) | ![](https://img.shields.io/pub/v/sliding_sheet.svg) |
+| 底部弹窗 | [DraggableBottomSheet](https://github.com/Hitesh822/draggable_bottom_sheet_package) | ![](https://img.shields.io/pub/v/draggable_bottom_sheet.svg) |
 | 彩带动画 | [pimp_my_button](https://github.com/Norbert515/pimp_my_button) | ![](https://img.shields.io/pub/v/pimp_my_button.svg) |
 | 彩带动画 | [confetti](https://github.com/funwithflutter/flutter_confetti) | ![](https://img.shields.io/pub/v/confetti.svg) |
 | 加载，计时器按钮 | [argon_buttons_flutter](https://github.com/iamyogik/argon_buttons_flutter) | ![](https://img.shields.io/pub/v/argon_buttons_flutter.svg) |
