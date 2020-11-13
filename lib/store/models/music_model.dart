@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/music.dart';
 
 import '../../page_index.dart';
 

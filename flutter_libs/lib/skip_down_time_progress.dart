@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
 
 class SkipDownTimeProgress extends StatefulWidget {
   final Color color;
@@ -34,11 +34,10 @@ class _SkipDownTimeProgressState extends State<SkipDownTimeProgress>
   @override
   void initState() {
     super.initState();
-    debugPrint('initState----------------------');
     _controller = AnimationController(vsync: this, duration: widget.duration);
     _animation = Tween(begin: 360.0, end: 0.0).animate(_controller)
       ..addListener(() {
-        debugPrint('ange == ${_controller.value}');
+        // debugPrint('ange == ${_controller.value}');
         if (mounted) setState(() {});
       })
       ..addStatusListener((AnimationStatus status) {
@@ -53,35 +52,28 @@ class _SkipDownTimeProgressState extends State<SkipDownTimeProgress>
   @override
   void didUpdateWidget(SkipDownTimeProgress oldWidget) {
     super.didUpdateWidget(oldWidget);
-    debugPrint('didUpdateWidget----------------------');
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
-    debugPrint('dispose----------------------');
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onTap,
-      child: CustomPaint(
-        painter:
-            _DrawProgress(widget.color, widget.radius, angle: _animation.value),
-        size: widget.size,
-        child: Center(
-          child: Text(
-            widget.skipText,
-            style: TextStyle(
-                color: widget.color,
-                fontSize: 13.5,
-                decoration: TextDecoration.none),
-          ),
-        ),
-      ),
-    );
+        onTap: widget.onTap,
+        child: CustomPaint(
+            painter: _DrawProgress(widget.color, widget.radius,
+                angle: _animation.value),
+            size: widget.size,
+            child: Center(
+                child: Text(widget.skipText,
+                    style: TextStyle(
+                        color: widget.color,
+                        fontSize: 13.5,
+                        decoration: TextDecoration.none)))));
   }
 }
 
@@ -120,7 +112,7 @@ class _DrawProgress extends CustomPainter {
     angle = angle * (-1);
     double startAngle = -math.pi / 2;
     double sweepAngle = math.pi * angle / 180;
-    debugPrint("draw paint-------------------= $startAngle, $sweepAngle");
+    // debugPrint("draw paint-------------------= $startAngle, $sweepAngle");
     // canvas.drawArc(rect, startAngle, sweepAngle, false, progressPaint);
 
     Path path = Path();

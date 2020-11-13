@@ -21,7 +21,7 @@ class Song {
     song.albumArtUrl = map["album_url"];
     song.id = map["id"];
     song.audioPath = map["audio_url"];
-    song.lyric = map["lyric"];
+    song.lyric = map["lyric"] ?? '';
     song.artists = map["artists"];
 
     return song;

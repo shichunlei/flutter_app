@@ -257,7 +257,7 @@ class _SignInPageState extends State<SignInPage> {
     //     ApiUrl.LOGIN,
     //     (data) {
     //       User user = User.fromMap(data);
-    //
+
     Store.value<UserModel>(context, listen: false)
       ..setUser(
         id: 1,
@@ -272,6 +272,7 @@ class _SignInPageState extends State<SignInPage> {
         login: true,
         mobile: "13000002212", //user.mobile,
       );
+
     /// 模拟登陆延迟两秒跳转到主页
     Future.delayed(Duration(seconds: 2), () {
       if (isShowLoading) {
@@ -285,11 +286,10 @@ class _SignInPageState extends State<SignInPage> {
     //   'password': _pwdController.text.toString()
     // },
     // errorCallBack: (error) {
-    //   print(error);
     //   if (isShowLoading) {
     //     Navigator.of(context).pop();
     //   }
-    //   Toast.show(context, error.message);
+    //   Toast.show(context, error.toString());
     // });
   }
 }

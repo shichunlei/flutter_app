@@ -1,12 +1,10 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-
-import '../bean/index.dart';
-
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' show parse;
 
+import '../bean/index.dart';
 import '../page_index.dart';
 
 class ApiService {
@@ -2127,11 +2125,89 @@ class ApiService {
   /// 音乐列表
   ///
   static Future<List<Song>> getMusics() async {
-    Response response = await HttpUtils().request(ApiUrl.MUSIC, data: null);
-    if (response == null || response?.statusCode != 200) {
-      return [];
-    }
-    BaseResult result = BaseResult.fromMap(json.decode(response.data));
+    // Response response = await HttpUtils().request(ApiUrl.MUSIC, data: null);
+    // if (response == null || response?.statusCode != 200) {
+    //   return [];
+    // }
+    // BaseResult result = BaseResult.fromMap(json.decode(response.data));
+
+    BaseResult result = BaseResult.fromMap({
+      "code": "0",
+      "data": [
+        {
+          "id": "518014018",
+          "name": "Crime (Acoustic)",
+          "album_url":
+              "http://p2.music.126.net/lIWrJdg5oHop5ej9oAy-ZA==/109951163059580185.jpg?param=130y130",
+          "audio_url":
+              "http://music.163.com/song/media/outer/url?id=518014018.mp3",
+          "artists": "Grey / SKOTT"
+        },
+        {
+          "id": "1494259745",
+          "name": "I Need a Girl，Pt.3",
+          "album_url":
+              "http://p1.music.126.net/fEr5_4O2T2KRJY6b6h6AIw==/109951165458520169.jpg?param=130y130",
+          "audio_url":
+              "http://music.163.com/song/media/outer/url?id=1494259745.mp3",
+          "artists": "马思唯"
+        },
+        {
+          "id": "1493933723",
+          "name": "送一朵愧疚的花",
+          "album_url":
+              "http://p1.music.126.net/rfBQscxfO_lyUTn3A2XoOQ==/109951165454257534.jpg?param=130y130",
+          "audio_url":
+              "http://music.163.com/song/media/outer/url?id=1493933723.mp3",
+          "artists": "房东的猫"
+        },
+        {
+          "id": "1462342189",
+          "name": "我想我不一样",
+          "album_url":
+              "http://p1.music.126.net/7Bf5iSbGf9ukg0ehaWVQaw==/109951165134021689.jpg?param=130y130",
+          "audio_url":
+              "http://music.163.com/song/media/outer/url?id=1462342189.mp3",
+          "artists": "张紫宁"
+        },
+        {
+          "id": "1494462206",
+          "name": "富士山下",
+          "album_url":
+              "http://p1.music.126.net/g4HWPlA6pqYixCw6pFZuLg==/109951165460311280.jpg?param=130y130",
+          "audio_url":
+              "http://music.163.com/song/media/outer/url?id=1494462206.mp3",
+          "artists": "陈奕迅"
+        },
+        {
+          "id": "1494738691",
+          "name": "云与海",
+          "album_url":
+              "http://p2.music.126.net/rj6Ul-n2WFz2Tx-ZMMnDxw==/109951165461137409.jpg?param=130y130",
+          "audio_url":
+              "http://music.163.com/song/media/outer/url?id=1494738691.mp3",
+          "artists": "Kiki"
+        },
+        {
+          "id": "1463165983",
+          "name": "天外来物",
+          "album_url":
+              "http://p1.music.126.net/HvB44MNINoLar8HFbRjIGQ==/109951165142435842.jpg?param=130y130",
+          "audio_url":
+              "http://music.163.com/song/media/outer/url?id=1463165983.mp3",
+          "artists": "薛之谦"
+        },
+        {
+          "id": "1492319432",
+          "name": "在哪里都很好",
+          "album_url":
+              "http://p2.music.126.net/ilhSwYuf1t3_vVu5eU5Pnw==/109951165434590354.jpg?param=130y130",
+          "audio_url":
+              "http://music.163.com/song/media/outer/url?id=1492319432.mp3",
+          "artists": "蔡健雅 / 王源"
+        }
+      ]
+    });
 
     if (result.code == '0') {
       return List()
