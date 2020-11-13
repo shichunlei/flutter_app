@@ -3,7 +3,8 @@ import 'dart:io';
 
 import 'package:convert/convert.dart';
 import 'package:crypto/crypto.dart';
-import 'package:flutter/material.dart';
+import 'package:encrypt/encrypt.dart';
+import 'package:flutter/material.dart' hide Key;
 
 /// MD5加密
 ///
@@ -64,4 +65,39 @@ base642Image(String base64Txt) async {
     width: 100, fit: BoxFit.fitWidth,
     gaplessPlayback: true, // 防止重绘
   );
+}
+
+/// aes加密 AES/CBC/NOPadding
+///
+/// [content] 待加密的内容
+/// [strKey] 秘钥
+///
+String aesEncode(String content, String strKey) {
+  try {
+    final key = Key.fromUtf8(strKey);
+    final encrypter =
+        Encrypter(AES(key, mode: AESMode.cbc, padding: 'NOPadding'));
+    final encrypted = encrypter.encrypt(content);
+    return encrypted.base64;
+  } catch (err) {
+    print("aes encode error:$err");
+    return content;
+  }
+}
+
+/// aes解密 AES/CBC/NOPadding
+///
+/// [content] 待解密的内容
+/// [strKey] 秘钥
+///
+dynamic aesDecode(dynamic base64, String strKey) {
+  try {
+    final key = Key.fromUtf8(strKey);
+    final encrypter =
+        Encrypter(AES(key, mode: AESMode.cbc, padding: 'NOPadding'));
+    return encrypter.decrypt64(base64, iv: IV.fromUtf8(strKey));
+  } catch (err) {
+    print("aes decode error:$err");
+    return base64;
+  }
 }

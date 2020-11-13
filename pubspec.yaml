@@ -59,6 +59,8 @@ dependencies: # 应用或包依赖的其它包或插件
   # 英文单词库
   english_words: ^3.1.5
 
+  encrypt: any
+
   fancy_bottom_navigation: ^0.3.2
 
   # flare 插件
