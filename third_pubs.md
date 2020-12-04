@@ -94,3 +94,6 @@
 | 彩带动画 | [confetti](https://github.com/funwithflutter/flutter_confetti) | ![](https://img.shields.io/pub/v/confetti.svg) |
 | 加载，计时器按钮 | [argon_buttons_flutter](https://github.com/iamyogik/argon_buttons_flutter) | ![](https://img.shields.io/pub/v/argon_buttons_flutter.svg) |
 | 屏幕适配 | [flutter_screenutil](https://github.com/OpenFlutter/flutter_screenutil) | ![](https://img.shields.io/pub/v/flutter_screenutil.svg) |
+| 列表定位 | [scroll_to_index](https://github.com/quire-io/scroll-to-index) | ![](https://img.shields.io/pub/v/scroll_to_index.svg) |
+| 列表定位 | [flutter_scroll_to_index](https://github.com/mdddj/flutter_scroll_to_index) | ![](https://img.shields.io/pub/v/flutter_scroll_to_index.svg) |
+| 列表定位 | [scrollable_positioned_list 谷歌出品](https://github.com/google/flutter.widgets/tree/master/packages/scrollable_positioned_list) | ![](https://img.shields.io/pub/v/scrollable_positioned_list.svg) |
