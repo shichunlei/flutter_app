@@ -79,7 +79,7 @@
 | 类iOS侧滑 | [flutter_slidable](https://github.com/letsar/flutter_slidable) | ![](https://img.shields.io/pub/v/flutter_slidable.svg) |
 | 侧滑菜单 | [foldable_sidebar](https://github.com/retroportalstudio/foldable_sidebar) | ![](https://img.shields.io/pub/v/foldable_sidebar.svg) | 
 | 侧滑菜单 | [flutter_inner_drawer](https://github.com/Dn-a/flutter_inner_drawer) | ![](https://img.shields.io/pub/v/flutter_inner_drawer.svg) | 
-| 侧滑菜单 | [foldable_sidebar](https://github.com/retroportalstudio/foldable_sidebar) | ![](https://img.shields.io/pub/v/foldable_sidebar.svg) |
+| 侧滑删除 | [flutter_swipe_action_cell](https://github.com/luckysmg/flutter_swipe_action_cell) | ![](https://img.shields.io/pub/v/flutter_swipe_action_cell.svg) |
 | 极光推送 | [JPush](https://github.com/jpush/jpush-flutter-plugin) | ![](https://img.shields.io/pub/v/jpush_flutter.svg) |
 | 极光IM | [JMessage](https://github.com/jpush/jmessage-flutter-plugin) | ![](https://img.shields.io/pub/v/jmessage_flutter.svg) | 
 | 弹窗 | [kumi_popup_window](https://github.com/q876625596/kumi_popup_window) | ![](https://img.shields.io/pub/v/kumi_popup_window.svg) |
