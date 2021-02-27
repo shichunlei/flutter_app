@@ -27,15 +27,15 @@ class _BookReaderHomePageState extends State<BookReaderHomePage> {
                   icon: Image.asset('images/reader/icon_tab_bookshelf_n.png'),
                   activeIcon:
                       Image.asset('images/reader/icon_tab_bookshelf_p.png'),
-                  title: Text('书架', style: TextStyle(fontSize: 14))),
+                  label: '书架'),
               BottomNavigationBarItem(
                   icon: Image.asset('images/reader/icon_tab_home_n.png'),
                   activeIcon: Image.asset('images/reader/icon_tab_home_p.png'),
-                  title: Text('书城', style: TextStyle(fontSize: 14))),
+                  label: '书城'),
               BottomNavigationBarItem(
                   icon: Image.asset('images/reader/icon_tab_me_n.png'),
                   activeIcon: Image.asset('images/reader/icon_tab_me_p.png'),
-                  title: Text('我的', style: TextStyle(fontSize: 14)))
+                  label: '我的')
             ],
             backgroundColor: Colors.white,
             inactiveColor: grey3Color,

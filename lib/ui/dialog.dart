@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/store/index.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../page_index.dart';
 
@@ -56,9 +55,8 @@ Future<Null> showDiffDialog(BuildContext context,
 /// [context] 上下文
 ///
 void showMusicListBottomSheet(BuildContext context) {
-  showModalBottomSheet(
+  showBarModalBottomSheet(
       context: context,
-      isScrollControlled: true,
       backgroundColor: Colors.white,
       builder: (BuildContext context) => Store.connect<MusicModel>(
           builder: (_, MusicModel snapshot, __) => Container(
@@ -75,7 +73,9 @@ void showMusicListBottomSheet(BuildContext context) {
                             TextSpan(
                                 text: snapshot.mode == 0
                                     ? '顺序播放'
-                                    : snapshot.mode == 1 ? "随机播放" : "单曲循环",
+                                    : snapshot.mode == 1
+                                        ? "随机播放"
+                                        : "单曲循环",
                                 style: TextStyles.textBlue16),
                             TextSpan(
                                 text: '（共${snapshot.allSongs.length}首）',
@@ -85,6 +85,7 @@ void showMusicListBottomSheet(BuildContext context) {
                 Container(height: 1, color: Colors.grey),
                 Expanded(
                     child: ListView.separated(
+                        padding: EdgeInsets.zero,
                         itemBuilder: (_, index) {
                           bool isPlaying = snapshot.curIndex == index;
                           return ListTile(

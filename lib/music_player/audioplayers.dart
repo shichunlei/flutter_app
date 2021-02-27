@@ -25,8 +25,8 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
   Widget build(BuildContext context) {
     var snapshot = Store.value<MusicModel>(context);
 
-    return Scaffold(
-      body: Stack(children: <Widget>[
+    return Material(
+      child: Stack(children: <Widget>[
         Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -111,38 +111,28 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
             )
           ]),
         ),
-        Positioned(
-          child: Material(
-            type: MaterialType.transparency,
-            child: IconButton(
-                splashColor: lightAccentColor,
-                highlightColor: Colors.transparent,
-                icon: Icon(
-                  Icons.more_horiz,
-                  color: Colors.white,
-                ),
-                onPressed: () {}),
-          ),
-          right: 0,
-          top: Utils.topSafeHeight,
-        ),
-        Positioned(
-          child: Material(
-            type: MaterialType.transparency,
-            child: IconButton(
-                splashColor: lightAccentColor,
-                highlightColor: Colors.transparent,
-                icon: Icon(
-                  Icons.keyboard_arrow_down,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                }),
-          ),
-          left: 0,
-          top: Utils.topSafeHeight,
-        ),
+        Container(
+            height: Utils.navigationBarHeight,
+            child: AppBar(
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                leading: IconButton(
+                    splashColor: lightAccentColor,
+                    highlightColor: Colors.transparent,
+                    icon: Icon(Icons.keyboard_arrow_down, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }),
+                actions: [
+                  IconButton(
+                      splashColor: lightAccentColor,
+                      highlightColor: Colors.transparent,
+                      icon: Icon(
+                        Icons.more_horiz,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {})
+                ]))
       ]),
     );
   }

@@ -60,13 +60,13 @@ class _NavigationBarFixedState extends State<NavigationBarFixed>
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.home), title: Text('HOME')),
+                icon: Icon(Icons.home), label: "HOME"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.email), title: Text('Email')),
+                icon: Icon(Icons.email), label: 'Email'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.pages), title: Text('PAGES')),
+                icon: Icon(Icons.pages), label: 'PAGES'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.airplay), title: Text('AIRPLAY'))
+                icon: Icon(Icons.airplay), label: 'AIRPLAY')
           ],
           backgroundColor: Colors.grey),
     );

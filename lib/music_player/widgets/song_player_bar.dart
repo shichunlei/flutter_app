@@ -10,8 +10,10 @@ class SongPlayerBar extends StatelessWidget {
   Widget build(BuildContext context) {
     var snapshot = Store.value<MusicModel>(context);
     return GestureDetector(
-        onTap: () => pushNewPageAnimation(context, AudioPlayersPage(),
-            type: TransitionType.slide_top),
+        onTap: () {
+          showMaterialModalBottomSheet(
+              context: context, builder: (_) => AudioPlayersPage());
+        },
         child: Container(
             height: 60.0 + Utils.bottomSafeHeight,
             width: Utils.width,
@@ -35,10 +37,10 @@ class SongPlayerBar extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                  Text('${snapshot.curSong?.title}',
+                                  Text('${snapshot.curSong?.title ?? ""}',
                                       maxLines: 1,
                                       style: TextStyle(fontSize: 16)),
-                                  Text('${snapshot.curSong?.artists}',
+                                  Text('${snapshot.curSong?.artists ?? ""}',
                                       maxLines: 1,
                                       style: TextStyle(fontSize: 14))
                                 ])),

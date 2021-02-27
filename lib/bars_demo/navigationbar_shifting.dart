@@ -28,19 +28,19 @@ class _NavigationBarShiftingState extends State<NavigationBarShifting> {
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                   icon: Icon(Icons.home),
-                  title: Text('HOME'),
+                  label: 'HOME',
                   backgroundColor: Colors.green),
               BottomNavigationBarItem(
                   icon: Icon(Icons.email),
-                  title: Text('Email'),
+                  label: 'Email',
                   backgroundColor: Colors.orange),
               BottomNavigationBarItem(
                   icon: Icon(Icons.pages),
-                  title: Text('PAGES'),
+                  label: 'PAGES',
                   backgroundColor: Colors.red),
               BottomNavigationBarItem(
                   icon: Icon(Icons.airplay),
-                  title: Text('AIRPLAY'),
+                  label: 'AIRPLAY',
                   backgroundColor: Colors.purple)
             ],
             currentIndex: _currentIndex,

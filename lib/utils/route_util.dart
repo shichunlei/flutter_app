@@ -68,7 +68,7 @@ void pushNewPageAnimation(
         curve: curve,
         direction: direction,
         axis: axis,
-      )).then((data) => callBack(data));
+      )).then(callBack?.call);
 }
 
 enum TransitionType {

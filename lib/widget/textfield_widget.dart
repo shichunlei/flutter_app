@@ -59,7 +59,7 @@ class TextFieldWidgetDemoState extends State<TextFieldWidgetDemo> {
         ),
         keyboardType: TextInputType.phone,
         inputFormatters: [
-          WhitelistingTextInputFormatter.digitsOnly,
+          FilteringTextInputFormatter.digitsOnly,
         ],
       ),
       TextFormField(

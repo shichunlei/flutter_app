@@ -36,17 +36,11 @@ class _TimeLinePageState extends State<TimeLinePage>
                 curve: Curves.easeInOut),
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.format_align_left),
-                title: Text("LEFT"),
-              ),
+                  icon: Icon(Icons.format_align_left), label: "LEFT"),
               BottomNavigationBarItem(
-                icon: Icon(Icons.format_align_center),
-                title: Text("CENTER"),
-              ),
+                  icon: Icon(Icons.format_align_center), label: "CENTER"),
               BottomNavigationBarItem(
-                icon: Icon(Icons.format_align_right),
-                title: Text("RIGHT"),
-              ),
+                  icon: Icon(Icons.format_align_right), label: "RIGHT"),
             ]));
   }
 

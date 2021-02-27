@@ -1,11 +1,8 @@
 import 'dart:async';
 
-import 'package:amap_location_fluttify/amap_location_fluttify.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 import 'generated/i18n.dart';
 import 'music_player/widgets/song_player_bar.dart';
@@ -25,9 +22,25 @@ class HomeStatePage extends State<HomePage> {
   /// 上次点击时间
   DateTime _lastPressedAt;
 
+  ScrollController controller;
+
+  double offset = 0.0;
+  double navAlpha = 0;
+
   @override
   void initState() {
     super.initState();
+
+    controller = ScrollController()
+      ..addListener(() {
+        offset = controller.offset;
+
+        if (offset <= 200 && offset >= 0) {
+          setState(() {
+            navAlpha = 1 - (200 - offset) / 200;
+          });
+        }
+      });
 
     SchedulerBinding.instance.addPostFrameCallback((callback) {
       // 设置EasyRefresh的默认样式
@@ -57,7 +70,7 @@ class HomeStatePage extends State<HomePage> {
   @override
   void dispose() {
     AmapLocation.instance.stopLocation();
-
+    controller?.dispose();
     super.dispose();
   }
 
@@ -76,12 +89,15 @@ class HomeStatePage extends State<HomePage> {
             key: _scaffoldKey,
             body: Stack(children: [
               ListView(
-                  padding: EdgeInsets.zero,
+                  controller: controller,
+                  padding:
+                      EdgeInsets.only(bottom: 60.0 + Utils.bottomSafeHeight),
                   physics: BouncingScrollPhysics(),
                   children: _buildListBody(context)),
               Container(
                   child: AppBar(
-                      backgroundColor: Colors.transparent,
+                      backgroundColor:
+                          Theme.of(context).primaryColor.withOpacity(navAlpha),
                       centerTitle: false,
                       title: InkWell(
                           onTap: () {
@@ -113,9 +129,9 @@ class HomeStatePage extends State<HomePage> {
                             onPressed: () => getTestData(),
                             tooltip: "Tune")
                       ]),
-                  height: Utils.navigationBarHeight)
+                  height: Utils.navigationBarHeight),
+              Positioned(child: SongPlayerBar(), bottom: 0)
             ]),
-            bottomNavigationBar: SongPlayerBar(),
             drawer: Drawer(child: HomeDrawable())));
   }
 
