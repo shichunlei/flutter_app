@@ -105,7 +105,7 @@ class _TopicLabsPageState extends State<TopicLabsPage> {
       feeds.clear();
       lastKey = '0';
     }
-    responseBean = await ApiService.getQDailyTopicNews(id, lastKey);
+    responseBean = await QDailyRepository.getQDailyTopicNews(id, lastKey);
 
     if (null != responseBean) {
       feeds.addAll(responseBean.feeds);

@@ -87,7 +87,7 @@ class _LabRatioPageState extends State<LabRatioPage>
   }
 
   void getRatioData(int id) async {
-    data = await ApiService.getQDailyTots(id);
+    data = await QDailyRepository.getQDailyTots(id);
 
     if (data != null) {
       genderQuestion = data.genderQuestion;

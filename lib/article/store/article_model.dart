@@ -71,11 +71,11 @@ class ArticleModel with ChangeNotifier {
 
   getArticle(String type, {String date}) async {
     if (type == 'today') {
-      _article = await ApiService.getTodayArticle();
+      _article = await OtherRepository.getTodayArticle();
     } else if (type == 'random') {
-      _article = await ApiService.getRandomArticle();
+      _article = await OtherRepository.getRandomArticle();
     } else if (type == 'day') {
-      _article = await ApiService.getDayArticle(date);
+      _article = await OtherRepository.getDayArticle(date);
     }
     _date = article.curr;
     debugPrint(

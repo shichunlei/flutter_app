@@ -154,7 +154,7 @@ class _MatchPageState extends State<MatchPage> {
   }
 
   void getMatchData(String mid) async {
-    data = await ApiService.getMatchStats(mid);
+    data = await NBARepository.getMatchStats(mid);
 
     if (data != null) {
       state = LoaderState.Succeed;

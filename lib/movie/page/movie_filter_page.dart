@@ -272,7 +272,7 @@ class _MovieFilterPageState extends State<MovieFilterPage> {
   }
 
   void searchMovies(page, type) async {
-    List<Movie> list = await ApiService.getFilterList(
+    List<Movie> list = await MovieRepository.getFilterList(
         page: page,
         yearRange: scYear.value,
         countries: scCountry.value,

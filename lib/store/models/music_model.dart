@@ -320,7 +320,7 @@ class MusicModel extends ChangeNotifier {
   /// 获取网络音乐列表
   ///
   void getMusics() async {
-    List<Song> list = await ApiService.getMusics();
+    List<Song> list = await MusicRepository.getMusics();
 
     addSongs(list);
   }

@@ -127,9 +127,9 @@ class BookModel extends ChangeNotifier {
 
   /// 得到当前书籍的所有章节
   Future getChapters(String bookId) async {
-    BtocResult result = await ApiService.getBookBtocSource(bookId);
+    BtocResult result = await BookRepository.getBookBtocSource(bookId);
     if (result != null) {
-      _chapters = await ApiService.getBookChapters(result.id);
+      _chapters = await BookRepository.getBookChapters(result.id);
 
       debugPrint('getChapters($bookId)=========');
 

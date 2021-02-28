@@ -114,7 +114,7 @@ class _TeamDataRankPageState extends State<TeamDataRankPage>
   }
 
   void getData() async {
-    list = await ApiService.getTeamRankAll();
+    list = await NBARepository.getTeamRankAll();
 
     list.forEach((item) {
       pointsList.add(SeasonDataStat(

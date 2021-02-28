@@ -51,7 +51,7 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
   void getPhotosList(
       String url, String id, int page, RefreshType loadDataType) async {
     List<Photos> _photos =
-        await ApiService.getPhotos(url, id, page: page, limit: pageSize);
+        await MovieRepository.getPhotos(url, id, page: page, limit: pageSize);
 
     if (_photos.length < pageSize) {
       Toast.show(context, '数据加载完成...');

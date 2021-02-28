@@ -270,7 +270,7 @@ class _SameRidePageState extends State<SameRidePage> {
   }
 
   void getSameRideData(String date, String type) async {
-    list = await ApiService.getSameRideData(
+    list = await SARSCovRepository.getSameRideData(
         date: date,
         type: type,
         arrive: _arriveController.text,

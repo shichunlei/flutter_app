@@ -89,7 +89,7 @@ class _MovieHomePageState extends State<MovieHomePage> {
   }
 
   void getMovieData(String city) async {
-    MovieHomeData data = await ApiService.getMovieHomeData(city: city);
+    MovieHomeData data = await MovieRepository.getMovieHomeData(city: city);
 
     if (data != null) {
       _status = LoaderState.Succeed;

@@ -49,7 +49,7 @@ class _MovieWithCelebrityPageState extends State<MovieWithCelebrityPage> {
 
   void getMovieList(
       String celebrityId, int page, int pageSize, RefreshType type) async {
-    List<Movie> list = await ApiService.getActorMovies(celebrityId,
+    List<Movie> list = await MovieRepository.getActorMovies(celebrityId,
         start: (page - 1) * pageSize, count: pageSize);
     if (type == RefreshType.DEFAULT) {
       movies.addAll(list);

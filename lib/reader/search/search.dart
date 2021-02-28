@@ -156,7 +156,7 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   void getSearchHotWords() async {
-    hotWords = await ApiService.getSearchHotWords();
+    hotWords = await BookRepository.getSearchHotWords();
 
     total = hotWords.length;
 

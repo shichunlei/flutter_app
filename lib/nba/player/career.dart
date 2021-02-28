@@ -85,7 +85,7 @@ class _PlayerCareerPageState extends State<PlayerCareerPage>
   bool get wantKeepAlive => true;
 
   void getCareerData(String id) async {
-    List<SeasonDataStat> list = await ApiService.getPlayerCareer(id);
+    List<SeasonDataStat> list = await NBARepository.getPlayerCareer(id);
 
     careerData.clear();
     careerData.addAll(list.reversed);

@@ -146,11 +146,11 @@ class _BookDetailPageState extends State<BookDetailPage> {
   }
 
   void getBookInfo(int id) async {
-    responseBean = await ApiService.getQDailyArticleInfoData(id);
+    responseBean = await QDailyRepository.getQDailyArticleInfoData(id);
     post = responseBean?.post;
     author = responseBean?.author;
 
-    detailBean = await ApiService.getQDailyBookData(id);
+    detailBean = await QDailyRepository.getQDailyBookData(id);
 
     setState(() {});
   }

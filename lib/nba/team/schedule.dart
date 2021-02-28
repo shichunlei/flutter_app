@@ -56,7 +56,7 @@ class _TeamSchedulePageState extends State<TeamSchedulePage>
   }
 
   void getDataByTeamId(String id) async {
-    List<Schedule> list = await ApiService.getTeamSchedule(id: id);
+    List<Schedule> list = await NBARepository.getTeamSchedule(id: id);
 
     schedule.addAll(list);
     if (mounted) {

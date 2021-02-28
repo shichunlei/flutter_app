@@ -78,8 +78,8 @@ class WeatherPageState extends State<WeatherPage> {
 
   /// 根据城市名查询该城市天气预报
   _getWeather(String cityName) async {
-    airData = await ApiService.getAir(cityName);
-    weather = await ApiService.getHeWeather(cityName);
+    airData = await WeatherRepository.getAir(cityName);
+    weather = await WeatherRepository.getHeWeather(cityName);
 
     if (weather != null) {
       now = weather.now;

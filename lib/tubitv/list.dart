@@ -114,7 +114,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
   }
 
   void getCategoryList(String category, RefreshType type) async {
-    List<TuBiTV> _list = await ApiService.getTubiTVByCategory(
+    List<TuBiTV> _list = await MovieRepository.getTubiTVByCategory(
         category: category, page: page, limit: limit);
 
     if (type == RefreshType.REFRESH || type == RefreshType.DEFAULT) {

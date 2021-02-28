@@ -57,7 +57,7 @@ class _SearchCitiesPageState extends State<SearchCitiesPage> {
   }
 
   void searchCities(String query) async {
-    List<City> list = await ApiService.getSearchCities(query);
+    List<City> list = await WeatherRepository.getSearchCities(query);
 
     cities.clear();
     cities.addAll(list);
@@ -66,7 +66,7 @@ class _SearchCitiesPageState extends State<SearchCitiesPage> {
   }
 
   void getCityWeather(String cityName, provider) async {
-    HeWeather weather = await ApiService.getHeWeather(cityName);
+    HeWeather weather = await WeatherRepository.getHeWeather(cityName);
 
     // 关闭加载框
     Navigator.pop(context);

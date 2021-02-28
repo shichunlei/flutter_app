@@ -1,5 +1,5 @@
 import 'package:flutter_app/bean/index.dart';
-import 'package:flutter_app/service/api_service.dart';
+import 'package:flutter_app/service/other_repository.dart';
 
 import 'base_object_model.dart';
 
@@ -13,7 +13,7 @@ class TextModel extends BaseObjectModel<YouDaoData> {
   Future<YouDaoData> loadData() async {
     int t = DateTime.now().millisecondsSinceEpoch;
 
-    return await ApiService.getYouDaoHomeHead(t);
+    return await OtherRepository.getYouDaoHomeHead(t);
   }
 
   @override

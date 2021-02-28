@@ -78,7 +78,7 @@ class _RankPageState extends State<RankPage>
   }
 
   void getRankData() async {
-    List<RankBase> list = await ApiService.getTeamRank();
+    List<RankBase> list = await NBARepository.getTeamRank();
 
     ranks.addAll(list);
     if (mounted) {

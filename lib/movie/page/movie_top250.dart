@@ -88,7 +88,7 @@ class _MovieTop250State extends State<MovieTop250> {
 
   void getMovieTop250List(int page, int pageSize, RefreshType type) async {
     List<Movie> list =
-    await ApiService.getTop250List(page: page, limit: pageSize);
+    await MovieRepository.getTop250List(page: page, limit: pageSize);
     if (type == RefreshType.DEFAULT) {
       movies.addAll(list);
       if (isFirst && movies.isEmpty) {

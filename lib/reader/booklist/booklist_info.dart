@@ -118,7 +118,7 @@ class _BookListInfoPageState extends State<BookListInfoPage> {
   }
 
   void getBookListInfo(String booklistId) async {
-    booklist = await ApiService.getBookListInfo(booklistId);
+    booklist = await BookRepository.getBookListInfo(booklistId);
 
     List<Books> books = booklist.books;
 

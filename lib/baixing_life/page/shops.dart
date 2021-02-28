@@ -44,7 +44,7 @@ class _ShopsPageState extends State<ShopsPage> {
   }
 
   void getShopsData() async {
-    shops = await ApiService.getBaixingShops();
+    shops = await ShoppingRepository.getBaixingShops();
 
     if (mounted) {
       setState(() {

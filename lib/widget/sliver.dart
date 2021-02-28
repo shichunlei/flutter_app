@@ -217,7 +217,7 @@ class BottomGridViewState extends State<BottomGridView>
 
   void getListData(String key) async {
     images = [];
-    images = await ApiService.getImagesData(key);
+    images = await OtherRepository.getImagesData(key);
 
     if (mounted) {
       setState(() {});

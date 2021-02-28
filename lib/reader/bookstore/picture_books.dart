@@ -63,7 +63,7 @@ class _PictureBookPageState extends State<PictureBookPage>
   }
 
   void getBooksData() async {
-    List<Books> _list = await ApiService.getBookByCategories(
+    List<Books> _list = await BookRepository.getBookByCategories(
         'picture', widget.major,
         start: page * limit, limit: limit);
 

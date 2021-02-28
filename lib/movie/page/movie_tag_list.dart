@@ -70,7 +70,7 @@ class _MovieTagListViewState extends State<MovieTagListView> {
       movies.clear();
     }
     List<Movie> list =
-        await ApiService.getSearchListByTag(tag, page: page, limit: limit);
+        await MovieRepository.getSearchListByTag(tag, page: page, limit: limit);
 
     if (list.length > 0) {
       status = LoaderState.Succeed;

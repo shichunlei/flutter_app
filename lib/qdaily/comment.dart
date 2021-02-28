@@ -50,7 +50,7 @@ class _CommentPageState extends State<CommentPage> {
   }
 
   void getCommentData(int id, String lastKey) async {
-    response = await ApiService.getQDailyCommentData(id,
+    response = await QDailyRepository.getQDailyCommentData(id,
         lastKey: lastKey, dataType: widget.dataType);
     if (response == null) {
       // 请求失败

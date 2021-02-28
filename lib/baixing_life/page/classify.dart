@@ -41,7 +41,7 @@ class _ClassifyPageState extends State<ClassifyPage>
   }
 
   void getCategoryData() async {
-    category = await ApiService.getBaixingCategoryData();
+    category = await ShoppingRepository.getBaixingCategoryData();
 
     if (mounted) setState(() {});
   }

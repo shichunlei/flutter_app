@@ -136,7 +136,7 @@ class _ContactListPageState extends State<ContactListPage> {
   }
 
   Future<List<ContactBean>> fetchData() async {
-    List<ContactBean> _contacts = await ApiService.getRandomUser();
+    List<ContactBean> _contacts = await OtherRepository.getRandomUser();
 
     /// 根据A-Z排序
     SuspensionUtil.sortListBySuspensionTag(_contacts);

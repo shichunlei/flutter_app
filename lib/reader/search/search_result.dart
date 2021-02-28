@@ -64,7 +64,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
   }
 
   void search(String query) async {
-    List<Books> list = await ApiService.getSearchBook(query,
+    List<Books> list = await BookRepository.getSearchBook(query,
         start: (page * limit) + 1, limit: limit);
 
     if (list.length < limit) {

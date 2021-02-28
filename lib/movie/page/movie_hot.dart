@@ -99,6 +99,6 @@ class _MovieHotPageState extends State<MovieHotPage> {
   }
 
   Future<List<Movie>> fetchData(String city) async {
-    return await ApiService.getNowPlayingList(city: city);
+    return await MovieRepository.getNowPlayingList(city: city);
   }
 }

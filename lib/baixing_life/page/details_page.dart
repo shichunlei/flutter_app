@@ -131,7 +131,7 @@ class _DetailsPageState extends State<DetailsPage>
   }
 
   void getGoodsInfo() async {
-    goods = await ApiService.getBaixingGoodsDetailData(widget.id);
+    goods = await ShoppingRepository.getBaixingGoodsDetailData(widget.id);
 
     if (mounted) setState(() {});
   }

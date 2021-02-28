@@ -242,7 +242,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
   }
 
   void getArticleInfo(int id) async {
-    responseBean = await ApiService.getQDailyArticleInfoData(id);
+    responseBean = await QDailyRepository.getQDailyArticleInfoData(id);
     debugPrint('------------------${responseBean.toString()}');
 
     post = responseBean.post;
@@ -250,7 +250,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
 
     debugPrint('${post.id}===============${post.dataType}');
 
-    detailBean = await ApiService.getQDailyArticleData(id);
+    detailBean = await QDailyRepository.getQDailyArticleData(id);
 
     if (mounted) setState(() {});
   }

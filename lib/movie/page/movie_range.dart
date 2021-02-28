@@ -96,7 +96,7 @@ class _MovieRangePageState extends State<MovieRangePage> {
   }
 
   void getRangeData(int year) async {
-    data = await ApiService.getMovieRanges(year);
+    data = await MovieRepository.getMovieRanges(year);
 
     if (data != null) {
       cover = data.cover;

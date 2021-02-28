@@ -109,7 +109,7 @@ class _TubiTVHomePageState extends State<TubiTVHomePage> {
   void getHomeData() async {
     manager.loadingDialog();
 
-    await ApiService.getTubiTVHomeData(
+    await MovieRepository.getTubiTVHomeData(
             platform: Utils.isAndroid ? "android" : "iphone", deviceId: "11111")
         .then((value) {
       manager.content(value);

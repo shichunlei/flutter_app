@@ -100,7 +100,7 @@ class _LabWhoPageState extends State<LabWhoPage>
   }
 
   void getWhoData(int id) async {
-    data = await ApiService.getQDailyWho(id);
+    data = await QDailyRepository.getQDailyWho(id);
 
     if (data != null) {
       questions = data.questions;

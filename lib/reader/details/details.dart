@@ -70,16 +70,16 @@ class _BookDetailsPageState extends State<BookDetailsPage> {
   }
 
   void getBookDetails(String id) async {
-    book = await ApiService.getBookDetails(id);
+    book = await BookRepository.getBookDetails(id);
 
-    BookResult result = await ApiService.getBookReview(id, limit: 3);
+    BookResult result = await BookRepository.getBookReview(id, limit: 3);
     reviews = result.reviews;
 
     reviewsCount = result.total;
 
-    docs = await ApiService.getBookShortReview(id, limit: 2);
+    docs = await BookRepository.getBookShortReview(id, limit: 2);
 
-    interestedBooks = await ApiService.getBookByRecommend(id);
+    interestedBooks = await BookRepository.getBookByRecommend(id);
     if (mounted) {
       setState(() {
         _status = LoaderState.Succeed;

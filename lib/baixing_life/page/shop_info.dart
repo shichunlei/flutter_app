@@ -39,7 +39,7 @@ class _ShopInfoPageState extends State<ShopInfoPage> {
   }
 
   void getShopInfo(String id) async {
-    shopInfo = await ApiService.getBaixingShopInfo(id);
+    shopInfo = await ShoppingRepository.getBaixingShopInfo(id);
 
     setState(() {});
   }

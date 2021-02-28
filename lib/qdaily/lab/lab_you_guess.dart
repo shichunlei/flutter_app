@@ -87,7 +87,7 @@ class _LabYouGuessPageState extends State<LabYouGuessPage>
   }
 
   void loadQuestions() async {
-    data = await ApiService.getQDailyChoices(widget.post.id);
+    data = await QDailyRepository.getQDailyChoices(widget.post.id);
     if (data == null) {
       _status = LoaderState.Failed;
     } else {

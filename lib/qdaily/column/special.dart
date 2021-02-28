@@ -166,7 +166,7 @@ class _SpecialPageState extends State<SpecialPage> {
   }
 
   void getColumnInfo(int columnId) async {
-    responseBean = await ApiService.getQDailyColumnInfo(columnId);
+    responseBean = await QDailyRepository.getQDailyColumnInfo(columnId);
     feeds.clear();
 
     if (responseBean == null) {
@@ -185,7 +185,7 @@ class _SpecialPageState extends State<SpecialPage> {
 
   void getColumnIndex(String lastKey, int columnId) async {
     ResponseBean responseBean =
-        await ApiService.getQDailyColumnIndex(columnId, lastKey);
+        await QDailyRepository.getQDailyColumnIndex(columnId, lastKey);
 
     if (responseBean == null) {
       // 请求失败

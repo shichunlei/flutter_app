@@ -260,7 +260,7 @@ class _FlutterSoundPageState extends State<FlutterSoundPage>
   }
 
   void getSongs() async {
-    List<Song> list = await ApiService.getMusics();
+    List<Song> list = await MusicRepository.getMusics();
 
     songs.addAll(list);
 

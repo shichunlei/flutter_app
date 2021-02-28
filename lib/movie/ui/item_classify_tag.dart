@@ -52,7 +52,7 @@ class _ItemClassifyTagState extends State<ItemClassifyTag>
 
   void searchMovieByTag(String tag) async {
     List<Movie> movies =
-        await ApiService.getSearchListByTag(tag, page: 0, limit: 1);
+        await MovieRepository.getSearchListByTag(tag, page: 0, limit: 1);
 
     if (movies != null && movies.isNotEmpty) {
       setState(() {

@@ -189,7 +189,7 @@ class _AnalyzePageState extends State<AnalyzePage> {
   }
 
   void getAnalyzeData() async {
-    List<Analyze> _list = await ApiService.getSARSCovAnalyzeData();
+    List<Analyze> _list = await SARSCovRepository.getSARSCovAnalyzeData();
 
     list.addAll(_list);
 

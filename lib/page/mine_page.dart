@@ -262,7 +262,7 @@ class _MinePageState extends State<MinePage> {
       'id': Store.value<UserModel>(context, listen: false).getUserId(),
     });
 
-    User user = await ApiService.updateAvatar(data);
+    User user = await UserRepository.updateAvatar(data);
 
     if (user != null) {
       Store.value<UserModel>(context, listen: false)

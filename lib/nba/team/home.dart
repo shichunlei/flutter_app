@@ -125,7 +125,7 @@ class _TeamHomePageState extends State<TeamHomePage>
   }
 
   void getTeamInfo(String id) async {
-    team = await ApiService.getTeamInfo(id);
+    team = await NBARepository.getTeamInfo(id);
 
     setState(() {
       state = LoaderState.Succeed;

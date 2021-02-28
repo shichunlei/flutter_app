@@ -69,7 +69,7 @@ class _BookListsPageState extends State<BookListsPage>
       isLoadComplete = false;
     }
 
-    List<BookList> _list = await ApiService.getBookLists(gender,
+    List<BookList> _list = await BookRepository.getBookLists(gender,
         start: page * limit, limit: limit);
 
     if (page == 0 && _list.length == 0) {

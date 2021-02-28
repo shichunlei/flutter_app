@@ -226,7 +226,7 @@ class _TopSongsPageState extends State<TopSongsPage> {
   }
 
   void getTopMusic() async {
-    List<Song> _list = await ApiService.getMusics();
+    List<Song> _list = await MusicRepository.getMusics();
 
     list.addAll(_list);
 

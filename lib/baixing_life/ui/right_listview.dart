@@ -92,8 +92,8 @@ class RightListViewState extends State<RightListView>
   void getGoodsList(int page, String categoryId, String subId) async {
     isLoadComplete = false;
     this.page = page;
-    List<Goods> _goods =
-        await ApiService.getBaixingGoodsData(this.page, categoryId, subId);
+    List<Goods> _goods = await ShoppingRepository.getBaixingGoodsData(
+        this.page, categoryId, subId);
     if (_goods.length < 20) {
       isLoadComplete = true;
     }

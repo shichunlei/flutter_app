@@ -74,7 +74,7 @@ class _TagsPageState extends State<TagsPage> {
     if (lastKey == '0') {
       feeds.clear();
     }
-    dataBean = await ApiService.getQDailyNewsDataByCategory(tagId, lastKey);
+    dataBean = await QDailyRepository.getQDailyNewsDataByCategory(tagId, lastKey);
 
     if (dataBean == null) {
       // 请求失败

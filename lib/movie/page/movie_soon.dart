@@ -37,7 +37,7 @@ class _MovieSoonPageState extends State<MovieSoonPage> {
 
   void getMovieList(int page, RefreshType type) async {
     List<Movie> list =
-        await ApiService.getComingList(page: page, limit: pageSize);
+        await MovieRepository.getComingList(page: page, limit: pageSize);
     if (type == RefreshType.DEFAULT) {
       movies.addAll(list);
       isFirst = false;

@@ -72,7 +72,7 @@ class _OrderPageState extends State<OrderPage>
 
   void getOrderData(int state, int page, RefreshType type) async {
     List<OrderBean> list =
-        await ApiService.getBaixingOrders(page: page, state: state);
+        await ShoppingRepository.getBaixingOrders(page: page, state: state);
 
     if (type == RefreshType.REFRESH || type == RefreshType.DEFAULT) {
       isLoadComplete = false;

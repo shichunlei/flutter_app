@@ -261,7 +261,7 @@ class _SARSCoVIndexPageState extends State<SARSCoVIndexPage> {
   }
 
   void getData() async {
-    data = await ApiService.getSARSCovIndexData();
+    data = await SARSCovRepository.getSARSCovIndexData();
 
     provinces.addAll(data.provinces);
     continents.addAll(data.continents);

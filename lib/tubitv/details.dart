@@ -98,7 +98,7 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 
   void getDetails(String id) async {
-    data = await ApiService.getTubiTVDetails(
+    data = await MovieRepository.getTubiTVDetails(
         id: id,
         platform: Utils.isAndroid ? "android" : "iphone",
         deviceId: "111111");

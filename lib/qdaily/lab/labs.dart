@@ -57,7 +57,7 @@ class _LabsPageState extends State<LabsPage>
   }
 
   void getLabsData(String lastKey) async {
-    responseBean = await ApiService.getQDailyLabsData(lastKey);
+    responseBean = await QDailyRepository.getQDailyLabsData(lastKey);
 
     if (responseBean == null) {
       // 请求失败

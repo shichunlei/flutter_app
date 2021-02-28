@@ -40,7 +40,7 @@ class _ColumnsPageState extends State<ColumnsPage> {
   }
 
   void getColumnsData(String lastKey, RefreshType type) async {
-    dataBean = await ApiService.getQDailyColumnList(lastKey);
+    dataBean = await QDailyRepository.getQDailyColumnList(lastKey);
     if (type == RefreshType.DEFAULT || type == RefreshType.REFRESH) {
       columns.clear();
     }

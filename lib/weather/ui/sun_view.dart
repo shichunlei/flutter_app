@@ -73,7 +73,7 @@ class _SunViewState extends State<SunView>
   }
 
   void getSunData() async {
-    weather = await ApiService.getSunriseSunset(widget.cityName);
+    weather = await WeatherRepository.getSunriseSunset(widget.cityName);
 
     setState(() {
       sunriseSunset = weather.sunriseSunset[0];

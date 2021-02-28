@@ -239,7 +239,7 @@ class _SongListDetailsPageState extends State<SongListDetailsPage> {
   }
 
   void getSongList() async {
-    List<Song> _list = await ApiService.getMusics();
+    List<Song> _list = await MusicRepository.getMusics();
 
     list.addAll(_list);
 

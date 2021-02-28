@@ -71,7 +71,7 @@ class _JuZiMiListPageState extends State<JuZiMiListPage>
   }
 
   void getJuZiMiDate(String type, int page, RefreshType refreshType) async {
-    List<JuZiMi> _list = await ApiService.getJuZiMiListByType(type, page);
+    List<JuZiMi> _list = await OtherRepository.getJuZiMiListByType(type, page);
 
     if (refreshType == RefreshType.DEFAULT ||
         refreshType == RefreshType.REFRESH) {

@@ -150,7 +150,7 @@ class _PlayerHomePageState extends State<PlayerHomePage>
   }
 
   void getPlayerData(String id) async {
-    player = await ApiService.getPlayerInfo(id: id);
+    player = await NBARepository.getPlayerInfo(id: id);
 
     playerBaseInfo = player.playerBaseInfo;
 

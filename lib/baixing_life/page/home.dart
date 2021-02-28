@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage>
   }
 
   void getHomeData() async {
-    data = await ApiService.getBaixingHomeData('115.02932', '35.76189');
+    data = await ShoppingRepository.getBaixingHomeData('115.02932', '35.76189');
 
     if (data != null) {
       state = LoaderState.Succeed;
@@ -257,7 +257,7 @@ class _HomePageState extends State<HomePage>
   }
 
   void getHotGoods(page) async {
-    List<Goods> _goods = await ApiService.getBaixingHomeHotData(page);
+    List<Goods> _goods = await ShoppingRepository.getBaixingHomeHotData(page);
     setState(() => goods.addAll(_goods));
   }
 }

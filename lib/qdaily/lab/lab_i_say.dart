@@ -106,7 +106,7 @@ class _LabISayPageState extends State<LabISayPage> {
       this.lastKey = '1';
     }
 
-    responseBean = await ApiService.getQDailyISay(id, lastKey);
+    responseBean = await QDailyRepository.getQDailyISay(id, lastKey);
 
     if (responseBean == null) {
       // 请求失败

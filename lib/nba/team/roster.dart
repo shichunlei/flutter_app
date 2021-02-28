@@ -44,7 +44,7 @@ class _TeamRosterPageState extends State<TeamRosterPage>
   }
 
   void getDataByTeamId(String id) async {
-    List<Player> list = await ApiService.getTeamRoster(id: id);
+    List<Player> list = await NBARepository.getTeamRoster(id: id);
     players.addAll(list);
     if (mounted) {
       setState(() {

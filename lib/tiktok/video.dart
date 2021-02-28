@@ -49,7 +49,7 @@ class _VideoPageState extends State<VideoPage> {
   }
 
   void getVideoData() async {
-    List<TiktokVideo> list = await ApiService.getTiktokVideos();
+    List<TiktokVideo> list = await OtherRepository.getTiktokVideos();
 
     videos.addAll(list);
     setState(() {

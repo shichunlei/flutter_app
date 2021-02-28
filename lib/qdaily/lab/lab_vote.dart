@@ -121,7 +121,7 @@ class _LabVotePageState extends State<LabVotePage> {
   }
 
   void getData(int labId) async {
-    responseBean = await ApiService.getQDailyVote(labId);
+    responseBean = await QDailyRepository.getQDailyVote(labId);
 
     if (responseBean == null) {
       // 请求失败
@@ -141,7 +141,7 @@ class _LabVotePageState extends State<LabVotePage> {
   }
 
   void getResultData(int id) async {
-    baseData = await ApiService.getQDailyVoteResult(id);
+    baseData = await QDailyRepository.getQDailyVoteResult(id);
 
     result.addAll(baseData.everyoneAttitude);
     setState(() {

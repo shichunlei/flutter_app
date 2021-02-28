@@ -104,7 +104,7 @@ class _PlayerMatchPageState extends State<PlayerMatchPage>
 
   void getMatchData(id, {int year: 2019, int type: 1}) async {
     List<PlayerMatch> _list =
-        await ApiService.getPlayerMatch(id, year: year, type: type);
+        await NBARepository.getPlayerMatch(id, year: year, type: type);
 
     list.clear();
     list.addAll(_list.reversed);

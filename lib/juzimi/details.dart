@@ -197,7 +197,7 @@ class _JuZiMiDetailsState extends State<JuZiMiDetails> {
   }
 
   void getDetails(int id, String type) async {
-    juzimi = await ApiService.getJuZiMiDetails(id, type);
+    juzimi = await OtherRepository.getJuZiMiDetails(id, type);
 
     setState(() {
       _status = LoaderState.Succeed;

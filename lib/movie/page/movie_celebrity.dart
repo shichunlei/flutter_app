@@ -168,7 +168,7 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
   }
 
   void getPersonDetail(id) async {
-    celebrity = await ApiService.getActorDetail(id);
+    celebrity = await MovieRepository.getActorDetail(id);
 
     if (celebrity.photos.isNotEmpty) {
       pageColor = await Utils.getImageDominantColor(celebrity.photos[0].cover);

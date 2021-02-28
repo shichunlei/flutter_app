@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/he_weather.dart';
-import 'package:flutter_app/service/api_service.dart';
-import 'package:flutter_app/utils/sp_util.dart';
+
+import '../../page_index.dart';
 
 class WeatherModel extends ChangeNotifier {
   List<HeWeather> _citiesWeather = [];
@@ -26,7 +25,7 @@ class WeatherModel extends ChangeNotifier {
 
   /// 得到城市当前天气情况
   Future getCityNowWeather(String cityName, {bool isDefault: false}) async {
-    HeWeather weather = await ApiService.getHeWeatherNow(cityName);
+    HeWeather weather = await WeatherRepository.getHeWeatherNow(cityName);
 
     if (isDefault) {
       _defaultWeather = weather;
@@ -43,7 +42,7 @@ class WeatherModel extends ChangeNotifier {
 
   /// 得到城市天气情况（全部）
   Future getCityWeather(String cityName) async {
-    HeWeather weather = await ApiService.getHeWeather(cityName);
+    HeWeather weather = await WeatherRepository.getHeWeather(cityName);
     notifyListeners();
   }
 

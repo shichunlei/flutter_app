@@ -4,6 +4,6 @@ import 'base_list_model.dart';
 class TextListModel extends BaseListModel<JuZiMi> {
   @override
   Future<List<JuZiMi>> loadData() async {
-    return await ApiService.getJuZiMiListByType("aiqing", pageNumber);
+    return await OtherRepository.getJuZiMiListByType("aiqing", pageNumber);
   }
 }

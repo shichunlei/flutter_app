@@ -55,7 +55,7 @@ class CityPageState extends State<CityPage> {
     _hotCityList.add(City(location: "杭州", firstLetter: "★"));
     _hotCityList.add(City(location: "上海", firstLetter: "★"));
 
-    List<City> __cityList = await ApiService.getHotCities();
+    List<City> __cityList = await WeatherRepository.getHotCities();
 
     _cityList.addAll(__cityList);
 

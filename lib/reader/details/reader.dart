@@ -31,7 +31,7 @@ class _ReaderPageState extends State<ReaderPage>
   }
 
   void getChapterInfo(String link) async {
-    chapterInfo = await ApiService.getBookChapterInfo("$link");
+    chapterInfo = await BookRepository.getBookChapterInfo("$link");
 
     if (chapterInfo.cpContent == '请下载最新的追书神器app阅读本作品。') {
       _status = LoaderState.Failed;

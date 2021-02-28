@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/sars_cov.dart';
 import 'package:flutter_app/page_index.dart';
-import 'package:flutter_app/service/api_service.dart';
+import 'package:flutter_app/service/other_repository.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_easyrefresh/material_header.dart';
@@ -109,7 +109,7 @@ class _AreaPageState extends State<AreaPage> {
   }
 
   void getSARSCovProvinceData(String province, RefreshType refreshType) async {
-    data = await ApiService.getSARSCovProvinceData(province);
+    data = await SARSCovRepository.getSARSCovProvinceData(province);
 
     cities.clear();
     cities.addAll(data?.cities);
@@ -132,7 +132,7 @@ class _AreaPageState extends State<AreaPage> {
       isLoadComplete = false;
     }
 
-    List<ProvinceNews> list = await ApiService.getSARSCovProvinceNewsData(
+    List<ProvinceNews> list = await SARSCovRepository.getSARSCovProvinceNewsData(
         province,
         page: page,
         num: num);

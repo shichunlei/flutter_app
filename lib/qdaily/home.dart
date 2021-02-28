@@ -57,7 +57,7 @@ class _HomePageState extends State<QHomePage>
   }
 
   void getHomeData(String lastKey) async {
-    responseBean = await ApiService.getQDailyHomeData(lastKey);
+    responseBean = await QDailyRepository.getQDailyHomeData(lastKey);
 
     if (responseBean == null) {
       // 请求失败

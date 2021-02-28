@@ -110,7 +110,7 @@ class _SearchListPageState extends State<SearchListPage> {
 
   void _searchAction({String key}) async {
     Utils.hideKeyboard(context);
-    data = await ApiService.getTubiTVSearchData(
+    data = await MovieRepository.getTubiTVSearchData(
         key: key,
         platform: Utils.isAndroid ? "android" : "iphone",
         deviceId: "11111");

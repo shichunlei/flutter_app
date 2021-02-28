@@ -107,7 +107,7 @@ class _YouDaoHomePageState extends State<YouDaoHomePage> {
 
   void getHomeData() async {
     int t = DateTime.now().millisecondsSinceEpoch;
-    await ApiService.getYouDaoHomeHead(t).then((data) async {
+    await OtherRepository.getYouDaoHomeHead(t).then((data) async {
       YouDaoData _data = data;
       banners = data.head;
       popularCourse = data.popularCourse;
@@ -121,7 +121,7 @@ class _YouDaoHomePageState extends State<YouDaoHomePage> {
                 AdDialog(image: _data?.popup?.img));
       }
 
-      await ApiService.getYouDaoHomeTags(data?.tagRecommends, t).then((data) {
+      await OtherRepository.getYouDaoHomeTags(data?.tagRecommends, t).then((data) {
         _tagRecommendCourses.addAll(data.tagRecommendCourses);
 
         _status = LoaderState.Succeed;

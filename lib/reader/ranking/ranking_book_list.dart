@@ -61,7 +61,7 @@ class _RankingBookListPageState extends State<RankingBookListPage>
   }
 
   void getRankingBooks(String rankingId) async {
-    ranking = await ApiService.getRankingBooks(rankingId);
+    ranking = await BookRepository.getRankingBooks(rankingId);
 
     if (null == ranking) {
       _status = LoaderState.Failed;

@@ -72,6 +72,6 @@ class _MovieRankingSubPageState extends State<MovieRankingSubPage>
   }
 
   Future<List<Movie>> fetchData() async {
-    return await ApiService.getRankingList(widget.url);
+    return await MovieRepository.getRankingList(widget.url);
   }
 }

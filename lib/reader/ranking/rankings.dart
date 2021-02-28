@@ -74,7 +74,7 @@ class _RankingsPageState extends State<RankingsPage>
   }
 
   void getRankings() async {
-    result = await ApiService.getBookRankings();
+    result = await BookRepository.getBookRankings();
 
     if (result != null) {
       male = result.male;

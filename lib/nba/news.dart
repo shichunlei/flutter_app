@@ -53,7 +53,7 @@ class _NBANewsPageState extends State<NBANewsPage>
   bool get wantKeepAlive => true;
 
   void getPlayerNews(String name) async {
-    List<NBANews> list = await ApiService.getNBANews(name);
+    List<NBANews> list = await NBARepository.getNBANews(name);
 
     news.clear();
     news.addAll(list);

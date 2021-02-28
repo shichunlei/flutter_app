@@ -79,8 +79,7 @@ export 'res/styles.dart';
 
 export 'sars_cov/index.dart';
 
-export 'service/api_service.dart';
-export 'service/api_url.dart';
+export 'service/index.dart';
 
 export 'splash_screen.dart';
 
@@ -136,3 +135,4 @@ export 'package:flutter_easyrefresh/easy_refresh.dart'
 export 'package:flutter_swiper/flutter_swiper.dart';
 export 'package:amap_location_fluttify/amap_location_fluttify.dart';
 export 'package:flutter_vector_icons/flutter_vector_icons.dart';
+export 'package:dio/dio.dart';

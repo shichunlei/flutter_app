@@ -73,7 +73,7 @@ class _PlayerRankPageState extends State<PlayerRankPage>
   }
 
   void getData() async {
-    rank = await ApiService.getPlayerRankTopN();
+    rank = await NBARepository.getPlayerRankTopN();
 
     assistsRank.addAll(rank.assistsRank);
     blocksRank.addAll(rank.blocksRank);

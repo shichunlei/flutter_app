@@ -136,7 +136,7 @@ class _TrajectoryPageState extends State<TrajectoryPage> {
       isLoadComplete = false;
     }
 
-    List<Trajectory> list = await ApiService.getSARSCovTrajectoryData(
+    List<Trajectory> list = await SARSCovRepository.getSARSCovTrajectoryData(
         province: province, city: city, county: county, page: page, num: num);
 
     if (list.length < num) {

@@ -90,7 +90,7 @@ class _SchedulePageState extends State<SchedulePage>
         formats: [yyyy, '-', mm, '-', dd]);
 
     List<Schedule> list =
-        await ApiService.getNBASchedule(startTime: startDate, endTime: endDate);
+        await NBARepository.getNBASchedule(startTime: startDate, endTime: endDate);
     if (type == RefreshType.DEFAULT) {
       if (list.length == 0) {
         state = LoaderState.NoData;

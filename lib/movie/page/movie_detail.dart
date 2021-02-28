@@ -55,7 +55,7 @@ class _MovieDetailState extends State<MovieDetail> {
   }
 
   void getMovieDetail(String id) async {
-    movie = await ApiService.getMovieDetail(id);
+    movie = await MovieRepository.getMovieDetail(id);
 
     if (movie != null) {
       status = LoaderState.Succeed;

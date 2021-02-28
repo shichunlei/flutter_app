@@ -222,7 +222,7 @@ class _TeamDataPageState extends State<TeamDataPage>
   }
 
   void getTeamStats(String id) async {
-    teamStats = await ApiService.getTeamStats(id: id);
+    teamStats = await NBARepository.getTeamStats(id: id);
 
     teamLeagueSeasonStat = teamStats.teamLeagueSeasonStat;
     teamSeasonStat = teamStats.teamSeasonStat;

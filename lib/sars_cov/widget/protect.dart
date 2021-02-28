@@ -215,7 +215,7 @@ class _ProtectViewState extends State<ProtectView> {
   }
 
   Future<PreventManualBase> fetchData() async {
-    PreventManualBase base = await ApiService.getSARSCovPreventManualData();
+    PreventManualBase base = await SARSCovRepository.getSARSCovPreventManualData();
 
     return base;
   }

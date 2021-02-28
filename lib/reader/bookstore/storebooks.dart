@@ -131,7 +131,7 @@ class _StoreBooksPageState extends State<StoreBooksPage>
   }
 
   void getBooksData() async {
-    List<Books> _list = await ApiService.getBookByCategories(
+    List<Books> _list = await BookRepository.getBookByCategories(
         widget.gender, widget.major,
         start: page * limit, limit: limit);
 

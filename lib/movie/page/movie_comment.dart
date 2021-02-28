@@ -53,7 +53,7 @@ class _MovieCommentPageState extends State<MovieCommentPage> {
 
   void getCommentsList(movieId, int page, loadDataType) async {
     List<Reviews> reviews =
-        await ApiService.getComments(movieId, page: page, limit: pageSize);
+        await MovieRepository.getComments(movieId, page: page, limit: pageSize);
     if (isFirst) {
       isFirst = false;
       if (reviews.isEmpty) {

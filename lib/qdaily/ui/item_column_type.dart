@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/service/api_service.dart';
+import 'package:flutter_app/service/other_repository.dart';
 
 import '../../page_index.dart';
 import '../index.dart';
@@ -79,7 +79,7 @@ class _ItemColumnTypeViewState extends State<ItemColumnTypeView> {
 
   void getColumnItems(int id) async {
     ResponseBean responseBean =
-        await ApiService.getQDailyColumnIndex(id, lastKey);
+        await QDailyRepository.getQDailyColumnIndex(id, lastKey);
 
     if (responseBean == null) {
       // 请求失败

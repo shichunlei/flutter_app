@@ -40,7 +40,7 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Future<void> getSearchData(String keywords, String lastKey) async {
-    data = await ApiService.getQDailySearchData(keywords, lastKey);
+    data = await QDailyRepository.getQDailySearchData(keywords, lastKey);
 
     if (data == null) {
       ///

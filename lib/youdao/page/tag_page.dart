@@ -130,7 +130,7 @@ class _TagPageState extends State<TagPage> {
   }
 
   Future<void> getData() async {
-    YouDaoData _data = await ApiService.getYouDaoGroupDetails(widget.tagId);
+    YouDaoData _data = await OtherRepository.getYouDaoGroupDetails(widget.tagId);
 
     columns = _data.column;
     banners = _data.banner;
@@ -152,7 +152,7 @@ class _TagPageState extends State<TagPage> {
   Future<void> loadMore() async {
     int t = DateTime.now().millisecondsSinceEpoch;
     List<CoursesBean> data =
-        await ApiService.getYouDaoGroupCourseList(widget.tagId, lastRank, t);
+        await OtherRepository.getYouDaoGroupCourseList(widget.tagId, lastRank, t);
 
     courses.addAll(data);
     if (data.length < 10) {
