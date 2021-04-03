@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/user.dart';
 
-import '../generated/i18n.dart';
+import '../generated/l10n.dart';
 import '../store/index.dart';
 
 import 'package:image_picker/image_picker.dart';

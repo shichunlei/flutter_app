@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-import 'generated/i18n.dart';
+// import 'generated/l10n.dart';
+import 'generated/l10n.dart';
 import 'music_player/widgets/song_player_bar.dart';
 import 'page_index.dart';
 import 'store/index.dart';

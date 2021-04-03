@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'generated/i18n.dart';
+import 'generated/l10n.dart';
 import 'store/index.dart';
 import 'page_index.dart';
 
@@ -50,7 +50,9 @@ class MyApp extends StatelessWidget {
 
               /// 不存对应locale时，默认取值Locale('zh', 'CN')
               localeResolutionCallback:
-                  S.delegate.resolution(fallback: const Locale('zh', 'CN'))),
+                  (Locale locale, Iterable<Locale> supportedLocales) {
+                return locale;
+              }),
     );
   }
 }

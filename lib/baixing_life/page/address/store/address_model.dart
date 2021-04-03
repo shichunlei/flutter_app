@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../generated/i18n.dart';
+import '../../../../generated/l10n.dart';
 import '../../../../page_index.dart';
 import '../../../index.dart';
 

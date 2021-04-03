@@ -1,7 +1,7 @@
 import 'package:azlistview/azlistview.dart';
 import 'package:clippy_flutter/diagonal.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/generated/i18n.dart';
+import 'package:flutter_app/generated/l10n.dart';
 
 import '../../page_index.dart';
 import '../index.dart';
