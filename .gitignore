@@ -12,3 +12,4 @@ Podfile.lock
 .flutter-plugins-dependencies
 test
 .last_build_id
+pubspec.lock
