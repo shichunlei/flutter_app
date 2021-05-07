@@ -961,6 +961,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.4+2"
+  wave:
+    dependency: "direct main"
+    description:
+      name: wave
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.0"
   win32:
     dependency: transitive
     description:
