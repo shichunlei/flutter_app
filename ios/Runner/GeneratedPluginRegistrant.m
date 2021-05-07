@@ -4,12 +4,6 @@
 
 #import "GeneratedPluginRegistrant.h"
 
-#if __has_include(<flutter_charts/FlutterChartsPlugin.h>)
-#import <flutter_charts/FlutterChartsPlugin.h>
-#else
-@import flutter_charts;
-#endif
-
 #if __has_include(<flutter_jd_address_selector/FlutterJdAddressSelectorPlugin.h>)
 #import <flutter_jd_address_selector/FlutterJdAddressSelectorPlugin.h>
 #else
@@ -169,7 +163,6 @@
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
-  [FlutterChartsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterChartsPlugin"]];
   [FlutterJdAddressSelectorPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterJdAddressSelectorPlugin"]];
   [AmapCoreFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapCoreFluttifyPlugin"]];
   [AmapLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapLocationFluttifyPlugin"]];

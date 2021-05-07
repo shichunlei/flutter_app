@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/generated/i18n.dart';
+import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
         statusBarColor: Colors.transparent));
     return Scaffold(
       backgroundColor: Colors.white,
-      resizeToAvoidBottomPadding: true,
+      resizeToAvoidBottomInset: true,
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(

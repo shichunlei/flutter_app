@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/generated/i18n.dart';
+import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/page_index.dart';
 
 /// 参考：https://github.com/pedromassango/my_flutter_challenges/blob/master/lib/sliding_login.dart

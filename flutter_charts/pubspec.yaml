@@ -1,0 +1,25 @@
+name: flutter_charts
+description: A new Flutter plugin.
+version: 18.1.36
+author: SCL <1558053958@qq.com>
+homepage: https://github.com/shichunlei/flutter_charts
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  intl: any
+  vector_math: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:

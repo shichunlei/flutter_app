@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/generated/i18n.dart';
+import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/login/ui/identity_code_view.dart';
 import 'package:flutter_app/login/ui/submit_button.dart';
 
@@ -28,7 +28,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: true,
+      resizeToAvoidBottomInset: true,
       body: Stack(
         children: <Widget>[
           GradualChangeView(

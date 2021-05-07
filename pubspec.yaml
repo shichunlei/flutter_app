@@ -13,7 +13,6 @@ homepage: https://github.com/shichunlei/flutter_app
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.17.0 <2.0.0"
 
 dependencies: # 应用或包依赖的其它包或插件
   flutter:
@@ -67,8 +66,9 @@ dependencies: # 应用或包依赖的其它包或插件
   flare_flutter: ^2.0.6
 
   flutter_charts:
-    git:
-      url: https://github.com/shichunlei/flutter_charts
+    path: flutter_charts/
+#    git:
+#      url: https://github.com/shichunlei/flutter_charts
 
   # 颜色选择器
   flutter_colorpicker: ^0.3.5
@@ -241,3 +241,5 @@ flutter:
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
+flutter_intl:
+  enabled: true

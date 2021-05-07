@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/generated/i18n.dart';
+import 'package:flutter_app/generated/l10n.dart';
 import 'package:rounded_letter/rounded_letter.dart';
 import 'package:rounded_letter/shape_type.dart';
 
@@ -24,7 +24,7 @@ class _BottomSheetLoginPagePageState extends State<BottomSheetLoginPage> {
   Widget build(BuildContext context) {
     return Theme(
       child: Scaffold(
-          resizeToAvoidBottomPadding: true,
+          resizeToAvoidBottomInset: true,
           key: _scaffoldKey,
           //backgroundColor: Theme.of(context).primaryColor,
           body: Stack(

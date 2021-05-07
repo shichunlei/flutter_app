@@ -15,7 +15,6 @@ import io.flutter.embedding.engine.plugins.shim.ShimPluginRegistry;
 public final class GeneratedPluginRegistrant {
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
     ShimPluginRegistry shimPluginRegistry = new ShimPluginRegistry(flutterEngine);
-    flutterEngine.getPlugins().add(new com.example.flutter_charts.FlutterChartsPlugin());
       com.chingsoft.flutter_jd_address_selector.FlutterJdAddressSelectorPlugin.registerWith(shimPluginRegistry.registrarFor("com.chingsoft.flutter_jd_address_selector.FlutterJdAddressSelectorPlugin"));
     flutterEngine.getPlugins().add(new me.yohom.amap_core_fluttify.AmapCoreFluttifyPlugin());
     flutterEngine.getPlugins().add(new me.yohom.amap_location_fluttify.AmapLocationFluttifyPlugin());

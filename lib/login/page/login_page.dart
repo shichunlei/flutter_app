@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/enum/enum.dart';
-import 'package:flutter_app/generated/i18n.dart';
+import 'package:flutter_app/generated/l10n.dart';
 
 import 'package:flutter_app/ui/button.dart';
 import 'package:flutter_app/ui/gradual_change_view.dart';
