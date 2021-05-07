@@ -61,34 +61,21 @@ class HeWeather {
     HeWeather weather = HeWeather();
     weather.status = map['status'];
 
-    weather.city = (map['basic'] == null || !(map['basic'] is Map))
-        ? null
-        : City.fromMap(map['basic']);
+    weather.city = (map['basic'] == null || !(map['basic'] is Map)) ? null : City.fromMap(map['basic']);
 
-    weather.airNowCity =
-        map['air_now_city'] == null ? null : Air.fromMap(map['air_now_city']);
+    weather.airNowCity = map['air_now_city'] == null ? null : Air.fromMap(map['air_now_city']);
     weather.now = map['now'] == null ? null : NowWeather.fromMap(map['now']);
-    weather.update =
-        map['update'] == null ? null : UpdateBean.fromMap(map['update']);
+    weather.update = map['update'] == null ? null : UpdateBean.fromMap(map['update']);
 
-    weather.dailyForecast = List()
-      ..addAll((map['daily_forecast'] as List ?? [])
-          .map((o) => DailyForecast.fromMap(o)));
+    weather.dailyForecast = List()..addAll((map['daily_forecast'] as List ?? []).map((o) => DailyForecast.fromMap(o)));
 
-    weather.lifestyle = List()
-      ..addAll(
-          (map['lifestyle'] as List ?? []).map((o) => Lifestyle.fromMap(o)));
+    weather.lifestyle = List()..addAll((map['lifestyle'] as List ?? []).map((o) => Lifestyle.fromMap(o)));
 
-    weather.hourly = List()
-      ..addAll((map['hourly'] as List ?? []).map((o) => Hourly.fromMap(o)));
+    weather.hourly = List()..addAll((map['hourly'] as List ?? []).map((o) => Hourly.fromMap(o)));
 
-    weather.airNowStation = List()
-      ..addAll(
-          (map['air_now_station'] as List ?? []).map((o) => Air.fromMap(o)));
+    weather.airNowStation = List()..addAll((map['air_now_station'] as List ?? []).map((o) => Air.fromMap(o)));
 
-    weather.sunriseSunset = List()
-      ..addAll((map['sunrise_sunset'] as List ?? [])
-          .map((o) => SunriseSunset.fromMap(o)));
+    weather.sunriseSunset = List()..addAll((map['sunrise_sunset'] as List ?? []).map((o) => SunriseSunset.fromMap(o)));
     return weather;
   }
 }
@@ -114,8 +101,7 @@ class NowWeather {
     NowWeather nowBean = NowWeather();
     nowBean.cloud = map['cloud'];
     nowBean.condCode = map['cond_code'];
-    nowBean.condIcon =
-        "https://cdn.heweather.com/cond_icon/${map['cond_code']}.png";
+    nowBean.condIcon = "https://cdn.heweather.com/cond_icon/${map['cond_code']}.png";
     nowBean.condTxt = map['cond_txt'];
     nowBean.fl = map['fl'];
     nowBean.hum = "${map['hum']}%";
@@ -253,6 +239,21 @@ class Hourly {
   String wind_sc;
   String wind_spd;
 
+  Hourly(
+      {this.cloud,
+      this.condCode,
+      this.cond_txt,
+      this.dew,
+      this.hum,
+      this.pop,
+      this.pres,
+      this.time,
+      this.tmp,
+      this.wind_deg,
+      this.wind_dir,
+      this.wind_sc,
+      this.wind_spd});
+
   static Hourly fromMap(Map<String, dynamic> map) {
     Hourly hourly = Hourly();
     String n = '';
@@ -271,8 +272,7 @@ class Hourly {
       '23:00'
     ];
 
-    String _time =
-        formatDate(DateTime.parse("${map['time']}:00"), formats: [HH, ':', nn]);
+    String _time = formatDate(DateTime.parse("${map['time']}:00"), formats: [HH, ':', nn]);
 
     if ((map['cond_code'] == '100' ||
             map['cond_code'] == '103' ||
@@ -286,8 +286,7 @@ class Hourly {
     }
 
     hourly.cloud = map['cloud'];
-    hourly.condCode =
-        "https://cdn.heweather.com/cond_icon/${map['cond_code']}$n.png";
+    hourly.condCode = "https://cdn.heweather.com/cond_icon/${map['cond_code']}$n.png";
     hourly.cond_txt = map['cond_txt'];
     hourly.dew = map['dew'];
     hourly.hum = map['hum'];
@@ -412,10 +411,8 @@ class DailyForecast {
         map['cond_code_n'] == '407') {
       n = 'n';
     }
-    daily.cond_code_d =
-        "https://cdn.heweather.com/cond_icon/${map['cond_code_d']}.png";
-    daily.cond_code_n =
-        "https://cdn.heweather.com/cond_icon/${map['cond_code_n']}$n.png";
+    daily.cond_code_d = "https://cdn.heweather.com/cond_icon/${map['cond_code_d']}.png";
+    daily.cond_code_n = "https://cdn.heweather.com/cond_icon/${map['cond_code_n']}$n.png";
     daily.cond_txt_d = map['cond_txt_d'];
     daily.cond_txt_n = map['cond_txt_n'];
     daily.date = map['date'];

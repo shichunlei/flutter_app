@@ -186,6 +186,8 @@ dependencies: # 应用或包依赖的其它包或插件
   # 视频播放器器
   video_player: ^0.10.12+5
 
+  wave: ^0.1.0
+
 dev_dependencies: # 开发环境依赖的工具包（而不是flutter应用本身依赖的包）
   flutter_test:
     sdk: flutter

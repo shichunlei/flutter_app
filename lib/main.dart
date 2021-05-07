@@ -19,7 +19,7 @@ void main() async {
 
   await AmapCore.init(Config.AMAP_KEY_IOS);
 
-  runZoned(() {
+  runZonedGuarded(() {
     //强制横屏
     // SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
 
@@ -37,7 +37,7 @@ void main() async {
         SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
       }
     });
-  }, onError: (Object error, StackTrace stack) {
+  }, (Object error, StackTrace stack) {
     debugPrint(error.toString());
     debugPrint(stack.toString());
   });

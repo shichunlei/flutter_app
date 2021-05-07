@@ -27,11 +27,9 @@ export 'slide_button.dart';
 export 'slide_menu_item.dart';
 export 'sliding_up_panel.dart';
 export 'smooth_star_rating.dart';
-export 'sparkline.dart';
 export 'stick_widget.dart';
 export 'titled_navigation_bar.dart';
 export 'utils.dart';
-export 'wave.dart';
 
 export 'dialog/asset_giffy_dialog.dart';
 export 'dialog/network_giffy_dialog.dart';
