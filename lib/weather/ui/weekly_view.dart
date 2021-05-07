@@ -4,7 +4,7 @@ import '../../bean/he_weather.dart';
 import '../../page_index.dart';
 import '../../utils/date_format.dart';
 
-import 'temp_line.dart';
+import 'temp_double_line.dart';
 
 class WeeklyView extends StatelessWidget {
   final List<DailyForecast> dailyForecast;
@@ -42,7 +42,7 @@ class WeeklyView extends StatelessWidget {
                               width: 20.0, height: 20.0),
                         ])));
           }).toList()),
-          TempLine(Utils.width, dailyForecast),
+          TempDoubleLine(Utils.width, dailyForecast),
           Row(
               children: dailyForecast.map((daily) {
             return Expanded(

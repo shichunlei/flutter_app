@@ -3,28 +3,28 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../bean/he_weather.dart';
 
-/// 气温折线图
-class TempLine extends StatelessWidget {
+/// 气温折线图(双条线)
+class TempDoubleLine extends StatelessWidget {
   final double width;
   final List<DailyForecast> tempList;
 
-  TempLine(this.width, this.tempList);
+  TempDoubleLine(this.width, this.tempList);
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-        size: Size(width, 140), painter: TemperatureLinePainter(tempList));
+        size: Size(width, 140), painter: TemperatureDoubleLinePainter(tempList));
   }
 }
 
-class TemperatureLinePainter extends CustomPainter {
+class TemperatureDoubleLinePainter extends CustomPainter {
   List<DailyForecast> tempList;
 
   Paint maxLinePaint, minLinePaint, dotPaint;
 
   Gradient gradient;
 
-  TemperatureLinePainter(this.tempList) {
+  TemperatureDoubleLinePainter(this.tempList) {
     maxLinePaint = Paint()
       ..style = PaintingStyle.stroke
       ..color = Colors.white70
