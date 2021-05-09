@@ -46,6 +46,12 @@
 @import easy_contact_picker;
 #endif
 
+#if __has_include(<flutter_charts/FlutterChartsPlugin.h>)
+#import <flutter_charts/FlutterChartsPlugin.h>
+#else
+@import flutter_charts;
+#endif
+
 #if __has_include(<flutter_jd_address_selector/FlutterJdAddressSelectorPlugin.h>)
 #import <flutter_jd_address_selector/FlutterJdAddressSelectorPlugin.h>
 #else
@@ -170,6 +176,7 @@
   [CoreLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"CoreLocationFluttifyPlugin"]];
   [FLTDeviceInfoPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTDeviceInfoPlugin"]];
   [EasyContactPickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"EasyContactPickerPlugin"]];
+  [FlutterChartsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterChartsPlugin"]];
   [FlutterJdAddressSelectorPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterJdAddressSelectorPlugin"]];
   [FlutterWebviewPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterWebviewPlugin"]];
   [FoundationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"FoundationFluttifyPlugin"]];

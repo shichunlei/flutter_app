@@ -22,6 +22,7 @@ public final class GeneratedPluginRegistrant {
     flutterEngine.getPlugins().add(new me.yohom.core_location_fluttify.CoreLocationFluttifyPlugin());
     flutterEngine.getPlugins().add(new io.flutter.plugins.deviceinfo.DeviceInfoPlugin());
       com.liuwei.easy_contact_picker.EasyContactPickerPlugin.registerWith(shimPluginRegistry.registrarFor("com.liuwei.easy_contact_picker.EasyContactPickerPlugin"));
+    flutterEngine.getPlugins().add(new com.example.flutter_charts.FlutterChartsPlugin());
       com.chingsoft.flutter_jd_address_selector.FlutterJdAddressSelectorPlugin.registerWith(shimPluginRegistry.registrarFor("com.chingsoft.flutter_jd_address_selector.FlutterJdAddressSelectorPlugin"));
     flutterEngine.getPlugins().add(new io.flutter.plugins.flutter_plugin_android_lifecycle.FlutterAndroidLifecyclePlugin());
       com.flutter_webview_plugin.FlutterWebviewPlugin.registerWith(shimPluginRegistry.registrarFor("com.flutter_webview_plugin.FlutterWebviewPlugin"));

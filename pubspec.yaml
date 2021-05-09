@@ -68,9 +68,8 @@ dependencies: # 应用或包依赖的其它包或插件
   flare_flutter: ^2.0.6
 
   flutter_charts:
-    path: flutter_charts/
-#    git:
-#      url: https://github.com/shichunlei/flutter_charts
+    git:
+      url: https://github.com/shichunlei/flutter_charts
 
   # 颜色选择器
   flutter_colorpicker: ^0.4.0
