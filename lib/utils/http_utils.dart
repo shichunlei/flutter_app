@@ -45,7 +45,7 @@ class HttpUtils {
     _dio.interceptors
       ..add(InterceptorsWrapper(
         /// 请求时的处理
-        onRequest: (RequestOptions options) {
+        onRequest: (RequestOptions options, handler) {
           Log.d("\n================== 请求数据 ==========================");
           Log.d("url = ${options.uri.toString()}");
           Log.d("data = ${options.data}");
@@ -59,21 +59,25 @@ class HttpUtils {
             });
 
           Log.d("headers = ${options.headers}");
+
+          return handler.next(options);
         },
 
         /// 响应时的处理
-        onResponse: (Response response) {
+        onResponse: (Response response, handler) {
           Log.d("\n================== 响应数据 ==========================");
           Log.d("code = ${response.statusCode}");
           Log.d("data = ${response.data}");
           Log.d("\n");
+          return handler.next(response);
         },
-        onError: (DioError e) {
+        onError: (DioError e, handler) {
           Log.d("\n================== 错误响应数据 ======================");
           Log.d("type = ${e.type}");
           Log.d("error = ${e.error}");
           Log.d("message = ${e.message}");
           Log.d("\n");
+          return handler.next(e);
         },
       ))
 
@@ -184,9 +188,6 @@ class HttpUtils {
       /// 响应头
       Log.d('请求成功!response.headers：${response.headers}');
 
-      /// 本次请求信息
-      Log.d('请求成功!response.request：${response.request}');
-
       /// Http status code.
       Log.d('请求成功!response.statusCode：${response.statusCode}');
     } on DioError catch (e) {
@@ -199,19 +200,19 @@ class HttpUtils {
 
   /// error统一处理
   void formatError(DioError e) {
-    if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+    if (e.type == DioErrorType.connectTimeout) {
       // It occurs when url is opened timeout.
       Log.d("连接超时 Ծ‸ Ծ");
-    } else if (e.type == DioErrorType.SEND_TIMEOUT) {
+    } else if (e.type == DioErrorType.sendTimeout) {
       // It occurs when url is sent timeout.
       Log.d("请求超时 Ծ‸ Ծ");
-    } else if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+    } else if (e.type == DioErrorType.receiveTimeout) {
       //It occurs when receiving timeout
       Log.d("响应超时 Ծ‸ Ծ");
-    } else if (e.type == DioErrorType.RESPONSE) {
+    } else if (e.type == DioErrorType.response) {
       // When the server response, but with a incorrect status, such as 404, 503...
       Log.d("出现异常 Ծ‸ Ծ");
-    } else if (e.type == DioErrorType.CANCEL) {
+    } else if (e.type == DioErrorType.cancel) {
       // When the request is cancelled, dio will throw a error with this type.
       Log.d("请求取消 Ծ‸ Ծ");
     } else {

@@ -79,14 +79,14 @@ class _JuZiMiDetailsState extends State<JuZiMiDetails> {
                   Gaps.vGap5,
                   Html(
                       data: juzimi?.details,
-                      defaultTextStyle: TextStyle(fontSize: 16),
-                      padding: EdgeInsets.all(8.0),
-                      blockSpacing: 2.0,
-                      useRichText: true,
-                      linkStyle: const TextStyle(
-                          color: Colors.redAccent,
-                          decorationColor: Colors.redAccent,
-                          decoration: TextDecoration.underline),
+                      // defaultTextStyle: TextStyle(fontSize: 16),
+                      // padding: EdgeInsets.all(8.0),
+                      // blockSpacing: 2.0,
+                      // useRichText: true,
+                      // linkStyle: const TextStyle(
+                      //     color: Colors.redAccent,
+                      //     decorationColor: Colors.redAccent,
+                      //     decoration: TextDecoration.underline),
                       onLinkTap: (url) {
                         debugPrint("Opening $url...");
                       }),

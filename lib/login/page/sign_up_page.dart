@@ -35,7 +35,7 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Stack(
 
                 /// 注意这里要设置溢出如何处理，设置为visible的话，可以看到孩子，设置为clip的话，若溢出会进行裁剪
-                overflow: Overflow.visible,
+                clipBehavior: Clip.none,
                 alignment: Alignment.topCenter,
                 children: <Widget>[
               Container(

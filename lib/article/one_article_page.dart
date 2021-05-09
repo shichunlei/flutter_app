@@ -75,15 +75,15 @@ class _OneArticlePageState extends State<OneArticlePage>
                               fontSize: articleModel.getTextSize() - 1)))),
               Html(
                   data: articleModel.article?.content ?? '',
-                  defaultTextStyle:
-                      TextStyle(fontSize: articleModel.getTextSize()),
-                  padding: EdgeInsets.all(8.0),
-                  blockSpacing: 2.0,
-                  useRichText: true,
-                  linkStyle: const TextStyle(
-                      color: Colors.redAccent,
-                      decorationColor: Colors.redAccent,
-                      decoration: TextDecoration.underline),
+                  // defaultTextStyle:
+                  //     TextStyle(fontSize: articleModel.getTextSize()),
+                  // padding: EdgeInsets.all(8.0),
+                  // blockSpacing: 2.0,
+                  // useRichText: true,
+                  // linkStyle: const TextStyle(
+                  //     color: Colors.redAccent,
+                  //     decorationColor: Colors.redAccent,
+                  //     decoration: TextDecoration.underline),
                   onLinkTap: (url) {
                     debugPrint("Opening $url...");
                   })

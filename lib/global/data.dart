@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_weather_bg/utils/weather_type.dart';
+import 'package:flutter_weather_bg_null_safety/flutter_weather_bg.dart';
 
 import '../page_index.dart';
 
@@ -125,11 +125,10 @@ class ExpandStateBean {
           SubExpandBean('Image Colors', ImageColors()),
           SubExpandBean('尺子', RulerSample()),
           SubExpandBean('尺子2', HorizontalPickerDemo()),
-          SubExpandBean('高德地图定位', AMapLocationDemo()),
           SubExpandBean('SecondFloor', SecondFloorDemo()),
           SubExpandBean('视差图片效果', ParallaxImageDemo()),
           SubExpandBean('骨架屏示例', ShimmerDemo()),
-          SubExpandBean('录音', SoundDemo()),
+          // SubExpandBean('录音', SoundDemo()),
           SubExpandBean('DragSortView', DragSortPage()),
           SubExpandBean('群头像', NineGridPage()),
         ]),
@@ -148,7 +147,7 @@ class ExpandStateBean {
       SubExpandBean('验证码验证登录', CodeInputViewPage()),
       SubExpandBean('Music Player', MusicPlayerPage()),
       SubExpandBean('Audio Player', AudioPlayersPage()),
-      SubExpandBean('Flutter Sound', FlutterSoundPage()),
+      // SubExpandBean('Flutter Sound', FlutterSoundPage()),
       SubExpandBean('CardFlip', CardFlipPage()),
       SubExpandBean('仿抖音首页动画', TikTokPage()),
       SubExpandBean('BackDrop', BackDropPage()),

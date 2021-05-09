@@ -226,10 +226,11 @@ class _DetailsPageState extends State<DetailsPage>
     if (currentIndex == 0) {
       children
         ..add(Html(
-            data: goods.goodInfo.goodsDetail,
-            defaultTextStyle: TextStyle(fontSize: 18.0),
-            padding: EdgeInsets.all(8.0),
-            blockSpacing: 2.0))
+          data: goods.goodInfo.goodsDetail,
+          // defaultTextStyle: TextStyle(fontSize: 18.0),
+          // padding: EdgeInsets.all(8.0),
+          // blockSpacing: 2.0,
+        ))
         ..add(adWidget);
     }
     if (currentIndex == 1) {

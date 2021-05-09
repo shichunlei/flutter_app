@@ -56,12 +56,13 @@ class _BookDetailPageState extends State<BookDetailPage> {
                               width: Utils.width / 2,
                               height: Utils.width / 2 * 239 / 163),
                           Html(
-                              data: '${detailBean?.desc}',
-                              defaultTextStyle: TextStyle(
-                                  fontSize: 14, color: Color(0xFF363636)),
-                              padding: EdgeInsets.all(8.0),
-                              blockSpacing: 2.0,
-                              useRichText: true)
+                            data: '${detailBean?.desc}',
+                            // defaultTextStyle: TextStyle(
+                            //     fontSize: 14, color: Color(0xFF363636)),
+                            // padding: EdgeInsets.all(8.0),
+                            // blockSpacing: 2.0,
+                            // useRichText: true,
+                          )
                         ])),
 
                     /// 文章简介
@@ -84,11 +85,12 @@ class _BookDetailPageState extends State<BookDetailPage> {
 
                     /// 文章内容
                     Html(
-                        data: '${detailBean?.detail}',
-                        defaultTextStyle: TextStyle(fontSize: 18),
-                        padding: EdgeInsets.all(8.0),
-                        blockSpacing: 2.0,
-                        useRichText: true),
+                      data: '${detailBean?.detail}',
+                      // defaultTextStyle: TextStyle(fontSize: 18),
+                      // padding: EdgeInsets.all(8.0),
+                      // blockSpacing: 2.0,
+                      // useRichText: true,
+                    ),
 
                     /// 标签
                     Container(
