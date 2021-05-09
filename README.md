@@ -2,7 +2,7 @@
 
 ![](https://github.com/shichunlei/flutter_app/blob/master/FlutterApp.png)
 
-
+## 注意：升级到flutter2.0的同学们需要克隆flutter-2.0+的分支，主分支flutter版本为1.22.3
 
 
 ## Android APK 下载地址
