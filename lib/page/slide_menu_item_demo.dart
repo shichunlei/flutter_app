@@ -81,7 +81,7 @@ class _SlideMenuItemDemoPageState extends State<SlideMenuItemDemoPage> {
   void getCountryData() async {
     //加载城市列表
     await rootBundle.loadString('assets/data/country.json').then((value) {
-      countries = List()
+      countries = []
         ..addAll(
             (json.decode(value) as List ?? []).map((o) => Country.fromMap(o)));
 

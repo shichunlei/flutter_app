@@ -570,7 +570,7 @@ class ButtonWidgetState extends State<ButtonWidget> {
 
   void _displaySnackBar() {
     /// show snackbar
-    _scaffoldKey.currentState.showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         /// set content of snackbar
         content: Text(
@@ -585,7 +585,7 @@ class ButtonWidgetState extends State<ButtonWidget> {
           label: "Hit Me (Action)",
           onPressed: () {
             /// When action button is pressed, show another snackbar
-            _scaffoldKey.currentState.showSnackBar(
+            ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
                   "Hello! I am shown becoz you pressed Action :)",

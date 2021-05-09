@@ -31,7 +31,7 @@ class CardPlayerRank extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Text('$title', style: TextStyles.textBoldDark26),
-                  FlatButton(onPressed: () => {}, child: Text('查看更多 >'))
+                  TextButton(onPressed: () => {}, child: Text('查看更多 >'))
                 ],
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
               ),

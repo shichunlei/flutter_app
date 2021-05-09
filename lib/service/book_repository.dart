@@ -136,7 +136,7 @@ class BookRepository {
       return null;
     }
 
-    List<BtocResult> result = List()
+    List<BtocResult> result = []
       ..addAll((json.decode(response.data) as List ?? [])
           .map((o) => BtocResult.fromMap(o)));
 

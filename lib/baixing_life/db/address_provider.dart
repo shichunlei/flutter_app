@@ -51,7 +51,7 @@ class AddressProvider extends BaseDBProvider {
   }
 
   Future<List<Address>> getAddressList() async {
-    List<Address> addresses = List();
+    List<Address> addresses = [];
     Database db = await getDB();
     List<Map<String, dynamic>> maps = await db.query(table_name);
     if (maps.isNotEmpty) {
@@ -68,7 +68,7 @@ class AddressProvider extends BaseDBProvider {
     if (!_isExist) {
       return null;
     }
-    List<Address> addresses = List();
+    List<Address> addresses = [];
     Database db = await getDB();
     List<Map<String, dynamic>> maps =
         await db.query(table_name, where: "$COLUMN_ID = ?", whereArgs: [id]);
@@ -141,7 +141,7 @@ class AddressProvider extends BaseDBProvider {
     List<Map<String, dynamic>> maps = await db
         .query(table_name, where: "$COLUMN_IS_DEFAULT = ?", whereArgs: [1]);
 
-    List<Address> addresses = List();
+    List<Address> addresses = [];
 
     if (maps.length > 0) {
       for (Map<String, dynamic> map in maps) {

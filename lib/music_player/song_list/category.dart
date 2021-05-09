@@ -53,7 +53,7 @@ class _SongListCategoryState extends State<SongListCategoryPage> {
     await FileUtil.getInstance()
         .readDataFromAssets("assets/data/", "songlist_category.json")
         .then((data) {
-      category = List()
+      category = []
         ..addAll((json.decode(data) as List ?? [])
             .map((o) => MusicCategory.fromMap(o)));
       setState(() {

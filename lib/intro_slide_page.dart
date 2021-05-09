@@ -131,7 +131,7 @@ class SliderScreenState extends State<IntroSlidePage> {
                   Positioned(
                       top: Utils.topSafeHeight,
                       right: 10,
-                      child: FlatButton(
+                      child: TextButton(
                           onPressed: () =>
                               pushAndRemovePage(context, LoginPage()),
                           child: Text('Skip',

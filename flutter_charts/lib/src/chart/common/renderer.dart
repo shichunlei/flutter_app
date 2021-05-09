@@ -12,7 +12,7 @@ class _DataLabelRenderer extends StatefulWidget {
   _DataLabelRendererState state;
 
   @override
-  State<StatefulWidget> createState() => _DataLabelRendererState();
+  createState() => _DataLabelRendererState();
 }
 
 class _DataLabelRendererState extends State<_DataLabelRenderer>

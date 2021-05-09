@@ -136,7 +136,7 @@ class _OneArticlePageState extends State<OneArticlePage>
             initialIndex: articleModel.getThemeColorIndex());
       }
 
-      List<Tab> tabs = List();
+      List<Tab> tabs = [];
       for (Color color in themeColors) {
         tabs.add(Tab(icon: Icon(Icons.markunread_mailbox, color: color)));
       }

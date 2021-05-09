@@ -47,31 +47,31 @@ class BookResult {
     if (map == null) return null;
     BookResult bBean = BookResult();
     bBean.total = map['total'];
-    bBean.books = List()
+    bBean.books = []
       ..addAll((map['books'] as List ?? []).map((o) => Books.fromJson(o)));
-    bBean.bookLists = List()
+    bBean.bookLists = []
       ..addAll(
           (map['bookLists'] as List ?? []).map((o) => BookList.fromMap(o)));
     bBean.bookList = BookList.fromMap(map['bookList']);
     bBean.ok = map['ok'];
     bBean.today = map['today'];
-    bBean.reviews = List()
+    bBean.reviews = []
       ..addAll(
           (map['reviews'] as List ?? []).map((o) => BookReviews.fromMap(o)));
     bBean.chapter = ChapterInfo.fromMap(map['chapter']);
-    bBean.docs = List()
+    bBean.docs = []
       ..addAll((map['docs'] as List ?? []).map((o) => DocsBean.fromMap(o)));
-    bBean.posts = List()
+    bBean.posts = []
       ..addAll((map['posts'] as List ?? []).map((o) => Post.fromMap(o)));
-    bBean.tags = List()
+    bBean.tags = []
       ..addAll((map['data'] as List ?? []).map((o) => Tag.fromMap(o)));
 
-    bBean.hotWords = List()
+    bBean.hotWords = []
       ..addAll((map['hotWords'] as List ?? []).map((o) => o.toString()));
-    bBean.newHotWords = List()
+    bBean.newHotWords = []
       ..addAll((map['newHotWords'] as List ?? [])
           .map((o) => SearchHotWords.fromMap(o)));
-    bBean.searchHotWords = List()
+    bBean.searchHotWords = []
       ..addAll((map['searchHotWords'] as List ?? [])
           .map((o) => SearchHotWords.fromMap(o)));
 
@@ -370,7 +370,7 @@ class Books {
     booksBean.cover = convertImageUrl(map['cover']);
     booksBean.creator = map['creater'];
     booksBean.starRatingCount = map['starRatingCount'];
-    booksBean.starRatings = List()
+    booksBean.starRatings = []
       ..addAll((map['starRatings'] as List ?? [])
           .map((o) => StarRatings.fromMap(o)));
     booksBean.isMakeMoneyLimit = map['isMakeMoneyLimit'];
@@ -406,9 +406,9 @@ class Books {
     booksBean.isSerial = map['isSerial'];
     booksBean.chaptersCount = map['chaptersCount'];
     booksBean.lastChapter = map['lastChapter'];
-    booksBean.gender = List()
+    booksBean.gender = []
       ..addAll((map['gender'] as List ?? []).map((o) => o.toString()));
-    booksBean.tags = List()
+    booksBean.tags = []
       ..addAll((map['tags'] as List ?? []).map((o) => o.toString()));
     booksBean.advertRead = map['advertRead'];
     booksBean.cat = map['cat'];
@@ -468,7 +468,7 @@ class Highlight {
   static Highlight fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     Highlight highlightBean = Highlight();
-    highlightBean.title = List()
+    highlightBean.title = []
       ..addAll((map['title'] as List ?? []).map((o) => o.toString()));
     return highlightBean;
   }
@@ -544,14 +544,14 @@ class StatisticsResult {
   static StatisticsResult fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     StatisticsResult bBean = StatisticsResult();
-    bBean.male = List()
+    bBean.male = []
       ..addAll((map['male'] as List ?? []).map((o) => Statistics.fromMap(o)));
-    bBean.female = List()
+    bBean.female = []
       ..addAll((map['female'] as List ?? []).map((o) => Statistics.fromMap(o)));
-    bBean.picture = List()
+    bBean.picture = []
       ..addAll(
           (map['picture'] as List ?? []).map((o) => Statistics.fromMap(o)));
-    bBean.press = List()
+    bBean.press = []
       ..addAll((map['press'] as List ?? []).map((o) => Statistics.fromMap(o)));
     bBean.ok = map['ok'];
     return bBean;
@@ -586,7 +586,7 @@ class Statistics {
     statistics.bookCount = map['bookCount'];
     statistics.monthlyCount = map['monthlyCount'];
     statistics.icon = "${Config.READER_IMAGE_URL}${map['icon']}";
-    statistics.bookCover = List()
+    statistics.bookCover = []
       ..addAll((map['bookCover'] as List ?? []).map((o) => o.toString()));
     return statistics;
   }
@@ -610,15 +610,15 @@ class CategoryResult {
   static CategoryResult fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     CategoryResult result = CategoryResult();
-    result.male = List()
+    result.male = []
       ..addAll((map['male'] as List ?? []).map((o) => BookCategory.fromMap(o)));
-    result.female = List()
+    result.female = []
       ..addAll(
           (map['female'] as List ?? []).map((o) => BookCategory.fromMap(o)));
-    result.picture = List()
+    result.picture = []
       ..addAll(
           (map['picture'] as List ?? []).map((o) => BookCategory.fromMap(o)));
-    result.press = List()
+    result.press = []
       ..addAll(
           (map['press'] as List ?? []).map((o) => BookCategory.fromMap(o)));
     result.ok = map['ok'];
@@ -642,7 +642,7 @@ class BookCategory {
     if (map == null) return null;
     BookCategory category = BookCategory();
     category.major = map['major'];
-    category.mins = List()
+    category.mins = []
       ..addAll((map['mins'] as List ?? []).map((o) => o.toString()));
     return category;
   }
@@ -671,13 +671,13 @@ class RankingResult {
   static RankingResult fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     RankingResult bBean = RankingResult();
-    bBean.male = List()
+    bBean.male = []
       ..addAll((map['male'] as List ?? []).map((o) => Ranking.fromMap(o)));
-    bBean.female = List()
+    bBean.female = []
       ..addAll((map['female'] as List ?? []).map((o) => Ranking.fromMap(o)));
-    bBean.picture = List()
+    bBean.picture = []
       ..addAll((map['picture'] as List ?? []).map((o) => Ranking.fromMap(o)));
-    bBean.epub = List()
+    bBean.epub = []
       ..addAll((map['epub'] as List ?? []).map((o) => Ranking.fromMap(o)));
     bBean.ok = map['ok'];
     bBean.ranking = Ranking.fromMap(map['ranking']);
@@ -755,7 +755,7 @@ class Ranking {
     rankingBean.bNew = map['new'];
     rankingBean.gender = map['gender'];
     rankingBean.priority = map['priority'];
-    rankingBean.books = List()
+    rankingBean.books = []
       ..addAll((map['books'] as List ?? []).map((o) => Books.fromJson(o)));
     rankingBean.id = map['_id'];
     rankingBean.total = map['total'];
@@ -1071,7 +1071,7 @@ class ChapterResult {
     bean.source = map['source'];
     bean.book = map['book'];
     bean.link = map['link'];
-    bean.chapters = List()
+    bean.chapters = []
       ..addAll((map['chapters'] as List ?? []).map((o) => Chapters.fromMap(o)));
     bean.updated = map['updated'];
     bean.host = map['host'];
@@ -1327,7 +1327,7 @@ class BookList {
     bookListBean.updateCount = map['updateCount'];
     bookListBean.created = formatDateTime(map['created']);
     bookListBean.updated = formatDateTime(map['updated']);
-    bookListBean.tags = List()
+    bookListBean.tags = []
       ..addAll((map['tags'] as List ?? []).map((o) => o.toString()))
       ..remove("COLLECT_COUNT_X000+")
       ..remove("AUTHENTIC_LISTOWNER")
@@ -1339,11 +1339,11 @@ class BookList {
     bookListBean.collectorCount = map['collectorCount'];
     bookListBean.shareLink = map['shareLink'];
     bookListBean.total = map['total'];
-    bookListBean.books = List()
+    bookListBean.books = []
       ..addAll((map['books'] as List ?? []).map((o) => Books.fromJson(o)));
     bookListBean.bookCount = map['bookCount'];
     bookListBean.cover = convertImageUrl(map['cover']);
-    bookListBean.covers = List()
+    bookListBean.covers = []
       ..addAll((map['covers'] as List ?? [])
           .map((o) => convertImageUrl(o.toString())));
     return bookListBean;
@@ -1417,7 +1417,7 @@ class Tag {
     if (map == null) return null;
     Tag tag = Tag();
     tag.name = map['name'];
-    tag.tags = List()
+    tag.tags = []
       ..addAll((map['tags'] as List ?? []).map((o) => o.toString()));
     return tag;
   }

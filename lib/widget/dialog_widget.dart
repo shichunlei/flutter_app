@@ -106,14 +106,14 @@ class DialogWidgetState extends State<DialogWidget> {
                     //内容的padding值
                     actions: <Widget>[
                       //操作按钮数组
-                      FlatButton(
+                      TextButton(
                         onPressed: () {
                           print("取消");
                           Navigator.pop(context);
                         },
                         child: Text('取消'),
                       ),
-                      FlatButton(
+                      TextButton(
                         onPressed: () {
                           print('确定');
                           Navigator.pop(context);
@@ -426,7 +426,7 @@ class DialogWidgetState extends State<DialogWidget> {
           Builder(
             builder: (context) => RaisedButton(
               onPressed: () {
-                Scaffold.of(context).showSnackBar(SnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text('收藏成功'),
                     action: SnackBarAction(label: '撤销', onPressed: () {}),
                     duration: Duration(milliseconds: 2000)));

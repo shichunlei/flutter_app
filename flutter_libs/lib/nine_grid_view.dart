@@ -216,7 +216,7 @@ class _NineGridViewState extends State<NineGridView> {
             widget.padding.right -
             (crossAxisCount - 1) * widget.space) /
         crossAxisCount;
-    List<Widget> children = List();
+    List<Widget> children = [];
     for (int i = 0; i < itemCount; i++) {
       children.add(SizedBox(
         width: itemWidth.floorToDouble(),
@@ -244,7 +244,7 @@ class _NineGridViewState extends State<NineGridView> {
     double width = widget.width - widget.padding.left - widget.padding.right;
     int itemCount = math.min(4, widget.itemCount);
     double itemW = (width - widget.space) / 2;
-    List<Widget> children = List();
+    List<Widget> children = [];
     for (int i = 0; i < itemCount; i++) {
       children.add(Positioned(
           top: (widget.space + itemW) * (i ~/ 2),
@@ -279,7 +279,7 @@ class _NineGridViewState extends State<NineGridView> {
       ));
     }
 
-    List<Widget> children = List();
+    List<Widget> children = [];
     double startDegree;
     double r;
     double r1;
@@ -479,7 +479,7 @@ class QQClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     double r = size.width / 2;
     Path path = Path();
-    List<Offset> points = List();
+    List<Offset> points = [];
 
     if (total == 2 && index == initIndex) {
       path.addOval(Rect.fromLTRB(0, 0, size.width, size.height));
@@ -503,7 +503,7 @@ class QQClipper extends CustomClipper<Path> {
       double r1 = (2 * r - r * math.cos(d2r(spaceA))) / math.cos(d2r(spaceB));
       double startB = degree - 180 - spaceB;
       double endB = degree - 180 + spaceB;
-      List<Offset> pointsB = List();
+      List<Offset> pointsB = [];
       for (double i = startB; i < endB; i = i + 1) {
         double x1 = previousX + r1 * math.sin(d2r(i));
         double y1 = previousY - r1 * math.cos(d2r(i));

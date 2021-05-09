@@ -10,89 +10,88 @@ class RouteSample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Route Sample')),
-      backgroundColor: Colors.blue,
       body: ListView(
         children: <Widget>[
-          RaisedButton(
+          ElevatedButton(
             child: Text('MaterialPageRoute'),
             onPressed: () => pushNewPage(context, SecondPage()),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('CupertinoPageRoute'),
             onPressed: () => pushNewPageBack(context, SecondPage()),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('Slide L2R'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
                 type: TransitionType.slide_right),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('Slide R2L'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
                 type: TransitionType.slide_left),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('Slide B2T'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
                 type: TransitionType.slide_top),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('Slide T2B'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
                 type: TransitionType.slide_bottom),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('EnterExit R2L'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
                 type: TransitionType.enter_exit, fromPage: this),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('EnterExit L2R'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
                 type: TransitionType.enter_exit,
                 fromPage: this,
                 direction: SlideDirection.left2right),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('EnterExit T2B'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
                 type: TransitionType.enter_exit,
                 fromPage: this,
                 direction: SlideDirection.top2bottom),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('EnterExit B2T'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
                 type: TransitionType.enter_exit,
                 fromPage: this,
                 direction: SlideDirection.bottom2top),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('ScaleRotate'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
                 type: TransitionType.scale_rotate),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('Rotation'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
                 type: TransitionType.rotate),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('Scale'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
                 type: TransitionType.scale),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('Size vertical'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
                 type: TransitionType.size),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('Size horizontal'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
                 type: TransitionType.size, axis: Axis.horizontal),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('Transform'),
             onPressed: () => pushNewPageAnimation(context, SecondPage(),
                 type: TransitionType.transform),
@@ -112,7 +111,7 @@ class SecondPage extends StatelessWidget {
       appBar: AppBar(title: Text('SecondPage')),
       backgroundColor: Colors.green,
       body: Center(
-        child: RaisedButton(
+        child: ElevatedButton(
           child: Text('Go Back!'),
           onPressed: () => Navigator.pop(context),
         ),

@@ -13,7 +13,7 @@ class _CurvedNavigationBarSampleState extends State<CurvedNavigationBarSample>
     with SingleTickerProviderStateMixin {
   int _page = 0;
 
-  List<Widget> list = List();
+  List<Widget> list = [];
 
   @override
   void initState() {

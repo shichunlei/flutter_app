@@ -21,7 +21,7 @@ class AnimatedWear extends AnimatedWidget {
         height: 90,
         width: 90,
         child: Stack(
-            overflow: Overflow.visible,
+            clipBehavior: Clip.none,
             alignment: Alignment.center,
             children: <Widget>[
               Visibility(

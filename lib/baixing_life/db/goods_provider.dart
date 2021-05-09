@@ -34,7 +34,7 @@ class GoodsProvider extends BaseDBProvider {
   String tableName() => table_name;
 
   Future<List<Goods>> getGoodsList() async {
-    List<Goods> products = List();
+    List<Goods> products = [];
     Database db = await getDB();
     List<Map<String, dynamic>> maps = await db.query(table_name);
     if (maps.isNotEmpty) {
@@ -50,7 +50,7 @@ class GoodsProvider extends BaseDBProvider {
     if (!await isExist(goodsId)) {
       return null;
     }
-    List<Goods> products = List();
+    List<Goods> products = [];
     Database db = await getDB();
     List<Map<String, dynamic>> maps = await db
         .query(table_name, where: "$COLUMN_GOODS_ID = ?", whereArgs: [goodsId]);
@@ -64,7 +64,7 @@ class GoodsProvider extends BaseDBProvider {
   }
 
   Future<List<Goods>> getCheckedGoodsList() async {
-    List<Goods> products = List();
+    List<Goods> products = [];
     Database db = await getDB();
     List<Map<String, dynamic>> maps = await db
         .query(table_name, where: "$COLUMN_IS_CHECK = ?", whereArgs: [1]);

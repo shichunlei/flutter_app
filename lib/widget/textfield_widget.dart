@@ -110,11 +110,11 @@ class TextFieldWidgetDemoState extends State<TextFieldWidgetDemo> {
       builder: (context) => AlertDialog(
             title: Text('Do you really want to exit the page?'),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 child: Text('No'),
                 onPressed: () => Navigator.pop(context, false),
               ),
-              FlatButton(
+              TextButton(
                 child: Text('Yes'),
                 onPressed: () => Navigator.pop(context, true),
               ),

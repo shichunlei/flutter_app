@@ -87,7 +87,7 @@ class _RankListPageState extends State<RankListPage> {
     await FileUtil.getInstance()
         .readDataFromAssets("assets/data/", "top_category.json")
         .then((data) {
-      tops = List()
+      tops = []
         ..addAll((json.decode(data) as List ?? [])
             .map((o) => MusicCategory.fromMap(o)));
       setState(() {

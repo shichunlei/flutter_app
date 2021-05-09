@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/service/other_repository.dart';
 
 import '../../page_index.dart';
 import '../index.dart';

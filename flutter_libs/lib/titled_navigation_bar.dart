@@ -68,7 +68,7 @@ class _TitledBottomNavigationBarState extends State<TitledBottomNavigationBar> {
           height: BAR_HEIGHT,
           width: width,
           child: Stack(
-            overflow: Overflow.visible,
+            clipBehavior:Clip.none,
             children: <Widget>[
               Positioned(
                 top: INDICATOR_HEIGHT,
