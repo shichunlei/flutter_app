@@ -40,37 +40,41 @@
 ## 运行环境
 
 ```
-[✓] Flutter (Channel stable, 1.22.3, on Mac OS X 10.15.6 19G2021, locale
-    zh-Hans-CN)
-    • Flutter version 1.22.3 at /System/Volumes/Data/workspace/flutter
-    • Framework revision 8874f21e79 (28 hours ago), 2020-10-29 14:14:35 -0700
-    • Engine revision a1440ca392
-    • Dart version 2.10.3
+[✓] Flutter (Channel stable, 2.0.6, on Mac OS X 10.15.7 19H2 darwin-x64, locale zh-Hans-CN)
+    • Flutter version 2.0.6 at /Users/shichunlei/flutter
+    • Framework revision 1d9032c7e1 (10 days ago), 2021-04-29 17:37:58 -0700
+    • Engine revision 05e680e202
+    • Dart version 2.12.3
     • Pub download mirror https://pub.flutter-io.cn
     • Flutter download mirror https://storage.flutter-io.cn
 
-[✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
-    • Android SDK at /Users/dev/Library/Android/sdk
-    • Platform android-30, build-tools 30.0.2
+[✓] Android toolchain - develop for Android devices (Android SDK version 30.0.3)
+    • Android SDK at /Users/shichunlei/Library/Android/sdk
+    • Platform android-30, build-tools 30.0.3
+    • ANDROID_HOME = /Users/shichunlei/Library/Android/sdk
     • Java binary at: /Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin/java
-    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b3-6222593)
+    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b3-6915495)
     • All Android licenses accepted.
 
-[✓] Xcode - develop for iOS and macOS (Xcode 11.7)
+[✓] Xcode - develop for iOS and macOS
     • Xcode at /Applications/Xcode.app/Contents/Developer
-    • Xcode 11.7, Build version 11E801a
-    • CocoaPods version 1.10.0.beta.2
+    • Xcode 12.4, Build version 12D4e
+    • CocoaPods version 1.10.1
 
-[✓] Android Studio (version 4.0)
+[✓] Chrome - develop for the web
+    • Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+
+[✓] Android Studio (version 4.1)
     • Android Studio at /Applications/Android Studio.app/Contents
-    • Flutter plugin version 50.0.1
-    • Dart plugin version 193.7547
-    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b3-6222593)
+    • Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    • Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b3-6915495)
 
-[✓] Connected device (3 available)
-    • MI 5X      • 1c7664100104 • android-arm64  • Android 8.1.0 (API 27)
-    • iPhone 11 Pro Max • B366D105-9EEC-47E4-A0CE-94C43E9ACD2D • ios • com.apple.CoreSimulator.SimRuntime.iOS-13-2 (simulator)
-    • SCL的 iPhone (mobile) • c8d772b25c3f412f630906165970b0871bb527aa • ios • iOS 13.7
+[✓] Connected device (2 available)
+    • iPhone 12 Pro Max (mobile) • D1993768-C600-4BC2-B308-9B0311915501 • ios            • com.apple.CoreSimulator.SimRuntime.iOS-14-4 (simulator)
+    • Chrome (web)               • chrome                               • web-javascript • Google Chrome 90.0.4430.93
 ```
 
 ## 注意事项
