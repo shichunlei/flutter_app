@@ -5,7 +5,7 @@ author: 师春雷 <1558053958@qq.com>
 homepage: https://github.com/shichunlei/flutter_app/flutter_libs
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
   flutter:
