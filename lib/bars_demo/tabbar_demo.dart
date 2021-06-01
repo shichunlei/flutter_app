@@ -102,7 +102,7 @@ class DataBean {
     DataBean bean = DataBean();
     bean.id = map['id'];
     bean.pid = map['pid'];
-    bean.children = List()
+    bean.children = []
       ..addAll(
           (map['children'] as List ?? []).map((o) => ChildrenBean.fromMap(o)));
     bean.parentId = map['parentId'];

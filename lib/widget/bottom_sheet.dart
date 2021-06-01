@@ -30,7 +30,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   _scaffoldKey.currentState
                       .showBottomSheet((context) {
@@ -51,7 +51,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
               ),
               Gaps.vGap10,
               Builder(
-                builder: (context) => RaisedButton(
+                builder: (context) => ElevatedButton(
                   onPressed: () {
                     showBottomSheet(
                         context: context,
@@ -63,7 +63,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                 ),
               ),
               Gaps.vGap10,
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   showModalBottomSheet(
                       context: context,
@@ -74,7 +74,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                 child: Text("Modal"),
               ),
               Gaps.vGap10,
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   var names = ['魏祖', '蓝二', '江姐', '江舅', '瑶妹'];
                   showCupertinoModalPopup(

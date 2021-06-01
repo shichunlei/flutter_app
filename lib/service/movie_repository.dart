@@ -60,7 +60,7 @@ class MovieRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
     } else {
       return [];
@@ -78,7 +78,7 @@ class MovieRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
     } else {
       return [];
@@ -95,7 +95,7 @@ class MovieRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
     } else {
       return [];
@@ -113,7 +113,7 @@ class MovieRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
     } else {
       return [];
@@ -132,7 +132,7 @@ class MovieRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
     } else {
       return [];
@@ -170,7 +170,7 @@ class MovieRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
     } else {
       return [];
@@ -218,7 +218,7 @@ class MovieRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Photos.fromMap(o)));
     } else {
       return [];
@@ -237,7 +237,7 @@ class MovieRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Movie.fromMap(o)));
     } else {
       return [];
@@ -255,7 +255,7 @@ class MovieRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Reviews.fromMap(o)));
     } else {
       return [];
@@ -273,7 +273,7 @@ class MovieRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Reviews.fromMap(o)));
     } else {
       return [];
@@ -292,7 +292,7 @@ class MovieRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll(
             (result.data as List ?? []).map((o) => TubiCategory.fromMap(o)));
     } else {
@@ -312,7 +312,7 @@ class MovieRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => TuBiTV.fromMap(o)));
     } else {
       return [];
@@ -331,7 +331,7 @@ class MovieRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => TuBiTV.fromMap(o)));
     } else {
       return [];

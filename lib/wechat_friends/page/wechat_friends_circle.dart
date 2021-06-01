@@ -28,7 +28,7 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
   Color c = Colors.grey;
   String title = '';
 
-  List<Asset> images = List<Asset>();
+  List<Asset> images = [];
 
   int maxImages = 9;
 
@@ -182,7 +182,7 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
   }
 
   Future<void> loadAssets() async {
-    List<Asset> resultList = List<Asset>();
+    List<Asset> resultList = [];
 
     try {
       resultList = await MultiImagePicker.pickImages(

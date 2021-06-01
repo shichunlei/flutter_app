@@ -40,7 +40,7 @@ class ShoppingRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Goods.fromMap(o)));
     } else {
       return [];
@@ -60,7 +60,7 @@ class ShoppingRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll(
             (result.data as List ?? []).map((o) => GoodsCategory.fromMap(o)));
     } else {
@@ -94,7 +94,7 @@ class ShoppingRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Goods.fromMap(o)));
     } else {
       return [];
@@ -142,7 +142,7 @@ class ShoppingRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => OrderBean.fromMap(o)));
     } else {
       return [];
@@ -166,7 +166,7 @@ class ShoppingRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => ShopInfo.fromMap(o)));
     } else {
       return [];

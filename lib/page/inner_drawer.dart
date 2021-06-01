@@ -386,7 +386,7 @@ class _InnerDrawerSampleState extends State<InnerDrawerSample> {
                                 },
                               ),
                               Padding(padding: EdgeInsets.all(25)),
-                              RaisedButton(
+                              ElevatedButton(
                                   child: Text("open"),
                                   onPressed: () {
                                     // direction is optional

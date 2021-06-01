@@ -49,7 +49,7 @@ class MusicCategory {
     if (map == null) return null;
     MusicCategory bean = MusicCategory();
     bean.title = map["title"];
-    bean.list = List()
+    bean.list = []
       ..addAll(
           (map["list"] as List ?? []).map((o) => SubCategoryBean.fromMap(o)));
     return bean;
@@ -80,7 +80,7 @@ class SubCategoryBean {
     listBean.id = map["id"];
     listBean.period = map["period"];
     listBean.update = map["update"];
-    listBean.list = List()
+    listBean.list = []
       ..addAll((map["list"] as List ?? []).map((o) => Song.fromMap(o)));
     listBean.coverUrl = map["picUrl"];
     return listBean;

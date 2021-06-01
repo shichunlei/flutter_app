@@ -29,7 +29,7 @@ class ElementData {
     elementBean.source = map['source'];
     elementBean.category = map['category'];
     elementBean.atomicWeight = map['atomic_weight'];
-    elementBean.colors = List()
+    elementBean.colors = []
       ..addAll((map['colors'] as List ?? []).map((o) => Color(o)));
     return elementBean;
   }

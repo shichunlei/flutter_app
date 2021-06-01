@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/store/index.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../../page_index.dart';
 import '../index.dart';
@@ -106,18 +106,12 @@ class _TopSongsPageState extends State<TopSongsPage> {
                                     textAlign: TextAlign.center,
                                     text: TextSpan(
                                       children: [
-                                        TextSpan(
-                                            text: '${bean?.update}更新',
-                                            style: TextStyles.textDark16),
-                                        TextSpan(
-                                            text: '  |  ',
-                                            style: TextStyles.textDark14),
+                                        TextSpan(text: '${bean?.update}更新', style: TextStyles.textDark16),
+                                        TextSpan(text: '  |  ', style: TextStyles.textDark14),
                                         TextSpan(
                                           text: '详情',
                                           style: TextStyles.textBlue16,
-                                          recognizer: TapGestureRecognizer()
-                                            ..onTap =
-                                                () => showTopInfo(context),
+                                          recognizer: TapGestureRecognizer()..onTap = () => showTopInfo(context),
                                         )
                                       ],
                                     ),
@@ -149,8 +143,7 @@ class _TopSongsPageState extends State<TopSongsPage> {
                                     IconButton(
                                       icon: Icon(Icons.play_arrow),
                                       onPressed: () {
-                                        var snapshot =
-                                            Store.value<MusicModel>(context);
+                                        var snapshot = Store.value<MusicModel>(context);
                                         snapshot.playSongs(list);
                                       },
                                     ),
@@ -159,12 +152,8 @@ class _TopSongsPageState extends State<TopSongsPage> {
                                       textAlign: TextAlign.center,
                                       text: TextSpan(
                                         children: [
-                                          TextSpan(
-                                              text: '播放全部',
-                                              style: TextStyles.textDark16),
-                                          TextSpan(
-                                              text: '（共${list.length}首）',
-                                              style: TextStyles.textDark14),
+                                          TextSpan(text: '播放全部', style: TextStyles.textDark16),
+                                          TextSpan(text: '（共${list.length}首）', style: TextStyles.textDark14),
                                         ],
                                       ),
                                     ),
@@ -184,8 +173,7 @@ class _TopSongsPageState extends State<TopSongsPage> {
                       ),
                     ),
                     SliverPadding(
-                      padding: EdgeInsets.only(
-                          bottom: 60.0 + Utils.bottomSafeHeight),
+                      padding: EdgeInsets.only(bottom: 60.0 + Utils.bottomSafeHeight),
                     ),
                   ],
                 ),
@@ -211,13 +199,7 @@ class _TopSongsPageState extends State<TopSongsPage> {
                 aspectRatio: 1.6,
                 child: ImageLoadView('${bean?.coverUrl}'),
               ),
-              Html(
-                data: '${bean?.desc}',
-                // defaultTextStyle: TextStyle(fontSize: 20),
-                // padding: EdgeInsets.all(8.0),
-                // blockSpacing: 2.0,
-                // useRichText: true,
-              ),
+              HtmlWidget('${bean?.desc}', textStyle: TextStyle(fontSize: 20)),
             ],
           ),
         ),

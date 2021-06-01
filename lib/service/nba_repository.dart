@@ -18,7 +18,7 @@ class NBARepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Schedule.fromMap(o)));
     } else {
       return [];
@@ -38,7 +38,7 @@ class NBARepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Schedule.fromMap(o)));
     } else {
       return [];
@@ -58,7 +58,7 @@ class NBARepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Player.fromMap(o)));
     } else {
       return [];
@@ -75,7 +75,7 @@ class NBARepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => RankBase.fromMap(o)));
     } else {
       return [];
@@ -132,7 +132,7 @@ class NBARepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll(
             (result.data as List ?? []).map((o) => SeasonDataStat.fromMap(o)));
     } else {
@@ -193,7 +193,7 @@ class NBARepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll(
             (result.data as List ?? []).map((o) => SeasonDataStat.fromMap(o)));
     } else {
@@ -214,7 +214,7 @@ class NBARepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll(
             (result.data as List ?? []).map((o) => SeasonDataStat.fromMap(o)));
     } else {
@@ -238,7 +238,7 @@ class NBARepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll(
             (result.data as List ?? []).map((o) => PlayerMatch.fromMap(o)));
     } else {
@@ -259,7 +259,7 @@ class NBARepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => NBANews.fromMap(o)));
     } else {
       return [];

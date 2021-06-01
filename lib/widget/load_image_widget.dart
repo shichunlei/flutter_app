@@ -81,7 +81,7 @@ class LoadImageWidgetState extends State<LoadImageWidget> {
         'You have not yet picked a video',
         textAlign: TextAlign.center,
       );
-    } else if (_controller.value.initialized) {
+    } else if (_controller.value.isInitialized) {
       return Container(
         child: GestureDetector(
           onTap: () {

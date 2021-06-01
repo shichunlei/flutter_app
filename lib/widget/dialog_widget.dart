@@ -37,7 +37,7 @@ class DialogWidgetState extends State<DialogWidget> {
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 22.0),
         children: <Widget>[
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               showDialog(
                   context: context,
@@ -61,7 +61,7 @@ class DialogWidgetState extends State<DialogWidget> {
             child: Text('Network giffy dialog'),
           ),
           Divider(),
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               showDialog(
                   context: context,
@@ -85,7 +85,7 @@ class DialogWidgetState extends State<DialogWidget> {
             child: Text('Asset giffy dialog'),
           ),
           Divider(),
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               showDialog(
                 context: context,
@@ -129,7 +129,7 @@ class DialogWidgetState extends State<DialogWidget> {
             child: Text("AlertDialog"),
           ),
           Divider(),
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               showDialog(
                   context: context,
@@ -174,7 +174,7 @@ class DialogWidgetState extends State<DialogWidget> {
             child: Text("SimpleDialog"),
           ),
           Divider(),
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               showDialog(
                   context: context,
@@ -214,14 +214,14 @@ class DialogWidgetState extends State<DialogWidget> {
                 Text("box child 2")
               ]),
           Divider(),
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               _showStatefulWidgetDialog(context);
             },
             child: Text('ProgressDialog'),
           ),
           Divider(),
-          RaisedButton(
+          ElevatedButton(
               onPressed: () {
                 showDialog(
                     context: context,
@@ -284,7 +284,7 @@ class DialogWidgetState extends State<DialogWidget> {
               },
               child: Text('自定义Dialog')),
           Divider(),
-          RaisedButton(
+          ElevatedButton(
               onPressed: () {
                 showGeneralDialog(
                     context: context,
@@ -312,7 +312,7 @@ class DialogWidgetState extends State<DialogWidget> {
               },
               child: Text('旋转动画Dialog')),
           Divider(),
-          RaisedButton(
+          ElevatedButton(
               onPressed: () {
                 showGeneralDialog(
                     context: context,
@@ -338,7 +338,7 @@ class DialogWidgetState extends State<DialogWidget> {
               },
               child: Text('缩放动画Dialog')),
           Divider(),
-          RaisedButton(
+          ElevatedButton(
               onPressed: () {
                 showGeneralDialog(
                     context: context,
@@ -364,7 +364,7 @@ class DialogWidgetState extends State<DialogWidget> {
               },
               child: Text('旋转+渐变动画Dialog')),
           Divider(),
-          RaisedButton(
+          ElevatedButton(
               onPressed: () {
                 showGeneralDialog(
                     context: context,
@@ -392,7 +392,7 @@ class DialogWidgetState extends State<DialogWidget> {
               },
               child: Text('缩放+渐变动画Dialog')),
           Divider(),
-          RaisedButton(
+          ElevatedButton(
               onPressed: () {
                 showGeneralDialog(
                     context: context,
@@ -424,7 +424,7 @@ class DialogWidgetState extends State<DialogWidget> {
               child: Text('曲线变换动画Dialog')),
           Divider(),
           Builder(
-            builder: (context) => RaisedButton(
+            builder: (context) => ElevatedButton(
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text('收藏成功'),

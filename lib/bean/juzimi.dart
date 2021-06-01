@@ -41,16 +41,16 @@ class JuZiMi {
     dataBean.commentCount = map['comment_count'];
     dataBean.desc = map['desc'];
     dataBean.readCount = map['read_count'];
-    dataBean.tags = List()
+    dataBean.tags = []
       ..addAll((map['tags'] as List ?? []).map((o) => TagsBean.fromMap(o)));
     dataBean.copyright = map['copyright'];
     dataBean.details = map['details'];
-    dataBean.recommends = List()
+    dataBean.recommends = []
       ..addAll((map['recommends'] as List ?? []).map((o) => JuZiMi.fromMap(o)));
-    dataBean.userLikeTags = List()
+    dataBean.userLikeTags = []
       ..addAll((map['user_like_tags'] as List ?? [])
           .map((o) => TagsBean.fromMap(o)));
-    dataBean.authorNews = List()
+    dataBean.authorNews = []
       ..addAll(
           (map['author_news'] as List ?? []).map((o) => JuZiMi.fromMap(o)));
     return dataBean;

@@ -54,7 +54,7 @@ class TemperatureSingleLinePainter extends CustomPainter {
     double centerLine = (maxTemp + minTemp) / 2;
     double cell = 80 / (maxTemp - minTemp) * 4 / 5;
 
-    List<Hourly> drawList = List();
+    List<Hourly> drawList = [];
     tempList.forEach((temp) {
       drawList.add(Hourly(tmp: (centerLine - temp.tmp) * cell, time: temp.time));
     });

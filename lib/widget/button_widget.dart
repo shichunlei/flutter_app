@@ -310,7 +310,7 @@ class ButtonWidgetState extends State<ButtonWidget> {
               },
               shape: const StadiumBorder(),
             ),
-            OutlineButton(
+            OutlinedButton(
               child: Text('DISABLED', semanticsLabel: 'DISABLED BUTTON 5'),
               onPressed: null,
             ),
@@ -336,7 +336,7 @@ class ButtonWidgetState extends State<ButtonWidget> {
         ButtonBar(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            OutlineButton.icon(
+            OutlinedButton.icon(
               icon: const Icon(Icons.add, size: 18.0),
               label: const Text('OUTLINE BUTTON',
                   semanticsLabel: 'OUTLINE BUTTON 2'),

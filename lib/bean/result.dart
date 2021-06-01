@@ -20,10 +20,10 @@ class Result {
     result.count = map['count'];
     result.start = map['start'];
     result.total = map['total'];
-    result.contacts = List()
+    result.contacts = []
       ..addAll((map['results'] as List ?? []).map((o) => ContactBean.fromMap(o)));
 
-    result.heWeather = List()
+    result.heWeather = []
       ..addAll(
           (map['HeWeather6'] as List ?? []).map((o) => HeWeather.fromMap(o)));
 
