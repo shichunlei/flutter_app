@@ -3,42 +3,36 @@ import 'package:permission_handler/permission_handler.dart';
 class PermissionsUtil {
   /// 请求地图相关权限
   static Future<bool> requestMapPermission() async {
-    final permissions = await PermissionHandler().requestPermissions([
-      PermissionGroup.location,
-      PermissionGroup.storage,
-      PermissionGroup.phone,
-    ]);
-
-    if (permissions.values.any((status) => status == PermissionStatus.denied)) {
-      return false;
-    } else {
-      return true;
-    }
+    return await checkPermissionStatus(Permission.location) &&
+        await checkPermissionStatus(Permission.storage) &&
+        await checkPermissionStatus(Permission.phone);
   }
 
   /// 请求通讯录权限
   static Future<bool> requestContactsPermission() async {
-    // 申请权限
-    Map<PermissionGroup, PermissionStatus> permissions =
-        await PermissionHandler()
-            .requestPermissions([PermissionGroup.contacts]);
-
-    if (permissions.values.any((status) => status == PermissionStatus.denied)) {
-      return false;
-    } else {
-      return true;
-    }
+    return await checkPermissionStatus(Permission.contacts);
   }
 
   /// 请求相机权限
   static Future<bool> requestCameraPermission() async {
-    final permissions =
-        await PermissionHandler().requestPermissions([PermissionGroup.camera]);
+    return await checkPermissionStatus(Permission.camera);
+  }
 
-    if (permissions.values.any((status) => status == PermissionStatus.denied)) {
-      return false;
+  /// 检查该权限的状态
+  static Future<bool> checkPermissionStatus(Permission permission) async {
+    /// 检查是否已有该权限
+    bool status = await permission.isGranted;
+
+    /// 判断如果还没拥有读写权限就申请获取权限
+    if (!status) {
+      return await requestPermission(permission);
     } else {
-      return true;
+      return status;
     }
+  }
+
+  /// 注册权限
+  static Future<bool> requestPermission(Permission permission) async {
+    return await permission.request().isGranted;
   }
 }

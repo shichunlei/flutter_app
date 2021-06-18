@@ -29,7 +29,7 @@ dependencies: # 应用或包依赖的其它包或插件
   animated_text_kit: ^4.2.1
 
   # 音频播放
-  audioplayers: ^0.18.0
+  audioplayers: ^0.19.0
 
   # AzListView，Flutter 城市列表，联系人列表，自定义Header，索引，悬停效果。
   azlistview: ^2.0.0-nullsafety.0
@@ -45,14 +45,14 @@ dependencies: # 应用或包依赖的其它包或插件
   # 带缓存的图片
   cached_network_image: ^3.0.0
 
-  chewie: ^1.2.0
+  chewie: ^1.2.2
 
   convert: ^3.0.0
 
   clippy_flutter: ^2.0.0-nullsafety.1
 
   # 设备信息
-  device_info: ^2.0.0
+  device_info: ^2.0.2
 
   # 网络请求库
   dio: ^4.0.0
@@ -74,7 +74,7 @@ dependencies: # 应用或包依赖的其它包或插件
       url: https://github.com/shichunlei/flutter_charts
 
   # 颜色选择器
-  flutter_colorpicker: ^0.4.0
+  flutter_colorpicker: ^0.5.0
 
   # 刷新加载控件
   flutter_easyrefresh: ^2.2.1
@@ -118,7 +118,7 @@ dependencies: # 应用或包依赖的其它包或插件
   flutter_weather_bg_null_safety: ^1.0.0
 
   # webview
-  flutter_webview_plugin: ^0.3.11
+  flutter_webview_plugin: ^0.4.0
 
   flutter_widget_from_html: ^0.6.1
 
@@ -129,16 +129,16 @@ dependencies: # 应用或包依赖的其它包或插件
   image_gallery_saver: ^1.6.9
 
   # 图片选择器
-  image_picker: ^0.7.4
+  image_picker: ^0.8.0+3
 
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
-  lpinyin: ^2.0.1
+  lpinyin: ^2.0.3
 
   modal_bottom_sheet: ^2.0.0
 
   multi_image_picker: ^4.8.0
 
-  package_info: ^2.0.0
+  package_info: ^2.0.2
 
   palette_generator: ^0.3.0
 
@@ -148,7 +148,7 @@ dependencies: # 应用或包依赖的其它包或插件
 #  path_provider: ^2.0.0
 
   # 权限管理
-  permission_handler: ^4.4.0
+  permission_handler: ^7.2.0
 
   # PhotoView
   photo_view: ^0.11.1
@@ -181,7 +181,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # 透明占位图片
   transparent_image: ^2.0.0
 
-  url_launcher: ^6.0.4
+  url_launcher: ^6.0.6
 
   # 手机震动
   vibration: ^1.7.4-nullsafety.0
