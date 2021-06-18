@@ -40,20 +40,19 @@
 ## 运行环境
 
 ```
-[✓] Flutter (Channel stable, 2.0.6, on Mac OS X 10.15.7 19H2 darwin-x64, locale zh-Hans-CN)
-    • Flutter version 2.0.6 at /Users/shichunlei/flutter
-    • Framework revision 1d9032c7e1 (10 days ago), 2021-04-29 17:37:58 -0700
-    • Engine revision 05e680e202
-    • Dart version 2.12.3
+[✓] Flutter (Channel stable, 2.2.0, on Mac OS X 10.15.4 19E287 darwin-x64, locale zh-Hans-CN)
+    • Flutter version 2.2.0 at /Users/shichunlei/flutter
+    • Framework revision b22742018b (5 周前), 2021-05-14 19:12:57 -0700
+    • Engine revision a9d88a4d18
+    • Dart version 2.13.0
     • Pub download mirror https://pub.flutter-io.cn
     • Flutter download mirror https://storage.flutter-io.cn
 
-[✓] Android toolchain - develop for Android devices (Android SDK version 30.0.3)
+[✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
     • Android SDK at /Users/shichunlei/Library/Android/sdk
-    • Platform android-30, build-tools 30.0.3
-    • ANDROID_HOME = /Users/shichunlei/Library/Android/sdk
+    • Platform android-S, build-tools 30.0.2
     • Java binary at: /Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin/java
-    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b3-6915495)
+    • Java version OpenJDK Runtime Environment (build 11.0.8+10-b944.6916264)
     • All Android licenses accepted.
 
 [✓] Xcode - develop for iOS and macOS
@@ -64,13 +63,13 @@
 [✓] Chrome - develop for the web
     • Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
 
-[✓] Android Studio (version 4.1)
+[✓] Android Studio (version 4.2)
     • Android Studio at /Applications/Android Studio.app/Contents
     • Flutter plugin can be installed from:
       🔨 https://plugins.jetbrains.com/plugin/9212-flutter
     • Dart plugin can be installed from:
       🔨 https://plugins.jetbrains.com/plugin/6351-dart
-    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b3-6915495)
+    • Java version OpenJDK Runtime Environment (build 11.0.8+10-b944.6916264)
 
 [✓] Connected device (2 available)
     • iPhone 12 Pro Max (mobile) • D1993768-C600-4BC2-B308-9B0311915501 • ios            • com.apple.CoreSimulator.SimRuntime.iOS-14-4 (simulator)
