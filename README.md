@@ -1,4 +1,5 @@
 # FlutterApp
+English version coming soon...
 
 ![](https://github.com/shichunlei/flutter_app/blob/master/FlutterApp.png)
 
