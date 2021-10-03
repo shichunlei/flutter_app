@@ -97,7 +97,7 @@ class _NineGridPageState extends State<NineGridPage> {
       default:
         break;
     }
-    List<Widget> children = List();
+    List<Widget> children = [];
     for (int i = 0; i < 9; i++) {
       children.add(NineGridView(
         width: (MediaQuery.of(context).size.width - 64) / 3,

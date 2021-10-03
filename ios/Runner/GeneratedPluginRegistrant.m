@@ -16,6 +16,12 @@
 @import amap_location_fluttify;
 #endif
 
+#if __has_include(<audio_session/AudioSessionPlugin.h>)
+#import <audio_session/AudioSessionPlugin.h>
+#else
+@import audio_session;
+#endif
+
 #if __has_include(<audioplayers/AudioplayersPlugin.h>)
 #import <audioplayers/AudioplayersPlugin.h>
 #else
@@ -46,16 +52,16 @@
 @import easy_contact_picker;
 #endif
 
+#if __has_include(<flutter_charts/FlutterChartsPlugin.h>)
+#import <flutter_charts/FlutterChartsPlugin.h>
+#else
+@import flutter_charts;
+#endif
+
 #if __has_include(<flutter_jd_address_selector/FlutterJdAddressSelectorPlugin.h>)
 #import <flutter_jd_address_selector/FlutterJdAddressSelectorPlugin.h>
 #else
 @import flutter_jd_address_selector;
-#endif
-
-#if __has_include(<flutter_sound/FlutterSoundPlugin.h>)
-#import <flutter_sound/FlutterSoundPlugin.h>
-#else
-@import flutter_sound;
 #endif
 
 #if __has_include(<flutter_webview_plugin/FlutterWebviewPlugin.h>)
@@ -86,6 +92,12 @@
 #import <image_picker/FLTImagePickerPlugin.h>
 #else
 @import image_picker;
+#endif
+
+#if __has_include(<just_audio/JustAudioPlugin.h>)
+#import <just_audio/JustAudioPlugin.h>
+#else
+@import just_audio;
 #endif
 
 #if __has_include(<multi_image_picker/MultiImagePickerPlugin.h>)
@@ -160,23 +172,31 @@
 @import wakelock;
 #endif
 
+#if __has_include(<webview_flutter/FLTWebViewFlutterPlugin.h>)
+#import <webview_flutter/FLTWebViewFlutterPlugin.h>
+#else
+@import webview_flutter;
+#endif
+
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
   [AmapCoreFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapCoreFluttifyPlugin"]];
   [AmapLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapLocationFluttifyPlugin"]];
+  [AudioSessionPlugin registerWithRegistrar:[registry registrarForPlugin:@"AudioSessionPlugin"]];
   [AudioplayersPlugin registerWithRegistrar:[registry registrarForPlugin:@"AudioplayersPlugin"]];
   [BarcodeScanPlugin registerWithRegistrar:[registry registrarForPlugin:@"BarcodeScanPlugin"]];
   [CoreLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"CoreLocationFluttifyPlugin"]];
   [FLTDeviceInfoPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTDeviceInfoPlugin"]];
   [EasyContactPickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"EasyContactPickerPlugin"]];
+  [FlutterChartsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterChartsPlugin"]];
   [FlutterJdAddressSelectorPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterJdAddressSelectorPlugin"]];
-  [FlutterSoundPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterSoundPlugin"]];
   [FlutterWebviewPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterWebviewPlugin"]];
   [FoundationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"FoundationFluttifyPlugin"]];
   [FLTImageCropperPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImageCropperPlugin"]];
   [ImageGallerySaverPlugin registerWithRegistrar:[registry registrarForPlugin:@"ImageGallerySaverPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
+  [JustAudioPlugin registerWithRegistrar:[registry registrarForPlugin:@"JustAudioPlugin"]];
   [MultiImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"MultiImagePickerPlugin"]];
   [FLTPackageInfoPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPackageInfoPlugin"]];
   [FLTPathProviderPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPathProviderPlugin"]];
@@ -189,6 +209,7 @@
   [VibrationPlugin registerWithRegistrar:[registry registrarForPlugin:@"VibrationPlugin"]];
   [FLTVideoPlayerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTVideoPlayerPlugin"]];
   [WakelockPlugin registerWithRegistrar:[registry registrarForPlugin:@"WakelockPlugin"]];
+  [FLTWebViewFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTWebViewFlutterPlugin"]];
 }
 
 @end

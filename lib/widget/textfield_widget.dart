@@ -25,7 +25,7 @@ class TextFieldWidgetDemoState extends State<TextFieldWidgetDemo> {
             children: builderTextField(),
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
           ),
-          autovalidate: true,
+          autovalidateMode: AutovalidateMode.always,
           key: _formKey,
         ),
         top: false,
@@ -98,7 +98,7 @@ class TextFieldWidgetDemoState extends State<TextFieldWidgetDemo> {
       ),
       Container(
           padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-          child: RaisedButton(
+          child: ElevatedButton(
             child: const Text('Submit'),
             onPressed: () {},
           )),
@@ -110,11 +110,11 @@ class TextFieldWidgetDemoState extends State<TextFieldWidgetDemo> {
       builder: (context) => AlertDialog(
             title: Text('Do you really want to exit the page?'),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 child: Text('No'),
                 onPressed: () => Navigator.pop(context, false),
               ),
-              FlatButton(
+              TextButton(
                 child: Text('Yes'),
                 onPressed: () => Navigator.pop(context, true),
               ),

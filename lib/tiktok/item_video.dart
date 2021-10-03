@@ -32,7 +32,7 @@ class _ItemVideoState extends State<ItemVideo> {
     _controller = VideoPlayerController.network('${widget.video.playAddr}')
       ..initialize().then((_) {
         setState(() {
-          if (_controller.value.initialized) {
+          if (_controller.value.isInitialized) {
             _controller.play();
           }
         });
@@ -57,7 +57,7 @@ class _ItemVideoState extends State<ItemVideo> {
 
   @override
   Widget build(BuildContext context) {
-    return _controller.value.initialized
+    return _controller.value.isInitialized
         ? Material(
             type: MaterialType.transparency,
             child: Container(

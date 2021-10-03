@@ -195,7 +195,7 @@ class HomeStatePage extends State<HomePage> {
       Store.value<WeatherModel>(_scaffoldKey.currentContext, listen: false)
           .getDefaultCityWeather(city);
     } else {
-      Scaffold.of(_scaffoldKey.currentContext)
+      ScaffoldMessenger.of(_scaffoldKey.currentContext)
           .showSnackBar(SnackBar(content: Text('权限不足')));
     }
   }

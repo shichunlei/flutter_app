@@ -65,7 +65,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {
-          if (_controller.value.initialized) {
+          if (_controller.value.isInitialized) {
             _controller.play();
           }
         });
@@ -102,7 +102,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bool ready = _controller.value.initialized;
+    final bool ready = _controller.value.isInitialized;
     return Scaffold(
       backgroundColor: Colors.black,
       body: GestureDetector(

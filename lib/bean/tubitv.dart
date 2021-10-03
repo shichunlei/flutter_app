@@ -36,7 +36,7 @@ class TubiCategory {
     dataBean.logo = map['logo'];
     dataBean.background = map['background'];
     dataBean.tags = map['tags'];
-    dataBean.children = List()
+    dataBean.children = []
       ..addAll((map['children'] as List ?? []).map((o) => TuBiTV.fromMap(o)));
     return dataBean;
   }
@@ -155,37 +155,37 @@ class TuBiTV {
     testBean.publisherId = map['publisher_id'];
     testBean.importId = map['import_id'];
     testBean.partnerId = map['partner_id'];
-    testBean.tags = List()
+    testBean.tags = []
       ..addAll((map['tags'] as List ?? []).map((o) => o.toString()));
     testBean.lang = map['lang'];
     testBean.country = map['country'];
-    testBean.actors = List()
+    testBean.actors = []
       ..addAll((map['actors'] as List ?? []).map((o) => o.toString()));
-    testBean.directors = List()
+    testBean.directors = []
       ..addAll((map['directors'] as List ?? []).map((o) => o.toString()));
     testBean.policyMatch = map['policy_match'];
     testBean.updatedAt = map['updated_at'];
-    testBean.ratings = List()
+    testBean.ratings = []
       ..addAll(
           (map['ratings'] as List ?? []).map((o) => RatingsBean.fromMap(o)));
-    testBean.videoResources = List()
+    testBean.videoResources = []
       ..addAll((map['video_resources'] as List ?? [])
           .map((o) => VideoResources.fromMap(o)));
-    testBean.posterarts = List()
+    testBean.posterarts = []
       ..addAll((map['posterarts'] as List ?? []).map((o) => o.toString()));
-    testBean.thumbnails = List()
+    testBean.thumbnails = []
       ..addAll((map['thumbnails'] as List ?? []).map((o) => o.toString()));
-    testBean.heroImages = List()
+    testBean.heroImages = []
       ..addAll((map['hero_images'] as List ?? []).map((o) => o.toString()));
-    testBean.landscapeImages = List()
+    testBean.landscapeImages = []
       ..addAll(
           (map['landscape_images'] as List ?? []).map((o) => o.toString()));
-    testBean.backgrounds = List()
+    testBean.backgrounds = []
       ..addAll((map['backgrounds'] as List ?? []).map((o) => o.toString()));
     testBean.hasSubtitle = map['has_subtitle'];
     testBean.detailedType = map['detailed_type'];
     testBean.needsLogin = map['needs_login'];
-    testBean.subtitles = List()
+    testBean.subtitles = []
       ..addAll((map['subtitles'] as List ?? [])
           .map((o) => SubtitlesBean.fromMap(o)));
     testBean.hasTrailer = map['has_trailer'];
@@ -203,12 +203,12 @@ class TuBiTV {
         : MonetizationBean.fromMap(map['monetization']);
     testBean.availabilityStarts = map['availability_starts'];
     testBean.availabilityEnds = map['availability_ends'];
-    testBean.trailers = map['trailers'] == null ? List() : List()
+    testBean.trailers = map['trailers'] == null ? [] : []
       ..addAll(
           (map['trailers'] as List ?? []).map((o) => TrailersBean.fromMap(o)));
-    testBean.related = List()
+    testBean.related = []
       ..addAll((map['related'] as List ?? []).map((o) => TuBiTV.fromMap(o)));
-    testBean.children = map['children'] == null ? List() : List()
+    testBean.children = map['children'] == null ? [] : []
       ..addAll((map['children'] as List ?? []).map((o) => TuBiTV.fromMap(o)));
     testBean.seriesId = map['series_id'];
     return testBean;
@@ -290,7 +290,7 @@ class MonetizationBean {
   static MonetizationBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     MonetizationBean bean = MonetizationBean();
-    bean.cuePoints = List()
+    bean.cuePoints = []
       ..addAll((map['cue_points'] as List ?? [])
           .map((o) => int.tryParse(o.toString())));
     return bean;

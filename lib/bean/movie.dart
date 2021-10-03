@@ -8,7 +8,7 @@ class RangesData {
     if (map == null) return null;
     RangesData data = RangesData();
     data.cover = map['cover'] != null ? CoverBean.fromMap(map['cover']) : null;
-    data.ranges = List()
+    data.ranges = []
       ..addAll((map['ranges'] as List ?? []).map((o) => RangesBean.fromMap(o)));
     return data;
   }
@@ -31,7 +31,7 @@ class RangesBean {
     RangesBean rangesBean = RangesBean();
     rangesBean.info =
         map['info'] != null ? CoverBean.fromMap(map['info']) : null;
-    rangesBean.subjects = List()
+    rangesBean.subjects = []
       ..addAll((map['subjects'] as List ?? []).map((o) => Movie.fromMap(o)));
     return rangesBean;
   }
@@ -109,15 +109,15 @@ class MovieHomeData {
   static MovieHomeData fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     MovieHomeData data = MovieHomeData();
-    data.banners = List()
+    data.banners = []
       ..addAll((map['banners'] as List ?? []).map((o) => MovieNews.fromMap(o)));
-    data.inTheaters = List()
+    data.inTheaters = []
       ..addAll((map['in_theaters'] as List ?? []).map((o) => Movie.fromMap(o)));
-    data.soonMovies = List()
+    data.soonMovies = []
       ..addAll((map['soon_movies'] as List ?? []).map((o) => Movie.fromMap(o)));
-    data.category = List()
+    data.category = []
       ..addAll((map['category'] as List ?? []).map((o) => MovieTag.fromMap(o)));
-    data.ranges = List()
+    data.ranges = []
       ..addAll((map['ranges'] as List ?? []).map((o) => MovieTag.fromMap(o)));
     return data;
   }
@@ -146,7 +146,7 @@ class MovieTag {
     categoryBean.tip = map['tip'];
     categoryBean.title = map['title'];
     categoryBean.hasMore = map['has_more'];
-    categoryBean.subjects = List()
+    categoryBean.subjects = []
       ..addAll((map['subjects'] as List ?? []).map((o) => Movie.fromMap(o)));
     return categoryBean;
   }
@@ -452,49 +452,49 @@ class Movie {
         map['writers'] == null ? [] : Casts.fromMapList(map['writers']);
 
     List<dynamic> aka = map['aka'] == null ? [] : map['aka'];
-    movie.aka = List();
+    movie.aka = [];
     movie.aka.addAll(aka.map((o) => o.toString()));
 
     List<dynamic> blooperUrls =
         map['blooper_urls'] == null ? [] : map['blooper_urls'];
-    movie.blooperUrls = List();
+    movie.blooperUrls = [];
     movie.blooperUrls.addAll(blooperUrls.map((o) => o.toString()));
 
     List<dynamic> clipUrls = map['clip_urls'] == null ? [] : map['clip_urls'];
-    movie.clipUrls = List();
+    movie.clipUrls = [];
     movie.clipUrls.addAll(clipUrls.map((o) => o.toString()));
 
     List<dynamic> countries = map['countries'] == null ? [] : map['countries'];
-    movie.countries = List();
+    movie.countries = [];
     movie.countries.addAll(countries.map((o) => o.toString()));
 
     List<dynamic> durations = map['durations'] == null ? [] : map['durations'];
-    movie.durations = List();
+    movie.durations = [];
     movie.durations.addAll(durations.map((o) => o.toString()));
 
     List<dynamic> genres = map['genres'] == null ? [] : map['genres'];
-    movie.genres = List();
+    movie.genres = [];
     movie.genres.addAll(genres.map((o) => o.toString()));
 
     List<dynamic> languages = map['languages'] == null ? [] : map['languages'];
-    movie.languages = List();
+    movie.languages = [];
     movie.languages.addAll(languages.map((o) => o.toString()));
 
     List<dynamic> pubDates = map['pubdates'] == null ? [] : map['pubdates'];
-    movie.pubDates = List();
+    movie.pubDates = [];
     movie.pubDates.addAll(pubDates.map((o) => o.toString()));
 
     List<dynamic> tagList = map['tags'] == null ? [] : map['tags'];
-    movie.tags = List();
+    movie.tags = [];
     movie.tags.addAll(tagList.map((o) => o.toString()));
 
     List<dynamic> roleList = map['roles'] == null ? [] : map['roles'];
-    movie.roles = List();
+    movie.roles = [];
     movie.roles.addAll(roleList.map((o) => o.toString()));
 
     List<dynamic> trailerUrlList =
         map['trailer_urls'] == null ? [] : map['trailer_urls'];
-    movie.trailerUrls = List();
+    movie.trailerUrls = [];
     movie.trailerUrls.addAll(trailerUrlList.map((o) => o.toString()));
 
     return movie;
@@ -549,16 +549,16 @@ class Celebrity {
         map['subjects'] == null ? [] : Movie.fromMapList(map['subjects']);
 
     List<dynamic> aka = map['aka'] == null ? [] : map['aka'];
-    celebrity.aka = List();
+    celebrity.aka = [];
     celebrity.aka.addAll(aka.map((o) => o.toString()));
 
     List<dynamic> akaEn = map['aka_en'] == null ? [] : map['aka_en'];
-    celebrity.akaEn = List();
+    celebrity.akaEn = [];
     celebrity.akaEn.addAll(akaEn.map((o) => o.toString()));
 
     List<dynamic> professions =
         map['professions'] == null ? [] : map['professions'];
-    celebrity.professions = List();
+    celebrity.professions = [];
     celebrity.professions.addAll(professions.map((o) => o.toString()));
 
     return celebrity;

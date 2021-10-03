@@ -22,13 +22,13 @@ class FriendsDynamic {
     dynamic.id = map['id'];
     dynamic.video =
         map['video'] == null ? null : VideoBean.fromMap(map['video']);
-    dynamic.images = List()
+    dynamic.images = []
       ..addAll(
           (map['images'] as List ?? []).map((o) => ImagesListBean.fromMap(o)));
-    dynamic.comment = List()
+    dynamic.comment = []
       ..addAll(
           (map['comment'] as List ?? []).map((o) => CommentBean.fromMap(o)));
-    dynamic.praise = List()
+    dynamic.praise = []
       ..addAll((map['praise'] as List ?? []).map((o) => o.toString()));
     return dynamic;
   }

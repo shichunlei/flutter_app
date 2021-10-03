@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_weather_bg/flutter_weather_bg.dart';
+import 'package:flutter_weather_bg_null_safety/flutter_weather_bg.dart';
+import 'package:flutter_weather_bg_null_safety/utils/weather_type.dart';
 
 import '../../bean/he_weather.dart';
 import '../../page_index.dart';
@@ -164,7 +165,7 @@ class WeatherPageState extends State<WeatherPage> {
               HourlyView(hourly),
               WeeklyView(dailyForecast),
               lifestyle.length == 0 ? Container() : LifestyleView(lifestyle),
-              SunView(title)
+              // SunView(title)
             ])),
         onRefresh: () => _getWeather(title));
   }

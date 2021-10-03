@@ -2,8 +2,6 @@
 
 ![](https://github.com/shichunlei/flutter_app/blob/master/FlutterApp.png)
 
-## 注意：升级到flutter2.0的同学们需要克隆flutter-2.0+的分支，主分支flutter版本为1.22.3
-
 
 ## Android APK 下载地址
 
@@ -40,37 +38,40 @@
 ## 运行环境
 
 ```
-[✓] Flutter (Channel stable, 1.22.3, on Mac OS X 10.15.6 19G2021, locale
-    zh-Hans-CN)
-    • Flutter version 1.22.3 at /System/Volumes/Data/workspace/flutter
-    • Framework revision 8874f21e79 (28 hours ago), 2020-10-29 14:14:35 -0700
-    • Engine revision a1440ca392
-    • Dart version 2.10.3
+[✓] Flutter (Channel stable, 2.2.3, on macOS 11.5.2 20G95 darwin-x64, locale zh-Hans-CN)
+    • Flutter version 2.2.3 at /Users/***/flutter
+    • Framework revision f4abaa0735 (3 months ago), 2021-07-01 12:46:11 -0700
+    • Engine revision 241c87ad80
+    • Dart version 2.13.4
     • Pub download mirror https://pub.flutter-io.cn
     • Flutter download mirror https://storage.flutter-io.cn
 
-[✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
-    • Android SDK at /Users/dev/Library/Android/sdk
-    • Platform android-30, build-tools 30.0.2
+[✓] Android toolchain - develop for Android devices (Android SDK version 31.0.0)
+    • Android SDK at /Users/***/Library/Android/sdk
+    • Platform android-31, build-tools 31.0.0
+    • ANDROID_HOME = /Users/***/Library/Android/sdk
     • Java binary at: /Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin/java
-    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b3-6222593)
+    • Java version OpenJDK Runtime Environment (build 11.0.10+0-b96-7281165)
     • All Android licenses accepted.
 
-[✓] Xcode - develop for iOS and macOS (Xcode 11.7)
+[✓] Xcode - develop for iOS and macOS
     • Xcode at /Applications/Xcode.app/Contents/Developer
-    • Xcode 11.7, Build version 11E801a
-    • CocoaPods version 1.10.0.beta.2
+    • Xcode 13.0, Build version 13A233
+    • CocoaPods version 1.11.0
 
-[✓] Android Studio (version 4.0)
+[✓] Chrome - develop for the web
+    • Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+
+[✓] Android Studio (version 2020.3)
     • Android Studio at /Applications/Android Studio.app/Contents
-    • Flutter plugin version 50.0.1
-    • Dart plugin version 193.7547
-    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b3-6222593)
+    • Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    • Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+    • Java version OpenJDK Runtime Environment (build 11.0.10+0-b96-7281165)
 
-[✓] Connected device (3 available)
-    • MI 5X      • 1c7664100104 • android-arm64  • Android 8.1.0 (API 27)
-    • iPhone 11 Pro Max • B366D105-9EEC-47E4-A0CE-94C43E9ACD2D • ios • com.apple.CoreSimulator.SimRuntime.iOS-13-2 (simulator)
-    • SCL的 iPhone (mobile) • c8d772b25c3f412f630906165970b0871bb527aa • ios • iOS 13.7
+[✓] Connected device (2 available)
+    • Chrome (web)     • chrome                                   • web-javascript • Google Chrome 94.0.4606.71
 ```
 
 ## 注意事项

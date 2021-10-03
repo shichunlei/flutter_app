@@ -67,15 +67,15 @@ class HeWeather {
     weather.now = map['now'] == null ? null : NowWeather.fromMap(map['now']);
     weather.update = map['update'] == null ? null : UpdateBean.fromMap(map['update']);
 
-    weather.dailyForecast = List()..addAll((map['daily_forecast'] as List ?? []).map((o) => DailyForecast.fromMap(o)));
+    weather.dailyForecast = []..addAll((map['daily_forecast'] as List ?? []).map((o) => DailyForecast.fromMap(o)));
 
-    weather.lifestyle = List()..addAll((map['lifestyle'] as List ?? []).map((o) => Lifestyle.fromMap(o)));
+    weather.lifestyle = []..addAll((map['lifestyle'] as List ?? []).map((o) => Lifestyle.fromMap(o)));
 
-    weather.hourly = List()..addAll((map['hourly'] as List ?? []).map((o) => Hourly.fromMap(o)));
+    weather.hourly = []..addAll((map['hourly'] as List ?? []).map((o) => Hourly.fromMap(o)));
 
-    weather.airNowStation = List()..addAll((map['air_now_station'] as List ?? []).map((o) => Air.fromMap(o)));
+    weather.airNowStation = []..addAll((map['air_now_station'] as List ?? []).map((o) => Air.fromMap(o)));
 
-    weather.sunriseSunset = List()..addAll((map['sunrise_sunset'] as List ?? []).map((o) => SunriseSunset.fromMap(o)));
+    weather.sunriseSunset = []..addAll((map['sunrise_sunset'] as List ?? []).map((o) => SunriseSunset.fromMap(o)));
     return weather;
   }
 }

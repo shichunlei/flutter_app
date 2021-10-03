@@ -57,38 +57,38 @@ class YouDaoData {
   static YouDaoData fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     YouDaoData data = YouDaoData();
-    data.head = List()
+    data.head = []
       ..addAll((map['head'] as List ?? []).map((o) => BannerBean.fromMap(o)));
-    data.discover = List()
+    data.discover = []
       ..addAll(
           (map['discover'] as List ?? []).map((o) => DiscoverBean.fromMap(o)));
-    data.tagRecommends = List()
+    data.tagRecommends = []
       ..addAll((map['tagRecommends'] as List ?? [])
           .map((o) => int.tryParse(o.toString())));
-    data.popularCourse = List()
+    data.popularCourse = []
       ..addAll((map['popularCourse'] as List ?? [])
           .map((o) => CoursesBean.fromMap(o)));
     data.serial = map['serial'];
     data.essay = map['essay'];
-    data.tagRecommendCourses = List()
+    data.tagRecommendCourses = []
       ..addAll((map['tagRecommendCourses'] as List ?? [])
           .map((o) => TagRecommendCoursesBean.fromMap(o)));
-    data.fixedEntries = List()
+    data.fixedEntries = []
       ..addAll((map['fixedEntries'] as List ?? [])
           .map((o) => FixedEntriesBean.fromMap(o)));
 
     data.redirect = map['redirect'];
-    data.subTag = List()
+    data.subTag = []
       ..addAll((map['subTag'] as List ?? []).map((o) => SubTagBean.fromMap(o)));
-    data.courses = List()
+    data.courses = []
       ..addAll(
           (map['courses'] as List ?? []).map((o) => CoursesBean.fromMap(o)));
     data.img = map['img'];
     data.subject = map['subject'];
     data.serialCourse = map['serialCourse'];
-    data.column = List()
+    data.column = []
       ..addAll((map['column'] as List ?? []).map((o) => ColumnsBean.fromMap(o)));
-    data.banner = List()
+    data.banner = []
       ..addAll((map['banner'] as List ?? []).map((o) => BannerBean.fromMap(o)));
     data.name = map['name'];
     data.tagType = map['tagType'];
@@ -98,7 +98,7 @@ class YouDaoData {
 
     data.popup = map['popup'] == null ? null : Popup.fromMap(map['popup']);
 
-    data.course = List()
+    data.course = []
       ..addAll(
           (map['course'] as List ?? []).map((o) => CoursesBean.fromMap(o)));
     return data;
@@ -193,7 +193,7 @@ class TagBean {
     tagBean.rank = map['rank'];
     tagBean.redirect = map['redirect'];
     tagBean.showSerialCourseNum = map['showSerialCourseNum'];
-    tagBean.subTag = List()
+    tagBean.subTag = []
       ..addAll((map['subTag'] as List ?? []).map((o) => SubTagBean.fromMap(o)));
     tagBean.subject = map['subject'];
     tagBean.tagOnFire = map['tagOnFire'];
@@ -280,7 +280,7 @@ class TagRecommendCoursesBean {
   static TagRecommendCoursesBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     TagRecommendCoursesBean tagRecommendCoursesBean = TagRecommendCoursesBean();
-    tagRecommendCoursesBean.courses = List()
+    tagRecommendCoursesBean.courses = []
       ..addAll(
           (map['courses'] as List ?? []).map((o) => CoursesBean.fromMap(o)));
     tagRecommendCoursesBean.tagId = map['tagId'];
@@ -379,7 +379,7 @@ class CoursesBean {
     coursesBean.renew = RenewBean.fromMap(map['renew']);
     coursesBean.status = map['status'];
     coursesBean.url = map['url'];
-    coursesBean.teacherList = List()
+    coursesBean.teacherList = []
       ..addAll((map['teacherList'] as List ?? [])
           .map((o) => TeacherListBean.fromMap(o)));
     return coursesBean;
@@ -417,7 +417,7 @@ class RenewBean {
   static RenewBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     RenewBean renewBean = RenewBean();
-    renewBean.renewCourses = List()
+    renewBean.renewCourses = []
       ..addAll((map['renewCourses'] as List ?? [])
           .map((o) => RenewCoursesBean.fromMap(o)));
     renewBean.renewEnd = map['renewEnd'];
@@ -551,7 +551,7 @@ class ColumnsBean {
   static ColumnsBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     ColumnsBean columnBean = ColumnsBean();
-    columnBean.courseCards = List()
+    columnBean.courseCards = []
       ..addAll((map['courseCards'] as List ?? [])
           .map((o) => CoursesBean.fromMap(o)));
     columnBean.id = map['id'];

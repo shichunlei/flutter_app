@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bean/juzimi.dart';
 import 'package:flutter_app/page_index.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import 'tag_list.dart';
 
@@ -9,8 +9,7 @@ class JuZiMiDetails extends StatefulWidget {
   final String type;
   final int id;
 
-  JuZiMiDetails({Key key, @required this.type, @required this.id})
-      : super(key: key);
+  JuZiMiDetails({Key key, @required this.type, @required this.id}) : super(key: key);
 
   @override
   createState() => _JuZiMiDetailsState();
@@ -39,10 +38,8 @@ class _JuZiMiDetailsState extends State<JuZiMiDetails> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: ImageLoadView(
-              'http://www.cnjxn.com/storage/2019/08/26/pEDsWrvnNU01QVuBQqIqQqc3TaZ8gQZjEFoopOpD.jpeg',
-              width: 95,
-              height: 42.5),
+          title: ImageLoadView('http://www.cnjxn.com/storage/2019/08/26/pEDsWrvnNU01QVuBQqIqQqc3TaZ8gQZjEFoopOpD.jpeg',
+              width: 95, height: 42.5),
           centerTitle: true,
         ),
         body: LoaderContainer(
@@ -77,19 +74,7 @@ class _JuZiMiDetailsState extends State<JuZiMiDetails> {
                     color: Colors.grey,
                   ),
                   Gaps.vGap5,
-                  Html(
-                      data: juzimi?.details,
-                      defaultTextStyle: TextStyle(fontSize: 16),
-                      padding: EdgeInsets.all(8.0),
-                      blockSpacing: 2.0,
-                      useRichText: true,
-                      linkStyle: const TextStyle(
-                          color: Colors.redAccent,
-                          decorationColor: Colors.redAccent,
-                          decoration: TextDecoration.underline),
-                      onLinkTap: (url) {
-                        debugPrint("Opening $url...");
-                      }),
+                  HtmlWidget(juzimi?.details, textStyle: TextStyle(fontSize: 16)),
                   juzimi != null && juzimi.tags.length > 0
                       ? Wrap(
                           children: juzimi.tags.map((tag) {
@@ -116,9 +101,8 @@ class _JuZiMiDetailsState extends State<JuZiMiDetails> {
                     ),
                     padding: EdgeInsets.all(15),
                     margin: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        color: Colors.grey[100],
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    decoration:
+                        BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.all(Radius.circular(10))),
                   ),
                   Line(
                     lineHeight: 1,
@@ -155,14 +139,12 @@ class _JuZiMiDetailsState extends State<JuZiMiDetails> {
                                     _status = LoaderState.Loading;
                                   });
 
-                                  getDetails(juzimi?.recommends[index]?.id,
-                                      juzimi?.recommends[index]?.type);
+                                  getDetails(juzimi?.recommends[index]?.id, juzimi?.recommends[index]?.type);
                                 },
                                 child: Container(
                                   padding: EdgeInsets.all(10),
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
                                         '${juzimi?.recommends[index]?.title}',

@@ -11,19 +11,14 @@ class IndexPage extends StatefulWidget {
   createState() => _IndexPageState();
 }
 
-class _IndexPageState extends State<IndexPage>
-    with SingleTickerProviderStateMixin {
+class _IndexPageState extends State<IndexPage> {
   List<Widget> list = [];
 
   @override
   void initState() {
     super.initState();
 
-    list
-      ..add(HomePage('百姓生活+'))
-      ..add(ClassifyPage('分类'))
-      ..add(ShoppingCartPage('购物车'))
-      ..add(MemberPage('会员'));
+    list..add(HomePage('百姓生活+'))..add(ClassifyPage('分类'))..add(ShoppingCartPage('购物车'))..add(MemberPage('会员'));
   }
 
   @override
@@ -37,7 +32,6 @@ class _IndexPageState extends State<IndexPage>
             currentIndex: store.currentPage,
             onTap: (int index) {
               store.setPageIndex(index);
-              setState(() {});
             },
             borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
             elevation: 8,
@@ -60,8 +54,7 @@ class _IndexPageState extends State<IndexPage>
               BubbleBottomBarItem(
                   backgroundColor: Colors.green,
                   icon: Icon(CustomIcon.account_full, color: Colors.black),
-                  activeIcon:
-                      Icon(CustomIcon.account_full, color: Colors.green),
+                  activeIcon: Icon(CustomIcon.account_full, color: Colors.green),
                   title: Text("会员"))
             ]));
   }

@@ -28,14 +28,12 @@ class Utils {
   /// 随机颜色
   ///
   static Color randomRGB() {
-    return Color.fromARGB(255, Random().nextInt(255), Random().nextInt(255),
-        Random().nextInt(255));
+    return Color.fromARGB(255, Random().nextInt(255), Random().nextInt(255), Random().nextInt(255));
   }
 
   static Color randomARGB() {
-    Random random = new Random();
-    return Color.fromARGB(random.nextInt(180), random.nextInt(255),
-        random.nextInt(255), random.nextInt(255));
+    Random random = Random();
+    return Color.fromARGB(random.nextInt(180), random.nextInt(255), random.nextInt(255), random.nextInt(255));
   }
 
   /// 生成随机串
@@ -101,7 +99,7 @@ class Utils {
   ///
   static copyToClipboard(String text) {
     if (text == null) return;
-    Clipboard.setData(new ClipboardData(text: text));
+    Clipboard.setData(ClipboardData(text: text));
   }
 
   static const RollupSize_Units = ["GB", "MB", "KB", "B"];
@@ -135,9 +133,7 @@ class Utils {
   static Future<Color> getImageLightVibrantColor(String imagePath,
       {Color defaultColor: Colors.white30, String type: "network"}) async {
     PaletteGenerator paletteGenerator =
-        await PaletteGenerator.fromImageProvider(type == "network"
-            ? NetworkImage(imagePath)
-            : AssetImage(imagePath));
+        await PaletteGenerator.fromImageProvider(type == "network" ? NetworkImage(imagePath) : AssetImage(imagePath));
 
     return paletteGenerator.lightVibrantColor?.color ?? defaultColor;
   }
@@ -145,9 +141,7 @@ class Utils {
   static Future<Color> getImageDominantColor(String imagePath,
       {Color defaultColor: Colors.blueAccent, String type: "network"}) async {
     PaletteGenerator paletteGenerator =
-        await PaletteGenerator.fromImageProvider(type == "network"
-            ? NetworkImage(imagePath)
-            : AssetImage(imagePath));
+        await PaletteGenerator.fromImageProvider(type == "network" ? NetworkImage(imagePath) : AssetImage(imagePath));
 
     return paletteGenerator.dominantColor?.color ?? defaultColor;
   }
@@ -155,9 +149,7 @@ class Utils {
   static Future<Color> getImageDarkMutedColor(String imagePath,
       {Color defaultColor: Colors.blueAccent, String type: "network"}) async {
     PaletteGenerator paletteGenerator =
-        await PaletteGenerator.fromImageProvider(type == "network"
-            ? NetworkImage(imagePath)
-            : AssetImage(imagePath));
+        await PaletteGenerator.fromImageProvider(type == "network" ? NetworkImage(imagePath) : AssetImage(imagePath));
 
     return paletteGenerator.darkMutedColor?.color ?? defaultColor;
   }
@@ -195,9 +187,7 @@ class Utils {
   /// 校验密码
   ///
   bool validatePassword(String password) {
-    if (password.length < 6 ||
-        !password.contains(RegExp(r'[A-z]')) ||
-        !password.contains(RegExp(r'[0-9]'))) {
+    if (password.length < 6 || !password.contains(RegExp(r'[A-z]')) || !password.contains(RegExp(r'[0-9]'))) {
       return false;
     }
     return true;
@@ -254,8 +244,7 @@ class Utils {
   /// [enable] true为显示；false为隐藏
   ///
   static void statusBarEnable(bool enable) {
-    SystemChrome.setEnabledSystemUIOverlays(
-        enable ? SystemUiOverlay.values : []);
+    SystemChrome.setEnabledSystemUIOverlays(enable ? SystemUiOverlay.values : []);
   }
 
   /// 是否是空字符串
@@ -278,18 +267,26 @@ class Utils {
 
   /// 🔥格式化手机号为344
   ///
-  /// [mobile] 手机号码
+  /// [mobile] 手机号码 18601952581
+  ///
+  /// return 186 0195 2581
   ///
   static String formatMobile344(String mobile) {
-    if (isEmptyString(mobile)) return '';
-    mobile = mobile?.replaceAllMapped(new RegExp(r"(^\d{3}|\d{4}\B)"),
-        (Match match) {
-      return '${match.group(0)} ';
-    });
-    if (mobile != null && mobile.endsWith(' ')) {
-      mobile = mobile.substring(0, mobile.length - 1);
-    }
-    return mobile;
+    if (mobile == null || mobile.length != 11) return (mobile ?? "");
+    Pattern regex = RegExp(r'(1\w{2})(\w{4})(\w{4})');
+    return mobile.replaceAllMapped(regex, (match) => '${match[1]} ${match[2]} ${match[3]}');
+  }
+
+  /// 手机号码中间4位替换成*
+  ///
+  /// [mobile] 手机号码 18601952581
+  ///
+  /// return 186****2581
+  ///
+  static String formatMobile(String mobile) {
+    if (mobile == null || mobile.length != 11) return (mobile ?? "");
+    Pattern regex = RegExp(r'(1\w{2})(\w{4})(\w{4})');
+    return mobile.replaceAllMapped(regex, (match) => '${match[1]}****${match[3]}');
   }
 
   static Future<void> readFont(String fontName, String path) async {
@@ -360,8 +357,7 @@ class Utils {
   ///
   static int findLyricIndex(double curTime, List<Lyric> lyrics) {
     for (int i = 0; i < lyrics.length; i++) {
-      if (curTime >= lyrics[i].startTime.inMilliseconds &&
-          curTime <= lyrics[i].endTime.inMilliseconds) {
+      if (curTime >= lyrics[i].startTime.inMilliseconds && curTime <= lyrics[i].endTime.inMilliseconds) {
         return i;
       }
     }
@@ -374,21 +370,18 @@ class Utils {
   /// [fractionDigits] 保留的小数位数
   ///
   String formatNum(double num, int fractionDigits) {
-    if ((num.toString().length - num.toString().lastIndexOf(".") - 1) <
-        fractionDigits) {
+    if ((num.toString().length - num.toString().lastIndexOf(".") - 1) < fractionDigits) {
       //小数点后有几位小数
       return num.toStringAsFixed(fractionDigits)
           .substring(0, num.toString().lastIndexOf(".") + fractionDigits + 1)
           .toString();
     } else {
-      return num.toString()
-          .substring(0, num.toString().lastIndexOf(".") + fractionDigits + 1)
-          .toString();
+      return num.toString().substring(0, num.toString().lastIndexOf(".") + fractionDigits + 1).toString();
     }
   }
 
   static void showSnackBar(BuildContext context, String msg) {
-    Scaffold.of(context).showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(msg),
       duration: Duration(seconds: 2),
     ));

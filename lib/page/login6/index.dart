@@ -180,7 +180,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                     animatedValue: -selectedIndex.value,
                     onBoardingEnterAnimation: onBoardingEnterAnimation,
                     onPressed: () {
-                      Scaffold.of(context)
+                      ScaffoldMessenger.of(context)
                           .showSnackBar(SnackBar(content: Text('Google')));
                     },
                     tag: 'Google-top',
@@ -195,7 +195,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                     animatedValue: -selectedIndex.value,
                     onBoardingEnterAnimation: onBoardingEnterAnimation,
                     onPressed: () {
-                      Scaffold.of(context)
+                      ScaffoldMessenger.of(context)
                           .showSnackBar(SnackBar(content: Text('Facebook')));
                     },
                     tag: 'Facebook-top',
@@ -210,7 +210,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                     animatedValue: -selectedIndex.value,
                     onBoardingEnterAnimation: onBoardingEnterAnimation,
                     onPressed: () {
-                      Scaffold.of(context)
+                      ScaffoldMessenger.of(context)
                           .showSnackBar(SnackBar(content: Text('Twitter')));
                     },
                     tag: 'Twitter-top',
@@ -225,7 +225,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                     animatedValue: 1 - selectedIndex.value,
                     onBoardingEnterAnimation: onBoardingEnterAnimation,
                     onPressed: () {
-                      Scaffold.of(context)
+                      ScaffoldMessenger.of(context)
                           .showSnackBar(SnackBar(content: Text('Google')));
                     },
                     tag: 'Google-bottom',
@@ -240,7 +240,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                     animatedValue: 1 - selectedIndex.value,
                     onBoardingEnterAnimation: onBoardingEnterAnimation,
                     onPressed: () {
-                      Scaffold.of(context)
+                      ScaffoldMessenger.of(context)
                           .showSnackBar(SnackBar(content: Text('Facebook')));
                     },
                     tag: 'Facebook-bottom',
@@ -255,7 +255,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                     animatedValue: 1 - selectedIndex.value,
                     onBoardingEnterAnimation: onBoardingEnterAnimation,
                     onPressed: () {
-                      Scaffold.of(context)
+                      ScaffoldMessenger.of(context)
                           .showSnackBar(SnackBar(content: Text('Twitter')));
                     },
                     tag: 'Twitter-bottom',

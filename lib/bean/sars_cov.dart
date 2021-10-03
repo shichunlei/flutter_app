@@ -114,7 +114,7 @@ class SARSCov {
     bean.curedIncr = map['curedIncr'];
     bean.deadIncr = map['deadIncr'];
     bean.seriousIncr = map['seriousIncr'];
-    bean.dailyPics = List()
+    bean.dailyPics = []
       ..addAll((map['dailyPics'] as List ?? []).map((o) => o.toString()));
     bean.remark1 = map['remark1'].split('：');
     bean.remark2 = map['remark2'].split('：');
@@ -126,36 +126,36 @@ class SARSCov {
     bean.note3 = map['note3'].split('：');
     bean.generalRemark = map['generalRemark'];
     bean.abroadRemark = map['abroadRemark'];
-    bean.marquee = List()
+    bean.marquee = []
       ..addAll(
           (map['marquee'] as List ?? []).map((o) => MarqueeBean.fromMap(o)));
-    bean.quanGuoTrendChart = List()
+    bean.quanGuoTrendChart = []
       ..addAll((map['quanguoTrendChart'] as List ?? [])
           .map((o) => TrendChartBean.fromMap(o)));
-    bean.hbFeiHbTrendChart = List()
+    bean.hbFeiHbTrendChart = []
       ..addAll((map['hbFeiHbTrendChart'] as List ?? [])
           .map((o) => TrendChartBean.fromMap(o)));
 
     bean.foreignStatistics = CountStatistics.fromMap(map['foreignStatistics']);
     bean.globalStatistics = CountStatistics.fromMap(map['globalStatistics']);
 
-    bean.globalOtherTrendChartData = List()
+    bean.globalOtherTrendChartData = []
       ..addAll((map['globalOtherTrendChartData'] as List ?? [])
           .map((o) => GlobalOtherTrendChartData.fromMap(o)));
 
-    bean.provinces = List()
+    bean.provinces = []
       ..addAll(
           (map['provinces'] as List ?? []).map((o) => Province.fromMap(o)));
-    bean.continents = List()
+    bean.continents = []
       ..addAll(
           (map['continents'] as List ?? []).map((o) => Continent.fromMap(o)));
 
-    bean.rumour = List()
+    bean.rumour = []
       ..addAll((map['rumour'] as List ?? []).map((o) => RumourBean.fromMap(o)));
-    bean.wikiList = List()
+    bean.wikiList = []
       ..addAll(
           (map['wiki_list'] as List ?? []).map((o) => WikiListBean.fromMap(o)));
-    bean.recommend = List()
+    bean.recommend = []
       ..addAll((map['recommend'] as List ?? [])
           .map((o) => RecommendBean.fromMap(o)));
     return bean;
@@ -472,7 +472,7 @@ class Continent {
     continent.confirmedCount = map['confirmedCount'];
     continent.suspectedCount = map['suspectedCount'];
     continent.curedCount = map['curedCount'];
-    continent.country = List()
+    continent.country = []
       ..addAll(
           (map['country'] as List ?? []).map((o) => CountryBean.fromMap(o)));
     return continent;
@@ -610,7 +610,7 @@ class Province {
     bean.deadCount = map['deadCount'];
     bean.comment = map['comment'];
     bean.locationId = map['locationId'];
-    bean.cities = List()
+    bean.cities = []
       ..addAll((map['cities'] as List ?? []).map((o) => CitiesBean.fromMap(o)));
     return bean;
   }
@@ -721,7 +721,7 @@ class Rumour {
     bean.result = map['result'];
     bean.explain = map['explain'];
     bean.abstract = map['abstract'];
-    bean.tag = List()
+    bean.tag = []
       ..addAll((map['tag'] as List ?? []).map((o) => o.toString()));
     bean.type = map['type'];
     bean.videoUrl = map['videourl'];
@@ -871,9 +871,9 @@ class ProvinceDataBean {
     bean.susTotal = map['sustotal'];
     bean.cureTotal = map['curetotal'];
     bean.banner = map['banner'];
-    bean.cities = List()
+    bean.cities = []
       ..addAll((map['cities'] as List ?? []).map((o) => CitiesBean.fromMap(o)));
-    bean.history = List()
+    bean.history = []
       ..addAll(
           (map['history'] as List ?? []).map((o) => HistoryBean.fromMap(o)));
     return bean;
@@ -970,7 +970,7 @@ class ProvinceNews {
     bean.sTitle = map['stitle'];
     bean.cTime = map['cTime'];
     bean.pubTime = map['pub_time'];
-    bean.tags = List()
+    bean.tags = []
       ..addAll((map['tags'] as List ?? []).map((o) => o.toString()));
     bean.modelID = map['modelID'];
     bean.thumb = map['thumb'];
@@ -1127,7 +1127,7 @@ class Trajectory {
     listBean.userNum = map['user_num'];
     listBean.userName = map['user_name'];
     listBean.otherInfo = map['other_info'];
-    listBean.track = List()
+    listBean.track = []
       ..addAll((json.decode(map['track']) as List ?? [])
           .map((o) => Track.fromMap(o)));
     listBean.target = map['target'];
@@ -1337,10 +1337,10 @@ class PreventManualBase {
   static PreventManualBase fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     PreventManualBase bean = PreventManualBase();
-    bean.result1 = List()
+    bean.result1 = []
       ..addAll(
           (map['result1'] as List ?? []).map((o) => PreventManual.fromMap(o)));
-    bean.result2 = List()
+    bean.result2 = []
       ..addAll(
           (map['result2'] as List ?? []).map((o) => PreventManual.fromMap(o)));
     return bean;

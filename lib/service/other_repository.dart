@@ -101,7 +101,7 @@ class OtherRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => JuZiMi.fromMap(o)));
     } else {
       return [];
@@ -120,7 +120,7 @@ class OtherRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => JuZiMi.fromMap(o)));
     } else {
       return [];
@@ -216,7 +216,7 @@ class OtherRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll(
             (result.data as List ?? []).map((o) => TiktokVideo.fromMap(o)));
     } else {

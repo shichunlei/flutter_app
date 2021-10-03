@@ -75,7 +75,7 @@ class _TabBarDemoPageState extends State<TabBarDemoPage>
   void getData() async {
     // 自行改为网络数据请求
     await rootBundle.loadString("assets/data/data.json").then((value) {
-      data = List()
+      data = []
         ..addAll(
             (json.decode(value) as List ?? []).map((o) => DataBean.fromMap(o)));
 
@@ -102,7 +102,7 @@ class DataBean {
     DataBean bean = DataBean();
     bean.id = map['id'];
     bean.pid = map['pid'];
-    bean.children = List()
+    bean.children = []
       ..addAll(
           (map['children'] as List ?? []).map((o) => ChildrenBean.fromMap(o)));
     bean.parentId = map['parentId'];

@@ -34,7 +34,7 @@ class SARSCovRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => SameRide.fromMap(o)));
     } else {
       return [];
@@ -56,7 +56,7 @@ class SARSCovRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Rumour.fromMap(o)));
     } else {
       return [];
@@ -73,7 +73,7 @@ class SARSCovRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => CovNews.fromMap(o)));
     } else {
       return [];
@@ -133,7 +133,7 @@ class SARSCovRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll(
             (result.data as List ?? []).map((o) => ProvinceNews.fromMap(o)));
     } else {
@@ -152,7 +152,7 @@ class SARSCovRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Analyze.fromMap(o)));
     } else {
       return [];
@@ -187,7 +187,7 @@ class SARSCovRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Trajectory.fromMap(o)));
     } else {
       return [];

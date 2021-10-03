@@ -1,8 +1,7 @@
 import 'package:clippy_flutter/label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/store/index.dart';
-
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../page_index.dart';
 import 'index.dart';
@@ -12,14 +11,12 @@ class OneArticlePage extends StatefulWidget {
   createState() => _OneArticlePageState();
 }
 
-class _OneArticlePageState extends State<OneArticlePage>
-    with SingleTickerProviderStateMixin {
+class _OneArticlePageState extends State<OneArticlePage> with SingleTickerProviderStateMixin {
   TabController _tabController;
 
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Store.value<ArticleModel>(context, listen: false).getArticle('today'));
+    Future.microtask(() => Store.value<ArticleModel>(context, listen: false).getArticle('today'));
   }
 
   @override
@@ -32,20 +29,12 @@ class _OneArticlePageState extends State<OneArticlePage>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: themeColors[
-                Store.value<ArticleModel>(context).getThemeColorIndex()],
+            backgroundColor: themeColors[Store.value<ArticleModel>(context).getThemeColorIndex()],
             centerTitle: true,
             title: Text('每日一文'),
-            actions: <Widget>[
-              IconButton(
-                  icon: Icon(Icons.menu),
-                  onPressed: () => _showModalBottomSheet())
-            ]),
-        body: Store.connect<ArticleModel>(
-            builder: (_, ArticleModel articleModel, __) {
-          return LoaderContainer(
-              contentView: bodyView(articleModel),
-              loaderState: articleModel.status);
+            actions: <Widget>[IconButton(icon: Icon(Icons.menu), onPressed: () => _showModalBottomSheet())]),
+        body: Store.connect<ArticleModel>(builder: (_, ArticleModel articleModel, __) {
+          return LoaderContainer(contentView: bodyView(articleModel), loaderState: articleModel.status);
         }));
   }
 
@@ -59,34 +48,17 @@ class _OneArticlePageState extends State<OneArticlePage>
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: Text(articleModel.article?.title ?? '',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: articleModel.getTextSize() + 1))),
+                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: articleModel.getTextSize() + 1))),
               Label(
                   triangleHeight: 10.0,
                   edge: Edge.RIGHT,
                   child: Container(
-                      padding: const EdgeInsets.only(
-                          left: 8.0, right: 18.0, top: 8.0, bottom: 8.0),
+                      padding: const EdgeInsets.only(left: 8.0, right: 18.0, top: 8.0, bottom: 8.0),
                       color: themeColors[articleModel.getThemeColorIndex()],
                       child: Text(articleModel.article?.author ?? '',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: articleModel.getTextSize() - 1)))),
-              Html(
-                  data: articleModel.article?.content ?? '',
-                  defaultTextStyle:
-                      TextStyle(fontSize: articleModel.getTextSize()),
-                  padding: EdgeInsets.all(8.0),
-                  blockSpacing: 2.0,
-                  useRichText: true,
-                  linkStyle: const TextStyle(
-                      color: Colors.redAccent,
-                      decorationColor: Colors.redAccent,
-                      decoration: TextDecoration.underline),
-                  onLinkTap: (url) {
-                    debugPrint("Opening $url...");
-                  })
+                          style: TextStyle(color: Colors.white, fontSize: articleModel.getTextSize() - 1)))),
+              HtmlWidget(articleModel.article?.content ?? '',
+                  textStyle: TextStyle(fontSize: articleModel.getTextSize()))
             ])));
   }
 
@@ -108,8 +80,7 @@ class _OneArticlePageState extends State<OneArticlePage>
   Widget _buildFontSizeSelector() {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
       Text('字号'),
-      Expanded(child: Store.connect<ArticleModel>(
-          builder: (_, ArticleModel articleModel, __) {
+      Expanded(child: Store.connect<ArticleModel>(builder: (_, ArticleModel articleModel, __) {
         return Slider(
             onChanged: (double value) {
               double valueRound = value.roundToDouble();
@@ -127,16 +98,13 @@ class _OneArticlePageState extends State<OneArticlePage>
   }
 
   Widget _buildThemeSelector() {
-    return Store.connect<ArticleModel>(
-        builder: (_, ArticleModel articleModel, __) {
+    return Store.connect<ArticleModel>(builder: (_, ArticleModel articleModel, __) {
       if (_tabController == null) {
-        _tabController = TabController(
-            length: themeColors.length,
-            vsync: this,
-            initialIndex: articleModel.getThemeColorIndex());
+        _tabController =
+            TabController(length: themeColors.length, vsync: this, initialIndex: articleModel.getThemeColorIndex());
       }
 
-      List<Tab> tabs = List();
+      List<Tab> tabs = [];
       for (Color color in themeColors) {
         tabs.add(Tab(icon: Icon(Icons.markunread_mailbox, color: color)));
       }
@@ -160,101 +128,90 @@ class _OneArticlePageState extends State<OneArticlePage>
   }
 
   Widget _buildArticleChange() {
-    return Store.connect<ArticleModel>(
-        builder: (_, ArticleModel articleModel, __) {
+    return Store.connect<ArticleModel>(builder: (_, ArticleModel articleModel, __) {
       return Row(children: <Widget>[
         Expanded(
-            child: RaisedButton(
-                color: themeColors[articleModel.getThemeColorIndex()],
+            child: ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: ButtonStyleButton.allOrNull<Color>(themeColors[articleModel.getThemeColorIndex()]),
+                    shape: MaterialStateProperty.all(BeveledRectangleBorder(borderRadius: BorderRadius.circular(8)))),
                 onPressed: () {
                   Navigator.pop(context);
                   articleModel.setPageStatus(LoaderState.Loading);
-                  articleModel.getArticle('day',
-                      date: articleModel.article.prev);
+                  articleModel.getArticle('day', date: articleModel.article.prev);
                 },
-                child: Text('前一天', style: TextStyle(color: Colors.white)),
-                shape: const StadiumBorder())),
+                child: Text('前一天', style: TextStyle(color: Colors.white)))),
         Gaps.hGap5,
         Expanded(
-            child: RaisedButton(
-                color: themeColors[articleModel.getThemeColorIndex()],
+            child: ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: ButtonStyleButton.allOrNull<Color>(themeColors[articleModel.getThemeColorIndex()]),
+                    shape: MaterialStateProperty.all(BeveledRectangleBorder(borderRadius: BorderRadius.circular(8)))),
                 onPressed: () {
                   Navigator.pop(context);
                   articleModel.setPageStatus(LoaderState.Loading);
                   articleModel.getArticle('random');
                 },
-                child: Text('随机', style: TextStyle(color: Colors.white)),
-                shape: const StadiumBorder())),
+                child: Text('随机', style: TextStyle(color: Colors.white)))),
         Gaps.hGap5,
         Expanded(
-            child: RaisedButton(
-                color: themeColors[articleModel.getThemeColorIndex()],
+            child: ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: ButtonStyleButton.allOrNull<Color>(themeColors[articleModel.getThemeColorIndex()]),
+                    shape: MaterialStateProperty.all(BeveledRectangleBorder(borderRadius: BorderRadius.circular(8)))),
                 onPressed: articleModel.date != articleModel.today
                     ? () {
                         Navigator.pop(context);
                         articleModel.setPageStatus(LoaderState.Loading);
-                        articleModel.getArticle('day',
-                            date: articleModel.article.next);
+                        articleModel.getArticle('day', date: articleModel.article.next);
                       }
                     : null,
-                child: Text('后一天', style: TextStyle(color: Colors.white)),
-                shape: const StadiumBorder())),
+                child: Text('后一天', style: TextStyle(color: Colors.white)))),
         Gaps.hGap5,
         Expanded(
-            child: RaisedButton(
-                color: themeColors[articleModel.getThemeColorIndex()],
+            child: ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: ButtonStyleButton.allOrNull<Color>(themeColors[articleModel.getThemeColorIndex()]),
+                    shape: MaterialStateProperty.all(BeveledRectangleBorder(borderRadius: BorderRadius.circular(8)))),
                 onPressed: () {
                   Navigator.pop(context);
                   articleModel.setPageStatus(LoaderState.Loading);
                   articleModel.getArticle('today');
                 },
-                shape: const StadiumBorder(),
                 child: Text('今天', style: TextStyle(color: Colors.white))))
       ]);
     });
   }
 
   Widget _buildCollect() {
-    return Store.connect<ArticleModel>(
-        builder: (_, ArticleModel articleModel, __) {
-      return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: <
-          Widget>[
+    return Store.connect<ArticleModel>(builder: (_, ArticleModel articleModel, __) {
+      return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: <Widget>[
         MaterialButton(
-            onPressed: () =>
-                articleModel.setStarStatus(article: articleModel.article),
-            child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Icon(articleModel.starStatus ? Icons.star : Icons.star_border,
-                      color: Colors.white),
-                  Text(articleModel.starStatus ? '已收藏' : '收藏',
-                      style: TextStyle(color: Colors.white))
-                ]),
+            onPressed: () => articleModel.setStarStatus(article: articleModel.article),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+              Icon(articleModel.starStatus ? Icons.star : Icons.star_border, color: Colors.white),
+              Text(articleModel.starStatus ? '已收藏' : '收藏', style: TextStyle(color: Colors.white))
+            ]),
             color: themeColors[articleModel.getThemeColorIndex()],
             shape: const StadiumBorder()),
         MaterialButton(
             onPressed: () {
               Navigator.pop(context);
-              pushNewPage(
-                  context, CollectArticle(Theme.of(context).primaryColor),
-                  callBack: (value) {
+              pushNewPage(context, CollectArticle(Theme.of(context).primaryColor), callBack: (value) {
                 articleModel.setPageStatus(LoaderState.Loading);
                 if (value != null) {
                   debugPrint('-----------------------------$value');
                   articleModel.getArticle('day', date: value);
                 } else {
                   debugPrint('-----------------------------');
-                  articleModel.getArticle('day',
-                      date: Store.value<ArticleModel>(context).date);
+                  articleModel.getArticle('day', date: Store.value<ArticleModel>(context).date);
                 }
               });
             },
-            child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Icon(Icons.list, color: Colors.white),
-                  Text('收藏列表', style: TextStyle(color: Colors.white))
-                ]),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+              Icon(Icons.list, color: Colors.white),
+              Text('收藏列表', style: TextStyle(color: Colors.white))
+            ]),
             color: themeColors[articleModel.getThemeColorIndex()],
             shape: const StadiumBorder())
       ]);

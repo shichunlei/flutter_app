@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/store/index.dart';
-
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../../page_index.dart';
 import '../index.dart';
@@ -16,8 +15,7 @@ class DetailsPage extends StatefulWidget {
   createState() => _DetailsPageState();
 }
 
-class _DetailsPageState extends State<DetailsPage>
-    with TickerProviderStateMixin {
+class _DetailsPageState extends State<DetailsPage> with TickerProviderStateMixin {
   GoodsInfo goods;
 
   double navAlpha = 0;
@@ -108,20 +106,17 @@ class _DetailsPageState extends State<DetailsPage>
               child: Container(
                   height: 48.0,
                   child: FlatButton(
-                      child:
-                          Text('加入购物车', style: TextStyle(color: Colors.white)),
+                      child: Text('加入购物车', style: TextStyle(color: Colors.white)),
                       color: Colors.orange,
                       onPressed: () {
                         Toast.show(context, '加入购物车');
-                        Store.value<ShoppingCartModel>(context, listen: false)
-                            .addGoodsToCart(goods.goodInfo);
+                        Store.value<ShoppingCartModel>(context, listen: false).addGoodsToCart(goods.goodInfo);
                       }))),
           Expanded(
               child: Container(
                   height: 48.0,
                   child: FlatButton(
-                      child:
-                          Text('立即购买', style: TextStyle(color: Colors.white)),
+                      child: Text('立即购买', style: TextStyle(color: Colors.white)),
                       color: Colors.red,
                       onPressed: () {
                         /// TODO 立即购买
@@ -139,36 +134,27 @@ class _DetailsPageState extends State<DetailsPage>
   Widget _buildSliverAppBar(List<String> pics) {
     return SliverAppBar(
         title: Text('${goods?.goodInfo?.goodsName}',
-            style: TextStyle(
-                color:
-                    Color.fromARGB((navAlpha * 255).toInt(), 255, 255, 255))),
+            style: TextStyle(color: Color.fromARGB((navAlpha * 255).toInt(), 255, 255, 255))),
         pinned: true,
         expandedHeight: headerHeight - Utils.topSafeHeight,
-        leading: IconButton(
-            icon: Icon(CustomIcon.back, color: c),
-            onPressed: () => Navigator.pop(context)),
+        leading: IconButton(icon: Icon(CustomIcon.back, color: c), onPressed: () => Navigator.pop(context)),
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.shopping_cart, color: c),
               onPressed: () {
-                Store.value<BaixingModel>(context, listen: false)
-                    .setPageIndex(2);
+                Store.value<BaixingModel>(context, listen: false).setPageIndex(2);
                 Navigator.maybePop(context);
               })
         ],
         flexibleSpace: FlexibleSpaceBar(
             background: Swiper(
-                pagination: SwiperPagination(
-                    builder: SwiperPagination.fraction,
-                    alignment: Alignment.bottomRight),
+                pagination: SwiperPagination(builder: SwiperPagination.fraction, alignment: Alignment.bottomRight),
                 autoplay: pics.length > 1,
                 itemCount: pics.length,
                 itemBuilder: (BuildContext context, int index) => Hero(
                     tag: widget.id,
                     child: ImageLoadView('${pics[index].toString()}',
-                        fit: BoxFit.fill,
-                        height: headerHeight,
-                        width: Utils.width)))));
+                        fit: BoxFit.fill, height: headerHeight, width: Utils.width)))));
   }
 
   Widget _buildInfoView(Goods goodInfo) {
@@ -178,30 +164,22 @@ class _DetailsPageState extends State<DetailsPage>
             padding: EdgeInsets.all(10.0),
             color: Colors.white,
             child: Column(children: <Widget>[
-              Text('${goods.goodInfo.goodsName}',
-                  style: TextStyle(color: Colors.black, fontSize: 22.0)),
+              Text('${goods.goodInfo.goodsName}', style: TextStyle(color: Colors.black, fontSize: 22.0)),
               Gaps.vGap8,
-              Text('编号：${goods.goodInfo.goodsSerialNumber}',
-                  style: TextStyle(color: Colors.grey[500], fontSize: 14.0)),
+              Text('编号：${goods.goodInfo.goodsSerialNumber}', style: TextStyle(color: Colors.grey[500], fontSize: 14.0)),
               Gaps.vGap8,
-              Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text('￥${goods.goodInfo.presentPrice}',
-                        style: TextStyle(color: Colors.red, fontSize: 16.0)),
-                    Gaps.hGap40,
-                    Text('市场价：￥${goods.goodInfo.oriPrice}',
-                        style:
-                            TextStyle(color: Colors.grey[700], fontSize: 14.0))
-                  ])
+              Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+                Text('￥${goods.goodInfo.presentPrice}', style: TextStyle(color: Colors.red, fontSize: 16.0)),
+                Gaps.hGap40,
+                Text('市场价：￥${goods.goodInfo.oriPrice}', style: TextStyle(color: Colors.grey[700], fontSize: 14.0))
+              ])
             ], crossAxisAlignment: CrossAxisAlignment.start)),
         Container(
             width: Utils.width,
             padding: EdgeInsets.all(10.0),
             margin: EdgeInsets.symmetric(vertical: 10.0),
             color: Colors.white,
-            child: Text('说明 > 极速送达 > 正品保证',
-                style: TextStyle(color: Colors.redAccent)))
+            child: Text('说明 > 极速送达 > 正品保证', style: TextStyle(color: Colors.redAccent)))
       ]),
     );
   }
@@ -225,11 +203,10 @@ class _DetailsPageState extends State<DetailsPage>
 
     if (currentIndex == 0) {
       children
-        ..add(Html(
-            data: goods.goodInfo.goodsDetail,
-            defaultTextStyle: TextStyle(fontSize: 18.0),
-            padding: EdgeInsets.all(8.0),
-            blockSpacing: 2.0))
+        ..add(HtmlWidget(
+          goods.goodInfo.goodsDetail,
+          textStyle: TextStyle(fontSize: 18.0),
+        ))
         ..add(adWidget);
     }
     if (currentIndex == 1) {
@@ -239,14 +216,12 @@ class _DetailsPageState extends State<DetailsPage>
               child: Column(children: <Widget>[
                 Text('${comment.comments}'),
                 Text('${comment.discussTime}'),
-                Container(
-                    width: double.infinity, height: .5, color: Colors.grey)
+                Container(width: double.infinity, height: .5, color: Colors.grey)
               ]),
               padding: EdgeInsets.all(20)));
         });
       } else {
-        children.add(Container(
-            child: Text('暂无评论'), alignment: Alignment.center, height: 100.0));
+        children.add(Container(child: Text('暂无评论'), alignment: Alignment.center, height: 100.0));
       }
       children.add(adWidget);
     }

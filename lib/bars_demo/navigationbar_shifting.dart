@@ -8,7 +8,7 @@ class NavigationBarShifting extends StatefulWidget {
 
 class _NavigationBarShiftingState extends State<NavigationBarShifting> {
   int _currentIndex = 0;
-  List<Widget> list = List();
+  List<Widget> list = [];
 
   @override
   void initState() {

@@ -13,7 +13,7 @@ class _FancyBottomNavigationBarState extends State<FancyBottomNavigationBar>
     with SingleTickerProviderStateMixin {
   int currentPage = 0;
 
-  List<Widget> list = List();
+  List<Widget> list = [];
 
   @override
   void initState() {

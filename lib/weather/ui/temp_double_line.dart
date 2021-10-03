@@ -74,7 +74,7 @@ class TemperatureDoubleLinePainter extends CustomPainter {
     double centerLine = (maxTemp + minTemp) / 2;
     double cell = 140 / (maxTemp - minTemp) * 4 / 5;
 
-    List<DailyForecast> drawList = List();
+    List<DailyForecast> drawList = [];
     tempList.forEach((temp) {
       drawList.add(DailyForecast(
           tmp_max: (centerLine - temp.tmp_max) * cell,

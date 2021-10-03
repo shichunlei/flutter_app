@@ -129,7 +129,7 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
   }
 
   Future<void> loadAssets() async {
-    List<Asset> resultList = List<Asset>();
+    List<Asset> resultList = [];
 
     try {
       resultList = await MultiImagePicker.pickImages(
@@ -174,14 +174,14 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
             //标题的padding值
             actions: <Widget>[
               //操作按钮数组
-              FlatButton(
+              TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                   Navigator.pop(context, false);
                 },
                 child: Text('不保留', style: TextStyles.textGrey14),
               ),
-              FlatButton(
+              TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                   Navigator.pop(context, true);

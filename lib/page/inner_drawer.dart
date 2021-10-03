@@ -360,7 +360,7 @@ class _InnerDrawerSampleState extends State<InnerDrawerSample> {
                                     ])
                               ]),
                               Padding(padding: EdgeInsets.all(10)),
-                              FlatButton(
+                              TextButton(
                                 child: Text("Set Color Transition",
                                     style: TextStyle(
                                         color: currentColor,
@@ -386,7 +386,7 @@ class _InnerDrawerSampleState extends State<InnerDrawerSample> {
                                 },
                               ),
                               Padding(padding: EdgeInsets.all(25)),
-                              RaisedButton(
+                              ElevatedButton(
                                   child: Text("open"),
                                   onPressed: () {
                                     // direction is optional

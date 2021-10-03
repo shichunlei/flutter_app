@@ -20,19 +20,19 @@ class ButtonBarDemo extends StatelessWidget {
               //主轴大小，默认MainAxisSize.max
               children: <Widget>[
                 // Button集合
-                RaisedButton(
+                ElevatedButton(
                   child: Text('ButtonBar1'),
-                  color: Colors.red,
+                  style: ButtonStyle(backgroundColor: ButtonStyleButton.allOrNull<Color>(Colors.red)),
                   onPressed: () => {},
                 ),
-                RaisedButton(
+                ElevatedButton(
                   child: Text('ButtonBar2'),
-                  color: Colors.red,
+                  style: ButtonStyle(backgroundColor: ButtonStyleButton.allOrNull<Color>(Colors.red)),
                   onPressed: () => {},
                 ),
-                RaisedButton(
+                ElevatedButton(
                   child: Text('ButtonBar3'),
-                  color: Colors.red,
+                  style: ButtonStyle(backgroundColor: ButtonStyleButton.allOrNull<Color>(Colors.red)),
                   onPressed: () => {},
                 ),
               ],
@@ -44,19 +44,19 @@ class ButtonBarDemo extends StatelessWidget {
               //主轴大小，默认MainAxisSize.max
               children: <Widget>[
                 // Button集合
-                RaisedButton(
+                ElevatedButton(
                   child: Text('ButtonBar1'),
-                  color: Colors.yellow,
+                  style: ButtonStyle(backgroundColor: ButtonStyleButton.allOrNull<Color>(Colors.yellow)),
                   onPressed: () => {},
                 ),
-                RaisedButton(
+                ElevatedButton(
                   child: Text('ButtonBar2'),
-                  color: Colors.yellow,
+                  style: ButtonStyle(backgroundColor: ButtonStyleButton.allOrNull<Color>(Colors.yellow)),
                   onPressed: () => {},
                 ),
-                RaisedButton(
+                ElevatedButton(
                   child: Text('ButtonBar3'),
-                  color: Colors.yellow,
+                  style: ButtonStyle(backgroundColor: ButtonStyleButton.allOrNull<Color>(Colors.yellow)),
                   onPressed: () => {},
                 ),
               ],

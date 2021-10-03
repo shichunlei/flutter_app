@@ -57,7 +57,7 @@ class ArticleProvider extends BaseDBProvider {
   }
 
   Future<List<Article>> getStarredList() async {
-    List<Article> articles = List();
+    List<Article> articles = [];
     Database db = await getDB();
     List<Map<String, dynamic>> maps = await db.query(table_name, columns: [
       columnId,

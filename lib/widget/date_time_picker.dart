@@ -38,7 +38,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
               Widget>[
             Text(
                 '当前选择了：${_selectedDate.year}年${_selectedDate.month}月${_selectedDate.day}日'),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   showModalBottomSheet(
                       context: context,
@@ -57,7 +57,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
                       });
                 },
                 child: Text('DayPicker')),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   showModalBottomSheet(
                       context: context,
@@ -76,7 +76,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
                       });
                 },
                 child: Text('YearPicker')),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   /// initialDate 初始化时间，通常情况下设置为当前时间。
                   /// firstDate 表示开始时间，不能选择此时间前面的时间。
@@ -110,7 +110,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
                 },
                 child: Text('DatePicker')),
             Gaps.vGap10,
-            RaisedButton(
+            ElevatedButton(
                 child: Text('TimePicker', textAlign: TextAlign.center),
                 onPressed: () {
                   showTimePicker(context: context, initialTime: TimeOfDay.now())
@@ -123,7 +123,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
                   });
                 }),
             Gaps.vGap10,
-            RaisedButton(
+            ElevatedButton(
                 child: Text('CupertinoDatePicker', textAlign: TextAlign.center),
                 onPressed: () {
                   showCupertinoModalPopup(
@@ -140,7 +140,7 @@ class _DateTimePickerState extends State<DateTimePicker> {
                       });
                 }),
             Gaps.vGap10,
-            RaisedButton(
+            ElevatedButton(
                 child:
                     Text('CupertinoTimerPicker', textAlign: TextAlign.center),
                 onPressed: () {

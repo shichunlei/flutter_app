@@ -78,7 +78,7 @@ class _RulerWidgetState extends State<RulerWidget> {
   void initState() {
     super.initState();
 
-    scaleWidgetList = List();
+    scaleWidgetList = [];
     _generateScale();
   }
 
@@ -154,7 +154,7 @@ class RulerBarWidget extends StatelessWidget {
       : super(key: key);
 
   final double _spacing = 5.0;
-  List<Widget> _children = List();
+  List<Widget> _children = [];
   bool _show = false;
 
   @override
@@ -210,7 +210,7 @@ class RulerBarWidget extends StatelessWidget {
         midLimitLower == num ||
         midLimitUpper == num;
 
-    _children = List();
+    _children = [];
 
     _children.add(Stack(alignment: Alignment.topCenter, children: <Widget>[
       _show

@@ -22,7 +22,6 @@ import 'package:meta/meta.dart';
 /// when the user interacts with it AND when you press 'prev' and 'next in this
 /// AnimationPlayer.
 class AnimationPlayer extends StatefulWidget {
-
   final PlayableAnimation playableAnimation;
   final PhaseController phaseController;
 
@@ -34,11 +33,12 @@ class AnimationPlayer extends StatefulWidget {
   }
 
   @override
-  _MultiPhaseAnimationTesterState createState() => new _MultiPhaseAnimationTesterState();
+  _MultiPhaseAnimationTesterState createState() =>
+      new _MultiPhaseAnimationTesterState();
 }
 
-class _MultiPhaseAnimationTesterState extends State<AnimationPlayer> with TickerProviderStateMixin {
-
+class _MultiPhaseAnimationTesterState extends State<AnimationPlayer>
+    with TickerProviderStateMixin {
   static const STANDARD_PHASE_TIME = 250;
 
   PhaseController phaseController;
@@ -72,7 +72,8 @@ class _MultiPhaseAnimationTesterState extends State<AnimationPlayer> with Ticker
         } else if (AnimationStatus.completed == status) {
           // If we just finished playing forward, increment active phase.
           if (phaseController.playingForward) {
-            if (phaseController.activePhase < widget.playableAnimation.phases.length - 1) {
+            if (phaseController.activePhase <
+                widget.playableAnimation.phases.length - 1) {
               phaseController.update(
                 activePhase: phaseController.activePhase + 1,
                 phaseProgress: 0.0,
@@ -98,7 +99,8 @@ class _MultiPhaseAnimationTesterState extends State<AnimationPlayer> with Ticker
 
   _onPhaseChange() {
     setState(() {
-      final animationPhase = widget.playableAnimation.phases[phaseController.activePhase];
+      final animationPhase =
+          widget.playableAnimation.phases[phaseController.activePhase];
       if (phaseController.playingForward) {
         animationPhase.forward(phaseController.phaseProgress);
       } else {
@@ -112,18 +114,23 @@ class _MultiPhaseAnimationTesterState extends State<AnimationPlayer> with Ticker
   }
 
   _playPhaseForward() {
-    if (phaseController.activePhase < widget.playableAnimation.phases.length - 1
-        || phaseController.phaseProgress < 1.0) {
-      animationController.duration = new Duration(milliseconds: (STANDARD_PHASE_TIME / playbackSpeed).round());
+    if (phaseController.activePhase <
+            widget.playableAnimation.phases.length - 1 ||
+        phaseController.phaseProgress < 1.0) {
+      animationController.duration = new Duration(
+          milliseconds: (STANDARD_PHASE_TIME / playbackSpeed).round());
       animationController.forward(from: 0.0);
     }
   }
 
   _playPreviousPhaseInReverse() {
-    if (phaseController.activePhase >= 1 || phaseController.phaseProgress < 1.0) {
+    if (phaseController.activePhase >= 1 ||
+        phaseController.phaseProgress < 1.0) {
       setState(() {
-        if ((!phaseController.playingForward && phaseController.phaseProgress < 1.0)
-            || (phaseController.playingForward && phaseController.phaseProgress > 0.0)) {
+        if ((!phaseController.playingForward &&
+                phaseController.phaseProgress < 1.0) ||
+            (phaseController.playingForward &&
+                phaseController.phaseProgress > 0.0)) {
           // Take the phase progress all the way down.
           phaseController.update(
             phaseProgress: 1.0,
@@ -138,7 +145,8 @@ class _MultiPhaseAnimationTesterState extends State<AnimationPlayer> with Ticker
           );
         }
 
-        animationController.duration = new Duration(milliseconds: (STANDARD_PHASE_TIME / playbackSpeed).round());
+        animationController.duration = new Duration(
+            milliseconds: (STANDARD_PHASE_TIME / playbackSpeed).round());
         animationController.reverse(from: 1.0);
       });
     }
@@ -158,36 +166,33 @@ class _MultiPhaseAnimationTesterState extends State<AnimationPlayer> with Ticker
         percent = 1.0 - phaseController.phaseProgress;
       }
 
-      phases.add(
-          new Expanded(
-            child: new Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: new Column(
+      phases.add(new Expanded(
+        child: new Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: new Column(
+              children: [
+                // Forward progress indicator
+                new Row(
                   children: [
-                    // Forward progress indicator
-                    new Row(
-                      children: [
-                        new Expanded(
-                          flex: (percent * 100).round(),
-                          child: new Container(
-                            height: 5.0,
-                            color: Colors.blue,
-                          ),
-                        ),
-                        new Expanded(
-                          flex: ((1.0 - percent) * 100).round(),
-                          child: new Container(
-                            height: 5.0,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
+                    new Expanded(
+                      flex: (percent * 100).round(),
+                      child: new Container(
+                        height: 5.0,
+                        color: Colors.blue,
+                      ),
+                    ),
+                    new Expanded(
+                      flex: ((1.0 - percent) * 100).round(),
+                      child: new Container(
+                        height: 5.0,
+                        color: Colors.grey,
+                      ),
                     ),
                   ],
-                )
-            ),
-          )
-      );
+                ),
+              ],
+            )),
+      ));
     }
 
     return phases;
@@ -216,8 +221,7 @@ class _MultiPhaseAnimationTesterState extends State<AnimationPlayer> with Ticker
               max: 2.0,
               onChanged: (newValue) {
                 setState(() => playbackSpeed = newValue);
-              }
-          ),
+              }),
         ),
 
         // Phase progress indicators
@@ -226,11 +230,11 @@ class _MultiPhaseAnimationTesterState extends State<AnimationPlayer> with Ticker
         ),
 
         // Playback control buttons
-        new Row(
+        Row(
           children: [
-            new Expanded(
-              child: new FlatButton(
-                child: new Text(
+            Expanded(
+              child: TextButton(
+                child: Text(
                   '<- Prev',
                 ),
                 onPressed: () {
@@ -238,9 +242,9 @@ class _MultiPhaseAnimationTesterState extends State<AnimationPlayer> with Ticker
                 },
               ),
             ),
-            new Expanded(
-              child: new FlatButton(
-                child: new Text(
+            Expanded(
+              child: TextButton(
+                child: Text(
                   'Next ->',
                 ),
                 onPressed: () {
@@ -275,7 +279,6 @@ class PlayableAnimation {
 /// of the AnimationPlayer, you need to use a PhaseController to synchronize
 /// the animation progress with the AnimationPlayer.
 class PhaseController extends ChangeNotifier {
-
   final phaseCount;
   int _activePhase = 0;
   double _phaseProgress = 0.0;
@@ -362,7 +365,9 @@ class PhaseController extends ChangeNotifier {
     final newPhaseProgress = phaseProgress ?? _phaseProgress;
     final newPlayingForward = playingForward ?? _playingForward;
 
-    if (_activePhase != newActivePhase || _phaseProgress != newPhaseProgress || _playingForward != newPlayingForward) {
+    if (_activePhase != newActivePhase ||
+        _phaseProgress != newPhaseProgress ||
+        _playingForward != newPlayingForward) {
       _activePhase = newActivePhase;
       _phaseProgress = newPhaseProgress;
       _playingForward = newPlayingForward;
@@ -385,7 +390,9 @@ class Phase<DataType, ViewModelType> {
   // 1.0 -> 0.0 going in reverse.
   Phase.uniform({
     uniformTransition,
-  }) : _uniformTransition = uniformTransition, _forward = null, _reverse = null;
+  })  : _uniformTransition = uniformTransition,
+        _forward = null,
+        _reverse = null;
 
   // A phase that uses 2 different Transitions to go forward vs reverse. Both
   // bidirectional Transitions are passed values starting at 0.0 -> 1.0, regardless
@@ -393,7 +400,9 @@ class Phase<DataType, ViewModelType> {
   Phase.bidirectional({
     forward,
     reverse,
-  }) : _forward = forward, _reverse = reverse, _uniformTransition = null;
+  })  : _forward = forward,
+        _reverse = reverse,
+        _uniformTransition = null;
 
   get isUniform => _uniformTransition != null;
 

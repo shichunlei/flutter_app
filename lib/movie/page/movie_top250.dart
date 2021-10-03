@@ -45,7 +45,7 @@ class _MovieTop250State extends State<MovieTop250> {
     } else {
       if (loadError) {
         return Center(
-          child: RaisedButton(
+          child: ElevatedButton(
             onPressed: () {
               page = 1;
               getMovieTop250List(page, pageSize, RefreshType.DEFAULT);

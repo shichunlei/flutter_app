@@ -33,8 +33,8 @@ class _RoundedLetterWidgetState extends State<RoundedLetterWidget> {
   }
 
   Random _random = Random();
-  List<String> names = List();
-  List<String> surnames = List();
+  List<String> names = [];
+  List<String> surnames = [];
   SampleClickListener listener = SampleClickListener();
 
   @override
@@ -52,7 +52,7 @@ class _RoundedLetterWidgetState extends State<RoundedLetterWidget> {
   }
 
   Widget getListWithRoundedLetters() {
-    List<Widget> widgets = List();
+    List<Widget> widgets = [];
     widgets.addAll(buildDivider("Rectangles", "Example rectangle shapes"));
     widgets.add(_getRowWith(ShapeType.rectangle));
     widgets.addAll(buildDivider("Triangles", "Example triangle shapes"));
@@ -75,7 +75,7 @@ class _RoundedLetterWidgetState extends State<RoundedLetterWidget> {
   }
 
   List<Widget> buildDivider(String text, String subtitle) {
-    List<Widget> widgets = List();
+    List<Widget> widgets = [];
 
     widgets.add(Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)));
     widgets.add(Center(child: Text(text, style: TextStyle(fontSize: 20))));

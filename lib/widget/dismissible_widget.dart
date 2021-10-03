@@ -39,7 +39,7 @@ class _DismissibleWidgetState extends State<DismissibleWidget> {
               }
 
               /// 展示 SnackBar
-              Scaffold.of(context).showSnackBar(SnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(_snackStr),
                 duration: Duration(milliseconds: 400),
               ));
@@ -108,7 +108,7 @@ class _DismissibleWidgetState extends State<DismissibleWidget> {
                   _confirmContent,
                   () {
                     // 展示 SnackBar
-                    Scaffold.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text('确认删除${items[index]}'),
                       duration: Duration(milliseconds: 400),
                     ));
@@ -116,7 +116,7 @@ class _DismissibleWidgetState extends State<DismissibleWidget> {
                   },
                   () {
                     // 展示 SnackBar
-                    Scaffold.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text('不删除${items[index]}'),
                       duration: Duration(milliseconds: 400),
                     ));
@@ -129,7 +129,7 @@ class _DismissibleWidgetState extends State<DismissibleWidget> {
                   _confirmContent,
                   () {
                     // 展示 SnackBar
-                    Scaffold.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text('确认收藏${items[index]}'),
                       duration: Duration(milliseconds: 400),
                     ));
@@ -137,7 +137,7 @@ class _DismissibleWidgetState extends State<DismissibleWidget> {
                   },
                   () {
                     // 展示 SnackBar
-                    Scaffold.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text('不收藏${items[index]}'),
                       duration: Duration(milliseconds: 400),
                     ));
@@ -166,8 +166,8 @@ class _DismissibleWidgetState extends State<DismissibleWidget> {
       title: Text('Confirm'),
       content: Text(_confirmContent),
       actions: <Widget>[
-        FlatButton(onPressed: sureFunction, child: Text('sure')),
-        FlatButton(onPressed: cancelFunction, child: Text('cancel')),
+        TextButton(onPressed: sureFunction, child: Text('sure')),
+        TextButton(onPressed: cancelFunction, child: Text('cancel')),
       ],
     );
   }

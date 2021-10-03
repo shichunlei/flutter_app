@@ -8,7 +8,7 @@ class MusicRepository {
   static Future<List<Song>> getMusics() async {
     Response response = await HttpUtils().request(ApiUrl.MUSIC, data: null);
     if (response == null || response?.statusCode != 200) {
-      return List()
+      return []
         ..addAll([
           {
             "id": "536096151",
@@ -795,7 +795,7 @@ class MusicRepository {
     BaseResult result = BaseResult.fromMap(json.decode(response.data));
 
     if (result.code == '0') {
-      return List()
+      return []
         ..addAll((result.data as List ?? []).map((o) => Song.fromMap(o)));
     } else {
       return [];

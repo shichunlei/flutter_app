@@ -9,7 +9,7 @@ import '../../page_index.dart';
 class MusicModel extends ChangeNotifier {
   AudioPlayer _audioPlayer;
 
-  AudioPlayerState _curState;
+  PlayerState _curState;
 
   List<Song> _songs = [];
 
@@ -46,7 +46,7 @@ class MusicModel extends ChangeNotifier {
   double get progress => _progress;
 
   /// 正在播放状态
-  bool get isPlaying => _curState == AudioPlayerState.PLAYING;
+  bool get isPlaying => _curState == PlayerState.PLAYING;
 
   /// 当前音乐
   Song get curSong => _songs.length == 0 ? null : _songs[curIndex];
@@ -92,11 +92,11 @@ class MusicModel extends ChangeNotifier {
 
       /// 播放状态监听
       ..onPlayerStateChanged.listen(
-        (AudioPlayerState state) {
+        (PlayerState state) {
           _curState = state;
           debugPrint('onPlayerStateChanged===============state: $state');
 
-          if (_curState == AudioPlayerState.COMPLETED) {
+          if (_curState == PlayerState.COMPLETED) {
             /// 下一首
             nextMusic();
           }
@@ -203,9 +203,9 @@ class MusicModel extends ChangeNotifier {
 
   /// 开始、暂停、恢复
   void togglePlay() {
-    if (_audioPlayer.state == AudioPlayerState.PAUSED) {
+    if (_audioPlayer.state == PlayerState.PAUSED) {
       _resume();
-    } else if (_audioPlayer.state == AudioPlayerState.PLAYING) {
+    } else if (_audioPlayer.state == PlayerState.PLAYING) {
       _pause();
     } else {
       _play();
@@ -254,7 +254,7 @@ class MusicModel extends ChangeNotifier {
       curIndex = Random().nextInt(_songs.length - 1);
     }
 
-    if (_curState != AudioPlayerState.STOPPED) {
+    if (_curState != PlayerState.STOPPED) {
       _stop();
     }
 
@@ -278,7 +278,7 @@ class MusicModel extends ChangeNotifier {
     } else if (1 == _mode) {
       curIndex = Random().nextInt(_songs.length - 1);
     }
-    if (_curState != AudioPlayerState.STOPPED) {
+    if (_curState != PlayerState.STOPPED) {
       _stop();
     }
 

@@ -36,7 +36,7 @@ class StatsBase {
     bean.playerBaseInfo = map['playerBaseInfo'] == null
         ? null
         : Player.fromMap(map['playerBaseInfo']);
-    bean.playerPos = List()
+    bean.playerPos = []
       ..addAll((map['playerPos'] as List ?? []).map((o) => Player.fromMap(o)));
     bean.playerLeagueSeasonStat = map['playerLeagueSeasonStat'] == null
         ? null
@@ -50,10 +50,10 @@ class StatsBase {
     bean.teamSeasonStat = map['teamSeasonStat'] == null
         ? null
         : SeasonDataStat.fromMap(map['teamSeasonStat']);
-    bean.playerMatch = List()
+    bean.playerMatch = []
       ..addAll((map['playerMatch'] as List ?? [])
           .map((o) => PlayerMatch.fromMap(o)));
-    bean.playerCareer = List()
+    bean.playerCareer = []
       ..addAll((map['playerCareer'] as List ?? [])
           .map((o) => SeasonDataStat.fromMap(o)));
     return bean;
@@ -268,7 +268,7 @@ class Schedule {
     if (map == null) return null;
     Schedule bean = Schedule();
     bean.m = map['m'];
-    bean.list = List()
+    bean.list = []
       ..addAll((map['list'] as List ?? []).map((o) => ScheduleList.fromMap(o)));
     return bean;
   }
@@ -776,7 +776,7 @@ class RankBase {
   static RankBase fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     RankBase testBean = RankBase();
-    testBean.list = List()
+    testBean.list = []
       ..addAll((map['list'] as List ?? []).map((o) => Rank.fromMap(o)));
     testBean.title = map['title'];
     testBean.type = map['type'];
@@ -1025,22 +1025,22 @@ class PlayerSeasonRank {
   static PlayerSeasonRank fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     PlayerSeasonRank rank = PlayerSeasonRank();
-    rank.assistsRank = List()
+    rank.assistsRank = []
       ..addAll((map['nbaPlayerSeasonAssistsRank'] as List ?? [])
           .map((o) => Player.fromMap(o)));
-    rank.blocksRank = List()
+    rank.blocksRank = []
       ..addAll((map['nbaPlayerSeasonBlocksRank'] as List ?? [])
           .map((o) => Player.fromMap(o)));
-    rank.pointsRank = List()
+    rank.pointsRank = []
       ..addAll((map['nbaPlayerSeasonPointsRank'] as List ?? [])
           .map((o) => Player.fromMap(o)));
-    rank.reboundsRank = List()
+    rank.reboundsRank = []
       ..addAll((map['nbaPlayerSeasonReboundsRank'] as List ?? [])
           .map((o) => Player.fromMap(o)));
-    rank.stealsRank = List()
+    rank.stealsRank = []
       ..addAll((map['nbaPlayerSeasonStealsRank'] as List ?? [])
           .map((o) => Player.fromMap(o)));
-    rank.turnoversRank = List()
+    rank.turnoversRank = []
       ..addAll((map['nbaPlayerSeasonTurnoversRank'] as List ?? [])
           .map((o) => Player.fromMap(o)));
     return rank;
@@ -1577,10 +1577,10 @@ class MatchBaseBean {
     MatchBaseBean bean = MatchBaseBean();
     bean.teamInfo = ScheduleList.fromMap(map['teamInfo']);
     bean.periodGoals = PeriodGoalsBean.fromMap(map['periodGoals']);
-    bean.maxPlayers = List()
+    bean.maxPlayers = []
       ..addAll((map['maxPlayers'] as List ?? [])
           .map((o) => MaxPlayersBean.fromMap(o)));
-    bean.teamStats = List()
+    bean.teamStats = []
       ..addAll((map['teamStats'] as List ?? [])
           .map((o) => TeamStatsBean.fromMap(o)));
     bean.playerStats = PlayerStatsBean.fromMap(map['playerStats']);
@@ -1608,10 +1608,10 @@ class PlayerStatsBean {
   static PlayerStatsBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     PlayerStatsBean playerStatsBean = PlayerStatsBean();
-    playerStatsBean.left = List()
+    playerStatsBean.left = []
       ..addAll(
           (map['left'] as List ?? []).map((o) => PlayerMatchStats.fromMap(o)));
-    playerStatsBean.right = List()
+    playerStatsBean.right = []
       ..addAll(
           (map['right'] as List ?? []).map((o) => PlayerMatchStats.fromMap(o)));
     return playerStatsBean;
@@ -1637,7 +1637,7 @@ class PlayerMatchStats {
   static PlayerMatchStats fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     PlayerMatchStats bean = PlayerMatchStats();
-    bean.row = List()
+    bean.row = []
       ..addAll((map['row'] as List ?? []).map((o) => o.toString()));
     bean.playerId = map['playerId'];
     bean.ifHasUrl = map['ifHasUrl'];
@@ -1786,10 +1786,10 @@ class PeriodGoalsBean {
   static PeriodGoalsBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     PeriodGoalsBean periodGoalsBean = PeriodGoalsBean();
-    periodGoalsBean.rows = List()
+    periodGoalsBean.rows = []
       ..addAll((map['rows'] as List ?? []).map(
-          (o) => List()..addAll((o as List ?? []).map((oo) => oo.toString()))));
-    periodGoalsBean.head = List()
+          (o) => []..addAll((o as List ?? []).map((oo) => oo.toString()))));
+    periodGoalsBean.head = []
       ..addAll((map['head'] as List ?? []).map((o) => o.toString()));
     periodGoalsBean.quarter = map['quarter'];
     return periodGoalsBean;
