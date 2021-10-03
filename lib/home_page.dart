@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-// import 'generated/l10n.dart';
 import 'generated/l10n.dart';
 import 'music_player/widgets/song_player_bar.dart';
 import 'page_index.dart';
@@ -91,26 +90,22 @@ class HomeStatePage extends State<HomePage> {
             body: Stack(children: [
               ListView(
                   controller: controller,
-                  padding:
-                      EdgeInsets.only(bottom: 60.0 + Utils.bottomSafeHeight),
+                  padding: EdgeInsets.only(bottom: 60.0 + Utils.bottomSafeHeight),
                   physics: BouncingScrollPhysics(),
                   children: _buildListBody(context)),
               Container(
                   child: AppBar(
-                      backgroundColor:
-                          Theme.of(context).primaryColor.withOpacity(navAlpha),
+                      backgroundColor: Theme.of(context).primaryColor.withOpacity(navAlpha),
                       centerTitle: false,
                       title: InkWell(
                           onTap: () {
-                            if (provider.defaultCity != '')
-                              pushNewPage(
-                                  context, WeatherPage(provider.defaultCity));
+                            if (provider.defaultCity != '' && provider.defaultCity != '正在定位...')
+                              pushNewPage(context, WeatherPage(provider.defaultCity));
                           },
                           child: Column(
                               children: <Widget>[
                                 Row(children: <Widget>[
-                                  Text('${provider.defaultCity}',
-                                      style: TextStyle(fontSize: 17.0)),
+                                  Text('${provider.defaultCity}', style: TextStyle(fontSize: 17.0)),
                                   Icon(Icons.keyboard_arrow_down)
                                 ], mainAxisSize: MainAxisSize.min),
                                 Text(
@@ -120,10 +115,8 @@ class HomeStatePage extends State<HomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center)),
                       elevation: .0,
-                      leading: IconButton(
-                          icon: Icon(Icons.menu),
-                          onPressed: () =>
-                              _scaffoldKey.currentState.openDrawer()),
+                      leading:
+                          IconButton(icon: Icon(Icons.menu), onPressed: () => _scaffoldKey.currentState.openDrawer()),
                       actions: <Widget>[
                         IconButton(
                             icon: Icon(Icons.refresh, semanticLabel: "refresh"),
@@ -143,18 +136,14 @@ class HomeStatePage extends State<HomePage> {
       ..add(AspectRatio(
           aspectRatio: 16 / 9,
           child: Swiper(
-              itemBuilder: (context, index) =>
-                  ImageLoadView(bannerImages[index]),
+              itemBuilder: (context, index) => ImageLoadView(bannerImages[index]),
               itemCount: 4,
-              pagination: SwiperPagination(
-                  builder: SwiperPagination.fraction,
-                  alignment: Alignment.bottomRight),
+              pagination: SwiperPagination(builder: SwiperPagination.fraction, alignment: Alignment.bottomRight),
               autoplay: true)))
       ..addAll(ExpandStateBean.expandStateList
           .map((value) => ExpansionTile(
               title: Text('${value.title}'),
-              backgroundColor:
-                  Theme.of(context).primaryColor.withOpacity(0.025),
+              backgroundColor: Theme.of(context).primaryColor.withOpacity(0.025),
               children: value.children
                   .map((child) => ListTile(
                       contentPadding: EdgeInsets.only(left: 30, right: 20),
@@ -172,8 +161,7 @@ class HomeStatePage extends State<HomePage> {
   Future<bool> _onBackPressed() async {
     if (_scaffoldKey.currentState.isDrawerOpen) {
       debugPrint("菜单打开着");
-    } else if (_lastPressedAt == null ||
-        DateTime.now().difference(_lastPressedAt) > Duration(seconds: 2)) {
+    } else if (_lastPressedAt == null || DateTime.now().difference(_lastPressedAt) > Duration(seconds: 2)) {
       debugPrint("点击时间");
       //两次点击间隔超过2秒则重新计时
       _lastPressedAt = DateTime.now();
@@ -192,11 +180,9 @@ class HomeStatePage extends State<HomePage> {
       if (city == null) {
         city = SpUtil.getString('current_city', defValue: '北京');
       }
-      Store.value<WeatherModel>(_scaffoldKey.currentContext, listen: false)
-          .getDefaultCityWeather(city);
+      Store.value<WeatherModel>(_scaffoldKey.currentContext, listen: false).getDefaultCityWeather(city);
     } else {
-      ScaffoldMessenger.of(_scaffoldKey.currentContext)
-          .showSnackBar(SnackBar(content: Text('权限不足')));
+      ScaffoldMessenger.of(_scaffoldKey.currentContext).showSnackBar(SnackBar(content: Text('权限不足')));
     }
   }
 

@@ -3,9 +3,7 @@ import 'package:permission_handler/permission_handler.dart';
 class PermissionsUtil {
   /// 请求地图相关权限
   static Future<bool> requestMapPermission() async {
-    return await checkPermissionStatus(Permission.location) &&
-        await checkPermissionStatus(Permission.storage) &&
-        await checkPermissionStatus(Permission.phone);
+    return await checkPermissionStatus(Permission.location);
   }
 
   /// 请求通讯录权限

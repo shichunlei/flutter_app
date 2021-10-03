@@ -1,4 +1,11 @@
+export 'package:amap_location_fluttify/amap_location_fluttify.dart';
+export 'package:dio/dio.dart';
+export 'package:flutter_easyrefresh/easy_refresh.dart'
+    hide CirclePainter, SpinKitHourGlass;
 export 'package:flutter_libs/flutter_libs.dart';
+export 'package:flutter_swiper/flutter_swiper.dart';
+export 'package:flutter_vector_icons/flutter_vector_icons.dart';
+export 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 export 'animation/animated_align.dart';
 export 'animation/animated_builder.dart';
@@ -38,7 +45,6 @@ export 'bars_demo/titled_navigation_bar.dart';
 export 'delegates/custom_sliver_appbar_delegate.dart';
 export 'delegates/custom_sliver_header_delegate.dart';
 export 'delegates/fallback_cupertino_localisations_delegate.dart';
-
 export 'delegates/sliver_appbar_delegate.dart';
 
 export 'enum/enum.dart';
@@ -48,7 +54,6 @@ export 'global/custom_icon.dart';
 export 'global/data.dart';
 
 export 'home_page.dart';
-
 export 'intro_slide_page.dart';
 
 export 'juzimi/splash.dart';
@@ -128,11 +133,3 @@ export 'wechat_friends/page/wechat_friends_circle.dart';
 export 'widget/widgets.dart';
 
 export 'youdao/page/home.dart';
-
-export 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-export 'package:flutter_easyrefresh/easy_refresh.dart'
-    hide CirclePainter, SpinKitHourGlass;
-export 'package:flutter_swiper/flutter_swiper.dart';
-export 'package:amap_location_fluttify/amap_location_fluttify.dart';
-export 'package:flutter_vector_icons/flutter_vector_icons.dart';
-export 'package:dio/dio.dart';
