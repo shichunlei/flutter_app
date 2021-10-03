@@ -17,6 +17,7 @@ public final class GeneratedPluginRegistrant {
     ShimPluginRegistry shimPluginRegistry = new ShimPluginRegistry(flutterEngine);
     flutterEngine.getPlugins().add(new me.yohom.amap_core_fluttify.AmapCoreFluttifyPlugin());
     flutterEngine.getPlugins().add(new me.yohom.amap_location_fluttify.AmapLocationFluttifyPlugin());
+    flutterEngine.getPlugins().add(new com.ryanheise.audio_session.AudioSessionPlugin());
     flutterEngine.getPlugins().add(new xyz.luan.audioplayers.AudioplayersPlugin());
       de.mintware.barcode_scan.BarcodeScanPlugin.registerWith(shimPluginRegistry.registrarFor("de.mintware.barcode_scan.BarcodeScanPlugin"));
     flutterEngine.getPlugins().add(new me.yohom.core_location_fluttify.CoreLocationFluttifyPlugin());
@@ -28,8 +29,9 @@ public final class GeneratedPluginRegistrant {
       com.flutter_webview_plugin.FlutterWebviewPlugin.registerWith(shimPluginRegistry.registrarFor("com.flutter_webview_plugin.FlutterWebviewPlugin"));
     flutterEngine.getPlugins().add(new me.yohom.foundation_fluttify.FoundationFluttifyPlugin());
     flutterEngine.getPlugins().add(new vn.hunghd.flutter.plugins.imagecropper.ImageCropperPlugin());
-      com.example.imagegallerysaver.ImageGallerySaverPlugin.registerWith(shimPluginRegistry.registrarFor("com.example.imagegallerysaver.ImageGallerySaverPlugin"));
+    flutterEngine.getPlugins().add(new com.example.imagegallerysaver.ImageGallerySaverPlugin());
     flutterEngine.getPlugins().add(new io.flutter.plugins.imagepicker.ImagePickerPlugin());
+    flutterEngine.getPlugins().add(new com.ryanheise.just_audio.JustAudioPlugin());
     flutterEngine.getPlugins().add(new com.vitanov.multiimagepicker.MultiImagePickerPlugin());
     flutterEngine.getPlugins().add(new io.flutter.plugins.packageinfo.PackageInfoPlugin());
     flutterEngine.getPlugins().add(new io.flutter.plugins.pathprovider.PathProviderPlugin());

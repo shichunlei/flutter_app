@@ -403,7 +403,6 @@ List<Widget> loadingWidgets = [
   SpinKitSpinningCircle(color: Colors.deepOrange),
   SpinKitSpinningCircle(color: Colors.deepPurple, shape: BoxShape.rectangle),
   SpinKitFadingCircle(color: Colors.deepPurpleAccent),
-  SpinKitPouringHourglass(color: Colors.indigo),
   CupertinoActivityIndicator(),
   CircularProgressIndicator(backgroundColor: Colors.greenAccent),
 ];
