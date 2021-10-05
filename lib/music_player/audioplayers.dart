@@ -26,115 +26,83 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
     var snapshot = Store.value<MusicModel>(context);
 
     return Material(
-      child: Stack(children: <Widget>[
-        Container(
+        child: Stack(children: [
+      Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color.fromRGBO(208, 230, 165, 1),
-                Color.fromRGBO(233, 136, 124, 1),
-                Color.fromRGBO(204, 171, 218, 1),
-                Color.fromRGBO(134, 227, 206, 1),
-              ],
-            ),
-          ),
-        ),
-        Positioned(
+        gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [
+          Color.fromRGBO(208, 230, 165, 1),
+          Color.fromRGBO(233, 136, 124, 1),
+          Color.fromRGBO(204, 171, 218, 1),
+          Color.fromRGBO(134, 227, 206, 1)
+        ]),
+      )),
+      Positioned(
           bottom: Utils.bottomSafeHeight,
           left: 0,
           right: 0,
           top: Utils.topSafeHeight,
           child: Column(children: <Widget>[
-            Expanded(
-              child: AlbumCover(
-                image: snapshot.curSong?.albumArtUrl,
-                isPlaying: snapshot.isPlaying,
-              ),
-            ),
+            Expanded(child: AlbumCover(image: snapshot.curSong?.albumArtUrl, isPlaying: snapshot.isPlaying)),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              height: 30,
-              child: Marquee(
-                text: '${snapshot.curSong?.title}-${snapshot.curSong?.artists}',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 4.0,
-                    height: 1.5),
-                scrollAxis: Axis.horizontal,
-              ),
-            ),
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                height: 30,
+                child: Marquee(
+                    text: '${snapshot.curSong?.title}-${snapshot.curSong?.artists}',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 4.0,
+                        height: 1.5),
+                    scrollAxis: Axis.horizontal)),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                children: <Widget>[
-                  Text(snapshot.positionText,
-                      style: TextStyle(
-                        color: Colors.white.withOpacity(0.75),
-                        fontSize: 10,
-                      )),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(children: <Widget>[
+                  Text(snapshot.positionText, style: TextStyle(color: Colors.white.withOpacity(0.75), fontSize: 10)),
                   Expanded(
-                    child: Slider(
-                      onChanged: (value) {
-                        snapshot.seekPlay(value);
-                      },
-                      value: snapshot.progress,
-                      inactiveColor: Colors.grey,
-                      activeColor: Colors.white,
-                    ),
-                  ),
-                  Text(snapshot.durationText,
-                      style: TextStyle(
-                        color: Colors.white.withOpacity(0.75),
-                        fontSize: 10,
-                      ))
-                ],
-              ),
-            ),
+                      child: Slider(
+                          onChanged: (value) {
+                            snapshot.seekPlay(value);
+                          },
+                          value: snapshot.progress,
+                          inactiveColor: Colors.grey,
+                          activeColor: Colors.white)),
+                  Text(snapshot.durationText, style: TextStyle(color: Colors.white.withOpacity(0.75), fontSize: 10))
+                ])),
             Material(
-              type: MaterialType.transparency,
-              child: Padding(
-                  padding: EdgeInsets.only(top: 20, bottom: 20),
-                  child: Row(
-                    children: <Widget>[
+                type: MaterialType.transparency,
+                child: Padding(
+                    padding: EdgeInsets.only(top: 20, bottom: 20),
+                    child: Row(children: <Widget>[
                       _buildModeButton(snapshot),
                       _buildPreviousButton(snapshot),
                       _buildPlayPausedButton(snapshot),
                       _buildNextButton(snapshot),
-                      _buildListButton(),
-                    ],
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  )),
-            )
-          ]),
-        ),
-        Container(
-            height: Utils.navigationBarHeight,
-            child: AppBar(
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                leading: IconButton(
+                      _buildListButton()
+                    ], mainAxisAlignment: MainAxisAlignment.spaceAround)))
+          ])),
+      Container(
+          height: Utils.navigationBarHeight,
+          child: AppBar(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              leading: IconButton(
+                  splashColor: lightAccentColor,
+                  highlightColor: Colors.transparent,
+                  icon: Icon(Icons.keyboard_arrow_down, color: Colors.white),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }),
+              actions: [
+                IconButton(
                     splashColor: lightAccentColor,
                     highlightColor: Colors.transparent,
-                    icon: Icon(Icons.keyboard_arrow_down, color: Colors.white),
+                    icon: Icon(Icons.more_horiz, color: Colors.white),
                     onPressed: () {
-                      Navigator.pop(context);
-                    }),
-                actions: [
-                  IconButton(
-                      splashColor: lightAccentColor,
-                      highlightColor: Colors.transparent,
-                      icon: Icon(
-                        Icons.more_horiz,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {})
-                ]))
-      ]),
-    );
+                      pushNewPage(context, RankListPage());
+                    })
+              ]))
+    ]));
   }
 
   Widget _buildModeButton(MusicModel snapshot) {
@@ -147,47 +115,37 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
               context: context,
               builder: (context) {
                 return Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Padding(
+                    child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: SimpleDialog(
-                          children: <Widget>[
-                            ListTile(
-                              leading: Icon(Icons.repeat_one),
-                              title: Text('单曲循环'),
-                              onTap: () {
-                                Navigator.pop(context);
-                                snapshot.toggleMode(2);
-                              },
-                              selected: snapshot.mode == 2,
-                            ),
-                            ListTile(
-                              leading: Icon(Icons.repeat),
-                              title: Text('顺序播放'),
-                              onTap: () {
-                                Navigator.pop(context);
-                                snapshot.toggleMode(0);
-                              },
-                              selected: snapshot.mode == 0,
-                            ),
-                            ListTile(
-                              leading: Icon(Icons.shuffle),
-                              title: Text('随机播放'),
-                              onTap: () {
-                                Navigator.pop(context);
-                                snapshot.toggleMode(1);
-                              },
-                              selected: snapshot.mode == 1,
-                            ),
-                          ],
-                          contentPadding: EdgeInsets.all(0),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
+                        child: Center(
+                            child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SimpleDialog(children: <Widget>[
+                                  ListTile(
+                                      leading: Icon(Icons.repeat_one),
+                                      title: Text('单曲循环'),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                        snapshot.toggleMode(2);
+                                      },
+                                      selected: snapshot.mode == 2),
+                                  ListTile(
+                                      leading: Icon(Icons.repeat),
+                                      title: Text('顺序播放'),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                        snapshot.toggleMode(0);
+                                      },
+                                      selected: snapshot.mode == 0),
+                                  ListTile(
+                                      leading: Icon(Icons.shuffle),
+                                      title: Text('随机播放'),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                        snapshot.toggleMode(1);
+                                      },
+                                      selected: snapshot.mode == 1)
+                                ], contentPadding: EdgeInsets.all(0))))));
               });
         });
   }

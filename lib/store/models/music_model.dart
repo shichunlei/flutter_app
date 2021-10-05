@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import '../../page_index.dart';
 
@@ -68,9 +69,7 @@ class MusicModel extends ChangeNotifier {
         (Duration position) {
           _position = position;
 
-          if (_duration != null &&
-              _position != null &&
-              _duration.inMilliseconds > 0) {
+          if (_duration != null && _position != null && _duration.inMilliseconds > 0) {
             _progress = _position.inMilliseconds / _duration.inMilliseconds;
           } else {
             _progress = 0.0;
@@ -228,8 +227,7 @@ class MusicModel extends ChangeNotifier {
   /// 跳转到固定时间
   void seekPlay(double progress, {bool resume: true}) {
     this._progress = progress;
-    _audioPlayer.seek(
-        Duration(milliseconds: (_duration.inMilliseconds * progress).toInt()));
+    _audioPlayer.seek(Duration(milliseconds: (_duration.inMilliseconds * progress).toInt()));
     if (resume) {
       _resume();
     }
@@ -310,10 +308,24 @@ class MusicModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future saveMusic(BuildContext context, String fileName, String url) async {
+    var appDocDir = await FileUtil.getInstance().getTempPath();
+    String savePath = appDocDir + "$fileName.mp3";
+    await HttpUtils().download(url, savePath, onReceiveProgress: (int count, int total) {
+      Log.d("$count/$total");
+
+      if (count == total) {
+        Toast.show(context, '下载成功！');
+      }
+    });
+    final result = await ImageGallerySaver.saveFile(savePath);
+    Log.d(result);
+  }
+
   @override
   void dispose() {
     _stop();
-    _audioPlayer.dispose();
+    _audioPlayer?.dispose();
     super.dispose();
   }
 
