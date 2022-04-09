@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/sars_cov.dart';
 
 import '../../page_index.dart';
 import 'item_country_view.dart';

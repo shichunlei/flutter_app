@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/login/page/login_page.dart';
-import '../page/mine_page.dart';
 import '../page_index.dart';
 import '../store/index.dart';
 

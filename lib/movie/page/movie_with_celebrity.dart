@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-
 import '../../page_index.dart';
 import '../index.dart';
 

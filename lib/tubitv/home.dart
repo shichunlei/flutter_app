@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/tubitv.dart';
 import 'package:flutter_app/stream_packing/index.dart';
 import 'search.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../page_index.dart';
 import 'details.dart';
@@ -46,15 +43,13 @@ class _TubiTVHomePageState extends State<TubiTVHomePage> {
           builder: (BuildContext buildContext, t) {
             category.clear();
             category.addAll(t);
-            banners.addAll(category?.first?.children);
+            banners.addAll(category?.first?.contents);
 
             return EasyRefresh.custom(
               slivers: <Widget>[
                 SliverAppBar(
                   actions: <Widget>[
-                    IconButton(
-                        icon: Icon(Icons.search),
-                        onPressed: () => pushNewPage(context, SearchListPage()))
+                    IconButton(icon: Icon(Icons.search), onPressed: () => pushNewPage(context, SearchListPage()))
                   ],
                   automaticallyImplyLeading: false,
                   title: Image.asset("images/icon_nav_logo.png"),
@@ -63,11 +58,9 @@ class _TubiTVHomePageState extends State<TubiTVHomePage> {
                   flexibleSpace: FlexibleSpaceBar(
                     background: Swiper(
                         itemBuilder: (context, index) => InkWell(
-                              onTap: () => pushNewPage(
-                                  context, DetailsPage(id: banners[index]?.id)),
+                              onTap: () => pushNewPage(context, DetailsPage(id: banners[index]?.id)),
                               child: Stack(children: <Widget>[
-                                ImageLoadView(
-                                    banners[index]?.backgrounds?.first),
+                                ImageLoadView(banners[index]?.backgrounds?.first),
                                 Positioned(
                                   child: Container(
                                     padding: EdgeInsets.all(8.0),
@@ -91,7 +84,7 @@ class _TubiTVHomePageState extends State<TubiTVHomePage> {
                 SliverFixedExtentList(
                     delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) => ItemHomeView(
-                              item: category[index + 1]?.children,
+                              item: category[index + 1]?.contents,
                               category: category[index + 1]?.id,
                               title: category[index + 1]?.title,
                               topImage: category[index + 1]?.thumbnail,
@@ -109,8 +102,7 @@ class _TubiTVHomePageState extends State<TubiTVHomePage> {
   void getHomeData() async {
     manager.loadingDialog();
 
-    await MovieRepository.getTubiTVHomeData(
-            platform: Utils.isAndroid ? "android" : "iphone", deviceId: "11111")
+    await MovieRepository.getTubiTVHomeData(platform: Utils.isAndroid ? "android" : "iphone", deviceId: "11111")
         .then((value) {
       manager.content(value);
     }).catchError((error) {

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/page_index.dart';
 
-import '../index.dart';
-
 class TeamRosterPage extends StatefulWidget {
   final String id;
 

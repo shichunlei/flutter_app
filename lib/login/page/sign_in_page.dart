@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/store/index.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
 import '../ui/submit_button.dart';
@@ -43,66 +42,54 @@ class _SignInPageState extends State<SignInPage> {
                 /// 忘记密码
                 Padding(
                     padding: const EdgeInsets.only(top: 20.0),
-                    child: FlatButton(
-                        color: Color(0x00000000),
-                        shape: const StadiumBorder(),
+                    child: TextButton(
+                        style: ButtonStyle(shape: MaterialStateProperty.all(StadiumBorder())),
                         onPressed: () {
                           pushNewPage(context, ForgotPasswordPage());
                         },
                         child: Text("忘记密码？",
-                            style: TextStyle(
-                                fontSize: 16.0,
-                                color: Colors.white,
-                                decoration: TextDecoration.underline)))),
+                            style:
+                                TextStyle(fontSize: 16.0, color: Colors.white, decoration: TextDecoration.underline)))),
 
                 /// Or 横线
                 Padding(
                     padding: const EdgeInsets.only(top: 5.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                              width: 100.0,
-                              height: 1.0,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    colors: [Colors.white10, Colors.white]),
-                              )),
-                          Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 15.0, right: 15.0),
-                              child: Text('Or',
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.white))),
-                          Container(
-                              width: 100.0,
-                              height: 1.0,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    colors: [Colors.white, Colors.white10]),
-                              ))
-                        ])),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                      Container(
+                          width: 100.0,
+                          height: 1.0,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [Colors.white10, Colors.white]),
+                          )),
+                      Padding(
+                          padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                          child: Text('Or', style: TextStyle(fontSize: 16, color: Colors.white))),
+                      Container(
+                          width: 100.0,
+                          height: 1.0,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [Colors.white, Colors.white10]),
+                          ))
+                    ])),
 
                 /// 第三方登录按钮
                 Padding(
                     padding: const EdgeInsets.only(top: 5.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          CircleButton(
-                              icon: FontAwesome.weixin,
-                              onPressedAction: () {
-                                Toast.show(context, "微信");
-                              },
-                              iconSize: 25.0),
-                          SizedBox(width: 40.0),
-                          CircleButton(
-                              icon: FontAwesome.qq,
-                              onPressedAction: () {
-                                Toast.show(context, "QQ");
-                              },
-                              iconSize: 25.0),
-                        ]))
+                    child: Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                      CircleButton(
+                          icon: FontAwesome.weixin,
+                          onPressedAction: () {
+                            Toast.show(context, "微信");
+                          },
+                          iconSize: 25.0),
+                      SizedBox(width: 40.0),
+                      CircleButton(
+                          icon: FontAwesome.qq,
+                          onPressedAction: () {
+                            Toast.show(context, "QQ");
+                          },
+                          iconSize: 25.0),
+                    ]))
               ]),
 
               /// 登录按钮
@@ -130,9 +117,7 @@ class _SignInPageState extends State<SignInPage> {
 
   Widget _buildLoginTextForm() {
     return Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            color: Colors.white),
+        decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10.0)), color: Colors.white),
         width: 300.0,
 
         /// Flutter提供了一个Form widget，它可以对输入框进行分组，然后进行一些统一操作，如输入内容校验、输入框重置以及输入内容保存。
@@ -141,20 +126,12 @@ class _SignInPageState extends State<SignInPage> {
             /// 邮箱输入框
             _buildEmailInput(),
 
-            Container(
-                width: 250.0,
-                height: 1.0,
-                color: Colors.grey[100],
-                padding: const EdgeInsets.only(top: 10.0)),
+            Container(width: 250.0, height: 1.0, color: Colors.grey[100], padding: const EdgeInsets.only(top: 10.0)),
 
             /// 密码
             _buildPasswordInput(),
 
-            Container(
-                width: 250.0,
-                height: 1.0,
-                color: Colors.grey[100],
-                margin: const EdgeInsets.only(bottom: 40.0))
+            Container(width: 250.0, height: 1.0, color: Colors.grey[100], margin: const EdgeInsets.only(bottom: 40.0))
           ]),
         ));
   }
@@ -179,8 +156,7 @@ class _SignInPageState extends State<SignInPage> {
             enabled: true,
 
             /// 键盘动作按钮点击之后执行的代码： 光标切换到指定的输入框
-            onEditingComplete: () =>
-                FocusScope.of(context).requestFocus(passwordFocusNode),
+            onEditingComplete: () => FocusScope.of(context).requestFocus(passwordFocusNode),
             decoration: InputDecoration(
                 icon: Icon(Icons.email, color: Colors.black),
                 hintText: "${S.of(context).email}",
@@ -207,10 +183,7 @@ class _SignInPageState extends State<SignInPage> {
                 border: InputBorder.none,
                 suffixIcon: IconButton(
                     color: Theme.of(context).primaryColor,
-                    icon: Icon(
-                        isShowPassWord
-                            ? CustomIcon.show_password
-                            : CustomIcon.hidden_password,
+                    icon: Icon(isShowPassWord ? CustomIcon.show_password : CustomIcon.hidden_password,
                         color: Colors.black),
                     onPressed: () => showPassword())),
 
@@ -266,8 +239,7 @@ class _SignInPageState extends State<SignInPage> {
         //'${user?.email}',
         name: "苍井空",
         //'${user.name}',
-        avatarPath:
-            "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4176017085,1014898947&fm=26&gp=0.jpg",
+        avatarPath: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4176017085,1014898947&fm=26&gp=0.jpg",
         //user.avatarUrl,
         login: true,
         mobile: "13000002212", //user.mobile,

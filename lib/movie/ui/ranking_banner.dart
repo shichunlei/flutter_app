@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../page_index.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../index.dart';
 

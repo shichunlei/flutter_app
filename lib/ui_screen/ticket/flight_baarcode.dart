@@ -1,6 +1,5 @@
 import 'package:barcode_flutter/barcode_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class FlightBarcode extends StatelessWidget {
   @override

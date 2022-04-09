@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 /// Development UI that let's a user play an animation forward and backward to
 /// fine-tune the animation.

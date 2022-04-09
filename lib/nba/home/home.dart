@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../page_index.dart';
-import '../index.dart';
 
 class NBAHomePage extends StatefulWidget {
   NBAHomePage({Key key}) : super(key: key);

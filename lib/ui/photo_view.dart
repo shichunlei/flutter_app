@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:photo_view/photo_view.dart';
-import 'package:photo_view/photo_view_gallery.dart';
-import 'package:share/share.dart';
 
 import '../page_index.dart';
 
-class PhotoView extends StatefulWidget {
+class PhotoPageView extends StatefulWidget {
   final List<String> photos;
   final int index;
   final PageController controller;
   final String title;
   final String heroTag;
 
-  PhotoView({
+  PhotoPageView({
     Key key,
     this.title,
     @required this.photos,
@@ -25,11 +21,10 @@ class PhotoView extends StatefulWidget {
         super(key: key);
 
   @override
-  createState() => _PhotoViewState();
+  createState() => _PhotoPageViewState();
 }
 
-class _PhotoViewState extends State<PhotoView>
-    with SingleTickerProviderStateMixin {
+class _PhotoPageViewState extends State<PhotoPageView> with SingleTickerProviderStateMixin {
   int total = 0;
   int count;
 
@@ -83,8 +78,7 @@ class _PhotoViewState extends State<PhotoView>
           }
         },
         onVerticalDragUpdate: (details) {
-          debugPrint(
-              'details.delta.dy ========================== ${details.delta.dy}');
+          debugPrint('details.delta.dy ========================== ${details.delta.dy}');
           // dy 不超过 -screenHeight * 0.6
           dy += details.delta.dy;
           if ((dy < 0 && dy.abs() > screenHeight * 0.6)) {
@@ -93,10 +87,7 @@ class _PhotoViewState extends State<PhotoView>
             setState(() {});
           }
         },
-        child: Stack(children: <Widget>[
-          _buildBgView(screenHeight),
-          _buildCommentsView(screenHeight)
-        ]),
+        child: Stack(children: <Widget>[_buildBgView(screenHeight), _buildCommentsView(screenHeight)]),
       ),
     );
   }
@@ -105,10 +96,8 @@ class _PhotoViewState extends State<PhotoView>
   ///
   /// 动画结束后 [isCommentShow] 为 true
   void animateToTop(double screenHeight) {
-    animationController = AnimationController(
-        duration: Duration(milliseconds: dy.abs() * 1000 ~/ 800), vsync: this);
-    final curve =
-        CurvedAnimation(parent: animationController, curve: Curves.decelerate);
+    animationController = AnimationController(duration: Duration(milliseconds: dy.abs() * 1000 ~/ 800), vsync: this);
+    final curve = CurvedAnimation(parent: animationController, curve: Curves.decelerate);
     animation = Tween(begin: dy, end: -screenHeight * .6).animate(curve)
       ..addListener(() => setState(() => dy = animation.value))
       ..addStatusListener((status) {
@@ -121,10 +110,8 @@ class _PhotoViewState extends State<PhotoView>
   ///
   /// 动画结束后 [isCommentShow] 为 false
   void animateToBottom(double screenHeight) {
-    animationController = AnimationController(
-        duration: Duration(milliseconds: dy.abs().floor()), vsync: this);
-    final curve =
-        CurvedAnimation(parent: animationController, curve: Curves.decelerate);
+    animationController = AnimationController(duration: Duration(milliseconds: dy.abs().floor()), vsync: this);
+    final curve = CurvedAnimation(parent: animationController, curve: Curves.decelerate);
     animation = Tween(begin: dy, end: 0.0).animate(curve)
       ..addListener(() => setState(() => dy = animation.value))
       ..addStatusListener((status) {
@@ -138,8 +125,7 @@ class _PhotoViewState extends State<PhotoView>
 
     var appDocDir = await FileUtil.getInstance().getTempPath();
     String savePath = appDocDir + "$count.jpg";
-    await HttpUtils().download(imageUrl, savePath,
-        onReceiveProgress: (int count, int total) {
+    await HttpUtils().download(imageUrl, savePath, onReceiveProgress: (int count, int total) {
       debugPrint("$count/$total");
 
       if (count == total) {
@@ -157,9 +143,7 @@ class _PhotoViewState extends State<PhotoView>
           PhotoViewGallery(
             pageOptions: widget.photos
                 .map((photo) => PhotoViewGalleryPageOptions(
-                    imageProvider: NetworkImage(photo),
-                    heroAttributes:
-                        PhotoViewHeroAttributes(tag: widget.heroTag)))
+                    imageProvider: NetworkImage(photo), heroAttributes: PhotoViewHeroAttributes(tag: widget.heroTag)))
                 .toList(),
             backgroundDecoration: BoxDecoration(color: Colors.black),
             onPageChanged: (index) {
@@ -190,12 +174,9 @@ class _PhotoViewState extends State<PhotoView>
                 width: 80.0,
                 height: 30.0,
                 child: Center(
-                  child: Text('$count/$total',
-                      style: TextStyle(color: Colors.white)),
+                  child: Text('$count/$total', style: TextStyle(color: Colors.white)),
                 ),
-                decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.all(Radius.circular(5.0))),
               ),
             ),
           ], mainAxisAlignment: MainAxisAlignment.spaceBetween),
@@ -220,23 +201,17 @@ class _PhotoViewState extends State<PhotoView>
           padding: EdgeInsets.all(10.0),
           decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))),
           height: screenHeight * .6,
           child: Column(children: <Widget>[
             Stack(alignment: Alignment.centerRight, children: <Widget>[
-              Container(
-                  child: Text('2.7w条评论', textAlign: TextAlign.center),
-                  width: Utils.width),
-              IconButton(
-                  icon: Icon(Icons.close),
-                  onPressed: () => animateToBottom(screenHeight * 0.6))
+              Container(child: Text('2.7w条评论', textAlign: TextAlign.center), width: Utils.width),
+              IconButton(icon: Icon(Icons.close), onPressed: () => animateToBottom(screenHeight * 0.6))
             ]),
             Expanded(
                 child: ListView.builder(
-                    itemBuilder: (context, index) => ListTile(
-                        title: Text('item$index'),
-                        leading: Icon(Icons.color_lens)),
+                    itemBuilder: (context, index) =>
+                        ListTile(title: Text('item$index'), leading: Icon(Icons.color_lens)),
                     itemCount: 50))
           ])),
     );

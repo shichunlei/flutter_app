@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../page_index.dart';
-import '../index.dart';
 
 class LabInfoHeaderView extends StatelessWidget {
   final PostBean post;

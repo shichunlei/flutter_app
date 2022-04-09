@@ -3,9 +3,6 @@ import 'package:flutter_app/baixing_life/ui/item_order.dart';
 
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_app/store/index.dart';
-import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_easyrefresh/material_header.dart';
 
 class OrderPage extends StatefulWidget {
   final int state;

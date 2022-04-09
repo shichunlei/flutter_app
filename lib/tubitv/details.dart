@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/tubitv.dart';
 import 'package:flutter_app/page_index.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import 'details_header.dart';
 import 'details_info.dart';
@@ -36,7 +34,7 @@ class _DetailsPageState extends State<DetailsPage> {
   void initState() {
     super.initState();
 
-    expandedHeight=Utils.width*0.7;
+    expandedHeight = Utils.width * 0.7;
 
     getDetails(widget.id);
   }
@@ -53,7 +51,7 @@ class _DetailsPageState extends State<DetailsPage> {
         body: LoaderContainer(
           contentView: EasyRefresh.custom(
             slivers: [
-              DetailsHeaderView(data: data,expandedHeight:expandedHeight),
+              DetailsHeaderView(data: data, expandedHeight: expandedHeight),
               SliverList(
                 delegate: SliverChildListDelegate(
                   <Widget>[
@@ -71,8 +69,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               checkSeason = season;
                               checkEpisode = episode;
 
-                              data = _data
-                                  .children[checkSeason].children[checkEpisode];
+                              data = _data.children[checkSeason].children[checkEpisode];
                               data.posterarts = _data.posterarts;
                               data.actors = _data.actors;
                               data.directors = _data.directors;
@@ -99,17 +96,21 @@ class _DetailsPageState extends State<DetailsPage> {
 
   void getDetails(String id) async {
     data = await MovieRepository.getTubiTVDetails(
-        id: id,
-        platform: Utils.isAndroid ? "android" : "iphone",
-        deviceId: "111111");
+        id: id, platform: Utils.isAndroid ? "android" : "iphone", deviceId: "111111");
 
-    _data = data;
+    if (data != null) {
+      _data = data;
 
-    likes.addAll(_data.related);
-    seasons.addAll(_data.children);
+      likes.addAll(_data.related);
+      seasons.addAll(_data.children);
 
-    setState(() {
-      state = LoaderState.Succeed;
-    });
+      setState(() {
+        state = LoaderState.Succeed;
+      });
+    } else {
+      setState(() {
+        state = LoaderState.Failed;
+      });
+    }
   }
 }

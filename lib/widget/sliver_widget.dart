@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-import 'package:flutter_app/delegates/custom_sliver_appbar_delegate.dart';
 import 'package:flutter_app/page_index.dart';
 
 enum AppBarBehavior { normal, pinned, floating, snapping }
@@ -51,95 +51,79 @@ class _SliverWidgetState extends State<SliverWidget> {
   Widget _buildSliverAppBar() {
     /// SliverAppBar 是一个可伸缩的头部，可以实现上拉收起，下拉展开效果
     return SliverAppBar(
-      /// 背景色
-      backgroundColor: Colors.white,
 
-      /// 展开高度
-      expandedHeight: 200.0,
+        /// 背景色
+        backgroundColor: Colors.white,
 
-      /// 是否预留高度
-      primary: true,
+        /// 展开高度
+        expandedHeight: 200.0,
 
-      /// 是否固定在顶部
-      pinned: _appBarBehavior == AppBarBehavior.pinned,
+        /// 是否预留高度
+        primary: true,
 
-      /// 是否随着滑动隐藏标题
-      floating: _appBarBehavior == AppBarBehavior.floating ||
-          _appBarBehavior == AppBarBehavior.snapping,
+        /// 是否固定在顶部
+        pinned: _appBarBehavior == AppBarBehavior.pinned,
 
-      /// 与floating结合使用
-      snap: _appBarBehavior == AppBarBehavior.snapping,
+        /// 是否随着滑动隐藏标题
+        floating: _appBarBehavior == AppBarBehavior.floating || _appBarBehavior == AppBarBehavior.snapping,
 
-      actions: <Widget>[
-        PopupMenuButton<AppBarBehavior>(
-          onSelected: (AppBarBehavior value) {
-            setState(() {
-              _appBarBehavior = value;
-            });
-          },
-          itemBuilder: (BuildContext context) =>
-              <PopupMenuItem<AppBarBehavior>>[
-            PopupMenuItem<AppBarBehavior>(
-                value: AppBarBehavior.normal,
-                child: Text(
-                  'App bar scrolls away',
-                  style: TextStyle(
-                      color: _appBarBehavior == AppBarBehavior.normal
-                          ? Colors.red
-                          : Colors.black54),
-                )),
-            PopupMenuItem<AppBarBehavior>(
-                value: AppBarBehavior.pinned,
-                child: Text('App bar stays put',
-                    style: TextStyle(
-                        color: _appBarBehavior == AppBarBehavior.pinned
-                            ? Colors.red
-                            : Colors.black54))),
-            PopupMenuItem<AppBarBehavior>(
-                value: AppBarBehavior.floating,
-                child: Text('App bar floats',
-                    style: TextStyle(
-                        color: _appBarBehavior == AppBarBehavior.floating
-                            ? Colors.red
-                            : Colors.black54))),
-            PopupMenuItem<AppBarBehavior>(
-                value: AppBarBehavior.snapping,
-                child: Text('App bar snaps',
-                    style: TextStyle(
-                        color: _appBarBehavior == AppBarBehavior.snapping
-                            ? Colors.red
-                            : Colors.black54))),
-          ],
+        /// 与floating结合使用
+        snap: _appBarBehavior == AppBarBehavior.snapping,
+        actions: <Widget>[
+          PopupMenuButton<AppBarBehavior>(
+            onSelected: (AppBarBehavior value) {
+              setState(() {
+                _appBarBehavior = value;
+              });
+            },
+            itemBuilder: (BuildContext context) => <PopupMenuItem<AppBarBehavior>>[
+              PopupMenuItem<AppBarBehavior>(
+                  value: AppBarBehavior.normal,
+                  child: Text(
+                    'App bar scrolls away',
+                    style: TextStyle(color: _appBarBehavior == AppBarBehavior.normal ? Colors.red : Colors.black54),
+                  )),
+              PopupMenuItem<AppBarBehavior>(
+                  value: AppBarBehavior.pinned,
+                  child: Text('App bar stays put',
+                      style: TextStyle(color: _appBarBehavior == AppBarBehavior.pinned ? Colors.red : Colors.black54))),
+              PopupMenuItem<AppBarBehavior>(
+                  value: AppBarBehavior.floating,
+                  child: Text('App bar floats',
+                      style:
+                          TextStyle(color: _appBarBehavior == AppBarBehavior.floating ? Colors.red : Colors.black54))),
+              PopupMenuItem<AppBarBehavior>(
+                  value: AppBarBehavior.snapping,
+                  child: Text('App bar snaps',
+                      style:
+                          TextStyle(color: _appBarBehavior == AppBarBehavior.snapping ? Colors.red : Colors.black54))),
+            ],
+          ),
+        ],
+
+        /// 标题是否居中
+        centerTitle: true,
+
+        /// 可以展开区域，通常是一个FlexibleSpaceBar
+        flexibleSpace: FlexibleSpaceBar(
+          centerTitle: false,
+          title: Text(
+            'Sliver Widget',
+            style: TextStyle(color: Colors.grey),
+          ),
+          background: ImageLoadView(
+            'https://www.snapphotography.co.nz/wp-content/uploads/New-Zealand-Landscape-Photography-prints-12.jpg',
+          ),
         ),
-      ],
 
-      /// 标题是否居中
-      centerTitle: true,
+        /// 阴影
+        elevation: 2.0,
 
-      /// 可以展开区域，通常是一个FlexibleSpaceBar
-      flexibleSpace: FlexibleSpaceBar(
-        centerTitle: false,
-        title: Text(
-          'Sliver Widget',
-          style: TextStyle(color: Colors.grey),
-        ),
-        background: ImageLoadView(
-          'https://www.snapphotography.co.nz/wp-content/uploads/New-Zealand-Landscape-Photography-prints-12.jpg',
-        ),
-      ),
+        /// 主题明亮
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
 
-      /// 阴影
-      elevation: 2.0,
-
-      /// 主题明亮
-      brightness: Brightness.light,
-
-      /// icon的主题样式,默认的颜色是黑色的，不透明为1，size是24
-      iconTheme: IconThemeData(color: Colors.black, opacity: 0.8, size: 30),
-
-      /// 字体样式
-      textTheme: TextTheme(),
-    );
+        /// icon的主题样式,默认的颜色是黑色的，不透明为1，size是24
+        iconTheme: IconThemeData(color: Colors.black, opacity: 0.8, size: 30));
   }
 
   Widget _buildSliverToBoxAdapter() {

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/sars_cov.dart';
 import 'package:flutter_app/page_index.dart';
-import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_easyrefresh/material_header.dart';
 
 import 'ui/area_data_view.dart';
 import 'ui/item_data.dart';

@@ -19,6 +19,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Container(
+              height: double.infinity,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -34,8 +35,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               child: SingleChildScrollView(
                 physics: AlwaysScrollableScrollPhysics(),
-                padding: EdgeInsets.only(
-                    left: 40.0, top: 100.0, right: 40, bottom: 30),
+                padding: EdgeInsets.only(left: 40.0, top: 100.0, right: 40, bottom: 30),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -95,27 +95,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Widget _buildSignUpBtn() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
-      width: double.infinity,
-      child: RaisedButton(
-        elevation: 5.0,
-        onPressed: () => debugPrint('REGIST Button Pressed'),
-        padding: EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        color: Colors.white,
-        child: Text(
-          'REGIST',
-          style: TextStyle(
-            color: Color(0xFF527DAA),
-            letterSpacing: 1.5,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
+        padding: EdgeInsets.symmetric(vertical: 25.0),
+        width: double.infinity,
+        child: ElevatedButton(
+            style: ButtonStyle(
+                padding: MaterialStateProperty.all(EdgeInsets.all(15.0)),
+                backgroundColor: MaterialStateProperty.all(Colors.white),
+                shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)))),
+            onPressed: () => debugPrint('REGIST Button Pressed'),
+            child: Text('REGIST',
+                style: TextStyle(
+                    color: Color(0xFF527DAA), letterSpacing: 1.5, fontSize: 18.0, fontWeight: FontWeight.bold))));
   }
 
   Widget _buildLoginBtn() {

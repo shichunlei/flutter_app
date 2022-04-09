@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/baixing_life/index.dart';
 import 'package:flutter_app/page_index.dart';
 
 class ShopInfoPage extends StatefulWidget {

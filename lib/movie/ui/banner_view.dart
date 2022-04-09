@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/news.dart';
-
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../../page_index.dart';
 

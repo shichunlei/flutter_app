@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/tiktok_video.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:video_player/video_player.dart';
 

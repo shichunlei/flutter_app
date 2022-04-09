@@ -22,6 +22,7 @@ export 'section_view.dart';
 export 'select_text_item.dart';
 export 'selected_text.dart';
 export 'shimmer.dart';
+export 'sliding_card_view.dart';
 export 'state_view/empty.dart';
 export 'state_view/error.dart';
 export 'state_view/loading.dart';

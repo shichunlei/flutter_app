@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/index.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_app/store/index.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class SearchCitiesPage extends StatefulWidget {
   final String query;

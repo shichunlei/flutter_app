@@ -1,4 +1,3 @@
-import 'package:easy_contact_picker/easy_contact_picker.dart';
 import 'package:flutter/material.dart';
 
 import '../page_index.dart';

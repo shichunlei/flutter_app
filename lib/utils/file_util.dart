@@ -2,11 +2,8 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
-
-import 'log_util.dart';
+import 'package:flutter_app/page_index.dart';
 
 class FileUtil {
   static FileUtil _instance;
@@ -49,8 +46,7 @@ class FileUtil {
   /// [oldPath] 原始路径
   /// [newPath] 新路径
   ///
-  Future<String> copyFile(
-      String fileName, String oldPath, String newPath) async {
+  Future<String> copyFile(String fileName, String oldPath, String newPath) async {
     Log.d("====old=======$oldPath$fileName");
     File file = File("$oldPath$fileName");
     if (await file.exists()) {
@@ -68,8 +64,7 @@ class FileUtil {
   /// [path] 要得到文件列表的路径
   /// [containsFolder] 是否包含文件夹
   ///
-  Future<List<String>> getDirChildren(String path,
-      {bool containsFolder: false}) async {
+  Future<List<String>> getDirChildren(String path, {bool containsFolder: false}) async {
     Directory directory = Directory(path);
     final childrenDir = directory.listSync();
     List<String> pathList = [];
@@ -98,16 +93,14 @@ class FileUtil {
   /// [fileName] 复制后的文件名 例子 'girl.jpg'
   /// [isTemp] 是否本地临时路径
   ///
-  Future<String> copyAssetFileToLocal(
-      String assetPath, String assetName, String folderName, String fileName,
+  Future<String> copyAssetFileToLocal(String assetPath, String assetName, String folderName, String fileName,
       {bool isTemp: true}) async {
     String folderPath = await getFolderPath(folderName, isTemp: isTemp);
     String name = fileName;
     bool exists = await File(folderPath + name).exists();
     if (!exists) {
       var data = await rootBundle.load(assetPath + assetName);
-      List<int> bytes =
-          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+      List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       await File(folderPath + name).writeAsBytes(bytes);
       return folderPath + name;
     } else
@@ -158,8 +151,7 @@ class FileUtil {
   /// [fileName] 文件名
   /// [isTemp] 是否临时路径
   ///
-  Future<File> getPathFile(String fileName,
-      {String folderPath: '', bool isTemp: true}) async {
+  Future<File> getPathFile(String fileName, {String folderPath: '', bool isTemp: true}) async {
     try {
       String path = await getFolderPath(folderPath, isTemp: isTemp);
       File file = File('$path/$fileName');
@@ -180,9 +172,7 @@ class FileUtil {
   Future<bool> deleteFolder(String folderPath) async {
     try {
       /// 文件的删除操作
-      await Directory(folderPath)
-          .delete(recursive: true)
-          .then((FileSystemEntity fileSystemEntity) {
+      await Directory(folderPath).delete(recursive: true).then((FileSystemEntity fileSystemEntity) {
         Log.d('删除path' + fileSystemEntity.path);
       });
 
@@ -218,11 +208,9 @@ class FileUtil {
   /// [folderPath] 文件路径
   /// [isTemp] 文件路径是否是临时路径
   ///
-  Future<File> writeDataToFile(String fileName, String data,
-      {String folderPath, bool isTemp: true}) async {
+  Future<File> writeDataToFile(String fileName, String data, {String folderPath, bool isTemp: true}) async {
     try {
-      File file =
-          await getPathFile(fileName, folderPath: folderPath, isTemp: isTemp);
+      File file = await getPathFile(fileName, folderPath: folderPath, isTemp: isTemp);
 
       file.writeAsStringSync(data);
 
@@ -239,11 +227,9 @@ class FileUtil {
   /// [folderPath] 文件路径
   /// [isTemp] 文件路径是否是临时路径
   ///
-  Future<String> readDataFromFile(String fileName,
-      {String folderPath, bool isTemp: true}) async {
+  Future<String> readDataFromFile(String fileName, {String folderPath, bool isTemp: true}) async {
     try {
-      File file =
-          await getPathFile(fileName, folderPath: folderPath, isTemp: isTemp);
+      File file = await getPathFile(fileName, folderPath: folderPath, isTemp: isTemp);
 
       String data = file.readAsStringSync();
 
@@ -261,11 +247,8 @@ class FileUtil {
   /// [assetsName] 文件名称
   /// [assetsPath] 文件路径
   ///
-  Future<String> readDataFromAssets(
-      String assetsPath, String assetsName) async {
-    String _data = await rootBundle
-        .loadString(assetsPath + assetsName)
-        .then((String data) {
+  Future<String> readDataFromAssets(String assetsPath, String assetsName) async {
+    String _data = await rootBundle.loadString(assetsPath + assetsName).then((String data) {
       Log.d(data);
       return data;
     });
@@ -280,8 +263,7 @@ class FileUtil {
 
   /// 将Uint8List写入本地文件
   Future<String> writeByteToFile(Uint8List bytes, {String fileName}) async {
-    File file = await getPathFile(
-        fileName ?? "${DateTime.now().millisecondsSinceEpoch}.png");
+    File file = await getPathFile(fileName ?? "${DateTime.now().millisecondsSinceEpoch}.png");
 
     file.writeAsBytes(bytes).catchError((onError) {
       Log.d(onError.toString());
@@ -313,8 +295,7 @@ class FileUtil {
     if (isLocal) {
       bytes = await readFileByte(path);
     } else {
-      var response = await Dio()
-          .get(path, options: Options(responseType: ResponseType.bytes));
+      var response = await Dio().get(path, options: Options(responseType: ResponseType.bytes));
       bytes = Uint8List.fromList(response.data);
     }
 

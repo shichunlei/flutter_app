@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_app/store/index.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import 'index.dart';
 
@@ -10,16 +10,14 @@ class MusicPlayerPage extends StatefulWidget {
   createState() => _MusicPlayerPageState();
 }
 
-class _MusicPlayerPageState extends State<MusicPlayerPage>
-    with SingleTickerProviderStateMixin {
+class _MusicPlayerPageState extends State<MusicPlayerPage> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> animation;
 
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 5));
+    _controller = AnimationController(vsync: this, duration: Duration(seconds: 5));
     animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
 
     //动画开始、结束、向前移动或向后移动时会调用StatusListener
@@ -56,17 +54,15 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
 
     return Scaffold(
         appBar: AppBar(
-            brightness: Brightness.light,
+            systemOverlayStyle: SystemUiOverlayStyle.dark,
             iconTheme: lightIconTheme,
             backgroundColor: Colors.transparent,
-            leading: IconButton(
-                icon: Icon(SimpleLineIcons.arrow_left, size: 20),
-                onPressed: () => Navigator.pop(context)),
+            leading:
+                IconButton(icon: Icon(SimpleLineIcons.arrow_left, size: 20), onPressed: () => Navigator.pop(context)),
             elevation: 0.0,
             actions: <Widget>[
               IconButton(
-                  icon: Icon(SimpleLineIcons.playlist, size: 20),
-                  onPressed: () => showMusicListBottomSheet(context))
+                  icon: Icon(SimpleLineIcons.playlist, size: 20), onPressed: () => showMusicListBottomSheet(context))
             ]),
         body: Column(children: <Widget>[
           // Seek bar
@@ -79,8 +75,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
                     if (snapshot.isPlaying) snapshot.togglePlay();
                   },
                   onDragEnd: (double percent) => snapshot.togglePlay(),
-                  onDragUpdate: (double percent) =>
-                      snapshot.seekPlay(percent))),
+                  onDragUpdate: (double percent) => snapshot.seekPlay(percent))),
 
           // Lyric
           Container(height: 125.0, width: double.infinity),
@@ -97,8 +92,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage>
             color: accentColor,
             shadowColor: const Color(0x44000000),
             child: Padding(
-                padding: EdgeInsets.only(
-                    top: 40, bottom: 50.0 + Utils.bottomSafeHeight),
+                padding: EdgeInsets.only(top: 40, bottom: 50.0 + Utils.bottomSafeHeight),
                 child: Column(children: <Widget>[
                   Text('${snapshot.curSong?.title}',
                       style: TextStyle(

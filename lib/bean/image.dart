@@ -4,6 +4,7 @@ class ImageModal {
   double width;
   double height;
   String thumb;
+
 //  String grpCnt;
   bool grpMd5;
   int type;
@@ -21,14 +22,5 @@ class ImageModal {
     image.type = map['type'];
     image.index = map['index'];
     return image;
-  }
-
-  static List<ImageModal> fromMapList(dynamic mapList) {
-    if (mapList == null) return [];
-    List<ImageModal> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
   }
 }

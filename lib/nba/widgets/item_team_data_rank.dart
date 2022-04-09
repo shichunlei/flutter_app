@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/res/styles.dart';
 
 import '../../page_index.dart';
-import '../index.dart';
 
 class ItemTeamDataRank extends StatelessWidget {
   final SeasonDataStat item;

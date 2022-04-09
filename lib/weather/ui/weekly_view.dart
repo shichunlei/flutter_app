@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../bean/he_weather.dart';
 import '../../page_index.dart';
-import '../../utils/date_format.dart';
 
 import 'temp_double_line.dart';
 

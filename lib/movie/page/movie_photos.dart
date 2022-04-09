@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../page_index.dart';
@@ -89,7 +86,7 @@ class _MoviePhotosPageState extends State<MoviePhotosPage> {
             itemBuilder: (context, index) => ItemPhoto(photos[index],
                 onTap: () => pushNewPage(
                     context,
-                    PhotoView(
+                    PhotoPageView(
                       title: widget.title,
                       photos: images,
                       index: index,

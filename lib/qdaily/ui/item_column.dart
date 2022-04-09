@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/qdaily.dart';
 import 'package:flutter_app/page_index.dart';
-import 'package:flutter_app/ui/image_load_view.dart';
 
 class ItemColumn extends StatelessWidget {
   final VoidCallback onTap;

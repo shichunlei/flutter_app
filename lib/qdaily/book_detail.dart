@@ -1,8 +1,5 @@
-import 'dart:ui';
-
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../page_index.dart';

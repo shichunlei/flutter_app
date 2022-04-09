@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/condition.dart';
 import 'package:flutter_app/movie/ui/filter_listview.dart';
 
 import '../page_index.dart';

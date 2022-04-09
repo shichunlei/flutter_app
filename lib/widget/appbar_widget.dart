@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../page_index.dart';
 
@@ -9,8 +10,7 @@ class AppBarWidget extends StatefulWidget {
   createState() => _AppBarWidgetState();
 }
 
-class _AppBarWidgetState extends State<AppBarWidget>
-    with SingleTickerProviderStateMixin {
+class _AppBarWidgetState extends State<AppBarWidget> with SingleTickerProviderStateMixin {
   TabController _controller;
 
   List<Tab> tabs = [
@@ -49,9 +49,8 @@ class _AppBarWidgetState extends State<AppBarWidget>
             title: Text('渐变颜色的appBar'),
 
             /// 可以用这种方式设置渐变的AppBar
-            flexibleSpace: GradualChangeView(
-                rotation: Rotation.LR,
-                colors: [Colors.cyan, Colors.blue, Colors.blueAccent]),
+            flexibleSpace:
+                GradualChangeView(rotation: Rotation.LR, colors: [Colors.cyan, Colors.blue, Colors.blueAccent]),
 
             /// 应用程序栏的工具栏部分是多么不透明。值1.0是完全不透明的，值0.0是完全透明的。
             toolbarOpacity: 1,
@@ -60,23 +59,21 @@ class _AppBarWidgetState extends State<AppBarWidget>
             bottomOpacity: 0.5,
 
             /// bottom 一般就是TabBar，也可以是别的
-            bottom: TabBar(
-                tabs: tabs, isScrollable: true, controller: _controller)),
+            bottom: TabBar(tabs: tabs, isScrollable: true, controller: _controller)),
         body: ListView(children: <Widget>[
           /// App bar with background color
           Container(
               child: AppBar(
-                title: Text("Title"),
+                  title: Text("Title"),
 
-                /// 导航栏的颜色 默认是 ThemeData 的颜色
-                backgroundColor: Colors.orange,
+                  /// 导航栏的颜色 默认是 ThemeData 的颜色
+                  backgroundColor: Colors.orange,
 
-                /// Z轴高度，也就是阴影 默认是4.0 默认就是有高度 阴影的
-                elevation: 4.0,
+                  /// Z轴高度，也就是阴影 默认是4.0 默认就是有高度 阴影的
+                  elevation: 4.0,
 
-                /// 应用栏材质的亮度。
-                brightness: Brightness.dark,
-              ),
+                  /// 应用栏材质的亮度。
+                  systemOverlayStyle: SystemUiOverlayStyle.light),
               margin: EdgeInsets.only(top: 16.0, bottom: 16.0)),
 
           /// App bar with Action items
@@ -139,14 +136,10 @@ class _AppBarWidgetState extends State<AppBarWidget>
                 /// 是否显示返回按钮
                 automaticallyImplyLeading: false,
                 backgroundColor: Colors.orangeAccent,
-                title: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      FlutterLogo(),
-                      Padding(
-                          padding: const EdgeInsets.only(left: 16.0),
-                          child: Text("Title with image")),
-                    ]),
+                title: Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                  FlutterLogo(),
+                  Padding(padding: const EdgeInsets.only(left: 16.0), child: Text("Title with image")),
+                ]),
               )),
 
           /// App Bar with transparent background
@@ -156,9 +149,7 @@ class _AppBarWidgetState extends State<AppBarWidget>
                 backgroundColor: Colors.transparent,
                 elevation: 0.0,
                 title: Text("Transparent AppBar"),
-                actions: <Widget>[
-                  IconButton(icon: Icon(Icons.search), onPressed: () {})
-                ],
+                actions: <Widget>[IconButton(icon: Icon(Icons.search), onPressed: () {})],
                 iconTheme: IconThemeData(color: Colors.black),
                 textTheme: TextTheme(headline6: TextStyle(color: Colors.black))),
           ),
@@ -168,9 +159,7 @@ class _AppBarWidgetState extends State<AppBarWidget>
               child: AppBar(
                   title: Text('AppBar leading'),
                   elevation: 0.0,
-                  leading: IconButton(
-                      icon: Icon(Icons.chevron_left),
-                      onPressed: () => Navigator.of(context).pop()))),
+                  leading: IconButton(icon: Icon(Icons.chevron_left), onPressed: () => Navigator.of(context).pop()))),
         ]));
   }
 }

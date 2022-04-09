@@ -48,8 +48,8 @@ class TestWidgetA extends StatelessWidget {
     print('TestWidgetA 中count的值:  ${inheritedTestModel.count}');
     return Padding(
       padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
-      child: RaisedButton(
-          textColor: Colors.black,
+      child: ElevatedButton(
+          style: ButtonStyle(textStyle: MaterialStateProperty.all(TextStyle(color: Colors.black))),
           child: Text('+'),
           onPressed: inheritedContext.increment),
     );
@@ -86,8 +86,8 @@ class TestWidgetC extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
-      child: RaisedButton(
-          textColor: Colors.black,
+      child: ElevatedButton(
+          style: ButtonStyle(textStyle: MaterialStateProperty.all(TextStyle(color: Colors.black))),
           child: Text('-'),
           onPressed: inheritedContext.reduce),
     );
@@ -100,8 +100,7 @@ class InheritedWidgetTestContainer extends StatefulWidget {
   createState() => _InheritedWidgetTestContainerState();
 }
 
-class _InheritedWidgetTestContainerState
-    extends State<InheritedWidgetTestContainer> {
+class _InheritedWidgetTestContainerState extends State<InheritedWidgetTestContainer> {
   InheritedTestModel inheritedTestModel;
 
   _initData() {
@@ -139,8 +138,7 @@ class _InheritedWidgetTestContainerState
           body: Column(
             children: <Widget>[
               Padding(
-                padding:
-                    const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
+                padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
                 child: Text(
                   '我们常使用的\nTheme.of(context).textTheme\nMediaQuery.of(context).size等\n就是通过InheritedWidget实现的',
                   style: TextStyle(fontSize: 20.0),

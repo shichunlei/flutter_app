@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/sars_cov.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_app/sars_cov/ui/item_lore.dart';
 

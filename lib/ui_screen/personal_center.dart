@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/page_index.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 class PersonalCenterPage extends StatefulWidget {
   PersonalCenterPage({Key key}) : super(key: key);

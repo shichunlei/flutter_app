@@ -20,25 +20,11 @@ class FriendsDynamic {
     dynamic.datetime = map['datetime'];
     dynamic.isSelf = map['isSelf'];
     dynamic.id = map['id'];
-    dynamic.video =
-        map['video'] == null ? null : VideoBean.fromMap(map['video']);
-    dynamic.images = []
-      ..addAll(
-          (map['images'] as List ?? []).map((o) => ImagesListBean.fromMap(o)));
-    dynamic.comment = []
-      ..addAll(
-          (map['comment'] as List ?? []).map((o) => CommentBean.fromMap(o)));
-    dynamic.praise = []
-      ..addAll((map['praise'] as List ?? []).map((o) => o.toString()));
+    dynamic.video = map['video'] == null ? null : VideoBean.fromMap(map['video']);
+    dynamic.images = []..addAll((map['images'] as List ?? []).map((o) => ImagesListBean.fromMap(o)));
+    dynamic.comment = []..addAll((map['comment'] as List ?? []).map((o) => CommentBean.fromMap(o)));
+    dynamic.praise = []..addAll((map['praise'] as List ?? []).map((o) => o.toString()));
     return dynamic;
-  }
-
-  static List<FriendsDynamic> fromMapList(dynamic mapList) {
-    List<FriendsDynamic> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
   }
 }
 
@@ -72,14 +58,6 @@ class ImagesListBean {
     imagesListBean.image = map['image'];
     imagesListBean.id = map['id'];
     return imagesListBean;
-  }
-
-  static List<ImagesListBean> fromMapList(dynamic mapList) {
-    List<ImagesListBean> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
   }
 }
 

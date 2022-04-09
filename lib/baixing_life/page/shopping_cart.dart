@@ -13,8 +13,7 @@ class ShoppingCartPage extends StatefulWidget {
   createState() => _ShoppingCartPageState();
 }
 
-class _ShoppingCartPageState extends State<ShoppingCartPage>
-    with AutomaticKeepAliveClientMixin {
+class _ShoppingCartPageState extends State<ShoppingCartPage> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
@@ -22,15 +21,12 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-        appBar: AppBar(
-            automaticallyImplyLeading: false,
-            title: Text('${widget.title}'),
-            backgroundColor: Colors.indigo),
+        appBar:
+            AppBar(automaticallyImplyLeading: false, title: Text('${widget.title}'), backgroundColor: Colors.indigo),
         backgroundColor: Colors.grey[200],
         body: Store.value<ShoppingCartModel>(context).products.isEmpty
             ? EmptyShopCart()
-            : Column(
-                children: <Widget>[_buildCartGoodsList(), _buildCartBottom()]));
+            : Column(children: <Widget>[_buildCartGoodsList(), _buildCartBottom()]));
   }
 
   Widget _buildCartGoodsList() {
@@ -46,17 +42,13 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
         padding: EdgeInsets.all(8.0),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text('共${state.totalNumber}件商品'),
-              Text('小计：￥${state.totalPrice}')
-            ])));
+            children: <Widget>[Text('共${state.totalNumber}件商品'), Text('小计：￥${state.totalPrice}')])));
 
     return Expanded(
         child: ListView.separated(
       padding: EdgeInsets.only(top: 0),
       physics: const BouncingScrollPhysics(),
-      separatorBuilder: (BuildContext context, int index) =>
-          Container(height: 0.5, color: Colors.grey[200]),
+      separatorBuilder: (BuildContext context, int index) => Container(height: 0.5, color: Colors.grey[200]),
       itemCount: children.length,
       itemBuilder: (BuildContext context, int index) => children[index],
     ));
@@ -75,8 +67,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
               onTap: () => state.toggleCheckAllGoods(),
               child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                 Icon(state.isCheckAll ? CustomIcon.check : CustomIcon.normal,
-                    size: 20,
-                    color: state.isCheckAll ? Colors.red : Colors.grey),
+                    size: 20, color: state.isCheckAll ? Colors.red : Colors.grey),
                 Gaps.hGap5,
                 Text('全选', style: TextStyle(color: Colors.black))
               ])),
@@ -87,22 +78,22 @@ class _ShoppingCartPageState extends State<ShoppingCartPage>
                   children: <Widget>[
                 Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
                   Text('合计：', style: TextStyle(color: Colors.black)),
-                  Text('￥${state.clickTotalPrice}',
-                      style: TextStyle(color: Colors.red))
+                  Text('￥${state.clickTotalPrice}', style: TextStyle(color: Colors.red))
                 ]),
-                Text('满10元免配送费，预购免配送',
-                    style: TextStyle(fontSize: 12.0, color: Colors.grey))
+                Text('满10元免配送费，预购免配送', style: TextStyle(fontSize: 12.0, color: Colors.grey))
               ])),
           Gaps.hGap10,
-          RaisedButton(
-              color: Colors.red,
+          ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.red),
+                  textStyle: MaterialStateProperty.all(TextStyle(color: Colors.white)),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)))),
               onPressed: state.clickTotalPrice > 0.0
                   ? () {
                       /// TODO 去结算
                     }
                   : null,
-              child: Text('结算(${state.clickNumber})',
-                  style: TextStyle(color: Colors.white)))
+              child: Text('结算(${state.clickNumber})'))
         ]));
   }
 }

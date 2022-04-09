@@ -26,7 +26,7 @@ class Article {
     articleBean.title = map['title'];
     articleBean.digest = map['digest'];
     articleBean.content = map['content'];
-    articleBean.id = map['id'] ??= map['id'];
+    articleBean.id = map['id'] ?? map['wc'];
     articleBean.curr = map['curr'];
     articleBean.next = map['next'];
     articleBean.prev = map['prev'];

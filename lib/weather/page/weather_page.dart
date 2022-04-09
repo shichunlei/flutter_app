@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_weather_bg_null_safety/flutter_weather_bg.dart';
-import 'package:flutter_weather_bg_null_safety/utils/weather_type.dart';
-
-import '../../bean/he_weather.dart';
 import '../../page_index.dart';
 import '../ui/air_view.dart';
 import '../ui/hourly_view.dart';
 import '../ui/lifestyle_view.dart';
 import '../ui/now_view.dart';
-import '../ui/sun_view.dart';
 import '../ui/weekly_view.dart';
 import 'city_manager.dart';
 

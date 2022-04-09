@@ -1,6 +1,4 @@
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/he_weather.dart';
 
 import '../../page_index.dart';
 import 'sunrise_sunset_painter.dart';

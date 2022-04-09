@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/hitokoto.dart';
 import 'package:flutter_app/login/page/login_page.dart';
 
 import 'store/index.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 /// A button that animates between state changes.
 /// Progress state is just a small circle with a progress indicator inside

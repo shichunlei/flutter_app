@@ -4,7 +4,6 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flare_flutter/flare.dart';
 import 'package:flare_flutter/flare_controls.dart';

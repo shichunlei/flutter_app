@@ -15,9 +15,9 @@ class SplashPage extends StatelessWidget {
     return LightTheme(
       child: Scaffold(
         body: Stack(
-          alignment: Alignment.center,
           children: <Widget>[
-            Image.asset("images/splash.jpg"),
+            Container(height: double.infinity),
+            Image.asset("images/splash.jpg", fit: BoxFit.fitHeight),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -25,24 +25,17 @@ class SplashPage extends StatelessWidget {
                   Container(
                       alignment: Alignment.topLeft,
                       child: CloseButton(),
-                      margin:
-                          EdgeInsets.only(top: Utils.topSafeHeight, left: 10)),
+                      margin: EdgeInsets.only(top: Utils.topSafeHeight, left: 10)),
                   Container(
                       child: Column(children: <Widget>[
-                        ColorizeAnimatedTextKit(
-                          text: ['摘 ~ 抄'],
-                          textStyle: TextStyle(fontSize: 20.0),
-                          colors: <Color>[
-                            Colors.purple,
-                            Colors.blue,
-                            Colors.yellow,
-                            Colors.red
-                          ],
-                        ),
+                        AnimatedTextKit(animatedTexts: [
+                          ColorizeAnimatedText('摘 ~ 抄',
+                              textStyle: TextStyle(fontSize: 20.0),
+                              colors: [Colors.purple, Colors.blue, Colors.yellow, Colors.red])
+                        ]),
                         Gaps.vGap20,
-                        TyperAnimatedTextKit(
-                            text: ['你喜欢的每一句'],
-                            textStyle: TextStyle(fontSize: 20.0))
+                        AnimatedTextKit(
+                            animatedTexts: [TyperAnimatedText('你喜欢的每一句', textStyle: TextStyle(fontSize: 20.0))])
                       ]),
                       margin: EdgeInsets.only(top: 100))
                 ]),
@@ -50,8 +43,7 @@ class SplashPage extends StatelessWidget {
                   child: BounceInAnimation(
                     delay: const Duration(milliseconds: 400),
                     child: Button(
-                      onPressed: () =>
-                          pushReplacement(context, JuZiMiHomePage()),
+                      onPressed: () => pushReplacement(context, JuZiMiHomePage()),
                       child: Text('进入', style: TextStyle(fontSize: 20)),
                       textColor: Colors.white,
                       borderRadius: 20,

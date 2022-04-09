@@ -2,7 +2,6 @@ import 'package:clippy_flutter/diagonal.dart';
 import 'package:flutter/material.dart';
 
 import '../../page_index.dart';
-import '../index.dart';
 
 class ItemRange extends StatelessWidget {
   final CoverBean info;

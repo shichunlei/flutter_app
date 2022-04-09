@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../index.dart';
 import '../../page_index.dart';
 
 class ItemCourse extends StatelessWidget {

@@ -1,9 +1,8 @@
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/enum/enum.dart';
+import 'package:flutter_app/page_index.dart';
 
 class ImageLoadView extends StatelessWidget {
   /// 图片URL
@@ -90,16 +89,10 @@ class ImageLoadView extends StatelessWidget {
             errorWidget: (context, url, error) => Image.asset(placeholder));
         break;
       case ImageType.assets:
-        imageWidget = FadeInImage(
-            placeholder: AssetImage(placeholder),
-            image: AssetImage(path),
-            fit: fit);
+        imageWidget = FadeInImage(placeholder: AssetImage(placeholder), image: AssetImage(path), fit: fit);
         break;
       case ImageType.localFile:
-        imageWidget = FadeInImage(
-            placeholder: AssetImage(placeholder),
-            image: FileImage(File(path)),
-            fit: fit);
+        imageWidget = FadeInImage(placeholder: AssetImage(placeholder), image: FileImage(File(path)), fit: fit);
         break;
     }
 
@@ -107,8 +100,7 @@ class ImageLoadView extends StatelessWidget {
         color: Colors.transparent,
         shape: shape == BoxShape.circle
             ? CircleBorder()
-            : RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius)),
+            : RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
         clipBehavior: Clip.antiAlias,
         elevation: elevation,
         margin: margin,
@@ -121,16 +113,11 @@ class ImageLoadView extends StatelessWidget {
                   child: Container(
                       decoration: BoxDecoration(
                           shape: shape,
-                          borderRadius: shape == BoxShape.circle
-                              ? null
-                              : BorderRadius.circular(radius),
+                          borderRadius: shape == BoxShape.circle ? null : BorderRadius.circular(radius),
                           border: Border.all(
-                              color:
-                                  borderColor ?? Theme.of(context).primaryColor,
+                              color: borderColor ?? Theme.of(context).primaryColor,
                               width: borderWidth,
-                              style: borderWidth == 0.0
-                                  ? BorderStyle.none
-                                  : BorderStyle.solid)))),
+                              style: borderWidth == 0.0 ? BorderStyle.none : BorderStyle.solid)))),
               BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: sigmaX, sigmaY: sigmaY),
                   child: Opacity(

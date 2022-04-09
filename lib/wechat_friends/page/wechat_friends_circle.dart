@@ -2,11 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/friends_dynamic.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import '../ui/item_dynamic.dart';
-
-import 'package:multi_image_picker/multi_image_picker.dart';
 
 import '../../page_index.dart';
 import 'publish_dynamic.dart';
@@ -76,60 +73,46 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
         body: Stack(
           children: <Widget>[
             SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              controller: scrollController,
-              child: Column(children: <Widget>[
-                Stack(
-                  alignment: Alignment.bottomRight,
-                  children: <Widget>[
-                    Container(
-                        child: ImageLoadView(backgroundImage,
-                            height: headerHeight, width: Utils.width),
-                        margin: EdgeInsets.only(bottom: 30.0)),
-                    Container(
-                        child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(top: 10, right: 10),
-                                child: Text('张三',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 17)),
-                              ),
-                              ImageLoadView(
-                                  'http://cdn.duitang.com/uploads/item/201409/18/20140918141220_N4Tic.thumb.700_0.jpeg',
-                                  height: 70,
-                                  width: 70,
-                                  radius: 5)
-                            ]),
-                        margin: EdgeInsets.only(right: 10))
-                  ],
-                ),
-                Gaps.vGap10,
-                ListView.separated(
-                  itemBuilder: (context, index) =>
-                      ItemDynamic(friendsDynamic[index]),
-                  itemCount: friendsDynamic.length,
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  primary: false,
-                  separatorBuilder: (BuildContext context, int index) =>
+                physics: BouncingScrollPhysics(),
+                controller: scrollController,
+                child: Column(children: <Widget>[
+                  Stack(
+                    alignment: Alignment.bottomRight,
+                    children: <Widget>[
                       Container(
-                    height: 0.4,
-                    color: Colors.grey,
+                          child: ImageLoadView(backgroundImage, height: headerHeight, width: Utils.width),
+                          margin: EdgeInsets.only(bottom: 30.0)),
+                      Container(
+                          child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(top: 10, right: 10),
+                                  child: Text('张三', style: TextStyle(color: Colors.white, fontSize: 17)),
+                                ),
+                                ImageLoadView(
+                                    'http://cdn.duitang.com/uploads/item/201409/18/20140918141220_N4Tic.thumb.700_0.jpeg',
+                                    height: 70,
+                                    width: 70,
+                                    radius: 5)
+                              ]),
+                          margin: EdgeInsets.only(right: 10))
+                    ],
                   ),
-                )
-              ]),
-            ),
+                  Gaps.vGap10,
+                  ListView.separated(
+                      itemBuilder: (context, index) => ItemDynamic(friendsDynamic[index]),
+                      itemCount: friendsDynamic.length,
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      primary: false,
+                      separatorBuilder: (BuildContext context, int index) => Container(height: 0.4, color: Colors.grey))
+                ])),
             ToolBar(
-              backgroundColor:
-                  Color.fromARGB((navAlpha * 255).toInt(), 180, 180, 180),
+              backgroundColor: Color.fromARGB((navAlpha * 255).toInt(), 180, 180, 180),
               title: Text(title,
-                  style: TextStyle(
-                      fontSize: 16.0,
-                      color: Color.fromARGB(
-                          (navAlpha * 255).toInt(), 255, 255, 255))),
+                  style: TextStyle(fontSize: 16.0, color: Color.fromARGB((navAlpha * 255).toInt(), 255, 255, 255))),
               actions: <Widget>[
                 IconButton(
                   icon: Icon(
@@ -145,10 +128,8 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
   }
 
   void getData() async {
-    FileUtil.getInstance()
-        .readDataFromAssets("assets/data/", "friends.json")
-        .then((data) {
-      friendsDynamic = FriendsDynamic.fromMapList(json.decode(data));
+    FileUtil.getInstance().readDataFromAssets("assets/data/", "friends.json").then((data) {
+      friendsDynamic.addAll((json.decode(data) as List ?? []).map((e) => FriendsDynamic.fromMap(e)).toList());
       setState(() {});
     });
   }
@@ -172,8 +153,7 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
                 },
               ),
               CupertinoDialogAction(
-                child: Text('${S.of(context).cancel}',
-                    style: TextStyles.textRed16),
+                child: Text('${S.of(context).cancel}', style: TextStyles.textRed16),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -227,8 +207,7 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
       debugPrint(images.toString());
 
       if (images.isNotEmpty) {
-        pushNewPage(
-            context, PublishDynamicPage(images: images, maxImages: maxImages));
+        pushNewPage(context, PublishDynamicPage(images: images, maxImages: maxImages));
       }
     });
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter/services.dart';
 
 import '../page_index.dart';
 
@@ -368,7 +368,7 @@ class _CtripHomePageState extends State<CtripHomePage> {
               child: Scaffold(
                   backgroundColor: Color.fromRGBO(255, 255, 255, navAlpha),
                   appBar: AppBar(
-                      brightness: Brightness.light,
+                      systemOverlayStyle: SystemUiOverlayStyle.dark,
                       automaticallyImplyLeading: false,
                       elevation: 0.0,
                       backgroundColor: Colors.transparent,

@@ -1,9 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/page_index.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import '../index.dart';
-import '../ui/bottom_appbar.dart';
 
 /// 42%
 class LabRatioPage extends StatefulWidget {

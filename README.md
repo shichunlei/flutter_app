@@ -38,40 +38,41 @@
 ## 运行环境
 
 ```
-[✓] Flutter (Channel stable, 2.2.3, on macOS 11.5.2 20G95 darwin-x64, locale zh-Hans-CN)
-    • Flutter version 2.2.3 at /Users/***/flutter
-    • Framework revision f4abaa0735 (3 months ago), 2021-07-01 12:46:11 -0700
-    • Engine revision 241c87ad80
-    • Dart version 2.13.4
+[✓] Flutter (Channel stable, 2.10.4, on macOS 11.5.2 20G95 darwin-x64, locale zh-Hans-CN)
+    • Flutter version 2.10.4 at /Users/shichunlei/flutter
+    • Upstream repository https://github.com/flutter/flutter.git
+    • Framework revision c860cba910 (2 weeks ago), 2022-03-25 00:23:12 -0500
+    • Engine revision 57d3bac3dd
+    • Dart version 2.16.2
+    • DevTools version 2.9.2
     • Pub download mirror https://pub.flutter-io.cn
     • Flutter download mirror https://storage.flutter-io.cn
 
-[✓] Android toolchain - develop for Android devices (Android SDK version 31.0.0)
-    • Android SDK at /Users/***/Library/Android/sdk
-    • Platform android-31, build-tools 31.0.0
-    • ANDROID_HOME = /Users/***/Library/Android/sdk
-    • Java binary at: /Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin/java
-    • Java version OpenJDK Runtime Environment (build 11.0.10+0-b96-7281165)
+[✓] Android toolchain - develop for Android devices (Android SDK version 32.0.0-rc1)
+    • Android SDK at /Users/shichunlei/Library/Android/sdk
+    • Platform android-32, build-tools 32.0.0-rc1
+    • ANDROID_HOME = /Users/shichunlei/Library/Android/sdk
+    • Java binary at: /Applications/Android Studio.app/Contents/jre/Contents/Home/bin/java
+    • Java version OpenJDK Runtime Environment (build 11.0.11+0-b60-7590822)
     • All Android licenses accepted.
 
-[✓] Xcode - develop for iOS and macOS
+[✓] Xcode - develop for iOS and macOS (Xcode 13.2.1)
     • Xcode at /Applications/Xcode.app/Contents/Developer
-    • Xcode 13.0, Build version 13A233
     • CocoaPods version 1.11.0
 
 [✓] Chrome - develop for the web
     • Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
 
-[✓] Android Studio (version 2020.3)
+[✓] Android Studio (version 2021.1)
     • Android Studio at /Applications/Android Studio.app/Contents
     • Flutter plugin can be installed from:
       🔨 https://plugins.jetbrains.com/plugin/9212-flutter
     • Dart plugin can be installed from:
       🔨 https://plugins.jetbrains.com/plugin/6351-dart
-    • Java version OpenJDK Runtime Environment (build 11.0.10+0-b96-7281165)
+    • Java version OpenJDK Runtime Environment (build 11.0.11+0-b60-7590822)
 
 [✓] Connected device (2 available)
-    • Chrome (web)     • chrome                                   • web-javascript • Google Chrome 94.0.4606.71
+    • Chrome (web)     • chrome                                   • web-javascript • Google Chrome 100.0.4896.75
 ```
 
 ## 注意事项
@@ -80,8 +81,6 @@
 - 高德地图定位失败可能是key导致的，使用者可以自己到高德地图开发者平台申请一个key再次试一试。
 
 - Multi Image Picker 插件 ios 配置见[Multi Image Picker 使用](https://sh1d0w.github.io/multi_image_picker/#/gettingstarted)
-
-- 如果你还没有升级flutter版本到1.17.0，那么就把provider的版本改为4.0.5+1
 
 - 项目中某些接口为http url，Android 9.0/P和iOS禁止从非https网址加载，故需更改 App 的网络安全配置以允许此类连接
 

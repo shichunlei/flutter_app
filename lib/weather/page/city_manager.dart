@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import '../../delegates/search_city_delegate.dart';
 import '../../page_index.dart';
 import '../../store/index.dart';
-import '../../res/styles.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class CityManagerPage extends StatelessWidget {
   CityManagerPage({Key key}) : super(key: key);

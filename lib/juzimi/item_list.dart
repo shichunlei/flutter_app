@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/juzimi.dart';
 import 'package:parallax_image/parallax_image.dart';
 
 import '../page_index.dart';

@@ -7,8 +7,7 @@ class AnimatedSizeDemo extends StatefulWidget {
   createState() => _AnimatedSizeDemoState();
 }
 
-class _AnimatedSizeDemoState extends State<AnimatedSizeDemo>
-    with SingleTickerProviderStateMixin {
+class _AnimatedSizeDemoState extends State<AnimatedSizeDemo> with SingleTickerProviderStateMixin {
   bool status = true;
 
   @override
@@ -26,8 +25,7 @@ class _AnimatedSizeDemoState extends State<AnimatedSizeDemo>
                   // 对高度进行了演示。
                   height: status ? 60 : 150,
                   child: Text("AnimatedSize动画演示")),
-              duration: Duration(milliseconds: 500),
-              vsync: this),
+              duration: Duration(milliseconds: 500)),
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: () {

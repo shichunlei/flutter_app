@@ -29,8 +29,7 @@ class ElementData {
     elementBean.source = map['source'];
     elementBean.category = map['category'];
     elementBean.atomicWeight = map['atomic_weight'];
-    elementBean.colors = []
-      ..addAll((map['colors'] as List ?? []).map((o) => Color(o)));
+    elementBean.colors = []..addAll((map['colors'] as List ?? []).map((o) => Color(o)));
     return elementBean;
   }
 
@@ -44,12 +43,4 @@ class ElementData {
         "atomic_weight": atomicWeight,
         "colors": colors,
       };
-
-  static List<ElementData> fromMapList(dynamic mapList) {
-    List<ElementData> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
-  }
 }

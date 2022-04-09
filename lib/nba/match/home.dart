@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/page_index.dart';
 
-import '../index.dart';
-
 class MatchPage extends StatefulWidget {
   final String mid;
 

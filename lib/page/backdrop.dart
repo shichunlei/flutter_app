@@ -106,7 +106,7 @@ class _BackDropPageState extends State<BackDropPage>
                                 return GestureDetector(
                                   onTap: () => pushNewPage(
                                       context,
-                                      PhotoView(
+                                      PhotoPageView(
                                         heroTag: '$f',
                                         photos: bannerImages,
                                         index: bannerImages.indexOf(f),

@@ -3,8 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/page_index.dart';
 
-import '../../index.dart';
-
 class ItemMatchPlayerMaxDataView extends StatelessWidget {
   final MaxPlayersBean item;
   final Color leftColor;

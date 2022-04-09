@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_jd_address_selector/flutter_jd_address_selector.dart';
 
 import '../generated/l10n.dart';
 import '../store/index.dart';
-
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import '../page_index.dart';
 
@@ -22,8 +19,7 @@ class _SettingPageState extends State<SettingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Store.connect<ConfigModel>(
-        builder: (BuildContext context, ConfigModel value, Widget child) {
+    return Store.connect<ConfigModel>(builder: (BuildContext context, ConfigModel value, Widget child) {
       return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(title: Text(S.of(context).setting)),
@@ -104,8 +100,7 @@ class _SettingPageState extends State<SettingPage> {
             ListTile(
                 onTap: () async {
                   String path = await FileUtil.getInstance().getTempPath();
-                  bool success =
-                      await FileUtil.getInstance().deleteFolder(path);
+                  bool success = await FileUtil.getInstance().deleteFolder(path);
                   if (success) {
                     Toast.show(context, '清理完成');
                   } else {
@@ -205,30 +200,20 @@ class _SettingPageState extends State<SettingPage> {
                   child: Container(
                     width: 40,
                     height: 40,
-                    child: value.theme == color.value
-                        ? Icon(Icons.done)
-                        : SizedBox(),
+                    child: value.theme == color.value ? Icon(Icons.done) : SizedBox(),
                   ),
                 ),
               );
             }).toList(),
             Material(
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Theme.of(context).accentColor)),
-                  width: 40,
-                  height: 40,
-                  child: Text(
-                    "?",
-                    style: TextStyle(
-                        fontSize: 20, color: Theme.of(context).accentColor),
-                  ),
-                ),
-              ),
-            )
+                child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(border: Border.all(color: Theme.of(context).dividerColor)),
+                        width: 40,
+                        height: 40,
+                        child: Text("?", style: TextStyle(fontSize: 20)))))
           ]))
     ];
     return _colors;

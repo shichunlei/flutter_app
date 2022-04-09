@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../page_index.dart';
-import '../index.dart';
 
 class ItemSchedule extends StatelessWidget {
   final ScheduleList item;

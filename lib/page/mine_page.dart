@@ -1,10 +1,8 @@
 import 'dart:io';
 
 import 'package:clippy_flutter/clippy_flutter.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/user.dart';
 
 import '../generated/l10n.dart';
 import '../store/index.dart';
@@ -38,10 +36,8 @@ class _MinePageState extends State<MinePage> {
                       height: 250,
                       child: Stack(children: <Widget>[
                         Arc(
-                            child: ImageLoadView(backgroundImage,
-                                fit: BoxFit.cover,
-                                height: 210,
-                                width: double.infinity),
+                            child:
+                                ImageLoadView(backgroundImage, fit: BoxFit.cover, height: 210, width: double.infinity),
                             height: 30,
                             edge: Edge.BOTTOM,
                             arcType: ArcType.CONVEX),
@@ -56,44 +52,29 @@ class _MinePageState extends State<MinePage> {
                                                 context,
                                                 InputTextPage(
                                                     title: '修改姓名',
-                                                    content:
-                                                        '${userModel.getName()}',
+                                                    content: '${userModel.getName()}',
                                                     maxLines: 1,
                                                     maxLength: 5),
-                                                callBack: (value) => userModel
-                                                    .setUser(name: value))
+                                                callBack: (value) => userModel.setUser(name: value))
                                             : null,
-                                        child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: <Widget>[
-                                              Text('${userModel.getName()}',
-                                                  style:
-                                                      TextStyles.textWhite16),
-                                              Offstage(
-                                                  offstage: !isEdit,
-                                                  child: Icon(Icons.edit,
-                                                      color: Colors.white,
-                                                      size: 15))
-                                            ]))),
+                                        child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                                          Text('${userModel.getName()}', style: TextStyles.textWhite16),
+                                          Offstage(
+                                              offstage: !isEdit, child: Icon(Icons.edit, color: Colors.white, size: 15))
+                                        ]))),
                                 Gaps.vGap5,
-                                Stack(
-                                    alignment: Alignment.center,
-                                    children: <Widget>[
-                                      Hero(
-                                        child: ImageLoadView(
-                                            '${userModel.getAvatarPath()}',
-                                            shape: BoxShape.circle,
-                                            width: 80,
-                                            height: 80),
-                                        tag: 'user_avatar',
-                                      ),
-                                      Offstage(
-                                          offstage: !isEdit,
-                                          child: IconButton(
-                                              icon: Icon(Icons.photo_camera,
-                                                  color: Colors.white),
-                                              onPressed: () => choiceImage()))
-                                    ])
+                                Stack(alignment: Alignment.center, children: <Widget>[
+                                  Hero(
+                                    child: ImageLoadView('${userModel.getAvatarPath()}',
+                                        shape: BoxShape.circle, width: 80, height: 80),
+                                    tag: 'user_avatar',
+                                  ),
+                                  Offstage(
+                                      offstage: !isEdit,
+                                      child: IconButton(
+                                          icon: Icon(Icons.photo_camera, color: Colors.white),
+                                          onPressed: () => choiceImage()))
+                                ])
                               ]),
                             ),
                             bottom: 0,
@@ -130,22 +111,17 @@ class _MinePageState extends State<MinePage> {
                 actions: <Widget>[
                   AnimatedSwitcher(
                     duration: Duration(milliseconds: 300),
-                    transitionBuilder:
-                        (Widget child, Animation<double> animation) {
+                    transitionBuilder: (Widget child, Animation<double> animation) {
                       return ScaleTransition(child: child, scale: animation);
                     },
                     child: isEdit
                         ? IconButton(
                             key: ValueKey(S.of(context).complete),
-                            icon: Text(S.of(context).complete,
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.white)),
+                            icon: Text(S.of(context).complete, style: TextStyle(fontSize: 15, color: Colors.white)),
                             onPressed: () => setState(() => isEdit = !isEdit))
                         : IconButton(
                             key: ValueKey(S.of(context).edit),
-                            icon: Text('${S.of(context).edit}',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.white)),
+                            icon: Text('${S.of(context).edit}', style: TextStyle(fontSize: 15, color: Colors.white)),
                             onPressed: () => setState(() => isEdit = !isEdit)),
                   )
                 ],
@@ -159,15 +135,10 @@ class _MinePageState extends State<MinePage> {
     showDialog(
         context: context,
         builder: (context) => CupertinoAlertDialog(actions: <Widget>[
+              CupertinoDialogAction(child: Text('拍摄', style: TextStyles.textBlue16), onPressed: () => fromCamera()),
+              CupertinoDialogAction(child: Text('从相册选择', style: TextStyles.textBlue16), onPressed: () => fromGallery()),
               CupertinoDialogAction(
-                  child: Text('拍摄', style: TextStyles.textBlue16),
-                  onPressed: () => fromCamera()),
-              CupertinoDialogAction(
-                  child: Text('从相册选择', style: TextStyles.textBlue16),
-                  onPressed: () => fromGallery()),
-              CupertinoDialogAction(
-                  child: Text('${S.of(context).cancel}',
-                      style: TextStyles.textRed16),
+                  child: Text('${S.of(context).cancel}', style: TextStyles.textRed16),
                   onPressed: () => Navigator.pop(context))
             ]));
   }
@@ -203,39 +174,31 @@ class _MinePageState extends State<MinePage> {
   /// 裁剪
   Future<Null> _cropImage(XFile imageFile) async {
     assert(imageFile != null);
-    File croppedFile = await ImageCropper.cropImage(
-      /// 图像文件的绝对路径。
-      sourcePath: imageFile.path,
+    File croppedFile = await ImageCropper().cropImage(
 
-      /// 最大裁剪的图像宽度
-      maxWidth: 256,
+        /// 图像文件的绝对路径。
+        sourcePath: imageFile.path,
 
-      /// 最大裁剪的图像高度
-      maxHeight: 256,
+        /// 最大裁剪的图像宽度
+        maxWidth: 256,
 
-      /// 控制裁剪菜单视图中纵横比的列表。在Android中，您可以通过设置的值来设置启动裁切器时的初始化纵横比AndroidUiSettings.initAspectRatio
-      aspectRatioPresets: [CropAspectRatioPreset.square],
+        /// 最大裁剪的图像高度
+        maxHeight: 256,
 
-      /// 控制裁剪边界的样式，可以是矩形或圆形样式
-      cropStyle: CropStyle.circle,
+        /// 控制裁剪菜单视图中纵横比的列表。在Android中，您可以通过设置的值来设置启动裁切器时的初始化纵横比AndroidUiSettings.initAspectRatio
+        aspectRatioPresets: [CropAspectRatioPreset.square],
 
-      /// 结果图像的格式，png或jpg
-      compressFormat: ImageCompressFormat.jpg,
+        /// 控制裁剪边界的样式，可以是矩形或圆形样式
+        cropStyle: CropStyle.circle,
 
-      /// 用于控制图像压缩的质量，取值范围[1-100]
-      compressQuality: 100,
-      androidUiSettings: AndroidUiSettings(
-        toolbarTitle: "裁剪",
-        toolbarColor: Theme.of(context).accentColor,
-        statusBarColor: Theme.of(context).accentColor,
-        toolbarWidgetColor: Colors.white,
-      ),
-      iosUiSettings: IOSUiSettings(
-        minimumAspectRatio: 1.0,
-        doneButtonTitle: S.of(context).sure,
-        cancelButtonTitle: S.of(context).cancel,
-      ),
-    );
+        /// 结果图像的格式，png或jpg
+        compressFormat: ImageCompressFormat.jpg,
+
+        /// 用于控制图像压缩的质量，取值范围[1-100]
+        compressQuality: 100,
+        androidUiSettings: AndroidUiSettings(toolbarTitle: "裁剪", toolbarWidgetColor: Colors.white),
+        iosUiSettings: IOSUiSettings(
+            minimumAspectRatio: 1.0, doneButtonTitle: S.of(context).sure, cancelButtonTitle: S.of(context).cancel));
 
     debugPrint('cropImage=============${croppedFile.path}');
 
@@ -247,8 +210,7 @@ class _MinePageState extends State<MinePage> {
   void uploadImage(String path) async {
     var filename = path.substring(path.lastIndexOf("/") + 1, path.length);
     debugPrint(filename);
-    var suffix =
-        filename.substring(filename.lastIndexOf(".") + 1, filename.length);
+    var suffix = filename.substring(filename.lastIndexOf(".") + 1, filename.length);
     debugPrint(suffix);
 
     FormData data = FormData.fromMap({
@@ -259,8 +221,7 @@ class _MinePageState extends State<MinePage> {
     User user = await UserRepository.updateAvatar(data);
 
     if (user != null) {
-      Store.value<UserModel>(context, listen: false)
-          .setUser(avatarPath: user.avatarUrl);
+      Store.value<UserModel>(context, listen: false).setUser(avatarPath: user.avatarUrl);
       if (isShowLoading) {
         Navigator.of(context).pop();
       }

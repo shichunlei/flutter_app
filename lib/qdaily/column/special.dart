@@ -1,10 +1,5 @@
-import 'package:flutter_easyrefresh/material_header.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter/material.dart';
 import '../index.dart';
-
-import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import '../../page_index.dart';
 

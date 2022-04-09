@@ -62,14 +62,6 @@ class City extends ISuspensionBean {
     return city;
   }
 
-  static List<City> fromMapList(dynamic mapList) {
-    List<City> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
-  }
-
   @override
   String getSuspensionTag() {
     return firstLetter;

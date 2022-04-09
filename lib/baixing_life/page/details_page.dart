@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/store/index.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../../page_index.dart';
-import '../index.dart';
 
 class DetailsPage extends StatefulWidget {
   final String id;
@@ -105,9 +103,11 @@ class _DetailsPageState extends State<DetailsPage> with TickerProviderStateMixin
           Expanded(
               child: Container(
                   height: 48.0,
-                  child: FlatButton(
+                  child: TextButton(
                       child: Text('加入购物车', style: TextStyle(color: Colors.white)),
-                      color: Colors.orange,
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.orange),
+                          shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero))),
                       onPressed: () {
                         Toast.show(context, '加入购物车');
                         Store.value<ShoppingCartModel>(context, listen: false).addGoodsToCart(goods.goodInfo);
@@ -115,9 +115,11 @@ class _DetailsPageState extends State<DetailsPage> with TickerProviderStateMixin
           Expanded(
               child: Container(
                   height: 48.0,
-                  child: FlatButton(
+                  child: TextButton(
                       child: Text('立即购买', style: TextStyle(color: Colors.white)),
-                      color: Colors.red,
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.red),
+                          shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.zero))),
                       onPressed: () {
                         /// TODO 立即购买
                         Toast.show(context, '立即购买');

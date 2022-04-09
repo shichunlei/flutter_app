@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:async';
 import 'dart:typed_data';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:ui' as ui show ImageByteFormat, Image;
@@ -39,19 +38,21 @@ class _DrawingBoardPageState extends State<DrawingBoardPage> {
             child: Column(children: <Widget>[
               Container(
                   height: 180.0,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: 0.5)),
+                  decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 0.5)),
                   child: RepaintBoundary(
                       key: _globalKey,
                       child: Stack(children: [
                         GestureDetector(
-                            onPanUpdate: (details) => _addPoint(details),
-                            onPanEnd: (details) => _points.add(null)),
+                            onPanUpdate: (details) => _addPoint(details), onPanEnd: (details) => _points.add(null)),
                         CustomPaint(painter: BoardPainter(_points))
                       ]))),
               Row(children: <Widget>[
-                RaisedButton(
-                    color: Theme.of(context).primaryColor,
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
+                        textStyle: MaterialStateProperty.all(TextStyle(color: Colors.white)),
+                        shape:
+                            MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)))),
                     onPressed: () async {
                       setState(() {
                         _points?.clear();
@@ -59,11 +60,12 @@ class _DrawingBoardPageState extends State<DrawingBoardPage> {
                         _imageLocalPath = null;
                       });
                     },
-                    child:
-                        Text('CLEAR', style: TextStyle(color: Colors.white))),
+                    child: Text('CLEAR', style: TextStyle(color: Colors.white))),
                 Spacer(),
-                RaisedButton(
-                    color: Theme.of(context).primaryColor,
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
+                        textStyle: MaterialStateProperty.all(TextStyle(color: Colors.white))),
                     onPressed: () async {
                       String toPath = await _capturePng();
                       print('Signature Image Path: $toPath');
@@ -72,31 +74,24 @@ class _DrawingBoardPageState extends State<DrawingBoardPage> {
                       });
                     },
                     child: Text('SCREEN SHOT',
-                        style: TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.normal)))
+                        style: TextStyle(fontSize: 14.0, color: Colors.white, fontWeight: FontWeight.normal)))
               ]),
               Container(
-                  alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.only(top: 4.0),
-                  child: Text('Image local path:')),
+                  alignment: Alignment.centerLeft, margin: EdgeInsets.only(top: 4.0), child: Text('Image local path:')),
               Container(
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.only(top: 4.0),
-                  child: Text(_imageLocalPath ?? '',
-                      style: TextStyle(color: Colors.blue))),
+                  child: Text(_imageLocalPath ?? '', style: TextStyle(color: Colors.blue))),
               Container(
-                  alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.only(top: 4.0),
-                  child: Text('Show Image: ')),
+                  alignment: Alignment.centerLeft, margin: EdgeInsets.only(top: 4.0), child: Text('Show Image: ')),
               Container(
                   height: 180.0,
                   margin: EdgeInsets.only(top: 4.0),
                   alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: 0.5)),
-                  child: Image.file(File(_imageLocalPath ?? '')))
+                  decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 0.5)),
+                  child: _imageLocalPath == null || _imageLocalPath.isEmpty
+                      ? SizedBox()
+                      : Image.file(File(_imageLocalPath ?? '')))
             ])));
   }
 
@@ -117,12 +112,10 @@ class _DrawingBoardPageState extends State<DrawingBoardPage> {
   /// 截图，并且返回图片的缓存地址
   ///
   Future<String> _capturePng() async {
-    File toFile = await FileUtil.getInstance().getPathFile(
-        "${DateTime.now().millisecondsSinceEpoch}.png");
+    File toFile = await FileUtil.getInstance().getPathFile("${DateTime.now().millisecondsSinceEpoch}.png");
 
     // 1. 获取 RenderRepaintBoundary
-    RenderRepaintBoundary boundary =
-        _globalKey.currentContext.findRenderObject();
+    RenderRepaintBoundary boundary = _globalKey.currentContext.findRenderObject();
     // 2. 生成 Image
     ui.Image image = await boundary.toImage();
     // 3. 生成 Uint8List

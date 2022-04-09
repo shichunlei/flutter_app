@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/page_index.dart';
-import 'package:flutter_app/utils/route_util.dart';
 
 class ShimmerDemo extends StatelessWidget {
   ShimmerDemo({Key key}) : super(key: key);

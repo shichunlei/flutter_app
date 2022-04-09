@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:device_info/device_info.dart';
+import 'package:flutter_app/page_index.dart';
 
 class DeviceInfoPage extends StatefulWidget {
   @override
-  _DeviceInfoPageState createState() => _DeviceInfoPageState();
+  createState() => _DeviceInfoPageState();
 }
 
 class _DeviceInfoPageState extends State<DeviceInfoPage> {
@@ -25,8 +25,7 @@ class _DeviceInfoPageState extends State<DeviceInfoPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-            Platform.isAndroid ? 'Android Device Info' : 'iOS Device Info'),
+        title: Text(Platform.isAndroid ? 'Android Device Info' : 'iOS Device Info'),
       ),
       body: ListView(
         shrinkWrap: true,
@@ -67,9 +66,7 @@ class _DeviceInfoPageState extends State<DeviceInfoPage> {
         deviceData = _readIosDeviceInfo(await deviceInfoPlugin.iosInfo);
       }
     } on PlatformException {
-      deviceData = <String, dynamic>{
-        'Error:': 'Failed to get platform version.'
-      };
+      deviceData = <String, dynamic>{'Error:': 'Failed to get platform version.'};
     }
 
     if (!mounted) return;

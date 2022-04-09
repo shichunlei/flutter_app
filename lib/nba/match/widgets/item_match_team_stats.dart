@@ -3,8 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/page_index.dart';
 
-import '../../index.dart';
-
 class ItemMatchTeamStatsView extends StatelessWidget {
   final TeamStatsBean item;
   final Color leftColor;

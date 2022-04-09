@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/page_index.dart';
 
-import '../index.dart';
-
 class RankPage extends StatefulWidget {
   RankPage({Key key}) : super(key: key);
 

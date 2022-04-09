@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/condition.dart';
 
 import 'package:flutter_app/movie/index.dart';
-import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
-import 'package:flutter_easyrefresh/ball_pulse_header.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import '../../page_index.dart';
 

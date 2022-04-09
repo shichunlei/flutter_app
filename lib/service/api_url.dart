@@ -1,6 +1,5 @@
 class ApiUrl {
-//  static const String BASE_URL = 'http://data.chingsoft.com/api/v1/';
-  static const String BASE_URL = 'http://101.200.174.126:8898/api/v1/';
+  static const String BASE_URL = '127.0.0.1:8898/api/v1/';
 
   static const String LOGIN = 'users/login';
 
@@ -29,10 +28,11 @@ class ApiUrl {
   static const String MOVIE_COMMENTS_URL = 'movies/comments';
   static const String MOVIE_REVIEWS_URL = 'movies/reviews';
 
-  static const String TUBITV_HOME = 'tubitv/homescreen';
-  static const String TUBITV_LIST = 'tubitv/list';
-  static const String TUBITV_DETAIL = 'tubitv/details';
-  static const String TUBITV_SEARCH = 'tubitv/search';
+  static const String TUBITV_HOST = 'https://uapi.adrise.tv/';
+
+  static const String TUBITV_HOME = 'matrix/homescreen';
+  static const String TUBITV_DETAIL = 'cms/content';
+  static const String TUBITV_SEARCH = 'cms/search';
 
   /// 和风天气
   static const String WEATHER_BASE_URL = "https://free-api.heweather.net/s6";
@@ -55,8 +55,7 @@ class ApiUrl {
   static const String CITY_TOP = "/top";
 
   /// 百姓生活
-  static const String BAIXING_BASE_URL =
-      'https://wxmini.baixingliangfan.cn/baixing/wxmini/';
+  static const String BAIXING_BASE_URL = 'https://wxmini.baixingliangfan.cn/baixing/wxmini/';
 
   static const String BAIXING_HOME = 'homePageContent';
   static const String BAIXING_HOME_HOT = 'homePageBelowConten';
@@ -76,9 +75,11 @@ class ApiUrl {
   static const String JUZIMI_DETAILS_URL = 'juzimi/details';
 
   /// 每日一文
-  static const String ARTICLE_TODAY_URL = "juzimi/article_today";
-  static const String ARTICLE_DAY_URL = "juzimi/article_day";
-  static const String ARTICLE_RANDOM_URL = "juzimi/article_random";
+  static const String ARTICLE_BASE_URL = "https://interface.meiriyiwen.com/";
+
+  static const String ARTICLE_TODAY_URL = "article/today";
+  static const String ARTICLE_DAY_URL = "article/day";
+  static const String ARTICLE_RANDOM_URL = "article/random";
 
   static const String MEIZITU_URL = 'https://m.image.so.com/';
 
@@ -88,8 +89,7 @@ class ApiUrl {
 
   static const String QDAILY_COMMENT_DATA = "qdaily/comments";
 
-  static const String QDAILY_ARTICLE_URL =
-      "http://m.qdaily.com/mobile/articles/";
+  static const String QDAILY_ARTICLE_URL = "http://m.qdaily.com/mobile/articles/";
   static const String QDAILY_ARTICLE_DETAIL = "qdaily/articles_details";
 
   static const String QDAILY_LABS_URL = "qdaily/papers";
@@ -122,13 +122,11 @@ class ApiUrl {
 
   static const String YOUDAO_HOME_URL = "course3/api/webhome";
 
-  static const String YOUDAO_HOME_LIST_URL =
-      "course3/api/webhome/recommendCourse";
+  static const String YOUDAO_HOME_LIST_URL = "course3/api/webhome/recommendCourse";
 
   static const String YOUDAO_GROUP_DETAILS_URL = 'course3/api/vertical2';
 
-  static const String YOUDAO_GROUP_ALL_COURSE_URL =
-      "course3/api/content/course";
+  static const String YOUDAO_GROUP_ALL_COURSE_URL = "course3/api/content/course";
 
   /// 追书神器
   static const String BOOK_URL = 'http://api.zhuishushenqi.com';
@@ -269,6 +267,5 @@ class ApiUrl {
   static const DY_VIDEOS = "astros/dyvideohot";
 
   /// 携程搜索
-  static const CTRIP_SEARCH =
-      'https://m.ctrip.com/restapi/h5api/globalsearch/search';
+  static const CTRIP_SEARCH = 'https://m.ctrip.com/restapi/h5api/globalsearch/search';
 }

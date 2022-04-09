@@ -3,8 +3,6 @@ import 'package:flutter_app/store/index.dart';
 
 import '../../page_index.dart';
 
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-
 import '../index.dart';
 
 class DetailsBottomView extends StatelessWidget {

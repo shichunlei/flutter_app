@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/friends_dynamic.dart';
 import 'package:flutter_app/ui/popup_window.dart';
 
 import '../../page_index.dart';

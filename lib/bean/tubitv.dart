@@ -8,7 +8,7 @@
 /// logo : ""
 /// background : ""
 /// tags : []
-/// children : [{"id":"412222","type":"v","title":"The Kill Hole","duration":5470,"ratings":[{"system":"mpaa","value":"PG-13"}],"actors":["Chadwick Boseman","Billy Zane","Tory Kittles"],"directors":["Mischa Webley"],"tags":["Adventure","Thriller","Action"],"description":"An Iraq War vet is forced to pursue one of his own into the Pacific Northwest wilderness to finally confront a war crime that has haunted them both.","year":2012,"posterarts":["http://images.adrise.tv/-T--u7g7YB9xwMwWEavUOlLCf2w=/214x306/smart/img.adrise.tv/ef3ec862-0e3c-471a-a6b0-d5c7866db8dc.jpg"],"thumbnails":["http://images.adrise.tv/b0igFIjH8r9L0KNw5p3pI48bTiU=/0x30:1280x671/306x150/smart/img.adrise.tv/b5df5a97-0aa1-4b40-a885-084a774afff5.jpg"],"hero_images":["http://images.adrise.tv/ivm0pb8CnRcwlSw6j8zbxpKdf5I=/768x362/smart/img.adrise.tv/b5df5a97-0aa1-4b40-a885-084a774afff5.jpg"],"landscape_images":[],"backgrounds":["http://images.adrise.tv/JsWdc8Ip3nQtCPomqf9Q6yoYxKo=/1920x1080/smart/img.adrise.tv/261c7765-fdc5-4247-a835-72469fa85f26.jpg"],"publisher_id":"7f75e529af36c5d6ac28588e668c7008","has_trailer":false,"has_subtitle":true,"import_id":"deep-c-digital"},{"id":"3655","type":"s","title":"Moby Dick","ratings":[{"system":"tvpg","value":"TV-14"}],"actors":["Ethan Hawke","Donald Sutherland","William Hurt","Gillian Anderson","Eddie Marsan"],"directors":["Mike Barker"],"tags":["Adventure","Drama"],"description":"The only survivor of a lost whaling ship tells the stunning story of Captain Ahab's self-destructive, obsessive quest for a fabled white whale.","year":2009,"posterarts":["http://images.adrise.tv/dmwJD2FNJmSX6OrEYkySPct-F1U=/214x306/smart/img.adrise.tv/c6f6ea53-7b31-40af-ac83-66bdf55a0faa.jpg"],"thumbnails":["http://images.adrise.tv/h1RQMLTycWm3tWJ677VRXEPm0W4=/306x150/smart/img.adrise.tv/d152a50c-03d5-4494-9e9c-1f73be1b3c2e.jpg"],"hero_images":["http://images.adrise.tv/zk7v5YrIf0ekcMchlehoMKjyF3s=/0x37:766x403/768x362/smart/img.adrise.tv/d152a50c-03d5-4494-9e9c-1f73be1b3c2e.jpg"],"landscape_images":["http://images.adrise.tv/pyTsa1ZlJsCr_uhn9EcSDJFUpNA=/1280x720/smart/img.adrise.tv/f2db2fd1-00e4-4c12-9e14-ec99f9a0658e.jpg"],"backgrounds":["http://images.adrise.tv/FXGXq71vUFlUcAf0huF64hoDT3A=/677x317:677x317/1920x1080/smart/img.adrise.tv/f2e6f7da-4459-42f1-99c6-cedca01a0534.jpg","http://images.adrise.tv/EOgi2kvV9akEmnpt7mnqamUFjzA=/0x275:2813x1840/1920x1080/smart/img.adrise.tv/c68541a7-cc8a-4cef-bc99-ce3a018c7edb.jpg","http://images.adrise.tv/crgKbGjsnxkWDRoUrbFXHysBjx0=/0x11:1920x1080/1920x1080/smart/img.adrise.tv/846a8877-225a-4d5f-81a0-4ca4ed2fae62.jpg","http://images.adrise.tv/AqZ4BH8bi5-4OIcF8oZaOpWMxw4=/0x375:2777x1920/1920x1080/smart/img.adrise.tv/e296c40a-13b6-499a-9f1d-7fdc4db9e3de.jpg"],"publisher_id":"","has_trailer":false,"has_subtitle":false,"import_id":"sonar"},{"id":"2394","type":"s","title":"Doc West","ratings":[{"system":"tvpg","value":"TV-PG"}],"actors":["Terence Hill","Clare Carey","Maria P. Petruolo"],"directors":["Giulio Base","Terence Hill"],"tags":["Comedy","Drama","Western"],"description":"After bandits steal his poker winnings, this American legend makes his way to the next town in search of revenge.\n","year":2008,"posterarts":["http://images.adrise.tv/qIliC6C4q8pU53EKBvlpPZAg_sc=/214x306/smart/img.adrise.tv/f06dccce-c1ff-493e-8b55-732ef2e1fc2b.jpg"],"thumbnails":["http://images.adrise.tv/3grlit-mEeTlqSZhV6iKDIw_xYo=/306x150/smart/img.adrise.tv/7c6e5aa9-0261-4083-9f33-1c996233ee55.jpg"],"hero_images":["http://images.adrise.tv/_kKppPnHMu8NYIkjWxdCJj-YTw8=/0x66:2882x1439/768x362/smart/img.adrise.tv/b289b4d3-d3a2-4fd2-bc49-26f0661a06ee.jpg"],"landscape_images":["http://images.adrise.tv/jjioSsg2Gy7dJii26SC3cgLy9-E=/103x0:1448x748/1280x720/smart/img.adrise.tv/62e8c7e0-27dd-4d79-be1a-cead6280172a.jpg"],"backgrounds":["http://images.adrise.tv/Opha3UIP_3sX7Qw0mk0060SUlH8=/0x176:3132x1920/1920x1080/smart/img.adrise.tv/d4a5b88f-2988-466a-b7f6-53e915bac972.jpg"],"publisher_id":"","has_trailer":false,"has_subtitle":false,"import_id":"multicom"},{"id":"2233","type":"s","title":"Green Wing","ratings":[{"system":"tvpg","value":"TV-14"}],"actors":[],"directors":[],"tags":["Comedy"],"description":"Green Wing follows thirteen main characters through the daily life of one of the world's most amusing hospitals.","year":2003,"posterarts":["http://images.adrise.tv/JxmBhMGBfKcLUrn0IdsH3DXUBlI=/214x306/smart/img.adrise.tv/6f345df3-0683-4cc1-ac77-ad7af843b0cf.jpg"],"thumbnails":["http://images.adrise.tv/KCAhep7fr7lPdVmJICOub15WFrg=/306x150/smart/img.adrise.tv/0a60ab2f-e19a-4b11-89ae-73132685b343.jpg"],"hero_images":["http://images.adrise.tv/wCGBn-D6Mhj2jaakJNn-u8t2CRE=/768x362/smart/img.adrise.tv/0a60ab2f-e19a-4b11-89ae-73132685b343.jpg"],"landscape_images":[],"backgrounds":["http://images.adrise.tv/EFVhLEYJfz_HkeL7V0UNX12S8U0=/1920x1080/smart/img.adrise.tv/2f3acbdb-4fe7-4fea-8b13-6d28977492f4.jpg"],"publisher_id":"","has_trailer":false,"has_subtitle":false,"import_id":"drg"},{"id":"3744","type":"s","title":"Tin Man","ratings":[{"system":"tvpg","value":"TV-PG"}],"actors":["Zooey Deschanel","Richard Dreyfuss","Alan Cumming","Kathleen Robertson","Neal McDonough"],"directors":["Nick Willing"],"tags":["Fantasy","Adventure","Sci-Fi"],"description":"It’s a whole new yellow brick road as a mistress of evil with plans to come to Earth must face a rebellious, kind girl who sees visions in her dreams.","year":2006,"posterarts":["http://images.adrise.tv/q0psMeT7NF_jzDmVlU11w_Sp8tI=/214x306/smart/img.adrise.tv/343da0cd-ceeb-41a7-a3cc-799e64023c2c.jpg"],"thumbnails":["http://images.adrise.tv/7XvrzUEIyrorHylzD9Oe_pQEe2w=/0x125:5440x2842/306x150/smart/img.adrise.tv/150aad5a-5d77-4f6f-956b-f652b1f4288b.jpg"],"hero_images":["http://images.adrise.tv/CSo9GyFoaX0auDbAlz0IBynbqjE=/0x0:3900x1855/768x362/smart/img.adrise.tv/48b321e0-8759-4e3a-b54f-0309bf03f610.jpg"],"landscape_images":["http://images.adrise.tv/DmWCS_ZfyJqnMFHCR9a7h3ZsKuI=/1280x720/smart/img.adrise.tv/a4f8f4b1-d1aa-488c-8851-4a1808f5dded.jpg"],"backgrounds":["http://images.adrise.tv/xQKcrXLniFR75eDb-wkJuVoIyUo=/0x552:6000x3882/1920x1080/smart/img.adrise.tv/97971576-1f6e-4e57-9467-f1a1fd75adb1.jpg"],"publisher_id":"","has_trailer":false,"has_subtitle":false,"import_id":"sonar"},{"id":"3789","type":"s","title":"Treasure Island","ratings":[{"system":"tvpg","value":"TV-14"}],"actors":["Eddie Izzard","Elijah Wood","Donald Sutherland","Toby Regbo","Rupert William Penry Jones","Daniel Mays","Philip Glenister","Shirley Henderson"],"directors":["Steve Barron"],"tags":["Action","Adventure","Drama"],"description":" In 1765, young English boy Jim Hawkins gets involved with buccaneers during his quest to find pirate Captain Flint's treasure buried on a secret island.","year":1999,"posterarts":["http://images.adrise.tv/_9eOwOGIm5jUHUoaa9lOyE7s7B8=/214x306/smart/img.adrise.tv/4bbc81a3-fe82-40de-8c13-a92f9fab3f55.jpg"],"thumbnails":["http://images.adrise.tv/NNDUr15McNgWt2UG8wg9Jzy4rbM=/306x150/smart/img.adrise.tv/42cd2a45-8a40-421d-b0bb-4bc29c545882.jpg"],"hero_images":["http://images.adrise.tv/s1je0xau6NftRqSm8oRN3uBJ3hw=/0x152:3510x1827/768x362/smart/img.adrise.tv/b13caf4a-2acc-43cb-9f52-8a9e5336c607.jpg"],"landscape_images":["http://images.adrise.tv/yVcgVCR68dcxgFao2xpM1nW04OQ=/1280x720/smart/img.adrise.tv/eb482a45-e04c-4d4d-b7b3-d2ccb613c689.jpg"],"backgrounds":["http://images.adrise.tv/H3FPeOQePpkCORBlVpVI5FYcOYA=/1920x1080/smart/img.adrise.tv/4b5b8cde-8a87-4af7-8929-1d3c18eee8b1.jpg","http://images.adrise.tv/00MExJ1brwRaNg5mI6Pq_r6MubQ=/0x11:1920x1080/1920x1080/smart/img.adrise.tv/42cd2a45-8a40-421d-b0bb-4bc29c545882.jpg","http://images.adrise.tv/uYcsLPq_Ez3xquK6HXdoxAnmZIE=/0x33:2048x1171/1920x1080/smart/img.adrise.tv/3ae5291c-dd21-49ce-b503-b784631b89b2.jpg"],"publisher_id":"","has_trailer":false,"has_subtitle":false,"import_id":"sonar"},{"id":"555","type":"s","title":"6teen","ratings":[{"system":"tvpg","value":"TV-PG"}],"actors":["Christian Potenza","Megan Fahlenbock","Brooke D'Orsay","Terry McGurrin"],"directors":[" Jennifer Pertsch Tom McGillis"],"tags":["Animation","Kids & Family"],"description":"6teen follows our ensemble cast of six 16-year-old friends as they try to make it through their first part-time jobs and life as a teenager.","year":2010,"posterarts":["http://images.adrise.tv/OjkUbdUuFBrKtxux6qxKzmPybDA=/0x4:599x858/214x306/smart/img.adrise.tv/679e6b40-b0e4-4772-8110-efd8f2848f97.jpg"],"thumbnails":["http://images.adrise.tv/FvlnwvahyQ9tfMpBkeHfdYWG4Nw=/306x150/smart/img.adrise.tv/2c152c05-9055-489f-9353-938dd3c83938.jpg"],"hero_images":["http://images.adrise.tv/b_1fYwtYS245xtssfPHvZUKPz_8=/768x362/smart/img.adrise.tv/2c152c05-9055-489f-9353-938dd3c83938.jpg"],"landscape_images":[],"backgrounds":["http://images.adrise.tv/6-2cA0BCZmPoPs2XFm6AcI6-G9Q=/1890x670:1890x670/1920x1080/smart/img.adrise.tv/166846e6-f64e-4973-b10a-914b9d9965a7.jpg"],"publisher_id":"","has_trailer":false,"has_subtitle":false,"import_id":"corus-entertainment"},{"id":"435810","type":"v","title":"Open Windows","duration":6041,"ratings":[{"system":"mpaa","value":"R"}],"actors":["Elijah Wood","Sasha Grey","Neil Maskell","Nacho Vigalondo","Jaime Olias"],"directors":["Nacho Vigalondo"],"tags":["Thriller"],"description":"A super fan of a popular actress loses hope when she cancels their planned dinner, but then a stranger calls and offers an alternate plan.","year":2014,"posterarts":["http://images.adrise.tv/6tlaNt1RMbcQu_vUSjVMIBSZIpM=/214x306/smart/img.adrise.tv/e02a9bb2-3a02-4fb8-b0fa-b5951fabb2c2.jpg"],"thumbnails":["http://images.adrise.tv/v7PtuShpYEZb-4qV66MwZERBQEM=/306x150/smart/img.adrise.tv/ea6bec53-512f-4e8e-a91e-b2fd7017b66f.jpg"],"hero_images":["http://images.adrise.tv/mhNRLuxbTk1gF0oxNrvVZ4E9BRU=/768x362/smart/img.adrise.tv/ea6bec53-512f-4e8e-a91e-b2fd7017b66f.jpg"],"landscape_images":["http://images.adrise.tv/5Nv3sLfdX_dOuXth6pf94M-ON9Y=/1280x720/smart/img.adrise.tv/b4f8a684-d671-45f8-ac86-f13c5b317f39.jpg"],"backgrounds":["http://images.adrise.tv/djH2k5MLM3fgPLUwDxoJSHtU7mk=/1920x1080/smart/img.adrise.tv/47dc4c17-7417-4b86-b064-c71b10a21066.jpg"],"publisher_id":"7264bd006ceed9e61636942fa945bcf8","has_trailer":false,"has_subtitle":true,"import_id":"cinedigm-tubi"}]
+/// contents : [{"id":"412222","type":"v","title":"The Kill Hole","duration":5470,"ratings":[{"system":"mpaa","value":"PG-13"}],"actors":["Chadwick Boseman","Billy Zane","Tory Kittles"],"directors":["Mischa Webley"],"tags":["Adventure","Thriller","Action"],"description":"An Iraq War vet is forced to pursue one of his own into the Pacific Northwest wilderness to finally confront a war crime that has haunted them both.","year":2012,"posterarts":["http://images.adrise.tv/-T--u7g7YB9xwMwWEavUOlLCf2w=/214x306/smart/img.adrise.tv/ef3ec862-0e3c-471a-a6b0-d5c7866db8dc.jpg"],"thumbnails":["http://images.adrise.tv/b0igFIjH8r9L0KNw5p3pI48bTiU=/0x30:1280x671/306x150/smart/img.adrise.tv/b5df5a97-0aa1-4b40-a885-084a774afff5.jpg"],"hero_images":["http://images.adrise.tv/ivm0pb8CnRcwlSw6j8zbxpKdf5I=/768x362/smart/img.adrise.tv/b5df5a97-0aa1-4b40-a885-084a774afff5.jpg"],"landscape_images":[],"backgrounds":["http://images.adrise.tv/JsWdc8Ip3nQtCPomqf9Q6yoYxKo=/1920x1080/smart/img.adrise.tv/261c7765-fdc5-4247-a835-72469fa85f26.jpg"],"publisher_id":"7f75e529af36c5d6ac28588e668c7008","has_trailer":false,"has_subtitle":true,"import_id":"deep-c-digital"},{"id":"3655","type":"s","title":"Moby Dick","ratings":[{"system":"tvpg","value":"TV-14"}],"actors":["Ethan Hawke","Donald Sutherland","William Hurt","Gillian Anderson","Eddie Marsan"],"directors":["Mike Barker"],"tags":["Adventure","Drama"],"description":"The only survivor of a lost whaling ship tells the stunning story of Captain Ahab's self-destructive, obsessive quest for a fabled white whale.","year":2009,"posterarts":["http://images.adrise.tv/dmwJD2FNJmSX6OrEYkySPct-F1U=/214x306/smart/img.adrise.tv/c6f6ea53-7b31-40af-ac83-66bdf55a0faa.jpg"],"thumbnails":["http://images.adrise.tv/h1RQMLTycWm3tWJ677VRXEPm0W4=/306x150/smart/img.adrise.tv/d152a50c-03d5-4494-9e9c-1f73be1b3c2e.jpg"],"hero_images":["http://images.adrise.tv/zk7v5YrIf0ekcMchlehoMKjyF3s=/0x37:766x403/768x362/smart/img.adrise.tv/d152a50c-03d5-4494-9e9c-1f73be1b3c2e.jpg"],"landscape_images":["http://images.adrise.tv/pyTsa1ZlJsCr_uhn9EcSDJFUpNA=/1280x720/smart/img.adrise.tv/f2db2fd1-00e4-4c12-9e14-ec99f9a0658e.jpg"],"backgrounds":["http://images.adrise.tv/FXGXq71vUFlUcAf0huF64hoDT3A=/677x317:677x317/1920x1080/smart/img.adrise.tv/f2e6f7da-4459-42f1-99c6-cedca01a0534.jpg","http://images.adrise.tv/EOgi2kvV9akEmnpt7mnqamUFjzA=/0x275:2813x1840/1920x1080/smart/img.adrise.tv/c68541a7-cc8a-4cef-bc99-ce3a018c7edb.jpg","http://images.adrise.tv/crgKbGjsnxkWDRoUrbFXHysBjx0=/0x11:1920x1080/1920x1080/smart/img.adrise.tv/846a8877-225a-4d5f-81a0-4ca4ed2fae62.jpg","http://images.adrise.tv/AqZ4BH8bi5-4OIcF8oZaOpWMxw4=/0x375:2777x1920/1920x1080/smart/img.adrise.tv/e296c40a-13b6-499a-9f1d-7fdc4db9e3de.jpg"],"publisher_id":"","has_trailer":false,"has_subtitle":false,"import_id":"sonar"},{"id":"2394","type":"s","title":"Doc West","ratings":[{"system":"tvpg","value":"TV-PG"}],"actors":["Terence Hill","Clare Carey","Maria P. Petruolo"],"directors":["Giulio Base","Terence Hill"],"tags":["Comedy","Drama","Western"],"description":"After bandits steal his poker winnings, this American legend makes his way to the next town in search of revenge.\n","year":2008,"posterarts":["http://images.adrise.tv/qIliC6C4q8pU53EKBvlpPZAg_sc=/214x306/smart/img.adrise.tv/f06dccce-c1ff-493e-8b55-732ef2e1fc2b.jpg"],"thumbnails":["http://images.adrise.tv/3grlit-mEeTlqSZhV6iKDIw_xYo=/306x150/smart/img.adrise.tv/7c6e5aa9-0261-4083-9f33-1c996233ee55.jpg"],"hero_images":["http://images.adrise.tv/_kKppPnHMu8NYIkjWxdCJj-YTw8=/0x66:2882x1439/768x362/smart/img.adrise.tv/b289b4d3-d3a2-4fd2-bc49-26f0661a06ee.jpg"],"landscape_images":["http://images.adrise.tv/jjioSsg2Gy7dJii26SC3cgLy9-E=/103x0:1448x748/1280x720/smart/img.adrise.tv/62e8c7e0-27dd-4d79-be1a-cead6280172a.jpg"],"backgrounds":["http://images.adrise.tv/Opha3UIP_3sX7Qw0mk0060SUlH8=/0x176:3132x1920/1920x1080/smart/img.adrise.tv/d4a5b88f-2988-466a-b7f6-53e915bac972.jpg"],"publisher_id":"","has_trailer":false,"has_subtitle":false,"import_id":"multicom"},{"id":"2233","type":"s","title":"Green Wing","ratings":[{"system":"tvpg","value":"TV-14"}],"actors":[],"directors":[],"tags":["Comedy"],"description":"Green Wing follows thirteen main characters through the daily life of one of the world's most amusing hospitals.","year":2003,"posterarts":["http://images.adrise.tv/JxmBhMGBfKcLUrn0IdsH3DXUBlI=/214x306/smart/img.adrise.tv/6f345df3-0683-4cc1-ac77-ad7af843b0cf.jpg"],"thumbnails":["http://images.adrise.tv/KCAhep7fr7lPdVmJICOub15WFrg=/306x150/smart/img.adrise.tv/0a60ab2f-e19a-4b11-89ae-73132685b343.jpg"],"hero_images":["http://images.adrise.tv/wCGBn-D6Mhj2jaakJNn-u8t2CRE=/768x362/smart/img.adrise.tv/0a60ab2f-e19a-4b11-89ae-73132685b343.jpg"],"landscape_images":[],"backgrounds":["http://images.adrise.tv/EFVhLEYJfz_HkeL7V0UNX12S8U0=/1920x1080/smart/img.adrise.tv/2f3acbdb-4fe7-4fea-8b13-6d28977492f4.jpg"],"publisher_id":"","has_trailer":false,"has_subtitle":false,"import_id":"drg"},{"id":"3744","type":"s","title":"Tin Man","ratings":[{"system":"tvpg","value":"TV-PG"}],"actors":["Zooey Deschanel","Richard Dreyfuss","Alan Cumming","Kathleen Robertson","Neal McDonough"],"directors":["Nick Willing"],"tags":["Fantasy","Adventure","Sci-Fi"],"description":"It’s a whole new yellow brick road as a mistress of evil with plans to come to Earth must face a rebellious, kind girl who sees visions in her dreams.","year":2006,"posterarts":["http://images.adrise.tv/q0psMeT7NF_jzDmVlU11w_Sp8tI=/214x306/smart/img.adrise.tv/343da0cd-ceeb-41a7-a3cc-799e64023c2c.jpg"],"thumbnails":["http://images.adrise.tv/7XvrzUEIyrorHylzD9Oe_pQEe2w=/0x125:5440x2842/306x150/smart/img.adrise.tv/150aad5a-5d77-4f6f-956b-f652b1f4288b.jpg"],"hero_images":["http://images.adrise.tv/CSo9GyFoaX0auDbAlz0IBynbqjE=/0x0:3900x1855/768x362/smart/img.adrise.tv/48b321e0-8759-4e3a-b54f-0309bf03f610.jpg"],"landscape_images":["http://images.adrise.tv/DmWCS_ZfyJqnMFHCR9a7h3ZsKuI=/1280x720/smart/img.adrise.tv/a4f8f4b1-d1aa-488c-8851-4a1808f5dded.jpg"],"backgrounds":["http://images.adrise.tv/xQKcrXLniFR75eDb-wkJuVoIyUo=/0x552:6000x3882/1920x1080/smart/img.adrise.tv/97971576-1f6e-4e57-9467-f1a1fd75adb1.jpg"],"publisher_id":"","has_trailer":false,"has_subtitle":false,"import_id":"sonar"},{"id":"3789","type":"s","title":"Treasure Island","ratings":[{"system":"tvpg","value":"TV-14"}],"actors":["Eddie Izzard","Elijah Wood","Donald Sutherland","Toby Regbo","Rupert William Penry Jones","Daniel Mays","Philip Glenister","Shirley Henderson"],"directors":["Steve Barron"],"tags":["Action","Adventure","Drama"],"description":" In 1765, young English boy Jim Hawkins gets involved with buccaneers during his quest to find pirate Captain Flint's treasure buried on a secret island.","year":1999,"posterarts":["http://images.adrise.tv/_9eOwOGIm5jUHUoaa9lOyE7s7B8=/214x306/smart/img.adrise.tv/4bbc81a3-fe82-40de-8c13-a92f9fab3f55.jpg"],"thumbnails":["http://images.adrise.tv/NNDUr15McNgWt2UG8wg9Jzy4rbM=/306x150/smart/img.adrise.tv/42cd2a45-8a40-421d-b0bb-4bc29c545882.jpg"],"hero_images":["http://images.adrise.tv/s1je0xau6NftRqSm8oRN3uBJ3hw=/0x152:3510x1827/768x362/smart/img.adrise.tv/b13caf4a-2acc-43cb-9f52-8a9e5336c607.jpg"],"landscape_images":["http://images.adrise.tv/yVcgVCR68dcxgFao2xpM1nW04OQ=/1280x720/smart/img.adrise.tv/eb482a45-e04c-4d4d-b7b3-d2ccb613c689.jpg"],"backgrounds":["http://images.adrise.tv/H3FPeOQePpkCORBlVpVI5FYcOYA=/1920x1080/smart/img.adrise.tv/4b5b8cde-8a87-4af7-8929-1d3c18eee8b1.jpg","http://images.adrise.tv/00MExJ1brwRaNg5mI6Pq_r6MubQ=/0x11:1920x1080/1920x1080/smart/img.adrise.tv/42cd2a45-8a40-421d-b0bb-4bc29c545882.jpg","http://images.adrise.tv/uYcsLPq_Ez3xquK6HXdoxAnmZIE=/0x33:2048x1171/1920x1080/smart/img.adrise.tv/3ae5291c-dd21-49ce-b503-b784631b89b2.jpg"],"publisher_id":"","has_trailer":false,"has_subtitle":false,"import_id":"sonar"},{"id":"555","type":"s","title":"6teen","ratings":[{"system":"tvpg","value":"TV-PG"}],"actors":["Christian Potenza","Megan Fahlenbock","Brooke D'Orsay","Terry McGurrin"],"directors":[" Jennifer Pertsch Tom McGillis"],"tags":["Animation","Kids & Family"],"description":"6teen follows our ensemble cast of six 16-year-old friends as they try to make it through their first part-time jobs and life as a teenager.","year":2010,"posterarts":["http://images.adrise.tv/OjkUbdUuFBrKtxux6qxKzmPybDA=/0x4:599x858/214x306/smart/img.adrise.tv/679e6b40-b0e4-4772-8110-efd8f2848f97.jpg"],"thumbnails":["http://images.adrise.tv/FvlnwvahyQ9tfMpBkeHfdYWG4Nw=/306x150/smart/img.adrise.tv/2c152c05-9055-489f-9353-938dd3c83938.jpg"],"hero_images":["http://images.adrise.tv/b_1fYwtYS245xtssfPHvZUKPz_8=/768x362/smart/img.adrise.tv/2c152c05-9055-489f-9353-938dd3c83938.jpg"],"landscape_images":[],"backgrounds":["http://images.adrise.tv/6-2cA0BCZmPoPs2XFm6AcI6-G9Q=/1890x670:1890x670/1920x1080/smart/img.adrise.tv/166846e6-f64e-4973-b10a-914b9d9965a7.jpg"],"publisher_id":"","has_trailer":false,"has_subtitle":false,"import_id":"corus-entertainment"},{"id":"435810","type":"v","title":"Open Windows","duration":6041,"ratings":[{"system":"mpaa","value":"R"}],"actors":["Elijah Wood","Sasha Grey","Neil Maskell","Nacho Vigalondo","Jaime Olias"],"directors":["Nacho Vigalondo"],"tags":["Thriller"],"description":"A super fan of a popular actress loses hope when she cancels their planned dinner, but then a stranger calls and offers an alternate plan.","year":2014,"posterarts":["http://images.adrise.tv/6tlaNt1RMbcQu_vUSjVMIBSZIpM=/214x306/smart/img.adrise.tv/e02a9bb2-3a02-4fb8-b0fa-b5951fabb2c2.jpg"],"thumbnails":["http://images.adrise.tv/v7PtuShpYEZb-4qV66MwZERBQEM=/306x150/smart/img.adrise.tv/ea6bec53-512f-4e8e-a91e-b2fd7017b66f.jpg"],"hero_images":["http://images.adrise.tv/mhNRLuxbTk1gF0oxNrvVZ4E9BRU=/768x362/smart/img.adrise.tv/ea6bec53-512f-4e8e-a91e-b2fd7017b66f.jpg"],"landscape_images":["http://images.adrise.tv/5Nv3sLfdX_dOuXth6pf94M-ON9Y=/1280x720/smart/img.adrise.tv/b4f8a684-d671-45f8-ac86-f13c5b317f39.jpg"],"backgrounds":["http://images.adrise.tv/djH2k5MLM3fgPLUwDxoJSHtU7mk=/1920x1080/smart/img.adrise.tv/47dc4c17-7417-4b86-b064-c71b10a21066.jpg"],"publisher_id":"7264bd006ceed9e61636942fa945bcf8","has_trailer":false,"has_subtitle":true,"import_id":"cinedigm-tubi"}]
 
 class TubiCategory {
   String id;
@@ -16,12 +16,13 @@ class TubiCategory {
   String title;
   String description;
   String thumbnail;
-  dynamic cursor;
+  int cursor;
   String slug;
   String logo;
   String background;
-  List<dynamic> tags;
-  List<TuBiTV> children;
+  List<String> tags;
+  List<String> children;
+  List<TuBiTV> contents;
 
   static TubiCategory fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
@@ -35,9 +36,9 @@ class TubiCategory {
     dataBean.slug = map['slug'];
     dataBean.logo = map['logo'];
     dataBean.background = map['background'];
-    dataBean.tags = map['tags'];
-    dataBean.children = []
-      ..addAll((map['children'] as List ?? []).map((o) => TuBiTV.fromMap(o)));
+    dataBean.tags = (map['tags'] as List ?? []).map((o) => o.toString()).toList();
+    dataBean.children = (map['children'] as List ?? []).map((o) => o.toString()).toList();
+    dataBean.contents = (map['contents'] as List ?? []).map((o) => TuBiTV.fromMap(o)).toList();
     return dataBean;
   }
 
@@ -52,7 +53,7 @@ class TubiCategory {
         "logo": logo,
         "background": background,
         "tags": tags,
-        "children": children,
+        "contents": contents,
       };
 }
 
@@ -143,75 +144,67 @@ class TuBiTV {
   List<TuBiTV> children;
   String seriesId;
 
+  int availabilityDuration;
+  bool isCdc;
+  dynamic gnFields;
+  String canonicalId;
+  String versionId;
+  String videoPreviewUrl;
+
   static TuBiTV fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-    TuBiTV testBean = TuBiTV();
-    testBean.id = map['id'];
-    testBean.type = map['type'];
-    testBean.title = map['title'];
-    testBean.description = map['description'];
-    testBean.year = map['year'];
-    testBean.imdbId = map['imdb_id'];
-    testBean.publisherId = map['publisher_id'];
-    testBean.importId = map['import_id'];
-    testBean.partnerId = map['partner_id'];
-    testBean.tags = []
-      ..addAll((map['tags'] as List ?? []).map((o) => o.toString()));
-    testBean.lang = map['lang'];
-    testBean.country = map['country'];
-    testBean.actors = []
-      ..addAll((map['actors'] as List ?? []).map((o) => o.toString()));
-    testBean.directors = []
-      ..addAll((map['directors'] as List ?? []).map((o) => o.toString()));
-    testBean.policyMatch = map['policy_match'];
-    testBean.updatedAt = map['updated_at'];
-    testBean.ratings = []
-      ..addAll(
-          (map['ratings'] as List ?? []).map((o) => RatingsBean.fromMap(o)));
-    testBean.videoResources = []
-      ..addAll((map['video_resources'] as List ?? [])
-          .map((o) => VideoResources.fromMap(o)));
-    testBean.posterarts = []
-      ..addAll((map['posterarts'] as List ?? []).map((o) => o.toString()));
-    testBean.thumbnails = []
-      ..addAll((map['thumbnails'] as List ?? []).map((o) => o.toString()));
-    testBean.heroImages = []
-      ..addAll((map['hero_images'] as List ?? []).map((o) => o.toString()));
-    testBean.landscapeImages = []
-      ..addAll(
-          (map['landscape_images'] as List ?? []).map((o) => o.toString()));
-    testBean.backgrounds = []
-      ..addAll((map['backgrounds'] as List ?? []).map((o) => o.toString()));
-    testBean.hasSubtitle = map['has_subtitle'];
-    testBean.detailedType = map['detailed_type'];
-    testBean.needsLogin = map['needs_login'];
-    testBean.subtitles = []
-      ..addAll((map['subtitles'] as List ?? [])
-          .map((o) => SubtitlesBean.fromMap(o)));
-    testBean.hasTrailer = map['has_trailer'];
-    testBean.validDuration = map['valid_duration'];
-    testBean.duration = map['duration'];
-    testBean.durationStr = map['duration'] == null
+    TuBiTV tvBean = TuBiTV();
+    tvBean.id = map['id'];
+    tvBean.type = map['type'];
+    tvBean.title = map['title'];
+    tvBean.description = map['description'];
+    tvBean.year = map['year'];
+    tvBean.imdbId = map['imdb_id'];
+    tvBean.publisherId = map['publisher_id'];
+    tvBean.importId = map['import_id'];
+    tvBean.partnerId = map['partner_id'];
+    tvBean.tags = []..addAll((map['tags'] as List ?? []).map((o) => o.toString()));
+    tvBean.lang = map['lang'];
+    tvBean.country = map['country'];
+    tvBean.actors = []..addAll((map['actors'] as List ?? []).map((o) => o.toString()));
+    tvBean.directors = []..addAll((map['directors'] as List ?? []).map((o) => o.toString()));
+    tvBean.policyMatch = map['policy_match'];
+    tvBean.updatedAt = map['updated_at'];
+    tvBean.ratings = []..addAll((map['ratings'] as List ?? []).map((o) => RatingsBean.fromMap(o)));
+    tvBean.videoResources = []..addAll((map['video_resources'] as List ?? []).map((o) => VideoResources.fromMap(o)));
+    tvBean.posterarts = []..addAll((map['posterarts'] as List ?? []).map((o) => o.toString()));
+    tvBean.thumbnails = []..addAll((map['thumbnails'] as List ?? []).map((o) => o.toString()));
+    tvBean.heroImages = []..addAll((map['hero_images'] as List ?? []).map((o) => o.toString()));
+    tvBean.landscapeImages = []..addAll((map['landscape_images'] as List ?? []).map((o) => o.toString()));
+    tvBean.backgrounds = []..addAll((map['backgrounds'] as List ?? []).map((o) => o.toString()));
+    tvBean.hasSubtitle = map['has_subtitle'];
+    tvBean.detailedType = map['detailed_type'];
+    tvBean.needsLogin = map['needs_login'];
+    tvBean.subtitles = []..addAll((map['subtitles'] as List ?? []).map((o) => SubtitlesBean.fromMap(o)));
+    tvBean.hasTrailer = map['has_trailer'];
+    tvBean.validDuration = map['valid_duration'];
+    tvBean.duration = map['duration'];
+    tvBean.durationStr = map['duration'] == null
         ? ""
         : " · ${map['duration'] ~/ 3600}h ${((map['duration'] - 3600) > 0 ? (map['duration'] - 3600) : map['duration']) ~/ 60}min";
-    testBean.creditCuePoints = map['credit_cuepoints'] != null
-        ? CreditCuePoints.fromMap(map['credit_cuepoints'])
-        : null;
-    testBean.url = map['url'];
-    testBean.monetization = map['monetization'] == null
-        ? null
-        : MonetizationBean.fromMap(map['monetization']);
-    testBean.availabilityStarts = map['availability_starts'];
-    testBean.availabilityEnds = map['availability_ends'];
-    testBean.trailers = map['trailers'] == null ? [] : []
-      ..addAll(
-          (map['trailers'] as List ?? []).map((o) => TrailersBean.fromMap(o)));
-    testBean.related = []
-      ..addAll((map['related'] as List ?? []).map((o) => TuBiTV.fromMap(o)));
-    testBean.children = map['children'] == null ? [] : []
+    tvBean.creditCuePoints = map['credit_cuepoints'] != null ? CreditCuePoints.fromMap(map['credit_cuepoints']) : null;
+    tvBean.url = map['url'];
+    tvBean.monetization = map['monetization'] == null ? null : MonetizationBean.fromMap(map['monetization']);
+    tvBean.availabilityStarts = map['availability_starts'];
+    tvBean.availabilityEnds = map['availability_ends'];
+    tvBean.trailers = map['trailers'] == null ? [] : []
+      ..addAll((map['trailers'] as List ?? []).map((o) => TrailersBean.fromMap(o)));
+    tvBean.related = []..addAll((map['related'] as List ?? []).map((o) => TuBiTV.fromMap(o)));
+    tvBean.children = map['children'] == null ? [] : []
       ..addAll((map['children'] as List ?? []).map((o) => TuBiTV.fromMap(o)));
-    testBean.seriesId = map['series_id'];
-    return testBean;
+    tvBean.seriesId = map['series_id'];
+    tvBean.availabilityDuration = map['availability_duration'];
+    tvBean.isCdc = map['is_cdc'];
+    tvBean.gnFields = map['gn_fields'];
+    tvBean.canonicalId = map['canonical_id'];
+    tvBean.versionId = map['version_id'];
+    tvBean.videoPreviewUrl = map['video_preview_url'];
+    return tvBean;
   }
 
   Map toJson() => {
@@ -290,9 +283,7 @@ class MonetizationBean {
   static MonetizationBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     MonetizationBean bean = MonetizationBean();
-    bean.cuePoints = []
-      ..addAll((map['cue_points'] as List ?? [])
-          .map((o) => int.tryParse(o.toString())));
+    bean.cuePoints = []..addAll((map['cue_points'] as List ?? []).map((o) => int.tryParse(o.toString())));
     return bean;
   }
 
@@ -391,12 +382,14 @@ class ManifestBean {
 class RatingsBean {
   String system;
   String value;
+  String code;
 
   static RatingsBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     RatingsBean ratingsBean = RatingsBean();
     ratingsBean.system = map['system'];
     ratingsBean.value = map['value'];
+    ratingsBean.code = map['code'];
     return ratingsBean;
   }
 

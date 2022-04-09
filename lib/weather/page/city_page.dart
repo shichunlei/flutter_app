@@ -1,9 +1,5 @@
-import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/city.dart';
-import 'package:rounded_letter/rounded_letter.dart';
-
-import '../../page_index.dart';
+import 'package:flutter_app/page_index.dart';
 
 class CityPage extends StatefulWidget {
   @override
@@ -77,7 +73,11 @@ class CityPageState extends State<CityPage> {
     String susTag = model.getSuspensionTag();
     susTag = (susTag == "★"
         ? "★ 热门城市"
-        : susTag == "定" ? "当前定位" : susTag == "常" ? "常用地址" : susTag);
+        : susTag == "定"
+            ? "当前定位"
+            : susTag == "常"
+                ? "常用地址"
+                : susTag);
     return Column(children: <Widget>[
       Offstage(
           offstage: !(model.isShowSuspension == true),
@@ -86,8 +86,7 @@ class CityPageState extends State<CityPage> {
           height: _itemHeight.toDouble(),
           child: ListTile(
               title: Text(model.location),
-              leading:
-                  RoundedLetter.withRandomColors(model.location[0], 40, 20),
+              leading: RoundedLetter.withRandomColors(model.location[0], 40, 20),
               onTap: () => Navigator.of(context).pop(model.location)))
     ]);
   }

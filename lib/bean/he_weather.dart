@@ -227,32 +227,32 @@ class Lifestyle {
 class Hourly {
   String cloud;
   String condCode;
-  String cond_txt;
+  String condTxt;
   String dew;
   String hum;
   String pop;
   String pres;
   String time;
   double tmp;
-  String wind_deg;
-  String wind_dir;
-  String wind_sc;
-  String wind_spd;
+  String windDeg;
+  String windDir;
+  String windSc;
+  String windSpd;
 
   Hourly(
       {this.cloud,
       this.condCode,
-      this.cond_txt,
+      this.condTxt,
       this.dew,
       this.hum,
       this.pop,
       this.pres,
       this.time,
       this.tmp,
-      this.wind_deg,
-      this.wind_dir,
-      this.wind_sc,
-      this.wind_spd});
+      this.windDeg,
+      this.windDir,
+      this.windSc,
+      this.windSpd});
 
   static Hourly fromMap(Map<String, dynamic> map) {
     Hourly hourly = Hourly();
@@ -287,17 +287,17 @@ class Hourly {
 
     hourly.cloud = map['cloud'];
     hourly.condCode = "https://cdn.heweather.com/cond_icon/${map['cond_code']}$n.png";
-    hourly.cond_txt = map['cond_txt'];
+    hourly.condTxt = map['cond_txt'];
     hourly.dew = map['dew'];
     hourly.hum = map['hum'];
     hourly.pop = map['pop'];
     hourly.pres = map['pres'];
     hourly.time = _time;
     hourly.tmp = double.parse(map['tmp'] ?? "0");
-    hourly.wind_deg = map['wind_deg'];
-    hourly.wind_dir = map['wind_dir'];
-    hourly.wind_sc = map['wind_sc'];
-    hourly.wind_spd = map['wind_spd'];
+    hourly.windDeg = map['wind_deg'];
+    hourly.windDir = map['wind_dir'];
+    hourly.windSc = map['wind_sc'];
+    hourly.windSpd = map['wind_spd'];
     return hourly;
   }
 }
@@ -359,7 +359,7 @@ class DailyForecast {
   String ms;
 
   /// 降水量
-  String pcpn;
+  String pCpn;
 
   /// 降水概率
   String pop;
@@ -419,7 +419,7 @@ class DailyForecast {
     daily.hum = map['hum'];
     daily.mr = map['mr'];
     daily.ms = map['ms'];
-    daily.pcpn = map['pcpn'];
+    daily.pCpn = map['pcpn'];
     daily.pop = map['pop'];
     daily.pres = map['pres'];
     daily.sr = map['sr'];
@@ -452,9 +452,9 @@ class DailyForecast {
 //   * so2 : "6"
 
 class Air {
-  String air_sta;
+  String airSta;
   String aqi;
-  String asid;
+  String asId;
   String co;
   String lat;
   String lon;
@@ -464,16 +464,16 @@ class Air {
   String pm10;
   String pm25;
   String pubTime;
-  String qlty;
+  String qLty;
   String so2;
 
   Color aqiColor;
 
   static Air fromMap(Map<String, dynamic> map) {
     Air air = Air();
-    air.air_sta = map['air_sta'];
+    air.airSta = map['air_sta'];
     air.aqi = map['aqi'];
-    air.asid = map['asid'];
+    air.asId = map['asid'];
     air.co = map['co'];
     air.lat = map['lat'];
     air.lon = map['lon'];
@@ -483,7 +483,7 @@ class Air {
     air.pm10 = map['pm10'];
     air.pm25 = map['pm25'];
     air.pubTime = map['pub_time'];
-    air.qlty = map['qlty'];
+    air.qLty = map['qlty'];
     air.so2 = map['so2'];
 
     Color _aqiColor;

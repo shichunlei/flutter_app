@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 import '../../page_index.dart';
@@ -138,7 +136,7 @@ class _MovieCelebrityPageState extends State<MovieCelebrityPage> {
                         child: GestureDetector(
                           onTap: () => pushNewPage(
                               context,
-                              PhotoView(
+                              PhotoPageView(
                                 title: widget.name,
                                 photos: images,
                                 index: index,

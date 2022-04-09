@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/tubitv.dart';
 
 import '../page_index.dart';
 

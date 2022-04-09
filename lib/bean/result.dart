@@ -20,15 +20,11 @@ class Result {
     result.count = map['count'];
     result.start = map['start'];
     result.total = map['total'];
-    result.contacts = []
-      ..addAll((map['results'] as List ?? []).map((o) => ContactBean.fromMap(o)));
+    result.contacts = []..addAll((map['results'] as List ?? []).map((o) => ContactBean.fromMap(o)));
 
-    result.heWeather = []
-      ..addAll(
-          (map['HeWeather6'] as List ?? []).map((o) => HeWeather.fromMap(o)));
+    result.heWeather = []..addAll((map['HeWeather6'] as List ?? []).map((o) => HeWeather.fromMap(o)));
 
-    result.images =
-        map['list'] == null ? [] : ImageModal.fromMapList(map['list']);
+    result.images = (map['list'] as List ?? []).map((e) => ImageModal.fromMap(e)).toList();
     return result;
   }
 }

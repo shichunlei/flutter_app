@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/condition.dart';
 import 'package:flutter_app/page_index.dart';
 
 class FilterView extends StatelessWidget {

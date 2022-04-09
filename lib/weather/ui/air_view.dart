@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/he_weather.dart';
 
 import '../../page_index.dart';
 

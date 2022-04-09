@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../page_index.dart';
-import '../../index.dart';
 
 class ItemMatchHead extends StatelessWidget {
   final ScheduleList teamInfo;

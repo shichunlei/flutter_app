@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/youdao/index.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 import '../page_index.dart';
 import 'provider_widget.dart';

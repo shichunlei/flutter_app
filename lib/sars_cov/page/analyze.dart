@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/sars_cov.dart';
 import 'package:flutter_app/page_index.dart';
 
 class AnalyzePage extends StatefulWidget {

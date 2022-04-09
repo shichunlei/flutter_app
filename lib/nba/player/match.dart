@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/page_index.dart';
-
-import '../index.dart';
 
 class PlayerMatchPage extends StatefulWidget {
   final String id;

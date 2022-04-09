@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../bean/he_weather.dart';
 import '../../page_index.dart';
 import 'temp_single_line.dart';
 
@@ -26,7 +25,7 @@ class HourlyView extends StatelessWidget {
               children: hourly.map((hour) {
             return Expanded(
                 child: Center(
-                    child: Text(hour.cond_txt, textAlign: TextAlign.center, style: TextStyle(color: Colors.white))));
+                    child: Text(hour.condTxt, textAlign: TextAlign.center, style: TextStyle(color: Colors.white))));
           }).toList()),
           Row(
               children: hourly.map((hour) {

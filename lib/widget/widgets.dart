@@ -13,6 +13,7 @@ export 'dismissible_widget.dart';
 export 'draggable_grid_page.dart';
 export 'draggable_widget.dart';
 export 'floating_touch.dart';
+export 'flutter_jd_address_selector.dart';
 export 'font_loader.dart';
 export 'frosting_widget.dart';
 export 'grid_paper.dart';

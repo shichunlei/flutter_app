@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/juzimi.dart';
 import 'package:flutter_app/page_index.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 

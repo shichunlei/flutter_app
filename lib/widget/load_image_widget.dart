@@ -12,7 +12,7 @@ class LoadImageWidget extends StatefulWidget {
 }
 
 class LoadImageWidgetState extends State<LoadImageWidget> {
-  Future<PickedFile> _imageFile;
+  Future<XFile> _imageFile;
   bool isVideo = false;
   VideoPlayerController _controller;
   VoidCallback listener;
@@ -22,24 +22,21 @@ class LoadImageWidgetState extends State<LoadImageWidget> {
       if (_controller != null) {
         _controller.removeListener(listener);
       }
-      PickedFile videoFile = await ImagePicker().getVideo(source: source);
+      XFile videoFile = await ImagePicker().pickVideo(source: source);
       if (videoFile != null && mounted) {
         String videoFilePath = videoFile.path;
 
         // 视频地址
         debugPrint("视频地址==========:$videoFilePath");
 
-        String filename = videoFilePath.substring(
-            videoFilePath.lastIndexOf("/") + 1, videoFilePath.length);
+        String filename = videoFilePath.substring(videoFilePath.lastIndexOf("/") + 1, videoFilePath.length);
         debugPrint(filename);
 
-        String videoFolderPath =
-            videoFilePath.substring(0, videoFilePath.lastIndexOf("/") + 1);
+        String videoFolderPath = videoFilePath.substring(0, videoFilePath.lastIndexOf("/") + 1);
 
         String newPath = await FileUtil.getInstance().getLocalPath() + "/";
 
-        String path = await FileUtil.getInstance()
-            .copyFile(filename, videoFolderPath, newPath);
+        String path = await FileUtil.getInstance().copyFile(filename, videoFolderPath, newPath);
 
         debugPrint("path====$path");
 
@@ -51,7 +48,7 @@ class LoadImageWidgetState extends State<LoadImageWidget> {
           });
       }
     } else {
-      _imageFile = ImagePicker().getImage(source: source);
+      _imageFile = ImagePicker().pickImage(source: source);
     }
 
     setState(() {});
@@ -106,22 +103,15 @@ class LoadImageWidgetState extends State<LoadImageWidget> {
   }
 
   Widget _previewImage() {
-    return FutureBuilder<PickedFile>(
+    return FutureBuilder<XFile>(
         future: _imageFile,
-        builder: (BuildContext context, AsyncSnapshot<PickedFile> snapshot) {
-          if (snapshot.connectionState == ConnectionState.done &&
-              snapshot.data != null) {
+        builder: (BuildContext context, AsyncSnapshot<XFile> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done && snapshot.data != null) {
             return Image.file(File(snapshot.data.path));
           } else if (snapshot.error != null) {
-            return const Text(
-              'Error picking image.',
-              textAlign: TextAlign.center,
-            );
+            return const Text('Error picking image.', textAlign: TextAlign.center);
           } else {
-            return const Text(
-              'You have not yet picked an image.',
-              textAlign: TextAlign.center,
-            );
+            return const Text('You have not yet picked an image.', textAlign: TextAlign.center);
           }
         });
   }

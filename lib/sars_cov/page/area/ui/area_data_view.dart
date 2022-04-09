@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/sars_cov.dart';
-import 'package:flutter_charts/flutter_charts.dart';
+// import 'package:flutter_charts/flutter_charts.dart';
 
 import '../../../../page_index.dart';
 
@@ -147,43 +146,43 @@ class AreaDataView extends StatelessWidget {
               style: TextStyle(color: Color(0xFF4E79F3)),
             ),
           ),
-          Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(10.0),
-              color: Colors.white,
-              height: 300,
-              child: SfCartesianChart(
-                  legend: Legend(
-                    isVisible: true,
-                    position: LegendPosition.bottom,
-                  ),
-                  primaryXAxis: CategoryAxis(),
-                  primaryYAxis: NumericAxis(),
-                  tooltipBehavior: TooltipBehavior(enable: true),
-                  series: <ChartSeries<HistoryBean, String>>[
-                    SplineSeries<HistoryBean, String>(
-                      name: "确诊",
-                      dataSource: history,
-                      xValueMapper: (HistoryBean sales, _) => sales.date,
-                      yValueMapper: (HistoryBean sales, _) =>
-                          sales.confirmedCount,
-                      color: Color(0xFFEE836C),
-                    ),
-                    SplineSeries<HistoryBean, String>(
-                      name: "死亡",
-                      dataSource: history,
-                      xValueMapper: (HistoryBean sales, _) => sales.date,
-                      yValueMapper: (HistoryBean sales, _) => sales.deadCount,
-                      color: Color(0xFF164F81),
-                    ),
-                    SplineSeries<HistoryBean, String>(
-                      name: "治愈",
-                      dataSource: history,
-                      xValueMapper: (HistoryBean sales, _) => sales.date,
-                      yValueMapper: (HistoryBean sales, _) => sales.curedCount,
-                      color: Color(0xFFF8DD7F),
-                    ),
-                  ])),
+          // Container(
+          //     width: double.infinity,
+          //     padding: EdgeInsets.all(10.0),
+          //     color: Colors.white,
+          //     height: 300,
+          //     child: SfCartesianChart(
+          //         legend: Legend(
+          //           isVisible: true,
+          //           position: LegendPosition.bottom,
+          //         ),
+          //         primaryXAxis: CategoryAxis(),
+          //         primaryYAxis: NumericAxis(),
+          //         tooltipBehavior: TooltipBehavior(enable: true),
+          //         series: <ChartSeries<HistoryBean, String>>[
+          //           SplineSeries<HistoryBean, String>(
+          //             name: "确诊",
+          //             dataSource: history,
+          //             xValueMapper: (HistoryBean sales, _) => sales.date,
+          //             yValueMapper: (HistoryBean sales, _) =>
+          //                 sales.confirmedCount,
+          //             color: Color(0xFFEE836C),
+          //           ),
+          //           SplineSeries<HistoryBean, String>(
+          //             name: "死亡",
+          //             dataSource: history,
+          //             xValueMapper: (HistoryBean sales, _) => sales.date,
+          //             yValueMapper: (HistoryBean sales, _) => sales.deadCount,
+          //             color: Color(0xFF164F81),
+          //           ),
+          //           SplineSeries<HistoryBean, String>(
+          //             name: "治愈",
+          //             dataSource: history,
+          //             xValueMapper: (HistoryBean sales, _) => sales.date,
+          //             yValueMapper: (HistoryBean sales, _) => sales.curedCount,
+          //             color: Color(0xFFF8DD7F),
+          //           ),
+          //         ])),
           Container(
             width: double.infinity,
             margin: EdgeInsets.only(top: 10.0),

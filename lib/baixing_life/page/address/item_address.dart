@@ -14,8 +14,7 @@ class ItemAddress extends StatefulWidget {
   createState() => _ItemAddressState();
 }
 
-class _ItemAddressState extends State<ItemAddress>
-    with SingleTickerProviderStateMixin {
+class _ItemAddressState extends State<ItemAddress> with SingleTickerProviderStateMixin {
   bool _isCheck = false;
 
   Animation<double> _animation;
@@ -26,11 +25,9 @@ class _ItemAddressState extends State<ItemAddress>
     super.initState();
 
     // 初始化动画控制
-    _controller = new AnimationController(
-        duration: const Duration(milliseconds: 450), vsync: this);
+    _controller = new AnimationController(duration: const Duration(milliseconds: 450), vsync: this);
     // 动画曲线
-    CurvedAnimation _curvedAnimation =
-        CurvedAnimation(parent: _controller, curve: Curves.easeOutSine);
+    CurvedAnimation _curvedAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeOutSine);
     _animation = Tween(begin: 0.0, end: 1.1).animate(_curvedAnimation);
   }
 
@@ -47,65 +44,50 @@ class _ItemAddressState extends State<ItemAddress>
         child: Stack(children: <Widget>[
           Container(
               padding: EdgeInsets.all(16),
-              child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                          Row(children: <Widget>[
-                            Text('${widget.address.name}',
-                                style: TextStyles.textBoldDark16),
-                            Gaps.hGap10,
-                            Text('${widget.address.phone}',
-                                style: TextStyles.textDark14),
-                            Offstage(
-                                offstage: !widget.address.isDefault,
-                                child: Row(children: <Widget>[
-                                  Gaps.hGap8,
-                                  Chip(
-                                      backgroundColor: Colors.red,
-                                      label: Text('默认',
-                                          style: TextStyles.textWhite12))
-                                ])),
-                            Offstage(
-                                offstage: widget.address?.tag?.isEmpty,
-                                child: Row(children: <Widget>[
-                                  Gaps.hGap8,
-                                  Chip(
-                                      backgroundColor: Colors.deepPurple,
-                                      label: Text('${widget.address.tag}',
-                                          style: TextStyles.textWhite12))
-                                ]))
-                          ]),
-                          Gaps.vGap8,
-                          Text(
-                              '${widget.address.province}${widget.address.city}${widget.address.county}${widget.address.address}',
-                              style: TextStyles.textDark14,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis)
+              child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+                Expanded(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+                  Row(children: <Widget>[
+                    Text('${widget.address.name}', style: TextStyles.textBoldDark16),
+                    Gaps.hGap10,
+                    Text('${widget.address.phone}', style: TextStyles.textDark14),
+                    Offstage(
+                        offstage: !widget.address.isDefault,
+                        child: Row(children: <Widget>[
+                          Gaps.hGap8,
+                          Chip(backgroundColor: Colors.red, label: Text('默认', style: TextStyles.textWhite12))
                         ])),
-                    InkWell(
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        child: Container(
-                            padding: EdgeInsets.all(2),
-                            width: 20.0,
-                            height: 20.0,
-                            child: Icon(Icons.more_horiz)),
-                        onTap: () {
-                          /// 开始执行动画
-                          _controller.forward(from: 0.0);
-                          setState(() => _isCheck = true);
-                        })
-                  ])),
+                    Offstage(
+                        offstage: widget.address?.tag?.isEmpty,
+                        child: Row(children: <Widget>[
+                          Gaps.hGap8,
+                          Chip(
+                              backgroundColor: Colors.deepPurple,
+                              label: Text('${widget.address.tag}', style: TextStyles.textWhite12))
+                        ]))
+                  ]),
+                  Gaps.vGap8,
+                  Text(
+                      '${widget.address.province}${widget.address.city}${widget.address.county}${widget.address.address}',
+                      style: TextStyles.textDark14,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis)
+                ])),
+                InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    child:
+                        Container(padding: EdgeInsets.all(2), width: 20.0, height: 20.0, child: Icon(Icons.more_horiz)),
+                    onTap: () {
+                      /// 开始执行动画
+                      _controller.forward(from: 0.0);
+                      setState(() => _isCheck = true);
+                    })
+              ])),
           Positioned.fill(
               child: Offstage(
                   offstage: !_isCheck,
-                  child: AnimatedBuilder(
-                      animation: _animation,
-                      builder: (_, child) => _buildMarkView())))
+                  child: AnimatedBuilder(animation: _animation, builder: (_, child) => _buildMarkView())))
         ]));
   }
 
@@ -125,55 +107,52 @@ class _ItemAddressState extends State<ItemAddress>
                         buttonTheme: ButtonThemeData(
                             minWidth: 56.0,
                             height: 36.0,
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
+                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                             // 距顶部距离为0
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(24.0)))),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          FlatButton(
-                              color: Colors.white,
-                              onPressed: () {
-                                _controller.reverse(from: 1.1);
-                                _isCheck = false;
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.0)))),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: <Widget>[
+                      TextButton(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors.white),
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
+                          onPressed: () {
+                            _controller.reverse(from: 1.1);
+                            _isCheck = false;
 
-                                pushNewPage(
-                                    context,
-                                    CreateEditAddressPage(
-                                        title: '${S.of(context).eidt_address}',
-                                        id: widget.address.id));
-                              },
-                              child: Text('${S.of(context).edit}',
-                                  style: TextStyles.textBlue14)),
-                          FlatButton(
-                              color: Colors.white,
-                              onPressed: () {
-                                _controller.reverse(from: 1.1);
-                                _isCheck = false;
+                            pushNewPage(context,
+                                CreateEditAddressPage(title: '${S.of(context).eidt_address}', id: widget.address.id));
+                          },
+                          child: Text('${S.of(context).edit}', style: TextStyles.textBlue14)),
+                      TextButton(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors.white),
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
+                          onPressed: () {
+                            _controller.reverse(from: 1.1);
+                            _isCheck = false;
 
-                                _showDeleteBottomSheet(widget.address?.id);
-                              },
-                              child: Text('${S.of(context).delete}',
-                                  style: TextStyles.textRed14)),
-                          FlatButton(
-                              color: Colors.white,
-                              onPressed: () {
-                                _controller.reverse(from: 1.1);
-                                _isCheck = false;
+                            _showDeleteBottomSheet(widget.address?.id);
+                          },
+                          child: Text('${S.of(context).delete}', style: TextStyles.textRed14)),
+                      TextButton(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors.white),
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
+                          onPressed: () {
+                            _controller.reverse(from: 1.1);
+                            _isCheck = false;
 
-                                if (!widget.address.isDefault) {
-                                  Store.value<AddressModel>(context,
-                                          listen: false)
-                                      .updateAddressDefault(
-                                          context, widget.address?.id, true);
-                                }
-                              },
-                              child:
-                                  Text('设为默认', style: TextStyles.textGrey14)),
-                          Gaps.hGap8
-                        ])))));
+                            if (!widget.address.isDefault) {
+                              Store.value<AddressModel>(context, listen: false)
+                                  .updateAddressDefault(context, widget.address?.id, true);
+                            }
+                          },
+                          child: Text('设为默认', style: TextStyles.textGrey14)),
+                      Gaps.hGap8
+                    ])))));
   }
 
   _showDeleteBottomSheet(int id) async {
@@ -189,28 +168,28 @@ class _ItemAddressState extends State<ItemAddress>
                         Container(
                             alignment: Alignment.center,
                             height: 52.0,
-                            child: Text("是否确认删除，防止错误操作",
-                                style: TextStyles.textDark16)),
+                            child: Text("是否确认删除，防止错误操作", style: TextStyles.textDark16)),
                         Gaps.line,
                         Container(
                             height: 54.0,
                             width: double.infinity,
-                            child: FlatButton(
-                                textColor: Colors.red,
-                                child:
-                                    Text("确认删除", style: TextStyles.textRed16),
-                                onPressed: () => Store.value<AddressModel>(
-                                        context,
-                                        listen: false)
-                                    .deleteAddress(context, id))),
+                            child: TextButton(
+                                style: ButtonStyle(
+                                    shape: MaterialStateProperty.all(
+                                        RoundedRectangleBorder(borderRadius: BorderRadius.zero))),
+                                child: Text("确认删除", style: TextStyles.textRed16),
+                                onPressed: () =>
+                                    Store.value<AddressModel>(context, listen: false).deleteAddress(context, id))),
                         Gaps.line,
                         Container(
                             height: 54.0,
                             width: double.infinity,
-                            child: FlatButton(
-                                textColor: Colors.grey,
-                                child: Text("${S.of(context).cancel}",
-                                    style: TextStyles.textGrey16),
+                            child: TextButton(
+                                style: ButtonStyle(
+                                    textStyle: MaterialStateProperty.all(TextStyles.textGrey16),
+                                    shape: MaterialStateProperty.all(
+                                        RoundedRectangleBorder(borderRadius: BorderRadius.zero))),
+                                child: Text("${S.of(context).cancel}", style: TextStyles.textGrey16),
                                 onPressed: () => Navigator.of(context).pop()))
                       ]))));
         });

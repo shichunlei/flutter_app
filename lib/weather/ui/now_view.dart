@@ -29,7 +29,7 @@ class NowView extends StatelessWidget {
                 child: Row(
                     children: <Widget>[
                       Icon(CustomIcon.air, color: air?.aqiColor),
-                      Text('${air?.aqi}  ${air?.qlty}',
+                      Text('${air?.aqi}  ${air?.qLty}',
                           style: TextStyle(color: Colors.white)),
                       Icon(Icons.keyboard_arrow_right, color: Colors.white)
                     ],

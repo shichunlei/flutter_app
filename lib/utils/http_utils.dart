@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bean/base_result.dart';
 
 import '../page_index.dart';
 
@@ -122,10 +120,8 @@ class HttpUtils {
           path,
           data: data != null ? FormData.fromMap(data) : null,
           queryParameters: data,
-          options: Options(method: method),
-          onReceiveProgress: (int count, int total) {
-        Log.d(
-            'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
+          options: Options(method: method), onReceiveProgress: (int count, int total) {
+        Log.d('onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
       }, onSendProgress: (int count, int total) {
         Log.d('onSendProgress: ${(count / total * 100).toStringAsFixed(0)} %');
       }, cancelToken: cancelToken);
@@ -140,15 +136,13 @@ class HttpUtils {
   }
 
   Future<Response> download(url, savePath,
-      {Function(int count, int total) onReceiveProgress,
-      CancelToken cancelToken}) async {
+      {Function(int count, int total) onReceiveProgress, CancelToken cancelToken}) async {
     Log.d('download请求启动! url：$url');
     Response response;
     try {
-      response = await Dio().download(url, savePath, cancelToken: cancelToken,
-          onReceiveProgress: (int count, int total) {
-        Log.d(
-            'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
+      response =
+          await Dio().download(url, savePath, cancelToken: cancelToken, onReceiveProgress: (int count, int total) {
+        Log.d('onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
 
         onReceiveProgress(count, total);
       });
@@ -165,19 +159,16 @@ class HttpUtils {
   /// [path] The url path.
   /// [data] The request data
   ///
-  Future<Response> uploadFile(String path,
-      {String baseUrl = ApiUrl.BASE_URL, @required FormData data}) async {
+  Future<Response> uploadFile(String path, {String baseUrl = ApiUrl.BASE_URL, @required FormData data}) async {
     /// 打印请求相关信息：请求地址、请求方式、请求参数
     Log.d("请求地址：【$baseUrl$path】");
     Log.d('请求参数：' + data.toString());
     Response response;
     try {
       response = await Dio(
-        BaseOptions(
-            baseUrl: baseUrl, connectTimeout: 15000, receiveTimeout: 15000),
+        BaseOptions(baseUrl: baseUrl, connectTimeout: 15000, receiveTimeout: 15000),
       ).post("$path", data: data, onReceiveProgress: (int count, int total) {
-        Log.d(
-            'onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
+        Log.d('onReceiveProgress: ${(count / total * 100).toStringAsFixed(0)} %');
       }, onSendProgress: (int count, int total) {
         Log.d('onSendProgress: ${(count / total * 100).toStringAsFixed(0)} %');
       });
@@ -277,20 +268,16 @@ class HttpUtils {
     try {
       if (method == GET) {
         if (null != params && params.isNotEmpty) {
-          response = await dio.get(path,
-              queryParameters: params, cancelToken: cancelToken);
+          response = await dio.get(path, queryParameters: params, cancelToken: cancelToken);
         } else {
           response = await dio.get(path, cancelToken: cancelToken);
         }
       } else if (method == POST) {
-        response = await dio.post(path, data: params, queryParameters: params,
-            onSendProgress: (int count, int total) {
-          Log.d(
-              'onSendProgress: ${(count / total * 100).toStringAsFixed(0)} %');
+        response = await dio.post(path, data: params, queryParameters: params, onSendProgress: (int count, int total) {
+          Log.d('onSendProgress: ${(count / total * 100).toStringAsFixed(0)} %');
         }, cancelToken: cancelToken);
       } else if (method == DELETE) {
-        response = await dio.delete(path,
-            queryParameters: params, cancelToken: cancelToken);
+        response = await dio.delete(path, queryParameters: params, cancelToken: cancelToken);
       }
     } on DioError catch (error) {
       // 请求错误处理
@@ -298,9 +285,7 @@ class HttpUtils {
       formatError(error);
       _error(errorCallBack, {"message": error.message});
     }
-    if (response != null &&
-        response.statusCode >= 200 &&
-        response.statusCode < 300) {
+    if (response != null && response.statusCode >= 200 && response.statusCode < 300) {
       if (useBaseResult) {
         BaseResult result = BaseResult.fromMap(json.decode(response.data));
         if (result == null || result.code != '0') {
@@ -312,8 +297,7 @@ class HttpUtils {
         successCallBack(json.decode(response.data));
       }
     } else {
-      _error(errorCallBack,
-          {"message": response.statusMessage, "code": response.statusCode});
+      _error(errorCallBack, {"message": response.statusMessage, "code": response.statusCode});
     }
   }
 

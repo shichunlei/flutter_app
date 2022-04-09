@@ -8,8 +8,7 @@ class RangesData {
     if (map == null) return null;
     RangesData data = RangesData();
     data.cover = map['cover'] != null ? CoverBean.fromMap(map['cover']) : null;
-    data.ranges = []
-      ..addAll((map['ranges'] as List ?? []).map((o) => RangesBean.fromMap(o)));
+    data.ranges = []..addAll((map['ranges'] as List ?? []).map((o) => RangesBean.fromMap(o)));
     return data;
   }
 
@@ -29,10 +28,8 @@ class RangesBean {
   static RangesBean fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     RangesBean rangesBean = RangesBean();
-    rangesBean.info =
-        map['info'] != null ? CoverBean.fromMap(map['info']) : null;
-    rangesBean.subjects = []
-      ..addAll((map['subjects'] as List ?? []).map((o) => Movie.fromMap(o)));
+    rangesBean.info = map['info'] != null ? CoverBean.fromMap(map['info']) : null;
+    rangesBean.subjects = []..addAll((map['subjects'] as List ?? []).map((o) => Movie.fromMap(o)));
     return rangesBean;
   }
 
@@ -74,8 +71,7 @@ class CoverBean {
     coverBean.primaryColorDark = map['primary_color_dark'];
     coverBean.year = map['year'];
     coverBean.id = map['id'];
-    coverBean.subject =
-        map['subject'] != null ? Movie.fromMap(map['subject']) : null;
+    coverBean.subject = map['subject'] != null ? Movie.fromMap(map['subject']) : null;
     return coverBean;
   }
 
@@ -109,16 +105,11 @@ class MovieHomeData {
   static MovieHomeData fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     MovieHomeData data = MovieHomeData();
-    data.banners = []
-      ..addAll((map['banners'] as List ?? []).map((o) => MovieNews.fromMap(o)));
-    data.inTheaters = []
-      ..addAll((map['in_theaters'] as List ?? []).map((o) => Movie.fromMap(o)));
-    data.soonMovies = []
-      ..addAll((map['soon_movies'] as List ?? []).map((o) => Movie.fromMap(o)));
-    data.category = []
-      ..addAll((map['category'] as List ?? []).map((o) => MovieTag.fromMap(o)));
-    data.ranges = []
-      ..addAll((map['ranges'] as List ?? []).map((o) => MovieTag.fromMap(o)));
+    data.banners = []..addAll((map['banners'] as List ?? []).map((o) => MovieNews.fromMap(o)));
+    data.inTheaters = []..addAll((map['in_theaters'] as List ?? []).map((o) => Movie.fromMap(o)));
+    data.soonMovies = []..addAll((map['soon_movies'] as List ?? []).map((o) => Movie.fromMap(o)));
+    data.category = []..addAll((map['category'] as List ?? []).map((o) => MovieTag.fromMap(o)));
+    data.ranges = []..addAll((map['ranges'] as List ?? []).map((o) => MovieTag.fromMap(o)));
     return data;
   }
 
@@ -146,8 +137,7 @@ class MovieTag {
     categoryBean.tip = map['tip'];
     categoryBean.title = map['title'];
     categoryBean.hasMore = map['has_more'];
-    categoryBean.subjects = []
-      ..addAll((map['subjects'] as List ?? []).map((o) => Movie.fromMap(o)));
+    categoryBean.subjects = []..addAll((map['subjects'] as List ?? []).map((o) => Movie.fromMap(o)));
     return categoryBean;
   }
 
@@ -409,13 +399,10 @@ class Movie {
     movie.hasSchedule = map['has_schedule'];
     movie.hasTicket = map['has_ticket'];
     movie.doCount = map['do_count'] == null ? 0 : map['do_count'];
-    movie.seasonsCount =
-        map['seasons_count'] == null ? 0 : map['seasons_count'];
+    movie.seasonsCount = map['seasons_count'] == null ? 0 : map['seasons_count'];
     movie.collection = map['collection'];
-    movie.episodesCount =
-        map['episodes_count'] == null ? '0' : map['episodes_count'];
-    movie.currentSeason =
-        map['current_season'] == null ? '0' : map['current_season'];
+    movie.episodesCount = map['episodes_count'] == null ? '0' : map['episodes_count'];
+    movie.currentSeason = map['current_season'] == null ? '0' : map['current_season'];
     movie.reviewsCount = map['reviews_count'];
     movie.wishCount = map['wish_count'];
     movie.collectCount = map['collect_count'];
@@ -430,33 +417,22 @@ class Movie {
 
     movie.images = map['images'] == null ? null : Images.fromMap(map['images']);
     movie.rating = map['rating'] == null ? null : Rating.fromMap(map['rating']);
-    movie.bloopers =
-        map['bloopers'] == null ? [] : Clips.fromMapList(map['bloopers']);
+    movie.bloopers = map['bloopers'] == null ? [] : Clips.fromMapList(map['bloopers']);
     movie.casts = map['casts'] == null ? [] : Casts.fromMapList(map['casts']);
     movie.clips = map['clips'] == null ? [] : Clips.fromMapList(map['clips']);
-    movie.directors =
-        map['directors'] == null ? [] : Casts.fromMapList(map['directors']);
-    movie.photos =
-        map['photos'] == null ? [] : Photos.fromMapList(map['photos']);
-    movie.popularComments = map['popular_comments'] == null
-        ? []
-        : Reviews.fromMapList(map['popular_comments']);
-    movie.popularReviews = map['popular_reviews'] == null
-        ? []
-        : Reviews.fromMapList(map['popular_reviews']);
-    movie.trailers =
-        map['trailers'] == null ? [] : Clips.fromMapList(map['trailers']);
-    movie.videos =
-        map['videos'] == null ? [] : Videos.fromMapList(map['videos']);
-    movie.writers =
-        map['writers'] == null ? [] : Casts.fromMapList(map['writers']);
+    movie.directors = map['directors'] == null ? [] : Casts.fromMapList(map['directors']);
+    movie.photos = map['photos'] == null ? [] : Photos.fromMapList(map['photos']);
+    movie.popularComments = map['popular_comments'] == null ? [] : Reviews.fromMapList(map['popular_comments']);
+    movie.popularReviews = map['popular_reviews'] == null ? [] : Reviews.fromMapList(map['popular_reviews']);
+    movie.trailers = map['trailers'] == null ? [] : Clips.fromMapList(map['trailers']);
+    movie.videos = map['videos'] == null ? [] : Videos.fromMapList(map['videos']);
+    movie.writers = map['writers'] == null ? [] : Casts.fromMapList(map['writers']);
 
     List<dynamic> aka = map['aka'] == null ? [] : map['aka'];
     movie.aka = [];
     movie.aka.addAll(aka.map((o) => o.toString()));
 
-    List<dynamic> blooperUrls =
-        map['blooper_urls'] == null ? [] : map['blooper_urls'];
+    List<dynamic> blooperUrls = map['blooper_urls'] == null ? [] : map['blooper_urls'];
     movie.blooperUrls = [];
     movie.blooperUrls.addAll(blooperUrls.map((o) => o.toString()));
 
@@ -492,20 +468,11 @@ class Movie {
     movie.roles = [];
     movie.roles.addAll(roleList.map((o) => o.toString()));
 
-    List<dynamic> trailerUrlList =
-        map['trailer_urls'] == null ? [] : map['trailer_urls'];
+    List<dynamic> trailerUrlList = map['trailer_urls'] == null ? [] : map['trailer_urls'];
     movie.trailerUrls = [];
     movie.trailerUrls.addAll(trailerUrlList.map((o) => o.toString()));
 
     return movie;
-  }
-
-  static List<Movie> fromMapList(dynamic mapList) {
-    List<Movie> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
   }
 }
 
@@ -529,6 +496,7 @@ class Celebrity {
   List<Movie> subjects;
 
   static Celebrity fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
     Celebrity celebrity = Celebrity();
     celebrity.website = map['website'];
     celebrity.mobileUrl = map['mobile_url'];
@@ -541,12 +509,9 @@ class Celebrity {
     celebrity.bornPlace = map['born_place'];
     celebrity.constellation = map['constellation'];
     celebrity.id = map['id'];
-    celebrity.avatars =
-        map['avatars'] == null ? null : Avatars.fromMap(map['avatars']);
-    celebrity.photos =
-        map['photos'] == null ? [] : Photos.fromMapList(map['photos']);
-    celebrity.subjects =
-        map['subjects'] == null ? [] : Movie.fromMapList(map['subjects']);
+    celebrity.avatars = Avatars.fromMap(map['avatars']);
+    celebrity.photos = (map['photos'] as List ?? []).map((e) => Photos.fromMap(e)).toList();
+    celebrity.subjects = (map['subjects'] as List ?? []).map((e) => Movie.fromMap(e)).toList();
 
     List<dynamic> aka = map['aka'] == null ? [] : map['aka'];
     celebrity.aka = [];
@@ -556,20 +521,11 @@ class Celebrity {
     celebrity.akaEn = [];
     celebrity.akaEn.addAll(akaEn.map((o) => o.toString()));
 
-    List<dynamic> professions =
-        map['professions'] == null ? [] : map['professions'];
+    List<dynamic> professions = map['professions'] == null ? [] : map['professions'];
     celebrity.professions = [];
     celebrity.professions.addAll(professions.map((o) => o.toString()));
 
     return celebrity;
-  }
-
-  static List<Celebrity> fromMapList(dynamic mapList) {
-    List<Celebrity> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
   }
 
   @override
@@ -591,17 +547,12 @@ class Casts {
     castsListBean.name = map['name'];
     castsListBean.alt = map['alt'];
     castsListBean.id = map['id'];
-    castsListBean.avatars =
-        map['avatars'] == null ? null : Avatars.fromMap(map['avatars']);
+    castsListBean.avatars = map['avatars'] == null ? null : Avatars.fromMap(map['avatars']);
     return castsListBean;
   }
 
   static List<Casts> fromMapList(dynamic mapList) {
-    List<Casts> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
+    return (mapList as List ?? []).map((e) => fromMap(e)).toList();
   }
 
   @override
@@ -651,17 +602,12 @@ class Photos {
     photos.commentsCount = map['comments_count'];
     photos.recsCount = map['recs_count'];
     photos.position = map['position'];
-    photos.author =
-        map['author'] == null ? null : Author.fromMap(map['author']);
+    photos.author = map['author'] == null ? null : Author.fromMap(map['author']);
     return photos;
   }
 
   static List<Photos> fromMapList(dynamic mapList) {
-    List<Photos> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
+    return (mapList as List ?? []).map((e) => fromMap(e)).toList();
   }
 
   @override
@@ -700,19 +646,13 @@ class Reviews {
     reviews.usefulCount = map['useful_count'];
     reviews.uselessCount = map['useless_count'];
     reviews.commentsCount = map['comments_count'];
-    reviews.author =
-        map['author'] == null ? null : Author.fromMap(map['author']);
-    reviews.rating =
-        map['rating'] == null ? null : Rating.fromMap(map['rating']);
+    reviews.author = map['author'] == null ? null : Author.fromMap(map['author']);
+    reviews.rating = map['rating'] == null ? null : Rating.fromMap(map['rating']);
     return reviews;
   }
 
   static List<Reviews> fromMapList(dynamic mapList) {
-    List<Reviews> list = new List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
+    return (mapList as List ?? []).map((e) => fromMap(e)).toList();
   }
 }
 
@@ -736,11 +676,7 @@ class Author {
   }
 
   static List<Author> fromMapList(dynamic mapList) {
-    List<Author> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
+    return (mapList as List ?? []).map((e) => fromMap(e)).toList();
   }
 
   @override
@@ -755,19 +691,12 @@ class Avatars {
   String medium;
 
   static Avatars fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
     Avatars avatarsBean = Avatars();
     avatarsBean.small = map != null ? map['small'] : "";
     avatarsBean.large = map != null ? map['large'] : "";
     avatarsBean.medium = map != null ? map['medium'] : "";
     return avatarsBean;
-  }
-
-  static List<Avatars> fromMapList(dynamic mapList) {
-    List<Avatars> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
   }
 
   @override
@@ -792,11 +721,7 @@ class Videos {
   }
 
   static List<Videos> fromMapList(dynamic mapList) {
-    List<Videos> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
+    return (mapList as List ?? []).map((e) => fromMap(e)).toList();
   }
 }
 
@@ -814,11 +739,7 @@ class Source {
   }
 
   static List<Source> fromMapList(dynamic mapList) {
-    List<Source> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
+    return (mapList as List ?? []).map((e) => fromMap(e)).toList();
   }
 
   @override
@@ -842,17 +763,12 @@ class Rating {
     ratingBean.min = map['min'];
     ratingBean.stars = map['stars'] == null ? "" : "${map['stars']}";
     ratingBean.average = map['average'] == null ? 0 : map['average'];
-    ratingBean.details =
-        map['details'] == null ? null : Details.fromMap(map['details']);
+    ratingBean.details = map['details'] == null ? null : Details.fromMap(map['details']);
     return ratingBean;
   }
 
   static List<Rating> fromMapList(dynamic mapList) {
-    List<Rating> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
+    return (mapList as List ?? []).map((e) => fromMap(e)).toList();
   }
 
   @override
@@ -879,11 +795,7 @@ class Details {
   }
 
   static List<Details> fromMapList(dynamic mapList) {
-    List<Details> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
+    return (mapList as List ?? []).map((e) => fromMap(e)).toList();
   }
 
   @override
@@ -914,11 +826,7 @@ class Clips {
   }
 
   static List<Clips> fromMapList(dynamic mapList) {
-    List<Clips> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
+    return (mapList as List ?? []).map((e) => fromMap(e)).toList();
   }
 
   @override
@@ -941,10 +849,6 @@ class Images {
   }
 
   static List<Images> fromMapList(dynamic mapList) {
-    List<Images> list = List(mapList.length);
-    for (int i = 0; i < mapList.length; i++) {
-      list[i] = fromMap(mapList[i]);
-    }
-    return list;
+    return (mapList as List ?? []).map((e) => fromMap(e)).toList();
   }
 }

@@ -29,52 +29,50 @@ dependencies: # 应用或包依赖的其它包或插件
   animated_text_kit: ^4.2.1
 
   # 音频播放
-  audioplayers: ^0.19.0
+  audioplayers: ^0.20.1
 
   # AzListView，Flutter 城市列表，联系人列表，自定义Header，索引，悬停效果。
-  azlistview: ^2.0.0-nullsafety.0
+  azlistview: ^2.0.0
 
-  badges: ^1.1.6
+  badges: ^2.0.2
 
   # 条形码
   barcode_flutter: ^1.1.2
 
   # 扫描二维码
-  barcode_scan: ^2.0.2
+  barcode_scan: ^3.0.1
 
   # 带缓存的图片
-  cached_network_image: ^3.1.0
+  cached_network_image: ^3.2.0
 
-  chewie: ^1.2.2
-
-  convert: ^3.0.0
+  convert: ^3.0.1
 
   clippy_flutter: ^2.0.0-nullsafety.1
 
   # 设备信息
-  device_info: ^2.0.2
+  device_info_plus: ^3.2.2
 
   # 网络请求库
-  dio: ^4.0.0
+  dio: ^4.0.6
 
   easy_contact_picker: ^0.0.2
 
+  encrypt: ^5.0.1
+
   # 英文单词库
   english_words: ^4.0.0
-
-  encrypt: any
 
   fancy_bottom_navigation: ^0.3.3
 
   # flare 插件
   flare_flutter: ^2.0.6
 
-  flutter_charts:
-    git:
-      url: https://github.com/shichunlei/flutter_charts
+  #  flutter_charts:
+  #    git:
+  #      url: https://github.com/shichunlei/flutter_charts
 
   # 颜色选择器
-  flutter_colorpicker: ^0.6.0
+  flutter_colorpicker: ^1.0.3
 
   # 刷新加载控件
   flutter_easyrefresh: ^2.2.1
@@ -82,25 +80,17 @@ dependencies: # 应用或包依赖的其它包或插件
   # 侧滑菜单
   flutter_inner_drawer: 0.5.7+1
 
-  # 仿京东地址选择器
-  flutter_jd_address_selector:
-    git:
-      url: https://github.com/shichunlei/flutter_jd_address_selector
-
   flutter_libs:
     path: flutter_libs/
-
-  # https://github.com/dooboolab/flutter_sound
-#  flutter_sound: ^2.1.1
 
   # 加载提示组件
   flutter_spinkit: ^5.1.0
 
   # 瀑布流
-  flutter_staggered_grid_view: ^0.4.0
+  flutter_staggered_grid_view: ^0.4.1
 
   # banner
-  flutter_swiper: ^1.1.6
+  flutter_swiper_null_safety: ^1.0.2
 
   # 集成图标库
   # FontAwesome 地址：http://www.fontawesome.com.cn/
@@ -117,62 +107,54 @@ dependencies: # 应用或包依赖的其它包或插件
   # 天气背景
   flutter_weather_bg_null_safety: ^1.0.0
 
-  # webview
-  flutter_webview_plugin: ^0.4.0
-
-  flutter_widget_from_html: ^0.7.0
+  flutter_widget_from_html: ^0.8.5
 
   # 图片裁剪
-  image_cropper: ^1.4.1
+  image_cropper: ^1.5.1
 
   # 图片保存
-  image_gallery_saver: ^1.7.0
+  image_gallery_saver: ^1.7.1
 
   # 图片选择器
-  image_picker: ^0.8.4+1
+  image_picker: ^0.8.5
 
   # 汉字转拼音库 https://github.com/flutterchina/lpinyin
   lpinyin: ^2.0.3
 
-  modal_bottom_sheet: ^2.0.0
+  modal_bottom_sheet: ^2.0.1
 
-  multi_image_picker: ^4.8.1
+  multi_image_picker2: ^5.0.2
 
-  package_info: ^2.0.2
+  package_info_plus: ^1.4.2
 
-  palette_generator: ^0.3.1
+  palette_generator: ^0.3.3
 
   # 滑动视差效果图片 https://github.com/pulyaevskiy/parallax-image
   parallax_image: ^0.3.1+1
-
-#  path_provider: ^2.0.4
 
   # 权限管理
   permission_handler: ^7.2.0
 
   # PhotoView
-  photo_view: ^0.11.1
+  photo_view: ^0.13.0
 
-  provider: ^5.0.0
+  provider: ^6.0.2
 
   # flutter 生成二维码
-  qr_flutter: ^3.2.0
+  qr_flutter: ^4.0.0
 
-  quiver: ^2.0.0
+  quiver: ^3.0.1+1
 
   #
   rounded_letter: ^0.0.6
 
-  share: ^2.0.4
+  share_plus: ^4.0.3
 
   # SP
-  shared_preferences: ^2.0.7
+  shared_preferences: ^2.0.13
 
   # 对 flare API进行封装的插件，使用少量的代码即可实现交互动画
   smart_flare: ^0.2.9+1
-
-  # 数据库
-  # sqflite: ^2.0.0+4
 
   # 时间线 https://github.com/furkantektas/timeline_list
   timeline_list: ^0.0.6
@@ -180,7 +162,7 @@ dependencies: # 应用或包依赖的其它包或插件
   # 透明占位图片
   transparent_image: ^2.0.0
 
-  url_launcher: ^6.0.10
+  url_launcher: ^6.0.20
 
   # 手机震动
   vibration: ^1.7.4-nullsafety.0

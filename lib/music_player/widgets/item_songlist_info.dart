@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/store/index.dart';
 
 import '../../page_index.dart';
-import '../index.dart';
 
 class ItemSongListSong extends StatelessWidget {
   final Song item;

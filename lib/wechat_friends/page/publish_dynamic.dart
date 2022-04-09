@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:multi_image_picker/multi_image_picker.dart';
 
 import '../../page_index.dart';
 
@@ -8,8 +7,7 @@ class PublishDynamicPage extends StatefulWidget {
   final List<Asset> images;
   final int maxImages;
 
-  PublishDynamicPage({Key key, this.images: const [], this.maxImages: 9})
-      : super(key: key);
+  PublishDynamicPage({Key key, this.images: const [], this.maxImages: 9}) : super(key: key);
 
   @override
   createState() => _PublishDynamicPageState();
@@ -33,14 +31,17 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
         elevation: 0.0,
         actions: <Widget>[
           Container(
-            padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 10),
-            child: RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('发表', style: TextStyle(color: Colors.white)),
-                color: Colors.green),
-          )
+              padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 10),
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.green),
+                      textStyle: MaterialStateProperty.all(TextStyle(color: Colors.white)),
+                      shape:
+                          MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)))),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('发表')))
         ],
       ),
       body: SingleChildScrollView(
@@ -50,9 +51,7 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
             Container(
               padding: EdgeInsets.all(10.0),
               height: 100,
-              child: Form(
-                  onWillPop: _images.length > 0 ? _onBackPressed : null,
-                  child: TextField()),
+              child: Form(onWillPop: _images.length > 0 ? _onBackPressed : null, child: TextField()),
             ),
             Line(color: Colors.grey),
             GridView.builder(
@@ -63,8 +62,7 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
                     mainAxisSpacing: 5.0,
                     childAspectRatio: 1.0),
                 itemBuilder: (context, index) {
-                  if (_images.length < widget.maxImages &&
-                      index == _images.length) {
+                  if (_images.length < widget.maxImages && index == _images.length) {
                     return InkWell(
                       child: Image.asset('images/add_image.png'),
                       onTap: () {
@@ -96,9 +94,7 @@ class _PublishDynamicPageState extends State<PublishDynamicPage> {
                     ],
                   );
                 },
-                itemCount: _images.length < widget.maxImages
-                    ? _images.length + 1
-                    : _images.length,
+                itemCount: _images.length < widget.maxImages ? _images.length + 1 : _images.length,
                 //< widget.maxImages ? imageNum + 1 : imageNum,
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
