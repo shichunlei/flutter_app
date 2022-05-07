@@ -349,6 +349,12 @@ __iOS__
 | :--: | :--: | :--: | :--: |
 
 
+## Star趋势图
+
+[![Stargazers over time](https://starchart.cc/shichunlei/flutter_app.svg)](https://starchart.cc/shichunlei/flutter_app)
+
+
+
 ## 特别鸣谢
 
 
