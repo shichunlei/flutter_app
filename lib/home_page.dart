@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -9,6 +10,8 @@ import 'page_index.dart';
 import 'store/index.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key key}) : super(key: key);
+
   @override
   createState() => HomeStatePage();
 }
@@ -16,7 +19,9 @@ class HomePage extends StatefulWidget {
 class HomeStatePage extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Location location;
+  StreamSubscription<Map<String, Object>> _locationListener;
+
+  final AMapFlutterLocation _locationPlugin = AMapFlutterLocation();
 
   /// 上次点击时间
   DateTime _lastPressedAt;
@@ -63,14 +68,28 @@ class HomeStatePage extends State<HomePage> {
           infoText: S.of(context).updateAt);
     });
 
-    _location();
-  }
+    /// 设置是否已经包含高德隐私政策并弹窗展示显示用户查看，如果未包含或者没有弹窗展示，高德定位SDK将不会工作
+    ///
+    /// 高德SDK合规使用方案请参考官网地址：https://lbs.amap.com/news/sdkhgsy
+    /// <b>必须保证在调用定位功能之前调用， 建议首次启动App时弹出《隐私政策》并取得用户同意</b>
+    ///
+    /// 高德SDK合规使用方案请参考官网地址：https://lbs.amap.com/news/sdkhgsy
+    ///
+    /// [hasContains] 隐私声明中是否包含高德隐私政策说明
+    ///
+    /// [hasShow] 隐私权政策是否弹窗展示告知用户
+    AMapFlutterLocation.updatePrivacyShow(true, true);
 
-  @override
-  void dispose() {
-    AmapLocation.instance.stopLocation();
-    controller?.dispose();
-    super.dispose();
+    /// 设置是否已经取得用户同意，如果未取得用户同意，高德定位SDK将不会工作
+    ///
+    /// 高德SDK合规使用方案请参考官网地址：https://lbs.amap.com/news/sdkhgsy
+    ///
+    /// <b>必须保证在调用定位功能之前调用, 建议首次启动App时弹出《隐私政策》并取得用户同意</b>
+    ///
+    /// [hasAgree] 隐私权政策是否已经取得用户同意
+    AMapFlutterLocation.updatePrivacyAgree(true);
+
+    _location();
   }
 
   @override
@@ -90,9 +109,9 @@ class HomeStatePage extends State<HomePage> {
               ListView(
                   controller: controller,
                   padding: EdgeInsets.only(bottom: 60.0 + Utils.bottomSafeHeight),
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   children: _buildListBody(context)),
-              Container(
+              SizedBox(
                   child: AppBar(
                       backgroundColor: Theme.of(context).primaryColor.withOpacity(navAlpha),
                       centerTitle: false,
@@ -100,26 +119,29 @@ class HomeStatePage extends State<HomePage> {
                           onTap: () {
                             if (provider.defaultCity != '' && provider.defaultCity != '正在定位...')
                               pushNewPage(context, WeatherPage(provider.defaultCity));
+                            else {
+                              _startLocation();
+                            }
                           },
                           child: Column(
                               children: <Widget>[
                                 Row(children: <Widget>[
-                                  Text('${provider.defaultCity}', style: TextStyle(fontSize: 17.0)),
-                                  Icon(Icons.keyboard_arrow_down)
+                                  Text('${provider.defaultCity}', style: const TextStyle(fontSize: 17.0)),
+                                  const Icon(Icons.keyboard_arrow_down)
                                 ], mainAxisSize: MainAxisSize.min),
                                 Text(
                                     '${provider.defaultWeather?.now?.condTxt ?? ''} ${provider.defaultWeather?.now?.tmp ?? ''}',
-                                    style: TextStyle(fontSize: 13.0))
+                                    style: const TextStyle(fontSize: 13.0))
                               ],
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center)),
                       elevation: .0,
-                      leading:
-                          IconButton(icon: Icon(Icons.menu), onPressed: () => _scaffoldKey.currentState.openDrawer()),
+                      leading: IconButton(
+                          icon: const Icon(Icons.menu), onPressed: () => _scaffoldKey.currentState.openDrawer()),
                       actions: <Widget>[
                         IconButton(
-                            icon: Icon(Icons.refresh, semanticLabel: "refresh"),
-                            onPressed: () => getTestData(),
+                            icon: const Icon(Icons.refresh, semanticLabel: "refresh"),
+                            onPressed: () {},
                             tooltip: "Tune")
                       ]),
                   height: Utils.navigationBarHeight),
@@ -137,7 +159,7 @@ class HomeStatePage extends State<HomePage> {
           child: Swiper(
               itemBuilder: (context, index) => ImageLoadView(bannerImages[index]),
               itemCount: 4,
-              pagination: SwiperPagination(builder: SwiperPagination.fraction, alignment: Alignment.bottomRight),
+              pagination: const SwiperPagination(builder: SwiperPagination.fraction, alignment: Alignment.bottomRight),
               autoplay: true)))
       ..addAll(ExpandStateBean.expandStateList
           .map((value) => ExpansionTile(
@@ -145,10 +167,10 @@ class HomeStatePage extends State<HomePage> {
               backgroundColor: Theme.of(context).primaryColor.withOpacity(0.025),
               children: value.children
                   .map((child) => ListTile(
-                      contentPadding: EdgeInsets.only(left: 30, right: 20),
+                      contentPadding: const EdgeInsets.only(left: 30, right: 20),
                       title: Text(child.title),
                       onTap: () => pushNewPage(context, child.page),
-                      trailing: Icon(Icons.keyboard_arrow_right)))
+                      trailing: const Icon(Icons.keyboard_arrow_right)))
                   .toList(),
               onExpansionChanged: (bool value) {},
               leading: Icon(value.leading)))
@@ -160,7 +182,7 @@ class HomeStatePage extends State<HomePage> {
   Future<bool> _onBackPressed() async {
     if (_scaffoldKey.currentState.isDrawerOpen) {
       debugPrint("菜单打开着");
-    } else if (_lastPressedAt == null || DateTime.now().difference(_lastPressedAt) > Duration(seconds: 2)) {
+    } else if (_lastPressedAt == null || DateTime.now().difference(_lastPressedAt) > const Duration(seconds: 2)) {
       debugPrint("点击时间");
       //两次点击间隔超过2秒则重新计时
       _lastPressedAt = DateTime.now();
@@ -171,19 +193,148 @@ class HomeStatePage extends State<HomePage> {
   }
 
   Future<void> _location() async {
-    if (await PermissionsUtil.requestMapPermission()) {
-      location = await AmapLocation.instance.fetchLocation();
-      String city = location?.district;
-      String province = location?.province;
+    await requestPermission();
+
+    ///设置Android和iOS的apiKey<br>
+    ///key的申请请参考高德开放平台官网说明<br>
+    ///Android: https://lbs.amap.com/api/android-location-sdk/guide/create-project/get-key
+    ///iOS: https://lbs.amap.com/api/ios-location-sdk/guide/create-project/get-key
+    AMapFlutterLocation.setApiKey(Config.AMAP_KEY_ANDROID, Config.AMAP_KEY_IOS);
+
+    /// iOS 获取native精度类型
+    if (Platform.isIOS) {
+      requestAccuracyAuthorization();
+    }
+
+    /// 注册定位结果监听
+    _locationListener = _locationPlugin.onLocationChanged().listen((Map<String, dynamic> result) {
+      Log.d("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+$result}");
+      // {locTime: 2022-06-28 12:28:49, province: 北京市, callbackTime: 2022-06-28 12:29:09, district: 丰台区, country: 中国, street: 南三环西路辅路, speed: -1.0, latitude: 39.855544, city: 北京市, streetNumber: 24号, bearing: -1.0, accuracy: 65.0, adCode: 110106, altitude: 42.8427791595459, locationType: 1, longitude: 116.368163, cityCode: 010, address: 北京市丰台区南三环西路辅路靠近搜宝商务中心, description: 北京市丰台区南三环西路辅路靠近搜宝商务中心}}
+
+      String city = result["district"];
+      String province = result["province"];
       debugPrint("-----------------------------$province");
-      if (city == null) {
-        city = SpUtil.getString('current_city', defValue: '北京');
-      }
+      city ??= SpUtil.getString('current_city', defValue: '北京');
       Store.value<WeatherModel>(_scaffoldKey.currentContext, listen: false).getDefaultCityWeather(city);
-    } else {
-      ScaffoldMessenger.of(_scaffoldKey.currentContext).showSnackBar(SnackBar(content: Text('权限不足')));
+    });
+
+    _startLocation();
+  }
+
+  /// 设置定位参数
+  void _setLocationOption() {
+    if (null != _locationPlugin) {
+      AMapLocationOption locationOption = AMapLocationOption();
+
+      /// 是否单次定位
+      locationOption.onceLocation = true;
+
+      /// 是否需要返回逆地理信息
+      locationOption.needAddress = true;
+
+      /// 逆地理信息的语言类型
+      locationOption.geoLanguage = GeoLanguage.DEFAULT;
+
+      locationOption.desiredLocationAccuracyAuthorizationMode = AMapLocationAccuracyAuthorizationMode.ReduceAccuracy;
+
+      locationOption.fullAccuracyPurposeKey = "AMapLocationScene";
+
+      /// 设置Android端连续定位的定位间隔
+      locationOption.locationInterval = 2000;
+
+      /// 设置Android端的定位模式<br>
+      /// 可选值：<br>
+      /// <li>[AMapLocationMode.Battery_Saving]</li>
+      /// <li>[AMapLocationMode.Device_Sensors]</li>
+      /// <li>[AMapLocationMode.Hight_Accuracy]</li>
+      locationOption.locationMode = AMapLocationMode.Hight_Accuracy;
+
+      /// 设置iOS端的定位最小更新距离<br>
+      locationOption.distanceFilter = -1;
+
+      /// 设置iOS端期望的定位精度
+      /// 可选值：<br>
+      /// <li>[DesiredAccuracy.Best] 最高精度</li>
+      /// <li>[DesiredAccuracy.BestForNavigation] 适用于导航场景的高精度 </li>
+      /// <li>[DesiredAccuracy.NearestTenMeters] 10米 </li>
+      /// <li>[DesiredAccuracy.Kilometer] 1000米</li>
+      /// <li>[DesiredAccuracy.ThreeKilometers] 3000米</li>
+      locationOption.desiredAccuracy = DesiredAccuracy.Best;
+
+      /// 设置iOS端是否允许系统暂停定位
+      locationOption.pausesLocationUpdatesAutomatically = false;
+
+      /// 将定位参数设置给定位插件
+      _locationPlugin.setLocationOption(locationOption);
     }
   }
 
-  void getTestData() async {}
+  /// 开始定位
+  void _startLocation() {
+    if (null != _locationPlugin) {
+      ///开始定位之前设置定位参数
+      _setLocationOption();
+      _locationPlugin.startLocation();
+    }
+  }
+
+  /// 停止定位
+  void _stopLocation() {
+    if (null != _locationPlugin) _locationPlugin.stopLocation();
+  }
+
+  /// 获取iOS native的accuracyAuthorization类型
+  void requestAccuracyAuthorization() async {
+    AMapAccuracyAuthorization currentAccuracyAuthorization = await _locationPlugin.getSystemAccuracyAuthorization();
+    if (currentAccuracyAuthorization == AMapAccuracyAuthorization.AMapAccuracyAuthorizationFullAccuracy) {
+      Log.d("精确定位类型");
+    } else if (currentAccuracyAuthorization == AMapAccuracyAuthorization.AMapAccuracyAuthorizationReducedAccuracy) {
+      Log.d("模糊定位类型");
+    } else {
+      Log.d("未知定位类型");
+    }
+  }
+
+  /// 动态申请定位权限
+  Future requestPermission() async {
+    // 申请权限
+    bool hasLocationPermission = await requestLocationPermission();
+    if (hasLocationPermission) {
+      Log.d("定位权限申请通过");
+    } else {
+      Log.d("定位权限申请不通过");
+      Store.value<WeatherModel>(_scaffoldKey.currentContext, listen: false).getDefaultCityWeather("北京");
+    }
+  }
+
+  /// 申请定位权限
+  /// 授予定位权限返回true， 否则返回false
+  Future<bool> requestLocationPermission() async {
+    //获取当前的权限
+    var status = await Permission.location.status;
+    if (status == PermissionStatus.granted) {
+      //已经授权
+      return true;
+    } else {
+      //未授权则发起一次申请
+      status = await Permission.location.request();
+      if (status == PermissionStatus.granted) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    /// 移除定位监听
+    if (null != _locationListener) _locationListener.cancel();
+
+    /// 销毁定位
+    if (null != _locationPlugin) _locationPlugin.destroy();
+
+    controller?.dispose();
+    super.dispose();
+  }
 }

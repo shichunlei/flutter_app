@@ -26,7 +26,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -51,7 +51,7 @@ android {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.flutter_app"
         minSdkVersion 23
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -74,29 +74,15 @@ android {
     buildTypes {
         release {
             ndk {
-                abiFilters "arm64-v8a", "x86_64"
+                abiFilters "arm64-v8a"
             }
-
-            // Enables code shrinking, obfuscation, and optimization for only your project's release build type.
-            minifyEnabled true
-            // Enables resource shrinking, which is performed by the Android Gradle plugin.
-            shrinkResources true
-            // Includes the default ProGuard rules files that are packaged with the Android Gradle plugin. To learn more, go to the section about R8 configuration files.
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
         debug {
             ndk {
                 //这里要加上，否则debug包会出问题,后面三个为可选，x86建议加上不然部分模拟器回报错
-                abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86"
+                abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "arm64-v8a", "x86_64"
             }
-
-            // Enables code shrinking, obfuscation, and optimization for only your project's release build type.
-            minifyEnabled true
-            // Enables resource shrinking, which is performed by the Android Gradle plugin.
-            shrinkResources true
-            // Includes the default ProGuard rules files that are packaged with the Android Gradle plugin. To learn more, go to the section about R8 configuration files.
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
         }
     }
@@ -108,4 +94,5 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.amap.api:location:5.6.1'
 }

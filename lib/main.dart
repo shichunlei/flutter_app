@@ -16,23 +16,18 @@ void main() async {
 
   await SpUtil.getInstance();
 
-  await AmapCore.init(Config.AMAP_KEY_IOS);
-
   runZonedGuarded(() {
     //强制横屏
     // SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
 
     /// 强制竖屏
-    SystemChrome.setPreferredOrientations(
-            [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp])
-        .then((_) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]).then((_) {
       Utils.statusBarEnable(true);
       runApp(Store.init(child: MyApp()));
 
       if (Platform.isAndroid) {
         // 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
-        SystemUiOverlayStyle systemUiOverlayStyle =
-            SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+        SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
         SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
       }
     });

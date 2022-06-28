@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:clippy_flutter/clippy_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -174,7 +172,7 @@ class _MinePageState extends State<MinePage> {
   /// 裁剪
   Future<Null> _cropImage(XFile imageFile) async {
     assert(imageFile != null);
-    File croppedFile = await ImageCropper().cropImage(
+    CroppedFile croppedFile = await ImageCropper().cropImage(
 
         /// 图像文件的绝对路径。
         sourcePath: imageFile.path,
@@ -196,9 +194,11 @@ class _MinePageState extends State<MinePage> {
 
         /// 用于控制图像压缩的质量，取值范围[1-100]
         compressQuality: 100,
-        androidUiSettings: AndroidUiSettings(toolbarTitle: "裁剪", toolbarWidgetColor: Colors.white),
-        iosUiSettings: IOSUiSettings(
-            minimumAspectRatio: 1.0, doneButtonTitle: S.of(context).sure, cancelButtonTitle: S.of(context).cancel));
+        uiSettings: [
+          AndroidUiSettings(toolbarTitle: "裁剪", toolbarWidgetColor: Colors.white),
+          IOSUiSettings(
+              minimumAspectRatio: 1.0, doneButtonTitle: S.of(context).sure, cancelButtonTitle: S.of(context).cancel)
+        ]);
 
     debugPrint('cropImage=============${croppedFile.path}');
 

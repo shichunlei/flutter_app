@@ -46,7 +46,6 @@ class _TweenAnimationBuilderDemoState extends State<TweenAnimationBuilderDemo> {
             end: _colorValue,
           ),
           onEnd: () {
-            print('onEnd');
             setState(() {
               _colorValue = Colors.blue;
             });

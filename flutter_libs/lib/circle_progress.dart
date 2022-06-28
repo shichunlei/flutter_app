@@ -22,7 +22,7 @@ class CircleProgressWidget extends StatefulWidget {
   final int totalDegree; // 圆弧总的度数
   final bool strokeCapRound; // 两端是否为圆角
 
-  CircleProgressWidget(
+  const CircleProgressWidget(
       {Key key,
       @required this.progress,
       this.progressColor,
@@ -207,9 +207,7 @@ class _CircleProgressPainter extends CustomPainter {
     canvas.drawArc(rect, startAngle, degToRad(totalDegree), false, ringPaint);
     /////////////////////////////// 绘制进度条 ////////////////////////////////////
     var _colors = colors;
-    if (_colors == null) {
-      _colors = [progressColor, progressColor];
-    }
+    _colors ??= [progressColor, progressColor];
 
     // 扫描渐变 https://upload-images.jianshu.io/upload_images/4044518-25477bb0490755a3?imageMogr2/auto-orient/strip%7CimageView2/2/w/706/format/webp
     Gradient gradient = SweepGradient(
@@ -217,7 +215,7 @@ class _CircleProgressPainter extends CustomPainter {
       colors: _colors,
     );
     progressPaint
-      ..shader = gradient.createShader(rect); // 着色器，一般用来绘制渐变效果或ImageShader
+      .shader = gradient.createShader(rect); // 着色器，一般用来绘制渐变效果或ImageShader
 
     // 绘制进度条圆弧
     canvas.drawArc(rect, startAngle, sweepAngle, false, progressPaint);

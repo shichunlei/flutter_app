@@ -59,7 +59,6 @@ class SearchBarDelegate extends SearchDelegate<String> {
     return theme.copyWith(
       primaryColor: Colors.white,
       primaryIconTheme: theme.primaryIconTheme.copyWith(color: Colors.grey),
-      primaryColorBrightness: Brightness.light,
       primaryTextTheme: theme.textTheme,
     );
   }

@@ -7,48 +7,43 @@ class AnimatedWear extends AnimatedWidget {
 
   final double size;
 
-  AnimatedWear({
+  const AnimatedWear({
     Key key,
     this.isStart,
     Animation<double> animation,
-    this.size: 70.0,
+    this.size = 70.0,
   }) : super(key: key, listenable: animation);
 
   @override
   Widget build(BuildContext context) {
     final Animation<double> animation = listenable;
-    return Container(
+    return SizedBox(
         height: 90,
         width: 90,
-        child: Stack(
-            clipBehavior: Clip.none,
-            alignment: Alignment.center,
-            children: <Widget>[
-              Visibility(
-                  visible: isStart,
-                  child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.black.withAlpha(30),
-                          borderRadius: BorderRadius.circular(45)))),
-              Container(
-                  height: size,
-                  width: size,
+        child: Stack(clipBehavior: Clip.none, alignment: Alignment.center, children: <Widget>[
+          Visibility(
+              visible: isStart,
+              child: Container(
                   decoration:
-                      BoxDecoration(color: Colors.blue, shape: BoxShape.circle),
-                  child: Icon(Icons.mic, color: Colors.white, size: 30)),
-              Positioned(
-                  left: -((_sizeTween.evaluate(animation) - 90) / 2), //45
-                  top: -((_sizeTween.evaluate(animation) - 90) / 2), //45,
-                  child: Opacity(
-                      opacity: _opacityTween.evaluate(animation),
-                      child: Container(
-                          width: isStart ? _sizeTween.evaluate(animation) : 0,
-                          height: _sizeTween.evaluate(animation),
-                          decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              shape: BoxShape.circle,
-                              border: Border.all(color: Color(0xa8000000))))))
-            ]));
+                      BoxDecoration(color: Colors.black.withAlpha(30), borderRadius: BorderRadius.circular(45)))),
+          Container(
+              height: size,
+              width: size,
+              decoration: const BoxDecoration(color: Colors.blue, shape: BoxShape.circle),
+              child: const Icon(Icons.mic, color: Colors.white, size: 30)),
+          Positioned(
+              left: -((_sizeTween.evaluate(animation) - 90) / 2), //45
+              top: -((_sizeTween.evaluate(animation) - 90) / 2), //45,
+              child: Opacity(
+                  opacity: _opacityTween.evaluate(animation),
+                  child: Container(
+                      width: isStart ? _sizeTween.evaluate(animation) : 0,
+                      height: _sizeTween.evaluate(animation),
+                      decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: const Color(0xa8000000))))))
+        ]));
   }
 }
 
@@ -59,8 +54,7 @@ class AnimatedWearDemo extends StatefulWidget {
   createState() => _AnimatedWearDemoState();
 }
 
-class _AnimatedWearDemoState extends State<AnimatedWearDemo>
-    with SingleTickerProviderStateMixin {
+class _AnimatedWearDemoState extends State<AnimatedWearDemo> with SingleTickerProviderStateMixin {
   String speakTips = '长按说话';
 
   bool isStart = false;
@@ -71,8 +65,7 @@ class _AnimatedWearDemoState extends State<AnimatedWearDemo>
   void initState() {
     super.initState();
 
-    controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1500));
+    controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 1500));
 
     animation = CurvedAnimation(parent: controller, curve: Curves.easeInCubic)
       ..addStatusListener((status) {
@@ -94,7 +87,7 @@ class _AnimatedWearDemoState extends State<AnimatedWearDemo>
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[200],
-        appBar: AppBar(title: Text('AnimatedWear')),
+        appBar: AppBar(title: const Text('AnimatedWear')),
         body: GestureDetector(
             onTapDown: (e) {
               _speakStart();
@@ -110,8 +103,7 @@ class _AnimatedWearDemoState extends State<AnimatedWearDemo>
                 height: double.infinity,
                 width: double.infinity,
                 child: Column(children: <Widget>[
-                  Text(speakTips,
-                      style: TextStyle(color: Colors.blue, fontSize: 12)),
+                  Text(speakTips, style: const TextStyle(color: Colors.blue, fontSize: 12)),
                   AnimatedWear(animation: animation, isStart: isStart)
                 ], mainAxisSize: MainAxisSize.min))));
   }

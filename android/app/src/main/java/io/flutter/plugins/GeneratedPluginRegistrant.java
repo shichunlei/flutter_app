@@ -18,14 +18,9 @@ public final class GeneratedPluginRegistrant {
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
     ShimPluginRegistry shimPluginRegistry = new ShimPluginRegistry(flutterEngine);
     try {
-      flutterEngine.getPlugins().add(new me.yohom.amap_core_fluttify.AmapCoreFluttifyPlugin());
+      flutterEngine.getPlugins().add(new com.amap.flutter.location.AMapFlutterLocationPlugin());
     } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin amap_core_fluttify, me.yohom.amap_core_fluttify.AmapCoreFluttifyPlugin", e);
-    }
-    try {
-      flutterEngine.getPlugins().add(new me.yohom.amap_location_fluttify.AmapLocationFluttifyPlugin());
-    } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin amap_location_fluttify, me.yohom.amap_location_fluttify.AmapLocationFluttifyPlugin", e);
+      Log.e(TAG, "Error registering plugin amap_flutter_location, com.amap.flutter.location.AMapFlutterLocationPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new com.ryanheise.audio_session.AudioSessionPlugin());
@@ -40,12 +35,7 @@ public final class GeneratedPluginRegistrant {
     try {
       flutterEngine.getPlugins().add(new de.mintware.barcode_scan.BarcodeScanPlugin());
     } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin barcode_scan, de.mintware.barcode_scan.BarcodeScanPlugin", e);
-    }
-    try {
-      flutterEngine.getPlugins().add(new me.yohom.core_location_fluttify.CoreLocationFluttifyPlugin());
-    } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin core_location_fluttify, me.yohom.core_location_fluttify.CoreLocationFluttifyPlugin", e);
+      Log.e(TAG, "Error registering plugin barcode_scan2, de.mintware.barcode_scan.BarcodeScanPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new dev.fluttercommunity.plus.device_info.DeviceInfoPlusPlugin());
@@ -61,11 +51,6 @@ public final class GeneratedPluginRegistrant {
       flutterEngine.getPlugins().add(new io.flutter.plugins.flutter_plugin_android_lifecycle.FlutterAndroidLifecyclePlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin flutter_plugin_android_lifecycle, io.flutter.plugins.flutter_plugin_android_lifecycle.FlutterAndroidLifecyclePlugin", e);
-    }
-    try {
-      flutterEngine.getPlugins().add(new me.yohom.foundation_fluttify.FoundationFluttifyPlugin());
-    } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin foundation_fluttify, me.yohom.foundation_fluttify.FoundationFluttifyPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new vn.hunghd.flutter.plugins.imagecropper.ImageCropperPlugin());
@@ -105,7 +90,7 @@ public final class GeneratedPluginRegistrant {
     try {
       flutterEngine.getPlugins().add(new com.baseflow.permissionhandler.PermissionHandlerPlugin());
     } catch(Exception e) {
-      Log.e(TAG, "Error registering plugin permission_handler, com.baseflow.permissionhandler.PermissionHandlerPlugin", e);
+      Log.e(TAG, "Error registering plugin permission_handler_android, com.baseflow.permissionhandler.PermissionHandlerPlugin", e);
     }
     try {
       com.jhomlala.roundedletter.RoundedLetterPlugin.registerWith(shimPluginRegistry.registrarFor("com.jhomlala.roundedletter.RoundedLetterPlugin"));

@@ -241,7 +241,7 @@ class _RoundedLetterWidgetState extends State<RoundedLetterWidget> {
 class SampleClickListener extends ClickListener {
   @override
   onClick(Key key) {
-    print("Clicked on " + key.toString());
+    debugPrint("Clicked on " + key.toString());
   }
 }
 

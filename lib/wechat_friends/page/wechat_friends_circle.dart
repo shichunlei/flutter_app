@@ -190,7 +190,7 @@ class _WeChatFriendsCircleState extends State<WeChatFriendsCircle> {
 
       for (var r in resultList) {
         var t = r.name;
-        print(t);
+        debugPrint(t);
       }
     } on Exception catch (e) {
       debugPrint(e.toString());

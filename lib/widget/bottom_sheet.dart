@@ -85,7 +85,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                           child: CupertinoPicker(
                               itemExtent: 40,
                               onSelectedItemChanged: (position) {
-                                print('The position is ${names[position]}');
+                                debugPrint('The position is ${names[position]}');
                               },
                               children: names.map((e) {
                                 return Text(e);
@@ -114,7 +114,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
           ),
           title: Text('Item ${index + 1}'),
           onTap: () {
-            print('tapped item ${index + 1}');
+            debugPrint('tapped item ${index + 1}');
             Navigator.pop(context);
           },
         ),

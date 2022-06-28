@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AnimatedIconsDemo extends StatefulWidget {
-  AnimatedIconsDemo({Key key}) : super(key: key);
+  const AnimatedIconsDemo({Key key}) : super(key: key);
 
   @override
   createState() => _AnimatedIconsDemoState();
@@ -16,7 +16,7 @@ class _AnimatedIconsDemoState extends State<AnimatedIconsDemo>
     super.initState();
 
     animationController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1000), value: 1.0);
+        vsync: this, duration: const Duration(milliseconds: 1000), value: 1.0);
   }
 
   @override
@@ -46,11 +46,11 @@ class _AnimatedIconsDemoState extends State<AnimatedIconsDemo>
 
     return Scaffold(
         backgroundColor: Colors.grey[200],
-        appBar: AppBar(title: Text('AnimatedIcons')),
+        appBar: AppBar(title: const Text('AnimatedIcons')),
         body: GridView.builder(
             padding: const EdgeInsets.all(10.0),
             itemCount: icons.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 childAspectRatio: 1.0,
                 crossAxisSpacing: 1.0,

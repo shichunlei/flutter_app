@@ -18,7 +18,7 @@ class InheritedContext extends InheritedWidget {
   // 点击-号的方法
   final Function() reduce;
 
-  InheritedContext({
+  const InheritedContext({
     Key key,
     @required this.inheritedTestModel,
     @required this.increment,
@@ -39,56 +39,62 @@ class InheritedContext extends InheritedWidget {
 
 /// 3.把 "+" ,“-”, "value" 3个widget隔离
 class TestWidgetA extends StatelessWidget {
+  const TestWidgetA({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final inheritedContext = InheritedContext.of(context);
 
     final inheritedTestModel = inheritedContext.inheritedTestModel;
 
-    print('TestWidgetA 中count的值:  ${inheritedTestModel.count}');
+    debugPrint('TestWidgetA 中count的值:  ${inheritedTestModel.count}');
     return Padding(
       padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
       child: ElevatedButton(
-          style: ButtonStyle(textStyle: MaterialStateProperty.all(TextStyle(color: Colors.black))),
-          child: Text('+'),
+          style: ButtonStyle(textStyle: MaterialStateProperty.all(const TextStyle(color: Colors.black))),
+          child: const Text('+'),
           onPressed: inheritedContext.increment),
     );
   }
 }
 
 class TestWidgetB extends StatelessWidget {
+  const TestWidgetB({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final inheritedContext = InheritedContext.of(context);
 
     final inheritedTestModel = inheritedContext.inheritedTestModel;
 
-    print('TestWidgetB 中count的值:  ${inheritedTestModel.count}');
+    debugPrint('TestWidgetB 中count的值:  ${inheritedTestModel.count}');
 
     return Padding(
       padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
       child: Text(
         '当前count:${inheritedTestModel.count}',
-        style: TextStyle(fontSize: 20.0),
+        style: const TextStyle(fontSize: 20.0),
       ),
     );
   }
 }
 
 class TestWidgetC extends StatelessWidget {
+  const TestWidgetC({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final inheritedContext = InheritedContext.of(context);
 
     final inheritedTestModel = inheritedContext.inheritedTestModel;
 
-    print('TestWidgetC 中count的值:  ${inheritedTestModel.count}');
+    debugPrint('TestWidgetC 中count的值:  ${inheritedTestModel.count}');
 
     return Padding(
       padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
       child: ElevatedButton(
-          style: ButtonStyle(textStyle: MaterialStateProperty.all(TextStyle(color: Colors.black))),
-          child: Text('-'),
+          style: ButtonStyle(textStyle: MaterialStateProperty.all(const TextStyle(color: Colors.black))),
+          child: const Text('-'),
           onPressed: inheritedContext.reduce),
     );
   }
@@ -96,6 +102,8 @@ class TestWidgetC extends StatelessWidget {
 
 /// 4.组合
 class InheritedWidgetTestContainer extends StatefulWidget {
+  const InheritedWidgetTestContainer({Key key}) : super(key: key);
+
   @override
   createState() => _InheritedWidgetTestContainerState();
 }
@@ -104,7 +112,7 @@ class _InheritedWidgetTestContainerState extends State<InheritedWidgetTestContai
   InheritedTestModel inheritedTestModel;
 
   _initData() {
-    inheritedTestModel = InheritedTestModel(0);
+    inheritedTestModel = const InheritedTestModel(0);
   }
 
   @override
@@ -133,12 +141,12 @@ class _InheritedWidgetTestContainerState extends State<InheritedWidgetTestContai
         reduce: _reduceCount,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('InheritedWidget'),
+            title: const Text('InheritedWidget'),
           ),
           body: Column(
-            children: <Widget>[
+            children: const <Widget>[
               Padding(
-                padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
+                padding: EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
                 child: Text(
                   '我们常使用的\nTheme.of(context).textTheme\nMediaQuery.of(context).size等\n就是通过InheritedWidget实现的',
                   style: TextStyle(fontSize: 20.0),

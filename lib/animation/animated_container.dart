@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class AnimatedContainerDemo extends StatefulWidget {
-  AnimatedContainerDemo({Key key}) : super(key: key);
+  const AnimatedContainerDemo({Key key}) : super(key: key);
 
   @override
   createState() => _AnimatedContainerDemoState();
@@ -21,7 +21,7 @@ class _AnimatedContainerDemoState extends State<AnimatedContainerDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      appBar: AppBar(title: Text('AnimatedContainer')),
+      appBar: AppBar(title: const Text('AnimatedContainer')),
       body: Center(
           child: AnimatedContainer(
               width: _width,
@@ -31,11 +31,11 @@ class _AnimatedContainerDemoState extends State<AnimatedContainerDemo> {
                 borderRadius: _borderRadius,
               ),
               alignment: selected ? Alignment.center : Alignment.topCenter,
-              duration: Duration(seconds: 2),
+              duration: const Duration(seconds: 2),
               curve: Curves.fastOutSlowIn,
-              child: FlutterLogo())),
+              child: const FlutterLogo())),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.play_arrow),
+        child: const Icon(Icons.play_arrow),
         // When the user taps the button
         onPressed: () {
           // Use setState to rebuild the widget with new values.
@@ -56,8 +56,7 @@ class _AnimatedContainerDemoState extends State<AnimatedContainerDemo> {
             );
 
             // Generate a random border radius.
-            _borderRadius =
-                BorderRadius.circular(random.nextInt(100).toDouble());
+            _borderRadius = BorderRadius.circular(random.nextInt(100).toDouble());
 
             selected = !selected;
           });

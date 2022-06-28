@@ -181,7 +181,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                             colors: VideoProgressColors(
                               // 配置进度条颜色
                               playedColor:
-                                  Theme.of(context).accentColor, // 已播放的颜色
+                                  Theme.of(context).primaryColor, // 已播放的颜色
                               bufferedColor:
                                   Color.fromRGBO(255, 255, 255, .5), // 缓存中的颜色
                               backgroundColor:

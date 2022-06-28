@@ -400,7 +400,7 @@ class CustomSliver extends StatefulWidget {
               opacityCurve.transform(min(pulledExtent / containerExtent, 1.0)),
           child: InkWell(
             onTap: () {
-              print("FFFF");
+              debugPrint("FFFF");
             },
             child: Container(
               color: Colors.amber,

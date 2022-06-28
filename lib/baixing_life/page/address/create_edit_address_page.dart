@@ -9,7 +9,7 @@ class CreateEditAddressPage extends StatefulWidget {
   final String title;
   final int id;
 
-  CreateEditAddressPage({Key key, @required this.title, this.id: -1}) : super(key: key);
+  const CreateEditAddressPage({Key key, @required this.title, this.id = -1}) : super(key: key);
 
   @override
   createState() => _CreateEditAddressPageState();
@@ -32,10 +32,10 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
 
   List<String> tags = ["家", "公司", "学校", '蜂巢柜'];
 
-  var _nameController = TextEditingController();
-  var _phoneController = TextEditingController();
-  var _addressController = TextEditingController();
-  var _zipCodeController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _addressController = TextEditingController();
+  final _zipCodeController = TextEditingController();
 
   final _nodeName = FocusNode();
   final _nodePhone = FocusNode();
@@ -111,7 +111,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
       _province = address?.province ?? '';
       _city = address?.city ?? '';
       _county = address?.county ?? '';
-      area = "$_province" + " $_city" + " $_county";
+      area = "$_province $_city $_county";
       _addressController.text = address?.address;
       _nameController.text = address?.name;
       _phoneController.text = address?.phone;
@@ -140,7 +140,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
                     child: Button(
                       onPressed: _isClick ? () => _submit() : null,
                       borderRadius: 0,
-                      child: Text('${S.of(context).submit}', style: TextStyle(fontSize: 18)),
+                      child: Text('${S.of(context).submit}', style: const TextStyle(fontSize: 18)),
                     ))
               ]),
             )));
@@ -169,7 +169,7 @@ class _CreateEditAddressPageState extends State<CreateEditAddressPage> {
           SelectTextItem(
               title: '所在地区',
               content: '$area',
-              margin: EdgeInsets.only(left: 16.0, right: 8),
+              margin: const EdgeInsets.only(left: 16.0, right: 8),
               onTap: () => _choiceArea(),
               textAlign: TextAlign.right),
           Gaps.line,

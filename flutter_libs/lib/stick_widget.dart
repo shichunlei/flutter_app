@@ -6,10 +6,10 @@ import 'package:flutter/rendering.dart';
 /// https://github.com/CarGuo/gsy_flutter_demo/blob/master/lib/widget/stick/stick_widget.dart
 class StickWidget extends MultiChildRenderObjectWidget {
   /// 顺序添加 stickHeader 和 stickContent
-  StickWidget({
+  StickWidget({Key key,
     @required stickHeader,
     @required stickContent,
-  }) : super(
+  }) : super(key: key,
           /// 如果反过来，会有意想不到的效果哦
           children: [stickContent, stickHeader],
         );
@@ -22,7 +22,7 @@ class StickWidget extends MultiChildRenderObjectWidget {
 
   @override
   void updateRenderObject(BuildContext context, StickRender renderObject) {
-    renderObject..scrollable = Scrollable.of(context);
+    renderObject.scrollable = Scrollable.of(context);
   }
 }
 
@@ -58,16 +58,16 @@ class StickRender extends RenderBox
     try {
       return localToGlobal(Offset.zero, ancestor: renderObject).dy;
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
     return 0;
   }
 
   @override
-  void attach(_) {
+  void attach(PipelineOwner owner) {
     /// 设置监听
     _scrollable.position?.addListener(markNeedsLayout);
-    super.attach(_);
+    super.attach(owner);
   }
 
   @override

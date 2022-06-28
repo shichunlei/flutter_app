@@ -6,16 +6,10 @@
 
 #import "GeneratedPluginRegistrant.h"
 
-#if __has_include(<amap_core_fluttify/AmapCoreFluttifyPlugin.h>)
-#import <amap_core_fluttify/AmapCoreFluttifyPlugin.h>
+#if __has_include(<amap_flutter_location/AMapFlutterLocationPlugin.h>)
+#import <amap_flutter_location/AMapFlutterLocationPlugin.h>
 #else
-@import amap_core_fluttify;
-#endif
-
-#if __has_include(<amap_location_fluttify/AmapLocationFluttifyPlugin.h>)
-#import <amap_location_fluttify/AmapLocationFluttifyPlugin.h>
-#else
-@import amap_location_fluttify;
+@import amap_flutter_location;
 #endif
 
 #if __has_include(<audio_session/AudioSessionPlugin.h>)
@@ -30,16 +24,10 @@
 @import audioplayers;
 #endif
 
-#if __has_include(<barcode_scan/BarcodeScanPlugin.h>)
-#import <barcode_scan/BarcodeScanPlugin.h>
+#if __has_include(<barcode_scan2/BarcodeScanPlugin.h>)
+#import <barcode_scan2/BarcodeScanPlugin.h>
 #else
-@import barcode_scan;
-#endif
-
-#if __has_include(<core_location_fluttify/CoreLocationFluttifyPlugin.h>)
-#import <core_location_fluttify/CoreLocationFluttifyPlugin.h>
-#else
-@import core_location_fluttify;
+@import barcode_scan2;
 #endif
 
 #if __has_include(<device_info_plus/FLTDeviceInfoPlusPlugin.h>)
@@ -52,12 +40,6 @@
 #import <easy_contact_picker/EasyContactPickerPlugin.h>
 #else
 @import easy_contact_picker;
-#endif
-
-#if __has_include(<foundation_fluttify/FoundationFluttifyPlugin.h>)
-#import <foundation_fluttify/FoundationFluttifyPlugin.h>
-#else
-@import foundation_fluttify;
 #endif
 
 #if __has_include(<image_cropper/FLTImageCropperPlugin.h>)
@@ -102,10 +84,10 @@
 @import path_provider_ios;
 #endif
 
-#if __has_include(<permission_handler/PermissionHandlerPlugin.h>)
-#import <permission_handler/PermissionHandlerPlugin.h>
+#if __has_include(<permission_handler_apple/PermissionHandlerPlugin.h>)
+#import <permission_handler_apple/PermissionHandlerPlugin.h>
 #else
-@import permission_handler;
+@import permission_handler_apple;
 #endif
 
 #if __has_include(<rounded_letter/RoundedLetterPlugin.h>)
@@ -165,15 +147,12 @@
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
-  [AmapCoreFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapCoreFluttifyPlugin"]];
-  [AmapLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"AmapLocationFluttifyPlugin"]];
+  [AMapFlutterLocationPlugin registerWithRegistrar:[registry registrarForPlugin:@"AMapFlutterLocationPlugin"]];
   [AudioSessionPlugin registerWithRegistrar:[registry registrarForPlugin:@"AudioSessionPlugin"]];
   [AudioplayersPlugin registerWithRegistrar:[registry registrarForPlugin:@"AudioplayersPlugin"]];
   [BarcodeScanPlugin registerWithRegistrar:[registry registrarForPlugin:@"BarcodeScanPlugin"]];
-  [CoreLocationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"CoreLocationFluttifyPlugin"]];
   [FLTDeviceInfoPlusPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTDeviceInfoPlusPlugin"]];
   [EasyContactPickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"EasyContactPickerPlugin"]];
-  [FoundationFluttifyPlugin registerWithRegistrar:[registry registrarForPlugin:@"FoundationFluttifyPlugin"]];
   [FLTImageCropperPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImageCropperPlugin"]];
   [ImageGallerySaverPlugin registerWithRegistrar:[registry registrarForPlugin:@"ImageGallerySaverPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];

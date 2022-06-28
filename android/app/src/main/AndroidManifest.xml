@@ -1,14 +1,48 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.flutter_app">
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!--允许访问网络，必选权限-->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--允许获取精确位置，精准定位必选-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!--允许获取粗略位置，粗略定位必选-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!--允许获取设备和运营商信息，用于问题排查和网络定位（无gps情况下的定位），若需网络定位功能则必选-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <!--允许获取网络状态，用于网络定位（无gps情况下的定位），若需网络定位功能则必选-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!--允许获取wifi网络信息，用于网络定位（无gps情况下的定位），若需网络定位功能则必选-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!--允许获取wifi状态改变，用于网络定位（无gps情况下的定位），若需网络定位功能则必选-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <!--后台获取位置信息，若需后台定位则必选-->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!--用于申请调用A-GPS模块,卫星定位加速-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+    <!--允许写设备缓存，用于问题排查-->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <!--允许写入扩展存储，用于写入缓存定位数据-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!--允许读设备等信息，用于问题排查-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
@@ -20,6 +54,14 @@
         android:label="flutter_app"
         android:networkSecurityConfig="@xml/network_security_config"
         android:usesCleartextTraffic="true">
+
+        <!-- 配置定位Service -->
+        <service android:name="com.amap.api.location.APSService" />
+        <!-- 高德地图API_KEY -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="f9d17a113bace1ff32fed97166efcff3" />
+
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
@@ -53,6 +95,16 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <!--适配华为（huawei）刘海屏-->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
+        <!--适配小米（xiaomi）刘海屏-->
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
+
         <activity android:name="com.apptreesoftware.barcodescan.BarcodeScannerActivity" />
 
         <!-- Image Cropper -->
@@ -60,10 +112,5 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-        <!-- 高德地图API_KEY -->
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="f9d17a113bace1ff32fed97166efcff3" />
     </application>
 </manifest>

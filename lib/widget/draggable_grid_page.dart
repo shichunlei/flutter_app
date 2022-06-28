@@ -168,11 +168,11 @@ class DraggableGridPageState extends State<DraggableGridPage> {
         dragAnchor: DragAnchor.child,
         feedback: _itemClipWid(list, index, true),
         child: DragTarget(onWillAccept: (data) {
-          print("Draggable onWillAccept data --> $data");
+          debugPrint("Draggable onWillAccept data --> $data");
           _tempState(list);
           return list == mList && data != null;
         }, onAccept: (data) {
-          print("Draggable onAccept data --> $data");
+          debugPrint("Draggable onAccept data --> $data");
           if (list == mList &&
               tempList != null &&
               tempList.length == 2 &&
@@ -183,7 +183,7 @@ class DraggableGridPageState extends State<DraggableGridPage> {
             setState(() {});
           }
         }, onLeave: (data) {
-          print("Draggable onLeave data --> $data");
+          debugPrint("Draggable onLeave data --> $data");
         }, builder: (context, candidateData, rejectedData) {
           return _itemClipWid(list, index, false);
         }));

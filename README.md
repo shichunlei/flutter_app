@@ -3,9 +3,9 @@
 ![](https://github.com/shichunlei/flutter_app/blob/master/FlutterApp.png)
 
 
-## Android APK 下载地址
+[comment]: <> (## Android APK 下载地址)
 
-![](https://github.com/shichunlei/project_image/blob/master/flutter_app_1562927446.png)
+[comment]: <> (![]&#40;https://github.com/shichunlei/project_image/blob/master/flutter_app_1562927446.png&#41;)
 
 
 `声明1：本项目仅供学习，如有侵权请联系本人进行删除。`
@@ -38,41 +38,41 @@
 ## 运行环境
 
 ```
-[✓] Flutter (Channel stable, 2.10.4, on macOS 11.5.2 20G95 darwin-x64, locale zh-Hans-CN)
-    • Flutter version 2.10.4 at /Users/shichunlei/flutter
+[✓] Flutter (Channel stable, 2.10.5, on macOS 12.3 21E230 darwin-x64, locale zh-Hans-CN)
+    • Flutter version 2.10.5 at /Users/dev2/workspace/flutter
     • Upstream repository https://github.com/flutter/flutter.git
-    • Framework revision c860cba910 (2 weeks ago), 2022-03-25 00:23:12 -0500
+    • Framework revision 5464c5bac7 (9 weeks ago), 2022-04-18 09:55:37 -0700
     • Engine revision 57d3bac3dd
     • Dart version 2.16.2
     • DevTools version 2.9.2
     • Pub download mirror https://pub.flutter-io.cn
     • Flutter download mirror https://storage.flutter-io.cn
 
-[✓] Android toolchain - develop for Android devices (Android SDK version 32.0.0-rc1)
-    • Android SDK at /Users/shichunlei/Library/Android/sdk
-    • Platform android-32, build-tools 32.0.0-rc1
-    • ANDROID_HOME = /Users/shichunlei/Library/Android/sdk
+[✓] Android toolchain - develop for Android devices (Android SDK version 33.0.0)
+    • Android SDK at /Users/dev2/Library/Android/sdk
+    • Platform android-33, build-tools 33.0.0
+    • ANDROID_HOME = /Users/dev2/Library/Android/sdk
     • Java binary at: /Applications/Android Studio.app/Contents/jre/Contents/Home/bin/java
-    • Java version OpenJDK Runtime Environment (build 11.0.11+0-b60-7590822)
+    • Java version OpenJDK Runtime Environment (build 11.0.12+0-b1504.28-7817840)
     • All Android licenses accepted.
 
-[✓] Xcode - develop for iOS and macOS (Xcode 13.2.1)
+[✓] Xcode - develop for iOS and macOS (Xcode 13.3)
     • Xcode at /Applications/Xcode.app/Contents/Developer
-    • CocoaPods version 1.11.0
+    • CocoaPods version 1.11.3
 
 [✓] Chrome - develop for the web
     • Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
 
-[✓] Android Studio (version 2021.1)
+[✓] Android Studio (version 2021.2)
     • Android Studio at /Applications/Android Studio.app/Contents
     • Flutter plugin can be installed from:
       🔨 https://plugins.jetbrains.com/plugin/9212-flutter
     • Dart plugin can be installed from:
       🔨 https://plugins.jetbrains.com/plugin/6351-dart
-    • Java version OpenJDK Runtime Environment (build 11.0.11+0-b60-7590822)
+    • Java version OpenJDK Runtime Environment (build 11.0.12+0-b1504.28-7817840)
 
 [✓] Connected device (2 available)
-    • Chrome (web)     • chrome                                   • web-javascript • Google Chrome 100.0.4896.75
+    • Chrome (web)     • chrome                                   • web-javascript • Google Chrome 102.0.5005.115
 ```
 
 ## 注意事项

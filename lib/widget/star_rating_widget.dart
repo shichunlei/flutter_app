@@ -55,7 +55,7 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
                 /// 星星边框颜色
                 borderColor: Colors.yellow,
                 onRatingChanged: (value) {
-                  print("点击事件");
+                  debugPrint("点击事件");
                   setState(() {
                     rating2 = value;
                   });

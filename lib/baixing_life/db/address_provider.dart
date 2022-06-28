@@ -143,7 +143,7 @@ class AddressProvider extends BaseDBProvider {
 
     List<Address> addresses = [];
 
-    if (maps.length > 0) {
+    if (maps.isNotEmpty) {
       for (Map<String, dynamic> map in maps) {
         Address address = Address.fromMap(map);
         addresses.add(address);

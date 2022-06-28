@@ -4,15 +4,15 @@ import 'package:flutter_app/page_index.dart';
 import 'utils/animations.dart';
 
 class CustomAnimationDemo extends StatelessWidget {
-  CustomAnimationDemo({Key key}) : super(key: key);
+  const CustomAnimationDemo({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(title: Text('自定义动画')),
+      appBar: AppBar(title: const Text('自定义动画')),
       body: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         width: Utils.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -22,45 +22,45 @@ class CustomAnimationDemo extends StatelessWidget {
             SizedBox(
               height: 50,
               child: AnimatedArrow(
-                  child: FlutterLogo(size: 50), direction: Direction.RIGHT),
+                  child: const FlutterLogo(size: 50), direction: Direction.RIGHT),
             ),
             Line(color: Colors.grey),
-            Text('BounceInAnimation'),
-            BounceInAnimation(
+            const Text('BounceInAnimation'),
+            const BounceInAnimation(
               child: FlutterLogo(size: 50),
               duration: Duration(seconds: 1),
               delay: Duration(seconds: 1),
             ),
             Line(color: Colors.grey),
-            Text('SlideInAnimation'),
+            const Text('SlideInAnimation'),
             SizedBox(
               height: 50,
               child: Row(
                 children: <Widget>[
                   SlideInAnimation(
-                      child: Text('测'),
-                      duration: Duration(seconds: 1),
-                      delay: Duration(seconds: 1),
+                      child: const Text('测'),
+                      duration: const Duration(seconds: 1),
+                      delay: const Duration(seconds: 1),
                       offset: Offset(0, -Utils.height)),
                   SlideInAnimation(
-                      child: Text('试'),
-                      duration: Duration(seconds: 1),
-                      delay: Duration(milliseconds: 1200),
+                      child: const Text('试'),
+                      duration: const Duration(seconds: 1),
+                      delay: const Duration(milliseconds: 1200),
                       offset: Offset(0, -Utils.height)),
                   SlideInAnimation(
-                      child: Text('掉'),
-                      duration: Duration(seconds: 1),
-                      delay: Duration(milliseconds: 1400),
+                      child: const Text('掉'),
+                      duration: const Duration(seconds: 1),
+                      delay: const Duration(milliseconds: 1400),
                       offset: Offset(0, -Utils.height)),
                   SlideInAnimation(
-                      child: Text('落'),
-                      duration: Duration(seconds: 1),
-                      delay: Duration(milliseconds: 1600),
+                      child: const Text('落'),
+                      duration: const Duration(seconds: 1),
+                      delay: const Duration(milliseconds: 1600),
                       offset: Offset(0, -Utils.height)),
                   SlideInAnimation(
-                      child: Text('文'),
-                      duration: Duration(seconds: 1),
-                      delay: Duration(milliseconds: 1800),
+                      child: const Text('文'),
+                      duration: const Duration(seconds: 1),
+                      delay: const Duration(milliseconds: 1800),
                       offset: Offset(0, -Utils.height)),
                   SlideInAnimation(
                       child: Text('字'),

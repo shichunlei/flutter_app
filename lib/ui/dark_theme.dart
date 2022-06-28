@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../page_index.dart';
 
@@ -28,7 +29,7 @@ class DarkTheme extends StatelessWidget {
               textTheme: TextTheme(
                   headline6: TextStyle(color: Colors.white, fontSize: 22)),
               elevation: 0.0,
-              brightness: Brightness.dark,
+              systemOverlayStyle: SystemUiOverlayStyle.light,
               color: Color(0xff26262d)),
         ),
         child: child);

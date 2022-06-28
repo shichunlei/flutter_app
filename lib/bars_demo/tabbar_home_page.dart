@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bars_demo/keep_alive.dart';
 
 class TabBarHomePage extends StatefulWidget {
+  const TabBarHomePage({Key key}) : super(key: key);
+
   @override
   createState() => TabBarHomeStatePage();
 }
@@ -14,15 +16,15 @@ class TabBarHomeStatePage extends State<TabBarHomePage>
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[Icon(Icons.map), Text("map")],
+          children: const <Widget>[Icon(Icons.map), Text("map")],
         ),
       ),
     ),
-    Tab(
+    const Tab(
       child: Text("add"),
       icon: Icon(Icons.add),
     ),
-    Tab(
+    const Tab(
       text: "refresh",
     )
   ];
@@ -44,13 +46,13 @@ class TabBarHomeStatePage extends State<TabBarHomePage>
         if (controller.index.toDouble() == controller.animation.value) {
           switch (controller.index) {
             case 0:
-              print('0');
+              debugPrint('0');
               break;
             case 1:
-              print('1');
+              debugPrint('1');
               break;
             case 2:
-              print('2');
+              debugPrint('2');
               break;
             default:
               break;
@@ -72,7 +74,7 @@ class TabBarHomeStatePage extends State<TabBarHomePage>
       // setup the controller
       controller: controller,
       isScrollable: true,
-      indicator: UnderlineTabIndicator(
+      indicator: const UnderlineTabIndicator(
         borderSide: BorderSide(
           style: BorderStyle.none,
         ),

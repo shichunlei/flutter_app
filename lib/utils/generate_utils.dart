@@ -80,7 +80,7 @@ String aesEncode(String content, String strKey) {
     final encrypted = encrypter.encrypt(content);
     return encrypted.base64;
   } catch (err) {
-    print("aes encode error:$err");
+    debugPrint("aes encode error:$err");
     return content;
   }
 }
@@ -97,7 +97,7 @@ dynamic aesDecode(dynamic base64, String strKey) {
         Encrypter(AES(key, mode: AESMode.cbc, padding: 'NOPadding'));
     return encrypter.decrypt64(base64, iv: IV.fromUtf8(strKey));
   } catch (err) {
-    print("aes decode error:$err");
+    debugPrint("aes decode error:$err");
     return base64;
   }
 }

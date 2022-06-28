@@ -99,10 +99,7 @@ class _OneArticlePageState extends State<OneArticlePage> with SingleTickerProvid
 
   Widget _buildThemeSelector() {
     return Store.connect<ArticleModel>(builder: (_, ArticleModel articleModel, __) {
-      if (_tabController == null) {
-        _tabController =
-            TabController(length: themeColors.length, vsync: this, initialIndex: articleModel.getThemeColorIndex());
-      }
+      _tabController ??= TabController(length: themeColors.length, vsync: this, initialIndex: articleModel.getThemeColorIndex());
 
       List<Tab> tabs = [];
       for (Color color in themeColors) {
@@ -208,7 +205,7 @@ class _OneArticlePageState extends State<OneArticlePage> with SingleTickerProvid
                 }
               });
             },
-            child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+            child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: const [
               Icon(Icons.list, color: Colors.white),
               Text('收藏列表', style: TextStyle(color: Colors.white))
             ]),

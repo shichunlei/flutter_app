@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../page_index.dart';
 
@@ -17,7 +18,7 @@ class LightTheme extends StatelessWidget {
             appBarTheme: AppBarTheme(
                 iconTheme: lightIconTheme,
                 elevation: 0.0,
-                brightness: Brightness.light,
+                systemOverlayStyle: SystemUiOverlayStyle.dark,
                 color: Colors.white)),
         child: child);
   }
