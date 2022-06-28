@@ -10,10 +10,11 @@ import '../../page_index.dart';
 ///
 class BounceInAnimation extends StatefulWidget {
   const BounceInAnimation({
+    Key key,
     @required this.child,
     this.duration = const Duration(milliseconds: 1000),
     this.delay = Duration.zero,
-  });
+  }) : super(key: key);
 
   final Widget child;
   final Duration duration;
@@ -23,8 +24,7 @@ class BounceInAnimation extends StatefulWidget {
   createState() => _BounceInAnimationState();
 }
 
-class _BounceInAnimationState extends State<BounceInAnimation>
-    with SingleTickerProviderStateMixin {
+class _BounceInAnimationState extends State<BounceInAnimation> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation;
 
@@ -65,19 +65,18 @@ class AnimatedArrow extends StatefulWidget {
   final Direction direction;
   final Duration duration;
 
-  AnimatedArrow(
+  const AnimatedArrow(
       {Key key,
       @required this.child,
-      this.direction: Direction.DOWN,
-      this.duration: const Duration(milliseconds: 800)})
+      this.direction = Direction.DOWN,
+      this.duration = const Duration(milliseconds: 800)})
       : super(key: key);
 
   @override
   createState() => _AnimatedArrowState();
 }
 
-class _AnimatedArrowState extends State<AnimatedArrow>
-    with SingleTickerProviderStateMixin {
+class _AnimatedArrowState extends State<AnimatedArrow> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _opacityAnimation;
   Animation<double> _marginAnimation;
@@ -98,7 +97,7 @@ class _AnimatedArrowState extends State<AnimatedArrow>
 
     _animation.addStatusListener((value) {
       if (value == AnimationStatus.completed) {
-        Future.delayed(Duration(milliseconds: 500), () {
+        Future.delayed(const Duration(milliseconds: 500), () {
           _controller.reset();
         });
       } else if (value == AnimationStatus.dismissed) {
@@ -125,18 +124,10 @@ class _AnimatedArrowState extends State<AnimatedArrow>
           child: Container(
             child: widget.child,
             margin: EdgeInsets.only(
-                top: widget.direction == Direction.UP
-                    ? _marginAnimation.value
-                    : 0,
-                left: widget.direction == Direction.LEFT
-                    ? _marginAnimation.value
-                    : 0,
-                right: widget.direction == Direction.RIGHT
-                    ? _marginAnimation.value
-                    : 0,
-                bottom: widget.direction == Direction.DOWN
-                    ? _marginAnimation.value
-                    : 0),
+                top: widget.direction == Direction.UP ? _marginAnimation.value : 0,
+                left: widget.direction == Direction.LEFT ? _marginAnimation.value : 0,
+                right: widget.direction == Direction.RIGHT ? _marginAnimation.value : 0,
+                bottom: widget.direction == Direction.DOWN ? _marginAnimation.value : 0),
           ),
         );
       },
@@ -147,12 +138,13 @@ class _AnimatedArrowState extends State<AnimatedArrow>
 /// Slides its [child] into position upon creation.
 class SlideInAnimation extends StatefulWidget {
   const SlideInAnimation({
+    Key key,
     @required this.child,
     this.duration = const Duration(seconds: 1),
     this.delay = Duration.zero,
     this.offset = Offset.zero,
     this.curve = Curves.fastOutSlowIn,
-  });
+  }) : super(key: key);
 
   final Widget child;
 
@@ -171,8 +163,7 @@ class SlideInAnimation extends StatefulWidget {
   createState() => _SlideInAnimationState();
 }
 
-class _SlideInAnimationState extends State<SlideInAnimation>
-    with SingleTickerProviderStateMixin {
+class _SlideInAnimationState extends State<SlideInAnimation> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation;
 
@@ -249,8 +240,7 @@ class SlideFadeInAnimation extends StatefulWidget {
   createState() => _SlideFadeInAnimationState();
 }
 
-class _SlideFadeInAnimationState extends State<SlideFadeInAnimation>
-    with SingleTickerProviderStateMixin {
+class _SlideFadeInAnimationState extends State<SlideFadeInAnimation> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation;
 
@@ -309,8 +299,7 @@ class FadeOutWidget extends StatefulWidget {
   createState() => _FadeOutWidgetState();
 }
 
-class _FadeOutWidgetState extends State<FadeOutWidget>
-    with SingleTickerProviderStateMixin {
+class _FadeOutWidgetState extends State<FadeOutWidget> with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
@@ -352,18 +341,19 @@ class _FadeOutWidgetState extends State<FadeOutWidget>
             opacity: 1.0 - _controller.value,
             child: widget.child,
           )
-        : SizedBox();
+        : const SizedBox();
   }
 }
 
 /// An implicitly animated widget that will animate a change to [scale].
 class AnimatedScale extends ImplicitlyAnimatedWidget {
   const AnimatedScale({
+    Key key,
     @required this.scale,
     @required this.child,
     Curve curve = Curves.easeInCubic,
     Duration duration = const Duration(milliseconds: 100),
-  }) : super(curve: curve, duration: duration);
+  }) : super(key: key, curve: curve, duration: duration);
 
   final double scale;
   final Widget child;
@@ -410,8 +400,7 @@ class SlideAnimation extends StatefulWidget {
   createState() => _SlideAnimationState();
 }
 
-class _SlideAnimationState extends State<SlideAnimation>
-    with SingleTickerProviderStateMixin {
+class _SlideAnimationState extends State<SlideAnimation> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<Offset> _animation;
 
@@ -459,12 +448,12 @@ class AnimatedNumber extends StatefulWidget {
   final int decimal;
   final Duration delay;
 
-  AnimatedNumber({
+  const AnimatedNumber({
     Key key,
     @required this.number,
-    this.start: 0.0,
-    this.decimal: 0,
-    this.duration: const Duration(milliseconds: 1000),
+    this.start = 0.0,
+    this.decimal = 0,
+    this.duration = const Duration(milliseconds: 1000),
     this.style,
     this.delay = Duration.zero,
   })  : assert(number != null),
@@ -474,8 +463,7 @@ class AnimatedNumber extends StatefulWidget {
   createState() => _AnimatedNumberState();
 }
 
-class _AnimatedNumberState extends State<AnimatedNumber>
-    with SingleTickerProviderStateMixin {
+class _AnimatedNumberState extends State<AnimatedNumber> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation;
 

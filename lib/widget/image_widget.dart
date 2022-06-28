@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ImageWidget extends StatefulWidget {
+  const ImageWidget({Key key}) : super(key: key);
+
   @override
   createState() => ImageWidgetState();
 }
@@ -272,33 +274,31 @@ class ImageWidgetState extends State<ImageWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Image")),
+        appBar: AppBar(title: const Text("Image")),
         body: SingleChildScrollView(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Column(children: <Widget>[
-            Text('网络占位图片FadeInImage'),
-            Divider(),
+            const Text('网络占位图片FadeInImage'),
+            const Divider(),
 
             /// 有的时候我们需要像Android那样使用一个占位图或者图片加载出错时显示某张特定的图片，这时候需要用到 FadeInImage 这个组件
             Row(children: <Widget>[
               FadeInImage.memoryNetwork(
                   placeholder: kTransparentImage,
-                  image:
-                      'https://avatars2.githubusercontent.com/u/20411648?s=460&v=4',
+                  image: 'https://avatars2.githubusercontent.com/u/20411648?s=460&v=4',
                   fit: BoxFit.cover,
                   height: 150,
                   width: 150),
               FadeInImage.assetNetwork(
                   placeholder: 'images/flutter_logo.png',
-                  image:
-                      'https://avatars2.githubusercontent.com/u/20411648?s=460&v=4',
+                  image: 'https://avatars2.githubusercontent.com/u/20411648?s=460&v=4',
                   fit: BoxFit.fill,
                   height: 150,
                   width: 150)
             ], mainAxisAlignment: MainAxisAlignment.spaceBetween),
-            Divider(),
-            Text('圆角图片'),
-            Divider(),
+            const Divider(),
+            const Text('圆角图片'),
+            const Divider(),
 
             /// 给图片添加圆角
             Row(children: <Widget>[
@@ -307,11 +307,8 @@ class ImageWidgetState extends State<ImageWidget> {
 
                   /// 圆角
                   borderRadius: BorderRadius.circular(10.0),
-                  child: Image.network(
-                      "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
-                      fit: BoxFit.fill,
-                      height: 150,
-                      width: 150)),
+                  child: Image.network("https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
+                      fit: BoxFit.fill, height: 150, width: 150)),
 
               /// 使用边框来实现图片圆角
               Container(
@@ -320,42 +317,36 @@ class ImageWidgetState extends State<ImageWidget> {
                   decoration: BoxDecoration(
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4"),
+                      image: const DecorationImage(
+                          image: NetworkImage("https://avatars2.githubusercontent.com/u/20411648?s=460&v=4"),
                           fit: BoxFit.cover)))
             ], mainAxisAlignment: MainAxisAlignment.spaceBetween),
 
-            Divider(),
-            Text('圆形图片'),
-            Divider(),
+            const Divider(),
+            const Text('圆形图片'),
+            const Divider(),
 
             /// 给图片添加圆角
             Row(children: <Widget>[
               ClipOval(
-                  child: Image.network(
-                      "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
-                      fit: BoxFit.fill,
-                      height: 150,
-                      width: 150)),
-              CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4"),
+                  child: Image.network("https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
+                      fit: BoxFit.fill, height: 150, width: 150)),
+              const CircleAvatar(
+                  backgroundImage: NetworkImage("https://avatars2.githubusercontent.com/u/20411648?s=460&v=4"),
                   radius: 75.0)
             ], mainAxisAlignment: MainAxisAlignment.spaceBetween),
-            Divider(),
+            const Divider(),
 
-            Text('GIF图片'),
-            Divider(),
+            const Text('GIF图片'),
+            const Divider(),
 
             /// 加载本地资源gif图片
             Image.asset('images/timg.gif', height: 200, width: 200),
 
-            Divider(),
+            const Divider(),
+            const Text('asset资源图片'),
 
-            Text('asset资源图片'),
-
-            Divider(),
+            const Divider(),
 
             Image.asset('images/flutter_logo.png',
                 width: 130, //图片宽度
@@ -363,22 +354,19 @@ class ImageWidgetState extends State<ImageWidget> {
                 /// 适配显示方式，fill表示宽高填充满
                 fit: BoxFit.scaleDown),
 
-            Divider(),
+            const Divider(),
             Image.asset('images/flutter_logo.png',
                 width: 50,
                 height: 50,
 
                 /// 在宽高内重复平铺图片，直到铺满
                 repeat: ImageRepeat.repeat),
-            Divider(),
-            Image(
-                image: AssetImage("images/flutter_logo.png"),
-                height: 200,
-                width: 200),
-            Divider(),
+            const Divider(),
+            const Image(image: AssetImage("images/flutter_logo.png"), height: 200, width: 200),
+            const Divider(),
 
-            Text('颜色混合图片'),
-            Divider(),
+            const Text('颜色混合图片'),
+            const Divider(),
 
             Row(children: <Widget>[
               Image.asset('images/flutter_logo.png',
@@ -389,22 +377,16 @@ class ImageWidgetState extends State<ImageWidget> {
 
                   /// 颜色和图片混合模式，功能较强大，其它模式参见官方文档或源码
                   colorBlendMode: BlendMode.overlay),
-              Image.network(
-                  "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
-                  width: 100,
-                  colorBlendMode: BlendMode.colorDodge,
-                  color: Colors.blue)
+              Image.network("https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
+                  width: 100, colorBlendMode: BlendMode.colorDodge, color: Colors.blue)
             ], mainAxisAlignment: MainAxisAlignment.spaceBetween),
-            Divider(),
+            const Divider(),
 
             /// 加载网络图片
-            Text('network网络图片'),
-            Divider(),
-            Image.network(
-                "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
-                height: 200,
-                width: 200),
-            Divider(),
+            const Text('network网络图片'),
+            const Divider(),
+            Image.network("https://avatars2.githubusercontent.com/u/20411648?s=460&v=4", height: 200, width: 200),
+            const Divider(),
 
             /// 加载网络图片
             GestureDetector(
@@ -418,37 +400,28 @@ class ImageWidgetState extends State<ImageWidget> {
                       "https://github.com/hjnilsson/country-flags/blob/master/png1000px/${_countries[index]}.png?raw=true")),
             ),
 
-            Divider(),
-            Text('centerSlice图片内部拉伸'),
-            Divider(),
+            const Divider(),
+            const Text('centerSlice图片内部拉伸'),
+            const Divider(),
             Image.asset('images/flutter_logo.png',
                 width: 250,
                 height: 250,
                 fit: BoxFit.contain,
-                centerSlice:
-                    Rect.fromCircle(center: const Offset(20, 20), radius: 1)),
+                centerSlice: Rect.fromCircle(center: const Offset(20, 20), radius: 1)),
 
-            Divider(),
-            Text('matchTextDirection图片内部方向'),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: Image.network(
-                          "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
-                          height: 150,
-                          matchTextDirection: true,
-                          fit: BoxFit.cover)),
-                  Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Image.network(
-                          "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
-                          height: 150,
-                          matchTextDirection: true,
-                          fit: BoxFit.cover))
-                ]),
-            Divider()
+            const Divider(),
+            const Text('matchTextDirection图片内部方向'),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
+              Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Image.network("https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
+                      height: 150, matchTextDirection: true, fit: BoxFit.cover)),
+              Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Image.network("https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
+                      height: 150, matchTextDirection: true, fit: BoxFit.cover))
+            ]),
+            const Divider()
           ]),
         ));
   }

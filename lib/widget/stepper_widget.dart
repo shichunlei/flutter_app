@@ -58,7 +58,7 @@ class StepperWidgetState extends State<StepperWidget> {
                   });
 
                   /// Log function call
-                  print("onStepTapped : " + step.toString());
+                  debugPrint("onStepTapped : " + step.toString());
                 },
 
                 /// On hitting cancel button, change the state
@@ -74,7 +74,7 @@ class StepperWidgetState extends State<StepperWidget> {
                   });
 
                   /// Log function call
-                  print("onStepCancel : " + currentStep.toString());
+                  debugPrint("onStepCancel : " + currentStep.toString());
                 },
 
                 /// On hitting continue button, change the state
@@ -90,7 +90,7 @@ class StepperWidgetState extends State<StepperWidget> {
                   });
 
                   /// Log function call
-                  print("onStepContinue : " + currentStep.toString());
+                  debugPrint("onStepContinue : " + currentStep.toString());
                 })));
   }
 }

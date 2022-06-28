@@ -7,8 +7,10 @@ import 'package:rounded_letter/rounded_letter.dart';
 import 'package:rounded_letter/shape_type.dart';
 
 class RoundedLetterWidget extends StatefulWidget {
+  const RoundedLetterWidget({Key key}) : super(key: key);
+
   @override
-  _RoundedLetterWidgetState createState() => _RoundedLetterWidgetState();
+  createState() => _RoundedLetterWidgetState();
 }
 
 class _RoundedLetterWidgetState extends State<RoundedLetterWidget> {
@@ -32,7 +34,7 @@ class _RoundedLetterWidgetState extends State<RoundedLetterWidget> {
     surnames.add("Heyeck");
   }
 
-  Random _random = Random();
+  final Random _random = Random();
   List<String> names = [];
   List<String> surnames = [];
   SampleClickListener listener = SampleClickListener();
@@ -61,11 +63,9 @@ class _RoundedLetterWidgetState extends State<RoundedLetterWidget> {
     widgets.add(_getRowWith(ShapeType.pentagon));
     widgets.addAll(buildDivider("Hexagons", "Example hexagon shapes"));
     widgets.add(_getRowWith(ShapeType.hexagon));
-    widgets.addAll(
-        buildDivider("Italic/bold", "Example shapes with italic/bold text"));
+    widgets.addAll(buildDivider("Italic/bold", "Example shapes with italic/bold text"));
     widgets.add(_getRowWithDifferentFontStyles());
-    widgets.addAll(buildDivider("Clickable element",
-        "Example clickable shape. Click result is printed to console"));
+    widgets.addAll(buildDivider("Clickable element", "Example clickable shape. Click result is printed to console"));
     widgets.add(_getRowWith(ShapeType.circle));
     widgets.addAll(buildDivider("Default circles", "Example circles"));
     for (var i = 0; i < 50; i++) {
@@ -77,37 +77,37 @@ class _RoundedLetterWidgetState extends State<RoundedLetterWidget> {
   List<Widget> buildDivider(String text, String subtitle) {
     List<Widget> widgets = [];
 
-    widgets.add(Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)));
-    widgets.add(Center(child: Text(text, style: TextStyle(fontSize: 20))));
-    widgets.add(Center(child: Text(subtitle, style: TextStyle(fontSize: 12))));
-    widgets.add(Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)));
-    widgets.add(Container(child: CustomPaint(painter: DividerPainter())));
-    widgets.add(Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)));
+    widgets.add(const Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)));
+    widgets.add(Center(child: Text(text, style: const TextStyle(fontSize: 20))));
+    widgets.add(Center(child: Text(subtitle, style: const TextStyle(fontSize: 12))));
+    widgets.add(const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)));
+    widgets.add(CustomPaint(painter: DividerPainter()));
+    widgets.add(const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)));
     return widgets;
   }
 
   Widget _getRowWith(ShapeType shapeType) {
     return Container(
-        margin: EdgeInsets.symmetric(vertical: 5.0),
+        margin: const EdgeInsets.symmetric(vertical: 5.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
+            const Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
             RoundedLetter(
               text: "JH",
-              shapeColor: Color(0xFFF4511E),
+              shapeColor: const Color(0xFFF4511E),
               shapeType: shapeType,
-              borderColor: Color(0xFFBF360C),
+              borderColor: const Color(0xFFBF360C),
               borderWidth: 1,
               fontBold: true,
-              key: Key("Rectangle1"),
+              key: const Key("Rectangle1"),
               clickListener: listener,
             ),
             RoundedLetter(
               text: "Mw",
-              shapeColor: Color(0xFF689F38),
+              shapeColor: const Color(0xFF689F38),
               shapeType: shapeType,
-              borderColor: Color(0xFF33691E),
+              borderColor: const Color(0xFF33691E),
               borderWidth: 1,
               fontBold: true,
               fontItalic: true,
@@ -115,85 +115,85 @@ class _RoundedLetterWidgetState extends State<RoundedLetterWidget> {
             ),
             RoundedLetter(
               text: "O",
-              shapeColor: Color(0xFF00897B),
+              shapeColor: const Color(0xFF00897B),
               shapeType: shapeType,
-              borderColor: Color(0xFF004D40),
+              borderColor: const Color(0xFF004D40),
               borderWidth: 1,
             ),
             RoundedLetter(
               text: "X",
-              shapeColor: Color(0xFF5E35B1),
+              shapeColor: const Color(0xFF5E35B1),
               shapeType: shapeType,
-              borderColor: Color(0xFF311B92),
+              borderColor: const Color(0xFF311B92),
               borderWidth: 1,
               fontItalic: true,
             ),
             RoundedLetter(
               text: "CL",
-              shapeColor: Color(0xFFF4511E),
+              shapeColor: const Color(0xFFF4511E),
               shapeType: shapeType,
-              borderColor: Color(0xFFBF360C),
+              borderColor: const Color(0xFFBF360C),
               borderWidth: 1,
               shapeSize: 80,
               fontSize: 40,
               fontBold: true,
-              key: Key("clickable_circle"),
+              key: const Key("clickable_circle"),
               clickListener: SampleClickListener(),
             ),
-            Padding(padding: EdgeInsets.fromLTRB(0, 0, 5, 0)),
+            const Padding(padding: EdgeInsets.fromLTRB(0, 0, 5, 0)),
           ],
         ));
   }
 
   Widget _getRowWithDifferentFontStyles() {
     return Container(
-        margin: EdgeInsets.symmetric(vertical: 5.0),
+        margin: const EdgeInsets.symmetric(vertical: 5.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
+            const Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
             RoundedLetter(
               text: "AB",
-              shapeColor: Color(0xFFF4511E),
+              shapeColor: const Color(0xFFF4511E),
               shapeType: ShapeType.circle,
-              borderColor: Color(0xFFBF360C),
+              borderColor: const Color(0xFFBF360C),
               borderWidth: 1,
               fontBold: true,
             ),
             RoundedLetter(
               text: "Ac",
-              shapeColor: Color(0xFF689F38),
+              shapeColor: const Color(0xFF689F38),
               shapeType: ShapeType.rectangle,
-              borderColor: Color(0xFF33691E),
+              borderColor: const Color(0xFF33691E),
               borderWidth: 1,
               fontItalic: true,
             ),
             RoundedLetter(
               text: "O",
-              shapeColor: Color(0xFF039BE5),
+              shapeColor: const Color(0xFF039BE5),
               shapeType: ShapeType.triangle,
-              borderColor: Color(0xFF01579B),
+              borderColor: const Color(0xFF01579B),
               borderWidth: 1,
               fontBold: true,
               fontItalic: true,
             ),
             RoundedLetter(
               text: "N",
-              shapeColor: Color(0xFF00897B),
+              shapeColor: const Color(0xFF00897B),
               shapeType: ShapeType.pentagon,
-              borderColor: Color(0xFF004D40),
+              borderColor: const Color(0xFF004D40),
               borderWidth: 1,
               fontBold: true,
             ),
             RoundedLetter(
               text: "r",
-              shapeColor: Color(0xFF5E35B1),
+              shapeColor: const Color(0xFF5E35B1),
               shapeType: ShapeType.hexagon,
-              borderColor: Color(0xFF311B92),
+              borderColor: const Color(0xFF311B92),
               borderWidth: 1,
               fontItalic: true,
             ),
-            Padding(padding: EdgeInsets.fromLTRB(0, 0, 5, 0)),
+            const Padding(padding: EdgeInsets.fromLTRB(0, 0, 5, 0)),
           ],
         ));
   }
@@ -202,11 +202,11 @@ class _RoundedLetterWidgetState extends State<RoundedLetterWidget> {
     var name = _getRandomName();
     var surname = _getRandomSurname();
     return Container(
-        margin: EdgeInsets.symmetric(vertical: 5.0),
+        margin: const EdgeInsets.symmetric(vertical: 5.0),
         child: Row(children: <Widget>[
-          Padding(padding: EdgeInsets.fromLTRB(10, 10, 10, 0)),
+          const Padding(padding: EdgeInsets.fromLTRB(10, 10, 10, 0)),
           _getRandomColorRoundedLetter(name.substring(0, 1).toUpperCase()),
-          Padding(padding: EdgeInsets.fromLTRB(10, 0, 10, 0)),
+          const Padding(padding: EdgeInsets.fromLTRB(10, 0, 10, 0)),
           Text(name + " " + surname)
         ]));
   }
@@ -249,9 +249,9 @@ class DividerPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint();
-    paint..color = Color(0xFF424242);
-    paint..strokeWidth = 1;
-    return canvas.drawLine(Offset(40, 0), Offset(size.width - 40, 0), paint);
+    paint.color = const Color(0xFF424242);
+    paint.strokeWidth = 1;
+    return canvas.drawLine(const Offset(40, 0), Offset(size.width - 40, 0), paint);
   }
 
   @override

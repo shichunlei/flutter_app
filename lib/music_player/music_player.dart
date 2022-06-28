@@ -6,6 +6,8 @@ import 'package:flutter_app/store/index.dart';
 import 'index.dart';
 
 class MusicPlayerPage extends StatefulWidget {
+  const MusicPlayerPage({Key key}) : super(key: key);
+
   @override
   createState() => _MusicPlayerPageState();
 }
@@ -17,7 +19,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> with SingleTickerProv
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 5));
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 5));
     animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
 
     //动画开始、结束、向前移动或向后移动时会调用StatusListener
@@ -36,7 +38,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> with SingleTickerProv
 
     Future.delayed(Duration.zero).then((_) {
       var snapshot = Store.value<MusicModel>(context, listen: false);
-      if (snapshot.allSongs.length == 0) {
+      if (snapshot.allSongs.isEmpty) {
         snapshot.getMusics();
       }
     });
@@ -57,12 +59,13 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> with SingleTickerProv
             systemOverlayStyle: SystemUiOverlayStyle.dark,
             iconTheme: lightIconTheme,
             backgroundColor: Colors.transparent,
-            leading:
-                IconButton(icon: Icon(SimpleLineIcons.arrow_left, size: 20), onPressed: () => Navigator.pop(context)),
+            leading: IconButton(
+                icon: const Icon(SimpleLineIcons.arrow_left, size: 20), onPressed: () => Navigator.pop(context)),
             elevation: 0.0,
             actions: <Widget>[
               IconButton(
-                  icon: Icon(SimpleLineIcons.playlist, size: 20), onPressed: () => showMusicListBottomSheet(context))
+                  icon: const Icon(SimpleLineIcons.playlist, size: 20),
+                  onPressed: () => showMusicListBottomSheet(context))
             ]),
         body: Column(children: <Widget>[
           // Seek bar
@@ -78,7 +81,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> with SingleTickerProv
                   onDragUpdate: (double percent) => snapshot.seekPlay(percent))),
 
           // Lyric
-          Container(height: 125.0, width: double.infinity),
+          const SizedBox(height: 125.0, width: double.infinity),
 
           // Song title, artist name, and controls
           _buildBottomControls(snapshot)
@@ -86,7 +89,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> with SingleTickerProv
   }
 
   Widget _buildBottomControls(MusicModel snapshot) {
-    return Container(
+    return SizedBox(
         width: double.infinity,
         child: Material(
             color: accentColor,
@@ -95,7 +98,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> with SingleTickerProv
                 padding: EdgeInsets.only(top: 40, bottom: 50.0 + Utils.bottomSafeHeight),
                 child: Column(children: <Widget>[
                   Text('${snapshot.curSong?.title}',
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -109,15 +112,15 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> with SingleTickerProv
                           letterSpacing: 3.0,
                           height: 1.5)),
                   Padding(
-                      padding: EdgeInsets.only(top: 40),
+                      padding: const EdgeInsets.only(top: 40),
                       child: Row(children: <Widget>[
-                        Spacer(),
+                        const Spacer(),
                         _buildPreviousButton(snapshot),
-                        Spacer(),
+                        const Spacer(),
                         _buildPlayPausedButton(snapshot),
-                        Spacer(),
+                        const Spacer(),
                         _buildNextButton(snapshot),
-                        Spacer()
+                        const Spacer()
                       ]))
                 ]))));
   }
@@ -126,7 +129,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> with SingleTickerProv
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
-        icon: Icon(Icons.skip_next, color: Colors.white, size: 35),
+        icon: const Icon(Icons.skip_next, color: Colors.white, size: 35),
         onPressed: () => snapshot.nextMusic());
   }
 
@@ -134,7 +137,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> with SingleTickerProv
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
-        icon: Icon(Icons.skip_previous, color: Colors.white, size: 35),
+        icon: const Icon(Icons.skip_previous, color: Colors.white, size: 35),
         onPressed: () => snapshot.prePlay());
   }
 

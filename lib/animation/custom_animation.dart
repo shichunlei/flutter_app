@@ -18,11 +18,10 @@ class CustomAnimationDemo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            Text('AnimatedArrow'),
+            const Text('AnimatedArrow'),
             SizedBox(
               height: 50,
-              child: AnimatedArrow(
-                  child: const FlutterLogo(size: 50), direction: Direction.RIGHT),
+              child: AnimatedArrow(child: const FlutterLogo(size: 50), direction: Direction.RIGHT),
             ),
             Line(color: Colors.grey),
             const Text('BounceInAnimation'),
@@ -63,26 +62,26 @@ class CustomAnimationDemo extends StatelessWidget {
                       delay: const Duration(milliseconds: 1800),
                       offset: Offset(0, -Utils.height)),
                   SlideInAnimation(
-                      child: Text('字'),
-                      duration: Duration(seconds: 1),
-                      delay: Duration(seconds: 2),
+                      child: const Text('字'),
+                      duration: const Duration(seconds: 1),
+                      delay: const Duration(seconds: 2),
                       offset: Offset(0, -Utils.height)),
                 ],
               ),
             ),
             Line(color: Colors.grey),
-            Text('SlideFadeInAnimation'),
+            const Text('SlideFadeInAnimation'),
             SizedBox(
               height: 50,
               child: SlideFadeInAnimation(
-                  child: FlutterLogo(size: 50),
-                  duration: Duration(seconds: 2),
-                  delay: Duration(seconds: 2),
+                  child: const FlutterLogo(size: 50),
+                  duration: const Duration(seconds: 2),
+                  delay: const Duration(seconds: 2),
                   offset: Offset(0, Utils.height)),
             ),
             Line(color: Colors.grey),
-            Text('FadeOutWidget'),
-            SizedBox(
+            const Text('FadeOutWidget'),
+            const SizedBox(
               height: 50,
               child: FadeOutWidget(
                 child: FlutterLogo(size: 50),

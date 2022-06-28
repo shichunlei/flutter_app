@@ -11,12 +11,12 @@ class SkipDownTimeProgress extends StatefulWidget {
   final VoidCallback onTap;
   final onFinishCallBack;
 
-  SkipDownTimeProgress(
+  const SkipDownTimeProgress(
       {Key key,
       this.color,
       this.radius,
       this.duration,
-      this.size: const Size(25.0, 25.0),
+      this.size = const Size(25.0, 25.0),
       this.skipText = "跳过",
       this.onTap,
       this.onFinishCallBack})
@@ -26,8 +26,7 @@ class SkipDownTimeProgress extends StatefulWidget {
   createState() => _SkipDownTimeProgressState();
 }
 
-class _SkipDownTimeProgressState extends State<SkipDownTimeProgress>
-    with TickerProviderStateMixin {
+class _SkipDownTimeProgressState extends State<SkipDownTimeProgress> with TickerProviderStateMixin {
   Animation<double> _animation;
   AnimationController _controller;
 
@@ -65,15 +64,11 @@ class _SkipDownTimeProgressState extends State<SkipDownTimeProgress>
     return GestureDetector(
         onTap: widget.onTap,
         child: CustomPaint(
-            painter: _DrawProgress(widget.color, widget.radius,
-                angle: _animation.value),
+            painter: _DrawProgress(widget.color, widget.radius, angle: _animation.value),
             size: widget.size,
             child: Center(
                 child: Text(widget.skipText,
-                    style: TextStyle(
-                        color: widget.color,
-                        fontSize: 13.5,
-                        decoration: TextDecoration.none)))));
+                    style: TextStyle(color: widget.color, fontSize: 13.5, decoration: TextDecoration.none)))));
   }
 }
 

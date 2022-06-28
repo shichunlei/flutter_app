@@ -5,6 +5,8 @@ import 'package:flutter_app/store/index.dart';
 import 'index.dart';
 
 class AudioPlayersPage extends StatefulWidget {
+  const AudioPlayersPage({Key key}) : super(key: key);
+
   @override
   createState() => _AudioPlayersPageState();
 }
@@ -15,7 +17,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((callback) {
       var value = Store.value<MusicModel>(context, listen: false);
-      if (value.allSongs.length == 0) {
+      if (value.allSongs.isEmpty) {
         value.getMusics();
       }
     });
@@ -28,7 +30,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
     return Material(
         child: Stack(children: [
       Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
         gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [
           Color.fromRGBO(208, 230, 165, 1),
           Color.fromRGBO(233, 136, 124, 1),
@@ -44,11 +46,11 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
           child: Column(children: <Widget>[
             Expanded(child: AlbumCover(image: snapshot.curSong?.albumArtUrl, isPlaying: snapshot.isPlaying)),
             Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 height: 30,
                 child: Marquee(
                     text: '${snapshot.curSong?.title}-${snapshot.curSong?.artists}',
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -72,7 +74,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
             Material(
                 type: MaterialType.transparency,
                 child: Padding(
-                    padding: EdgeInsets.only(top: 20, bottom: 20),
+                    padding: const EdgeInsets.only(top: 20, bottom: 20),
                     child: Row(children: <Widget>[
                       _buildModeButton(snapshot),
                       _buildPreviousButton(snapshot),
@@ -81,7 +83,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
                       _buildListButton()
                     ], mainAxisAlignment: MainAxisAlignment.spaceAround)))
           ])),
-      Container(
+      SizedBox(
           height: Utils.navigationBarHeight,
           child: AppBar(
               elevation: 0,
@@ -89,7 +91,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
               leading: IconButton(
                   splashColor: lightAccentColor,
                   highlightColor: Colors.transparent,
-                  icon: Icon(Icons.keyboard_arrow_down, color: Colors.white),
+                  icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
                   onPressed: () {
                     Navigator.pop(context);
                   }),
@@ -97,7 +99,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
                 IconButton(
                     splashColor: lightAccentColor,
                     highlightColor: Colors.transparent,
-                    icon: Icon(Icons.more_horiz, color: Colors.white),
+                    icon: const Icon(Icons.more_horiz, color: Colors.white),
                     onPressed: () {
                       pushNewPage(context, RankListPage());
                     })
@@ -122,30 +124,30 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: SimpleDialog(children: <Widget>[
                                   ListTile(
-                                      leading: Icon(Icons.repeat_one),
-                                      title: Text('单曲循环'),
+                                      leading: const Icon(Icons.repeat_one),
+                                      title: const Text('单曲循环'),
                                       onTap: () {
                                         Navigator.pop(context);
                                         snapshot.toggleMode(2);
                                       },
                                       selected: snapshot.mode == 2),
                                   ListTile(
-                                      leading: Icon(Icons.repeat),
-                                      title: Text('顺序播放'),
+                                      leading: const Icon(Icons.repeat),
+                                      title: const Text('顺序播放'),
                                       onTap: () {
                                         Navigator.pop(context);
                                         snapshot.toggleMode(0);
                                       },
                                       selected: snapshot.mode == 0),
                                   ListTile(
-                                      leading: Icon(Icons.shuffle),
-                                      title: Text('随机播放'),
+                                      leading: const Icon(Icons.shuffle),
+                                      title: const Text('随机播放'),
                                       onTap: () {
                                         Navigator.pop(context);
                                         snapshot.toggleMode(1);
                                       },
                                       selected: snapshot.mode == 1)
-                                ], contentPadding: EdgeInsets.all(0))))));
+                                ], contentPadding: const EdgeInsets.all(0))))));
               });
         });
   }
@@ -154,7 +156,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
-        icon: Icon(Icons.queue_music, color: Colors.white),
+        icon: const Icon(Icons.queue_music, color: Colors.white),
         onPressed: () => showMusicListBottomSheet(context));
   }
 
@@ -162,7 +164,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
-        icon: Icon(Icons.skip_next, color: Colors.white, size: 35),
+        icon: const Icon(Icons.skip_next, color: Colors.white, size: 35),
         onPressed: () => snapshot.nextMusic());
   }
 
@@ -170,7 +172,7 @@ class _AudioPlayersPageState extends State<AudioPlayersPage> {
     return IconButton(
         splashColor: lightAccentColor,
         highlightColor: Colors.transparent,
-        icon: Icon(Icons.skip_previous, color: Colors.white, size: 35),
+        icon: const Icon(Icons.skip_previous, color: Colors.white, size: 35),
         onPressed: () => snapshot.prePlay());
   }
 

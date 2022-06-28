@@ -21,33 +21,32 @@ class DropDownHeader extends StatefulWidget {
   final List<DropDownHeaderItem> items;
   final GlobalKey stackKey;
 
-  DropDownHeader({
+  const DropDownHeader({
     Key key,
     @required this.items,
     @required this.controller,
     @required this.stackKey,
-    this.style: const TextStyle(color: Color(0xFF666666), fontSize: 13),
+    this.style = const TextStyle(color: Color(0xFF666666), fontSize: 13),
     this.dropDownStyle,
-    this.height: 50,
-    this.iconColor: const Color(0xFFafada7),
+    this.height = 50,
+    this.iconColor = const Color(0xFFafada7),
     this.iconDropDownColor,
-    this.iconSize: 20,
-    this.borderWidth: 1,
-    this.borderColor: const Color(0xFFeeede6),
-    this.dividerHeight: 20,
-    this.dividerColor: const Color(0xFFeeede6),
+    this.iconSize = 20,
+    this.borderWidth = 1,
+    this.borderColor = const Color(0xFFeeede6),
+    this.dividerHeight = 20,
+    this.dividerColor = const Color(0xFFeeede6),
     this.onItemTap,
-    this.color: Colors.white,
+    this.color = Colors.white,
   }) : super(key: key);
 
   @override
   createState() => _DropDownHeaderState();
 }
 
-class _DropDownHeaderState extends State<DropDownHeader>
-    with SingleTickerProviderStateMixin {
+class _DropDownHeaderState extends State<DropDownHeader> with SingleTickerProviderStateMixin {
   bool _isShowDropDownItemWidget = false;
-  GlobalKey _keyDropDownHeader = GlobalKey();
+  final GlobalKey _keyDropDownHeader = GlobalKey();
 
   @override
   void initState() {
@@ -69,14 +68,13 @@ class _DropDownHeaderState extends State<DropDownHeader>
       height: widget.height,
       width: double.infinity,
       decoration: BoxDecoration(
-        border:
-            Border.all(color: widget.borderColor, width: widget.borderWidth),
+        border: Border.all(color: widget.borderColor, width: widget.borderWidth),
       ),
-      child: Row(
-          children: widget.items.map<Widget>((item) => _menu(item)).toList()),
+      child: Row(children: widget.items.map<Widget>((item) => _menu(item)).toList()),
     );
   }
 
+  @override
   dispose() {
     super.dispose();
   }
@@ -91,14 +89,11 @@ class _DropDownHeaderState extends State<DropDownHeader>
         color: widget.color,
         child: InkWell(
           onTap: () {
-            final RenderBox overlay =
-                widget.stackKey.currentContext.findRenderObject();
+            final RenderBox overlay = widget.stackKey.currentContext.findRenderObject();
 
-            final RenderBox dropDownItemRenderBox =
-                _keyDropDownHeader.currentContext.findRenderObject();
+            final RenderBox dropDownItemRenderBox = _keyDropDownHeader.currentContext.findRenderObject();
 
-            var position = dropDownItemRenderBox.localToGlobal(Offset.zero,
-                ancestor: overlay);
+            var position = dropDownItemRenderBox.localToGlobal(Offset.zero, ancestor: overlay);
             debugPrint("POSITION : $position ");
             var size = dropDownItemRenderBox.size;
             debugPrint("SIZE : $size");
@@ -115,45 +110,37 @@ class _DropDownHeaderState extends State<DropDownHeader>
             }
             setState(() {});
           },
-          child: Container(
+          child: SizedBox(
             height: double.infinity,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Expanded(
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Flexible(
-                          child: Text(item.title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: _isShowDropDownItemWidget
-                                  ? widget.dropDownStyle ??
-                                      TextStyle(
-                                          color: Theme.of(context).primaryColor,
-                                          fontSize: 13)
-                                  : widget.style),
-                        ),
-                        Icon(
-                            !_isShowDropDownItemWidget
-                                ? item.iconData ?? Icons.arrow_drop_down
-                                : item.iconData ?? Icons.arrow_drop_up,
-                            color: _isShowDropDownItemWidget
-                                ? widget.iconDropDownColor ??
-                                    Theme.of(context).primaryColor
-                                : widget.iconColor,
-                            size: item.iconSize ?? widget.iconSize),
-                      ]),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                    Flexible(
+                      child: Text(item.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: _isShowDropDownItemWidget
+                              ? widget.dropDownStyle ?? TextStyle(color: Theme.of(context).primaryColor, fontSize: 13)
+                              : widget.style),
+                    ),
+                    Icon(
+                        !_isShowDropDownItemWidget
+                            ? item.iconData ?? Icons.arrow_drop_down
+                            : item.iconData ?? Icons.arrow_drop_up,
+                        color: _isShowDropDownItemWidget
+                            ? widget.iconDropDownColor ?? Theme.of(context).primaryColor
+                            : widget.iconColor,
+                        size: item.iconSize ?? widget.iconSize),
+                  ]),
                 ),
                 index == widget.items.length - 1
                     ? Container()
                     : Container(
                         height: widget.dividerHeight,
-                        decoration: BoxDecoration(
-                            border: Border(
-                                right: BorderSide(
-                                    color: widget.dividerColor, width: 1))))
+                        decoration:
+                            BoxDecoration(border: Border(right: BorderSide(color: widget.dividerColor, width: 1))))
               ],
             ),
           ),

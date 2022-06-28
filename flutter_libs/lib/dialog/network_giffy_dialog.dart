@@ -14,7 +14,7 @@ class NetworkGiffyDialog extends StatelessWidget {
   final double cornerRadius;
   final VoidCallback onOkButtonPressed;
 
-  NetworkGiffyDialog({
+  const NetworkGiffyDialog({
     Key key,
     @required this.image,
     @required this.title,
@@ -35,17 +35,17 @@ class NetworkGiffyDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(cornerRadius)),
-      child: Container(
+      child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.6,
         width: MediaQuery.of(context).size.width * 0.8,
         child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
           Column(children: <Widget>[
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
               height: (MediaQuery.of(context).size.height / 2) * 0.6,
               child: Card(
                   elevation: 0.0,
-                  margin: EdgeInsets.all(0.0),
+                  margin: const EdgeInsets.all(0.0),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(cornerRadius), topLeft: Radius.circular(cornerRadius))),
@@ -64,20 +64,20 @@ class NetworkGiffyDialog extends StatelessWidget {
                       ? ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(buttonOkColor ?? Colors.grey),
-                              textStyle: MaterialStateProperty.all(TextStyle(color: Colors.white)),
+                              textStyle: MaterialStateProperty.all(const TextStyle(color: Colors.white)),
                               shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonRadius)))),
                           onPressed: () => Navigator.of(context).pop(),
-                          child: buttonCancelText ?? Text('Cancel'))
+                          child: buttonCancelText ?? const Text('Cancel'))
                       : Container(),
                   ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(buttonOkColor ?? Colors.green),
-                        textStyle: MaterialStateProperty.all(TextStyle(color: Colors.white)),
+                        textStyle: MaterialStateProperty.all(const TextStyle(color: Colors.white)),
                         shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonRadius)))),
                     onPressed: onOkButtonPressed ?? () {},
-                    child: buttonOkText ?? Text('OK'),
+                    child: buttonOkText ?? const Text('OK'),
                   ),
                 ]),
           ),

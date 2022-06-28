@@ -54,7 +54,7 @@ class _AlbumCoverState extends State<AlbumCover> {
       _rotation = _rotation == 360 ? 1 : _rotation + 1;
     });
 
-    _timer = Timer(Duration(milliseconds: 40), _startRotation);
+    _timer = Timer(const Duration(milliseconds: 40), _startRotation);
   }
 
   void _stopRotation() {
@@ -63,48 +63,44 @@ class _AlbumCoverState extends State<AlbumCover> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        children: <Widget>[
-          // player disc
-          Positioned(
-              child: Container(
-                padding: EdgeInsets.all(40),
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: Colors.black),
-                child: Transform.rotate(
-                  child: ClipOval(
-                    child: ImageLoadView(widget.image),
-                  ),
-                  angle: math.pi * _rotation / 180,
-                ),
-                // color: Colors.red,
-                height: 261,
-                width: 261,
-              ),
-              top: 100),
-
-          // player needle
-          Positioned(
+    return Stack(
+      children: <Widget>[
+        // player disc
+        Positioned(
             child: Container(
-              child: Transform(
-                child: Image.asset('images/player_needle.png'),
-                // pause: -30 playing: 0
-                transform: Matrix4.identity()
-                  ..rotateZ((widget.isPlaying ? 0 : -30) * math.pi / 180),
-                origin: Offset(15, 13),
+              padding: const EdgeInsets.all(40),
+              decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+              child: Transform.rotate(
+                child: ClipOval(
+                  child: ImageLoadView(widget.image),
+                ),
+                angle: math.pi * _rotation / 180,
               ),
-              // color: Colors.white,
-              height: 134,
-              padding: EdgeInsets.only(left: 62),
+              // color: Colors.red,
+              height: 261,
+              width: 261,
             ),
-            top: 20,
+            top: 100),
+
+        // player needle
+        Positioned(
+          child: Container(
+            child: Transform(
+              child: Image.asset('images/player_needle.png'),
+              transform: Matrix4.identity()..rotateZ((widget.isPlaying ? 0 : -30) * math.pi / 180),
+              origin: const Offset(15, 13),
+            ),
+            // color: Colors.white,
             height: 134,
+            padding: const EdgeInsets.only(left: 62),
           ),
-        ],
-        alignment: Alignment.topCenter,
-      ),
+          top: 20,
+          height: 134,
+        ),
+      ],
+      alignment: Alignment.topCenter,
     );
   }
 }

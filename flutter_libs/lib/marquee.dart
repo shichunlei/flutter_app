@@ -13,12 +13,14 @@ class Marquee extends StatefulWidget {
   /// 空白部分占控件的百分比
   final double ratioOfBlankToScreen;
 
-  Marquee({
+  const Marquee({
+    Key key,
     @required this.text,
     this.style,
-    this.scrollAxis: Axis.horizontal,
-    this.ratioOfBlankToScreen: 0.25,
-  }) : assert(text != null);
+    this.scrollAxis = Axis.horizontal,
+    this.ratioOfBlankToScreen = 0.25,
+  })  : assert(text != null),
+        super(key: key);
 
   @override
   createState() => MarqueeState();
@@ -32,7 +34,7 @@ class MarqueeState extends State<Marquee> with SingleTickerProviderStateMixin {
   Timer timer;
   final double _moveDistance = 3.0;
   final int _timerRest = 100;
-  GlobalKey _key = GlobalKey();
+  final GlobalKey _key = GlobalKey();
 
   @override
   void initState() {
@@ -44,28 +46,20 @@ class MarqueeState extends State<Marquee> with SingleTickerProviderStateMixin {
   }
 
   void startTimer() {
-    double widgetWidth =
-        _key.currentContext.findRenderObject().paintBounds.size.width;
-    double widgetHeight =
-        _key.currentContext.findRenderObject().paintBounds.size.height;
+    double widgetWidth = _key.currentContext.findRenderObject().paintBounds.size.width;
+    double widgetHeight = _key.currentContext.findRenderObject().paintBounds.size.height;
 
     timer = Timer.periodic(Duration(milliseconds: _timerRest), (timer) {
       double maxScrollExtent = _controller.position.maxScrollExtent;
       double pixels = _controller.position.pixels;
       if (pixels + _moveDistance >= maxScrollExtent) {
         if (widget.scrollAxis == Axis.horizontal) {
-          position = (maxScrollExtent -
-                      screenWidth * widget.ratioOfBlankToScreen +
-                      widgetWidth) /
-                  2 -
+          position = (maxScrollExtent - screenWidth * widget.ratioOfBlankToScreen + widgetWidth) / 2 -
               widgetWidth +
               pixels -
               maxScrollExtent;
         } else {
-          position = (maxScrollExtent -
-                      screenHeight * widget.ratioOfBlankToScreen +
-                      widgetHeight) /
-                  2 -
+          position = (maxScrollExtent - screenHeight * widget.ratioOfBlankToScreen + widgetHeight) / 2 -
               widgetHeight +
               pixels -
               maxScrollExtent;
@@ -73,8 +67,7 @@ class MarqueeState extends State<Marquee> with SingleTickerProviderStateMixin {
         _controller.jumpTo(position);
       }
       position += _moveDistance;
-      _controller.animateTo(position,
-          duration: Duration(milliseconds: _timerRest), curve: Curves.linear);
+      _controller.animateTo(position, duration: Duration(milliseconds: _timerRest), curve: Curves.linear);
     });
   }
 
@@ -125,7 +118,7 @@ class MarqueeState extends State<Marquee> with SingleTickerProviderStateMixin {
       key: _key,
       scrollDirection: widget.scrollAxis,
       controller: _controller,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       children: <Widget>[
         getBothEndsChild(),
         getCenterChild(),

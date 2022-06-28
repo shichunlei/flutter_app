@@ -87,8 +87,7 @@ class SlideButton extends StatefulWidget {
   createState() => _SlideButtonState();
 }
 
-class _SlideButtonState extends State<SlideButton>
-    with SingleTickerProviderStateMixin {
+class _SlideButtonState extends State<SlideButton> with SingleTickerProviderStateMixin {
   AnimationController _slideAC;
 
   var _borderRadius = 0.0;
@@ -100,23 +99,18 @@ class _SlideButtonState extends State<SlideButton>
 
     _borderRadius = widget.borderRadius;
 
-    _slideAC = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 300))
+    _slideAC = AnimationController(vsync: this, duration: const Duration(milliseconds: 300))
       ..addListener(() {
         setState(() {});
 
         if (widget.shouldCloseBorders)
-          _borderRadius = widget.borderRadius -
-              (sigmoid(_slideAC.value) * widget.borderRadius);
+          _borderRadius = widget.borderRadius - (sigmoid(_slideAC.value) * widget.borderRadius);
 
         if (widget.onButtonSlide != null) widget.onButtonSlide(_slideAC.value);
 
-        if (widget.onButtonOpened != null && _slideAC.value == 1.0)
-          widget.onButtonOpened();
+        if (widget.onButtonOpened != null && _slideAC.value == 1.0) widget.onButtonOpened();
 
-        if (widget.onButtonClosed != null &&
-            _slideAC.value == widget.initialSliderPercentage)
-          widget.onButtonClosed();
+        if (widget.onButtonClosed != null && _slideAC.value == widget.initialSliderPercentage) widget.onButtonClosed();
       });
 
     _slideAC.value = widget.initialSliderPercentage;
@@ -130,26 +124,25 @@ class _SlideButtonState extends State<SlideButton>
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
+    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
       _maxWidth = constraints.maxWidth;
 
       return Stack(
         children: <Widget>[
           Align(
-            alignment: Alignment(-1.0, 0.0),
+            alignment: const Alignment(-1.0, 0.0),
             child: Container(
               height: widget.height,
               color: widget.backgroundColor,
-              child: widget.backgroundChild ?? null,
+              child: widget.backgroundChild,
             ),
           ),
           Align(
-            alignment: Alignment(-1.0, 0.0),
+            alignment: const Alignment(-1.0, 0.0),
             child: GestureDetector(
               onVerticalDragUpdate: widget.isDraggable ? _onDrag : null,
               onVerticalDragEnd: widget.isDraggable ? _onDragEnd : null,
-              child: Container(
+              child: SizedBox(
                 height: widget.height,
                 child: Align(
                   alignment: widget.slideDirection == SlideButtonDirection.RIGHT
@@ -161,15 +154,12 @@ class _SlideButtonState extends State<SlideButton>
                     child: Container(
                       decoration: BoxDecoration(
                           color: widget.slidingBarColor,
-                          borderRadius: widget.slideDirection ==
-                                  SlideButtonDirection.RIGHT
+                          borderRadius: widget.slideDirection == SlideButtonDirection.RIGHT
                               ? BorderRadius.only(
-                                  bottomRight: Radius.circular(_borderRadius),
-                                  topRight: Radius.circular(_borderRadius))
+                                  bottomRight: Radius.circular(_borderRadius), topRight: Radius.circular(_borderRadius))
                               : BorderRadius.only(
-                                  bottomLeft: Radius.circular(_borderRadius),
-                                  topLeft: Radius.circular(_borderRadius))),
-                      child: widget.slidingChild ?? null,
+                                  bottomLeft: Radius.circular(_borderRadius), topLeft: Radius.circular(_borderRadius))),
+                      child: widget.slidingChild,
                     ),
                   ),
                 ),
@@ -201,7 +191,7 @@ class _SlideButtonState extends State<SlideButton>
       _slideAC.fling(velocity: 1.0);
     } else {
       _slideAC.animateTo(widget.initialSliderPercentage,
-          duration: Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
+          duration: const Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
     }
   }
 }

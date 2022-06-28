@@ -40,7 +40,7 @@ class DragSortView extends StatefulWidget {
   /// create DragSortView.
   /// It is recommended to use a thumbnail picture，because the original picture is too large, it may cause repeated loading and cause flashing.
   /// 建议使用略微缩图，因为原图太大可能会引起重复加载导致闪动.
-  DragSortView(
+  const DragSortView(
     this.data, {
     Key key,
     this.width,
@@ -83,8 +83,7 @@ class DragSortView extends StatefulWidget {
   createState() => DragSortViewState();
 }
 
-class DragSortViewState extends State<DragSortView>
-    with TickerProviderStateMixin {
+class DragSortViewState extends State<DragSortView> with TickerProviderStateMixin {
   /// child transposition anim.
   AnimationController _controller;
 
@@ -95,10 +94,10 @@ class DragSortViewState extends State<DragSortView>
   AnimationController _floatController;
 
   /// child positions.
-  List<Rect> _positions = [];
+  final List<Rect> _positions = [];
 
   /// cache data.
-  List<DragBean> _cacheData = [];
+  final List<DragBean> _cacheData = [];
 
   /// drag child index.
   int _dragIndex = -1;
@@ -131,12 +130,9 @@ class DragSortViewState extends State<DragSortView>
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(duration: Duration(milliseconds: 200), vsync: this);
-    _zoomController =
-        AnimationController(duration: Duration(milliseconds: 100), vsync: this);
-    _floatController =
-        AnimationController(duration: Duration(milliseconds: 200), vsync: this);
+    _controller = AnimationController(duration: const Duration(milliseconds: 200), vsync: this);
+    _zoomController = AnimationController(duration: const Duration(milliseconds: 100), vsync: this);
+    _floatController = AnimationController(duration: const Duration(milliseconds: 200), vsync: this);
     _controller.addListener(() {
       setState(() {});
     });
@@ -144,8 +140,7 @@ class DragSortViewState extends State<DragSortView>
       _updateOverlay();
     });
     _floatController.addListener(() {
-      _floatLeft =
-          _toLeft + (_fromLeft - _toLeft) * (1 - _floatController.value);
+      _floatLeft = _toLeft + (_fromLeft - _toLeft) * (1 - _floatController.value);
       _floatTop = _toTop + (_fromTop - _toTop) * (1 - _floatController.value);
       _updateOverlay();
     });
@@ -168,8 +163,7 @@ class DragSortViewState extends State<DragSortView>
   /// init child size and positions.
   void _init(BuildContext context, EdgeInsets padding, EdgeInsets margin) {
     double space = widget.space;
-    double width = widget.width ??
-        (MediaQuery.of(context).size.width - margin.left - margin.right);
+    double width = widget.width ?? (MediaQuery.of(context).size.width - margin.left - margin.right);
     width = width - padding.left - padding.right;
     _itemWidth = (width - space * 2) / 3;
     _positions.clear();
@@ -256,8 +250,7 @@ class DragSortViewState extends State<DragSortView>
         outside = false;
         Rect over = rect.intersect(curRect);
         Rect ori = origin.intersect(curRect);
-        if (_getRectArea(over) > _itemWidth * _itemWidth / 2 ||
-            _getRectArea(over) > _getRectArea(ori)) {
+        if (_getRectArea(over) > _itemWidth * _itemWidth / 2 || _getRectArea(over) > _getRectArea(ori)) {
           return i;
         }
       }
@@ -309,8 +302,7 @@ class DragSortViewState extends State<DragSortView>
     }
     if (tagIndex != -1) {
       for (int i = _itemCount - 1; i >= 0; i--) {
-        if (((i + 1) / 3).ceil() >= (((_dragIndex + 1) / 3).ceil()) &&
-            (i % 3 == tagIndex)) {
+        if (((i + 1) / 3).ceil() >= (((_dragIndex + 1) / 3).ceil()) && (i % 3 == tagIndex)) {
           return i;
         }
       }
@@ -333,7 +325,7 @@ class DragSortViewState extends State<DragSortView>
   /// trigger drag event.
   bool _triggerDragEvent(int action) {
     if (widget.onDragListener != null && _dragIndex != -1) {
-      if (_motionEvent == null) _motionEvent = MotionEvent();
+      _motionEvent ??= MotionEvent();
       _motionEvent.dragIndex = _dragIndex;
       _motionEvent.action = action;
       _motionEvent.globalX = _floatLeft;
@@ -348,27 +340,22 @@ class DragSortViewState extends State<DragSortView>
     List<Widget> children = [];
     if (_cacheData.isEmpty) {
       for (int i = 0; i < _itemCount; i++) {
-        children.add(Positioned.fromRect(
-            rect: _positions[i], child: widget.itemBuilder(context, i)));
+        children.add(Positioned.fromRect(rect: _positions[i], child: widget.itemBuilder(context, i)));
       }
     } else {
       for (int i = 0; i < _itemCount; i++) {
         int curIndex = widget.data[i].index;
         int lastIndex = _cacheData[i].index;
-        double left = _positions[curIndex].left +
-            (_positions[lastIndex].left - _positions[curIndex].left) *
-                _controller.value;
-        double top = _positions[curIndex].top +
-            (_positions[lastIndex].top - _positions[curIndex].top) *
-                _controller.value;
+        double left =
+            _positions[curIndex].left + (_positions[lastIndex].left - _positions[curIndex].left) * _controller.value;
+        double top =
+            _positions[curIndex].top + (_positions[lastIndex].top - _positions[curIndex].top) * _controller.value;
         children.add(Positioned(
             left: left,
             top: top,
             width: _itemWidth,
             height: _itemWidth,
-            child: Offstage(
-                offstage: widget.data[i].selected == true,
-                child: widget.itemBuilder(context, i))));
+            child: Offstage(offstage: widget.data[i].selected == true, child: widget.itemBuilder(context, i))));
       }
     }
 
@@ -392,14 +379,8 @@ class DragSortViewState extends State<DragSortView>
 
     int column = (_itemCount > 3 ? 3 : _itemCount + 1);
     int row = ((_itemCount + (_itemCount < 9 ? 1 : 0)) / 3).ceil();
-    double realWidth = _itemWidth * column +
-        widget.space * (column - 1) +
-        padding.left +
-        padding.right;
-    double realHeight = _itemWidth * row +
-        widget.space * (row - 1) +
-        padding.top +
-        padding.bottom;
+    double realWidth = _itemWidth * column + widget.space * (column - 1) + padding.left + padding.right;
+    double realHeight = _itemWidth * row + widget.space * (row - 1) + padding.top + padding.bottom;
     double left = margin.left + padding.left;
     double top = margin.top + padding.top;
 
@@ -425,14 +406,11 @@ class DragSortViewState extends State<DragSortView>
         },
         onLongPressMoveUpdate: (LongPressMoveUpdateDetails details) {
           if (_dragIndex == -1) return;
-          _floatLeft =
-              _toLeft + (details.globalPosition.dx - _downGlobalPos.dx);
+          _floatLeft = _toLeft + (details.globalPosition.dx - _downGlobalPos.dx);
           _floatTop = _toTop + (details.globalPosition.dy - _downGlobalPos.dy);
 
-          double left =
-              _downLeft + (details.globalPosition.dx - _downGlobalPos.dx);
-          double top =
-              _downTop + (details.globalPosition.dy - _downGlobalPos.dy);
+          double left = _downLeft + (details.globalPosition.dx - _downGlobalPos.dx);
+          double top = _downTop + (details.globalPosition.dy - _downGlobalPos.dy);
           Rect cRect = Rect.fromLTWH(left, top, _itemWidth, _itemWidth);
           int index = _getNextIndex(cRect, _positions[_dragIndex]);
           if (index != -1 && _dragIndex != index) {
@@ -467,10 +445,6 @@ class DragSortViewState extends State<DragSortView>
         },
         behavior: HitTestBehavior.translucent,
         child: Container(
-            width: realWidth,
-            height: realHeight,
-            margin: margin,
-            padding: padding,
-            child: _buildChild(context)));
+            width: realWidth, height: realHeight, margin: margin, padding: padding, child: _buildChild(context)));
   }
 }

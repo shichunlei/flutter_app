@@ -10,13 +10,13 @@ class DotsIndicator extends StatelessWidget {
   final Axis axis;
   final bool reversed;
 
-  DotsIndicator({
+  const DotsIndicator({
     Key key,
-    this.position: 0,
-    this.axis: Axis.horizontal,
-    this.decorator: const DotsDecorator(),
+    this.position = 0,
+    this.axis = Axis.horizontal,
+    this.decorator = const DotsDecorator(),
     @required this.dotsCount,
-    this.reversed: false,
+    this.reversed = false,
   })  : assert(dotsCount != null && dotsCount > 0),
         assert(position != null && position >= 0),
         assert(decorator != null),
@@ -39,10 +39,8 @@ class DotsIndicator extends StatelessWidget {
   Widget _buildDot(int index) {
     final state = min(1.0, (position - index).abs());
 
-    final size =
-        Size.lerp(decorator.activeSize, decorator.size, state.toDouble());
-    final color =
-        Color.lerp(decorator.activeColor, decorator.color, state.toDouble());
+    final size = Size.lerp(decorator.activeSize, decorator.size, state.toDouble());
+    final color = Color.lerp(decorator.activeColor, decorator.color, state.toDouble());
     final shape = ShapeBorder.lerp(
       decorator.activeShape,
       decorator.shape,

@@ -18,28 +18,26 @@ class RadarWidget extends StatefulWidget {
   final SideStyle sideStyle;
   final double maxValue;
 
-  RadarWidget({
+  const RadarWidget({
     Key key,
     @required this.data,
-    this.layerNum: 6,
-    this.pointStyle: PaintingStyle.fill,
-    this.layerColor: const Color(0x3aFF00FF),
+    this.layerNum = 6,
+    this.pointStyle = PaintingStyle.fill,
+    this.layerColor = const Color(0x3aFF00FF),
     @required this.pointColors,
-    this.fallbackHeight: 200,
-    this.fallbackWidth: 200,
-    this.sideStyle: SideStyle.polygon,
+    this.fallbackHeight = 200,
+    this.fallbackWidth = 200,
+    this.sideStyle = SideStyle.polygon,
     @required this.maxValue,
   })  : assert(data.length > 2),
-        assert(data.length == pointColors.length,
-            'Length of data and color lists must be equal'),
+        assert(data.length == pointColors.length, 'Length of data and color lists must be equal'),
         super(key: key);
 
   @override
   createState() => _RadarWidgetState();
 }
 
-class _RadarWidgetState extends State<RadarWidget>
-    with SingleTickerProviderStateMixin {
+class _RadarWidgetState extends State<RadarWidget> with SingleTickerProviderStateMixin {
   double fraction = 0.0;
   Animation<double> animation;
   AnimationController animationController;
@@ -47,8 +45,7 @@ class _RadarWidgetState extends State<RadarWidget>
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(
-        duration: Duration(milliseconds: 1000), vsync: this);
+    animationController = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
 
     animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
       curve: Curves.fastOutSlowIn,
@@ -131,8 +128,8 @@ class RadarViewPainter extends CustomPainter {
   /// 顶点数是否为奇数个
   bool isOdd;
 
-  RadarViewPainter(this.layerNum, this.data, this.pointStyle, this.layerColor,
-      this.pointColors, this.sideStyle, this.maxValue, this.fraction)
+  RadarViewPainter(this.layerNum, this.data, this.pointStyle, this.layerColor, this.pointColors, this.sideStyle,
+      this.maxValue, this.fraction)
       : mPaint = Paint()
           ..color = Colors.blueAccent
           ..isAntiAlias = true
@@ -182,11 +179,9 @@ class RadarViewPainter extends CustomPainter {
       eachRadius = maxRadius / layerNum * (i + 1);
 
       if (i == layerNum - 1) {
-        canvas.drawCircle(Offset(viewCenterX, viewCenterY), eachRadius,
-            mPaint..strokeWidth = 2.0);
+        canvas.drawCircle(Offset(viewCenterX, viewCenterY), eachRadius, mPaint..strokeWidth = 2.0);
       } else {
-        canvas.drawCircle(Offset(viewCenterX, viewCenterY), eachRadius,
-            mPaint..strokeWidth = 1.0);
+        canvas.drawCircle(Offset(viewCenterX, viewCenterY), eachRadius, mPaint..strokeWidth = 1.0);
       }
     }
     _drawLineLinkPoint(canvas, eachAngle, eachRadius);
@@ -257,31 +252,11 @@ class RadarViewPainter extends CustomPainter {
       double value = data.values.toList()[i];
       double x, y;
       if (isOdd) {
-        x = viewCenterX -
-            maxRadius *
-                sin(degToRad(eachAngle * i)) *
-                value /
-                maxValue *
-                fraction;
-        y = viewCenterY -
-            maxRadius *
-                cos(degToRad(eachAngle * i)) *
-                value /
-                maxValue *
-                fraction;
+        x = viewCenterX - maxRadius * sin(degToRad(eachAngle * i)) * value / maxValue * fraction;
+        y = viewCenterY - maxRadius * cos(degToRad(eachAngle * i)) * value / maxValue * fraction;
       } else {
-        x = viewCenterX +
-            maxRadius *
-                cos(degToRad(eachAngle * i)) *
-                value /
-                maxValue *
-                fraction;
-        y = viewCenterY +
-            maxRadius *
-                sin(degToRad(eachAngle * i)) *
-                value /
-                maxValue *
-                fraction;
+        x = viewCenterX + maxRadius * cos(degToRad(eachAngle * i)) * value / maxValue * fraction;
+        y = viewCenterY + maxRadius * sin(degToRad(eachAngle * i)) * value / maxValue * fraction;
       }
 
       canvas.drawCircle(Offset(x, y), 2.0, mPointPaint..color = pointColors[i]);
@@ -310,8 +285,7 @@ class RadarViewPainter extends CustomPainter {
         y = viewCenterY + (maxRadius + 10) * sin(degToRad(eachAngle * i));
       }
 
-      drawText(canvas, data.keys.toList()[i],
-          Offset(x - (data.keys.toList()[i].length * 10.0), y - 8.0),
+      drawText(canvas, data.keys.toList()[i], Offset(x - (data.keys.toList()[i].length * 10.0), y - 8.0),
           fontSize: 12.0);
 
       canvas.restore();
@@ -319,6 +293,5 @@ class RadarViewPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(RadarViewPainter oldDelegate) =>
-      oldDelegate.fraction != fraction;
+  bool shouldRepaint(RadarViewPainter oldDelegate) => oldDelegate.fraction != fraction;
 }

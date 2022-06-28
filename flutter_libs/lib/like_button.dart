@@ -26,16 +26,16 @@ class LikeButton extends StatefulWidget {
     ),
     this.duration = const Duration(milliseconds: 1000),
     this.dotColor = const DotColor(
-      dotPrimaryColor: const Color(0xFFFFC107),
-      dotSecondaryColor: const Color(0xFFFF9800),
-      dotThirdColor: const Color(0xFFFF5722),
-      dotLastColor: const Color(0xFFF44336),
+      dotPrimaryColor: Color(0xFFFFC107),
+      dotSecondaryColor: Color(0xFFFF9800),
+      dotThirdColor: Color(0xFFFF5722),
+      dotLastColor: Color(0xFFF44336),
     ),
     this.circleStartColor = const Color(0xFFFF5722),
     this.circleEndColor = const Color(0xFFFFC107),
     this.onClicked,
-    this.isLiked: false,
-    this.normalColor: Colors.grey,
+    this.isLiked = false,
+    this.normalColor = Colors.grey,
   }) : super(key: key);
 
   @override
@@ -125,7 +125,7 @@ class _LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
     ).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(
+        curve: const Interval(
           0.0,
           0.3,
           curve: Curves.ease,
@@ -138,7 +138,7 @@ class _LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
     ).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(
+        curve: const Interval(
           0.2,
           0.5,
           curve: Curves.ease,
@@ -151,7 +151,7 @@ class _LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
     ).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(
+        curve: const Interval(
           0.35,
           0.7,
           curve: OvershootCurve(),
@@ -164,7 +164,7 @@ class _LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
     ).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(
+        curve: const Interval(
           0.1,
           1.0,
           curve: Curves.decelerate,
@@ -189,8 +189,8 @@ class CirclePainter extends CustomPainter {
     this.startColor = const Color(0xFFFF5722),
     this.endColor = const Color(0xFFFFC107),
   }) {
-    circlePaint..style = PaintingStyle.fill;
-    maskPaint..blendMode = BlendMode.clear;
+    circlePaint.style = PaintingStyle.fill;
+    maskPaint.blendMode = BlendMode.clear;
   }
 
   @override
@@ -198,17 +198,15 @@ class CirclePainter extends CustomPainter {
     double center = size.width * 0.5;
     _updateCircleColor();
     canvas.saveLayer(Offset.zero & size, Paint());
-    canvas.drawCircle(Offset(center, center),
-        outerCircleRadiusProgress * center, circlePaint);
-    canvas.drawCircle(Offset(center, center),
-        innerCircleRadiusProgress * center + 1, maskPaint);
+    canvas.drawCircle(Offset(center, center), outerCircleRadiusProgress * center, circlePaint);
+    canvas.drawCircle(Offset(center, center), innerCircleRadiusProgress * center + 1, maskPaint);
     canvas.restore();
   }
 
   void _updateCircleColor() {
     double colorProgress = clamp(outerCircleRadiusProgress, 0.5, 1.0);
     colorProgress = mapValueFromRangeToRange(colorProgress, 0.5, 1.0, 0.0, 1.0);
-    circlePaint..color = Color.lerp(startColor, endColor, colorProgress);
+    circlePaint.color = Color.lerp(startColor, endColor, colorProgress);
   }
 
   @override
@@ -275,50 +273,39 @@ class DotPainter extends CustomPainter {
 
   void _drawOuterDotsFrame(Canvas canvas) {
     for (int i = 0; i < dotCount; i++) {
-      double cX = centerX +
-          currentRadius1 * math.cos(i * degToRad(outerDotsPositionAngle));
-      double cY = centerY +
-          currentRadius1 * math.sin(i * degToRad(outerDotsPositionAngle));
-      canvas.drawCircle(Offset(cX, cY), currentDotSize1,
-          circlePaints[i % circlePaints.length]);
+      double cX = centerX + currentRadius1 * math.cos(i * degToRad(outerDotsPositionAngle));
+      double cY = centerY + currentRadius1 * math.sin(i * degToRad(outerDotsPositionAngle));
+      canvas.drawCircle(Offset(cX, cY), currentDotSize1, circlePaints[i % circlePaints.length]);
     }
   }
 
   void _drawInnerDotsFrame(Canvas canvas) {
     for (int i = 0; i < dotCount; i++) {
-      double cX = centerX +
-          currentRadius2 *
-              math.cos((i * degToRad(outerDotsPositionAngle - 10)));
-      double cY = centerY +
-          currentRadius2 *
-              math.sin((i * degToRad(outerDotsPositionAngle - 10)));
-      canvas.drawCircle(Offset(cX, cY), currentDotSize2,
-          circlePaints[(i + 1) % circlePaints.length]);
+      double cX = centerX + currentRadius2 * math.cos((i * degToRad(outerDotsPositionAngle - 10)));
+      double cY = centerY + currentRadius2 * math.sin((i * degToRad(outerDotsPositionAngle - 10)));
+      canvas.drawCircle(Offset(cX, cY), currentDotSize2, circlePaints[(i + 1) % circlePaints.length]);
     }
   }
 
   void _updateOuterDotsPosition() {
     if (currentProgress < 0.3) {
-      currentRadius1 = mapValueFromRangeToRange(
-          currentProgress, 0.0, 0.3, 0.0, maxOuterDotsRadius * 0.8);
+      currentRadius1 = mapValueFromRangeToRange(currentProgress, 0.0, 0.3, 0.0, maxOuterDotsRadius * 0.8);
     } else {
-      currentRadius1 = mapValueFromRangeToRange(currentProgress, 0.3, 1.0,
-          0.8 * maxOuterDotsRadius, maxOuterDotsRadius);
+      currentRadius1 =
+          mapValueFromRangeToRange(currentProgress, 0.3, 1.0, 0.8 * maxOuterDotsRadius, maxOuterDotsRadius);
     }
     if (currentProgress == 0) {
       currentDotSize1 = 0;
     } else if (currentProgress < 0.7) {
       currentDotSize1 = maxDotSize;
     } else {
-      currentDotSize1 =
-          mapValueFromRangeToRange(currentProgress, 0.7, 1.0, maxDotSize, 0.0);
+      currentDotSize1 = mapValueFromRangeToRange(currentProgress, 0.7, 1.0, maxDotSize, 0.0);
     }
   }
 
   void _updateInnerDotsPosition() {
     if (currentProgress < 0.3) {
-      currentRadius2 = mapValueFromRangeToRange(
-          currentProgress, 0.0, 0.3, 0.0, maxInnerDotsRadius);
+      currentRadius2 = mapValueFromRangeToRange(currentProgress, 0.0, 0.3, 0.0, maxInnerDotsRadius);
     } else {
       currentRadius2 = maxInnerDotsRadius;
     }
@@ -327,40 +314,27 @@ class DotPainter extends CustomPainter {
     } else if (currentProgress < 0.2) {
       currentDotSize2 = maxDotSize;
     } else if (currentProgress < 0.5) {
-      currentDotSize2 = mapValueFromRangeToRange(
-          currentProgress, 0.2, 0.5, maxDotSize, 0.3 * maxDotSize);
+      currentDotSize2 = mapValueFromRangeToRange(currentProgress, 0.2, 0.5, maxDotSize, 0.3 * maxDotSize);
     } else {
-      currentDotSize2 = mapValueFromRangeToRange(
-          currentProgress, 0.5, 1.0, maxDotSize * 0.3, 0.0);
+      currentDotSize2 = mapValueFromRangeToRange(currentProgress, 0.5, 1.0, maxDotSize * 0.3, 0.0);
     }
   }
 
   void _updateDotsPaints() {
     double progress = clamp(currentProgress, 0.6, 1.0);
-    int alpha =
-    mapValueFromRangeToRange(progress, 0.6, 1.0, 255.0, 0.0).toInt();
+    int alpha = mapValueFromRangeToRange(progress, 0.6, 1.0, 255.0, 0.0).toInt();
     if (currentProgress < 0.5) {
-      double progress =
-      mapValueFromRangeToRange(currentProgress, 0.0, 0.5, 0.0, 1.0);
-      circlePaints[0]
-        ..color = Color.lerp(color1, color2, progress).withAlpha(alpha);
-      circlePaints[1]
-        ..color = Color.lerp(color2, color3, progress).withAlpha(alpha);
-      circlePaints[2]
-        ..color = Color.lerp(color3, color4, progress).withAlpha(alpha);
-      circlePaints[3]
-        ..color = Color.lerp(color4, color1, progress).withAlpha(alpha);
+      double progress = mapValueFromRangeToRange(currentProgress, 0.0, 0.5, 0.0, 1.0);
+      circlePaints[0].color = Color.lerp(color1, color2, progress).withAlpha(alpha);
+      circlePaints[1].color = Color.lerp(color2, color3, progress).withAlpha(alpha);
+      circlePaints[2].color = Color.lerp(color3, color4, progress).withAlpha(alpha);
+      circlePaints[3].color = Color.lerp(color4, color1, progress).withAlpha(alpha);
     } else {
-      double progress =
-      mapValueFromRangeToRange(currentProgress, 0.5, 1.0, 0.0, 1.0);
-      circlePaints[0]
-        ..color = Color.lerp(color2, color3, progress).withAlpha(alpha);
-      circlePaints[1]
-        ..color = Color.lerp(color3, color4, progress).withAlpha(alpha);
-      circlePaints[2]
-        ..color = Color.lerp(color4, color1, progress).withAlpha(alpha);
-      circlePaints[3]
-        ..color = Color.lerp(color1, color2, progress).withAlpha(alpha);
+      double progress = mapValueFromRangeToRange(currentProgress, 0.5, 1.0, 0.0, 1.0);
+      circlePaints[0].color = Color.lerp(color2, color3, progress).withAlpha(alpha);
+      circlePaints[1].color = Color.lerp(color3, color4, progress).withAlpha(alpha);
+      circlePaints[2].color = Color.lerp(color4, color1, progress).withAlpha(alpha);
+      circlePaints[3].color = Color.lerp(color1, color2, progress).withAlpha(alpha);
     }
   }
 
@@ -381,20 +355,18 @@ class DotColor {
     this.dotLastColor,
   });
 
-  Color get dotThirdColorReal =>
-      dotThirdColor == null ? dotPrimaryColor : dotThirdColor;
+  Color get dotThirdColorReal => dotThirdColor ?? dotPrimaryColor;
 
-  Color get dotLastColorReal =>
-      dotLastColor == null ? dotSecondaryColor : dotLastColor;
+  Color get dotLastColorReal => dotLastColor ?? dotSecondaryColor;
 }
 
 class LikeIcon extends Icon {
   final Color iconColor;
 
   const LikeIcon(
-      IconData icon, {
-        this.iconColor,
-      }) : super(icon);
+    IconData icon, {
+    this.iconColor,
+  }) : super(icon);
 
   @override
   Color get color => this.iconColor;

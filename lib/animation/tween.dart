@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import '../page_index.dart';
 
 class TweenDemo extends StatefulWidget {
-  TweenDemo({Key key}) : super(key: key);
+  const TweenDemo({Key key}) : super(key: key);
 
   @override
   createState() => _TweenDemoState();
 }
 
-class _TweenDemoState extends State<TweenDemo>
-    with SingleTickerProviderStateMixin {
+class _TweenDemoState extends State<TweenDemo> with SingleTickerProviderStateMixin {
   AnimationController controller;
 
   //doubler类型动画
@@ -35,8 +34,7 @@ class _TweenDemoState extends State<TweenDemo>
   void initState() {
     super.initState();
     //创建AnimationController
-    controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 2000));
+    controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 2000));
     //animation第一种创建方式：
     doubleAnimation = Tween<double>(begin: 0.0, end: 200.0).animate(controller)
       ..addListener(() {
@@ -53,31 +51,21 @@ class _TweenDemoState extends State<TweenDemo>
       });
 
     //animation第二种创建方式：
-    offsetAnimation = controller
-        .drive(Tween<Offset>(begin: Offset.zero, end: Offset(400.0, 200.0)));
+    offsetAnimation = controller.drive(Tween<Offset>(begin: Offset.zero, end: const Offset(400.0, 200.0)));
 
-    colorAnimation =
-        ColorTween(begin: Colors.yellow, end: Colors.red).animate(controller);
+    colorAnimation = ColorTween(begin: Colors.yellow, end: Colors.red).animate(controller);
 
-    radiusAnimation = BorderRadiusTween(
-            begin: BorderRadius.circular(0), end: BorderRadius.circular(50))
-        .animate(controller);
+    radiusAnimation =
+        BorderRadiusTween(begin: BorderRadius.circular(0), end: BorderRadius.circular(50)).animate(controller);
 
     decorationAnimation = DecorationTween(
-            begin: BoxDecoration(
-                color: Colors.purple, borderRadius: BorderRadius.circular(0)),
-            end: BoxDecoration(
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(40)))
+            begin: BoxDecoration(color: Colors.purple, borderRadius: BorderRadius.circular(0)),
+            end: BoxDecoration(color: Colors.lightBlueAccent, borderRadius: BorderRadius.circular(40)))
         .animate(controller);
 
     textStyleAnimation = TextStyleTween(
-            begin: TextStyle(
-                color: Colors.black, fontSize: 20, fontWeight: FontWeight.w100),
-            end: TextStyle(
-                color: Colors.purple,
-                fontSize: 30,
-                fontWeight: FontWeight.w700))
+            begin: const TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w100),
+            end: const TextStyle(color: Colors.purple, fontSize: 30, fontWeight: FontWeight.w700))
         .animate(controller);
 
     //启动动画
@@ -94,7 +82,7 @@ class _TweenDemoState extends State<TweenDemo>
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[200],
-        appBar: AppBar(title: Text('TweenDemo')),
+        appBar: AppBar(title: const Text('TweenDemo')),
         body: SingleChildScrollView(
           child: Container(
             alignment: Alignment.center,
@@ -103,10 +91,10 @@ class _TweenDemoState extends State<TweenDemo>
               children: <Widget>[
                 SizedBox(
                   height: 200,
-                  child: Container(
+                  child: SizedBox(
                     height: doubleAnimation.value,
                     width: doubleAnimation.value,
-                    child: FlutterLogo(),
+                    child: const FlutterLogo(),
                   ),
                 ),
                 Gaps.vGap10,
@@ -126,8 +114,7 @@ class _TweenDemoState extends State<TweenDemo>
                 Container(
                   height: 100,
                   width: 100,
-                  decoration: BoxDecoration(
-                      borderRadius: radiusAnimation.value, color: Colors.blue),
+                  decoration: BoxDecoration(borderRadius: radiusAnimation.value, color: Colors.blue),
                 ),
                 Gaps.vGap10,
                 Container(
@@ -136,7 +123,7 @@ class _TweenDemoState extends State<TweenDemo>
                   decoration: decorationAnimation.value,
                 ),
                 Gaps.vGap10,
-                Container(
+                SizedBox(
                   height: 100,
                   child: Text(
                     "TestStyleTween",

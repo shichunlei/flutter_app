@@ -46,26 +46,28 @@ class RulerWidget extends StatefulWidget {
 
   final ScrollController scrollController;
 
-  RulerWidget(
-      {this.limit,
-      this.scaleSize,
+  const RulerWidget(
+      {Key key,
+      @required this.limit,
+      @required this.scaleSize,
       this.indicatorWidget,
-      this.lowerLimit: 0,
-      this.midLimitLower: 0,
-      this.midLimitUpper: 0,
-      this.upperLimit: 0,
-      this.interval,
-      this.normalBarColor,
+      this.lowerLimit = 0,
+      this.midLimitLower = 0,
+      this.midLimitUpper = 0,
+      this.upperLimit = 0,
+      @required this.interval,
+      @required this.normalBarColor,
       this.scaleColor,
       this.inRangeBarColor,
       this.behindRangeBarColor,
       this.outRangeBarColor,
       this.scrollController,
-      this.axis: Axis.horizontal})
+      this.axis = Axis.horizontal})
       : assert(limit != null),
         assert(scaleSize != null),
         assert(interval != null),
-        assert(normalBarColor != null);
+        assert(normalBarColor != null),
+        super(key: key);
 
   @override
   _RulerWidgetState createState() => _RulerWidgetState();
@@ -92,8 +94,7 @@ class _RulerWidgetState extends State<RulerWidget> {
             controller: widget.scrollController,
             scrollDirection: widget.axis,
             child: RotatedBox(
-                quarterTurns: widget.axis == Axis.horizontal ? 4 : 3,
-                child: Row(children: scaleWidgetList))));
+                quarterTurns: widget.axis == Axis.horizontal ? 4 : 3, child: Row(children: scaleWidgetList))));
   }
 
   void _generateScale() async {
@@ -161,9 +162,7 @@ class RulerBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     _getSmallBars();
 
-    return Container(
-        child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start, children: _children));
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: _children);
   }
 
   /// get color of small bar according to range
@@ -205,10 +204,7 @@ class RulerBarWidget extends StatelessWidget {
   void _getSmallBars() {
     num += 1;
 
-    _show = lowerLimit == num ||
-        upperLimit == num ||
-        midLimitLower == num ||
-        midLimitUpper == num;
+    _show = lowerLimit == num || upperLimit == num || midLimitLower == num || midLimitUpper == num;
 
     _children = [];
 
@@ -225,28 +221,17 @@ class RulerBarWidget extends StatelessWidget {
           : Container(),
       Padding(
           padding: const EdgeInsets.only(top: 20.0),
-          child: Container(
-              margin: EdgeInsets.all(_spacing),
-              color: _getBigBarColor(),
-              width: 2,
-              height: 20)),
+          child: Container(margin: EdgeInsets.all(_spacing), color: _getBigBarColor(), width: 2, height: 20)),
       Padding(
           padding: const EdgeInsets.only(top: 50.0),
-          child: Text(num.toString(),
-              style: TextStyle(
-                  fontSize: 14,
-                  color: normalBarColor,
-                  fontWeight: FontWeight.bold)))
+          child:
+              Text(num.toString(), style: TextStyle(fontSize: 14, color: normalBarColor, fontWeight: FontWeight.bold)))
     ]));
 
     for (int i = 1; i <= midInterval; i++) {
       _children.add(Padding(
           padding: const EdgeInsets.only(top: 20.0),
-          child: Container(
-              margin: EdgeInsets.all(_spacing),
-              color: _getSmallBarColor(),
-              width: 2,
-              height: 10)));
+          child: Container(margin: EdgeInsets.all(_spacing), color: _getSmallBarColor(), width: 2, height: 10)));
     }
   }
 

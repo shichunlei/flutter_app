@@ -27,7 +27,7 @@ class _CurvesDemoState extends State<CurvesDemo> with SingleTickerProviderStateM
   void initState() {
     super.initState();
 
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 2));
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 2));
     _curvedAnimation = CurvedAnimation(parent: _controller, curve: _curve);
 
     // The Tweens are static because they don't change.
@@ -40,24 +40,24 @@ class _CurvesDemoState extends State<CurvesDemo> with SingleTickerProviderStateM
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           // 动画从 controller.forward() 正向执行 结束时会回调此方法
-          print("status is completed");
+          Log.d("status is completed");
           // 重置起点
           //_controller.reset();
           // 开启
           // _controller.reverse();
         } else if (status == AnimationStatus.dismissed) {
           // 动画从 controller.reverse() 反向执行 结束时会回调此方法
-          print("status is dismissed");
+          Log.d("status is dismissed");
           // 重置起点
           //_controller.reset();
           // 开启
           // _controller.forward();
         } else if (status == AnimationStatus.forward) {
-          print("status is forward");
+          Log.d("status is forward");
           // 执行 controller.forward() 会回调此状态
         } else if (status == AnimationStatus.reverse) {
           // 执行 controller.reverse() 会回调此状态
-          print("status is reverse");
+          Log.d("status is reverse");
         }
       })
       ..addListener(() {
@@ -129,9 +129,9 @@ class _CurvesDemoState extends State<CurvesDemo> with SingleTickerProviderStateM
                   child: Container(
                       color: Colors.grey.shade200,
                       padding: const EdgeInsets.all(12),
-                      constraints: BoxConstraints.expand(height: 200),
+                      constraints: const BoxConstraints.expand(height: 200),
                       child:
-                          CustomPaint(key: Key('curveGraph'), painter: CurvePainter(_controller, _curvedAnimation))))),
+                          CustomPaint(key: const Key('curveGraph'), painter: CurvePainter(_controller, _curvedAnimation))))),
           Row(children: <Widget>[
             Expanded(
                 child: Center(
@@ -153,11 +153,11 @@ class _CurvesDemoState extends State<CurvesDemo> with SingleTickerProviderStateM
                             turns: _rotationTween.animate(_curvedAnimation),
                             child: Container(width: 50, height: 50, color: Colors.green)))))
           ]),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Row(children: <Widget>[
             Expanded(
                 child: Center(
-                    child: Container(
+                    child: SizedBox(
                         width: 50,
                         height: 50,
                         child: ScaleTransition(
@@ -165,14 +165,14 @@ class _CurvesDemoState extends State<CurvesDemo> with SingleTickerProviderStateM
                             child: Container(width: 50, height: 50, color: Colors.blue))))),
             Expanded(
                 child: Center(
-                    child: Container(
+                    child: SizedBox(
                         width: 50,
                         height: 50,
                         child: SlideTransition(
                             position: _slideTween.animate(_curvedAnimation),
                             child: Container(width: 50, height: 50, color: Colors.orange)))))
           ]),
-          SizedBox(height: 20)
+          const  SizedBox(height: 20)
         ]));
   }
 }
@@ -219,11 +219,11 @@ class CurvePainter extends CustomPainter {
   }
 
   void _drawAxis(Canvas canvas, Size size) {
-    drawText(canvas, 'time', Offset(size.width, size.height) - Offset(30, 18), width: size.width);
-    drawText(canvas, 'value', Offset(10, 0), width: size.width);
+    drawText(canvas, 'time', Offset(size.width, size.height) - const Offset(30, 18), width: size.width);
+    drawText(canvas, 'value', const Offset(10, 0), width: size.width);
 
     canvas.drawLine(Offset(0, size.height), Offset(size.width, size.height), axisPaint);
-    canvas.drawLine(Offset(0, 0), Offset(0, size.height), axisPaint);
+    canvas.drawLine(const Offset(0, 0), Offset(0, size.height), axisPaint);
   }
 
   @override

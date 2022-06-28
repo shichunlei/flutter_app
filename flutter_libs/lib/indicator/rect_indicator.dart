@@ -9,33 +9,28 @@ class RectIndicator extends StatelessWidget {
   final double activeWidth;
   final double height;
 
-  RectIndicator({
+  const RectIndicator({
     Key key,
-    this.width: 50.0,
-    this.activeWidth: 50.0,
-    this.height: 4,
+    this.width = 50.0,
+    this.activeWidth = 50.0,
+    this.height = 4,
     @required this.position,
     @required this.count,
-    this.color: Colors.white,
-    this.activeColor: const Color(0xFF3E4750),
+    this.color = Colors.white,
+    this.activeColor = const Color(0xFF3E4750),
   })  : assert(count != null && position != null),
         super(key: key);
 
   _indicator(bool isActive) {
     return AnimatedContainer(
-      margin: EdgeInsets.symmetric(horizontal: 8.0),
+      margin: const EdgeInsets.symmetric(horizontal: 8.0),
       height: height,
       width: isActive ? activeWidth : width,
       decoration: BoxDecoration(
           color: isActive ? color : activeColor,
-          boxShadow: [
-            BoxShadow(
-                color: Colors.black12,
-                offset: Offset(0.0, 2.0),
-                blurRadius: 2.0)
-          ],
+          boxShadow: const [BoxShadow(color: Colors.black12, offset: Offset(0.0, 2.0), blurRadius: 2.0)],
           borderRadius: BorderRadius.circular(height / 2.0)),
-      duration: Duration(milliseconds: 150),
+      duration: const Duration(milliseconds: 150),
     );
   }
 

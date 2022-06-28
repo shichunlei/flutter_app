@@ -8,14 +8,12 @@ import 'package:flutter/widgets.dart';
 /// Use the static method [next] to obtain a random [Color]. Alpha is kept
 /// constant at 100% opacity.
 class RandomColor {
-
-  static final Random _random = new Random();
+  static final Random _random = Random();
 
   /// Returns a random color.
   static Color next() {
-    return new Color(0xFF000000 + _random.nextInt(0x00FFFFFF));
+    return Color(0xFF000000 + _random.nextInt(0x00FFFFFF));
   }
-
 }
 
 /// Widget that takes up a given [width] and [height] and paints itself with a
@@ -25,19 +23,17 @@ class RandomColor {
 /// a [StatefulWidget].  However, the color will be randomized again after a
 /// full reload or a full rebuild.
 class RandomColorBlock extends StatefulWidget {
-
   final double width;
   final double height;
   final Widget child;
 
-  RandomColorBlock({this.width, this.height, this.child});
+  const RandomColorBlock({Key key, this.width, this.height, this.child}) : super(key: key);
 
   @override
-  _RandomColorBlockState createState() => new _RandomColorBlockState();
+  createState() => _RandomColorBlockState();
 }
 
 class _RandomColorBlockState extends State<RandomColorBlock> {
-
   /// Random color that persists across hot reload.
   Color randomColor;
 
@@ -50,7 +46,7 @@ class _RandomColorBlockState extends State<RandomColorBlock> {
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return Container(
       width: widget.width,
       height: widget.height,
       color: randomColor,
