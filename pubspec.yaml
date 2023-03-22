@@ -53,7 +53,7 @@ dependencies: # 应用或包依赖的其它包或插件
   device_info_plus: ^4.0.0
 
   # 网络请求库
-  dio: ^4.0.6
+  dio: ^5.0.3
 
   easy_contact_picker: ^0.0.2
 
